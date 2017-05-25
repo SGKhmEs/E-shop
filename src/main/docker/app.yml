@@ -1,0 +1,27 @@
+version: '2'
+services:
+    eshop-app:
+        image: eshop
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - EUREKA_CLIENT_SERVICE-URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka
+            - SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://eshop-postgresql:5432/eshop
+            - JHIPSTER_SLEEP=30 # gives time for the JHipster Registry to boot before the application
+            - SPRING_DATA_ELASTICSEARCH_CLUSTER_NODES=eshop-elasticsearch:9300
+        ports:
+            - 8080:8080
+    eshop-postgresql:
+        extends:
+            file: postgresql.yml
+            service: eshop-postgresql
+    eshop-elasticsearch:
+        extends:
+            file: elasticsearch.yml
+            service: eshop-elasticsearch
+    jhipster-registry:
+        extends:
+            file: jhipster-registry.yml
+            service: jhipster-registry
+        environment:
+            - SPRING_CLOUD_CONFIG_SERVER_NATIVE_SEARCH_LOCATIONS=file:./central-config/docker-config/

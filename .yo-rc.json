@@ -1,0 +1,64 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.social.eshop",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "4.5.1",
+    "baseName": "eshop",
+    "packageName": "com.social.eshop",
+    "packageFolder": "com/social/eshop",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "hibernateCache": "ehcache",
+    "clusteredHttpSession": false,
+    "websocket": "spring-websocket",
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": "elasticsearch",
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "gradle",
+    "enableSocialSignIn": true,
+    "jwtSecretKey": "1788c027ee6db496b867d8b584d608a5a63ae306",
+    "clientFramework": "angular2",
+    "useSass": true,
+    "clientPackageManager": "yarn",
+    "applicationType": "monolith",
+    "testFrameworks": [
+      "gatling",
+      "cucumber",
+      "protractor"
+    ],
+    "jhiPrefix": "jhi",
+    "otherModules": [
+      {
+        "name": "generator-jhipster-nav-element",
+        "version": "1.2.2"
+      },
+      {
+        "name": "generator-jhipster-bootstrap-material-design",
+        "version": "3.5.1"
+      },
+      {
+        "name": "generator-jhipster-spring-social-connectors",
+        "version": "0.0.1"
+      },
+      {
+        "name": "generator-jhipster-angular-ui",
+        "version": "0.0.2"
+      },
+      {
+        "name": "generator-jhipster-google-analytics",
+        "version": "0.0.1"
+      }
+    ],
+    "enableTranslation": true,
+    "nativeLanguage": "en",
+    "languages": [
+      "en",
+      "ru"
+    ]
+  }
+}
