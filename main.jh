@@ -1,0 +1,242 @@
+entity Customer {  
+	roles Roles
+}
+
+entity CustomerRoom { 
+	subScription Boolean,
+    sosialConnect SocialConnect
+}
+
+entity Comments {
+	comments String,
+    data ZonedDateTime
+}
+
+entity PersonalInformation {
+	firstName String  required, 
+  	lastName String required, 
+    middleName String, 
+    sex Sex,
+    phone String  required,  
+    email String  required, 
+    dateBirth LocalDate  
+}
+
+entity HistoryOrder {
+	orderNumber Integer, 
+    date ZonedDateTime,
+    count Integer, 
+    sum Double, 			
+    status Status, 
+    consignmentNote String
+}
+
+entity AddressShipping {
+	country String required,
+	city String  required, 
+	state String,			
+    region String,
+	street String required, 
+	building String required, 
+	appartment String 
+}
+
+entity Confirm {
+   pay Payment
+}
+
+entity LoginOptions {
+	login String  required, 
+    password String required  
+}
+
+entity WishList {
+	wishsName String,
+	data LocalDate 
+}
+
+entity Address {
+	country String required,
+	city String required, 
+	state String,			
+    region String,
+	street String required, 
+	building String required, 
+	appartment String 
+}
+
+entity SessionId {
+}
+
+entity Seen {
+    data LocalDate
+}
+
+entity Bucket {
+    data ZonedDateTime
+}
+
+entity Avatar {
+	usersImage ImageBlob
+}
+
+enum Roles {
+	USER, MODERATOR, ADMINISTRATOR, OWNER
+}
+
+enum Sex {
+	MAN, WOMAN
+}
+
+enum Payment {
+	CASH, CREDITCARD, PAYMENTSYSTEM
+}
+
+enum SocialConnect {
+	DEFAULT, GOOGLE, FACEBOOK, VK, TWITTER, OK
+}
+
+enum Status {
+	SUCCESS, FAILURE, REJECT, WAIT
+}
+
+relationship OneToOne {
+	Customer{loginOptions} to LoginOptions,
+	Customer{confirm} to Confirm,
+	Customer{userRoom} to CustomerRoom	
+}
+
+relationship OneToOne {
+    CustomerRoom{personalInfo} to PersonalInformation,
+    CustomerRoom{wishList} to WishList,
+    CustomerRoom{address} to Address,
+    CustomerRoom{bucket} to Bucket,
+    CustomerRoom{seen} to Seen,
+    CustomerRoom{historyOrder} to HistoryOrder
+}
+    
+relationship OneToOne {
+	PersonalInformation{avatar} to Avatar,
+    PersonalInformation{addressShipping} to AddressShipping
+}
+
+relationship OneToMany {
+	CustomerRoom{customer} to Comments
+}
+
+relationship OneToMany {
+	Comments{customer} to Media
+}
+
+relationship OneToMany {
+	Products{comments} to Comments
+}
+relationship OneToMany {
+	Customer{customer} to SessionId
+}
+
+relationship OneToMany {
+    Seen {product} to Products
+}
+
+relationship OneToMany {
+    Bucket{product} to Products
+}
+
+relationship OneToMany {
+    WishList{product} to Products
+}
+
+entity Options{
+name String required,
+level Integer required
+}
+
+entity Type {
+name String required,
+behavior String required
+}
+
+entity Value {
+data String required
+}
+
+entity Products {
+name String required,
+sale String ,
+rating Double,
+fresh Boolean 
+}
+
+entity Category{
+name String required
+}
+
+entity SubCategory{
+name String required
+}
+
+
+entity Media {
+name String required,
+type String required,
+contentType String required,
+location String required,
+size String required
+}
+entity Tags {
+name String required
+}
+entity  Consignment {
+price BigDecimal required
+}
+entity Storage {
+name String required,
+actualite Boolean required,
+quantity Integer required
+}
+entity  Producers {
+name String required,
+country String required
+}
+
+//---------------------------------
+
+relationship OneToOne {
+ Options{value} to Value,
+ Options{type} to Type
+ }
+ 
+relationship OneToMany{
+Category{subCat} to SubCategory
+//Category to Category{parent}
+}
+relationship OneToMany {
+SubCategory{options} to Options
+}
+
+relationship OneToMany{
+SubCategory{product} to Products,
+Media{product} to Products,
+Tags{product} to Products
+}
+
+relationship OneToMany{
+Products{consignment} to Consignment
+}
+
+relationship OneToMany{
+Producers{consignment} to Consignment,
+Storage{consignment} to Consignment
+}
+
+// Set pagination options
+paginate Products with infinite-scroll
+paginate Consignment with pagination
+
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl 
+// Set an angular suffix
+
