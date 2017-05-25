@@ -1,0 +1,92 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myMediaLabel" jhiTranslate="eshopApp.media.home.createOrEditLabel">Create or edit a Media</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!media.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="media.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="eshopApp.media.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="media.name"
+            required />
+            <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="eshopApp.media.type" for="field_type">Type</label>
+            <input type="text" class="form-control" name="type" id="field_type"
+                [(ngModel)]="media.type"
+            required />
+            <div [hidden]="!(editForm.controls.type?.dirty && editForm.controls.type?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.type?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="eshopApp.media.contentType" for="field_contentType">Content Type</label>
+            <input type="text" class="form-control" name="contentType" id="field_contentType"
+                [(ngModel)]="media.contentType"
+            required />
+            <div [hidden]="!(editForm.controls.contentType?.dirty && editForm.controls.contentType?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.contentType?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="eshopApp.media.location" for="field_location">Location</label>
+            <input type="text" class="form-control" name="location" id="field_location"
+                [(ngModel)]="media.location"
+            required />
+            <div [hidden]="!(editForm.controls.location?.dirty && editForm.controls.location?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.location?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="eshopApp.media.size" for="field_size">Size</label>
+            <input type="text" class="form-control" name="size" id="field_size"
+                [(ngModel)]="media.size"
+            required />
+            <div [hidden]="!(editForm.controls.size?.dirty && editForm.controls.size?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.size?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="eshopApp.media.comments" for="field_comments">Comments</label>
+            <select class="form-control" id="field_comments" name="comments" [(ngModel)]="media.commentsId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="commentsOption.id" *ngFor="let commentsOption of comments; trackBy: trackCommentsById">{{commentsOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

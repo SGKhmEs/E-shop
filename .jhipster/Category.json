@@ -1,0 +1,25 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "subCat",
+            "otherEntityName": "subCategory",
+            "otherEntityRelationshipName": "category"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20170525235450",
+    "entityTableName": "category",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl"
+}

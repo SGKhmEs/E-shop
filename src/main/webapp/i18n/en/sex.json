@@ -1,0 +1,9 @@
+{
+    "eshopApp": {
+        "Sex" : {
+            "null": "",
+            "MAN": "MAN",
+            "WOMAN": "WOMAN"
+        }
+    }
+}

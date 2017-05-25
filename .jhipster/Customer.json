@@ -1,0 +1,47 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "loginOptions",
+            "otherEntityName": "loginOptions",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "customer"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "confirm",
+            "otherEntityName": "confirm",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "customer"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "userRoom",
+            "otherEntityName": "customerRoom",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "customer"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "customer",
+            "otherEntityName": "sessionId",
+            "otherEntityRelationshipName": "customer"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "roles",
+            "fieldType": "Roles",
+            "fieldValues": "USER,MODERATOR,ADMINISTRATOR,OWNER"
+        }
+    ],
+    "changelogDate": "20170525235432",
+    "entityTableName": "customer",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl"
+}

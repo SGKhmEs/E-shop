@@ -1,0 +1,28 @@
+{
+    "eshopApp": {
+        "media" : {
+            "home": {
+                "title": "Media",
+                "createLabel": "Создать новый Media",
+                "createOrEditLabel": "Создать или отредактировать Media",
+                "search": "Найти Media"
+            },
+            "created": "Новый Media создан с идентификатором {{ param }}",
+            "updated": "Media обновлен с идентификатором {{ param }}",
+            "deleted": "Media удален с идентификатором {{ param }}",
+            "delete": {
+                "question": "Вы уверены что хотите удалить Media {{ id }}?"
+            },
+            "detail": {
+                "title": "Media"
+            },
+            "name": "Name",
+            "type": "Type",
+            "contentType": "Content Type",
+            "location": "Location",
+            "size": "Size",
+            "comments": "Comments",
+            "product": "Product"
+        }
+    }
+}

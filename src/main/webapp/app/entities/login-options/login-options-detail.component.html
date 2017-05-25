@@ -1,0 +1,29 @@
+
+<div *ngIf="loginOptions">
+    <h2><span jhiTranslate="eshopApp.loginOptions.detail.title">Login Options</span> {{loginOptions.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="eshopApp.loginOptions.login">Login</span></dt>
+        <dd>
+            <span>{{loginOptions.login}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.loginOptions.password">Password</span></dt>
+        <dd>
+            <span>{{loginOptions.password}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'login-options/'+ loginOptions.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,79 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "wishList",
+            "otherEntityName": "wishList",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "seen",
+            "otherEntityName": "seen",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "bucket",
+            "otherEntityName": "bucket",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "comments",
+            "otherEntityName": "comments",
+            "otherEntityRelationshipName": "products"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "consignment",
+            "otherEntityName": "consignment",
+            "otherEntityRelationshipName": "products"
+        },
+        {
+            "relationshipName": "subCategory",
+            "otherEntityName": "subCategory",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "media",
+            "otherEntityName": "media",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "tags",
+            "otherEntityName": "tags",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "sale",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "rating",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "fresh",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20170525235449",
+    "entityTableName": "products",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl"
+}

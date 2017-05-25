@@ -1,0 +1,26 @@
+{
+    "eshopApp": {
+        "comments" : {
+            "home": {
+                "title": "Comments",
+                "createLabel": "Создать новый Comments",
+                "createOrEditLabel": "Создать или отредактировать Comments",
+                "search": "Найти Comments"
+            },
+            "created": "Новый Comments создан с идентификатором {{ param }}",
+            "updated": "Comments обновлен с идентификатором {{ param }}",
+            "deleted": "Comments удален с идентификатором {{ param }}",
+            "delete": {
+                "question": "Вы уверены что хотите удалить Comments {{ id }}?"
+            },
+            "detail": {
+                "title": "Comments"
+            },
+            "comments": "Comments",
+            "data": "Data",
+            "customerRoom": "Customer Room",
+            "customer": "Customer",
+            "products": "Products"
+        }
+    }
+}

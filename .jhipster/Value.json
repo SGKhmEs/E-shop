@@ -1,0 +1,18 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "data",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20170525235448",
+    "entityTableName": "value",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl"
+}

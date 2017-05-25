@@ -1,0 +1,74 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myOptionsLabel" jhiTranslate="eshopApp.options.home.createOrEditLabel">Create or edit a Options</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!options.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="options.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="eshopApp.options.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="options.name"
+            required />
+            <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="eshopApp.options.level" for="field_level">Level</label>
+            <input type="number" class="form-control" name="level" id="field_level"
+                [(ngModel)]="options.level"
+            required />
+            <div [hidden]="!(editForm.controls.level?.dirty && editForm.controls.level?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.level?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.level?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="eshopApp.options.value" for="field_value">Value</label>
+            <select class="form-control" id="field_value" name="value" [(ngModel)]="options.valueId">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="valueOption.id" *ngFor="let valueOption of values; trackBy: trackValueById">{{valueOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="eshopApp.options.type" for="field_type">Type</label>
+            <select class="form-control" id="field_type" name="type" [(ngModel)]="options.typeId">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="typeOption.id" *ngFor="let typeOption of types; trackBy: trackTypeById">{{typeOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="eshopApp.options.subCategory" for="field_subCategory">Sub Category</label>
+            <select class="form-control" id="field_subCategory" name="subCategory" [(ngModel)]="options.subCategoryId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="subCategoryOption.id" *ngFor="let subCategoryOption of subcategories; trackBy: trackSubCategoryById">{{subCategoryOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

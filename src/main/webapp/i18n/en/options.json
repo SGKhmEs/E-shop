@@ -1,0 +1,26 @@
+{
+    "eshopApp": {
+        "options" : {
+            "home": {
+                "title": "Options",
+                "createLabel": "Create a new Options",
+                "createOrEditLabel": "Create or edit a Options",
+                "search": "Search for Options"
+            },
+            "created": "A new Options is created with identifier {{ param }}",
+            "updated": "A Options is updated with identifier {{ param }}",
+            "deleted": "A Options is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Options {{ id }}?"
+            },
+            "detail": {
+                "title": "Options"
+            },
+            "name": "Name",
+            "level": "Level",
+            "value": "Value",
+            "type": "Type",
+            "subCategory": "Sub Category"
+        }
+    }
+}

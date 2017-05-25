@@ -1,0 +1,22 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "product",
+            "otherEntityName": "products",
+            "otherEntityRelationshipName": "seen"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "data",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "changelogDate": "20170525235443",
+    "entityTableName": "seen",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl"
+}

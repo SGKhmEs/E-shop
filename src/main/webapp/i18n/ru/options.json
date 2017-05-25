@@ -1,0 +1,26 @@
+{
+    "eshopApp": {
+        "options" : {
+            "home": {
+                "title": "Options",
+                "createLabel": "Создать новый Options",
+                "createOrEditLabel": "Создать или отредактировать Options",
+                "search": "Найти Options"
+            },
+            "created": "Новый Options создан с идентификатором {{ param }}",
+            "updated": "Options обновлен с идентификатором {{ param }}",
+            "deleted": "Options удален с идентификатором {{ param }}",
+            "delete": {
+                "question": "Вы уверены что хотите удалить Options {{ id }}?"
+            },
+            "detail": {
+                "title": "Options"
+            },
+            "name": "Name",
+            "level": "Level",
+            "value": "Value",
+            "type": "Type",
+            "subCategory": "Sub Category"
+        }
+    }
+}

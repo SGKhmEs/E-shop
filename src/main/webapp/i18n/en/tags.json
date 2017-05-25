@@ -1,0 +1,23 @@
+{
+    "eshopApp": {
+        "tags" : {
+            "home": {
+                "title": "Tags",
+                "createLabel": "Create a new Tags",
+                "createOrEditLabel": "Create or edit a Tags",
+                "search": "Search for Tags"
+            },
+            "created": "A new Tags is created with identifier {{ param }}",
+            "updated": "A Tags is updated with identifier {{ param }}",
+            "deleted": "A Tags is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Tags {{ id }}?"
+            },
+            "detail": {
+                "title": "Tags"
+            },
+            "name": "Name",
+            "product": "Product"
+        }
+    }
+}

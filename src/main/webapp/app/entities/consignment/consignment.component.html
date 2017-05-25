@@ -1,0 +1,95 @@
+<div>
+    <h2>
+        <span jhiTranslate="eshopApp.consignment.home.title">Consignments</span>
+        <button class="btn btn-primary float-right create-consignment" [routerLink]="['/', { outlets: { popup: ['consignment-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="eshopApp.consignment.home.createLabel">
+            Create new Consignment
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'eshopApp.consignment.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="consignments">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="price"><span jhiTranslate="eshopApp.consignment.price">Price</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="productsId"><span jhiTranslate="eshopApp.consignment.products">Products</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="storageId"><span jhiTranslate="eshopApp.consignment.storage">Storage</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="producersId"><span jhiTranslate="eshopApp.consignment.producers">Producers</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let consignment of consignments ;trackBy: trackId">
+                <td><a [routerLink]="['../consignment', consignment.id ]">{{consignment.id}}</a></td>
+                <td>{{consignment.price}}</td>
+                <td>
+                    <div *ngIf="consignment.productsId">
+                        <a [routerLink]="['../products', consignment.productsId  ]" >{{consignment.productsId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="consignment.storageId">
+                        <a [routerLink]="['../storage', consignment.storageId  ]" >{{consignment.storageId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="consignment.producersId">
+                        <a [routerLink]="['../producers', consignment.producersId  ]" >{{consignment.producersId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../consignment', consignment.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'consignment/'+ consignment.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'consignment/'+ consignment.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <div *ngIf="consignments && consignments.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

@@ -1,0 +1,23 @@
+{
+    "eshopApp": {
+        "seen" : {
+            "home": {
+                "title": "Seens",
+                "createLabel": "Создать новый Seen",
+                "createOrEditLabel": "Создать или отредактировать Seen",
+                "search": "Найти Seen"
+            },
+            "created": "Новый Seen создан с идентификатором {{ param }}",
+            "updated": "Seen обновлен с идентификатором {{ param }}",
+            "deleted": "Seen удален с идентификатором {{ param }}",
+            "delete": {
+                "question": "Вы уверены что хотите удалить Seen {{ id }}?"
+            },
+            "detail": {
+                "title": "Seen"
+            },
+            "data": "Data",
+            "product": "Product"
+        }
+    }
+}

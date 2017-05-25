@@ -1,0 +1,93 @@
+<div>
+    <h2>
+        <span jhiTranslate="eshopApp.personalInformation.home.title">Personal Informations</span>
+        <button class="btn btn-primary float-right create-personal-information" [routerLink]="['/', { outlets: { popup: ['personal-information-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="eshopApp.personalInformation.home.createLabel">
+            Create new Personal Information
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'eshopApp.personalInformation.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="personalInformations">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="eshopApp.personalInformation.firstName">First Name</span></th>
+            <th><span jhiTranslate="eshopApp.personalInformation.lastName">Last Name</span></th>
+            <th><span jhiTranslate="eshopApp.personalInformation.middleName">Middle Name</span></th>
+            <th><span jhiTranslate="eshopApp.personalInformation.sex">Sex</span></th>
+            <th><span jhiTranslate="eshopApp.personalInformation.phone">Phone</span></th>
+            <th><span jhiTranslate="eshopApp.personalInformation.email">Email</span></th>
+            <th><span jhiTranslate="eshopApp.personalInformation.dateBirth">Date Birth</span></th>
+            <th><span jhiTranslate="eshopApp.personalInformation.avatar">Avatar</span></th>
+            <th><span jhiTranslate="eshopApp.personalInformation.addressShipping">Address Shipping</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let personalInformation of personalInformations ;trackBy: trackId">
+                <td><a [routerLink]="['../personal-information', personalInformation.id ]">{{personalInformation.id}}</a></td>
+                <td>{{personalInformation.firstName}}</td>
+                <td>{{personalInformation.lastName}}</td>
+                <td>{{personalInformation.middleName}}</td>
+                <td jhiTranslate="{{'eshopApp.Sex.' + personalInformation.sex}}">{{personalInformation.sex}}</td>
+                <td>{{personalInformation.phone}}</td>
+                <td>{{personalInformation.email}}</td>
+                <td>{{personalInformation.dateBirth | date:'mediumDate'}}</td>
+                <td>
+                    <div *ngIf="personalInformation.avatarId">
+                        <a [routerLink]="['../avatar', personalInformation.avatarId  ]" >{{personalInformation.avatarId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="personalInformation.addressShippingId">
+                        <a [routerLink]="['../address-shipping', personalInformation.addressShippingId  ]" >{{personalInformation.addressShippingId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../personal-information', personalInformation.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'personal-information/'+ personalInformation.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'personal-information/'+ personalInformation.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

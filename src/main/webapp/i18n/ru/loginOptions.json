@@ -1,0 +1,23 @@
+{
+    "eshopApp": {
+        "loginOptions" : {
+            "home": {
+                "title": "Login Options",
+                "createLabel": "Создать новый Login Options",
+                "createOrEditLabel": "Создать или отредактировать Login Options",
+                "search": "Найти Login Options"
+            },
+            "created": "Новый Login Options создан с идентификатором {{ param }}",
+            "updated": "Login Options обновлен с идентификатором {{ param }}",
+            "deleted": "Login Options удален с идентификатором {{ param }}",
+            "delete": {
+                "question": "Вы уверены что хотите удалить Login Options {{ id }}?"
+            },
+            "detail": {
+                "title": "Login Options"
+            },
+            "login": "Login",
+            "password": "Password"
+        }
+    }
+}

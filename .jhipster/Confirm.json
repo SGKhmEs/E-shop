@@ -1,0 +1,16 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "pay",
+            "fieldType": "Payment",
+            "fieldValues": "CASH,CREDITCARD,PAYMENTSYSTEM"
+        }
+    ],
+    "changelogDate": "20170525235438",
+    "entityTableName": "confirm",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl"
+}

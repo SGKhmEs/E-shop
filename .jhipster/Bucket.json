@@ -1,0 +1,22 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "product",
+            "otherEntityName": "products",
+            "otherEntityRelationshipName": "bucket"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "data",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "changelogDate": "20170525235444",
+    "entityTableName": "bucket",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl"
+}

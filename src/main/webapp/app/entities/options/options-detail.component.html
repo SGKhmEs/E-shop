@@ -1,0 +1,47 @@
+
+<div *ngIf="options">
+    <h2><span jhiTranslate="eshopApp.options.detail.title">Options</span> {{options.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="eshopApp.options.name">Name</span></dt>
+        <dd>
+            <span>{{options.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.options.level">Level</span></dt>
+        <dd>
+            <span>{{options.level}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.options.value">Value</span></dt>
+        <dd>
+            <div *ngIf="options.valueId">
+                <a [routerLink]="['/value', options.valueId]">{{options.valueId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.options.type">Type</span></dt>
+        <dd>
+            <div *ngIf="options.typeId">
+                <a [routerLink]="['/type', options.typeId]">{{options.typeId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.options.subCategory">Sub Category</span></dt>
+        <dd>
+            <div *ngIf="options.subCategoryId">
+                <a [routerLink]="['/sub-category', options.subCategoryId]">{{options.subCategoryId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'options/'+ options.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,23 @@
+{
+    "eshopApp": {
+        "bucket" : {
+            "home": {
+                "title": "Buckets",
+                "createLabel": "Создать новый Bucket",
+                "createOrEditLabel": "Создать или отредактировать Bucket",
+                "search": "Найти Bucket"
+            },
+            "created": "Новый Bucket создан с идентификатором {{ param }}",
+            "updated": "Bucket обновлен с идентификатором {{ param }}",
+            "deleted": "Bucket удален с идентификатором {{ param }}",
+            "delete": {
+                "question": "Вы уверены что хотите удалить Bucket {{ id }}?"
+            },
+            "detail": {
+                "title": "Bucket"
+            },
+            "data": "Data",
+            "product": "Product"
+        }
+    }
+}

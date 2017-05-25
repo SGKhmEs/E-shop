@@ -1,0 +1,23 @@
+{
+    "eshopApp": {
+        "seen" : {
+            "home": {
+                "title": "Seens",
+                "createLabel": "Create a new Seen",
+                "createOrEditLabel": "Create or edit a Seen",
+                "search": "Search for Seen"
+            },
+            "created": "A new Seen is created with identifier {{ param }}",
+            "updated": "A Seen is updated with identifier {{ param }}",
+            "deleted": "A Seen is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Seen {{ id }}?"
+            },
+            "detail": {
+                "title": "Seen"
+            },
+            "data": "Data",
+            "product": "Product"
+        }
+    }
+}

@@ -1,0 +1,41 @@
+
+<div *ngIf="comments">
+    <h2><span jhiTranslate="eshopApp.comments.detail.title">Comments</span> {{comments.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="eshopApp.comments.comments">Comments</span></dt>
+        <dd>
+            <span>{{comments.comments}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.comments.data">Data</span></dt>
+        <dd>
+            <span>{{comments.data | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.comments.customerRoom">Customer Room</span></dt>
+        <dd>
+            <div *ngIf="comments.customerRoomId">
+                <a [routerLink]="['/customer-room', comments.customerRoomId]">{{comments.customerRoomId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.comments.products">Products</span></dt>
+        <dd>
+            <div *ngIf="comments.productsId">
+                <a [routerLink]="['/products', comments.productsId]">{{comments.productsId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'comments/'+ comments.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,107 @@
+<div>
+    <h2>
+        <span jhiTranslate="eshopApp.customerRoom.home.title">Customer Rooms</span>
+        <button class="btn btn-primary float-right create-customer-room" [routerLink]="['/', { outlets: { popup: ['customer-room-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="eshopApp.customerRoom.home.createLabel">
+            Create new Customer Room
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'eshopApp.customerRoom.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="customerRooms">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="eshopApp.customerRoom.subScription">Sub Scription</span></th>
+            <th><span jhiTranslate="eshopApp.customerRoom.sosialConnect">Sosial Connect</span></th>
+            <th><span jhiTranslate="eshopApp.customerRoom.personalInfo">Personal Info</span></th>
+            <th><span jhiTranslate="eshopApp.customerRoom.wishList">Wish List</span></th>
+            <th><span jhiTranslate="eshopApp.customerRoom.address">Address</span></th>
+            <th><span jhiTranslate="eshopApp.customerRoom.bucket">Bucket</span></th>
+            <th><span jhiTranslate="eshopApp.customerRoom.seen">Seen</span></th>
+            <th><span jhiTranslate="eshopApp.customerRoom.historyOrder">History Order</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let customerRoom of customerRooms ;trackBy: trackId">
+                <td><a [routerLink]="['../customer-room', customerRoom.id ]">{{customerRoom.id}}</a></td>
+                <td>{{customerRoom.subScription}}</td>
+                <td jhiTranslate="{{'eshopApp.SocialConnect.' + customerRoom.sosialConnect}}">{{customerRoom.sosialConnect}}</td>
+                <td>
+                    <div *ngIf="customerRoom.personalInfoId">
+                        <a [routerLink]="['../personal-information', customerRoom.personalInfoId  ]" >{{customerRoom.personalInfoId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="customerRoom.wishListId">
+                        <a [routerLink]="['../wish-list', customerRoom.wishListId  ]" >{{customerRoom.wishListId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="customerRoom.addressId">
+                        <a [routerLink]="['../address', customerRoom.addressId  ]" >{{customerRoom.addressId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="customerRoom.bucketId">
+                        <a [routerLink]="['../bucket', customerRoom.bucketId  ]" >{{customerRoom.bucketId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="customerRoom.seenId">
+                        <a [routerLink]="['../seen', customerRoom.seenId  ]" >{{customerRoom.seenId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="customerRoom.historyOrderId">
+                        <a [routerLink]="['../history-order', customerRoom.historyOrderId  ]" >{{customerRoom.historyOrderId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../customer-room', customerRoom.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'customer-room/'+ customerRoom.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'customer-room/'+ customerRoom.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

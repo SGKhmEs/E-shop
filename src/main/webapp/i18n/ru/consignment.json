@@ -1,0 +1,25 @@
+{
+    "eshopApp": {
+        "consignment" : {
+            "home": {
+                "title": "Consignments",
+                "createLabel": "Создать новый Consignment",
+                "createOrEditLabel": "Создать или отредактировать Consignment",
+                "search": "Найти Consignment"
+            },
+            "created": "Новый Consignment создан с идентификатором {{ param }}",
+            "updated": "Consignment обновлен с идентификатором {{ param }}",
+            "deleted": "Consignment удален с идентификатором {{ param }}",
+            "delete": {
+                "question": "Вы уверены что хотите удалить Consignment {{ id }}?"
+            },
+            "detail": {
+                "title": "Consignment"
+            },
+            "price": "Price",
+            "products": "Products",
+            "storage": "Storage",
+            "producers": "Producers"
+        }
+    }
+}

@@ -1,0 +1,89 @@
+<div>
+    <h2>
+        <span jhiTranslate="eshopApp.options.home.title">Options</span>
+        <button class="btn btn-primary float-right create-options" [routerLink]="['/', { outlets: { popup: ['options-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="eshopApp.options.home.createLabel">
+            Create new Options
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'eshopApp.options.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="options">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="eshopApp.options.name">Name</span></th>
+            <th><span jhiTranslate="eshopApp.options.level">Level</span></th>
+            <th><span jhiTranslate="eshopApp.options.value">Value</span></th>
+            <th><span jhiTranslate="eshopApp.options.type">Type</span></th>
+            <th><span jhiTranslate="eshopApp.options.subCategory">Sub Category</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let options of options ;trackBy: trackId">
+                <td><a [routerLink]="['../options', options.id ]">{{options.id}}</a></td>
+                <td>{{options.name}}</td>
+                <td>{{options.level}}</td>
+                <td>
+                    <div *ngIf="options.valueId">
+                        <a [routerLink]="['../value', options.valueId  ]" >{{options.valueId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="options.typeId">
+                        <a [routerLink]="['../type', options.typeId  ]" >{{options.typeId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="options.subCategoryId">
+                        <a [routerLink]="['../sub-category', options.subCategoryId  ]" >{{options.subCategoryId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../options', options.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'options/'+ options.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'options/'+ options.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

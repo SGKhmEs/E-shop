@@ -1,0 +1,47 @@
+
+<div *ngIf="media">
+    <h2><span jhiTranslate="eshopApp.media.detail.title">Media</span> {{media.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="eshopApp.media.name">Name</span></dt>
+        <dd>
+            <span>{{media.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.media.type">Type</span></dt>
+        <dd>
+            <span>{{media.type}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.media.contentType">Content Type</span></dt>
+        <dd>
+            <span>{{media.contentType}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.media.location">Location</span></dt>
+        <dd>
+            <span>{{media.location}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.media.size">Size</span></dt>
+        <dd>
+            <span>{{media.size}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.media.comments">Comments</span></dt>
+        <dd>
+            <div *ngIf="media.commentsId">
+                <a [routerLink]="['/comments', media.commentsId]">{{media.commentsId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'media/'+ media.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

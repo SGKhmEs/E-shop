@@ -1,0 +1,111 @@
+<div>
+    <h2>
+        <span jhiTranslate="eshopApp.products.home.title">Products</span>
+        <button class="btn btn-primary float-right create-products" [routerLink]="['/', { outlets: { popup: ['products-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="eshopApp.products.home.createLabel">
+            Create new Products
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'eshopApp.products.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="products">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="name"><span jhiTranslate="eshopApp.products.name">Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="sale"><span jhiTranslate="eshopApp.products.sale">Sale</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="rating"><span jhiTranslate="eshopApp.products.rating">Rating</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="fresh"><span jhiTranslate="eshopApp.products.fresh">Fresh</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="wishListId"><span jhiTranslate="eshopApp.products.wishList">Wish List</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="seenId"><span jhiTranslate="eshopApp.products.seen">Seen</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="bucketId"><span jhiTranslate="eshopApp.products.bucket">Bucket</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="subCategoryId"><span jhiTranslate="eshopApp.products.subCategory">Sub Category</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="mediaId"><span jhiTranslate="eshopApp.products.media">Media</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="tagsId"><span jhiTranslate="eshopApp.products.tags">Tags</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let products of products ;trackBy: trackId">
+                <td><a [routerLink]="['../products', products.id ]">{{products.id}}</a></td>
+                <td>{{products.name}}</td>
+                <td>{{products.sale}}</td>
+                <td>{{products.rating}}</td>
+                <td>{{products.fresh}}</td>
+                <td>
+                    <div *ngIf="products.wishListId">
+                        <a [routerLink]="['../wish-list', products.wishListId  ]" >{{products.wishListId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="products.seenId">
+                        <a [routerLink]="['../seen', products.seenId  ]" >{{products.seenId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="products.bucketId">
+                        <a [routerLink]="['../bucket', products.bucketId  ]" >{{products.bucketId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="products.subCategoryId">
+                        <a [routerLink]="['../sub-category', products.subCategoryId  ]" >{{products.subCategoryId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="products.mediaId">
+                        <a [routerLink]="['../media', products.mediaId  ]" >{{products.mediaId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="products.tagsId">
+                        <a [routerLink]="['../tags', products.tagsId  ]" >{{products.tagsId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../products', products.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'products/'+ products.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'products/'+ products.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

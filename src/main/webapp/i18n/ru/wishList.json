@@ -1,0 +1,24 @@
+{
+    "eshopApp": {
+        "wishList" : {
+            "home": {
+                "title": "Wish Lists",
+                "createLabel": "Создать новый Wish List",
+                "createOrEditLabel": "Создать или отредактировать Wish List",
+                "search": "Найти Wish List"
+            },
+            "created": "Новый Wish List создан с идентификатором {{ param }}",
+            "updated": "Wish List обновлен с идентификатором {{ param }}",
+            "deleted": "Wish List удален с идентификатором {{ param }}",
+            "delete": {
+                "question": "Вы уверены что хотите удалить Wish List {{ id }}?"
+            },
+            "detail": {
+                "title": "Wish List"
+            },
+            "wishsName": "Wishs Name",
+            "data": "Data",
+            "product": "Product"
+        }
+    }
+}

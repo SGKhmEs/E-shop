@@ -1,0 +1,87 @@
+<div>
+    <h2>
+        <span jhiTranslate="eshopApp.customer.home.title">Customers</span>
+        <button class="btn btn-primary float-right create-customer" [routerLink]="['/', { outlets: { popup: ['customer-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="eshopApp.customer.home.createLabel">
+            Create new Customer
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'eshopApp.customer.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="customers">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="eshopApp.customer.roles">Roles</span></th>
+            <th><span jhiTranslate="eshopApp.customer.loginOptions">Login Options</span></th>
+            <th><span jhiTranslate="eshopApp.customer.confirm">Confirm</span></th>
+            <th><span jhiTranslate="eshopApp.customer.userRoom">User Room</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let customer of customers ;trackBy: trackId">
+                <td><a [routerLink]="['../customer', customer.id ]">{{customer.id}}</a></td>
+                <td jhiTranslate="{{'eshopApp.Roles.' + customer.roles}}">{{customer.roles}}</td>
+                <td>
+                    <div *ngIf="customer.loginOptionsId">
+                        <a [routerLink]="['../login-options', customer.loginOptionsId  ]" >{{customer.loginOptionsId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="customer.confirmId">
+                        <a [routerLink]="['../confirm', customer.confirmId  ]" >{{customer.confirmId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="customer.userRoomId">
+                        <a [routerLink]="['../customer-room', customer.userRoomId  ]" >{{customer.userRoomId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../customer', customer.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'customer/'+ customer.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'customer/'+ customer.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+{
+    "eshopApp": {
+        "addressShipping" : {
+            "home": {
+                "title": "Address Shippings",
+                "createLabel": "Create a new Address Shipping",
+                "createOrEditLabel": "Create or edit a Address Shipping",
+                "search": "Search for Address Shipping"
+            },
+            "created": "A new Address Shipping is created with identifier {{ param }}",
+            "updated": "A Address Shipping is updated with identifier {{ param }}",
+            "deleted": "A Address Shipping is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Address Shipping {{ id }}?"
+            },
+            "detail": {
+                "title": "Address Shipping"
+            },
+            "country": "Country",
+            "city": "City",
+            "state": "State",
+            "region": "Region",
+            "street": "Street",
+            "building": "Building",
+            "appartment": "Appartment"
+        }
+    }
+}

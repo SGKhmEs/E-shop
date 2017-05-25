@@ -1,0 +1,26 @@
+{
+    "eshopApp": {
+        "customer" : {
+            "home": {
+                "title": "Customers",
+                "createLabel": "Создать новый Customer",
+                "createOrEditLabel": "Создать или отредактировать Customer",
+                "search": "Найти Customer"
+            },
+            "created": "Новый Customer создан с идентификатором {{ param }}",
+            "updated": "Customer обновлен с идентификатором {{ param }}",
+            "deleted": "Customer удален с идентификатором {{ param }}",
+            "delete": {
+                "question": "Вы уверены что хотите удалить Customer {{ id }}?"
+            },
+            "detail": {
+                "title": "Customer"
+            },
+            "roles": "Roles",
+            "loginOptions": "Login Options",
+            "confirm": "Confirm",
+            "userRoom": "User Room",
+            "customer": "Customer"
+        }
+    }
+}

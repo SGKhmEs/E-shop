@@ -1,0 +1,25 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "product",
+            "otherEntityName": "products",
+            "otherEntityRelationshipName": "tags"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20170525235453",
+    "entityTableName": "tags",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl"
+}

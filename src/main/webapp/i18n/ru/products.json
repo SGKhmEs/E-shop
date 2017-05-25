@@ -1,0 +1,33 @@
+{
+    "eshopApp": {
+        "products" : {
+            "home": {
+                "title": "Products",
+                "createLabel": "Создать новый Products",
+                "createOrEditLabel": "Создать или отредактировать Products",
+                "search": "Найти Products"
+            },
+            "created": "Новый Products создан с идентификатором {{ param }}",
+            "updated": "Products обновлен с идентификатором {{ param }}",
+            "deleted": "Products удален с идентификатором {{ param }}",
+            "delete": {
+                "question": "Вы уверены что хотите удалить Products {{ id }}?"
+            },
+            "detail": {
+                "title": "Products"
+            },
+            "name": "Name",
+            "sale": "Sale",
+            "rating": "Rating",
+            "fresh": "Fresh",
+            "wishList": "Wish List",
+            "seen": "Seen",
+            "bucket": "Bucket",
+            "comments": "Comments",
+            "consignment": "Consignment",
+            "subCategory": "Sub Category",
+            "media": "Media",
+            "tags": "Tags"
+        }
+    }
+}

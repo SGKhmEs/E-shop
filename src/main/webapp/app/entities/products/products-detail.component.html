@@ -1,0 +1,73 @@
+
+<div *ngIf="products">
+    <h2><span jhiTranslate="eshopApp.products.detail.title">Products</span> {{products.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="eshopApp.products.name">Name</span></dt>
+        <dd>
+            <span>{{products.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.products.sale">Sale</span></dt>
+        <dd>
+            <span>{{products.sale}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.products.rating">Rating</span></dt>
+        <dd>
+            <span>{{products.rating}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.products.fresh">Fresh</span></dt>
+        <dd>
+            <span>{{products.fresh}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.products.wishList">Wish List</span></dt>
+        <dd>
+            <div *ngIf="products.wishListId">
+                <a [routerLink]="['/wish-list', products.wishListId]">{{products.wishListId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.products.seen">Seen</span></dt>
+        <dd>
+            <div *ngIf="products.seenId">
+                <a [routerLink]="['/seen', products.seenId]">{{products.seenId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.products.bucket">Bucket</span></dt>
+        <dd>
+            <div *ngIf="products.bucketId">
+                <a [routerLink]="['/bucket', products.bucketId]">{{products.bucketId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.products.subCategory">Sub Category</span></dt>
+        <dd>
+            <div *ngIf="products.subCategoryId">
+                <a [routerLink]="['/sub-category', products.subCategoryId]">{{products.subCategoryId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.products.media">Media</span></dt>
+        <dd>
+            <div *ngIf="products.mediaId">
+                <a [routerLink]="['/media', products.mediaId]">{{products.mediaId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.products.tags">Tags</span></dt>
+        <dd>
+            <div *ngIf="products.tagsId">
+                <a [routerLink]="['/tags', products.tagsId]">{{products.tagsId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'products/'+ products.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

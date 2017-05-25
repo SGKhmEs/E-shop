@@ -1,0 +1,30 @@
+{
+    "eshopApp": {
+        "customerRoom" : {
+            "home": {
+                "title": "Customer Rooms",
+                "createLabel": "Создать новый Customer Room",
+                "createOrEditLabel": "Создать или отредактировать Customer Room",
+                "search": "Найти Customer Room"
+            },
+            "created": "Новый Customer Room создан с идентификатором {{ param }}",
+            "updated": "Customer Room обновлен с идентификатором {{ param }}",
+            "deleted": "Customer Room удален с идентификатором {{ param }}",
+            "delete": {
+                "question": "Вы уверены что хотите удалить Customer Room {{ id }}?"
+            },
+            "detail": {
+                "title": "Customer Room"
+            },
+            "subScription": "Sub Scription",
+            "sosialConnect": "Sosial Connect",
+            "personalInfo": "Personal Info",
+            "wishList": "Wish List",
+            "address": "Address",
+            "bucket": "Bucket",
+            "seen": "Seen",
+            "historyOrder": "History Order",
+            "customer": "Customer"
+        }
+    }
+}

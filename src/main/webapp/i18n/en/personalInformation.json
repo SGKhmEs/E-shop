@@ -1,0 +1,30 @@
+{
+    "eshopApp": {
+        "personalInformation" : {
+            "home": {
+                "title": "Personal Informations",
+                "createLabel": "Create a new Personal Information",
+                "createOrEditLabel": "Create or edit a Personal Information",
+                "search": "Search for Personal Information"
+            },
+            "created": "A new Personal Information is created with identifier {{ param }}",
+            "updated": "A Personal Information is updated with identifier {{ param }}",
+            "deleted": "A Personal Information is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Personal Information {{ id }}?"
+            },
+            "detail": {
+                "title": "Personal Information"
+            },
+            "firstName": "First Name",
+            "lastName": "Last Name",
+            "middleName": "Middle Name",
+            "sex": "Sex",
+            "phone": "Phone",
+            "email": "Email",
+            "dateBirth": "Date Birth",
+            "avatar": "Avatar",
+            "addressShipping": "Address Shipping"
+        }
+    }
+}

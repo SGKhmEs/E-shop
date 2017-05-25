@@ -1,0 +1,13 @@
+{
+    "eshopApp": {
+        "SocialConnect" : {
+            "null": "",
+            "DEFAULT": "DEFAULT",
+            "GOOGLE": "GOOGLE",
+            "FACEBOOK": "FACEBOOK",
+            "VK": "VK",
+            "TWITTER": "TWITTER",
+            "OK": "OK"
+        }
+    }
+}

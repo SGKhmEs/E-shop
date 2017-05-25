@@ -1,0 +1,24 @@
+{
+    "eshopApp": {
+        "producers" : {
+            "home": {
+                "title": "Producers",
+                "createLabel": "Создать новый Producers",
+                "createOrEditLabel": "Создать или отредактировать Producers",
+                "search": "Найти Producers"
+            },
+            "created": "Новый Producers создан с идентификатором {{ param }}",
+            "updated": "Producers обновлен с идентификатором {{ param }}",
+            "deleted": "Producers удален с идентификатором {{ param }}",
+            "delete": {
+                "question": "Вы уверены что хотите удалить Producers {{ id }}?"
+            },
+            "detail": {
+                "title": "Producers"
+            },
+            "name": "Name",
+            "country": "Country",
+            "consignment": "Consignment"
+        }
+    }
+}

@@ -1,0 +1,97 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myProductsLabel" jhiTranslate="eshopApp.products.home.createOrEditLabel">Create or edit a Products</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!products.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="products.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="eshopApp.products.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="products.name"
+            required />
+            <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="eshopApp.products.sale" for="field_sale">Sale</label>
+            <input type="text" class="form-control" name="sale" id="field_sale"
+                [(ngModel)]="products.sale"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="eshopApp.products.rating" for="field_rating">Rating</label>
+            <input type="number" class="form-control" name="rating" id="field_rating"
+                [(ngModel)]="products.rating"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="eshopApp.products.fresh" for="field_fresh">Fresh</label>
+            <input type="checkbox" class="form-control" name="fresh" id="field_fresh"
+                [(ngModel)]="products.fresh"
+             />
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="eshopApp.products.wishList" for="field_wishList">Wish List</label>
+            <select class="form-control" id="field_wishList" name="wishList" [(ngModel)]="products.wishListId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="wishListOption.id" *ngFor="let wishListOption of wishlists; trackBy: trackWishListById">{{wishListOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="eshopApp.products.seen" for="field_seen">Seen</label>
+            <select class="form-control" id="field_seen" name="seen" [(ngModel)]="products.seenId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="seenOption.id" *ngFor="let seenOption of seens; trackBy: trackSeenById">{{seenOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="eshopApp.products.bucket" for="field_bucket">Bucket</label>
+            <select class="form-control" id="field_bucket" name="bucket" [(ngModel)]="products.bucketId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="bucketOption.id" *ngFor="let bucketOption of buckets; trackBy: trackBucketById">{{bucketOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="eshopApp.products.subCategory" for="field_subCategory">Sub Category</label>
+            <select class="form-control" id="field_subCategory" name="subCategory" [(ngModel)]="products.subCategoryId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="subCategoryOption.id" *ngFor="let subCategoryOption of subcategories; trackBy: trackSubCategoryById">{{subCategoryOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="eshopApp.products.media" for="field_media">Media</label>
+            <select class="form-control" id="field_media" name="media" [(ngModel)]="products.mediaId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="mediaOption.id" *ngFor="let mediaOption of media; trackBy: trackMediaById">{{mediaOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="eshopApp.products.tags" for="field_tags">Tags</label>
+            <select class="form-control" id="field_tags" name="tags" [(ngModel)]="products.tagsId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="tagsOption.id" *ngFor="let tagsOption of tags; trackBy: trackTagsById">{{tagsOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,23 @@
+{
+    "eshopApp": {
+        "tags" : {
+            "home": {
+                "title": "Tags",
+                "createLabel": "Создать новый Tags",
+                "createOrEditLabel": "Создать или отредактировать Tags",
+                "search": "Найти Tags"
+            },
+            "created": "Новый Tags создан с идентификатором {{ param }}",
+            "updated": "Tags обновлен с идентификатором {{ param }}",
+            "deleted": "Tags удален с идентификатором {{ param }}",
+            "delete": {
+                "question": "Вы уверены что хотите удалить Tags {{ id }}?"
+            },
+            "detail": {
+                "title": "Tags"
+            },
+            "name": "Name",
+            "product": "Product"
+        }
+    }
+}

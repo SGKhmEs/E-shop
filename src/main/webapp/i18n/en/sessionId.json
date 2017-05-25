@@ -1,0 +1,22 @@
+{
+    "eshopApp": {
+        "sessionId" : {
+            "home": {
+                "title": "Session Ids",
+                "createLabel": "Create a new Session Id",
+                "createOrEditLabel": "Create or edit a Session Id",
+                "search": "Search for Session Id"
+            },
+            "created": "A new Session Id is created with identifier {{ param }}",
+            "updated": "A Session Id is updated with identifier {{ param }}",
+            "deleted": "A Session Id is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Session Id {{ id }}?"
+            },
+            "detail": {
+                "title": "Session Id"
+            },
+            "customer": "Customer"
+        }
+    }
+}

@@ -1,0 +1,75 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "personalInfo",
+            "otherEntityName": "personalInformation",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "customerRoom"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "wishList",
+            "otherEntityName": "wishList",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "customerRoom"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "address",
+            "otherEntityName": "address",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "customerRoom"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "bucket",
+            "otherEntityName": "bucket",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "customerRoom"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "seen",
+            "otherEntityName": "seen",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "customerRoom"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "historyOrder",
+            "otherEntityName": "historyOrder",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "customerRoom"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "customer",
+            "otherEntityName": "comments",
+            "otherEntityRelationshipName": "customerRoom"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "subScription",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "sosialConnect",
+            "fieldType": "SocialConnect",
+            "fieldValues": "DEFAULT,GOOGLE,FACEBOOK,VK,TWITTER,OK"
+        }
+    ],
+    "changelogDate": "20170525235433",
+    "entityTableName": "customer_room",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl"
+}

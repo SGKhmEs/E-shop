@@ -1,0 +1,24 @@
+{
+    "eshopApp": {
+        "producers" : {
+            "home": {
+                "title": "Producers",
+                "createLabel": "Create a new Producers",
+                "createOrEditLabel": "Create or edit a Producers",
+                "search": "Search for Producers"
+            },
+            "created": "A new Producers is created with identifier {{ param }}",
+            "updated": "A Producers is updated with identifier {{ param }}",
+            "deleted": "A Producers is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Producers {{ id }}?"
+            },
+            "detail": {
+                "title": "Producers"
+            },
+            "name": "Name",
+            "country": "Country",
+            "consignment": "Consignment"
+        }
+    }
+}

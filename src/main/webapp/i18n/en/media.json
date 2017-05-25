@@ -1,0 +1,28 @@
+{
+    "eshopApp": {
+        "media" : {
+            "home": {
+                "title": "Media",
+                "createLabel": "Create a new Media",
+                "createOrEditLabel": "Create or edit a Media",
+                "search": "Search for Media"
+            },
+            "created": "A new Media is created with identifier {{ param }}",
+            "updated": "A Media is updated with identifier {{ param }}",
+            "deleted": "A Media is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Media {{ id }}?"
+            },
+            "detail": {
+                "title": "Media"
+            },
+            "name": "Name",
+            "type": "Type",
+            "contentType": "Content Type",
+            "location": "Location",
+            "size": "Size",
+            "comments": "Comments",
+            "product": "Product"
+        }
+    }
+}

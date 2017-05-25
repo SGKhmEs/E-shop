@@ -1,0 +1,32 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "consignment",
+            "otherEntityName": "consignment",
+            "otherEntityRelationshipName": "producers"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "country",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20170525235456",
+    "entityTableName": "producers",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl"
+}

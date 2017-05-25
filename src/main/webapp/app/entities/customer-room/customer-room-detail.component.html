@@ -1,0 +1,65 @@
+
+<div *ngIf="customerRoom">
+    <h2><span jhiTranslate="eshopApp.customerRoom.detail.title">Customer Room</span> {{customerRoom.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="eshopApp.customerRoom.subScription">Sub Scription</span></dt>
+        <dd>
+            <span>{{customerRoom.subScription}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.customerRoom.sosialConnect">Sosial Connect</span></dt>
+        <dd>
+            <span jhiTranslate="{{'eshopApp.SocialConnect.' + customerRoom.sosialConnect}}">{{customerRoom.sosialConnect}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.customerRoom.personalInfo">Personal Info</span></dt>
+        <dd>
+            <div *ngIf="customerRoom.personalInfoId">
+                <a [routerLink]="['/personal-information', customerRoom.personalInfoId]">{{customerRoom.personalInfoId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.customerRoom.wishList">Wish List</span></dt>
+        <dd>
+            <div *ngIf="customerRoom.wishListId">
+                <a [routerLink]="['/wish-list', customerRoom.wishListId]">{{customerRoom.wishListId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.customerRoom.address">Address</span></dt>
+        <dd>
+            <div *ngIf="customerRoom.addressId">
+                <a [routerLink]="['/address', customerRoom.addressId]">{{customerRoom.addressId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.customerRoom.bucket">Bucket</span></dt>
+        <dd>
+            <div *ngIf="customerRoom.bucketId">
+                <a [routerLink]="['/bucket', customerRoom.bucketId]">{{customerRoom.bucketId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.customerRoom.seen">Seen</span></dt>
+        <dd>
+            <div *ngIf="customerRoom.seenId">
+                <a [routerLink]="['/seen', customerRoom.seenId]">{{customerRoom.seenId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.customerRoom.historyOrder">History Order</span></dt>
+        <dd>
+            <div *ngIf="customerRoom.historyOrderId">
+                <a [routerLink]="['/history-order', customerRoom.historyOrderId]">{{customerRoom.historyOrderId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'customer-room/'+ customerRoom.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

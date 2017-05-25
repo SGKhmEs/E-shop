@@ -1,0 +1,61 @@
+
+<div *ngIf="personalInformation">
+    <h2><span jhiTranslate="eshopApp.personalInformation.detail.title">Personal Information</span> {{personalInformation.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="eshopApp.personalInformation.firstName">First Name</span></dt>
+        <dd>
+            <span>{{personalInformation.firstName}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.personalInformation.lastName">Last Name</span></dt>
+        <dd>
+            <span>{{personalInformation.lastName}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.personalInformation.middleName">Middle Name</span></dt>
+        <dd>
+            <span>{{personalInformation.middleName}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.personalInformation.sex">Sex</span></dt>
+        <dd>
+            <span jhiTranslate="{{'eshopApp.Sex.' + personalInformation.sex}}">{{personalInformation.sex}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.personalInformation.phone">Phone</span></dt>
+        <dd>
+            <span>{{personalInformation.phone}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.personalInformation.email">Email</span></dt>
+        <dd>
+            <span>{{personalInformation.email}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.personalInformation.dateBirth">Date Birth</span></dt>
+        <dd>
+            <span>{{personalInformation.dateBirth | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.personalInformation.avatar">Avatar</span></dt>
+        <dd>
+            <div *ngIf="personalInformation.avatarId">
+                <a [routerLink]="['/avatar', personalInformation.avatarId]">{{personalInformation.avatarId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.personalInformation.addressShipping">Address Shipping</span></dt>
+        <dd>
+            <div *ngIf="personalInformation.addressShippingId">
+                <a [routerLink]="['/address-shipping', personalInformation.addressShippingId]">{{personalInformation.addressShippingId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'personal-information/'+ personalInformation.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
