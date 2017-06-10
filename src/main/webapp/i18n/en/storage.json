@@ -1,0 +1,25 @@
+{
+    "eshopApp": {
+        "storage" : {
+            "home": {
+                "title": "Storages",
+                "createLabel": "Create a new Storage",
+                "createOrEditLabel": "Create or edit a Storage",
+                "search": "Search for Storage"
+            },
+            "created": "A new Storage is created with identifier {{ param }}",
+            "updated": "A Storage is updated with identifier {{ param }}",
+            "deleted": "A Storage is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Storage {{ id }}?"
+            },
+            "detail": {
+                "title": "Storage"
+            },
+            "name": "Name",
+            "actualite": "Actualite",
+            "quantity": "Quantity",
+            "consignment": "Consignment"
+        }
+    }
+}

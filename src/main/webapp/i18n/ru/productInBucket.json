@@ -1,0 +1,23 @@
+{
+    "eshopApp": {
+        "productInBucket" : {
+            "home": {
+                "title": "Product In Buckets",
+                "createLabel": "Создать новый Product In Bucket",
+                "createOrEditLabel": "Создать или отредактировать Product In Bucket",
+                "search": "Найти Product In Bucket"
+            },
+            "created": "Новый Product In Bucket создан с идентификатором {{ param }}",
+            "updated": "Product In Bucket обновлен с идентификатором {{ param }}",
+            "deleted": "Product In Bucket удален с идентификатором {{ param }}",
+            "delete": {
+                "question": "Вы уверены что хотите удалить Product In Bucket {{ id }}?"
+            },
+            "detail": {
+                "title": "Product In Bucket"
+            },
+            "bucket": "Bucket",
+            "products": "Products"
+        }
+    }
+}

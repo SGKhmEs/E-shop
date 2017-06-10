@@ -1,0 +1,33 @@
+
+<div *ngIf="tagForProduct">
+    <h2><span jhiTranslate="eshopApp.tagForProduct.detail.title">Tag For Product</span> {{tagForProduct.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="eshopApp.tagForProduct.products">Products</span></dt>
+        <dd>
+            <div *ngIf="tagForProduct.products">
+                <a [routerLink]="['/products', tagForProduct.products?.id]">{{tagForProduct.products?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.tagForProduct.tags">Tags</span></dt>
+        <dd>
+            <div *ngIf="tagForProduct.tags">
+                <a [routerLink]="['/tags', tagForProduct.tags?.id]">{{tagForProduct.tags?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'tag-for-product/'+ tagForProduct.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

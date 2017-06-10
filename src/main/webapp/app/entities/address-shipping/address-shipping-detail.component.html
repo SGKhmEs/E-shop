@@ -1,0 +1,49 @@
+
+<div *ngIf="addressShipping">
+    <h2><span jhiTranslate="eshopApp.addressShipping.detail.title">Address Shipping</span> {{addressShipping.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="eshopApp.addressShipping.country">Country</span></dt>
+        <dd>
+            <span>{{addressShipping.country}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.addressShipping.city">City</span></dt>
+        <dd>
+            <span>{{addressShipping.city}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.addressShipping.state">State</span></dt>
+        <dd>
+            <span>{{addressShipping.state}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.addressShipping.region">Region</span></dt>
+        <dd>
+            <span>{{addressShipping.region}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.addressShipping.street">Street</span></dt>
+        <dd>
+            <span>{{addressShipping.street}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.addressShipping.building">Building</span></dt>
+        <dd>
+            <span>{{addressShipping.building}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.addressShipping.appartment">Appartment</span></dt>
+        <dd>
+            <span>{{addressShipping.appartment}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'address-shipping/'+ addressShipping.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

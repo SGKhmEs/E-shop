@@ -1,0 +1,25 @@
+{
+    "eshopApp": {
+        "subCategory" : {
+            "home": {
+                "title": "Sub Categories",
+                "createLabel": "Создать новый Sub Category",
+                "createOrEditLabel": "Создать или отредактировать Sub Category",
+                "search": "Найти Sub Category"
+            },
+            "created": "Новый Sub Category создан с идентификатором {{ param }}",
+            "updated": "Sub Category обновлен с идентификатором {{ param }}",
+            "deleted": "Sub Category удален с идентификатором {{ param }}",
+            "delete": {
+                "question": "Вы уверены что хотите удалить Sub Category {{ id }}?"
+            },
+            "detail": {
+                "title": "Sub Category"
+            },
+            "name": "Name",
+            "category": "Category",
+            "options": "Options",
+            "product": "Product"
+        }
+    }
+}

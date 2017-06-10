@@ -1,0 +1,37 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "products",
+            "otherEntityName": "products",
+            "otherEntityRelationshipName": "consignment"
+        },
+        {
+            "relationshipName": "storage",
+            "otherEntityName": "storage",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "producers",
+            "otherEntityName": "producers",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "price",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20170610234458",
+    "entityTableName": "consignment",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl"
+}

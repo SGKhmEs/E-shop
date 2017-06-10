@@ -1,0 +1,32 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "customer",
+            "otherEntityName": "customer",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "products",
+            "otherEntityName": "products",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "comments",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "data",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "changelogDate": "20170610234505",
+    "entityTableName": "comments",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl"
+}

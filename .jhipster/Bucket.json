@@ -1,0 +1,67 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "manager",
+            "otherEntityName": "manager",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "addressShipping",
+            "otherEntityName": "addressShipping",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "bucket"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "productInBucket",
+            "otherEntityName": "productInBucket",
+            "otherEntityRelationshipName": "bucket"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "customer",
+            "otherEntityName": "customer",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "data",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "sum",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "orderNumber",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "count",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "Status",
+            "fieldValues": "WAIT,PURCHASED,SUCCESS,FAILURE,REJECT"
+        },
+        {
+            "fieldName": "consignmentNote",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170610234448",
+    "entityTableName": "bucket",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl"
+}

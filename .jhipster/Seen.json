@@ -1,0 +1,30 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "customer",
+            "otherEntityName": "customer",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "products",
+            "otherEntityName": "products",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "seen"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "data",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "changelogDate": "20170610234451",
+    "entityTableName": "seen",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl"
+}

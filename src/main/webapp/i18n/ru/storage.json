@@ -1,0 +1,25 @@
+{
+    "eshopApp": {
+        "storage" : {
+            "home": {
+                "title": "Storages",
+                "createLabel": "Создать новый Storage",
+                "createOrEditLabel": "Создать или отредактировать Storage",
+                "search": "Найти Storage"
+            },
+            "created": "Новый Storage создан с идентификатором {{ param }}",
+            "updated": "Storage обновлен с идентификатором {{ param }}",
+            "deleted": "Storage удален с идентификатором {{ param }}",
+            "delete": {
+                "question": "Вы уверены что хотите удалить Storage {{ id }}?"
+            },
+            "detail": {
+                "title": "Storage"
+            },
+            "name": "Name",
+            "actualite": "Actualite",
+            "quantity": "Quantity",
+            "consignment": "Consignment"
+        }
+    }
+}

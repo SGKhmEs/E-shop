@@ -1,0 +1,37 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "address",
+            "otherEntityName": "address",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "customerRoom"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "personalInfo",
+            "otherEntityName": "personalInformation",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "customerRoom"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "subScription",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "sosialConnect",
+            "fieldType": "SocialConnect",
+            "fieldValues": "DEFAULT,GOOGLE,FACEBOOK,VK,TWITTER,OK"
+        }
+    ],
+    "changelogDate": "20170610234450",
+    "entityTableName": "customer_room",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl"
+}

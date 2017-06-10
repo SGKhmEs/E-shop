@@ -1,0 +1,28 @@
+{
+    "eshopApp": {
+        "address" : {
+            "home": {
+                "title": "Addresses",
+                "createLabel": "Создать новый Address",
+                "createOrEditLabel": "Создать или отредактировать Address",
+                "search": "Найти Address"
+            },
+            "created": "Новый Address создан с идентификатором {{ param }}",
+            "updated": "Address обновлен с идентификатором {{ param }}",
+            "deleted": "Address удален с идентификатором {{ param }}",
+            "delete": {
+                "question": "Вы уверены что хотите удалить Address {{ id }}?"
+            },
+            "detail": {
+                "title": "Address"
+            },
+            "country": "Country",
+            "city": "City",
+            "state": "State",
+            "region": "Region",
+            "street": "Street",
+            "building": "Building",
+            "appartment": "Appartment"
+        }
+    }
+}

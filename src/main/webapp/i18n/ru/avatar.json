@@ -1,0 +1,22 @@
+{
+    "eshopApp": {
+        "avatar" : {
+            "home": {
+                "title": "Avatars",
+                "createLabel": "Создать новый Avatar",
+                "createOrEditLabel": "Создать или отредактировать Avatar",
+                "search": "Найти Avatar"
+            },
+            "created": "Новый Avatar создан с идентификатором {{ param }}",
+            "updated": "Avatar обновлен с идентификатором {{ param }}",
+            "deleted": "Avatar удален с идентификатором {{ param }}",
+            "delete": {
+                "question": "Вы уверены что хотите удалить Avatar {{ id }}?"
+            },
+            "detail": {
+                "title": "Avatar"
+            },
+            "usersImage": "Users Image"
+        }
+    }
+}

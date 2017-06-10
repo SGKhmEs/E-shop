@@ -1,0 +1,61 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "avatar",
+            "otherEntityName": "avatar",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "personalInformation"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "firstName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "lastName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "middleName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "sex",
+            "fieldType": "Sex",
+            "fieldValues": "MAN,WOMAN"
+        },
+        {
+            "fieldName": "phone",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "dateBirth",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "changelogDate": "20170610234455",
+    "entityTableName": "personal_information",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl"
+}

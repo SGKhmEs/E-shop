@@ -1,0 +1,30 @@
+
+<div *ngIf="avatar">
+    <h2><span jhiTranslate="eshopApp.avatar.detail.title">Avatar</span> {{avatar.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="eshopApp.avatar.usersImage">Users Image</span></dt>
+        <dd>
+            <div *ngIf="avatar.usersImage">
+                <a (click)="openFile(avatar.usersImageContentType, avatar.usersImage)">
+                    <img [src]="'data:' + avatar.usersImageContentType + ';base64,' + avatar.usersImage" style="max-width: 100%;" alt="avatar image"/>
+                </a>
+                {{avatar.usersImageContentType}}, {{byteSize(avatar.usersImage)}}
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'avatar/'+ avatar.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,37 @@
+
+<div *ngIf="customer">
+    <h2><span jhiTranslate="eshopApp.customer.detail.title">Customer</span> {{customer.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="eshopApp.customer.sessionId">Session Id</span></dt>
+        <dd>
+            <span>{{customer.sessionId}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.customer.loginOptions">Login Options</span></dt>
+        <dd>
+            <div *ngIf="customer.loginOptions">
+                <a [routerLink]="['/login-options', customer.loginOptions?.id]">{{customer.loginOptions?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.customer.customerRoom">Customer Room</span></dt>
+        <dd>
+            <div *ngIf="customer.customerRoom">
+                <a [routerLink]="['/customer-room', customer.customerRoom?.id]">{{customer.customerRoom?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'customer/'+ customer.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,23 @@
+{
+    "eshopApp": {
+        "type" : {
+            "home": {
+                "title": "Types",
+                "createLabel": "Создать новый Type",
+                "createOrEditLabel": "Создать или отредактировать Type",
+                "search": "Найти Type"
+            },
+            "created": "Новый Type создан с идентификатором {{ param }}",
+            "updated": "Type обновлен с идентификатором {{ param }}",
+            "deleted": "Type удален с идентификатором {{ param }}",
+            "delete": {
+                "question": "Вы уверены что хотите удалить Type {{ id }}?"
+            },
+            "detail": {
+                "title": "Type"
+            },
+            "name": "Name",
+            "behavior": "Behavior"
+        }
+    }
+}

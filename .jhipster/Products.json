@@ -1,0 +1,74 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "media",
+            "otherEntityName": "media",
+            "otherEntityRelationshipName": "products"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "comments",
+            "otherEntityName": "comments",
+            "otherEntityRelationshipName": "products"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "productInBucket",
+            "otherEntityName": "productInBucket",
+            "otherEntityRelationshipName": "products"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "tagForProduct",
+            "otherEntityName": "tagForProduct",
+            "otherEntityRelationshipName": "products"
+        },
+        {
+            "relationshipName": "consignment",
+            "otherEntityName": "consignment",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "subCategory",
+            "otherEntityName": "subCategory",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "price",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "sale",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "rating",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "fresh",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20170610234456",
+    "entityTableName": "products",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl"
+}

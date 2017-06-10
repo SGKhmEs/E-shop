@@ -1,0 +1,50 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "loginOptions",
+            "otherEntityName": "loginOptions",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "customer"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "customerRoom",
+            "otherEntityName": "customerRoom",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "customer"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "seen",
+            "otherEntityName": "seen",
+            "otherEntityRelationshipName": "customer"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "wishList",
+            "otherEntityName": "wishList",
+            "otherEntityRelationshipName": "customer"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "comments",
+            "otherEntityName": "comments",
+            "otherEntityRelationshipName": "customer"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "sessionId",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170610234444",
+    "entityTableName": "customer",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl"
+}

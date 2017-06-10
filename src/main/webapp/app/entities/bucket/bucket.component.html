@@ -1,0 +1,99 @@
+<div>
+    <h2>
+        <span jhiTranslate="eshopApp.bucket.home.title">Buckets</span>
+        <button class="btn btn-primary float-right create-bucket" [routerLink]="['/', { outlets: { popup: ['bucket-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="eshopApp.bucket.home.createLabel">
+            Create new Bucket
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'eshopApp.bucket.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="buckets">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="name"><span jhiTranslate="eshopApp.bucket.name">Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="data"><span jhiTranslate="eshopApp.bucket.data">Data</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="sum"><span jhiTranslate="eshopApp.bucket.sum">Sum</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="orderNumber"><span jhiTranslate="eshopApp.bucket.orderNumber">Order Number</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="count"><span jhiTranslate="eshopApp.bucket.count">Count</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="status"><span jhiTranslate="eshopApp.bucket.status">Status</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="consignmentNote"><span jhiTranslate="eshopApp.bucket.consignmentNote">Consignment Note</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="manager.id"><span jhiTranslate="eshopApp.bucket.manager">Manager</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="addressShipping.id"><span jhiTranslate="eshopApp.bucket.addressShipping">Address Shipping</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="customer.id"><span jhiTranslate="eshopApp.bucket.customer">Customer</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let bucket of buckets ;trackBy: trackId">
+                <td><a [routerLink]="['../bucket', bucket.id ]">{{bucket.id}}</a></td>
+                <td>{{bucket.name}}</td>
+                <td>{{bucket.data | date:'medium'}}</td>
+                <td>{{bucket.sum}}</td>
+                <td>{{bucket.orderNumber}}</td>
+                <td>{{bucket.count}}</td>
+                <td jhiTranslate="{{'eshopApp.Status.' + bucket.status}}">{{bucket.status}}</td>
+                <td>{{bucket.consignmentNote}}</td>
+                <td>
+                    <div *ngIf="bucket.manager">
+                        <a [routerLink]="['../manager', bucket.manager?.id ]" >{{bucket.manager?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="bucket.addressShipping">
+                        <a [routerLink]="['../address-shipping', bucket.addressShipping?.id ]" >{{bucket.addressShipping?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="bucket.customer">
+                        <a [routerLink]="['../customer', bucket.customer?.id ]" >{{bucket.customer?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../bucket', bucket.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'bucket/'+ bucket.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'bucket/'+ bucket.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

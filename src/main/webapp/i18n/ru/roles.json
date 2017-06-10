@@ -1,0 +1,11 @@
+{
+    "eshopApp": {
+        "Roles" : {
+            "null": "",
+            "USER": "USER",
+            "MODERATOR": "MODERATOR",
+            "ADMINISTRATOR": "ADMINISTRATOR",
+            "OWNER": "OWNER"
+        }
+    }
+}

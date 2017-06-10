@@ -1,0 +1,23 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "bucket",
+            "otherEntityName": "bucket",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "products",
+            "otherEntityName": "products",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [],
+    "changelogDate": "20170610234509",
+    "entityTableName": "product_in_bucket",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl"
+}

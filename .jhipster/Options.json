@@ -1,0 +1,42 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "value",
+            "otherEntityName": "value",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "options"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "type",
+            "otherEntityName": "type",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "options"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "level",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20170610234507",
+    "entityTableName": "options",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl"
+}

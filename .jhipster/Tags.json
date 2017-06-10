@@ -1,0 +1,25 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "tagForProduct",
+            "otherEntityName": "tagForProduct",
+            "otherEntityRelationshipName": "tags"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20170610234457",
+    "entityTableName": "tags",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl"
+}

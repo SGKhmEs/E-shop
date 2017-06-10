@@ -1,0 +1,28 @@
+{
+    "eshopApp": {
+        "addressShipping" : {
+            "home": {
+                "title": "Address Shippings",
+                "createLabel": "Создать новый Address Shipping",
+                "createOrEditLabel": "Создать или отредактировать Address Shipping",
+                "search": "Найти Address Shipping"
+            },
+            "created": "Новый Address Shipping создан с идентификатором {{ param }}",
+            "updated": "Address Shipping обновлен с идентификатором {{ param }}",
+            "deleted": "Address Shipping удален с идентификатором {{ param }}",
+            "delete": {
+                "question": "Вы уверены что хотите удалить Address Shipping {{ id }}?"
+            },
+            "detail": {
+                "title": "Address Shipping"
+            },
+            "country": "Country",
+            "city": "City",
+            "state": "State",
+            "region": "Region",
+            "street": "Street",
+            "building": "Building",
+            "appartment": "Appartment"
+        }
+    }
+}

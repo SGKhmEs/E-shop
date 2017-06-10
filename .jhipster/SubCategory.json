@@ -1,0 +1,39 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "category",
+            "otherEntityName": "category",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "options",
+            "otherEntityName": "options",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "subCategory"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "product",
+            "otherEntityName": "products",
+            "otherEntityRelationshipName": "subCategory"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20170610234502",
+    "entityTableName": "sub_category",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl"
+}

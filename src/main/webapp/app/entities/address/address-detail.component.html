@@ -1,0 +1,49 @@
+
+<div *ngIf="address">
+    <h2><span jhiTranslate="eshopApp.address.detail.title">Address</span> {{address.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="eshopApp.address.country">Country</span></dt>
+        <dd>
+            <span>{{address.country}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.address.city">City</span></dt>
+        <dd>
+            <span>{{address.city}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.address.state">State</span></dt>
+        <dd>
+            <span>{{address.state}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.address.region">Region</span></dt>
+        <dd>
+            <span>{{address.region}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.address.street">Street</span></dt>
+        <dd>
+            <span>{{address.street}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.address.building">Building</span></dt>
+        <dd>
+            <span>{{address.building}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.address.appartment">Appartment</span></dt>
+        <dd>
+            <span>{{address.appartment}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'address/'+ address.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

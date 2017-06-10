@@ -1,0 +1,22 @@
+{
+    "eshopApp": {
+        "value" : {
+            "home": {
+                "title": "Values",
+                "createLabel": "Создать новый Value",
+                "createOrEditLabel": "Создать или отредактировать Value",
+                "search": "Найти Value"
+            },
+            "created": "Новый Value создан с идентификатором {{ param }}",
+            "updated": "Value обновлен с идентификатором {{ param }}",
+            "deleted": "Value удален с идентификатором {{ param }}",
+            "delete": {
+                "question": "Вы уверены что хотите удалить Value {{ id }}?"
+            },
+            "detail": {
+                "title": "Value"
+            },
+            "data": "Data"
+        }
+    }
+}
