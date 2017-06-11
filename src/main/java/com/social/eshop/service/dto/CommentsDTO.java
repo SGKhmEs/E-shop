@@ -36,4 +36,13 @@ public class CommentsDTO implements AutoMapping {
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
+
+    @Override
+    public String toString() {
+        return "CommentsDTO{" +
+            "comments='" + comments + '\'' +
+            ", date=" + date +
+            ", customer=" + customer +
+            '}';
+    }
 }
