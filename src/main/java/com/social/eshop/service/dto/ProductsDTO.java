@@ -14,7 +14,7 @@ public class ProductsDTO implements AutoMapping {
     private String sale;
     private double rating;
     private boolean fresh;
-    private Media media;
+    private List<Media> media;
     private List<Comments> comments;
 
     public ProductsDTO() { }
@@ -59,11 +59,11 @@ public class ProductsDTO implements AutoMapping {
         this.fresh = fresh;
     }
 
-    public Media getMedia() {
+    public List<Media> getMedia() {
         return media;
     }
 
-    public void setMedia(Media media) {
+    public void setMedia(List<Media> media) {
         this.media = media;
     }
 
