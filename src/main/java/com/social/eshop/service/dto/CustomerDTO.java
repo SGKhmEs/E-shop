@@ -1,6 +1,5 @@
 package com.social.eshop.service.dto;
 
-import com.social.eshop.domain.Products;
 import com.social.eshop.domain.Seen;
 import com.social.eshop.domain.WishList;
 import com.social.eshop.service.mapper.AutoMapping;
@@ -12,7 +11,7 @@ public class CustomerDTO implements AutoMapping {
     private String sessionId;
     private List<WishList> wishLists;
     private List<Seen> seens;
-    private List<Products> products;
+    private List<ProductsDTO> products;
 
     public CustomerDTO() { }
 
@@ -40,11 +39,11 @@ public class CustomerDTO implements AutoMapping {
         this.seens = seens;
     }
 
-    public List<Products> getProducts() {
+    public List<ProductsDTO> getProducts() {
         return products;
     }
 
-    public void setProducts(List<Products> products) {
+    public void setProducts(List<ProductsDTO> products) {
         this.products = products;
     }
 
