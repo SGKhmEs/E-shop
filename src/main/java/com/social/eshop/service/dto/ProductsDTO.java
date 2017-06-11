@@ -2,6 +2,7 @@ package com.social.eshop.service.dto;
 
 import com.social.eshop.domain.Comments;
 import com.social.eshop.domain.Media;
+import com.social.eshop.domain.SubCategory;
 import com.social.eshop.service.mapper.AutoMapping;
 
 import java.math.BigDecimal;
@@ -16,6 +17,7 @@ public class ProductsDTO implements AutoMapping {
     private boolean fresh;
     private List<Media> media;
     private List<Comments> comments;
+    private List<SubCategory> subCategories;
 
     public ProductsDTO() { }
 
@@ -75,6 +77,14 @@ public class ProductsDTO implements AutoMapping {
         this.comments = comments;
     }
 
+    public List<SubCategory> getSubCategories() {
+        return subCategories;
+    }
+
+    public void setSubCategories(List<SubCategory> subCategories) {
+        this.subCategories = subCategories;
+    }
+
     @Override
     public String toString() {
         return "ProductsDTO{" +
@@ -85,7 +95,7 @@ public class ProductsDTO implements AutoMapping {
             ", fresh=" + fresh +
             ", media=" + media +
             ", comments=" + comments +
+            ", subCategories=" + subCategories +
             '}';
     }
-
 }
