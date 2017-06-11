@@ -17,6 +17,8 @@ public class ProductsDTO implements AutoMapping {
     private Media media;
     private List<Comments> comments;
 
+    public ProductsDTO() { }
+
     public String getName() {
         return name;
     }
