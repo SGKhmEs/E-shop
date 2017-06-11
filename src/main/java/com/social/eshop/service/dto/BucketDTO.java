@@ -18,6 +18,8 @@ public class BucketDTO implements AutoMapping{
     private String consignmentNote;
     private AddressShipping addressShipping;
 
+    public BucketDTO() { }
+
     public String getName() {
         return name;
     }
