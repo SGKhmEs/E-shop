@@ -3,8 +3,6 @@ package com.social.eshop.service;
 import com.social.eshop.domain.Customer;
 import com.social.eshop.repository.CustomerRepository;
 import com.social.eshop.service.dto.CustomerDTO;
-import java.lang.reflect.InvocationTargetException;
-import java.util.logging.Level;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

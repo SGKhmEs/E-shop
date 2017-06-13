@@ -22,7 +22,7 @@ public class CommentsDTOService  {
     private final Logger log = LoggerFactory.getLogger(CommentsDTOService.class);
     private final CommentsRepository commentsRepository;
     private final CustomerDTOService customerDTOService;
-    private  final ProductsDTO productsDTO;
+    private final ProductsDTO productsDTO;
 
     public CommentsDTOService(CommentsRepository commentsRepository, CustomerDTOService customerDTOService, ProductsDTO productsDTO) {
         this.commentsRepository = commentsRepository;
@@ -43,9 +43,9 @@ public class CommentsDTOService  {
         return commentDTO;
     }
 
-    public List<CommentsDTO> findAllByPost(Long id) {
+    public List<CommentsDTO> findAllByProducts(Long id) {
 
-        List<Comments> commentList = commentsRepository.findByPostId(id);
+        List<Comments> commentList = commentsRepository.findByProductsId(id);
         List<CommentsDTO> commentDTOList = new ArrayList<>();
 
         for (Comments comment : commentList) {

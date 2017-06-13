@@ -14,6 +14,6 @@ import java.util.List;
 @SuppressWarnings("unused")
 @Repository
 public interface CommentsRepository extends JpaRepository<Comments,Long> {
-    @Query("FROM Comment where post_id =?1")
-    public List<Comments> findByPostId(Long id);
+    @Query("FROM Comments where products_id =?1")
+    public List<Comments> findByProductsId(Long id);
 }
