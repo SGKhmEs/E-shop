@@ -68,7 +68,7 @@ public class ProductsDTO implements AutoMapping {
         this.rating = rating;
     }
 
-    public boolean isFresh() {
+    public boolean getFresh() {
         return fresh;
     }
 
