@@ -46,7 +46,6 @@ public class CommentsDTOServiceImpl implements CommentsDTOService {
     }
 
     public List<CommentsDTO> findAllByProduct(Long id) {
-
         List<Comments> commentList = commentsRepository.findByProductsId(id);
         List<CommentsDTO> commentDTOList = new ArrayList<>();
 
@@ -62,7 +61,6 @@ public class CommentsDTOServiceImpl implements CommentsDTOService {
             commentDTOList.add(commentDTO);
         }
         return commentDTOList;
-
     }
 
 }
