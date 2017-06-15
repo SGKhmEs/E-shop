@@ -5,6 +5,8 @@ import org.springframework.stereotype.Repository;
 
 import org.springframework.data.jpa.repository.*;
 
+import java.util.List;
+
 
 /**
  * Spring Data JPA repository for the Comments entity.
@@ -12,5 +14,6 @@ import org.springframework.data.jpa.repository.*;
 @SuppressWarnings("unused")
 @Repository
 public interface CommentsRepository extends JpaRepository<Comments,Long> {
-    
+    @Query("FROM Comments where products_id =?1")
+    public List<Comments> findByProductsId(Long id);
 }
