@@ -23,11 +23,9 @@ public class CustomerDTOServiceImpl implements CustomerDTOService {
     private CustomerRepository customerRepository;
     public CustomerDTOServiceImpl() {
     }
-
     public CustomerDTOServiceImpl(CustomerRoomDTO customerRoomDTO, PersonalInformationRepository personalInformationRepository, CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
-
     @Transactional(readOnly = true)
     public CustomerDTO findOne(Long id) {
         log.debug("Request to get Author : {}", id);
@@ -40,9 +38,6 @@ public class CustomerDTOServiceImpl implements CustomerDTOService {
         } catch (InvocationTargetException ex) {
             java.util.logging.Logger.getLogger(CustomerDTOServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         return customerDTO;
-
     }
-
 }
