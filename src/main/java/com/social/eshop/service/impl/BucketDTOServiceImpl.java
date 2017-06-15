@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 
 @Service
@@ -43,4 +45,21 @@ public class BucketDTOServiceImpl implements BucketDTOService {
         return bucketDTO;
     }
 
+    public List<BucketDTO> findAllByProduct(Long id) {
+
+        List<Bucket> bucketList = bucketRepository.findByProductsId(id);
+        List<BucketDTO> bucketDTOList = new ArrayList<>();
+
+        for (Bucket bucket : bucketList) {
+            BucketDTO bucketDTO = new BucketDTO();
+            CustomerDTO customerDTO = customerDTOService.findOne(bucketRepository.getOne(id).getCustomer().getCustomerRoom().getPersonalInfo().getId());
+            try {
+                bucketDTO.mappingToDTO(bucket, customerDTO);
+            } catch (InvocationTargetException ex) {
+                java.util.logging.Logger.getLogger(BucketDTOServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            bucketDTOList.add(bucketDTO);
+        }
+        return bucketDTOList;
+    }
 }
