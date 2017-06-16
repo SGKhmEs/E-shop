@@ -1,7 +1,6 @@
 package com.social.eshop.service.impl;
 
 import com.social.eshop.domain.Bucket;
-import com.social.eshop.domain.ProductInBucket;
 import com.social.eshop.domain.Products;
 import com.social.eshop.repository.BucketRepository;
 import com.social.eshop.repository.CustomerRepository;
@@ -18,7 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.logging.Level;
 
 @Service
@@ -30,16 +28,20 @@ public class BucketDTOServiceImpl implements BucketDTOService {
     private CustomerDTOServiceImpl customerDTOService;
     private BucketRepository bucketRepository;
     private ProductsRepository productsRepository;
+    private BucketDTOServiceImpl bucketDTOService;
+    private ProductsDTO productsDTO;
+
 
     public BucketDTOServiceImpl() {  }
 
     public BucketDTOServiceImpl(CustomerRepository customerRepository, CustomerDTOServiceImpl customerDTOService,
-                                        BucketRepository bucketRepository, ProductsRepository productsRepository) {
+                                BucketRepository bucketRepository, ProductsRepository productsRepository, BucketDTOServiceImpl bucketDTOService, ProductsDTO productsDTO) {
         this.customerRepository = customerRepository;
         this.customerDTOService = customerDTOService;
         this.bucketRepository = bucketRepository;
         this.productsRepository = productsRepository;
-
+        this.bucketDTOService = bucketDTOService;
+        this.productsDTO = productsDTO;
     }
 
     public BucketDTO findOne(Long id) {
@@ -75,26 +77,24 @@ public class BucketDTOServiceImpl implements BucketDTOService {
         }
         return bucketDTOList;
     }
-//
-//
-//    public List<ProductsDTO> findAllProductsInBucket(Long id) {
-//        Bucket bucket = bucketRepository.getOne(id);
-//        Set<ProductInBucket> productsList  = bucket.get;
-//        List<BucketDTO> bucketDTOList = new ArrayList<>();
-//
-//        for (Bucket buckets : bucketList) {
-//            BucketDTO bucketDTO = new BucketDTO();
-//            CustomerDTO customerDTO = customerDTOService.findOne(bucketRepository.getOne(id).getCustomer().getCustomerRoom()
-//                                                                .getPersonalInfo().getId());
-//            try {
-//                bucketDTO.mappingToDTO(bucket, customerDTO);
-//            } catch (InvocationTargetException ex) {
-//                java.util.logging.Logger.getLogger(BucketDTOServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//            bucketDTOList.add(bucketDTO);
-//        }
-//
-//        return ;
-//    }
 
+
+    public List<ProductsDTO> findAllProductsInBucket(Long id) {
+
+        Bucket bucket = bucketRepository.getOne(id);
+        List<ProductsDTO> list = new ArrayList<>();
+        List<Products> productsList = productsRepository.findByBucketId(id);
+
+        for (Products product : productsList) {
+            ProductsDTO productsDTO = new ProductsDTO();
+            BucketDTO bucketDTO = bucketDTOService.findOne(bucket.getId());
+            try {
+                productsDTO.mappingToDTO(bucketDTO,product);
+            } catch (InvocationTargetException ex) {
+                java.util.logging.Logger.getLogger(BucketDTOServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            list.add(productsDTO);
+        }
+        return list ;
+    }
 }
