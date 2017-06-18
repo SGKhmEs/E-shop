@@ -63,11 +63,13 @@ public class BucketDTOServiceImpl implements BucketDTOService {
 
         List<Bucket> bucketList = bucketRepository.findByProductsId(id);
         List<BucketDTO> bucketDTOList = new ArrayList<>();
+        Long dataId = bucketRepository.getOne(id).getCustomer().getCustomerRoom()
+            .getPersonalInfo().getId();
+
+        CustomerDTO customerDTO = customerDTOService.findOne(dataId);
 
         for (Bucket bucket : bucketList) {
             BucketDTO bucketDTO = new BucketDTO();
-            CustomerDTO customerDTO = customerDTOService.findOne(bucketRepository.getOne(id).getCustomer().getCustomerRoom()
-                                                                .getPersonalInfo().getId());
             try {
                 bucketDTO.mappingToDTO(bucket, customerDTO);
             } catch (InvocationTargetException ex) {
@@ -84,10 +86,11 @@ public class BucketDTOServiceImpl implements BucketDTOService {
         Bucket bucket = bucketRepository.getOne(id);
         List<ProductsDTO> list = new ArrayList<>();
         List<Products> productsList = productsRepository.findByBucketId(id);
+        BucketDTO bucketDTO = bucketDTOService.findOne(bucket.getId());
 
         for (Products product : productsList) {
             ProductsDTO productsDTO = new ProductsDTO();
-            BucketDTO bucketDTO = bucketDTOService.findOne(bucket.getId());
+
             try {
                 productsDTO.mappingToDTO(bucketDTO,product);
             } catch (InvocationTargetException ex) {
