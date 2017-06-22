@@ -8,7 +8,7 @@ import com.social.eshop.service.mapper.AutoMapping;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class ProductsDTO implements AutoMapping {
+public class   ProductsDTO implements AutoMapping {
 
     private String name;
     private BigDecimal price;

@@ -3,6 +3,9 @@ package com.social.eshop;
 import com.social.eshop.config.ApplicationProperties;
 import com.social.eshop.config.DefaultProfileUtil;
 
+import com.social.eshop.repository.BucketRepository;
+import com.social.eshop.service.impl.BucketDTOServiceImpl;
+import com.social.eshop.service.impl.CustomerDTOServiceImpl;
 import io.github.jhipster.config.JHipsterConstants;
 
 import org.slf4j.Logger;
@@ -82,5 +85,7 @@ public class EshopApp {
             InetAddress.getLocalHost().getHostAddress(),
             env.getProperty("server.port"),
             env.getActiveProfiles());
+
+
     }
 }

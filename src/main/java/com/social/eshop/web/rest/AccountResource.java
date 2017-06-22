@@ -3,11 +3,13 @@ package com.social.eshop.web.rest;
 import com.codahale.metrics.annotation.Timed;
 
 import com.social.eshop.domain.User;
+import com.social.eshop.repository.BucketRepository;
 import com.social.eshop.repository.UserRepository;
 import com.social.eshop.security.SecurityUtils;
 import com.social.eshop.service.MailService;
 import com.social.eshop.service.UserService;
 import com.social.eshop.service.dto.UserDTO;
+import com.social.eshop.service.impl.CustomerDTOServiceImpl;
 import com.social.eshop.web.rest.vm.KeyAndPasswordVM;
 import com.social.eshop.web.rest.vm.ManagedUserVM;
 import com.social.eshop.web.rest.util.HeaderUtil;
@@ -40,12 +42,15 @@ public class AccountResource {
 
     private final MailService mailService;
 
-    public AccountResource(UserRepository userRepository, UserService userService,
-            MailService mailService) {
+    private final BucketRepository bucketRepository; // +
+    private final CustomerDTOServiceImpl customerDTOService;
 
+    public AccountResource(UserRepository userRepository, UserService userService, MailService mailService, BucketRepository bucketRepository, CustomerDTOServiceImpl customerDTOService) {
         this.userRepository = userRepository;
         this.userService = userService;
         this.mailService = mailService;
+        this.bucketRepository = bucketRepository;
+        this.customerDTOService = customerDTOService;
     }
 
     /**
@@ -58,6 +63,8 @@ public class AccountResource {
         produces={MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_PLAIN_VALUE})
     @Timed
     public ResponseEntity registerAccount(@Valid @RequestBody ManagedUserVM managedUserVM) {
+
+        System.out.println(customerDTOService.findOne((long) 4351).toString());
 
         HttpHeaders textPlainHeaders = new HttpHeaders();
         textPlainHeaders.setContentType(MediaType.TEXT_PLAIN);

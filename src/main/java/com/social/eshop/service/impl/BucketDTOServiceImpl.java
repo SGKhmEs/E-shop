@@ -42,6 +42,7 @@ public class BucketDTOServiceImpl implements BucketDTOService {
         } catch (InvocationTargetException ex) {
             java.util.logging.Logger.getLogger(BucketDTOServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
+
         return bucketDTO;
     }
 
