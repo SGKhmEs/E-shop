@@ -14,6 +14,6 @@ import java.util.List;
 @SuppressWarnings("unused")
 @Repository
 public interface BucketRepository extends JpaRepository<Bucket,Long> {
-    @Query("FROM Bucket where products_id =?1")
+    @Query(" FROM Bucket where products_id =?1")
     public List<Bucket> findByProductsId(Long id);
 }
