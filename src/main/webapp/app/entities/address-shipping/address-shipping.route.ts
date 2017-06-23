@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes, CanActivate } from '@angular/router';
 
 import { UserRouteAccessService } from '../../shared';
-import { PaginationUtil } from 'ng-jhipster';
+import { JhiPaginationUtil } from 'ng-jhipster';
 
 import { AddressShippingComponent } from './address-shipping.component';
 import { AddressShippingDetailComponent } from './address-shipping-detail.component';
@@ -17,7 +17,7 @@ export const addressShippingRoute: Routes = [
         component: AddressShippingComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.addressShipping.home.title'
+            pageTitle: 'AddressShippings'
         },
         canActivate: [UserRouteAccessService]
     }, {
@@ -25,7 +25,7 @@ export const addressShippingRoute: Routes = [
         component: AddressShippingDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.addressShipping.home.title'
+            pageTitle: 'AddressShippings'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -37,7 +37,7 @@ export const addressShippingPopupRoute: Routes = [
         component: AddressShippingPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.addressShipping.home.title'
+            pageTitle: 'AddressShippings'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -47,7 +47,7 @@ export const addressShippingPopupRoute: Routes = [
         component: AddressShippingPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.addressShipping.home.title'
+            pageTitle: 'AddressShippings'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -57,7 +57,7 @@ export const addressShippingPopupRoute: Routes = [
         component: AddressShippingDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.addressShipping.home.title'
+            pageTitle: 'AddressShippings'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

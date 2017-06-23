@@ -24,8 +24,8 @@ describe('Consignment e2e test', () => {
     it('should load Consignments', () => {
         entityMenu.click();
         element.all(by.css('[routerLink="consignment"]')).first().click().then(() => {
-            const expectVal = /eshopApp.consignment.home.title/;
-            element.all(by.css('h2 span')).first().getAttribute('jhiTranslate').then((value) => {
+            const expectVal = /Consignments/;
+            element.all(by.css('h2 span')).first().getText().then((value) => {
                 expect(value).toMatch(expectVal);
             });
         });
@@ -33,8 +33,8 @@ describe('Consignment e2e test', () => {
 
     it('should load create Consignment dialog', function () {
         element(by.css('button.create-consignment')).click().then(() => {
-            const expectVal = /eshopApp.consignment.home.createOrEditLabel/;
-            element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
+            const expectVal = /Create or edit a Consignment/;
+            element.all(by.css('h4.modal-title')).first().getText().then((value) => {
                 expect(value).toMatch(expectVal);
             });
 

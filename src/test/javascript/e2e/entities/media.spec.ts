@@ -24,8 +24,8 @@ describe('Media e2e test', () => {
     it('should load Media', () => {
         entityMenu.click();
         element.all(by.css('[routerLink="media"]')).first().click().then(() => {
-            const expectVal = /eshopApp.media.home.title/;
-            element.all(by.css('h2 span')).first().getAttribute('jhiTranslate').then((value) => {
+            const expectVal = /Media/;
+            element.all(by.css('h2 span')).first().getText().then((value) => {
                 expect(value).toMatch(expectVal);
             });
         });
@@ -33,8 +33,8 @@ describe('Media e2e test', () => {
 
     it('should load create Media dialog', function () {
         element(by.css('button.create-media')).click().then(() => {
-            const expectVal = /eshopApp.media.home.createOrEditLabel/;
-            element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
+            const expectVal = /Create or edit a Media/;
+            element.all(by.css('h4.modal-title')).first().getText().then((value) => {
                 expect(value).toMatch(expectVal);
             });
 

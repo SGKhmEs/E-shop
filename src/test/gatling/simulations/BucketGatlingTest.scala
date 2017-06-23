@@ -68,7 +68,7 @@ class BucketGatlingTest extends Simulation {
             .exec(http("Create new bucket")
             .post("/api/buckets")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "name":"SAMPLE_TEXT", "data":"2020-01-01T00:00:00.000Z", "sum":null, "orderNumber":"0", "count":"0", "status":null, "consignmentNote":"SAMPLE_TEXT"}""")).asJSON
+            .body(StringBody("""{"id":null, "name":"SAMPLE_TEXT", "date":"2020-01-01T00:00:00.000Z", "sum":null, "orderNumber":"0", "count":"0", "status":null, "consignmentNote":"SAMPLE_TEXT"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_bucket_url"))).exitHereIfFailed
             .pause(10)

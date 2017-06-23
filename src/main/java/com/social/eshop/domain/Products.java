@@ -38,13 +38,20 @@ public class Products implements Serializable {
     private BigDecimal price;
 
     @Column(name = "sale")
-    private String sale;
+    private Integer sale;
 
     @Column(name = "rating")
     private Double rating;
 
     @Column(name = "fresh")
     private Boolean fresh;
+
+    @Column(name = "description")
+    private String description;
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Options options;
 
     @OneToMany(mappedBy = "products")
     @JsonIgnore
@@ -106,16 +113,16 @@ public class Products implements Serializable {
         this.price = price;
     }
 
-    public String getSale() {
+    public Integer getSale() {
         return sale;
     }
 
-    public Products sale(String sale) {
+    public Products sale(Integer sale) {
         this.sale = sale;
         return this;
     }
 
-    public void setSale(String sale) {
+    public void setSale(Integer sale) {
         this.sale = sale;
     }
 
@@ -143,6 +150,32 @@ public class Products implements Serializable {
 
     public void setFresh(Boolean fresh) {
         this.fresh = fresh;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Products description(String description) {
+        this.description = description;
+        return this;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Options getOptions() {
+        return options;
+    }
+
+    public Products options(Options options) {
+        this.options = options;
+        return this;
+    }
+
+    public void setOptions(Options options) {
+        this.options = options;
     }
 
     public Set<Media> getMedia() {
@@ -300,6 +333,7 @@ public class Products implements Serializable {
             ", sale='" + getSale() + "'" +
             ", rating='" + getRating() + "'" +
             ", fresh='" + isFresh() + "'" +
+            ", description='" + getDescription() + "'" +
             "}";
     }
 }

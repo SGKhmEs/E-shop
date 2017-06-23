@@ -4,7 +4,7 @@ import { Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EventManager, AlertService } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { Address } from './address.model';
 import { AddressPopupService } from './address-popup.service';
@@ -22,9 +22,9 @@ export class AddressDialogComponent implements OnInit {
 
     constructor(
         public activeModal: NgbActiveModal,
-        private alertService: AlertService,
+        private alertService: JhiAlertService,
         private addressService: AddressService,
-        private eventManager: EventManager
+        private eventManager: JhiEventManager
     ) {
     }
 
@@ -55,9 +55,9 @@ export class AddressDialogComponent implements OnInit {
 
     private onSaveSuccess(result: Address, isCreated: boolean) {
         this.alertService.success(
-            isCreated ? 'eshopApp.address.created'
-            : 'eshopApp.address.updated',
-            { param : result.id }, null);
+            isCreated ? `A new Address is created with identifier ${result.id}`
+            : `A Address is updated with identifier ${result.id}`,
+            null, null);
 
         this.eventManager.broadcast({ name: 'addressListModification', content: 'OK'});
         this.isSaving = false;

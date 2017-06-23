@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes, CanActivate } from '@angular/router';
 
 import { UserRouteAccessService } from '../../shared';
-import { PaginationUtil } from 'ng-jhipster';
+import { JhiPaginationUtil } from 'ng-jhipster';
 
 import { BucketComponent } from './bucket.component';
 import { BucketDetailComponent } from './bucket-detail.component';
@@ -17,7 +17,7 @@ export const bucketRoute: Routes = [
         component: BucketComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.bucket.home.title'
+            pageTitle: 'Buckets'
         },
         canActivate: [UserRouteAccessService]
     }, {
@@ -25,7 +25,7 @@ export const bucketRoute: Routes = [
         component: BucketDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.bucket.home.title'
+            pageTitle: 'Buckets'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -37,7 +37,7 @@ export const bucketPopupRoute: Routes = [
         component: BucketPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.bucket.home.title'
+            pageTitle: 'Buckets'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -47,7 +47,7 @@ export const bucketPopupRoute: Routes = [
         component: BucketPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.bucket.home.title'
+            pageTitle: 'Buckets'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -57,7 +57,7 @@ export const bucketPopupRoute: Routes = [
         component: BucketDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.bucket.home.title'
+            pageTitle: 'Buckets'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

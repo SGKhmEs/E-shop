@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes, CanActivate } from '@angular/router';
 
 import { UserRouteAccessService } from '../../shared';
-import { PaginationUtil } from 'ng-jhipster';
+import { JhiPaginationUtil } from 'ng-jhipster';
 
 import { PersonalInformationComponent } from './personal-information.component';
 import { PersonalInformationDetailComponent } from './personal-information-detail.component';
@@ -17,7 +17,7 @@ export const personalInformationRoute: Routes = [
         component: PersonalInformationComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.personalInformation.home.title'
+            pageTitle: 'PersonalInformations'
         },
         canActivate: [UserRouteAccessService]
     }, {
@@ -25,7 +25,7 @@ export const personalInformationRoute: Routes = [
         component: PersonalInformationDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.personalInformation.home.title'
+            pageTitle: 'PersonalInformations'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -37,7 +37,7 @@ export const personalInformationPopupRoute: Routes = [
         component: PersonalInformationPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.personalInformation.home.title'
+            pageTitle: 'PersonalInformations'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -47,7 +47,7 @@ export const personalInformationPopupRoute: Routes = [
         component: PersonalInformationPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.personalInformation.home.title'
+            pageTitle: 'PersonalInformations'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -57,7 +57,7 @@ export const personalInformationPopupRoute: Routes = [
         component: PersonalInformationDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.personalInformation.home.title'
+            pageTitle: 'PersonalInformations'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

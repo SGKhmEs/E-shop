@@ -24,8 +24,8 @@ describe('WishList e2e test', () => {
     it('should load WishLists', () => {
         entityMenu.click();
         element.all(by.css('[routerLink="wish-list"]')).first().click().then(() => {
-            const expectVal = /eshopApp.wishList.home.title/;
-            element.all(by.css('h2 span')).first().getAttribute('jhiTranslate').then((value) => {
+            const expectVal = /Wish Lists/;
+            element.all(by.css('h2 span')).first().getText().then((value) => {
                 expect(value).toMatch(expectVal);
             });
         });
@@ -33,8 +33,8 @@ describe('WishList e2e test', () => {
 
     it('should load create WishList dialog', function () {
         element(by.css('button.create-wish-list')).click().then(() => {
-            const expectVal = /eshopApp.wishList.home.createOrEditLabel/;
-            element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
+            const expectVal = /Create or edit a Wish List/;
+            element.all(by.css('h4.modal-title')).first().getText().then((value) => {
                 expect(value).toMatch(expectVal);
             });
 

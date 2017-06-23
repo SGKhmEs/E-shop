@@ -4,7 +4,7 @@ import { Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EventManager, AlertService } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { Producers } from './producers.model';
 import { ProducersPopupService } from './producers-popup.service';
@@ -22,9 +22,9 @@ export class ProducersDialogComponent implements OnInit {
 
     constructor(
         public activeModal: NgbActiveModal,
-        private alertService: AlertService,
+        private alertService: JhiAlertService,
         private producersService: ProducersService,
-        private eventManager: EventManager
+        private eventManager: JhiEventManager
     ) {
     }
 
@@ -55,9 +55,9 @@ export class ProducersDialogComponent implements OnInit {
 
     private onSaveSuccess(result: Producers, isCreated: boolean) {
         this.alertService.success(
-            isCreated ? 'eshopApp.producers.created'
-            : 'eshopApp.producers.updated',
-            { param : result.id }, null);
+            isCreated ? `A new Producers is created with identifier ${result.id}`
+            : `A Producers is updated with identifier ${result.id}`,
+            null, null);
 
         this.eventManager.broadcast({ name: 'producersListModification', content: 'OK'});
         this.isSaving = false;

@@ -8,7 +8,7 @@
             "fieldTypeBlobContent": "image"
         }
     ],
-    "changelogDate": "20170610234454",
+    "changelogDate": "20170623182237",
     "entityTableName": "avatar",
     "dto": "no",
     "pagination": "no",

@@ -24,8 +24,8 @@ describe('Manager e2e test', () => {
     it('should load Managers', () => {
         entityMenu.click();
         element.all(by.css('[routerLink="manager"]')).first().click().then(() => {
-            const expectVal = /eshopApp.manager.home.title/;
-            element.all(by.css('h2 span')).first().getAttribute('jhiTranslate').then((value) => {
+            const expectVal = /Managers/;
+            element.all(by.css('h2 span')).first().getText().then((value) => {
                 expect(value).toMatch(expectVal);
             });
         });
@@ -33,8 +33,8 @@ describe('Manager e2e test', () => {
 
     it('should load create Manager dialog', function () {
         element(by.css('button.create-manager')).click().then(() => {
-            const expectVal = /eshopApp.manager.home.createOrEditLabel/;
-            element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
+            const expectVal = /Create or edit a Manager/;
+            element.all(by.css('h4.modal-title')).first().getText().then((value) => {
                 expect(value).toMatch(expectVal);
             });
 

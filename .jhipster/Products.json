@@ -2,6 +2,14 @@
     "fluentMethods": true,
     "relationships": [
         {
+            "relationshipType": "one-to-one",
+            "relationshipName": "options",
+            "otherEntityName": "options",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "products"
+        },
+        {
             "relationshipType": "one-to-many",
             "relationshipName": "media",
             "otherEntityName": "media",
@@ -55,7 +63,7 @@
         },
         {
             "fieldName": "sale",
-            "fieldType": "String"
+            "fieldType": "Integer"
         },
         {
             "fieldName": "rating",
@@ -64,9 +72,13 @@
         {
             "fieldName": "fresh",
             "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
         }
     ],
-    "changelogDate": "20170610234456",
+    "changelogDate": "20170623182239",
     "entityTableName": "products",
     "dto": "no",
     "pagination": "infinite-scroll",

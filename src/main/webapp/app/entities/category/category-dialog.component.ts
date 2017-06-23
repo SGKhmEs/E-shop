@@ -4,7 +4,7 @@ import { Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EventManager, AlertService } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { Category } from './category.model';
 import { CategoryPopupService } from './category-popup.service';
@@ -22,9 +22,9 @@ export class CategoryDialogComponent implements OnInit {
 
     constructor(
         public activeModal: NgbActiveModal,
-        private alertService: AlertService,
+        private alertService: JhiAlertService,
         private categoryService: CategoryService,
-        private eventManager: EventManager
+        private eventManager: JhiEventManager
     ) {
     }
 
@@ -55,9 +55,9 @@ export class CategoryDialogComponent implements OnInit {
 
     private onSaveSuccess(result: Category, isCreated: boolean) {
         this.alertService.success(
-            isCreated ? 'eshopApp.category.created'
-            : 'eshopApp.category.updated',
-            { param : result.id }, null);
+            isCreated ? `A new Category is created with identifier ${result.id}`
+            : `A Category is updated with identifier ${result.id}`,
+            null, null);
 
         this.eventManager.broadcast({ name: 'categoryListModification', content: 'OK'});
         this.isSaving = false;

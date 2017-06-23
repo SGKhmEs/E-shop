@@ -34,8 +34,8 @@ public class Bucket implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "data")
-    private ZonedDateTime data;
+    @Column(name = "jhi_date")
+    private ZonedDateTime date;
 
     @Column(name = "sum", precision=10, scale=2)
     private BigDecimal sum;
@@ -89,17 +89,17 @@ public class Bucket implements Serializable {
         this.name = name;
     }
 
-    public ZonedDateTime getData() {
-        return data;
+    public ZonedDateTime getDate() {
+        return date;
     }
 
-    public Bucket data(ZonedDateTime data) {
-        this.data = data;
+    public Bucket date(ZonedDateTime date) {
+        this.date = date;
         return this;
     }
 
-    public void setData(ZonedDateTime data) {
-        this.data = data;
+    public void setDate(ZonedDateTime date) {
+        this.date = date;
     }
 
     public BigDecimal getSum() {
@@ -256,7 +256,7 @@ public class Bucket implements Serializable {
         return "Bucket{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
-            ", data='" + getData() + "'" +
+            ", date='" + getDate() + "'" +
             ", sum='" + getSum() + "'" +
             ", orderNumber='" + getOrderNumber() + "'" +
             ", count='" + getCount() + "'" +

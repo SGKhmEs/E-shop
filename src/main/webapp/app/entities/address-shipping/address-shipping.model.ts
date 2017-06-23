@@ -1,4 +1,6 @@
-export class AddressShipping {
+import { BaseEntity } from './../../shared';
+
+export class AddressShipping implements BaseEntity {
     constructor(
         public id?: number,
         public country?: string,

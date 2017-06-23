@@ -4,7 +4,7 @@ import { Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EventManager, AlertService } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { Tags } from './tags.model';
 import { TagsPopupService } from './tags-popup.service';
@@ -22,9 +22,9 @@ export class TagsDialogComponent implements OnInit {
 
     constructor(
         public activeModal: NgbActiveModal,
-        private alertService: AlertService,
+        private alertService: JhiAlertService,
         private tagsService: TagsService,
-        private eventManager: EventManager
+        private eventManager: JhiEventManager
     ) {
     }
 
@@ -55,9 +55,9 @@ export class TagsDialogComponent implements OnInit {
 
     private onSaveSuccess(result: Tags, isCreated: boolean) {
         this.alertService.success(
-            isCreated ? 'eshopApp.tags.created'
-            : 'eshopApp.tags.updated',
-            { param : result.id }, null);
+            isCreated ? `A new Tags is created with identifier ${result.id}`
+            : `A Tags is updated with identifier ${result.id}`,
+            null, null);
 
         this.eventManager.broadcast({ name: 'tagsListModification', content: 'OK'});
         this.isSaving = false;

@@ -24,8 +24,8 @@ describe('Seen e2e test', () => {
     it('should load Seens', () => {
         entityMenu.click();
         element.all(by.css('[routerLink="seen"]')).first().click().then(() => {
-            const expectVal = /eshopApp.seen.home.title/;
-            element.all(by.css('h2 span')).first().getAttribute('jhiTranslate').then((value) => {
+            const expectVal = /Seens/;
+            element.all(by.css('h2 span')).first().getText().then((value) => {
                 expect(value).toMatch(expectVal);
             });
         });
@@ -33,8 +33,8 @@ describe('Seen e2e test', () => {
 
     it('should load create Seen dialog', function () {
         element(by.css('button.create-seen')).click().then(() => {
-            const expectVal = /eshopApp.seen.home.createOrEditLabel/;
-            element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
+            const expectVal = /Create or edit a Seen/;
+            element.all(by.css('h4.modal-title')).first().getText().then((value) => {
                 expect(value).toMatch(expectVal);
             });
 

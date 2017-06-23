@@ -4,7 +4,7 @@ import { Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EventManager, AlertService } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { ProductInBucket } from './product-in-bucket.model';
 import { ProductInBucketPopupService } from './product-in-bucket-popup.service';
@@ -29,11 +29,11 @@ export class ProductInBucketDialogComponent implements OnInit {
 
     constructor(
         public activeModal: NgbActiveModal,
-        private alertService: AlertService,
+        private alertService: JhiAlertService,
         private productInBucketService: ProductInBucketService,
         private bucketService: BucketService,
         private productsService: ProductsService,
-        private eventManager: EventManager
+        private eventManager: JhiEventManager
     ) {
     }
 
@@ -68,9 +68,9 @@ export class ProductInBucketDialogComponent implements OnInit {
 
     private onSaveSuccess(result: ProductInBucket, isCreated: boolean) {
         this.alertService.success(
-            isCreated ? 'eshopApp.productInBucket.created'
-            : 'eshopApp.productInBucket.updated',
-            { param : result.id }, null);
+            isCreated ? `A new Product In Bucket is created with identifier ${result.id}`
+            : `A Product In Bucket is updated with identifier ${result.id}`,
+            null, null);
 
         this.eventManager.broadcast({ name: 'productInBucketListModification', content: 'OK'});
         this.isSaving = false;

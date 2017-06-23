@@ -1,27 +1,27 @@
 <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
 
     <div class="modal-header">
-        <h4 class="modal-title" id="myTagForProductLabel" jhiTranslate="eshopApp.tagForProduct.home.createOrEditLabel">Create or edit a Tag For Product</h4>
+        <h4 class="modal-title" id="myTagForProductLabel">Create or edit a Tag For Product</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 (click)="clear()">&times;</button>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
         <div class="form-group" [hidden]="!tagForProduct.id">
-            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <label for="id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
                    [(ngModel)]="tagForProduct.id" readonly />
         </div>
 
         <div class="form-group">
-            <label jhiTranslate="eshopApp.tagForProduct.products" for="field_products">Products</label>
+            <label for="field_products">Products</label>
             <select class="form-control" id="field_products" name="products" [(ngModel)]="tagForProduct.products" >
                 <option [ngValue]="null"></option>
                 <option [ngValue]="productsOption.id === tagForProduct.products?.id ? tagForProduct.products : productsOption" *ngFor="let productsOption of products; trackBy: trackProductsById">{{productsOption.id}}</option>
             </select>
         </div>
         <div class="form-group">
-            <label jhiTranslate="eshopApp.tagForProduct.tags" for="field_tags">Tags</label>
+            <label for="field_tags">Tags</label>
             <select class="form-control" id="field_tags" name="tags" [(ngModel)]="tagForProduct.tags" >
                 <option [ngValue]="null"></option>
                 <option [ngValue]="tagsOption.id === tagForProduct.tags?.id ? tagForProduct.tags : tagsOption" *ngFor="let tagsOption of tags; trackBy: trackTagsById">{{tagsOption.id}}</option>
@@ -30,10 +30,10 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
-            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
         </button>
         <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
-            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
         </button>
     </div>
 </form>

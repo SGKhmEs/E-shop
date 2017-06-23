@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { AlertService, EventManager } from 'ng-jhipster';
+import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
 
 import { Bucket } from './bucket.model';
 import { BucketPopupService } from './bucket-popup.service';
@@ -19,8 +19,8 @@ export class BucketDeleteDialogComponent {
     constructor(
         private bucketService: BucketService,
         public activeModal: NgbActiveModal,
-        private alertService: AlertService,
-        private eventManager: EventManager
+        private alertService: JhiAlertService,
+        private eventManager: JhiEventManager
     ) {
     }
 
@@ -36,7 +36,7 @@ export class BucketDeleteDialogComponent {
             });
             this.activeModal.dismiss(true);
         });
-        this.alertService.success('eshopApp.bucket.deleted', { param : id }, null);
+        this.alertService.success(`A Bucket is deleted with identifier ${id}`, null, null);
     }
 }
 

@@ -1,13 +1,11 @@
-import { Category } from '../category';
-import { Options } from '../options';
-import { Products } from '../products';
-export class SubCategory {
+import { BaseEntity } from './../../shared';
+
+export class SubCategory implements BaseEntity {
     constructor(
         public id?: number,
         public name?: string,
-        public category?: Category,
-        public options?: Options,
-        public product?: Products,
+        public category?: BaseEntity,
+        public products?: BaseEntity[],
     ) {
     }
 }

@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { Observable } from 'rxjs/Rx';
-import { JhiLanguageHelper } from '../../../../../../main/webapp/app/shared';
 import { EshopTestModule } from '../../../test.module';
 import { Principal, AccountService } from '../../../../../../main/webapp/app/shared';
 import { SettingsComponent } from '../../../../../../main/webapp/app/account/settings/settings.component';
@@ -35,10 +34,6 @@ describe('Component Tests', () => {
                     {
                         provide: JhiTrackerService,
                         useClass: MockTrackerService
-                    },
-                    {
-                        provide: JhiLanguageHelper,
-                        useValue: null
                     },
                 ]
             }).overrideTemplate(SettingsComponent, '')

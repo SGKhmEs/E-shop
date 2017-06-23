@@ -4,13 +4,15 @@ import { Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EventManager, AlertService } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { Customer } from './customer.model';
 import { CustomerPopupService } from './customer-popup.service';
 import { CustomerService } from './customer.service';
 import { LoginOptions, LoginOptionsService } from '../login-options';
-import { CustomerRoom, CustomerRoomService } from '../customer-room';
+import { Address, AddressService } from '../address';
+import { PersonalInformation, PersonalInformationService } from '../personal-information';
+import { Avatar, AvatarService } from '../avatar';
 import { ResponseWrapper } from '../../shared';
 
 @Component({
@@ -25,15 +27,21 @@ export class CustomerDialogComponent implements OnInit {
 
     loginoptions: LoginOptions[];
 
-    customerrooms: CustomerRoom[];
+    addresses: Address[];
+
+    personalinfos: PersonalInformation[];
+
+    avatars: Avatar[];
 
     constructor(
         public activeModal: NgbActiveModal,
-        private alertService: AlertService,
+        private alertService: JhiAlertService,
         private customerService: CustomerService,
         private loginOptionsService: LoginOptionsService,
-        private customerRoomService: CustomerRoomService,
-        private eventManager: EventManager
+        private addressService: AddressService,
+        private personalInformationService: PersonalInformationService,
+        private avatarService: AvatarService,
+        private eventManager: JhiEventManager
     ) {
     }
 
@@ -53,16 +61,42 @@ export class CustomerDialogComponent implements OnInit {
                         }, (subRes: ResponseWrapper) => this.onError(subRes.json));
                 }
             }, (res: ResponseWrapper) => this.onError(res.json));
-        this.customerRoomService
+        this.addressService
             .query({filter: 'customer-is-null'})
             .subscribe((res: ResponseWrapper) => {
-                if (!this.customer.customerRoom || !this.customer.customerRoom.id) {
-                    this.customerrooms = res.json;
+                if (!this.customer.address || !this.customer.address.id) {
+                    this.addresses = res.json;
                 } else {
-                    this.customerRoomService
-                        .find(this.customer.customerRoom.id)
-                        .subscribe((subRes: CustomerRoom) => {
-                            this.customerrooms = [subRes].concat(res.json);
+                    this.addressService
+                        .find(this.customer.address.id)
+                        .subscribe((subRes: Address) => {
+                            this.addresses = [subRes].concat(res.json);
+                        }, (subRes: ResponseWrapper) => this.onError(subRes.json));
+                }
+            }, (res: ResponseWrapper) => this.onError(res.json));
+        this.personalInformationService
+            .query({filter: 'customer-is-null'})
+            .subscribe((res: ResponseWrapper) => {
+                if (!this.customer.personalInfo || !this.customer.personalInfo.id) {
+                    this.personalinfos = res.json;
+                } else {
+                    this.personalInformationService
+                        .find(this.customer.personalInfo.id)
+                        .subscribe((subRes: PersonalInformation) => {
+                            this.personalinfos = [subRes].concat(res.json);
+                        }, (subRes: ResponseWrapper) => this.onError(subRes.json));
+                }
+            }, (res: ResponseWrapper) => this.onError(res.json));
+        this.avatarService
+            .query({filter: 'customer-is-null'})
+            .subscribe((res: ResponseWrapper) => {
+                if (!this.customer.avatar || !this.customer.avatar.id) {
+                    this.avatars = res.json;
+                } else {
+                    this.avatarService
+                        .find(this.customer.avatar.id)
+                        .subscribe((subRes: Avatar) => {
+                            this.avatars = [subRes].concat(res.json);
                         }, (subRes: ResponseWrapper) => this.onError(subRes.json));
                 }
             }, (res: ResponseWrapper) => this.onError(res.json));
@@ -90,9 +124,9 @@ export class CustomerDialogComponent implements OnInit {
 
     private onSaveSuccess(result: Customer, isCreated: boolean) {
         this.alertService.success(
-            isCreated ? 'eshopApp.customer.created'
-            : 'eshopApp.customer.updated',
-            { param : result.id }, null);
+            isCreated ? `A new Customer is created with identifier ${result.id}`
+            : `A Customer is updated with identifier ${result.id}`,
+            null, null);
 
         this.eventManager.broadcast({ name: 'customerListModification', content: 'OK'});
         this.isSaving = false;
@@ -117,7 +151,15 @@ export class CustomerDialogComponent implements OnInit {
         return item.id;
     }
 
-    trackCustomerRoomById(index: number, item: CustomerRoom) {
+    trackAddressById(index: number, item: Address) {
+        return item.id;
+    }
+
+    trackPersonalInformationById(index: number, item: PersonalInformation) {
+        return item.id;
+    }
+
+    trackAvatarById(index: number, item: Avatar) {
         return item.id;
     }
 }

@@ -40,7 +40,7 @@ import com.social.eshop.domain.enumeration.Roles;
 @SpringBootTest(classes = EshopApp.class)
 public class ManagerResourceIntTest {
 
-    private static final Roles DEFAULT_ROLES = Roles.USER;
+    private static final Roles DEFAULT_ROLES = Roles.SMM;
     private static final Roles UPDATED_ROLES = Roles.MODERATOR;
 
     @Autowired

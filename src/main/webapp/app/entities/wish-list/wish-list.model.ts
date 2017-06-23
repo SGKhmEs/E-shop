@@ -1,11 +1,11 @@
-import { Customer } from '../customer';
-import { Products } from '../products';
-export class WishList {
+import { BaseEntity } from './../../shared';
+
+export class WishList implements BaseEntity {
     constructor(
         public id?: number,
-        public data?: any,
-        public customer?: Customer,
-        public product?: Products,
+        public date?: any,
+        public customer?: BaseEntity,
+        public product?: BaseEntity,
     ) {
     }
 }

@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { AlertService, EventManager } from 'ng-jhipster';
+import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
 
 import { AddressShipping } from './address-shipping.model';
 import { AddressShippingPopupService } from './address-shipping-popup.service';
@@ -19,8 +19,8 @@ export class AddressShippingDeleteDialogComponent {
     constructor(
         private addressShippingService: AddressShippingService,
         public activeModal: NgbActiveModal,
-        private alertService: AlertService,
-        private eventManager: EventManager
+        private alertService: JhiAlertService,
+        private eventManager: JhiEventManager
     ) {
     }
 
@@ -36,7 +36,7 @@ export class AddressShippingDeleteDialogComponent {
             });
             this.activeModal.dismiss(true);
         });
-        this.alertService.success('eshopApp.addressShipping.deleted', { param : id }, null);
+        this.alertService.success(`A Address Shipping is deleted with identifier ${id}`, null, null);
     }
 }
 

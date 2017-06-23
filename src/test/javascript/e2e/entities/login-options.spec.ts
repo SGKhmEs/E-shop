@@ -24,8 +24,8 @@ describe('LoginOptions e2e test', () => {
     it('should load LoginOptions', () => {
         entityMenu.click();
         element.all(by.css('[routerLink="login-options"]')).first().click().then(() => {
-            const expectVal = /eshopApp.loginOptions.home.title/;
-            element.all(by.css('h2 span')).first().getAttribute('jhiTranslate').then((value) => {
+            const expectVal = /Login Options/;
+            element.all(by.css('h2 span')).first().getText().then((value) => {
                 expect(value).toMatch(expectVal);
             });
         });
@@ -33,8 +33,8 @@ describe('LoginOptions e2e test', () => {
 
     it('should load create LoginOptions dialog', function () {
         element(by.css('button.create-login-options')).click().then(() => {
-            const expectVal = /eshopApp.loginOptions.home.createOrEditLabel/;
-            element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
+            const expectVal = /Create or edit a Login Options/;
+            element.all(by.css('h4.modal-title')).first().getText().then((value) => {
                 expect(value).toMatch(expectVal);
             });
 

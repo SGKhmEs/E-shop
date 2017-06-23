@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { AlertService, EventManager } from 'ng-jhipster';
+import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
 
 import { SubCategory } from './sub-category.model';
 import { SubCategoryPopupService } from './sub-category-popup.service';
@@ -19,8 +19,8 @@ export class SubCategoryDeleteDialogComponent {
     constructor(
         private subCategoryService: SubCategoryService,
         public activeModal: NgbActiveModal,
-        private alertService: AlertService,
-        private eventManager: EventManager
+        private alertService: JhiAlertService,
+        private eventManager: JhiEventManager
     ) {
     }
 
@@ -36,7 +36,7 @@ export class SubCategoryDeleteDialogComponent {
             });
             this.activeModal.dismiss(true);
         });
-        this.alertService.success('eshopApp.subCategory.deleted', { param : id }, null);
+        this.alertService.success(`A Sub Category is deleted with identifier ${id}`, null, null);
     }
 }
 

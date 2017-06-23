@@ -4,14 +4,11 @@ import { Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EventManager, AlertService } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { Options } from './options.model';
 import { OptionsPopupService } from './options-popup.service';
 import { OptionsService } from './options.service';
-import { Value, ValueService } from '../value';
-import { Type, TypeService } from '../type';
-import { ResponseWrapper } from '../../shared';
 
 @Component({
     selector: 'jhi-options-dialog',
@@ -23,49 +20,17 @@ export class OptionsDialogComponent implements OnInit {
     authorities: any[];
     isSaving: boolean;
 
-    values: Value[];
-
-    types: Type[];
-
     constructor(
         public activeModal: NgbActiveModal,
-        private alertService: AlertService,
+        private alertService: JhiAlertService,
         private optionsService: OptionsService,
-        private valueService: ValueService,
-        private typeService: TypeService,
-        private eventManager: EventManager
+        private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
-        this.valueService
-            .query({filter: 'options-is-null'})
-            .subscribe((res: ResponseWrapper) => {
-                if (!this.options.value || !this.options.value.id) {
-                    this.values = res.json;
-                } else {
-                    this.valueService
-                        .find(this.options.value.id)
-                        .subscribe((subRes: Value) => {
-                            this.values = [subRes].concat(res.json);
-                        }, (subRes: ResponseWrapper) => this.onError(subRes.json));
-                }
-            }, (res: ResponseWrapper) => this.onError(res.json));
-        this.typeService
-            .query({filter: 'options-is-null'})
-            .subscribe((res: ResponseWrapper) => {
-                if (!this.options.type || !this.options.type.id) {
-                    this.types = res.json;
-                } else {
-                    this.typeService
-                        .find(this.options.type.id)
-                        .subscribe((subRes: Type) => {
-                            this.types = [subRes].concat(res.json);
-                        }, (subRes: ResponseWrapper) => this.onError(subRes.json));
-                }
-            }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     clear() {
@@ -90,9 +55,9 @@ export class OptionsDialogComponent implements OnInit {
 
     private onSaveSuccess(result: Options, isCreated: boolean) {
         this.alertService.success(
-            isCreated ? 'eshopApp.options.created'
-            : 'eshopApp.options.updated',
-            { param : result.id }, null);
+            isCreated ? `A new Options is created with identifier ${result.id}`
+            : `A Options is updated with identifier ${result.id}`,
+            null, null);
 
         this.eventManager.broadcast({ name: 'optionsListModification', content: 'OK'});
         this.isSaving = false;
@@ -111,14 +76,6 @@ export class OptionsDialogComponent implements OnInit {
 
     private onError(error) {
         this.alertService.error(error.message, null, null);
-    }
-
-    trackValueById(index: number, item: Value) {
-        return item.id;
-    }
-
-    trackTypeById(index: number, item: Type) {
-        return item.id;
     }
 }
 

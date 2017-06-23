@@ -18,11 +18,11 @@
     ],
     "fields": [
         {
-            "fieldName": "data",
+            "fieldName": "date",
             "fieldType": "LocalDate"
         }
     ],
-    "changelogDate": "20170610234452",
+    "changelogDate": "20170623182235",
     "entityTableName": "wish_list",
     "dto": "no",
     "pagination": "no",

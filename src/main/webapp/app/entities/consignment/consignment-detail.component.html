@@ -1,20 +1,20 @@
 
 <div *ngIf="consignment">
-    <h2><span jhiTranslate="eshopApp.consignment.detail.title">Consignment</span> {{consignment.id}}</h2>
+    <h2><span>Consignment</span> {{consignment.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="eshopApp.consignment.price">Price</span></dt>
+        <dt><span>Price</span></dt>
         <dd>
             <span>{{consignment.price}}</span>
         </dd>
-        <dt><span jhiTranslate="eshopApp.consignment.storage">Storage</span></dt>
+        <dt><span>Storage</span></dt>
         <dd>
             <div *ngIf="consignment.storage">
                 <a [routerLink]="['/storage', consignment.storage?.id]">{{consignment.storage?.id}}</a>
             </div>
         </dd>
-        <dt><span jhiTranslate="eshopApp.consignment.producers">Producers</span></dt>
+        <dt><span>Producers</span></dt>
         <dd>
             <div *ngIf="consignment.producers">
                 <a [routerLink]="['/producers', consignment.producers?.id]">{{consignment.producers?.id}}</a>
@@ -25,13 +25,13 @@
     <button type="submit"
             (click)="previousState()"
             class="btn btn-info">
-        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
     </button>
 
     <button type="button"
             [routerLink]="['/', { outlets: { popup: 'consignment/'+ consignment.id + '/edit'} }]"
             replaceUrl="true"
             class="btn btn-primary">
-        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
     </button>
 </div>

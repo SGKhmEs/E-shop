@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
-import { DateUtils } from 'ng-jhipster';
+import { JhiDateUtils } from 'ng-jhipster';
 
 import { Bucket } from './bucket.model';
 import { ResponseWrapper, createRequestOption } from '../../shared';
@@ -12,7 +12,7 @@ export class BucketService {
     private resourceUrl = 'api/buckets';
     private resourceSearchUrl = 'api/_search/buckets';
 
-    constructor(private http: Http, private dateUtils: DateUtils) { }
+    constructor(private http: Http, private dateUtils: JhiDateUtils) { }
 
     create(bucket: Bucket): Observable<Bucket> {
         const copy = this.convert(bucket);
@@ -65,14 +65,14 @@ export class BucketService {
     }
 
     private convertItemFromServer(entity: any) {
-        entity.data = this.dateUtils
-            .convertDateTimeFromServer(entity.data);
+        entity.date = this.dateUtils
+            .convertDateTimeFromServer(entity.date);
     }
 
     private convert(bucket: Bucket): Bucket {
         const copy: Bucket = Object.assign({}, bucket);
 
-        copy.data = this.dateUtils.toDate(bucket.data);
+        copy.date = this.dateUtils.toDate(bucket.date);
         return copy;
     }
 }

@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { AlertService, EventManager } from 'ng-jhipster';
+import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
 
 import { Consignment } from './consignment.model';
 import { ConsignmentPopupService } from './consignment-popup.service';
@@ -19,8 +19,8 @@ export class ConsignmentDeleteDialogComponent {
     constructor(
         private consignmentService: ConsignmentService,
         public activeModal: NgbActiveModal,
-        private alertService: AlertService,
-        private eventManager: EventManager
+        private alertService: JhiAlertService,
+        private eventManager: JhiEventManager
     ) {
     }
 
@@ -36,7 +36,7 @@ export class ConsignmentDeleteDialogComponent {
             });
             this.activeModal.dismiss(true);
         });
-        this.alertService.success('eshopApp.consignment.deleted', { param : id }, null);
+        this.alertService.success(`A Consignment is deleted with identifier ${id}`, null, null);
     }
 }
 

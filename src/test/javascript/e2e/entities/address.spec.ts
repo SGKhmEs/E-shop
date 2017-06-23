@@ -24,8 +24,8 @@ describe('Address e2e test', () => {
     it('should load Addresses', () => {
         entityMenu.click();
         element.all(by.css('[routerLink="address"]')).first().click().then(() => {
-            const expectVal = /eshopApp.address.home.title/;
-            element.all(by.css('h2 span')).first().getAttribute('jhiTranslate').then((value) => {
+            const expectVal = /Addresses/;
+            element.all(by.css('h2 span')).first().getText().then((value) => {
                 expect(value).toMatch(expectVal);
             });
         });
@@ -33,8 +33,8 @@ describe('Address e2e test', () => {
 
     it('should load create Address dialog', function () {
         element(by.css('button.create-address')).click().then(() => {
-            const expectVal = /eshopApp.address.home.createOrEditLabel/;
-            element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
+            const expectVal = /Create or edit a Address/;
+            element.all(by.css('h4.modal-title')).first().getText().then((value) => {
                 expect(value).toMatch(expectVal);
             });
 

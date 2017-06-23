@@ -1,24 +1,42 @@
 package com.social.eshop.service.dto;
 
-import com.social.eshop.domain.Seen;
-import com.social.eshop.domain.WishList;
-import com.social.eshop.service.mapper.AutoMapping;
+import com.social.eshop.domain.*;
 
 import java.util.List;
 
-public class CustomerDTO implements AutoMapping {
-
-    //private String sessionId;  // think about it
+public class CustomerDTO {
+    private PersonalInformation personalInformation;
+    private Avatar avatar;
+    private Address address;
     private List<WishList> wishLists;
     private List<Seen> seens;
-    private CustomerRoomDTO customerRoomDTO;
 
-    public CustomerDTO() { }
 
-    public CustomerDTO(List<WishList> wishLists, List<Seen> seens, CustomerRoomDTO customerRoomDTO) {
-        this.wishLists = wishLists;
-        this.seens = seens;
-        this.customerRoomDTO = customerRoomDTO;
+    public CustomerDTO() {
+    }
+
+    public PersonalInformation getPersonalInformation() {
+        return personalInformation;
+    }
+
+    public void setPersonalInformation(PersonalInformation personalInformation) {
+        this.personalInformation = personalInformation;
+    }
+
+    public Avatar getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(Avatar avatar) {
+        this.avatar = avatar;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public List<WishList> getWishLists() {
@@ -37,21 +55,14 @@ public class CustomerDTO implements AutoMapping {
         this.seens = seens;
     }
 
-    public CustomerRoomDTO getCustomerRoomDTO() {
-        return customerRoomDTO;
-    }
-
-    public void setCustomerRoomDTO(CustomerRoomDTO customerRoomDTO) {
-        this.customerRoomDTO = customerRoomDTO;
-    }
-
     @Override
     public String toString() {
         return "CustomerDTO{" +
-            "wishLists=" + wishLists +
+            "personalInformation=" + personalInformation +
+            ", avatar=" + avatar +
+            ", address=" + address +
+            ", wishLists=" + wishLists +
             ", seens=" + seens +
-            ", customerRoomDTO=" + customerRoomDTO +
             '}';
     }
-
 }

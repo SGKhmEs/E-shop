@@ -24,8 +24,8 @@ describe('SubCategory e2e test', () => {
     it('should load SubCategories', () => {
         entityMenu.click();
         element.all(by.css('[routerLink="sub-category"]')).first().click().then(() => {
-            const expectVal = /eshopApp.subCategory.home.title/;
-            element.all(by.css('h2 span')).first().getAttribute('jhiTranslate').then((value) => {
+            const expectVal = /Sub Categories/;
+            element.all(by.css('h2 span')).first().getText().then((value) => {
                 expect(value).toMatch(expectVal);
             });
         });
@@ -33,8 +33,8 @@ describe('SubCategory e2e test', () => {
 
     it('should load create SubCategory dialog', function () {
         element(by.css('button.create-sub-category')).click().then(() => {
-            const expectVal = /eshopApp.subCategory.home.createOrEditLabel/;
-            element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
+            const expectVal = /Create or edit a Sub Category/;
+            element.all(by.css('h4.modal-title')).first().getText().then((value) => {
                 expect(value).toMatch(expectVal);
             });
 

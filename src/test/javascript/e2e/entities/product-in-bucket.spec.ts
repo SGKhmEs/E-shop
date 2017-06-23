@@ -24,8 +24,8 @@ describe('ProductInBucket e2e test', () => {
     it('should load ProductInBuckets', () => {
         entityMenu.click();
         element.all(by.css('[routerLink="product-in-bucket"]')).first().click().then(() => {
-            const expectVal = /eshopApp.productInBucket.home.title/;
-            element.all(by.css('h2 span')).first().getAttribute('jhiTranslate').then((value) => {
+            const expectVal = /Product In Buckets/;
+            element.all(by.css('h2 span')).first().getText().then((value) => {
                 expect(value).toMatch(expectVal);
             });
         });
@@ -33,8 +33,8 @@ describe('ProductInBucket e2e test', () => {
 
     it('should load create ProductInBucket dialog', function () {
         element(by.css('button.create-product-in-bucket')).click().then(() => {
-            const expectVal = /eshopApp.productInBucket.home.createOrEditLabel/;
-            element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
+            const expectVal = /Create or edit a Product In Bucket/;
+            element.all(by.css('h4.modal-title')).first().getText().then((value) => {
                 expect(value).toMatch(expectVal);
             });
 

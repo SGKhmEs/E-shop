@@ -49,8 +49,8 @@ public class BucketResourceIntTest {
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
 
-    private static final ZonedDateTime DEFAULT_DATA = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
-    private static final ZonedDateTime UPDATED_DATA = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
+    private static final ZonedDateTime DEFAULT_DATE = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
+    private static final ZonedDateTime UPDATED_DATE = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
 
     private static final BigDecimal DEFAULT_SUM = new BigDecimal(1);
     private static final BigDecimal UPDATED_SUM = new BigDecimal(2);
@@ -62,7 +62,7 @@ public class BucketResourceIntTest {
     private static final Integer UPDATED_COUNT = 2;
 
     private static final Status DEFAULT_STATUS = Status.WAIT;
-    private static final Status UPDATED_STATUS = Status.PURCHASED;
+    private static final Status UPDATED_STATUS = Status.PROCESSING;
 
     private static final String DEFAULT_CONSIGNMENT_NOTE = "AAAAAAAAAA";
     private static final String UPDATED_CONSIGNMENT_NOTE = "BBBBBBBBBB";
@@ -111,7 +111,7 @@ public class BucketResourceIntTest {
     public static Bucket createEntity(EntityManager em) {
         Bucket bucket = new Bucket()
             .name(DEFAULT_NAME)
-            .data(DEFAULT_DATA)
+            .date(DEFAULT_DATE)
             .sum(DEFAULT_SUM)
             .orderNumber(DEFAULT_ORDER_NUMBER)
             .count(DEFAULT_COUNT)
@@ -142,7 +142,7 @@ public class BucketResourceIntTest {
         assertThat(bucketList).hasSize(databaseSizeBeforeCreate + 1);
         Bucket testBucket = bucketList.get(bucketList.size() - 1);
         assertThat(testBucket.getName()).isEqualTo(DEFAULT_NAME);
-        assertThat(testBucket.getData()).isEqualTo(DEFAULT_DATA);
+        assertThat(testBucket.getDate()).isEqualTo(DEFAULT_DATE);
         assertThat(testBucket.getSum()).isEqualTo(DEFAULT_SUM);
         assertThat(testBucket.getOrderNumber()).isEqualTo(DEFAULT_ORDER_NUMBER);
         assertThat(testBucket.getCount()).isEqualTo(DEFAULT_COUNT);
@@ -185,7 +185,7 @@ public class BucketResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(bucket.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
-            .andExpect(jsonPath("$.[*].data").value(hasItem(sameInstant(DEFAULT_DATA))))
+            .andExpect(jsonPath("$.[*].date").value(hasItem(sameInstant(DEFAULT_DATE))))
             .andExpect(jsonPath("$.[*].sum").value(hasItem(DEFAULT_SUM.intValue())))
             .andExpect(jsonPath("$.[*].orderNumber").value(hasItem(DEFAULT_ORDER_NUMBER)))
             .andExpect(jsonPath("$.[*].count").value(hasItem(DEFAULT_COUNT)))
@@ -205,7 +205,7 @@ public class BucketResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(bucket.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
-            .andExpect(jsonPath("$.data").value(sameInstant(DEFAULT_DATA)))
+            .andExpect(jsonPath("$.date").value(sameInstant(DEFAULT_DATE)))
             .andExpect(jsonPath("$.sum").value(DEFAULT_SUM.intValue()))
             .andExpect(jsonPath("$.orderNumber").value(DEFAULT_ORDER_NUMBER))
             .andExpect(jsonPath("$.count").value(DEFAULT_COUNT))
@@ -233,7 +233,7 @@ public class BucketResourceIntTest {
         Bucket updatedBucket = bucketRepository.findOne(bucket.getId());
         updatedBucket
             .name(UPDATED_NAME)
-            .data(UPDATED_DATA)
+            .date(UPDATED_DATE)
             .sum(UPDATED_SUM)
             .orderNumber(UPDATED_ORDER_NUMBER)
             .count(UPDATED_COUNT)
@@ -250,7 +250,7 @@ public class BucketResourceIntTest {
         assertThat(bucketList).hasSize(databaseSizeBeforeUpdate);
         Bucket testBucket = bucketList.get(bucketList.size() - 1);
         assertThat(testBucket.getName()).isEqualTo(UPDATED_NAME);
-        assertThat(testBucket.getData()).isEqualTo(UPDATED_DATA);
+        assertThat(testBucket.getDate()).isEqualTo(UPDATED_DATE);
         assertThat(testBucket.getSum()).isEqualTo(UPDATED_SUM);
         assertThat(testBucket.getOrderNumber()).isEqualTo(UPDATED_ORDER_NUMBER);
         assertThat(testBucket.getCount()).isEqualTo(UPDATED_COUNT);
@@ -314,7 +314,7 @@ public class BucketResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(bucket.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
-            .andExpect(jsonPath("$.[*].data").value(hasItem(sameInstant(DEFAULT_DATA))))
+            .andExpect(jsonPath("$.[*].date").value(hasItem(sameInstant(DEFAULT_DATE))))
             .andExpect(jsonPath("$.[*].sum").value(hasItem(DEFAULT_SUM.intValue())))
             .andExpect(jsonPath("$.[*].orderNumber").value(hasItem(DEFAULT_ORDER_NUMBER)))
             .andExpect(jsonPath("$.[*].count").value(hasItem(DEFAULT_COUNT)))

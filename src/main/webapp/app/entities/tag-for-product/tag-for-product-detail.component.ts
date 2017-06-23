@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
-import { EventManager  } from 'ng-jhipster';
+import { JhiEventManager  } from 'ng-jhipster';
 
 import { TagForProduct } from './tag-for-product.model';
 import { TagForProductService } from './tag-for-product.service';
@@ -17,7 +17,7 @@ export class TagForProductDetailComponent implements OnInit, OnDestroy {
     private eventSubscriber: Subscription;
 
     constructor(
-        private eventManager: EventManager,
+        private eventManager: JhiEventManager,
         private tagForProductService: TagForProductService,
         private route: ActivatedRoute
     ) {

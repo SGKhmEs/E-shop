@@ -1,15 +1,6 @@
 {
     "fluentMethods": true,
-    "relationships": [
-        {
-            "relationshipType": "one-to-one",
-            "relationshipName": "avatar",
-            "otherEntityName": "avatar",
-            "otherEntityField": "id",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "personalInformation"
-        }
-    ],
+    "relationships": [],
     "fields": [
         {
             "fieldName": "firstName",
@@ -53,7 +44,7 @@
             "fieldType": "LocalDate"
         }
     ],
-    "changelogDate": "20170610234455",
+    "changelogDate": "20170623182238",
     "entityTableName": "personal_information",
     "dto": "no",
     "pagination": "no",

@@ -47,8 +47,8 @@ public class CommentsResourceIntTest {
     private static final String DEFAULT_COMMENTS = "AAAAAAAAAA";
     private static final String UPDATED_COMMENTS = "BBBBBBBBBB";
 
-    private static final ZonedDateTime DEFAULT_DATA = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
-    private static final ZonedDateTime UPDATED_DATA = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
+    private static final ZonedDateTime DEFAULT_DATE = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
+    private static final ZonedDateTime UPDATED_DATE = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
 
     @Autowired
     private CommentsRepository commentsRepository;
@@ -94,7 +94,7 @@ public class CommentsResourceIntTest {
     public static Comments createEntity(EntityManager em) {
         Comments comments = new Comments()
             .comments(DEFAULT_COMMENTS)
-            .data(DEFAULT_DATA);
+            .date(DEFAULT_DATE);
         return comments;
     }
 
@@ -120,7 +120,7 @@ public class CommentsResourceIntTest {
         assertThat(commentsList).hasSize(databaseSizeBeforeCreate + 1);
         Comments testComments = commentsList.get(commentsList.size() - 1);
         assertThat(testComments.getComments()).isEqualTo(DEFAULT_COMMENTS);
-        assertThat(testComments.getData()).isEqualTo(DEFAULT_DATA);
+        assertThat(testComments.getDate()).isEqualTo(DEFAULT_DATE);
 
         // Validate the Comments in Elasticsearch
         Comments commentsEs = commentsSearchRepository.findOne(testComments.getId());
@@ -158,7 +158,7 @@ public class CommentsResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(comments.getId().intValue())))
             .andExpect(jsonPath("$.[*].comments").value(hasItem(DEFAULT_COMMENTS.toString())))
-            .andExpect(jsonPath("$.[*].data").value(hasItem(sameInstant(DEFAULT_DATA))));
+            .andExpect(jsonPath("$.[*].date").value(hasItem(sameInstant(DEFAULT_DATE))));
     }
 
     @Test
@@ -173,7 +173,7 @@ public class CommentsResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(comments.getId().intValue()))
             .andExpect(jsonPath("$.comments").value(DEFAULT_COMMENTS.toString()))
-            .andExpect(jsonPath("$.data").value(sameInstant(DEFAULT_DATA)));
+            .andExpect(jsonPath("$.date").value(sameInstant(DEFAULT_DATE)));
     }
 
     @Test
@@ -196,7 +196,7 @@ public class CommentsResourceIntTest {
         Comments updatedComments = commentsRepository.findOne(comments.getId());
         updatedComments
             .comments(UPDATED_COMMENTS)
-            .data(UPDATED_DATA);
+            .date(UPDATED_DATE);
 
         restCommentsMockMvc.perform(put("/api/comments")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -208,7 +208,7 @@ public class CommentsResourceIntTest {
         assertThat(commentsList).hasSize(databaseSizeBeforeUpdate);
         Comments testComments = commentsList.get(commentsList.size() - 1);
         assertThat(testComments.getComments()).isEqualTo(UPDATED_COMMENTS);
-        assertThat(testComments.getData()).isEqualTo(UPDATED_DATA);
+        assertThat(testComments.getDate()).isEqualTo(UPDATED_DATE);
 
         // Validate the Comments in Elasticsearch
         Comments commentsEs = commentsSearchRepository.findOne(testComments.getId());
@@ -267,7 +267,7 @@ public class CommentsResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(comments.getId().intValue())))
             .andExpect(jsonPath("$.[*].comments").value(hasItem(DEFAULT_COMMENTS.toString())))
-            .andExpect(jsonPath("$.[*].data").value(hasItem(sameInstant(DEFAULT_DATA))));
+            .andExpect(jsonPath("$.[*].date").value(hasItem(sameInstant(DEFAULT_DATE))));
     }
 
     @Test

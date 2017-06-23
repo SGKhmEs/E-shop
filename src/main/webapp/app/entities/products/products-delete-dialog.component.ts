@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { AlertService, EventManager } from 'ng-jhipster';
+import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
 
 import { Products } from './products.model';
 import { ProductsPopupService } from './products-popup.service';
@@ -19,8 +19,8 @@ export class ProductsDeleteDialogComponent {
     constructor(
         private productsService: ProductsService,
         public activeModal: NgbActiveModal,
-        private alertService: AlertService,
-        private eventManager: EventManager
+        private alertService: JhiAlertService,
+        private eventManager: JhiEventManager
     ) {
     }
 
@@ -36,7 +36,7 @@ export class ProductsDeleteDialogComponent {
             });
             this.activeModal.dismiss(true);
         });
-        this.alertService.success('eshopApp.products.deleted', { param : id }, null);
+        this.alertService.success(`A Products is deleted with identifier ${id}`, null, null);
     }
 }
 

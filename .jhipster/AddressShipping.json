@@ -43,7 +43,7 @@
             "fieldType": "String"
         }
     ],
-    "changelogDate": "20170610234449",
+    "changelogDate": "20170623182233",
     "entityTableName": "address_shipping",
     "dto": "no",
     "pagination": "no",

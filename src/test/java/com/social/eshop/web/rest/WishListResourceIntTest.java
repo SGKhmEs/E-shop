@@ -41,8 +41,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = EshopApp.class)
 public class WishListResourceIntTest {
 
-    private static final LocalDate DEFAULT_DATA = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_DATA = LocalDate.now(ZoneId.systemDefault());
+    private static final LocalDate DEFAULT_DATE = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_DATE = LocalDate.now(ZoneId.systemDefault());
 
     @Autowired
     private WishListRepository wishListRepository;
@@ -87,7 +87,7 @@ public class WishListResourceIntTest {
      */
     public static WishList createEntity(EntityManager em) {
         WishList wishList = new WishList()
-            .data(DEFAULT_DATA);
+            .date(DEFAULT_DATE);
         return wishList;
     }
 
@@ -112,7 +112,7 @@ public class WishListResourceIntTest {
         List<WishList> wishListList = wishListRepository.findAll();
         assertThat(wishListList).hasSize(databaseSizeBeforeCreate + 1);
         WishList testWishList = wishListList.get(wishListList.size() - 1);
-        assertThat(testWishList.getData()).isEqualTo(DEFAULT_DATA);
+        assertThat(testWishList.getDate()).isEqualTo(DEFAULT_DATE);
 
         // Validate the WishList in Elasticsearch
         WishList wishListEs = wishListSearchRepository.findOne(testWishList.getId());
@@ -149,7 +149,7 @@ public class WishListResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(wishList.getId().intValue())))
-            .andExpect(jsonPath("$.[*].data").value(hasItem(DEFAULT_DATA.toString())));
+            .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())));
     }
 
     @Test
@@ -163,7 +163,7 @@ public class WishListResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(wishList.getId().intValue()))
-            .andExpect(jsonPath("$.data").value(DEFAULT_DATA.toString()));
+            .andExpect(jsonPath("$.date").value(DEFAULT_DATE.toString()));
     }
 
     @Test
@@ -185,7 +185,7 @@ public class WishListResourceIntTest {
         // Update the wishList
         WishList updatedWishList = wishListRepository.findOne(wishList.getId());
         updatedWishList
-            .data(UPDATED_DATA);
+            .date(UPDATED_DATE);
 
         restWishListMockMvc.perform(put("/api/wish-lists")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -196,7 +196,7 @@ public class WishListResourceIntTest {
         List<WishList> wishListList = wishListRepository.findAll();
         assertThat(wishListList).hasSize(databaseSizeBeforeUpdate);
         WishList testWishList = wishListList.get(wishListList.size() - 1);
-        assertThat(testWishList.getData()).isEqualTo(UPDATED_DATA);
+        assertThat(testWishList.getDate()).isEqualTo(UPDATED_DATE);
 
         // Validate the WishList in Elasticsearch
         WishList wishListEs = wishListSearchRepository.findOne(testWishList.getId());
@@ -254,7 +254,7 @@ public class WishListResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(wishList.getId().intValue())))
-            .andExpect(jsonPath("$.[*].data").value(hasItem(DEFAULT_DATA.toString())));
+            .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())));
     }
 
     @Test

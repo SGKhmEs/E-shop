@@ -1,21 +1,20 @@
+import { BaseEntity } from './../../shared';
 
 const enum Roles {
-    'USER',
+    'SMM',
     'MODERATOR',
-    'ADMINISTRATOR',
+    'ADMIN',
     'OWNER'
+}
 
-};
-import { LoginOptions } from '../login-options';
-import { PersonalInformation } from '../personal-information';
-import { Bucket } from '../bucket';
-export class Manager {
+export class Manager implements BaseEntity {
     constructor(
         public id?: number,
         public roles?: Roles,
-        public loginOptions?: LoginOptions,
-        public personalInfo?: PersonalInformation,
-        public maneger?: Bucket,
+        public loginOptions?: BaseEntity,
+        public personalInfo?: BaseEntity,
+        public avatar?: BaseEntity,
+        public manegers?: BaseEntity[],
     ) {
     }
 }

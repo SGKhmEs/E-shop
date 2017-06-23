@@ -28,8 +28,8 @@ public class Comments implements Serializable {
     @Column(name = "comments")
     private String comments;
 
-    @Column(name = "data")
-    private ZonedDateTime data;
+    @Column(name = "jhi_date")
+    private ZonedDateTime date;
 
     @ManyToOne
     private Customer customer;
@@ -58,17 +58,17 @@ public class Comments implements Serializable {
         this.comments = comments;
     }
 
-    public ZonedDateTime getData() {
-        return data;
+    public ZonedDateTime getDate() {
+        return date;
     }
 
-    public Comments data(ZonedDateTime data) {
-        this.data = data;
+    public Comments date(ZonedDateTime date) {
+        this.date = date;
         return this;
     }
 
-    public void setData(ZonedDateTime data) {
-        this.data = data;
+    public void setDate(ZonedDateTime date) {
+        this.date = date;
     }
 
     public Customer getCustomer() {
@@ -122,7 +122,7 @@ public class Comments implements Serializable {
         return "Comments{" +
             "id=" + getId() +
             ", comments='" + getComments() + "'" +
-            ", data='" + getData() + "'" +
+            ", date='" + getDate() + "'" +
             "}";
     }
 }

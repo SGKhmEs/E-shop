@@ -1,13 +1,12 @@
-import { Products } from '../products';
-import { Storage } from '../storage';
-import { Producers } from '../producers';
-export class Consignment {
+import { BaseEntity } from './../../shared';
+
+export class Consignment implements BaseEntity {
     constructor(
         public id?: number,
         public price?: number,
-        public products?: Products,
-        public storage?: Storage,
-        public producers?: Producers,
+        public products?: BaseEntity[],
+        public storage?: BaseEntity,
+        public producers?: BaseEntity,
     ) {
     }
 }

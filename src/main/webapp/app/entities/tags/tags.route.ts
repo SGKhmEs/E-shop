@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes, CanActivate } from '@angular/router';
 
 import { UserRouteAccessService } from '../../shared';
-import { PaginationUtil } from 'ng-jhipster';
+import { JhiPaginationUtil } from 'ng-jhipster';
 
 import { TagsComponent } from './tags.component';
 import { TagsDetailComponent } from './tags-detail.component';
@@ -17,7 +17,7 @@ export const tagsRoute: Routes = [
         component: TagsComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.tags.home.title'
+            pageTitle: 'Tags'
         },
         canActivate: [UserRouteAccessService]
     }, {
@@ -25,7 +25,7 @@ export const tagsRoute: Routes = [
         component: TagsDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.tags.home.title'
+            pageTitle: 'Tags'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -37,7 +37,7 @@ export const tagsPopupRoute: Routes = [
         component: TagsPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.tags.home.title'
+            pageTitle: 'Tags'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -47,7 +47,7 @@ export const tagsPopupRoute: Routes = [
         component: TagsPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.tags.home.title'
+            pageTitle: 'Tags'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -57,7 +57,7 @@ export const tagsPopupRoute: Routes = [
         component: TagsDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.tags.home.title'
+            pageTitle: 'Tags'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

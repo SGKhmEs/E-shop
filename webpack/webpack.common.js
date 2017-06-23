@@ -5,12 +5,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const StringReplacePlugin = require('string-replace-webpack-plugin');
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 const WebpackNotifierPlugin = require('webpack-notifier');
-const MergeJsonWebpackPlugin = require("merge-jsons-webpack-plugin")
 const path = require('path');
 
-module.exports = function (options) {
+const parseVersion = require('./utils.js').parseVersion;
+
+module.exports = (options) => {
     const DATAS = {
-        VERSION: JSON.stringify(require("../package.json").version),
+        VERSION: `'${parseVersion()}'`,
         DEBUG_INFO_ENABLED: options.env === 'dev'
     };
     return {
@@ -69,13 +70,15 @@ module.exports = function (options) {
                     loaders: ['file-loader?hash=sha512&digest=hex&name=content/[hash].[ext]']
                 },
                 {
+                    test: /manifest.webapp$/,
+                    loader: 'file-loader?name=manifest.webapp!web-app-manifest-loader'
+                },
+                {
                     test: /app.constants.ts$/,
                     loader: StringReplacePlugin.replace({
                         replacements: [{
                             pattern: /\/\* @toreplace (\w*?) \*\//ig,
-                            replacement: function (match, p1, offset, string) {
-                                return `_${p1} = ${DATAS[p1]};`;
-                            }
+                            replacement: (match, p1, offset, string) => `_${p1} = ${DATAS[p1]};`
                         }]
                     })
                 }
@@ -101,15 +104,6 @@ module.exports = function (options) {
             new webpack.ProvidePlugin({
                 $: "jquery",
                 jQuery: "jquery"
-            }),
-            new MergeJsonWebpackPlugin({
-                output: {
-                    groupBy: [
-                        { pattern: "./src/main/webapp/i18n/en/*.json", fileName: "./build/www/i18n/en/all.json" },
-                        { pattern: "./src/main/webapp/i18n/ru/*.json", fileName: "./build/www/i18n/ru/all.json" }
-                        // jhipster-needle-i18n-language-webpack - JHipster will add/remove languages in this array
-                    ]
-                }
             }),
             new HtmlWebpackPlugin({
                 template: './src/main/webapp/index.html',

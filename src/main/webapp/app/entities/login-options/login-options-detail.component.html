@@ -1,14 +1,14 @@
 
 <div *ngIf="loginOptions">
-    <h2><span jhiTranslate="eshopApp.loginOptions.detail.title">Login Options</span> {{loginOptions.id}}</h2>
+    <h2><span>Login Options</span> {{loginOptions.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="eshopApp.loginOptions.login">Login</span></dt>
+        <dt><span>Login</span></dt>
         <dd>
             <span>{{loginOptions.login}}</span>
         </dd>
-        <dt><span jhiTranslate="eshopApp.loginOptions.password">Password</span></dt>
+        <dt><span>Password</span></dt>
         <dd>
             <span>{{loginOptions.password}}</span>
         </dd>
@@ -17,13 +17,13 @@
     <button type="submit"
             (click)="previousState()"
             class="btn btn-info">
-        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
     </button>
 
     <button type="button"
             [routerLink]="['/', { outlets: { popup: 'login-options/'+ loginOptions.id + '/edit'} }]"
             replaceUrl="true"
             class="btn btn-primary">
-        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
     </button>
 </div>

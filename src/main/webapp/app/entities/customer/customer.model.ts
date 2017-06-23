@@ -1,17 +1,26 @@
-import { LoginOptions } from '../login-options';
-import { CustomerRoom } from '../customer-room';
-import { Seen } from '../seen';
-import { WishList } from '../wish-list';
-import { Comments } from '../comments';
-export class Customer {
+import { BaseEntity } from './../../shared';
+
+const enum SocialConnect {
+    'DEFAULT',
+    'GOOGLE',
+    'FACEBOOK',
+    'TWITTER'
+}
+
+export class Customer implements BaseEntity {
     constructor(
         public id?: number,
+        public subScription?: boolean,
+        public sosialConnect?: SocialConnect,
         public sessionId?: string,
-        public loginOptions?: LoginOptions,
-        public customerRoom?: CustomerRoom,
-        public seen?: Seen,
-        public wishList?: WishList,
-        public comments?: Comments,
+        public loginOptions?: BaseEntity,
+        public address?: BaseEntity,
+        public personalInfo?: BaseEntity,
+        public avatar?: BaseEntity,
+        public seens?: BaseEntity[],
+        public wishLists?: BaseEntity[],
+        public comments?: BaseEntity[],
     ) {
+        this.subScription = false;
     }
 }

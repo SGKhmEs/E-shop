@@ -46,14 +46,17 @@ public class ProductsResourceIntTest {
     private static final BigDecimal DEFAULT_PRICE = new BigDecimal(1);
     private static final BigDecimal UPDATED_PRICE = new BigDecimal(2);
 
-    private static final String DEFAULT_SALE = "AAAAAAAAAA";
-    private static final String UPDATED_SALE = "BBBBBBBBBB";
+    private static final Integer DEFAULT_SALE = 1;
+    private static final Integer UPDATED_SALE = 2;
 
     private static final Double DEFAULT_RATING = 1D;
     private static final Double UPDATED_RATING = 2D;
 
     private static final Boolean DEFAULT_FRESH = false;
     private static final Boolean UPDATED_FRESH = true;
+
+    private static final String DEFAULT_DESCRIPTION = "AAAAAAAAAA";
+    private static final String UPDATED_DESCRIPTION = "BBBBBBBBBB";
 
     @Autowired
     private ProductsRepository productsRepository;
@@ -102,7 +105,8 @@ public class ProductsResourceIntTest {
             .price(DEFAULT_PRICE)
             .sale(DEFAULT_SALE)
             .rating(DEFAULT_RATING)
-            .fresh(DEFAULT_FRESH);
+            .fresh(DEFAULT_FRESH)
+            .description(DEFAULT_DESCRIPTION);
         return products;
     }
 
@@ -132,6 +136,7 @@ public class ProductsResourceIntTest {
         assertThat(testProducts.getSale()).isEqualTo(DEFAULT_SALE);
         assertThat(testProducts.getRating()).isEqualTo(DEFAULT_RATING);
         assertThat(testProducts.isFresh()).isEqualTo(DEFAULT_FRESH);
+        assertThat(testProducts.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
 
         // Validate the Products in Elasticsearch
         Products productsEs = productsSearchRepository.findOne(testProducts.getId());
@@ -206,9 +211,10 @@ public class ProductsResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(products.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.intValue())))
-            .andExpect(jsonPath("$.[*].sale").value(hasItem(DEFAULT_SALE.toString())))
+            .andExpect(jsonPath("$.[*].sale").value(hasItem(DEFAULT_SALE)))
             .andExpect(jsonPath("$.[*].rating").value(hasItem(DEFAULT_RATING.doubleValue())))
-            .andExpect(jsonPath("$.[*].fresh").value(hasItem(DEFAULT_FRESH.booleanValue())));
+            .andExpect(jsonPath("$.[*].fresh").value(hasItem(DEFAULT_FRESH.booleanValue())))
+            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())));
     }
 
     @Test
@@ -224,9 +230,10 @@ public class ProductsResourceIntTest {
             .andExpect(jsonPath("$.id").value(products.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
             .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.intValue()))
-            .andExpect(jsonPath("$.sale").value(DEFAULT_SALE.toString()))
+            .andExpect(jsonPath("$.sale").value(DEFAULT_SALE))
             .andExpect(jsonPath("$.rating").value(DEFAULT_RATING.doubleValue()))
-            .andExpect(jsonPath("$.fresh").value(DEFAULT_FRESH.booleanValue()));
+            .andExpect(jsonPath("$.fresh").value(DEFAULT_FRESH.booleanValue()))
+            .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()));
     }
 
     @Test
@@ -252,7 +259,8 @@ public class ProductsResourceIntTest {
             .price(UPDATED_PRICE)
             .sale(UPDATED_SALE)
             .rating(UPDATED_RATING)
-            .fresh(UPDATED_FRESH);
+            .fresh(UPDATED_FRESH)
+            .description(UPDATED_DESCRIPTION);
 
         restProductsMockMvc.perform(put("/api/products")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -268,6 +276,7 @@ public class ProductsResourceIntTest {
         assertThat(testProducts.getSale()).isEqualTo(UPDATED_SALE);
         assertThat(testProducts.getRating()).isEqualTo(UPDATED_RATING);
         assertThat(testProducts.isFresh()).isEqualTo(UPDATED_FRESH);
+        assertThat(testProducts.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
 
         // Validate the Products in Elasticsearch
         Products productsEs = productsSearchRepository.findOne(testProducts.getId());
@@ -327,9 +336,10 @@ public class ProductsResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(products.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.intValue())))
-            .andExpect(jsonPath("$.[*].sale").value(hasItem(DEFAULT_SALE.toString())))
+            .andExpect(jsonPath("$.[*].sale").value(hasItem(DEFAULT_SALE)))
             .andExpect(jsonPath("$.[*].rating").value(hasItem(DEFAULT_RATING.doubleValue())))
-            .andExpect(jsonPath("$.[*].fresh").value(hasItem(DEFAULT_FRESH.booleanValue())));
+            .andExpect(jsonPath("$.[*].fresh").value(hasItem(DEFAULT_FRESH.booleanValue())))
+            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())));
     }
 
     @Test

@@ -1,10 +1,10 @@
-import { Bucket } from '../bucket';
-import { Products } from '../products';
-export class ProductInBucket {
+import { BaseEntity } from './../../shared';
+
+export class ProductInBucket implements BaseEntity {
     constructor(
         public id?: number,
-        public bucket?: Bucket,
-        public products?: Products,
+        public bucket?: BaseEntity,
+        public products?: BaseEntity,
     ) {
     }
 }

@@ -11,6 +11,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
 
+import com.social.eshop.domain.enumeration.SocialConnect;
+
 /**
  * A Customer.
  */
@@ -27,6 +29,13 @@ public class Customer implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
+    @Column(name = "sub_scription")
+    private Boolean subScription;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "sosial_connect")
+    private SocialConnect sosialConnect;
+
     @Column(name = "session_id")
     private String sessionId;
 
@@ -36,7 +45,15 @@ public class Customer implements Serializable {
 
     @OneToOne
     @JoinColumn(unique = true)
-    private CustomerRoom customerRoom;
+    private Address address;
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    private PersonalInformation personalInfo;
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Avatar avatar;
 
     @OneToMany(mappedBy = "customer")
     @JsonIgnore
@@ -59,6 +76,32 @@ public class Customer implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Boolean isSubScription() {
+        return subScription;
+    }
+
+    public Customer subScription(Boolean subScription) {
+        this.subScription = subScription;
+        return this;
+    }
+
+    public void setSubScription(Boolean subScription) {
+        this.subScription = subScription;
+    }
+
+    public SocialConnect getSosialConnect() {
+        return sosialConnect;
+    }
+
+    public Customer sosialConnect(SocialConnect sosialConnect) {
+        this.sosialConnect = sosialConnect;
+        return this;
+    }
+
+    public void setSosialConnect(SocialConnect sosialConnect) {
+        this.sosialConnect = sosialConnect;
     }
 
     public String getSessionId() {
@@ -87,17 +130,43 @@ public class Customer implements Serializable {
         this.loginOptions = loginOptions;
     }
 
-    public CustomerRoom getCustomerRoom() {
-        return customerRoom;
+    public Address getAddress() {
+        return address;
     }
 
-    public Customer customerRoom(CustomerRoom customerRoom) {
-        this.customerRoom = customerRoom;
+    public Customer address(Address address) {
+        this.address = address;
         return this;
     }
 
-    public void setCustomerRoom(CustomerRoom customerRoom) {
-        this.customerRoom = customerRoom;
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public PersonalInformation getPersonalInfo() {
+        return personalInfo;
+    }
+
+    public Customer personalInfo(PersonalInformation personalInformation) {
+        this.personalInfo = personalInformation;
+        return this;
+    }
+
+    public void setPersonalInfo(PersonalInformation personalInformation) {
+        this.personalInfo = personalInformation;
+    }
+
+    public Avatar getAvatar() {
+        return avatar;
+    }
+
+    public Customer avatar(Avatar avatar) {
+        this.avatar = avatar;
+        return this;
+    }
+
+    public void setAvatar(Avatar avatar) {
+        this.avatar = avatar;
     }
 
     public Set<Seen> getSeens() {
@@ -199,6 +268,8 @@ public class Customer implements Serializable {
     public String toString() {
         return "Customer{" +
             "id=" + getId() +
+            ", subScription='" + isSubScription() + "'" +
+            ", sosialConnect='" + getSosialConnect() + "'" +
             ", sessionId='" + getSessionId() + "'" +
             "}";
     }

@@ -24,8 +24,8 @@ describe('Storage e2e test', () => {
     it('should load Storages', () => {
         entityMenu.click();
         element.all(by.css('[routerLink="storage"]')).first().click().then(() => {
-            const expectVal = /eshopApp.storage.home.title/;
-            element.all(by.css('h2 span')).first().getAttribute('jhiTranslate').then((value) => {
+            const expectVal = /Storages/;
+            element.all(by.css('h2 span')).first().getText().then((value) => {
                 expect(value).toMatch(expectVal);
             });
         });
@@ -33,8 +33,8 @@ describe('Storage e2e test', () => {
 
     it('should load create Storage dialog', function () {
         element(by.css('button.create-storage')).click().then(() => {
-            const expectVal = /eshopApp.storage.home.createOrEditLabel/;
-            element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
+            const expectVal = /Create or edit a Storage/;
+            element.all(by.css('h4.modal-title')).first().getText().then((value) => {
                 expect(value).toMatch(expectVal);
             });
 

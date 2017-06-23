@@ -20,11 +20,11 @@
             "fieldType": "String"
         },
         {
-            "fieldName": "data",
+            "fieldName": "date",
             "fieldType": "ZonedDateTime"
         }
     ],
-    "changelogDate": "20170610234505",
+    "changelogDate": "20170623182247",
     "entityTableName": "comments",
     "dto": "no",
     "pagination": "no",

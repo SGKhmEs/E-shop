@@ -68,7 +68,7 @@ class OptionsGatlingTest extends Simulation {
             .exec(http("Create new options")
             .post("/api/options")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "name":"SAMPLE_TEXT", "level":"0"}""")).asJSON
+            .body(StringBody("""{"id":null, "color":"0", "weight":null, "metal":"SAMPLE_TEXT", "size":null, "length":"0"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_options_url"))).exitHereIfFailed
             .pause(10)

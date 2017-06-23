@@ -1,36 +1,46 @@
 
 <div *ngIf="products">
-    <h2><span jhiTranslate="eshopApp.products.detail.title">Products</span> {{products.id}}</h2>
+    <h2><span>Products</span> {{products.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="eshopApp.products.name">Name</span></dt>
+        <dt><span>Name</span></dt>
         <dd>
             <span>{{products.name}}</span>
         </dd>
-        <dt><span jhiTranslate="eshopApp.products.price">Price</span></dt>
+        <dt><span>Price</span></dt>
         <dd>
             <span>{{products.price}}</span>
         </dd>
-        <dt><span jhiTranslate="eshopApp.products.sale">Sale</span></dt>
+        <dt><span>Sale</span></dt>
         <dd>
             <span>{{products.sale}}</span>
         </dd>
-        <dt><span jhiTranslate="eshopApp.products.rating">Rating</span></dt>
+        <dt><span>Rating</span></dt>
         <dd>
             <span>{{products.rating}}</span>
         </dd>
-        <dt><span jhiTranslate="eshopApp.products.fresh">Fresh</span></dt>
+        <dt><span>Fresh</span></dt>
         <dd>
             <span>{{products.fresh}}</span>
         </dd>
-        <dt><span jhiTranslate="eshopApp.products.consignment">Consignment</span></dt>
+        <dt><span>Description</span></dt>
+        <dd>
+            <span>{{products.description}}</span>
+        </dd>
+        <dt><span>Options</span></dt>
+        <dd>
+            <div *ngIf="products.options">
+                <a [routerLink]="['/options', products.options?.id]">{{products.options?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Consignment</span></dt>
         <dd>
             <div *ngIf="products.consignment">
                 <a [routerLink]="['/consignment', products.consignment?.id]">{{products.consignment?.id}}</a>
             </div>
         </dd>
-        <dt><span jhiTranslate="eshopApp.products.subCategory">Sub Category</span></dt>
+        <dt><span>Sub Category</span></dt>
         <dd>
             <div *ngIf="products.subCategory">
                 <a [routerLink]="['/sub-category', products.subCategory?.id]">{{products.subCategory?.id}}</a>
@@ -41,13 +51,13 @@
     <button type="submit"
             (click)="previousState()"
             class="btn btn-info">
-        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
     </button>
 
     <button type="button"
             [routerLink]="['/', { outlets: { popup: 'products/'+ products.id + '/edit'} }]"
             replaceUrl="true"
             class="btn btn-primary">
-        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
     </button>
 </div>

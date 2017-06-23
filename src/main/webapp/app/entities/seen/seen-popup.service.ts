@@ -22,11 +22,11 @@ export class SeenPopupService {
 
         if (id) {
             this.seenService.find(id).subscribe((seen) => {
-                if (seen.data) {
-                    seen.data = {
-                        year: seen.data.getFullYear(),
-                        month: seen.data.getMonth() + 1,
-                        day: seen.data.getDate()
+                if (seen.date) {
+                    seen.date = {
+                        year: seen.date.getFullYear(),
+                        month: seen.date.getMonth() + 1,
+                        day: seen.date.getDate()
                     };
                 }
                 this.seenModalRef(component, seen);

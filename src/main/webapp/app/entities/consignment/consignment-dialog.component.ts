@@ -4,7 +4,7 @@ import { Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EventManager, AlertService } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { Consignment } from './consignment.model';
 import { ConsignmentPopupService } from './consignment-popup.service';
@@ -29,11 +29,11 @@ export class ConsignmentDialogComponent implements OnInit {
 
     constructor(
         public activeModal: NgbActiveModal,
-        private alertService: AlertService,
+        private alertService: JhiAlertService,
         private consignmentService: ConsignmentService,
         private storageService: StorageService,
         private producersService: ProducersService,
-        private eventManager: EventManager
+        private eventManager: JhiEventManager
     ) {
     }
 
@@ -68,9 +68,9 @@ export class ConsignmentDialogComponent implements OnInit {
 
     private onSaveSuccess(result: Consignment, isCreated: boolean) {
         this.alertService.success(
-            isCreated ? 'eshopApp.consignment.created'
-            : 'eshopApp.consignment.updated',
-            { param : result.id }, null);
+            isCreated ? `A new Consignment is created with identifier ${result.id}`
+            : `A Consignment is updated with identifier ${result.id}`,
+            null, null);
 
         this.eventManager.broadcast({ name: 'consignmentListModification', content: 'OK'});
         this.isSaving = false;

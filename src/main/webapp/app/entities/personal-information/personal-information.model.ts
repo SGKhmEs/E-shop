@@ -1,11 +1,11 @@
+import { BaseEntity } from './../../shared';
 
 const enum Sex {
     'MAN',
     'WOMAN'
+}
 
-};
-import { Avatar } from '../avatar';
-export class PersonalInformation {
+export class PersonalInformation implements BaseEntity {
     constructor(
         public id?: number,
         public firstName?: string,
@@ -15,7 +15,6 @@ export class PersonalInformation {
         public phone?: string,
         public email?: string,
         public dateBirth?: any,
-        public avatar?: Avatar,
     ) {
     }
 }

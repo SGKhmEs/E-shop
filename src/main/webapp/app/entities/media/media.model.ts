@@ -1,5 +1,6 @@
-import { Products } from '../products';
-export class Media {
+import { BaseEntity } from './../../shared';
+
+export class Media implements BaseEntity {
     constructor(
         public id?: number,
         public name?: string,
@@ -7,7 +8,7 @@ export class Media {
         public contentType?: string,
         public location?: string,
         public size?: string,
-        public products?: Products,
+        public products?: BaseEntity,
     ) {
     }
 }

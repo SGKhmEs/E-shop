@@ -30,6 +30,7 @@ import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import com.social.eshop.domain.enumeration.SocialConnect;
 /**
  * Test class for the CustomerResource REST controller.
  *
@@ -38,6 +39,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = EshopApp.class)
 public class CustomerResourceIntTest {
+
+    private static final Boolean DEFAULT_SUB_SCRIPTION = false;
+    private static final Boolean UPDATED_SUB_SCRIPTION = true;
+
+    private static final SocialConnect DEFAULT_SOSIAL_CONNECT = SocialConnect.DEFAULT;
+    private static final SocialConnect UPDATED_SOSIAL_CONNECT = SocialConnect.GOOGLE;
 
     private static final String DEFAULT_SESSION_ID = "AAAAAAAAAA";
     private static final String UPDATED_SESSION_ID = "BBBBBBBBBB";
@@ -85,6 +92,8 @@ public class CustomerResourceIntTest {
      */
     public static Customer createEntity(EntityManager em) {
         Customer customer = new Customer()
+            .subScription(DEFAULT_SUB_SCRIPTION)
+            .sosialConnect(DEFAULT_SOSIAL_CONNECT)
             .sessionId(DEFAULT_SESSION_ID);
         return customer;
     }
@@ -110,6 +119,8 @@ public class CustomerResourceIntTest {
         List<Customer> customerList = customerRepository.findAll();
         assertThat(customerList).hasSize(databaseSizeBeforeCreate + 1);
         Customer testCustomer = customerList.get(customerList.size() - 1);
+        assertThat(testCustomer.isSubScription()).isEqualTo(DEFAULT_SUB_SCRIPTION);
+        assertThat(testCustomer.getSosialConnect()).isEqualTo(DEFAULT_SOSIAL_CONNECT);
         assertThat(testCustomer.getSessionId()).isEqualTo(DEFAULT_SESSION_ID);
 
         // Validate the Customer in Elasticsearch
@@ -147,6 +158,8 @@ public class CustomerResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(customer.getId().intValue())))
+            .andExpect(jsonPath("$.[*].subScription").value(hasItem(DEFAULT_SUB_SCRIPTION.booleanValue())))
+            .andExpect(jsonPath("$.[*].sosialConnect").value(hasItem(DEFAULT_SOSIAL_CONNECT.toString())))
             .andExpect(jsonPath("$.[*].sessionId").value(hasItem(DEFAULT_SESSION_ID.toString())));
     }
 
@@ -161,6 +174,8 @@ public class CustomerResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(customer.getId().intValue()))
+            .andExpect(jsonPath("$.subScription").value(DEFAULT_SUB_SCRIPTION.booleanValue()))
+            .andExpect(jsonPath("$.sosialConnect").value(DEFAULT_SOSIAL_CONNECT.toString()))
             .andExpect(jsonPath("$.sessionId").value(DEFAULT_SESSION_ID.toString()));
     }
 
@@ -183,6 +198,8 @@ public class CustomerResourceIntTest {
         // Update the customer
         Customer updatedCustomer = customerRepository.findOne(customer.getId());
         updatedCustomer
+            .subScription(UPDATED_SUB_SCRIPTION)
+            .sosialConnect(UPDATED_SOSIAL_CONNECT)
             .sessionId(UPDATED_SESSION_ID);
 
         restCustomerMockMvc.perform(put("/api/customers")
@@ -194,6 +211,8 @@ public class CustomerResourceIntTest {
         List<Customer> customerList = customerRepository.findAll();
         assertThat(customerList).hasSize(databaseSizeBeforeUpdate);
         Customer testCustomer = customerList.get(customerList.size() - 1);
+        assertThat(testCustomer.isSubScription()).isEqualTo(UPDATED_SUB_SCRIPTION);
+        assertThat(testCustomer.getSosialConnect()).isEqualTo(UPDATED_SOSIAL_CONNECT);
         assertThat(testCustomer.getSessionId()).isEqualTo(UPDATED_SESSION_ID);
 
         // Validate the Customer in Elasticsearch
@@ -252,6 +271,8 @@ public class CustomerResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(customer.getId().intValue())))
+            .andExpect(jsonPath("$.[*].subScription").value(hasItem(DEFAULT_SUB_SCRIPTION.booleanValue())))
+            .andExpect(jsonPath("$.[*].sosialConnect").value(hasItem(DEFAULT_SOSIAL_CONNECT.toString())))
             .andExpect(jsonPath("$.[*].sessionId").value(hasItem(DEFAULT_SESSION_ID.toString())));
     }
 

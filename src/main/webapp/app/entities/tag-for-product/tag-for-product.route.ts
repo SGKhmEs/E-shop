@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes, CanActivate } from '@angular/router';
 
 import { UserRouteAccessService } from '../../shared';
-import { PaginationUtil } from 'ng-jhipster';
+import { JhiPaginationUtil } from 'ng-jhipster';
 
 import { TagForProductComponent } from './tag-for-product.component';
 import { TagForProductDetailComponent } from './tag-for-product-detail.component';
@@ -17,7 +17,7 @@ export const tagForProductRoute: Routes = [
         component: TagForProductComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.tagForProduct.home.title'
+            pageTitle: 'TagForProducts'
         },
         canActivate: [UserRouteAccessService]
     }, {
@@ -25,7 +25,7 @@ export const tagForProductRoute: Routes = [
         component: TagForProductDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.tagForProduct.home.title'
+            pageTitle: 'TagForProducts'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -37,7 +37,7 @@ export const tagForProductPopupRoute: Routes = [
         component: TagForProductPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.tagForProduct.home.title'
+            pageTitle: 'TagForProducts'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -47,7 +47,7 @@ export const tagForProductPopupRoute: Routes = [
         component: TagForProductPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.tagForProduct.home.title'
+            pageTitle: 'TagForProducts'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -57,7 +57,7 @@ export const tagForProductPopupRoute: Routes = [
         component: TagForProductDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.tagForProduct.home.title'
+            pageTitle: 'TagForProducts'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

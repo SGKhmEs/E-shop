@@ -6,7 +6,6 @@ import { EshopStaticPagesModule } from './static-pages/static-pages.module';
 import { EshopManagerModule } from './manager/manager.module';
 import { EshopBucketModule } from './bucket/bucket.module';
 import { EshopAddressShippingModule } from './address-shipping/address-shipping.module';
-import { EshopCustomerRoomModule } from './customer-room/customer-room.module';
 import { EshopSeenModule } from './seen/seen.module';
 import { EshopWishListModule } from './wish-list/wish-list.module';
 import { EshopAddressModule } from './address/address.module';
@@ -19,10 +18,8 @@ import { EshopStorageModule } from './storage/storage.module';
 import { EshopProducersModule } from './producers/producers.module';
 import { EshopCategoryModule } from './category/category.module';
 import { EshopSubCategoryModule } from './sub-category/sub-category.module';
-import { EshopTypeModule } from './type/type.module';
 import { EshopMediaModule } from './media/media.module';
 import { EshopCommentsModule } from './comments/comments.module';
-import { EshopValueModule } from './value/value.module';
 import { EshopOptionsModule } from './options/options.module';
 import { EshopTagForProductModule } from './tag-for-product/tag-for-product.module';
 import { EshopProductInBucketModule } from './product-in-bucket/product-in-bucket.module';
@@ -36,7 +33,6 @@ import { EshopProductInBucketModule } from './product-in-bucket/product-in-bucke
         EshopManagerModule,
         EshopBucketModule,
         EshopAddressShippingModule,
-        EshopCustomerRoomModule,
         EshopSeenModule,
         EshopWishListModule,
         EshopAddressModule,
@@ -49,10 +45,8 @@ import { EshopProductInBucketModule } from './product-in-bucket/product-in-bucke
         EshopProducersModule,
         EshopCategoryModule,
         EshopSubCategoryModule,
-        EshopTypeModule,
         EshopMediaModule,
         EshopCommentsModule,
-        EshopValueModule,
         EshopOptionsModule,
         EshopTagForProductModule,
         EshopProductInBucketModule,

@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { AlertService, EventManager } from 'ng-jhipster';
+import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
 
 import { StaticPages } from './static-pages.model';
 import { StaticPagesPopupService } from './static-pages-popup.service';
@@ -19,8 +19,8 @@ export class StaticPagesDeleteDialogComponent {
     constructor(
         private staticPagesService: StaticPagesService,
         public activeModal: NgbActiveModal,
-        private alertService: AlertService,
-        private eventManager: EventManager
+        private alertService: JhiAlertService,
+        private eventManager: JhiEventManager
     ) {
     }
 
@@ -36,7 +36,7 @@ export class StaticPagesDeleteDialogComponent {
             });
             this.activeModal.dismiss(true);
         });
-        this.alertService.success('eshopApp.staticPages.deleted', { param : id }, null);
+        this.alertService.success(`A Static Pages is deleted with identifier ${id}`, null, null);
     }
 }
 

@@ -4,7 +4,7 @@ import { Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EventManager, AlertService } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { WishList } from './wish-list.model';
 import { WishListPopupService } from './wish-list-popup.service';
@@ -26,15 +26,15 @@ export class WishListDialogComponent implements OnInit {
     customers: Customer[];
 
     products: Products[];
-    dataDp: any;
+    dateDp: any;
 
     constructor(
         public activeModal: NgbActiveModal,
-        private alertService: AlertService,
+        private alertService: JhiAlertService,
         private wishListService: WishListService,
         private customerService: CustomerService,
         private productsService: ProductsService,
-        private eventManager: EventManager
+        private eventManager: JhiEventManager
     ) {
     }
 
@@ -80,9 +80,9 @@ export class WishListDialogComponent implements OnInit {
 
     private onSaveSuccess(result: WishList, isCreated: boolean) {
         this.alertService.success(
-            isCreated ? 'eshopApp.wishList.created'
-            : 'eshopApp.wishList.updated',
-            { param : result.id }, null);
+            isCreated ? `A new Wish List is created with identifier ${result.id}`
+            : `A Wish List is updated with identifier ${result.id}`,
+            null, null);
 
         this.eventManager.broadcast({ name: 'wishListListModification', content: 'OK'});
         this.isSaving = false;

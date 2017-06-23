@@ -8,14 +8,6 @@
             "otherEntityField": "id"
         },
         {
-            "relationshipType": "one-to-one",
-            "relationshipName": "options",
-            "otherEntityName": "options",
-            "otherEntityField": "id",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "subCategory"
-        },
-        {
             "relationshipType": "one-to-many",
             "relationshipName": "product",
             "otherEntityName": "products",
@@ -31,7 +23,7 @@
             ]
         }
     ],
-    "changelogDate": "20170610234502",
+    "changelogDate": "20170623182245",
     "entityTableName": "sub_category",
     "dto": "no",
     "pagination": "no",

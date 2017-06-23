@@ -35,10 +35,6 @@ public class SubCategory implements Serializable {
     @ManyToOne
     private Category category;
 
-    @OneToOne
-    @JoinColumn(unique = true)
-    private Options options;
-
     @OneToMany(mappedBy = "subCategory")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -76,19 +72,6 @@ public class SubCategory implements Serializable {
 
     public void setCategory(Category category) {
         this.category = category;
-    }
-
-    public Options getOptions() {
-        return options;
-    }
-
-    public SubCategory options(Options options) {
-        this.options = options;
-        return this;
-    }
-
-    public void setOptions(Options options) {
-        this.options = options;
     }
 
     public Set<Products> getProducts() {

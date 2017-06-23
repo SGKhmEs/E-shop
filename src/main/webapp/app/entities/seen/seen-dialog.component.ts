@@ -4,7 +4,7 @@ import { Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EventManager, AlertService } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { Seen } from './seen.model';
 import { SeenPopupService } from './seen-popup.service';
@@ -26,15 +26,15 @@ export class SeenDialogComponent implements OnInit {
     customers: Customer[];
 
     products: Products[];
-    dataDp: any;
+    dateDp: any;
 
     constructor(
         public activeModal: NgbActiveModal,
-        private alertService: AlertService,
+        private alertService: JhiAlertService,
         private seenService: SeenService,
         private customerService: CustomerService,
         private productsService: ProductsService,
-        private eventManager: EventManager
+        private eventManager: JhiEventManager
     ) {
     }
 
@@ -80,9 +80,9 @@ export class SeenDialogComponent implements OnInit {
 
     private onSaveSuccess(result: Seen, isCreated: boolean) {
         this.alertService.success(
-            isCreated ? 'eshopApp.seen.created'
-            : 'eshopApp.seen.updated',
-            { param : result.id }, null);
+            isCreated ? `A new Seen is created with identifier ${result.id}`
+            : `A Seen is updated with identifier ${result.id}`,
+            null, null);
 
         this.eventManager.broadcast({ name: 'seenListModification', content: 'OK'});
         this.isSaving = false;

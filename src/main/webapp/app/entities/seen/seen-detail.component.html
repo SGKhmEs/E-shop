@@ -1,20 +1,20 @@
 
 <div *ngIf="seen">
-    <h2><span jhiTranslate="eshopApp.seen.detail.title">Seen</span> {{seen.id}}</h2>
+    <h2><span>Seen</span> {{seen.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="eshopApp.seen.data">Data</span></dt>
+        <dt><span>Date</span></dt>
         <dd>
-            <span>{{seen.data | date:'mediumDate'}}</span>
+            <span>{{seen.date | date:'mediumDate'}}</span>
         </dd>
-        <dt><span jhiTranslate="eshopApp.seen.customer">Customer</span></dt>
+        <dt><span>Customer</span></dt>
         <dd>
             <div *ngIf="seen.customer">
                 <a [routerLink]="['/customer', seen.customer?.id]">{{seen.customer?.id}}</a>
             </div>
         </dd>
-        <dt><span jhiTranslate="eshopApp.seen.products">Products</span></dt>
+        <dt><span>Products</span></dt>
         <dd>
             <div *ngIf="seen.products">
                 <a [routerLink]="['/products', seen.products?.id]">{{seen.products?.id}}</a>
@@ -25,13 +25,13 @@
     <button type="submit"
             (click)="previousState()"
             class="btn btn-info">
-        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
     </button>
 
     <button type="button"
             [routerLink]="['/', { outlets: { popup: 'seen/'+ seen.id + '/edit'} }]"
             replaceUrl="true"
             class="btn btn-primary">
-        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
     </button>
 </div>

@@ -39,11 +39,20 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = EshopApp.class)
 public class OptionsResourceIntTest {
 
-    private static final String DEFAULT_NAME = "AAAAAAAAAA";
-    private static final String UPDATED_NAME = "BBBBBBBBBB";
+    private static final Integer DEFAULT_COLOR = 1;
+    private static final Integer UPDATED_COLOR = 2;
 
-    private static final Integer DEFAULT_LEVEL = 1;
-    private static final Integer UPDATED_LEVEL = 2;
+    private static final Double DEFAULT_WEIGHT = 1D;
+    private static final Double UPDATED_WEIGHT = 2D;
+
+    private static final String DEFAULT_METAL = "AAAAAAAAAA";
+    private static final String UPDATED_METAL = "BBBBBBBBBB";
+
+    private static final Double DEFAULT_SIZE = 1D;
+    private static final Double UPDATED_SIZE = 2D;
+
+    private static final Integer DEFAULT_LENGTH = 1;
+    private static final Integer UPDATED_LENGTH = 2;
 
     @Autowired
     private OptionsRepository optionsRepository;
@@ -88,8 +97,11 @@ public class OptionsResourceIntTest {
      */
     public static Options createEntity(EntityManager em) {
         Options options = new Options()
-            .name(DEFAULT_NAME)
-            .level(DEFAULT_LEVEL);
+            .color(DEFAULT_COLOR)
+            .weight(DEFAULT_WEIGHT)
+            .metal(DEFAULT_METAL)
+            .size(DEFAULT_SIZE)
+            .length(DEFAULT_LENGTH);
         return options;
     }
 
@@ -114,8 +126,11 @@ public class OptionsResourceIntTest {
         List<Options> optionsList = optionsRepository.findAll();
         assertThat(optionsList).hasSize(databaseSizeBeforeCreate + 1);
         Options testOptions = optionsList.get(optionsList.size() - 1);
-        assertThat(testOptions.getName()).isEqualTo(DEFAULT_NAME);
-        assertThat(testOptions.getLevel()).isEqualTo(DEFAULT_LEVEL);
+        assertThat(testOptions.getColor()).isEqualTo(DEFAULT_COLOR);
+        assertThat(testOptions.getWeight()).isEqualTo(DEFAULT_WEIGHT);
+        assertThat(testOptions.getMetal()).isEqualTo(DEFAULT_METAL);
+        assertThat(testOptions.getSize()).isEqualTo(DEFAULT_SIZE);
+        assertThat(testOptions.getLength()).isEqualTo(DEFAULT_LENGTH);
 
         // Validate the Options in Elasticsearch
         Options optionsEs = optionsSearchRepository.findOne(testOptions.getId());
@@ -143,10 +158,10 @@ public class OptionsResourceIntTest {
 
     @Test
     @Transactional
-    public void checkNameIsRequired() throws Exception {
+    public void checkColorIsRequired() throws Exception {
         int databaseSizeBeforeTest = optionsRepository.findAll().size();
         // set the field null
-        options.setName(null);
+        options.setColor(null);
 
         // Create the Options, which fails.
 
@@ -161,10 +176,28 @@ public class OptionsResourceIntTest {
 
     @Test
     @Transactional
-    public void checkLevelIsRequired() throws Exception {
+    public void checkWeightIsRequired() throws Exception {
         int databaseSizeBeforeTest = optionsRepository.findAll().size();
         // set the field null
-        options.setLevel(null);
+        options.setWeight(null);
+
+        // Create the Options, which fails.
+
+        restOptionsMockMvc.perform(post("/api/options")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(options)))
+            .andExpect(status().isBadRequest());
+
+        List<Options> optionsList = optionsRepository.findAll();
+        assertThat(optionsList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkMetalIsRequired() throws Exception {
+        int databaseSizeBeforeTest = optionsRepository.findAll().size();
+        // set the field null
+        options.setMetal(null);
 
         // Create the Options, which fails.
 
@@ -188,8 +221,11 @@ public class OptionsResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(options.getId().intValue())))
-            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
-            .andExpect(jsonPath("$.[*].level").value(hasItem(DEFAULT_LEVEL)));
+            .andExpect(jsonPath("$.[*].color").value(hasItem(DEFAULT_COLOR)))
+            .andExpect(jsonPath("$.[*].weight").value(hasItem(DEFAULT_WEIGHT.doubleValue())))
+            .andExpect(jsonPath("$.[*].metal").value(hasItem(DEFAULT_METAL.toString())))
+            .andExpect(jsonPath("$.[*].size").value(hasItem(DEFAULT_SIZE.doubleValue())))
+            .andExpect(jsonPath("$.[*].length").value(hasItem(DEFAULT_LENGTH)));
     }
 
     @Test
@@ -203,8 +239,11 @@ public class OptionsResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(options.getId().intValue()))
-            .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
-            .andExpect(jsonPath("$.level").value(DEFAULT_LEVEL));
+            .andExpect(jsonPath("$.color").value(DEFAULT_COLOR))
+            .andExpect(jsonPath("$.weight").value(DEFAULT_WEIGHT.doubleValue()))
+            .andExpect(jsonPath("$.metal").value(DEFAULT_METAL.toString()))
+            .andExpect(jsonPath("$.size").value(DEFAULT_SIZE.doubleValue()))
+            .andExpect(jsonPath("$.length").value(DEFAULT_LENGTH));
     }
 
     @Test
@@ -226,8 +265,11 @@ public class OptionsResourceIntTest {
         // Update the options
         Options updatedOptions = optionsRepository.findOne(options.getId());
         updatedOptions
-            .name(UPDATED_NAME)
-            .level(UPDATED_LEVEL);
+            .color(UPDATED_COLOR)
+            .weight(UPDATED_WEIGHT)
+            .metal(UPDATED_METAL)
+            .size(UPDATED_SIZE)
+            .length(UPDATED_LENGTH);
 
         restOptionsMockMvc.perform(put("/api/options")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -238,8 +280,11 @@ public class OptionsResourceIntTest {
         List<Options> optionsList = optionsRepository.findAll();
         assertThat(optionsList).hasSize(databaseSizeBeforeUpdate);
         Options testOptions = optionsList.get(optionsList.size() - 1);
-        assertThat(testOptions.getName()).isEqualTo(UPDATED_NAME);
-        assertThat(testOptions.getLevel()).isEqualTo(UPDATED_LEVEL);
+        assertThat(testOptions.getColor()).isEqualTo(UPDATED_COLOR);
+        assertThat(testOptions.getWeight()).isEqualTo(UPDATED_WEIGHT);
+        assertThat(testOptions.getMetal()).isEqualTo(UPDATED_METAL);
+        assertThat(testOptions.getSize()).isEqualTo(UPDATED_SIZE);
+        assertThat(testOptions.getLength()).isEqualTo(UPDATED_LENGTH);
 
         // Validate the Options in Elasticsearch
         Options optionsEs = optionsSearchRepository.findOne(testOptions.getId());
@@ -297,8 +342,11 @@ public class OptionsResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(options.getId().intValue())))
-            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
-            .andExpect(jsonPath("$.[*].level").value(hasItem(DEFAULT_LEVEL)));
+            .andExpect(jsonPath("$.[*].color").value(hasItem(DEFAULT_COLOR)))
+            .andExpect(jsonPath("$.[*].weight").value(hasItem(DEFAULT_WEIGHT.doubleValue())))
+            .andExpect(jsonPath("$.[*].metal").value(hasItem(DEFAULT_METAL.toString())))
+            .andExpect(jsonPath("$.[*].size").value(hasItem(DEFAULT_SIZE.doubleValue())))
+            .andExpect(jsonPath("$.[*].length").value(hasItem(DEFAULT_LENGTH)));
     }
 
     @Test

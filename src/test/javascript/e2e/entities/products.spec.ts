@@ -24,8 +24,8 @@ describe('Products e2e test', () => {
     it('should load Products', () => {
         entityMenu.click();
         element.all(by.css('[routerLink="products"]')).first().click().then(() => {
-            const expectVal = /eshopApp.products.home.title/;
-            element.all(by.css('h2 span')).first().getAttribute('jhiTranslate').then((value) => {
+            const expectVal = /Products/;
+            element.all(by.css('h2 span')).first().getText().then((value) => {
                 expect(value).toMatch(expectVal);
             });
         });
@@ -33,8 +33,8 @@ describe('Products e2e test', () => {
 
     it('should load create Products dialog', function () {
         element(by.css('button.create-products')).click().then(() => {
-            const expectVal = /eshopApp.products.home.createOrEditLabel/;
-            element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
+            const expectVal = /Create or edit a Products/;
+            element.all(by.css('h4.modal-title')).first().getText().then((value) => {
                 expect(value).toMatch(expectVal);
             });
 

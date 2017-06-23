@@ -4,13 +4,11 @@ import { Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EventManager, AlertService } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { PersonalInformation } from './personal-information.model';
 import { PersonalInformationPopupService } from './personal-information-popup.service';
 import { PersonalInformationService } from './personal-information.service';
-import { Avatar, AvatarService } from '../avatar';
-import { ResponseWrapper } from '../../shared';
 
 @Component({
     selector: 'jhi-personal-information-dialog',
@@ -21,35 +19,19 @@ export class PersonalInformationDialogComponent implements OnInit {
     personalInformation: PersonalInformation;
     authorities: any[];
     isSaving: boolean;
-
-    avatars: Avatar[];
     dateBirthDp: any;
 
     constructor(
         public activeModal: NgbActiveModal,
-        private alertService: AlertService,
+        private alertService: JhiAlertService,
         private personalInformationService: PersonalInformationService,
-        private avatarService: AvatarService,
-        private eventManager: EventManager
+        private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
-        this.avatarService
-            .query({filter: 'personalinformation-is-null'})
-            .subscribe((res: ResponseWrapper) => {
-                if (!this.personalInformation.avatar || !this.personalInformation.avatar.id) {
-                    this.avatars = res.json;
-                } else {
-                    this.avatarService
-                        .find(this.personalInformation.avatar.id)
-                        .subscribe((subRes: Avatar) => {
-                            this.avatars = [subRes].concat(res.json);
-                        }, (subRes: ResponseWrapper) => this.onError(subRes.json));
-                }
-            }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     clear() {
@@ -74,9 +56,9 @@ export class PersonalInformationDialogComponent implements OnInit {
 
     private onSaveSuccess(result: PersonalInformation, isCreated: boolean) {
         this.alertService.success(
-            isCreated ? 'eshopApp.personalInformation.created'
-            : 'eshopApp.personalInformation.updated',
-            { param : result.id }, null);
+            isCreated ? `A new Personal Information is created with identifier ${result.id}`
+            : `A Personal Information is updated with identifier ${result.id}`,
+            null, null);
 
         this.eventManager.broadcast({ name: 'personalInformationListModification', content: 'OK'});
         this.isSaving = false;
@@ -95,10 +77,6 @@ export class PersonalInformationDialogComponent implements OnInit {
 
     private onError(error) {
         this.alertService.error(error.message, null, null);
-    }
-
-    trackAvatarById(index: number, item: Avatar) {
-        return item.id;
     }
 }
 

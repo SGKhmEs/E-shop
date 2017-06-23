@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes, CanActivate } from '@angular/router';
 
 import { UserRouteAccessService } from '../../shared';
-import { PaginationUtil } from 'ng-jhipster';
+import { JhiPaginationUtil } from 'ng-jhipster';
 
 import { StaticPagesComponent } from './static-pages.component';
 import { StaticPagesDetailComponent } from './static-pages-detail.component';
@@ -17,7 +17,7 @@ export const staticPagesRoute: Routes = [
         component: StaticPagesComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.staticPages.home.title'
+            pageTitle: 'StaticPages'
         },
         canActivate: [UserRouteAccessService]
     }, {
@@ -25,7 +25,7 @@ export const staticPagesRoute: Routes = [
         component: StaticPagesDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.staticPages.home.title'
+            pageTitle: 'StaticPages'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -37,7 +37,7 @@ export const staticPagesPopupRoute: Routes = [
         component: StaticPagesPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.staticPages.home.title'
+            pageTitle: 'StaticPages'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -47,7 +47,7 @@ export const staticPagesPopupRoute: Routes = [
         component: StaticPagesPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.staticPages.home.title'
+            pageTitle: 'StaticPages'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -57,7 +57,7 @@ export const staticPagesPopupRoute: Routes = [
         component: StaticPagesDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.staticPages.home.title'
+            pageTitle: 'StaticPages'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

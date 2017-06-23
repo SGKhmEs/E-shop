@@ -4,7 +4,7 @@ import { Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EventManager, AlertService } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { Comments } from './comments.model';
 import { CommentsPopupService } from './comments-popup.service';
@@ -29,11 +29,11 @@ export class CommentsDialogComponent implements OnInit {
 
     constructor(
         public activeModal: NgbActiveModal,
-        private alertService: AlertService,
+        private alertService: JhiAlertService,
         private commentsService: CommentsService,
         private customerService: CustomerService,
         private productsService: ProductsService,
-        private eventManager: EventManager
+        private eventManager: JhiEventManager
     ) {
     }
 
@@ -68,9 +68,9 @@ export class CommentsDialogComponent implements OnInit {
 
     private onSaveSuccess(result: Comments, isCreated: boolean) {
         this.alertService.success(
-            isCreated ? 'eshopApp.comments.created'
-            : 'eshopApp.comments.updated',
-            { param : result.id }, null);
+            isCreated ? `A new Comments is created with identifier ${result.id}`
+            : `A Comments is updated with identifier ${result.id}`,
+            null, null);
 
         this.eventManager.broadcast({ name: 'commentsListModification', content: 'OK'});
         this.isSaving = false;

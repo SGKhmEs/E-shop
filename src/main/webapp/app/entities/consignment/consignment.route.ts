@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes, CanActivate } from '@angular/router';
 
 import { UserRouteAccessService } from '../../shared';
-import { PaginationUtil } from 'ng-jhipster';
+import { JhiPaginationUtil } from 'ng-jhipster';
 
 import { ConsignmentComponent } from './consignment.component';
 import { ConsignmentDetailComponent } from './consignment-detail.component';
@@ -17,7 +17,7 @@ export const consignmentRoute: Routes = [
         component: ConsignmentComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.consignment.home.title'
+            pageTitle: 'Consignments'
         },
         canActivate: [UserRouteAccessService]
     }, {
@@ -25,7 +25,7 @@ export const consignmentRoute: Routes = [
         component: ConsignmentDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.consignment.home.title'
+            pageTitle: 'Consignments'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -37,7 +37,7 @@ export const consignmentPopupRoute: Routes = [
         component: ConsignmentPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.consignment.home.title'
+            pageTitle: 'Consignments'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -47,7 +47,7 @@ export const consignmentPopupRoute: Routes = [
         component: ConsignmentPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.consignment.home.title'
+            pageTitle: 'Consignments'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -57,7 +57,7 @@ export const consignmentPopupRoute: Routes = [
         component: ConsignmentDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.consignment.home.title'
+            pageTitle: 'Consignments'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

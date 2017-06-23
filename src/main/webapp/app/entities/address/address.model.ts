@@ -1,4 +1,6 @@
-export class Address {
+import { BaseEntity } from './../../shared';
+
+export class Address implements BaseEntity {
     constructor(
         public id?: number,
         public country?: string,

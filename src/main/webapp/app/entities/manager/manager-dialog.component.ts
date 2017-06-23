@@ -4,13 +4,14 @@ import { Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EventManager, AlertService } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { Manager } from './manager.model';
 import { ManagerPopupService } from './manager-popup.service';
 import { ManagerService } from './manager.service';
 import { LoginOptions, LoginOptionsService } from '../login-options';
 import { PersonalInformation, PersonalInformationService } from '../personal-information';
+import { Avatar, AvatarService } from '../avatar';
 import { ResponseWrapper } from '../../shared';
 
 @Component({
@@ -27,13 +28,16 @@ export class ManagerDialogComponent implements OnInit {
 
     personalinfos: PersonalInformation[];
 
+    avatars: Avatar[];
+
     constructor(
         public activeModal: NgbActiveModal,
-        private alertService: AlertService,
+        private alertService: JhiAlertService,
         private managerService: ManagerService,
         private loginOptionsService: LoginOptionsService,
         private personalInformationService: PersonalInformationService,
-        private eventManager: EventManager
+        private avatarService: AvatarService,
+        private eventManager: JhiEventManager
     ) {
     }
 
@@ -66,6 +70,19 @@ export class ManagerDialogComponent implements OnInit {
                         }, (subRes: ResponseWrapper) => this.onError(subRes.json));
                 }
             }, (res: ResponseWrapper) => this.onError(res.json));
+        this.avatarService
+            .query({filter: 'manager-is-null'})
+            .subscribe((res: ResponseWrapper) => {
+                if (!this.manager.avatar || !this.manager.avatar.id) {
+                    this.avatars = res.json;
+                } else {
+                    this.avatarService
+                        .find(this.manager.avatar.id)
+                        .subscribe((subRes: Avatar) => {
+                            this.avatars = [subRes].concat(res.json);
+                        }, (subRes: ResponseWrapper) => this.onError(subRes.json));
+                }
+            }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     clear() {
@@ -90,9 +107,9 @@ export class ManagerDialogComponent implements OnInit {
 
     private onSaveSuccess(result: Manager, isCreated: boolean) {
         this.alertService.success(
-            isCreated ? 'eshopApp.manager.created'
-            : 'eshopApp.manager.updated',
-            { param : result.id }, null);
+            isCreated ? `A new Manager is created with identifier ${result.id}`
+            : `A Manager is updated with identifier ${result.id}`,
+            null, null);
 
         this.eventManager.broadcast({ name: 'managerListModification', content: 'OK'});
         this.isSaving = false;
@@ -118,6 +135,10 @@ export class ManagerDialogComponent implements OnInit {
     }
 
     trackPersonalInformationById(index: number, item: PersonalInformation) {
+        return item.id;
+    }
+
+    trackAvatarById(index: number, item: Avatar) {
         return item.id;
     }
 }

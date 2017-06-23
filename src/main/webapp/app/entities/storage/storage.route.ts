@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes, CanActivate } from '@angular/router';
 
 import { UserRouteAccessService } from '../../shared';
-import { PaginationUtil } from 'ng-jhipster';
+import { JhiPaginationUtil } from 'ng-jhipster';
 
 import { StorageComponent } from './storage.component';
 import { StorageDetailComponent } from './storage-detail.component';
@@ -17,7 +17,7 @@ export const storageRoute: Routes = [
         component: StorageComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.storage.home.title'
+            pageTitle: 'Storages'
         },
         canActivate: [UserRouteAccessService]
     }, {
@@ -25,7 +25,7 @@ export const storageRoute: Routes = [
         component: StorageDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.storage.home.title'
+            pageTitle: 'Storages'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -37,7 +37,7 @@ export const storagePopupRoute: Routes = [
         component: StoragePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.storage.home.title'
+            pageTitle: 'Storages'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -47,7 +47,7 @@ export const storagePopupRoute: Routes = [
         component: StoragePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.storage.home.title'
+            pageTitle: 'Storages'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -57,7 +57,7 @@ export const storagePopupRoute: Routes = [
         component: StorageDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.storage.home.title'
+            pageTitle: 'Storages'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

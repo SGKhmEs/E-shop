@@ -1,23 +1,21 @@
-import { Media } from '../media';
-import { Comments } from '../comments';
-import { ProductInBucket } from '../product-in-bucket';
-import { TagForProduct } from '../tag-for-product';
-import { Consignment } from '../consignment';
-import { SubCategory } from '../sub-category';
-export class Products {
+import { BaseEntity } from './../../shared';
+
+export class Products implements BaseEntity {
     constructor(
         public id?: number,
         public name?: string,
         public price?: number,
-        public sale?: string,
+        public sale?: number,
         public rating?: number,
         public fresh?: boolean,
-        public media?: Media,
-        public comments?: Comments,
-        public productInBucket?: ProductInBucket,
-        public tagForProduct?: TagForProduct,
-        public consignment?: Consignment,
-        public subCategory?: SubCategory,
+        public description?: string,
+        public options?: BaseEntity,
+        public media?: BaseEntity[],
+        public comments?: BaseEntity[],
+        public productInBuckets?: BaseEntity[],
+        public tagForProducts?: BaseEntity[],
+        public consignment?: BaseEntity,
+        public subCategory?: BaseEntity,
     ) {
         this.fresh = false;
     }

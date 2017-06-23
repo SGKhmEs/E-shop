@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes, CanActivate } from '@angular/router';
 
 import { UserRouteAccessService } from '../../shared';
-import { PaginationUtil } from 'ng-jhipster';
+import { JhiPaginationUtil } from 'ng-jhipster';
 
 import { OptionsComponent } from './options.component';
 import { OptionsDetailComponent } from './options-detail.component';
@@ -17,7 +17,7 @@ export const optionsRoute: Routes = [
         component: OptionsComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.options.home.title'
+            pageTitle: 'Options'
         },
         canActivate: [UserRouteAccessService]
     }, {
@@ -25,7 +25,7 @@ export const optionsRoute: Routes = [
         component: OptionsDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.options.home.title'
+            pageTitle: 'Options'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -37,7 +37,7 @@ export const optionsPopupRoute: Routes = [
         component: OptionsPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.options.home.title'
+            pageTitle: 'Options'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -47,7 +47,7 @@ export const optionsPopupRoute: Routes = [
         component: OptionsPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.options.home.title'
+            pageTitle: 'Options'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -57,7 +57,7 @@ export const optionsPopupRoute: Routes = [
         component: OptionsDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.options.home.title'
+            pageTitle: 'Options'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

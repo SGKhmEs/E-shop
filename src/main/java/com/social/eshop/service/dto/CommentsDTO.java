@@ -1,24 +1,15 @@
 package com.social.eshop.service.dto;
 
-import com.social.eshop.domain.Customer;
-import com.social.eshop.service.mapper.AutoMapping;
-
 import java.time.ZonedDateTime;
 import java.util.List;
 
-public class CommentsDTO implements AutoMapping {
+public class CommentsDTO {
 
     private List<String> comments;
     private ZonedDateTime date;
     private CustomerDTO customerDTO;
 
-    public CommentsDTO() { }
-
-    public CommentsDTO(List<String> comments, ZonedDateTime date, CustomerDTO customerDTO) {
-        this.comments = comments;
-        this.date = date;
-        this.customerDTO = customerDTO;
-    }
+    public CommentsDTO() {}
 
     public List<String> getComments() {
         return comments;
@@ -52,5 +43,4 @@ public class CommentsDTO implements AutoMapping {
             ", customerDTO=" + customerDTO +
             '}';
     }
-    
 }

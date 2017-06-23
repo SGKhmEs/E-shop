@@ -4,11 +4,12 @@ import { Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EventManager, AlertService } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { Products } from './products.model';
 import { ProductsPopupService } from './products-popup.service';
 import { ProductsService } from './products.service';
+import { Options, OptionsService } from '../options';
 import { Consignment, ConsignmentService } from '../consignment';
 import { SubCategory, SubCategoryService } from '../sub-category';
 import { ResponseWrapper } from '../../shared';
@@ -23,23 +24,39 @@ export class ProductsDialogComponent implements OnInit {
     authorities: any[];
     isSaving: boolean;
 
+    options: Options[];
+
     consignments: Consignment[];
 
     subcategories: SubCategory[];
 
     constructor(
         public activeModal: NgbActiveModal,
-        private alertService: AlertService,
+        private alertService: JhiAlertService,
         private productsService: ProductsService,
+        private optionsService: OptionsService,
         private consignmentService: ConsignmentService,
         private subCategoryService: SubCategoryService,
-        private eventManager: EventManager
+        private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
+        this.optionsService
+            .query({filter: 'products-is-null'})
+            .subscribe((res: ResponseWrapper) => {
+                if (!this.products.options || !this.products.options.id) {
+                    this.options = res.json;
+                } else {
+                    this.optionsService
+                        .find(this.products.options.id)
+                        .subscribe((subRes: Options) => {
+                            this.options = [subRes].concat(res.json);
+                        }, (subRes: ResponseWrapper) => this.onError(subRes.json));
+                }
+            }, (res: ResponseWrapper) => this.onError(res.json));
         this.consignmentService.query()
             .subscribe((res: ResponseWrapper) => { this.consignments = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
         this.subCategoryService.query()
@@ -68,9 +85,9 @@ export class ProductsDialogComponent implements OnInit {
 
     private onSaveSuccess(result: Products, isCreated: boolean) {
         this.alertService.success(
-            isCreated ? 'eshopApp.products.created'
-            : 'eshopApp.products.updated',
-            { param : result.id }, null);
+            isCreated ? `A new Products is created with identifier ${result.id}`
+            : `A Products is updated with identifier ${result.id}`,
+            null, null);
 
         this.eventManager.broadcast({ name: 'productsListModification', content: 'OK'});
         this.isSaving = false;
@@ -89,6 +106,10 @@ export class ProductsDialogComponent implements OnInit {
 
     private onError(error) {
         this.alertService.error(error.message, null, null);
+    }
+
+    trackOptionsById(index: number, item: Options) {
+        return item.id;
     }
 
     trackConsignmentById(index: number, item: Consignment) {

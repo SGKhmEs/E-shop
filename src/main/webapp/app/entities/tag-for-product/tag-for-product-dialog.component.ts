@@ -4,7 +4,7 @@ import { Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EventManager, AlertService } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { TagForProduct } from './tag-for-product.model';
 import { TagForProductPopupService } from './tag-for-product-popup.service';
@@ -29,11 +29,11 @@ export class TagForProductDialogComponent implements OnInit {
 
     constructor(
         public activeModal: NgbActiveModal,
-        private alertService: AlertService,
+        private alertService: JhiAlertService,
         private tagForProductService: TagForProductService,
         private productsService: ProductsService,
         private tagsService: TagsService,
-        private eventManager: EventManager
+        private eventManager: JhiEventManager
     ) {
     }
 
@@ -68,9 +68,9 @@ export class TagForProductDialogComponent implements OnInit {
 
     private onSaveSuccess(result: TagForProduct, isCreated: boolean) {
         this.alertService.success(
-            isCreated ? 'eshopApp.tagForProduct.created'
-            : 'eshopApp.tagForProduct.updated',
-            { param : result.id }, null);
+            isCreated ? `A new Tag For Product is created with identifier ${result.id}`
+            : `A Tag For Product is updated with identifier ${result.id}`,
+            null, null);
 
         this.eventManager.broadcast({ name: 'tagForProductListModification', content: 'OK'});
         this.isSaving = false;

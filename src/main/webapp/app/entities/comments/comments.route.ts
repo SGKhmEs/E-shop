@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes, CanActivate } from '@angular/router';
 
 import { UserRouteAccessService } from '../../shared';
-import { PaginationUtil } from 'ng-jhipster';
+import { JhiPaginationUtil } from 'ng-jhipster';
 
 import { CommentsComponent } from './comments.component';
 import { CommentsDetailComponent } from './comments-detail.component';
@@ -17,7 +17,7 @@ export const commentsRoute: Routes = [
         component: CommentsComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.comments.home.title'
+            pageTitle: 'Comments'
         },
         canActivate: [UserRouteAccessService]
     }, {
@@ -25,7 +25,7 @@ export const commentsRoute: Routes = [
         component: CommentsDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.comments.home.title'
+            pageTitle: 'Comments'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -37,7 +37,7 @@ export const commentsPopupRoute: Routes = [
         component: CommentsPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.comments.home.title'
+            pageTitle: 'Comments'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -47,7 +47,7 @@ export const commentsPopupRoute: Routes = [
         component: CommentsPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.comments.home.title'
+            pageTitle: 'Comments'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -57,7 +57,7 @@ export const commentsPopupRoute: Routes = [
         component: CommentsDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.comments.home.title'
+            pageTitle: 'Comments'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

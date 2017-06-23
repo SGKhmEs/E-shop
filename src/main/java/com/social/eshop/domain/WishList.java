@@ -25,8 +25,8 @@ public class WishList implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Column(name = "data")
-    private LocalDate data;
+    @Column(name = "jhi_date")
+    private LocalDate date;
 
     @ManyToOne
     private Customer customer;
@@ -43,17 +43,17 @@ public class WishList implements Serializable {
         this.id = id;
     }
 
-    public LocalDate getData() {
-        return data;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public WishList data(LocalDate data) {
-        this.data = data;
+    public WishList date(LocalDate date) {
+        this.date = date;
         return this;
     }
 
-    public void setData(LocalDate data) {
-        this.data = data;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public Customer getCustomer() {
@@ -106,7 +106,7 @@ public class WishList implements Serializable {
     public String toString() {
         return "WishList{" +
             "id=" + getId() +
-            ", data='" + getData() + "'" +
+            ", date='" + getDate() + "'" +
             "}";
     }
 }
