@@ -1,9 +1,11 @@
 package com.social.eshop.service.dto;
 
+import com.social.eshop.service.mapper.AutoMapping;
+
 import java.time.ZonedDateTime;
 import java.util.List;
 
-public class CommentsDTO {
+public class CommentsDTO implements AutoMapping {
 
     private List<String> comments;
     private ZonedDateTime date;
