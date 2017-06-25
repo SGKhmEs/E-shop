@@ -7,11 +7,20 @@ import java.util.List;
 
 public class CommentsDTO implements AutoMapping {
 
+    private Long id;
     private List<String> comments;
     private ZonedDateTime date;
     private CustomerDTO customerDTO;
 
     public CommentsDTO() {}
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public List<String> getComments() {
         return comments;
