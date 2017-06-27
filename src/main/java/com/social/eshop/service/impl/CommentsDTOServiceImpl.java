@@ -31,45 +31,25 @@ public class CommentsDTOServiceImpl implements CommentsDTOService {
 //    private CustomerRepository customerRepository;
 
 
-    public CommentsDTOServiceImpl(CommentsRepository commentsRepository) {
-        this.commentsRepository = commentsRepository;
-    }
+//    public CommentsDTOServiceImpl(CommentsRepository commentsRepository) {
+//        this.commentsRepository = commentsRepository;
+//    }
 
-    @PostConstruct
-    @Transactional
-    public void populate() {
-        Comments comments = new Comments();
-        Customer customer = new Customer();
-        PersonalInformation info = new PersonalInformation();
-        info.setFirstName("Vasya");
-        customer.setPersonalInfo(info);
-        customer.setId(1001L);
-        comments.setCustomer(customer);
 
-        Comments comments1 = new Comments();
-        Customer customer1 = new Customer();
-        PersonalInformation info1 = new PersonalInformation();
-        info1.setFirstName("Vasya");
-        customer1.setPersonalInfo(info1);
-        comments1.setCustomer(customer1);
-        customer1.setId(1002L);
-        commentsRepository.saveAndFlush(comments);
-        commentsRepository.saveAndFlush(comments1);
-
-    }
 
     @Transactional(readOnly = true)
     public CommentsDTO findOne(Long id) {
         log.debug("Request to get Comments : {}", id);
         Comments comments = commentsRepository.findOne(id);
 
+
         CommentsDTO commentDTO = new CommentsDTO();
-//        CustomerDTO customerDTO = new CustomerDTO();
+        //CustomerDTO customerDTO = new CustomerDTO();
 //
 //        PersonalInformation info = new PersonalInformation();
 //        info.setFirstName("Vasy");
 //        customerDTO.setPersonalInformation(info);
-//
+////
 //        commentDTO.setId(1001L);
 //        commentDTO.setCustomerDTO(customerDTO);
 

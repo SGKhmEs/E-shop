@@ -3,6 +3,8 @@ package com.social.eshop.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.social.eshop.domain.Comments;
 import com.social.eshop.service.CommentsService;
+import com.social.eshop.service.dto.CommentsDTO;
+import com.social.eshop.service.impl.CommentsDTOServiceImpl;
 import com.social.eshop.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
@@ -31,9 +33,11 @@ public class CommentsResource {
     private static final String ENTITY_NAME = "comments";
 
     private final CommentsService commentsService;
+    private final CommentsDTOServiceImpl commentsDTOService;
 
-    public CommentsResource(CommentsService commentsService) {
+    public CommentsResource(CommentsService commentsService, CommentsDTOServiceImpl commentsDTOService) {
         this.commentsService = commentsService;
+        this.commentsDTOService = commentsDTOService;
     }
 
     /**
@@ -98,9 +102,9 @@ public class CommentsResource {
      */
     @GetMapping("/comments/{id}")
     @Timed
-    public ResponseEntity<Comments> getComments(@PathVariable Long id) {
+    public ResponseEntity<CommentsDTO> getComments(@PathVariable Long id) {
         log.debug("REST request to get Comments : {}", id);
-        Comments comments = commentsService.findOne(id);
+        CommentsDTO comments = commentsDTOService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(comments));
     }
 

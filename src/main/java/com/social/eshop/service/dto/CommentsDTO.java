@@ -49,7 +49,8 @@ public class CommentsDTO implements AutoMapping {
     @Override
     public String toString() {
         return "CommentsDTO{" +
-            "comments=" + comments +
+            "id=" + id +
+            ", comments=" + comments +
             ", date=" + date +
             ", customerDTO=" + customerDTO +
             '}';

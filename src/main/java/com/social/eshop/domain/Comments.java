@@ -84,10 +84,6 @@ public class Comments implements Serializable {
         this.customer = customer;
     }
 
-    public Products getProducts() {
-        return products;
-    }
-
     public Comments products(Products products) {
         this.products = products;
         return this;
@@ -95,6 +91,10 @@ public class Comments implements Serializable {
 
     public void setProducts(Products products) {
         this.products = products;
+    }
+
+    public Products getProducts() {
+        return products;
     }
 
     @Override
