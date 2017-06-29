@@ -12,14 +12,15 @@ import org.mapstruct.*;
 public interface CommentsMapper extends EntityMapper <CommentsDTO, Comments> {
 
     @Mapping(source = "customer.id", target = "customerId")
-
+    @Mapping(source = "customer.personalInfo.firstName", target = "customerName")
     @Mapping(source = "products.id", target = "productsId")
-    CommentsDTO toDto(Comments comments); 
+
+    CommentsDTO toDto(Comments comments);
 
     @Mapping(source = "customerId", target = "customer")
 
     @Mapping(source = "productsId", target = "products")
-    Comments toEntity(CommentsDTO commentsDTO); 
+    Comments toEntity(CommentsDTO commentsDTO);
     default Comments fromId(Long id) {
         if (id == null) {
             return null;
