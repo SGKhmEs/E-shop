@@ -12,19 +12,17 @@ import org.mapstruct.*;
 public interface BucketMapper extends EntityMapper <BucketDTO, Bucket> {
 
     @Mapping(source = "manager.id", target = "managerId")
-
+    @Mapping(source = "addressShipping", target = "addressShippingDTO")
     @Mapping(source = "addressShipping.id", target = "addressShippingId")
-
     @Mapping(source = "customer.id", target = "customerId")
-    BucketDTO toDto(Bucket bucket); 
+    BucketDTO toDto(Bucket bucket);
+
 
     @Mapping(source = "managerId", target = "manager")
-
     @Mapping(source = "addressShippingId", target = "addressShipping")
     @Mapping(target = "productInBuckets", ignore = true)
-
     @Mapping(source = "customerId", target = "customer")
-    Bucket toEntity(BucketDTO bucketDTO); 
+    Bucket toEntity(BucketDTO bucketDTO);
     default Bucket fromId(Long id) {
         if (id == null) {
             return null;

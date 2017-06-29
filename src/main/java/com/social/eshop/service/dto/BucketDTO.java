@@ -4,9 +4,9 @@ package com.social.eshop.service.dto;
 import java.time.ZonedDateTime;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
+
+import com.social.eshop.domain.AddressShipping;
 import com.social.eshop.domain.enumeration.Status;
 
 /**
@@ -33,6 +33,8 @@ public class BucketDTO implements Serializable {
     private Long managerId;
 
     private Long addressShippingId;
+
+    private AddressShipping addressShippingDTO;
 
     private Long customerId;
 
@@ -116,6 +118,14 @@ public class BucketDTO implements Serializable {
         this.addressShippingId = addressShippingId;
     }
 
+    public AddressShipping getAddressShippingDTO() {
+        return addressShippingDTO;
+    }
+
+    public void setAddressShippingDTO(AddressShipping addressShippingDTO) {
+        this.addressShippingDTO = addressShippingDTO;
+    }
+
     public Long getCustomerId() {
         return customerId;
     }
@@ -145,17 +155,21 @@ public class BucketDTO implements Serializable {
         return Objects.hashCode(getId());
     }
 
+
     @Override
     public String toString() {
         return "BucketDTO{" +
-            "id=" + getId() +
-            ", name='" + getName() + "'" +
-            ", date='" + getDate() + "'" +
-            ", sum='" + getSum() + "'" +
-            ", orderNumber='" + getOrderNumber() + "'" +
-            ", count='" + getCount() + "'" +
-            ", status='" + getStatus() + "'" +
-            ", consignmentNote='" + getConsignmentNote() + "'" +
-            "}";
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", date=" + date +
+            ", sum=" + sum +
+            ", orderNumber=" + orderNumber +
+            ", count=" + count +
+            ", status=" + status +
+            ", consignmentNote='" + consignmentNote + '\'' +
+            ", managerId=" + managerId +
+            ", addressShipping=" + addressShippingDTO +
+            ", customerId=" + customerId +
+            '}';
     }
 }
