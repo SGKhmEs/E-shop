@@ -4,11 +4,14 @@ import com.social.eshop.service.MediaService;
 import com.social.eshop.domain.Media;
 import com.social.eshop.repository.MediaRepository;
 import com.social.eshop.repository.search.MediaSearchRepository;
+import com.social.eshop.service.dto.MediaDTO;
+import com.social.eshop.service.mapper.MediaMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -26,24 +29,29 @@ public class MediaServiceImpl implements MediaService{
 
     private final MediaRepository mediaRepository;
 
+    private final MediaMapper mediaMapper;
+
     private final MediaSearchRepository mediaSearchRepository;
 
-    public MediaServiceImpl(MediaRepository mediaRepository, MediaSearchRepository mediaSearchRepository) {
+    public MediaServiceImpl(MediaRepository mediaRepository, MediaMapper mediaMapper, MediaSearchRepository mediaSearchRepository) {
         this.mediaRepository = mediaRepository;
+        this.mediaMapper = mediaMapper;
         this.mediaSearchRepository = mediaSearchRepository;
     }
 
     /**
      * Save a media.
      *
-     * @param media the entity to save
+     * @param mediaDTO the entity to save
      * @return the persisted entity
      */
     @Override
-    public Media save(Media media) {
-        log.debug("Request to save Media : {}", media);
-        Media result = mediaRepository.save(media);
-        mediaSearchRepository.save(result);
+    public MediaDTO save(MediaDTO mediaDTO) {
+        log.debug("Request to save Media : {}", mediaDTO);
+        Media media = mediaMapper.toEntity(mediaDTO);
+        media = mediaRepository.save(media);
+        MediaDTO result = mediaMapper.toDto(media);
+        mediaSearchRepository.save(media);
         return result;
     }
 
@@ -54,9 +62,11 @@ public class MediaServiceImpl implements MediaService{
      */
     @Override
     @Transactional(readOnly = true)
-    public List<Media> findAll() {
+    public List<MediaDTO> findAll() {
         log.debug("Request to get all Media");
-        return mediaRepository.findAll();
+        return mediaRepository.findAll().stream()
+            .map(mediaMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
     }
 
     /**
@@ -67,9 +77,10 @@ public class MediaServiceImpl implements MediaService{
      */
     @Override
     @Transactional(readOnly = true)
-    public Media findOne(Long id) {
+    public MediaDTO findOne(Long id) {
         log.debug("Request to get Media : {}", id);
-        return mediaRepository.findOne(id);
+        Media media = mediaRepository.findOne(id);
+        return mediaMapper.toDto(media);
     }
 
     /**
@@ -92,10 +103,11 @@ public class MediaServiceImpl implements MediaService{
      */
     @Override
     @Transactional(readOnly = true)
-    public List<Media> search(String query) {
+    public List<MediaDTO> search(String query) {
         log.debug("Request to search Media for query {}", query);
         return StreamSupport
             .stream(mediaSearchRepository.search(queryStringQuery(query)).spliterator(), false)
+            .map(mediaMapper::toDto)
             .collect(Collectors.toList());
     }
 }

@@ -46,11 +46,11 @@ export class WishListDialogComponent implements OnInit {
         this.productsService
             .query({filter: 'wishlist-is-null'})
             .subscribe((res: ResponseWrapper) => {
-                if (!this.wishList.product || !this.wishList.product.id) {
+                if (!this.wishList.productId) {
                     this.products = res.json;
                 } else {
                     this.productsService
-                        .find(this.wishList.product.id)
+                        .find(this.wishList.productId)
                         .subscribe((subRes: Products) => {
                             this.products = [subRes].concat(res.json);
                         }, (subRes: ResponseWrapper) => this.onError(subRes.json));

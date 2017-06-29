@@ -26,8 +26,8 @@
         </dd>
         <dt><span>Products</span></dt>
         <dd>
-            <div *ngIf="media.products">
-                <a [routerLink]="['/products', media.products?.id]">{{media.products?.id}}</a>
+            <div *ngIf="media.productsId">
+                <a [routerLink]="['/products', media.productsId]">{{media.productsId}}</a>
             </div>
         </dd>
     </dl>

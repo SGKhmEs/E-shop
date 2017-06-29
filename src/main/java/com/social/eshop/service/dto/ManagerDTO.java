@@ -1,56 +1,93 @@
 package com.social.eshop.service.dto;
 
-import com.social.eshop.domain.Consignment;
 
-import java.util.List;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Objects;
+import com.social.eshop.domain.enumeration.Roles;
 
-public class ManagerDTO {
-    private List<BucketDTO> buckets;
-    private List<ProductsDTO> products;
-    private List<CommentsDTO> comments;
-    private List<Consignment> consignments;
+/**
+ * A DTO for the Manager entity.
+ */
+public class ManagerDTO implements Serializable {
 
-    public ManagerDTO() { }
+    private Long id;
 
-    public List<BucketDTO> getBuckets() {
-        return buckets;
+    private Roles roles;
+
+    private Long loginOptionsId;
+
+    private Long personalInfoId;
+
+    private Long avatarId;
+
+    public Long getId() {
+        return id;
     }
 
-    public void setBuckets(List<BucketDTO> buckets) {
-        this.buckets = buckets;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public List<ProductsDTO> getProducts() {
-        return products;
+    public Roles getRoles() {
+        return roles;
     }
 
-    public void setProducts(List<ProductsDTO> products) {
-        this.products = products;
+    public void setRoles(Roles roles) {
+        this.roles = roles;
     }
 
-    public List<CommentsDTO> getComments() {
-        return comments;
+    public Long getLoginOptionsId() {
+        return loginOptionsId;
     }
 
-    public void setComments(List<CommentsDTO> comments) {
-        this.comments = comments;
+    public void setLoginOptionsId(Long loginOptionsId) {
+        this.loginOptionsId = loginOptionsId;
     }
 
-    public List<Consignment> getConsignments() {
-        return consignments;
+    public Long getPersonalInfoId() {
+        return personalInfoId;
     }
 
-    public void setConsignments(List<Consignment> consignments) {
-        this.consignments = consignments;
+    public void setPersonalInfoId(Long personalInformationId) {
+        this.personalInfoId = personalInformationId;
+    }
+
+    public Long getAvatarId() {
+        return avatarId;
+    }
+
+    public void setAvatarId(Long avatarId) {
+        this.avatarId = avatarId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        ManagerDTO managerDTO = (ManagerDTO) o;
+        if(managerDTO.getId() == null || getId() == null) {
+            return false;
+        }
+        return Objects.equals(getId(), managerDTO.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getId());
     }
 
     @Override
     public String toString() {
         return "ManagerDTO{" +
-            "buckets=" + buckets +
-            ", products=" + products +
-            ", comments=" + comments +
-            ", consignments=" + consignments +
-            '}';
+            "id=" + getId() +
+            ", roles='" + getRoles() + "'" +
+            "}";
     }
 }

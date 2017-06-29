@@ -4,11 +4,14 @@ import com.social.eshop.service.CommentsService;
 import com.social.eshop.domain.Comments;
 import com.social.eshop.repository.CommentsRepository;
 import com.social.eshop.repository.search.CommentsSearchRepository;
+import com.social.eshop.service.dto.CommentsDTO;
+import com.social.eshop.service.mapper.CommentsMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -26,24 +29,29 @@ public class CommentsServiceImpl implements CommentsService{
 
     private final CommentsRepository commentsRepository;
 
+    private final CommentsMapper commentsMapper;
+
     private final CommentsSearchRepository commentsSearchRepository;
 
-    public CommentsServiceImpl(CommentsRepository commentsRepository, CommentsSearchRepository commentsSearchRepository) {
+    public CommentsServiceImpl(CommentsRepository commentsRepository, CommentsMapper commentsMapper, CommentsSearchRepository commentsSearchRepository) {
         this.commentsRepository = commentsRepository;
+        this.commentsMapper = commentsMapper;
         this.commentsSearchRepository = commentsSearchRepository;
     }
 
     /**
      * Save a comments.
      *
-     * @param comments the entity to save
+     * @param commentsDTO the entity to save
      * @return the persisted entity
      */
     @Override
-    public Comments save(Comments comments) {
-        log.debug("Request to save Comments : {}", comments);
-        Comments result = commentsRepository.save(comments);
-        commentsSearchRepository.save(result);
+    public CommentsDTO save(CommentsDTO commentsDTO) {
+        log.debug("Request to save Comments : {}", commentsDTO);
+        Comments comments = commentsMapper.toEntity(commentsDTO);
+        comments = commentsRepository.save(comments);
+        CommentsDTO result = commentsMapper.toDto(comments);
+        commentsSearchRepository.save(comments);
         return result;
     }
 
@@ -54,9 +62,11 @@ public class CommentsServiceImpl implements CommentsService{
      */
     @Override
     @Transactional(readOnly = true)
-    public List<Comments> findAll() {
+    public List<CommentsDTO> findAll() {
         log.debug("Request to get all Comments");
-        return commentsRepository.findAll();
+        return commentsRepository.findAll().stream()
+            .map(commentsMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
     }
 
     /**
@@ -67,9 +77,10 @@ public class CommentsServiceImpl implements CommentsService{
      */
     @Override
     @Transactional(readOnly = true)
-    public Comments findOne(Long id) {
+    public CommentsDTO findOne(Long id) {
         log.debug("Request to get Comments : {}", id);
-        return commentsRepository.findOne(id);
+        Comments comments = commentsRepository.findOne(id);
+        return commentsMapper.toDto(comments);
     }
 
     /**
@@ -92,10 +103,11 @@ public class CommentsServiceImpl implements CommentsService{
      */
     @Override
     @Transactional(readOnly = true)
-    public List<Comments> search(String query) {
+    public List<CommentsDTO> search(String query) {
         log.debug("Request to search Comments for query {}", query);
         return StreamSupport
             .stream(commentsSearchRepository.search(queryStringQuery(query)).spliterator(), false)
+            .map(commentsMapper::toDto)
             .collect(Collectors.toList());
     }
 }

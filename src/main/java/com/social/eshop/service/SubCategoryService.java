@@ -1,6 +1,6 @@
 package com.social.eshop.service;
 
-import com.social.eshop.domain.SubCategory;
+import com.social.eshop.service.dto.SubCategoryDTO;
 import java.util.List;
 
 /**
@@ -11,17 +11,17 @@ public interface SubCategoryService {
     /**
      * Save a subCategory.
      *
-     * @param subCategory the entity to save
+     * @param subCategoryDTO the entity to save
      * @return the persisted entity
      */
-    SubCategory save(SubCategory subCategory);
+    SubCategoryDTO save(SubCategoryDTO subCategoryDTO);
 
     /**
      *  Get all the subCategories.
      *
      *  @return the list of entities
      */
-    List<SubCategory> findAll();
+    List<SubCategoryDTO> findAll();
 
     /**
      *  Get the "id" subCategory.
@@ -29,7 +29,7 @@ public interface SubCategoryService {
      *  @param id the id of the entity
      *  @return the entity
      */
-    SubCategory findOne(Long id);
+    SubCategoryDTO findOne(Long id);
 
     /**
      *  Delete the "id" subCategory.
@@ -45,5 +45,5 @@ public interface SubCategoryService {
      *  
      *  @return the list of entities
      */
-    List<SubCategory> search(String query);
+    List<SubCategoryDTO> search(String query);
 }

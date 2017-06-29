@@ -49,11 +49,11 @@ export class BucketDialogComponent implements OnInit {
         this.addressShippingService
             .query({filter: 'bucket-is-null'})
             .subscribe((res: ResponseWrapper) => {
-                if (!this.bucket.addressShipping || !this.bucket.addressShipping.id) {
+                if (!this.bucket.addressShippingId) {
                     this.addressshippings = res.json;
                 } else {
                     this.addressShippingService
-                        .find(this.bucket.addressShipping.id)
+                        .find(this.bucket.addressShippingId)
                         .subscribe((subRes: AddressShipping) => {
                             this.addressshippings = [subRes].concat(res.json);
                         }, (subRes: ResponseWrapper) => this.onError(subRes.json));

@@ -30,9 +30,11 @@
             <thead>
             <tr>
             <th><span>ID</span></th>
-            <th><span>Color</span></th>
-            <th><span>Weight</span></th>
             <th><span>Metal</span></th>
+            <th><span>Color</span></th>
+            <th><span>Stone</span></th>
+            <th><span>Marking</span></th>
+            <th><span>Weight</span></th>
             <th><span>Size</span></th>
             <th><span>Length</span></th>
             <th></th>
@@ -41,9 +43,11 @@
             <tbody>
             <tr *ngFor="let options of options ;trackBy: trackId">
                 <td><a [routerLink]="['../options', options.id ]">{{options.id}}</a></td>
-                <td>{{options.color}}</td>
-                <td>{{options.weight}}</td>
                 <td>{{options.metal}}</td>
+                <td>{{options.color}}</td>
+                <td>{{options.stone}}</td>
+                <td>{{options.marking}}</td>
+                <td>{{options.weight}}</td>
                 <td>{{options.size}}</td>
                 <td>{{options.length}}</td>
                 <td class="text-right">

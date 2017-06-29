@@ -1,9 +1,9 @@
 package com.social.eshop.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-import com.social.eshop.domain.PersonalInformation;
 import com.social.eshop.service.PersonalInformationService;
 import com.social.eshop.web.rest.util.HeaderUtil;
+import com.social.eshop.service.dto.PersonalInformationDTO;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,18 +40,18 @@ public class PersonalInformationResource {
     /**
      * POST  /personal-informations : Create a new personalInformation.
      *
-     * @param personalInformation the personalInformation to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new personalInformation, or with status 400 (Bad Request) if the personalInformation has already an ID
+     * @param personalInformationDTO the personalInformationDTO to create
+     * @return the ResponseEntity with status 201 (Created) and with body the new personalInformationDTO, or with status 400 (Bad Request) if the personalInformation has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/personal-informations")
     @Timed
-    public ResponseEntity<PersonalInformation> createPersonalInformation(@Valid @RequestBody PersonalInformation personalInformation) throws URISyntaxException {
-        log.debug("REST request to save PersonalInformation : {}", personalInformation);
-        if (personalInformation.getId() != null) {
+    public ResponseEntity<PersonalInformationDTO> createPersonalInformation(@Valid @RequestBody PersonalInformationDTO personalInformationDTO) throws URISyntaxException {
+        log.debug("REST request to save PersonalInformation : {}", personalInformationDTO);
+        if (personalInformationDTO.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new personalInformation cannot already have an ID")).body(null);
         }
-        PersonalInformation result = personalInformationService.save(personalInformation);
+        PersonalInformationDTO result = personalInformationService.save(personalInformationDTO);
         return ResponseEntity.created(new URI("/api/personal-informations/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -60,22 +60,22 @@ public class PersonalInformationResource {
     /**
      * PUT  /personal-informations : Updates an existing personalInformation.
      *
-     * @param personalInformation the personalInformation to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated personalInformation,
-     * or with status 400 (Bad Request) if the personalInformation is not valid,
-     * or with status 500 (Internal Server Error) if the personalInformation couldn't be updated
+     * @param personalInformationDTO the personalInformationDTO to update
+     * @return the ResponseEntity with status 200 (OK) and with body the updated personalInformationDTO,
+     * or with status 400 (Bad Request) if the personalInformationDTO is not valid,
+     * or with status 500 (Internal Server Error) if the personalInformationDTO couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/personal-informations")
     @Timed
-    public ResponseEntity<PersonalInformation> updatePersonalInformation(@Valid @RequestBody PersonalInformation personalInformation) throws URISyntaxException {
-        log.debug("REST request to update PersonalInformation : {}", personalInformation);
-        if (personalInformation.getId() == null) {
-            return createPersonalInformation(personalInformation);
+    public ResponseEntity<PersonalInformationDTO> updatePersonalInformation(@Valid @RequestBody PersonalInformationDTO personalInformationDTO) throws URISyntaxException {
+        log.debug("REST request to update PersonalInformation : {}", personalInformationDTO);
+        if (personalInformationDTO.getId() == null) {
+            return createPersonalInformation(personalInformationDTO);
         }
-        PersonalInformation result = personalInformationService.save(personalInformation);
+        PersonalInformationDTO result = personalInformationService.save(personalInformationDTO);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, personalInformation.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, personalInformationDTO.getId().toString()))
             .body(result);
     }
 
@@ -86,7 +86,7 @@ public class PersonalInformationResource {
      */
     @GetMapping("/personal-informations")
     @Timed
-    public List<PersonalInformation> getAllPersonalInformations() {
+    public List<PersonalInformationDTO> getAllPersonalInformations() {
         log.debug("REST request to get all PersonalInformations");
         return personalInformationService.findAll();
     }
@@ -94,21 +94,21 @@ public class PersonalInformationResource {
     /**
      * GET  /personal-informations/:id : get the "id" personalInformation.
      *
-     * @param id the id of the personalInformation to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the personalInformation, or with status 404 (Not Found)
+     * @param id the id of the personalInformationDTO to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the personalInformationDTO, or with status 404 (Not Found)
      */
     @GetMapping("/personal-informations/{id}")
     @Timed
-    public ResponseEntity<PersonalInformation> getPersonalInformation(@PathVariable Long id) {
+    public ResponseEntity<PersonalInformationDTO> getPersonalInformation(@PathVariable Long id) {
         log.debug("REST request to get PersonalInformation : {}", id);
-        PersonalInformation personalInformation = personalInformationService.findOne(id);
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(personalInformation));
+        PersonalInformationDTO personalInformationDTO = personalInformationService.findOne(id);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(personalInformationDTO));
     }
 
     /**
      * DELETE  /personal-informations/:id : delete the "id" personalInformation.
      *
-     * @param id the id of the personalInformation to delete
+     * @param id the id of the personalInformationDTO to delete
      * @return the ResponseEntity with status 200 (OK)
      */
     @DeleteMapping("/personal-informations/{id}")
@@ -128,7 +128,7 @@ public class PersonalInformationResource {
      */
     @GetMapping("/_search/personal-informations")
     @Timed
-    public List<PersonalInformation> searchPersonalInformations(@RequestParam String query) {
+    public List<PersonalInformationDTO> searchPersonalInformations(@RequestParam String query) {
         log.debug("REST request to search PersonalInformations for query {}", query);
         return personalInformationService.search(query);
     }

@@ -1,9 +1,9 @@
 package com.social.eshop.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-import com.social.eshop.domain.Seen;
 import com.social.eshop.service.SeenService;
 import com.social.eshop.web.rest.util.HeaderUtil;
+import com.social.eshop.service.dto.SeenDTO;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,18 +39,18 @@ public class SeenResource {
     /**
      * POST  /seens : Create a new seen.
      *
-     * @param seen the seen to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new seen, or with status 400 (Bad Request) if the seen has already an ID
+     * @param seenDTO the seenDTO to create
+     * @return the ResponseEntity with status 201 (Created) and with body the new seenDTO, or with status 400 (Bad Request) if the seen has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/seens")
     @Timed
-    public ResponseEntity<Seen> createSeen(@RequestBody Seen seen) throws URISyntaxException {
-        log.debug("REST request to save Seen : {}", seen);
-        if (seen.getId() != null) {
+    public ResponseEntity<SeenDTO> createSeen(@RequestBody SeenDTO seenDTO) throws URISyntaxException {
+        log.debug("REST request to save Seen : {}", seenDTO);
+        if (seenDTO.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new seen cannot already have an ID")).body(null);
         }
-        Seen result = seenService.save(seen);
+        SeenDTO result = seenService.save(seenDTO);
         return ResponseEntity.created(new URI("/api/seens/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -59,22 +59,22 @@ public class SeenResource {
     /**
      * PUT  /seens : Updates an existing seen.
      *
-     * @param seen the seen to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated seen,
-     * or with status 400 (Bad Request) if the seen is not valid,
-     * or with status 500 (Internal Server Error) if the seen couldn't be updated
+     * @param seenDTO the seenDTO to update
+     * @return the ResponseEntity with status 200 (OK) and with body the updated seenDTO,
+     * or with status 400 (Bad Request) if the seenDTO is not valid,
+     * or with status 500 (Internal Server Error) if the seenDTO couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/seens")
     @Timed
-    public ResponseEntity<Seen> updateSeen(@RequestBody Seen seen) throws URISyntaxException {
-        log.debug("REST request to update Seen : {}", seen);
-        if (seen.getId() == null) {
-            return createSeen(seen);
+    public ResponseEntity<SeenDTO> updateSeen(@RequestBody SeenDTO seenDTO) throws URISyntaxException {
+        log.debug("REST request to update Seen : {}", seenDTO);
+        if (seenDTO.getId() == null) {
+            return createSeen(seenDTO);
         }
-        Seen result = seenService.save(seen);
+        SeenDTO result = seenService.save(seenDTO);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, seen.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, seenDTO.getId().toString()))
             .body(result);
     }
 
@@ -85,7 +85,7 @@ public class SeenResource {
      */
     @GetMapping("/seens")
     @Timed
-    public List<Seen> getAllSeens() {
+    public List<SeenDTO> getAllSeens() {
         log.debug("REST request to get all Seens");
         return seenService.findAll();
     }
@@ -93,21 +93,21 @@ public class SeenResource {
     /**
      * GET  /seens/:id : get the "id" seen.
      *
-     * @param id the id of the seen to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the seen, or with status 404 (Not Found)
+     * @param id the id of the seenDTO to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the seenDTO, or with status 404 (Not Found)
      */
     @GetMapping("/seens/{id}")
     @Timed
-    public ResponseEntity<Seen> getSeen(@PathVariable Long id) {
+    public ResponseEntity<SeenDTO> getSeen(@PathVariable Long id) {
         log.debug("REST request to get Seen : {}", id);
-        Seen seen = seenService.findOne(id);
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(seen));
+        SeenDTO seenDTO = seenService.findOne(id);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(seenDTO));
     }
 
     /**
      * DELETE  /seens/:id : delete the "id" seen.
      *
-     * @param id the id of the seen to delete
+     * @param id the id of the seenDTO to delete
      * @return the ResponseEntity with status 200 (OK)
      */
     @DeleteMapping("/seens/{id}")
@@ -127,7 +127,7 @@ public class SeenResource {
      */
     @GetMapping("/_search/seens")
     @Timed
-    public List<Seen> searchSeens(@RequestParam String query) {
+    public List<SeenDTO> searchSeens(@RequestParam String query) {
         log.debug("REST request to search Seens for query {}", query);
         return seenService.search(query);
     }

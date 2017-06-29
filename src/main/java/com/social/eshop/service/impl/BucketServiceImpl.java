@@ -4,6 +4,8 @@ import com.social.eshop.service.BucketService;
 import com.social.eshop.domain.Bucket;
 import com.social.eshop.repository.BucketRepository;
 import com.social.eshop.repository.search.BucketSearchRepository;
+import com.social.eshop.service.dto.BucketDTO;
+import com.social.eshop.service.mapper.BucketMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -25,24 +27,29 @@ public class BucketServiceImpl implements BucketService{
 
     private final BucketRepository bucketRepository;
 
+    private final BucketMapper bucketMapper;
+
     private final BucketSearchRepository bucketSearchRepository;
 
-    public BucketServiceImpl(BucketRepository bucketRepository, BucketSearchRepository bucketSearchRepository) {
+    public BucketServiceImpl(BucketRepository bucketRepository, BucketMapper bucketMapper, BucketSearchRepository bucketSearchRepository) {
         this.bucketRepository = bucketRepository;
+        this.bucketMapper = bucketMapper;
         this.bucketSearchRepository = bucketSearchRepository;
     }
 
     /**
      * Save a bucket.
      *
-     * @param bucket the entity to save
+     * @param bucketDTO the entity to save
      * @return the persisted entity
      */
     @Override
-    public Bucket save(Bucket bucket) {
-        log.debug("Request to save Bucket : {}", bucket);
-        Bucket result = bucketRepository.save(bucket);
-        bucketSearchRepository.save(result);
+    public BucketDTO save(BucketDTO bucketDTO) {
+        log.debug("Request to save Bucket : {}", bucketDTO);
+        Bucket bucket = bucketMapper.toEntity(bucketDTO);
+        bucket = bucketRepository.save(bucket);
+        BucketDTO result = bucketMapper.toDto(bucket);
+        bucketSearchRepository.save(bucket);
         return result;
     }
 
@@ -54,9 +61,10 @@ public class BucketServiceImpl implements BucketService{
      */
     @Override
     @Transactional(readOnly = true)
-    public Page<Bucket> findAll(Pageable pageable) {
+    public Page<BucketDTO> findAll(Pageable pageable) {
         log.debug("Request to get all Buckets");
-        return bucketRepository.findAll(pageable);
+        return bucketRepository.findAll(pageable)
+            .map(bucketMapper::toDto);
     }
 
     /**
@@ -67,9 +75,10 @@ public class BucketServiceImpl implements BucketService{
      */
     @Override
     @Transactional(readOnly = true)
-    public Bucket findOne(Long id) {
+    public BucketDTO findOne(Long id) {
         log.debug("Request to get Bucket : {}", id);
-        return bucketRepository.findOne(id);
+        Bucket bucket = bucketRepository.findOne(id);
+        return bucketMapper.toDto(bucket);
     }
 
     /**
@@ -93,9 +102,9 @@ public class BucketServiceImpl implements BucketService{
      */
     @Override
     @Transactional(readOnly = true)
-    public Page<Bucket> search(String query, Pageable pageable) {
+    public Page<BucketDTO> search(String query, Pageable pageable) {
         log.debug("Request to search for a page of Buckets for query {}", query);
         Page<Bucket> result = bucketSearchRepository.search(queryStringQuery(query), pageable);
-        return result;
+        return result.map(bucketMapper::toDto);
     }
 }

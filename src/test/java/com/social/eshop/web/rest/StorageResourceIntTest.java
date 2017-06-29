@@ -6,6 +6,8 @@ import com.social.eshop.domain.Storage;
 import com.social.eshop.repository.StorageRepository;
 import com.social.eshop.service.StorageService;
 import com.social.eshop.repository.search.StorageSearchRepository;
+import com.social.eshop.service.dto.StorageDTO;
+import com.social.eshop.service.mapper.StorageMapper;
 import com.social.eshop.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -50,6 +52,9 @@ public class StorageResourceIntTest {
 
     @Autowired
     private StorageRepository storageRepository;
+
+    @Autowired
+    private StorageMapper storageMapper;
 
     @Autowired
     private StorageService storageService;
@@ -109,9 +114,10 @@ public class StorageResourceIntTest {
         int databaseSizeBeforeCreate = storageRepository.findAll().size();
 
         // Create the Storage
+        StorageDTO storageDTO = storageMapper.toDto(storage);
         restStorageMockMvc.perform(post("/api/storages")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(storage)))
+            .content(TestUtil.convertObjectToJsonBytes(storageDTO)))
             .andExpect(status().isCreated());
 
         // Validate the Storage in the database
@@ -134,11 +140,12 @@ public class StorageResourceIntTest {
 
         // Create the Storage with an existing ID
         storage.setId(1L);
+        StorageDTO storageDTO = storageMapper.toDto(storage);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restStorageMockMvc.perform(post("/api/storages")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(storage)))
+            .content(TestUtil.convertObjectToJsonBytes(storageDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -154,10 +161,11 @@ public class StorageResourceIntTest {
         storage.setName(null);
 
         // Create the Storage, which fails.
+        StorageDTO storageDTO = storageMapper.toDto(storage);
 
         restStorageMockMvc.perform(post("/api/storages")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(storage)))
+            .content(TestUtil.convertObjectToJsonBytes(storageDTO)))
             .andExpect(status().isBadRequest());
 
         List<Storage> storageList = storageRepository.findAll();
@@ -172,10 +180,11 @@ public class StorageResourceIntTest {
         storage.setActualite(null);
 
         // Create the Storage, which fails.
+        StorageDTO storageDTO = storageMapper.toDto(storage);
 
         restStorageMockMvc.perform(post("/api/storages")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(storage)))
+            .content(TestUtil.convertObjectToJsonBytes(storageDTO)))
             .andExpect(status().isBadRequest());
 
         List<Storage> storageList = storageRepository.findAll();
@@ -190,10 +199,11 @@ public class StorageResourceIntTest {
         storage.setQuantity(null);
 
         // Create the Storage, which fails.
+        StorageDTO storageDTO = storageMapper.toDto(storage);
 
         restStorageMockMvc.perform(post("/api/storages")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(storage)))
+            .content(TestUtil.convertObjectToJsonBytes(storageDTO)))
             .andExpect(status().isBadRequest());
 
         List<Storage> storageList = storageRepository.findAll();
@@ -244,8 +254,8 @@ public class StorageResourceIntTest {
     @Transactional
     public void updateStorage() throws Exception {
         // Initialize the database
-        storageService.save(storage);
-
+        storageRepository.saveAndFlush(storage);
+        storageSearchRepository.save(storage);
         int databaseSizeBeforeUpdate = storageRepository.findAll().size();
 
         // Update the storage
@@ -254,10 +264,11 @@ public class StorageResourceIntTest {
             .name(UPDATED_NAME)
             .actualite(UPDATED_ACTUALITE)
             .quantity(UPDATED_QUANTITY);
+        StorageDTO storageDTO = storageMapper.toDto(updatedStorage);
 
         restStorageMockMvc.perform(put("/api/storages")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(updatedStorage)))
+            .content(TestUtil.convertObjectToJsonBytes(storageDTO)))
             .andExpect(status().isOk());
 
         // Validate the Storage in the database
@@ -279,11 +290,12 @@ public class StorageResourceIntTest {
         int databaseSizeBeforeUpdate = storageRepository.findAll().size();
 
         // Create the Storage
+        StorageDTO storageDTO = storageMapper.toDto(storage);
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
         restStorageMockMvc.perform(put("/api/storages")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(storage)))
+            .content(TestUtil.convertObjectToJsonBytes(storageDTO)))
             .andExpect(status().isCreated());
 
         // Validate the Storage in the database
@@ -295,8 +307,8 @@ public class StorageResourceIntTest {
     @Transactional
     public void deleteStorage() throws Exception {
         // Initialize the database
-        storageService.save(storage);
-
+        storageRepository.saveAndFlush(storage);
+        storageSearchRepository.save(storage);
         int databaseSizeBeforeDelete = storageRepository.findAll().size();
 
         // Get the storage
@@ -317,7 +329,8 @@ public class StorageResourceIntTest {
     @Transactional
     public void searchStorage() throws Exception {
         // Initialize the database
-        storageService.save(storage);
+        storageRepository.saveAndFlush(storage);
+        storageSearchRepository.save(storage);
 
         // Search the storage
         restStorageMockMvc.perform(get("/api/_search/storages?query=id:" + storage.getId()))
@@ -342,5 +355,28 @@ public class StorageResourceIntTest {
         assertThat(storage1).isNotEqualTo(storage2);
         storage1.setId(null);
         assertThat(storage1).isNotEqualTo(storage2);
+    }
+
+    @Test
+    @Transactional
+    public void dtoEqualsVerifier() throws Exception {
+        TestUtil.equalsVerifier(StorageDTO.class);
+        StorageDTO storageDTO1 = new StorageDTO();
+        storageDTO1.setId(1L);
+        StorageDTO storageDTO2 = new StorageDTO();
+        assertThat(storageDTO1).isNotEqualTo(storageDTO2);
+        storageDTO2.setId(storageDTO1.getId());
+        assertThat(storageDTO1).isEqualTo(storageDTO2);
+        storageDTO2.setId(2L);
+        assertThat(storageDTO1).isNotEqualTo(storageDTO2);
+        storageDTO1.setId(null);
+        assertThat(storageDTO1).isNotEqualTo(storageDTO2);
+    }
+
+    @Test
+    @Transactional
+    public void testEntityFromId() {
+        assertThat(storageMapper.fromId(42L).getId()).isEqualTo(42);
+        assertThat(storageMapper.fromId(null)).isNull();
     }
 }

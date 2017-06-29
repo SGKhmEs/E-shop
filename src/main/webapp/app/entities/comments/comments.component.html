@@ -43,13 +43,13 @@
                 <td>{{comments.comments}}</td>
                 <td>{{comments.date | date:'medium'}}</td>
                 <td>
-                    <div *ngIf="comments.customer">
-                        <a [routerLink]="['../customer', comments.customer?.id ]" >{{comments.customer?.id}}</a>
+                    <div *ngIf="comments.customerId">
+                        <a [routerLink]="['../customer', comments.customerId  ]" >{{comments.customerId}}</a>
                     </div>
                 </td>
                 <td>
-                    <div *ngIf="comments.products">
-                        <a [routerLink]="['../products', comments.products?.id ]" >{{comments.products?.id}}</a>
+                    <div *ngIf="comments.productsId">
+                        <a [routerLink]="['../products', comments.productsId  ]" >{{comments.productsId}}</a>
                     </div>
                 </td>
                 <td class="text-right">

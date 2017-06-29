@@ -37,9 +37,9 @@
             <th jhiSortBy="count"><span>Count</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="status"><span>Status</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="consignmentNote"><span>Consignment Note</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="manager.id"><span>Manager</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="addressShipping.id"><span>Address Shipping</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="customer.id"><span>Customer</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="managerId"><span>Manager</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="addressShippingId"><span>Address Shipping</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="customerId"><span>Customer</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -54,18 +54,18 @@
                 <td>{{bucket.status}}</td>
                 <td>{{bucket.consignmentNote}}</td>
                 <td>
-                    <div *ngIf="bucket.manager">
-                        <a [routerLink]="['../manager', bucket.manager?.id ]" >{{bucket.manager?.id}}</a>
+                    <div *ngIf="bucket.managerId">
+                        <a [routerLink]="['../manager', bucket.managerId  ]" >{{bucket.managerId}}</a>
                     </div>
                 </td>
                 <td>
-                    <div *ngIf="bucket.addressShipping">
-                        <a [routerLink]="['../address-shipping', bucket.addressShipping?.id ]" >{{bucket.addressShipping?.id}}</a>
+                    <div *ngIf="bucket.addressShippingId">
+                        <a [routerLink]="['../address-shipping', bucket.addressShippingId  ]" >{{bucket.addressShippingId}}</a>
                     </div>
                 </td>
                 <td>
-                    <div *ngIf="bucket.customer">
-                        <a [routerLink]="['../customer', bucket.customer?.id ]" >{{bucket.customer?.id}}</a>
+                    <div *ngIf="bucket.customerId">
+                        <a [routerLink]="['../customer', bucket.customerId  ]" >{{bucket.customerId}}</a>
                     </div>
                 </td>
                 <td class="text-right">

@@ -4,7 +4,6 @@ import { Observable, Observer, Subscription } from 'rxjs/Rx';
 
 import { CSRFService } from '../auth/csrf.service';
 import { WindowRef } from './window.service';
-import { AuthServerProvider } from '../auth/auth-jwt.service';
 
 import * as SockJS from 'sockjs-client';
 import * as Stomp from 'webstomp-client';
@@ -22,7 +21,6 @@ export class JhiTrackerService {
 
     constructor(
         private router: Router,
-        private authServerProvider: AuthServerProvider,
         private $window: WindowRef,
         private csrfService: CSRFService
     ) {
@@ -38,13 +36,10 @@ export class JhiTrackerService {
         const loc = this.$window.nativeWindow.location;
         let url;
         url = '//' + loc.host + loc.pathname + 'websocket/tracker';
-        const authToken = this.authServerProvider.getToken();
-        if (authToken) {
-            url += '?access_token=' + authToken;
-        }
         const socket = new SockJS(url);
         this.stompClient = Stomp.over(socket);
         const headers = {};
+        headers['X-XSRF-TOKEN'] = this.csrfService.getCSRF('XSRF-TOKEN');
         this.stompClient.connect(headers, () => {
             this.connectedPromise('success');
             this.connectedPromise = null;

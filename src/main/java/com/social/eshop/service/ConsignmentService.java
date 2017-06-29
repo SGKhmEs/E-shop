@@ -1,6 +1,6 @@
 package com.social.eshop.service;
 
-import com.social.eshop.domain.Consignment;
+import com.social.eshop.service.dto.ConsignmentDTO;
 import java.util.List;
 
 /**
@@ -11,17 +11,17 @@ public interface ConsignmentService {
     /**
      * Save a consignment.
      *
-     * @param consignment the entity to save
+     * @param consignmentDTO the entity to save
      * @return the persisted entity
      */
-    Consignment save(Consignment consignment);
+    ConsignmentDTO save(ConsignmentDTO consignmentDTO);
 
     /**
      *  Get all the consignments.
      *
      *  @return the list of entities
      */
-    List<Consignment> findAll();
+    List<ConsignmentDTO> findAll();
 
     /**
      *  Get the "id" consignment.
@@ -29,7 +29,7 @@ public interface ConsignmentService {
      *  @param id the id of the entity
      *  @return the entity
      */
-    Consignment findOne(Long id);
+    ConsignmentDTO findOne(Long id);
 
     /**
      *  Delete the "id" consignment.
@@ -45,5 +45,5 @@ public interface ConsignmentService {
      *  
      *  @return the list of entities
      */
-    List<Consignment> search(String query);
+    List<ConsignmentDTO> search(String query);
 }

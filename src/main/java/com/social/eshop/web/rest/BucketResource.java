@@ -1,10 +1,10 @@
 package com.social.eshop.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-import com.social.eshop.domain.Bucket;
 import com.social.eshop.service.BucketService;
 import com.social.eshop.web.rest.util.HeaderUtil;
 import com.social.eshop.web.rest.util.PaginationUtil;
+import com.social.eshop.service.dto.BucketDTO;
 import io.swagger.annotations.ApiParam;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
@@ -45,18 +45,18 @@ public class BucketResource {
     /**
      * POST  /buckets : Create a new bucket.
      *
-     * @param bucket the bucket to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new bucket, or with status 400 (Bad Request) if the bucket has already an ID
+     * @param bucketDTO the bucketDTO to create
+     * @return the ResponseEntity with status 201 (Created) and with body the new bucketDTO, or with status 400 (Bad Request) if the bucket has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/buckets")
     @Timed
-    public ResponseEntity<Bucket> createBucket(@RequestBody Bucket bucket) throws URISyntaxException {
-        log.debug("REST request to save Bucket : {}", bucket);
-        if (bucket.getId() != null) {
+    public ResponseEntity<BucketDTO> createBucket(@RequestBody BucketDTO bucketDTO) throws URISyntaxException {
+        log.debug("REST request to save Bucket : {}", bucketDTO);
+        if (bucketDTO.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new bucket cannot already have an ID")).body(null);
         }
-        Bucket result = bucketService.save(bucket);
+        BucketDTO result = bucketService.save(bucketDTO);
         return ResponseEntity.created(new URI("/api/buckets/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -65,22 +65,22 @@ public class BucketResource {
     /**
      * PUT  /buckets : Updates an existing bucket.
      *
-     * @param bucket the bucket to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated bucket,
-     * or with status 400 (Bad Request) if the bucket is not valid,
-     * or with status 500 (Internal Server Error) if the bucket couldn't be updated
+     * @param bucketDTO the bucketDTO to update
+     * @return the ResponseEntity with status 200 (OK) and with body the updated bucketDTO,
+     * or with status 400 (Bad Request) if the bucketDTO is not valid,
+     * or with status 500 (Internal Server Error) if the bucketDTO couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/buckets")
     @Timed
-    public ResponseEntity<Bucket> updateBucket(@RequestBody Bucket bucket) throws URISyntaxException {
-        log.debug("REST request to update Bucket : {}", bucket);
-        if (bucket.getId() == null) {
-            return createBucket(bucket);
+    public ResponseEntity<BucketDTO> updateBucket(@RequestBody BucketDTO bucketDTO) throws URISyntaxException {
+        log.debug("REST request to update Bucket : {}", bucketDTO);
+        if (bucketDTO.getId() == null) {
+            return createBucket(bucketDTO);
         }
-        Bucket result = bucketService.save(bucket);
+        BucketDTO result = bucketService.save(bucketDTO);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, bucket.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, bucketDTO.getId().toString()))
             .body(result);
     }
 
@@ -92,9 +92,9 @@ public class BucketResource {
      */
     @GetMapping("/buckets")
     @Timed
-    public ResponseEntity<List<Bucket>> getAllBuckets(@ApiParam Pageable pageable) {
+    public ResponseEntity<List<BucketDTO>> getAllBuckets(@ApiParam Pageable pageable) {
         log.debug("REST request to get a page of Buckets");
-        Page<Bucket> page = bucketService.findAll(pageable);
+        Page<BucketDTO> page = bucketService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/buckets");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -102,21 +102,21 @@ public class BucketResource {
     /**
      * GET  /buckets/:id : get the "id" bucket.
      *
-     * @param id the id of the bucket to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the bucket, or with status 404 (Not Found)
+     * @param id the id of the bucketDTO to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the bucketDTO, or with status 404 (Not Found)
      */
     @GetMapping("/buckets/{id}")
     @Timed
-    public ResponseEntity<Bucket> getBucket(@PathVariable Long id) {
+    public ResponseEntity<BucketDTO> getBucket(@PathVariable Long id) {
         log.debug("REST request to get Bucket : {}", id);
-        Bucket bucket = bucketService.findOne(id);
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(bucket));
+        BucketDTO bucketDTO = bucketService.findOne(id);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(bucketDTO));
     }
 
     /**
      * DELETE  /buckets/:id : delete the "id" bucket.
      *
-     * @param id the id of the bucket to delete
+     * @param id the id of the bucketDTO to delete
      * @return the ResponseEntity with status 200 (OK)
      */
     @DeleteMapping("/buckets/{id}")
@@ -137,9 +137,9 @@ public class BucketResource {
      */
     @GetMapping("/_search/buckets")
     @Timed
-    public ResponseEntity<List<Bucket>> searchBuckets(@RequestParam String query, @ApiParam Pageable pageable) {
+    public ResponseEntity<List<BucketDTO>> searchBuckets(@RequestParam String query, @ApiParam Pageable pageable) {
         log.debug("REST request to search for a page of Buckets for query {}", query);
-        Page<Bucket> page = bucketService.search(query, pageable);
+        Page<BucketDTO> page = bucketService.search(query, pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/buckets");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

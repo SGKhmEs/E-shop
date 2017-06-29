@@ -6,6 +6,8 @@ import com.social.eshop.domain.LoginOptions;
 import com.social.eshop.repository.LoginOptionsRepository;
 import com.social.eshop.service.LoginOptionsService;
 import com.social.eshop.repository.search.LoginOptionsSearchRepository;
+import com.social.eshop.service.dto.LoginOptionsDTO;
+import com.social.eshop.service.mapper.LoginOptionsMapper;
 import com.social.eshop.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -47,6 +49,9 @@ public class LoginOptionsResourceIntTest {
 
     @Autowired
     private LoginOptionsRepository loginOptionsRepository;
+
+    @Autowired
+    private LoginOptionsMapper loginOptionsMapper;
 
     @Autowired
     private LoginOptionsService loginOptionsService;
@@ -105,9 +110,10 @@ public class LoginOptionsResourceIntTest {
         int databaseSizeBeforeCreate = loginOptionsRepository.findAll().size();
 
         // Create the LoginOptions
+        LoginOptionsDTO loginOptionsDTO = loginOptionsMapper.toDto(loginOptions);
         restLoginOptionsMockMvc.perform(post("/api/login-options")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(loginOptions)))
+            .content(TestUtil.convertObjectToJsonBytes(loginOptionsDTO)))
             .andExpect(status().isCreated());
 
         // Validate the LoginOptions in the database
@@ -129,11 +135,12 @@ public class LoginOptionsResourceIntTest {
 
         // Create the LoginOptions with an existing ID
         loginOptions.setId(1L);
+        LoginOptionsDTO loginOptionsDTO = loginOptionsMapper.toDto(loginOptions);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restLoginOptionsMockMvc.perform(post("/api/login-options")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(loginOptions)))
+            .content(TestUtil.convertObjectToJsonBytes(loginOptionsDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -149,10 +156,11 @@ public class LoginOptionsResourceIntTest {
         loginOptions.setLogin(null);
 
         // Create the LoginOptions, which fails.
+        LoginOptionsDTO loginOptionsDTO = loginOptionsMapper.toDto(loginOptions);
 
         restLoginOptionsMockMvc.perform(post("/api/login-options")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(loginOptions)))
+            .content(TestUtil.convertObjectToJsonBytes(loginOptionsDTO)))
             .andExpect(status().isBadRequest());
 
         List<LoginOptions> loginOptionsList = loginOptionsRepository.findAll();
@@ -167,10 +175,11 @@ public class LoginOptionsResourceIntTest {
         loginOptions.setPassword(null);
 
         // Create the LoginOptions, which fails.
+        LoginOptionsDTO loginOptionsDTO = loginOptionsMapper.toDto(loginOptions);
 
         restLoginOptionsMockMvc.perform(post("/api/login-options")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(loginOptions)))
+            .content(TestUtil.convertObjectToJsonBytes(loginOptionsDTO)))
             .andExpect(status().isBadRequest());
 
         List<LoginOptions> loginOptionsList = loginOptionsRepository.findAll();
@@ -219,8 +228,8 @@ public class LoginOptionsResourceIntTest {
     @Transactional
     public void updateLoginOptions() throws Exception {
         // Initialize the database
-        loginOptionsService.save(loginOptions);
-
+        loginOptionsRepository.saveAndFlush(loginOptions);
+        loginOptionsSearchRepository.save(loginOptions);
         int databaseSizeBeforeUpdate = loginOptionsRepository.findAll().size();
 
         // Update the loginOptions
@@ -228,10 +237,11 @@ public class LoginOptionsResourceIntTest {
         updatedLoginOptions
             .login(UPDATED_LOGIN)
             .password(UPDATED_PASSWORD);
+        LoginOptionsDTO loginOptionsDTO = loginOptionsMapper.toDto(updatedLoginOptions);
 
         restLoginOptionsMockMvc.perform(put("/api/login-options")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(updatedLoginOptions)))
+            .content(TestUtil.convertObjectToJsonBytes(loginOptionsDTO)))
             .andExpect(status().isOk());
 
         // Validate the LoginOptions in the database
@@ -252,11 +262,12 @@ public class LoginOptionsResourceIntTest {
         int databaseSizeBeforeUpdate = loginOptionsRepository.findAll().size();
 
         // Create the LoginOptions
+        LoginOptionsDTO loginOptionsDTO = loginOptionsMapper.toDto(loginOptions);
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
         restLoginOptionsMockMvc.perform(put("/api/login-options")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(loginOptions)))
+            .content(TestUtil.convertObjectToJsonBytes(loginOptionsDTO)))
             .andExpect(status().isCreated());
 
         // Validate the LoginOptions in the database
@@ -268,8 +279,8 @@ public class LoginOptionsResourceIntTest {
     @Transactional
     public void deleteLoginOptions() throws Exception {
         // Initialize the database
-        loginOptionsService.save(loginOptions);
-
+        loginOptionsRepository.saveAndFlush(loginOptions);
+        loginOptionsSearchRepository.save(loginOptions);
         int databaseSizeBeforeDelete = loginOptionsRepository.findAll().size();
 
         // Get the loginOptions
@@ -290,7 +301,8 @@ public class LoginOptionsResourceIntTest {
     @Transactional
     public void searchLoginOptions() throws Exception {
         // Initialize the database
-        loginOptionsService.save(loginOptions);
+        loginOptionsRepository.saveAndFlush(loginOptions);
+        loginOptionsSearchRepository.save(loginOptions);
 
         // Search the loginOptions
         restLoginOptionsMockMvc.perform(get("/api/_search/login-options?query=id:" + loginOptions.getId()))
@@ -314,5 +326,28 @@ public class LoginOptionsResourceIntTest {
         assertThat(loginOptions1).isNotEqualTo(loginOptions2);
         loginOptions1.setId(null);
         assertThat(loginOptions1).isNotEqualTo(loginOptions2);
+    }
+
+    @Test
+    @Transactional
+    public void dtoEqualsVerifier() throws Exception {
+        TestUtil.equalsVerifier(LoginOptionsDTO.class);
+        LoginOptionsDTO loginOptionsDTO1 = new LoginOptionsDTO();
+        loginOptionsDTO1.setId(1L);
+        LoginOptionsDTO loginOptionsDTO2 = new LoginOptionsDTO();
+        assertThat(loginOptionsDTO1).isNotEqualTo(loginOptionsDTO2);
+        loginOptionsDTO2.setId(loginOptionsDTO1.getId());
+        assertThat(loginOptionsDTO1).isEqualTo(loginOptionsDTO2);
+        loginOptionsDTO2.setId(2L);
+        assertThat(loginOptionsDTO1).isNotEqualTo(loginOptionsDTO2);
+        loginOptionsDTO1.setId(null);
+        assertThat(loginOptionsDTO1).isNotEqualTo(loginOptionsDTO2);
+    }
+
+    @Test
+    @Transactional
+    public void testEntityFromId() {
+        assertThat(loginOptionsMapper.fromId(42L).getId()).isEqualTo(42);
+        assertThat(loginOptionsMapper.fromId(null)).isNull();
     }
 }

@@ -4,11 +4,14 @@ import com.social.eshop.service.ManagerService;
 import com.social.eshop.domain.Manager;
 import com.social.eshop.repository.ManagerRepository;
 import com.social.eshop.repository.search.ManagerSearchRepository;
+import com.social.eshop.service.dto.ManagerDTO;
+import com.social.eshop.service.mapper.ManagerMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -26,24 +29,29 @@ public class ManagerServiceImpl implements ManagerService{
 
     private final ManagerRepository managerRepository;
 
+    private final ManagerMapper managerMapper;
+
     private final ManagerSearchRepository managerSearchRepository;
 
-    public ManagerServiceImpl(ManagerRepository managerRepository, ManagerSearchRepository managerSearchRepository) {
+    public ManagerServiceImpl(ManagerRepository managerRepository, ManagerMapper managerMapper, ManagerSearchRepository managerSearchRepository) {
         this.managerRepository = managerRepository;
+        this.managerMapper = managerMapper;
         this.managerSearchRepository = managerSearchRepository;
     }
 
     /**
      * Save a manager.
      *
-     * @param manager the entity to save
+     * @param managerDTO the entity to save
      * @return the persisted entity
      */
     @Override
-    public Manager save(Manager manager) {
-        log.debug("Request to save Manager : {}", manager);
-        Manager result = managerRepository.save(manager);
-        managerSearchRepository.save(result);
+    public ManagerDTO save(ManagerDTO managerDTO) {
+        log.debug("Request to save Manager : {}", managerDTO);
+        Manager manager = managerMapper.toEntity(managerDTO);
+        manager = managerRepository.save(manager);
+        ManagerDTO result = managerMapper.toDto(manager);
+        managerSearchRepository.save(manager);
         return result;
     }
 
@@ -54,9 +62,11 @@ public class ManagerServiceImpl implements ManagerService{
      */
     @Override
     @Transactional(readOnly = true)
-    public List<Manager> findAll() {
+    public List<ManagerDTO> findAll() {
         log.debug("Request to get all Managers");
-        return managerRepository.findAll();
+        return managerRepository.findAll().stream()
+            .map(managerMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
     }
 
     /**
@@ -67,9 +77,10 @@ public class ManagerServiceImpl implements ManagerService{
      */
     @Override
     @Transactional(readOnly = true)
-    public Manager findOne(Long id) {
+    public ManagerDTO findOne(Long id) {
         log.debug("Request to get Manager : {}", id);
-        return managerRepository.findOne(id);
+        Manager manager = managerRepository.findOne(id);
+        return managerMapper.toDto(manager);
     }
 
     /**
@@ -92,10 +103,11 @@ public class ManagerServiceImpl implements ManagerService{
      */
     @Override
     @Transactional(readOnly = true)
-    public List<Manager> search(String query) {
+    public List<ManagerDTO> search(String query) {
         log.debug("Request to search Managers for query {}", query);
         return StreamSupport
             .stream(managerSearchRepository.search(queryStringQuery(query)).spliterator(), false)
+            .map(managerMapper::toDto)
             .collect(Collectors.toList());
     }
 }

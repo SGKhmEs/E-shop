@@ -30,20 +30,20 @@
         </dd>
         <dt><span>Options</span></dt>
         <dd>
-            <div *ngIf="products.options">
-                <a [routerLink]="['/options', products.options?.id]">{{products.options?.id}}</a>
+            <div *ngIf="products.optionsId">
+                <a [routerLink]="['/options', products.optionsId]">{{products.optionsId}}</a>
             </div>
         </dd>
         <dt><span>Consignment</span></dt>
         <dd>
-            <div *ngIf="products.consignment">
-                <a [routerLink]="['/consignment', products.consignment?.id]">{{products.consignment?.id}}</a>
+            <div *ngIf="products.consignmentId">
+                <a [routerLink]="['/consignment', products.consignmentId]">{{products.consignmentId}}</a>
             </div>
         </dd>
         <dt><span>Sub Category</span></dt>
         <dd>
-            <div *ngIf="products.subCategory">
-                <a [routerLink]="['/sub-category', products.subCategory?.id]">{{products.subCategory?.id}}</a>
+            <div *ngIf="products.subCategoryId">
+                <a [routerLink]="['/sub-category', products.subCategoryId]">{{products.subCategoryId}}</a>
             </div>
         </dd>
     </dl>

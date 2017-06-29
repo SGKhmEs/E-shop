@@ -5,7 +5,6 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -25,24 +24,19 @@ public class Media implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @NotNull
-    @Column(name = "name", nullable = false)
+    @Column(name = "name")
     private String name;
 
-    @NotNull
-    @Column(name = "jhi_type", nullable = false)
+    @Column(name = "jhi_type")
     private String type;
 
-    @NotNull
-    @Column(name = "content_type", nullable = false)
+    @Column(name = "content_type")
     private String contentType;
 
-    @NotNull
-    @Column(name = "location", nullable = false)
+    @Column(name = "location")
     private String location;
 
-    @NotNull
-    @Column(name = "jhi_size", nullable = false)
+    @Column(name = "jhi_size")
     private String size;
 
     @ManyToOne

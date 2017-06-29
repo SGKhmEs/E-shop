@@ -22,9 +22,9 @@
             "fieldType": "LocalDate"
         }
     ],
-    "changelogDate": "20170623182234",
+    "changelogDate": "20170629140040",
     "entityTableName": "seen",
-    "dto": "no",
+    "dto": "mapstruct",
     "pagination": "no",
     "service": "serviceImpl"
 }

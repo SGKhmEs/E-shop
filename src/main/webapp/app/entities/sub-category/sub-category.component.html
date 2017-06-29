@@ -40,8 +40,8 @@
                 <td><a [routerLink]="['../sub-category', subCategory.id ]">{{subCategory.id}}</a></td>
                 <td>{{subCategory.name}}</td>
                 <td>
-                    <div *ngIf="subCategory.category">
-                        <a [routerLink]="['../category', subCategory.category?.id ]" >{{subCategory.category?.id}}</a>
+                    <div *ngIf="subCategory.categoryId">
+                        <a [routerLink]="['../category', subCategory.categoryId  ]" >{{subCategory.categoryId}}</a>
                     </div>
                 </td>
                 <td class="text-right">

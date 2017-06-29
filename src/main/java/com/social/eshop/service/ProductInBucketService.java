@@ -1,6 +1,6 @@
 package com.social.eshop.service;
 
-import com.social.eshop.domain.ProductInBucket;
+import com.social.eshop.service.dto.ProductInBucketDTO;
 import java.util.List;
 
 /**
@@ -11,17 +11,17 @@ public interface ProductInBucketService {
     /**
      * Save a productInBucket.
      *
-     * @param productInBucket the entity to save
+     * @param productInBucketDTO the entity to save
      * @return the persisted entity
      */
-    ProductInBucket save(ProductInBucket productInBucket);
+    ProductInBucketDTO save(ProductInBucketDTO productInBucketDTO);
 
     /**
      *  Get all the productInBuckets.
      *
      *  @return the list of entities
      */
-    List<ProductInBucket> findAll();
+    List<ProductInBucketDTO> findAll();
 
     /**
      *  Get the "id" productInBucket.
@@ -29,7 +29,7 @@ public interface ProductInBucketService {
      *  @param id the id of the entity
      *  @return the entity
      */
-    ProductInBucket findOne(Long id);
+    ProductInBucketDTO findOne(Long id);
 
     /**
      *  Delete the "id" productInBucket.
@@ -45,5 +45,5 @@ public interface ProductInBucketService {
      *  
      *  @return the list of entities
      */
-    List<ProductInBucket> search(String query);
+    List<ProductInBucketDTO> search(String query);
 }

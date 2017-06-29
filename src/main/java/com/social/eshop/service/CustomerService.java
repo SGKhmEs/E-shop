@@ -1,6 +1,6 @@
 package com.social.eshop.service;
 
-import com.social.eshop.domain.Customer;
+import com.social.eshop.service.dto.CustomerDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -12,10 +12,10 @@ public interface CustomerService {
     /**
      * Save a customer.
      *
-     * @param customer the entity to save
+     * @param customerDTO the entity to save
      * @return the persisted entity
      */
-    Customer save(Customer customer);
+    CustomerDTO save(CustomerDTO customerDTO);
 
     /**
      *  Get all the customers.
@@ -23,7 +23,7 @@ public interface CustomerService {
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    Page<Customer> findAll(Pageable pageable);
+    Page<CustomerDTO> findAll(Pageable pageable);
 
     /**
      *  Get the "id" customer.
@@ -31,7 +31,7 @@ public interface CustomerService {
      *  @param id the id of the entity
      *  @return the entity
      */
-    Customer findOne(Long id);
+    CustomerDTO findOne(Long id);
 
     /**
      *  Delete the "id" customer.
@@ -48,5 +48,5 @@ public interface CustomerService {
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    Page<Customer> search(String query, Pageable pageable);
+    Page<CustomerDTO> search(String query, Pageable pageable);
 }

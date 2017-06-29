@@ -43,9 +43,9 @@
             "fieldType": "String"
         }
     ],
-    "changelogDate": "20170623182236",
+    "changelogDate": "20170629140042",
     "entityTableName": "address",
-    "dto": "no",
+    "dto": "mapstruct",
     "pagination": "no",
     "service": "serviceImpl"
 }

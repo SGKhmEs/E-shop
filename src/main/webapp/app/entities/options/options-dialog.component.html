@@ -13,45 +13,29 @@
                    [(ngModel)]="options.id" readonly />
         </div>
         <div class="form-group">
+            <label class="form-control-label" for="field_metal">Metal</label>
+            <input type="text" class="form-control" name="metal" id="field_metal"
+                [(ngModel)]="options.metal"  />
+        </div>
+        <div class="form-group">
             <label class="form-control-label" for="field_color">Color</label>
-            <input type="number" class="form-control" name="color" id="field_color"
-                [(ngModel)]="options.color" required />
-            <div [hidden]="!(editForm.controls.color?.dirty && editForm.controls.color?.invalid)">
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.color?.errors?.required">
-                   This field is required.
-                </small>
-                <small class="form-text text-danger"
-                    [hidden]="!editForm.controls.color?.errors?.number">
-                    This field should be a number.
-                </small>
-            </div>
+            <input type="text" class="form-control" name="color" id="field_color"
+                [(ngModel)]="options.color"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_stone">Stone</label>
+            <input type="text" class="form-control" name="stone" id="field_stone"
+                [(ngModel)]="options.stone"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_marking">Marking</label>
+            <input type="text" class="form-control" name="marking" id="field_marking"
+                [(ngModel)]="options.marking"  />
         </div>
         <div class="form-group">
             <label class="form-control-label" for="field_weight">Weight</label>
             <input type="number" class="form-control" name="weight" id="field_weight"
-                [(ngModel)]="options.weight" required />
-            <div [hidden]="!(editForm.controls.weight?.dirty && editForm.controls.weight?.invalid)">
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.weight?.errors?.required">
-                   This field is required.
-                </small>
-                <small class="form-text text-danger"
-                    [hidden]="!editForm.controls.weight?.errors?.number">
-                    This field should be a number.
-                </small>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" for="field_metal">Metal</label>
-            <input type="text" class="form-control" name="metal" id="field_metal"
-                [(ngModel)]="options.metal" required />
-            <div [hidden]="!(editForm.controls.metal?.dirty && editForm.controls.metal?.invalid)">
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.metal?.errors?.required">
-                   This field is required.
-                </small>
-            </div>
+                [(ngModel)]="options.weight"  />
         </div>
         <div class="form-group">
             <label class="form-control-label" for="field_size">Size</label>

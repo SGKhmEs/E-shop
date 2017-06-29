@@ -18,26 +18,26 @@
         </dd>
         <dt><span>Login Options</span></dt>
         <dd>
-            <div *ngIf="customer.loginOptions">
-                <a [routerLink]="['/login-options', customer.loginOptions?.id]">{{customer.loginOptions?.id}}</a>
+            <div *ngIf="customer.loginOptionsId">
+                <a [routerLink]="['/login-options', customer.loginOptionsId]">{{customer.loginOptionsId}}</a>
             </div>
         </dd>
         <dt><span>Address</span></dt>
         <dd>
-            <div *ngIf="customer.address">
-                <a [routerLink]="['/address', customer.address?.id]">{{customer.address?.id}}</a>
+            <div *ngIf="customer.addressId">
+                <a [routerLink]="['/address', customer.addressId]">{{customer.addressId}}</a>
             </div>
         </dd>
         <dt><span>Personal Info</span></dt>
         <dd>
-            <div *ngIf="customer.personalInfo">
-                <a [routerLink]="['/personal-information', customer.personalInfo?.id]">{{customer.personalInfo?.id}}</a>
+            <div *ngIf="customer.personalInfoId">
+                <a [routerLink]="['/personal-information', customer.personalInfoId]">{{customer.personalInfoId}}</a>
             </div>
         </dd>
         <dt><span>Avatar</span></dt>
         <dd>
-            <div *ngIf="customer.avatar">
-                <a [routerLink]="['/avatar', customer.avatar?.id]">{{customer.avatar?.id}}</a>
+            <div *ngIf="customer.avatarId">
+                <a [routerLink]="['/avatar', customer.avatarId]">{{customer.avatarId}}</a>
             </div>
         </dd>
     </dl>

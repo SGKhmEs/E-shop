@@ -1,6 +1,6 @@
 package com.social.eshop.service;
 
-import com.social.eshop.domain.Producers;
+import com.social.eshop.service.dto.ProducersDTO;
 import java.util.List;
 
 /**
@@ -11,17 +11,17 @@ public interface ProducersService {
     /**
      * Save a producers.
      *
-     * @param producers the entity to save
+     * @param producersDTO the entity to save
      * @return the persisted entity
      */
-    Producers save(Producers producers);
+    ProducersDTO save(ProducersDTO producersDTO);
 
     /**
      *  Get all the producers.
      *
      *  @return the list of entities
      */
-    List<Producers> findAll();
+    List<ProducersDTO> findAll();
 
     /**
      *  Get the "id" producers.
@@ -29,7 +29,7 @@ public interface ProducersService {
      *  @param id the id of the entity
      *  @return the entity
      */
-    Producers findOne(Long id);
+    ProducersDTO findOne(Long id);
 
     /**
      *  Delete the "id" producers.
@@ -45,5 +45,5 @@ public interface ProducersService {
      *  
      *  @return the list of entities
      */
-    List<Producers> search(String query);
+    List<ProducersDTO> search(String query);
 }

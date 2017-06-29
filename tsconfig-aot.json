@@ -9,7 +9,7 @@
         "removeComments": false,
         "noImplicitAny": false,
         "suppressImplicitAnyIndexErrors": true,
-        "outDir": "build/www/app",
+        "outDir": "target/www/app",
         "lib": ["es6", "dom"],
         "typeRoots": [
             "node_modules/@types"
@@ -22,7 +22,7 @@
     ],
 
     "angularCompilerOptions": {
-        "genDir": "build/aot",
+        "genDir": "target/aot",
         "skipMetadataEmit" : true
     }
 }

@@ -1,6 +1,6 @@
 package com.social.eshop.service;
 
-import com.social.eshop.domain.Avatar;
+import com.social.eshop.service.dto.AvatarDTO;
 import java.util.List;
 
 /**
@@ -11,17 +11,17 @@ public interface AvatarService {
     /**
      * Save a avatar.
      *
-     * @param avatar the entity to save
+     * @param avatarDTO the entity to save
      * @return the persisted entity
      */
-    Avatar save(Avatar avatar);
+    AvatarDTO save(AvatarDTO avatarDTO);
 
     /**
      *  Get all the avatars.
      *
      *  @return the list of entities
      */
-    List<Avatar> findAll();
+    List<AvatarDTO> findAll();
 
     /**
      *  Get the "id" avatar.
@@ -29,7 +29,7 @@ public interface AvatarService {
      *  @param id the id of the entity
      *  @return the entity
      */
-    Avatar findOne(Long id);
+    AvatarDTO findOne(Long id);
 
     /**
      *  Delete the "id" avatar.
@@ -45,5 +45,5 @@ public interface AvatarService {
      *  
      *  @return the list of entities
      */
-    List<Avatar> search(String query);
+    List<AvatarDTO> search(String query);
 }

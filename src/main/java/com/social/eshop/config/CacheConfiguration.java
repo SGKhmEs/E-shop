@@ -40,6 +40,8 @@ public class CacheConfiguration {
             cm.createCache(com.social.eshop.domain.User.class.getName(), jcacheConfiguration);
             cm.createCache(com.social.eshop.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(com.social.eshop.domain.User.class.getName() + ".authorities", jcacheConfiguration);
+            cm.createCache(com.social.eshop.domain.PersistentToken.class.getName(), jcacheConfiguration);
+            cm.createCache(com.social.eshop.domain.User.class.getName() + ".persistentTokens", jcacheConfiguration);
             cm.createCache(com.social.eshop.domain.SocialUserConnection.class.getName(), jcacheConfiguration);
             cm.createCache(com.social.eshop.domain.Customer.class.getName(), jcacheConfiguration);
             cm.createCache(com.social.eshop.domain.Customer.class.getName() + ".seens", jcacheConfiguration);

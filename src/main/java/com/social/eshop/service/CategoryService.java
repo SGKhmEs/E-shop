@@ -1,6 +1,6 @@
 package com.social.eshop.service;
 
-import com.social.eshop.domain.Category;
+import com.social.eshop.service.dto.CategoryDTO;
 import java.util.List;
 
 /**
@@ -11,17 +11,17 @@ public interface CategoryService {
     /**
      * Save a category.
      *
-     * @param category the entity to save
+     * @param categoryDTO the entity to save
      * @return the persisted entity
      */
-    Category save(Category category);
+    CategoryDTO save(CategoryDTO categoryDTO);
 
     /**
      *  Get all the categories.
      *
      *  @return the list of entities
      */
-    List<Category> findAll();
+    List<CategoryDTO> findAll();
 
     /**
      *  Get the "id" category.
@@ -29,7 +29,7 @@ public interface CategoryService {
      *  @param id the id of the entity
      *  @return the entity
      */
-    Category findOne(Long id);
+    CategoryDTO findOne(Long id);
 
     /**
      *  Delete the "id" category.
@@ -45,5 +45,5 @@ public interface CategoryService {
      *  
      *  @return the list of entities
      */
-    List<Category> search(String query);
+    List<CategoryDTO> search(String query);
 }

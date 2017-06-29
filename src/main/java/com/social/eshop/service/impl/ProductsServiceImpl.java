@@ -4,6 +4,8 @@ import com.social.eshop.service.ProductsService;
 import com.social.eshop.domain.Products;
 import com.social.eshop.repository.ProductsRepository;
 import com.social.eshop.repository.search.ProductsSearchRepository;
+import com.social.eshop.service.dto.ProductsDTO;
+import com.social.eshop.service.mapper.ProductsMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -25,24 +27,29 @@ public class ProductsServiceImpl implements ProductsService{
 
     private final ProductsRepository productsRepository;
 
+    private final ProductsMapper productsMapper;
+
     private final ProductsSearchRepository productsSearchRepository;
 
-    public ProductsServiceImpl(ProductsRepository productsRepository, ProductsSearchRepository productsSearchRepository) {
+    public ProductsServiceImpl(ProductsRepository productsRepository, ProductsMapper productsMapper, ProductsSearchRepository productsSearchRepository) {
         this.productsRepository = productsRepository;
+        this.productsMapper = productsMapper;
         this.productsSearchRepository = productsSearchRepository;
     }
 
     /**
      * Save a products.
      *
-     * @param products the entity to save
+     * @param productsDTO the entity to save
      * @return the persisted entity
      */
     @Override
-    public Products save(Products products) {
-        log.debug("Request to save Products : {}", products);
-        Products result = productsRepository.save(products);
-        productsSearchRepository.save(result);
+    public ProductsDTO save(ProductsDTO productsDTO) {
+        log.debug("Request to save Products : {}", productsDTO);
+        Products products = productsMapper.toEntity(productsDTO);
+        products = productsRepository.save(products);
+        ProductsDTO result = productsMapper.toDto(products);
+        productsSearchRepository.save(products);
         return result;
     }
 
@@ -54,9 +61,10 @@ public class ProductsServiceImpl implements ProductsService{
      */
     @Override
     @Transactional(readOnly = true)
-    public Page<Products> findAll(Pageable pageable) {
+    public Page<ProductsDTO> findAll(Pageable pageable) {
         log.debug("Request to get all Products");
-        return productsRepository.findAll(pageable);
+        return productsRepository.findAll(pageable)
+            .map(productsMapper::toDto);
     }
 
     /**
@@ -67,9 +75,10 @@ public class ProductsServiceImpl implements ProductsService{
      */
     @Override
     @Transactional(readOnly = true)
-    public Products findOne(Long id) {
+    public ProductsDTO findOne(Long id) {
         log.debug("Request to get Products : {}", id);
-        return productsRepository.findOne(id);
+        Products products = productsRepository.findOne(id);
+        return productsMapper.toDto(products);
     }
 
     /**
@@ -93,9 +102,9 @@ public class ProductsServiceImpl implements ProductsService{
      */
     @Override
     @Transactional(readOnly = true)
-    public Page<Products> search(String query, Pageable pageable) {
+    public Page<ProductsDTO> search(String query, Pageable pageable) {
         log.debug("Request to search for a page of Products for query {}", query);
         Page<Products> result = productsSearchRepository.search(queryStringQuery(query), pageable);
-        return result;
+        return result.map(productsMapper::toDto);
     }
 }

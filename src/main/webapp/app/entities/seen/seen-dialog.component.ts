@@ -46,11 +46,11 @@ export class SeenDialogComponent implements OnInit {
         this.productsService
             .query({filter: 'seen-is-null'})
             .subscribe((res: ResponseWrapper) => {
-                if (!this.seen.products || !this.seen.products.id) {
+                if (!this.seen.productsId) {
                     this.products = res.json;
                 } else {
                     this.productsService
-                        .find(this.seen.products.id)
+                        .find(this.seen.productsId)
                         .subscribe((subRes: Products) => {
                             this.products = [subRes].concat(res.json);
                         }, (subRes: ResponseWrapper) => this.onError(subRes.json));

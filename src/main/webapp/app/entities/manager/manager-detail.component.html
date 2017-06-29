@@ -10,20 +10,20 @@
         </dd>
         <dt><span>Login Options</span></dt>
         <dd>
-            <div *ngIf="manager.loginOptions">
-                <a [routerLink]="['/login-options', manager.loginOptions?.id]">{{manager.loginOptions?.id}}</a>
+            <div *ngIf="manager.loginOptionsId">
+                <a [routerLink]="['/login-options', manager.loginOptionsId]">{{manager.loginOptionsId}}</a>
             </div>
         </dd>
         <dt><span>Personal Info</span></dt>
         <dd>
-            <div *ngIf="manager.personalInfo">
-                <a [routerLink]="['/personal-information', manager.personalInfo?.id]">{{manager.personalInfo?.id}}</a>
+            <div *ngIf="manager.personalInfoId">
+                <a [routerLink]="['/personal-information', manager.personalInfoId]">{{manager.personalInfoId}}</a>
             </div>
         </dd>
         <dt><span>Avatar</span></dt>
         <dd>
-            <div *ngIf="manager.avatar">
-                <a [routerLink]="['/avatar', manager.avatar?.id]">{{manager.avatar?.id}}</a>
+            <div *ngIf="manager.avatarId">
+                <a [routerLink]="['/avatar', manager.avatarId]">{{manager.avatarId}}</a>
             </div>
         </dd>
     </dl>

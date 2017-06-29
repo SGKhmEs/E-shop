@@ -6,6 +6,8 @@ import com.social.eshop.domain.Bucket;
 import com.social.eshop.repository.BucketRepository;
 import com.social.eshop.service.BucketService;
 import com.social.eshop.repository.search.BucketSearchRepository;
+import com.social.eshop.service.dto.BucketDTO;
+import com.social.eshop.service.mapper.BucketMapper;
 import com.social.eshop.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -71,6 +73,9 @@ public class BucketResourceIntTest {
     private BucketRepository bucketRepository;
 
     @Autowired
+    private BucketMapper bucketMapper;
+
+    @Autowired
     private BucketService bucketService;
 
     @Autowired
@@ -132,9 +137,10 @@ public class BucketResourceIntTest {
         int databaseSizeBeforeCreate = bucketRepository.findAll().size();
 
         // Create the Bucket
+        BucketDTO bucketDTO = bucketMapper.toDto(bucket);
         restBucketMockMvc.perform(post("/api/buckets")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(bucket)))
+            .content(TestUtil.convertObjectToJsonBytes(bucketDTO)))
             .andExpect(status().isCreated());
 
         // Validate the Bucket in the database
@@ -161,11 +167,12 @@ public class BucketResourceIntTest {
 
         // Create the Bucket with an existing ID
         bucket.setId(1L);
+        BucketDTO bucketDTO = bucketMapper.toDto(bucket);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restBucketMockMvc.perform(post("/api/buckets")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(bucket)))
+            .content(TestUtil.convertObjectToJsonBytes(bucketDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -225,8 +232,8 @@ public class BucketResourceIntTest {
     @Transactional
     public void updateBucket() throws Exception {
         // Initialize the database
-        bucketService.save(bucket);
-
+        bucketRepository.saveAndFlush(bucket);
+        bucketSearchRepository.save(bucket);
         int databaseSizeBeforeUpdate = bucketRepository.findAll().size();
 
         // Update the bucket
@@ -239,10 +246,11 @@ public class BucketResourceIntTest {
             .count(UPDATED_COUNT)
             .status(UPDATED_STATUS)
             .consignmentNote(UPDATED_CONSIGNMENT_NOTE);
+        BucketDTO bucketDTO = bucketMapper.toDto(updatedBucket);
 
         restBucketMockMvc.perform(put("/api/buckets")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(updatedBucket)))
+            .content(TestUtil.convertObjectToJsonBytes(bucketDTO)))
             .andExpect(status().isOk());
 
         // Validate the Bucket in the database
@@ -268,11 +276,12 @@ public class BucketResourceIntTest {
         int databaseSizeBeforeUpdate = bucketRepository.findAll().size();
 
         // Create the Bucket
+        BucketDTO bucketDTO = bucketMapper.toDto(bucket);
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
         restBucketMockMvc.perform(put("/api/buckets")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(bucket)))
+            .content(TestUtil.convertObjectToJsonBytes(bucketDTO)))
             .andExpect(status().isCreated());
 
         // Validate the Bucket in the database
@@ -284,8 +293,8 @@ public class BucketResourceIntTest {
     @Transactional
     public void deleteBucket() throws Exception {
         // Initialize the database
-        bucketService.save(bucket);
-
+        bucketRepository.saveAndFlush(bucket);
+        bucketSearchRepository.save(bucket);
         int databaseSizeBeforeDelete = bucketRepository.findAll().size();
 
         // Get the bucket
@@ -306,7 +315,8 @@ public class BucketResourceIntTest {
     @Transactional
     public void searchBucket() throws Exception {
         // Initialize the database
-        bucketService.save(bucket);
+        bucketRepository.saveAndFlush(bucket);
+        bucketSearchRepository.save(bucket);
 
         // Search the bucket
         restBucketMockMvc.perform(get("/api/_search/buckets?query=id:" + bucket.getId()))
@@ -335,5 +345,28 @@ public class BucketResourceIntTest {
         assertThat(bucket1).isNotEqualTo(bucket2);
         bucket1.setId(null);
         assertThat(bucket1).isNotEqualTo(bucket2);
+    }
+
+    @Test
+    @Transactional
+    public void dtoEqualsVerifier() throws Exception {
+        TestUtil.equalsVerifier(BucketDTO.class);
+        BucketDTO bucketDTO1 = new BucketDTO();
+        bucketDTO1.setId(1L);
+        BucketDTO bucketDTO2 = new BucketDTO();
+        assertThat(bucketDTO1).isNotEqualTo(bucketDTO2);
+        bucketDTO2.setId(bucketDTO1.getId());
+        assertThat(bucketDTO1).isEqualTo(bucketDTO2);
+        bucketDTO2.setId(2L);
+        assertThat(bucketDTO1).isNotEqualTo(bucketDTO2);
+        bucketDTO1.setId(null);
+        assertThat(bucketDTO1).isNotEqualTo(bucketDTO2);
+    }
+
+    @Test
+    @Transactional
+    public void testEntityFromId() {
+        assertThat(bucketMapper.fromId(42L).getId()).isEqualTo(42);
+        assertThat(bucketMapper.fromId(null)).isNull();
     }
 }

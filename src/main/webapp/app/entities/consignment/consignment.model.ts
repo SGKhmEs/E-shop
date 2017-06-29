@@ -5,8 +5,8 @@ export class Consignment implements BaseEntity {
         public id?: number,
         public price?: number,
         public products?: BaseEntity[],
-        public storage?: BaseEntity,
-        public producers?: BaseEntity,
+        public storageId?: number,
+        public producersId?: number,
     ) {
     }
 }

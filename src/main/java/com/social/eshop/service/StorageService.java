@@ -1,6 +1,6 @@
 package com.social.eshop.service;
 
-import com.social.eshop.domain.Storage;
+import com.social.eshop.service.dto.StorageDTO;
 import java.util.List;
 
 /**
@@ -11,17 +11,17 @@ public interface StorageService {
     /**
      * Save a storage.
      *
-     * @param storage the entity to save
+     * @param storageDTO the entity to save
      * @return the persisted entity
      */
-    Storage save(Storage storage);
+    StorageDTO save(StorageDTO storageDTO);
 
     /**
      *  Get all the storages.
      *
      *  @return the list of entities
      */
-    List<Storage> findAll();
+    List<StorageDTO> findAll();
 
     /**
      *  Get the "id" storage.
@@ -29,7 +29,7 @@ public interface StorageService {
      *  @param id the id of the entity
      *  @return the entity
      */
-    Storage findOne(Long id);
+    StorageDTO findOne(Long id);
 
     /**
      *  Delete the "id" storage.
@@ -45,5 +45,5 @@ public interface StorageService {
      *  
      *  @return the list of entities
      */
-    List<Storage> search(String query);
+    List<StorageDTO> search(String query);
 }

@@ -1,6 +1,6 @@
 package com.social.eshop.service;
 
-import com.social.eshop.domain.Seen;
+import com.social.eshop.service.dto.SeenDTO;
 import java.util.List;
 
 /**
@@ -11,17 +11,17 @@ public interface SeenService {
     /**
      * Save a seen.
      *
-     * @param seen the entity to save
+     * @param seenDTO the entity to save
      * @return the persisted entity
      */
-    Seen save(Seen seen);
+    SeenDTO save(SeenDTO seenDTO);
 
     /**
      *  Get all the seens.
      *
      *  @return the list of entities
      */
-    List<Seen> findAll();
+    List<SeenDTO> findAll();
 
     /**
      *  Get the "id" seen.
@@ -29,7 +29,7 @@ public interface SeenService {
      *  @param id the id of the entity
      *  @return the entity
      */
-    Seen findOne(Long id);
+    SeenDTO findOne(Long id);
 
     /**
      *  Delete the "id" seen.
@@ -45,5 +45,5 @@ public interface SeenService {
      *  
      *  @return the list of entities
      */
-    List<Seen> search(String query);
+    List<SeenDTO> search(String query);
 }

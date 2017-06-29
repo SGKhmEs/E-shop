@@ -41,13 +41,13 @@
                 <td><a [routerLink]="['../consignment', consignment.id ]">{{consignment.id}}</a></td>
                 <td>{{consignment.price}}</td>
                 <td>
-                    <div *ngIf="consignment.storage">
-                        <a [routerLink]="['../storage', consignment.storage?.id ]" >{{consignment.storage?.id}}</a>
+                    <div *ngIf="consignment.storageId">
+                        <a [routerLink]="['../storage', consignment.storageId  ]" >{{consignment.storageId}}</a>
                     </div>
                 </td>
                 <td>
-                    <div *ngIf="consignment.producers">
-                        <a [routerLink]="['../producers', consignment.producers?.id ]" >{{consignment.producers?.id}}</a>
+                    <div *ngIf="consignment.producersId">
+                        <a [routerLink]="['../producers', consignment.producersId  ]" >{{consignment.producersId}}</a>
                     </div>
                 </td>
                 <td class="text-right">

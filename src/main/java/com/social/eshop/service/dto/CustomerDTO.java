@@ -1,68 +1,125 @@
 package com.social.eshop.service.dto;
 
-import com.social.eshop.domain.*;
 
-import java.util.List;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Objects;
+import com.social.eshop.domain.enumeration.SocialConnect;
 
-public class CustomerDTO {
-    private PersonalInformation personalInformation;
-    private Avatar avatar;
-    private Address address;
-    private List<WishList> wishLists;
-    private List<Seen> seens;
+/**
+ * A DTO for the Customer entity.
+ */
+public class CustomerDTO implements Serializable {
 
+    private Long id;
 
-    public CustomerDTO() {
+    private Boolean subScription;
+
+    private SocialConnect sosialConnect;
+
+    private String sessionId;
+
+    private Long loginOptionsId;
+
+    private Long addressId;
+
+    private Long personalInfoId;
+
+    private Long avatarId;
+
+    public Long getId() {
+        return id;
     }
 
-    public PersonalInformation getPersonalInformation() {
-        return personalInformation;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setPersonalInformation(PersonalInformation personalInformation) {
-        this.personalInformation = personalInformation;
+    public Boolean isSubScription() {
+        return subScription;
     }
 
-    public Avatar getAvatar() {
-        return avatar;
+    public void setSubScription(Boolean subScription) {
+        this.subScription = subScription;
     }
 
-    public void setAvatar(Avatar avatar) {
-        this.avatar = avatar;
+    public SocialConnect getSosialConnect() {
+        return sosialConnect;
     }
 
-    public Address getAddress() {
-        return address;
+    public void setSosialConnect(SocialConnect sosialConnect) {
+        this.sosialConnect = sosialConnect;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public String getSessionId() {
+        return sessionId;
     }
 
-    public List<WishList> getWishLists() {
-        return wishLists;
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
     }
 
-    public void setWishLists(List<WishList> wishLists) {
-        this.wishLists = wishLists;
+    public Long getLoginOptionsId() {
+        return loginOptionsId;
     }
 
-    public List<Seen> getSeens() {
-        return seens;
+    public void setLoginOptionsId(Long loginOptionsId) {
+        this.loginOptionsId = loginOptionsId;
     }
 
-    public void setSeens(List<Seen> seens) {
-        this.seens = seens;
+    public Long getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(Long addressId) {
+        this.addressId = addressId;
+    }
+
+    public Long getPersonalInfoId() {
+        return personalInfoId;
+    }
+
+    public void setPersonalInfoId(Long personalInformationId) {
+        this.personalInfoId = personalInformationId;
+    }
+
+    public Long getAvatarId() {
+        return avatarId;
+    }
+
+    public void setAvatarId(Long avatarId) {
+        this.avatarId = avatarId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        CustomerDTO customerDTO = (CustomerDTO) o;
+        if(customerDTO.getId() == null || getId() == null) {
+            return false;
+        }
+        return Objects.equals(getId(), customerDTO.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getId());
     }
 
     @Override
     public String toString() {
         return "CustomerDTO{" +
-            "personalInformation=" + personalInformation +
-            ", avatar=" + avatar +
-            ", address=" + address +
-            ", wishLists=" + wishLists +
-            ", seens=" + seens +
-            '}';
+            "id=" + getId() +
+            ", subScription='" + isSubScription() + "'" +
+            ", sosialConnect='" + getSosialConnect() + "'" +
+            ", sessionId='" + getSessionId() + "'" +
+            "}";
     }
 }

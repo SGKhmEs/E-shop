@@ -1,6 +1,6 @@
 package com.social.eshop.service;
 
-import com.social.eshop.domain.AddressShipping;
+import com.social.eshop.service.dto.AddressShippingDTO;
 import java.util.List;
 
 /**
@@ -11,17 +11,17 @@ public interface AddressShippingService {
     /**
      * Save a addressShipping.
      *
-     * @param addressShipping the entity to save
+     * @param addressShippingDTO the entity to save
      * @return the persisted entity
      */
-    AddressShipping save(AddressShipping addressShipping);
+    AddressShippingDTO save(AddressShippingDTO addressShippingDTO);
 
     /**
      *  Get all the addressShippings.
      *
      *  @return the list of entities
      */
-    List<AddressShipping> findAll();
+    List<AddressShippingDTO> findAll();
 
     /**
      *  Get the "id" addressShipping.
@@ -29,7 +29,7 @@ public interface AddressShippingService {
      *  @param id the id of the entity
      *  @return the entity
      */
-    AddressShipping findOne(Long id);
+    AddressShippingDTO findOne(Long id);
 
     /**
      *  Delete the "id" addressShipping.
@@ -45,5 +45,5 @@ public interface AddressShippingService {
      *  
      *  @return the list of entities
      */
-    List<AddressShipping> search(String query);
+    List<AddressShippingDTO> search(String query);
 }

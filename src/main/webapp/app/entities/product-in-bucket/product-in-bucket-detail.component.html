@@ -6,14 +6,14 @@
     <dl class="row-md jh-entity-details">
         <dt><span>Bucket</span></dt>
         <dd>
-            <div *ngIf="productInBucket.bucket">
-                <a [routerLink]="['/bucket', productInBucket.bucket?.id]">{{productInBucket.bucket?.id}}</a>
+            <div *ngIf="productInBucket.bucketId">
+                <a [routerLink]="['/bucket', productInBucket.bucketId]">{{productInBucket.bucketId}}</a>
             </div>
         </dd>
         <dt><span>Products</span></dt>
         <dd>
-            <div *ngIf="productInBucket.products">
-                <a [routerLink]="['/products', productInBucket.products?.id]">{{productInBucket.products?.id}}</a>
+            <div *ngIf="productInBucket.productsId">
+                <a [routerLink]="['/products', productInBucket.productsId]">{{productInBucket.productsId}}</a>
             </div>
         </dd>
     </dl>

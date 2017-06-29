@@ -11,15 +11,12 @@
     "fields": [
         {
             "fieldName": "name",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldType": "String"
         }
     ],
-    "changelogDate": "20170623182240",
+    "changelogDate": "20170629140046",
     "entityTableName": "tags",
-    "dto": "no",
+    "dto": "mapstruct",
     "pagination": "no",
     "service": "serviceImpl"
 }

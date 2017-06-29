@@ -25,16 +25,16 @@
 
         <div class="form-group">
             <label for="field_customer">Customer</label>
-            <select class="form-control" id="field_customer" name="customer" [(ngModel)]="wishList.customer" >
+            <select class="form-control" id="field_customer" name="customer" [(ngModel)]="wishList.customerId" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="customerOption.id === wishList.customer?.id ? wishList.customer : customerOption" *ngFor="let customerOption of customers; trackBy: trackCustomerById">{{customerOption.id}}</option>
+                <option [ngValue]="customerOption.id" *ngFor="let customerOption of customers; trackBy: trackCustomerById">{{customerOption.id}}</option>
             </select>
         </div>
         <div class="form-group">
             <label for="field_product">Product</label>
-            <select class="form-control" id="field_product" name="product" [(ngModel)]="wishList.product">
+            <select class="form-control" id="field_product" name="product" [(ngModel)]="wishList.productId">
                 <option [ngValue]="null"></option>
-                <option [ngValue]="productsOption.id === wishList.product?.id ? wishList.product : productsOption" *ngFor="let productsOption of products; trackBy: trackProductsById">{{productsOption.id}}</option>
+                <option [ngValue]="productsOption.id" *ngFor="let productsOption of products; trackBy: trackProductsById">{{productsOption.id}}</option>
             </select>
         </div>
     </div>

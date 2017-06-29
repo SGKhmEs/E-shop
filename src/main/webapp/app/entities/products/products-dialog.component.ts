@@ -47,11 +47,11 @@ export class ProductsDialogComponent implements OnInit {
         this.optionsService
             .query({filter: 'products-is-null'})
             .subscribe((res: ResponseWrapper) => {
-                if (!this.products.options || !this.products.options.id) {
+                if (!this.products.optionsId) {
                     this.options = res.json;
                 } else {
                     this.optionsService
-                        .find(this.products.options.id)
+                        .find(this.products.optionsId)
                         .subscribe((subRes: Options) => {
                             this.options = [subRes].concat(res.json);
                         }, (subRes: ResponseWrapper) => this.onError(subRes.json));

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity Manager.
+    -->
+    <changeSet id="20170629140037-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="login_options_id"
+                                 baseTableName="manager"
+                                 constraintName="fk_manager_login_options_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="login_options"/>
+
+        <addForeignKeyConstraint baseColumnNames="personal_info_id"
+                                 baseTableName="manager"
+                                 constraintName="fk_manager_personal_info_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="personal_information"/>
+
+        <addForeignKeyConstraint baseColumnNames="avatar_id"
+                                 baseTableName="manager"
+                                 constraintName="fk_manager_avatar_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="avatar"/>
+
+    </changeSet>
+</databaseChangeLog>

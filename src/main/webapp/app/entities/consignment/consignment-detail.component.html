@@ -10,14 +10,14 @@
         </dd>
         <dt><span>Storage</span></dt>
         <dd>
-            <div *ngIf="consignment.storage">
-                <a [routerLink]="['/storage', consignment.storage?.id]">{{consignment.storage?.id}}</a>
+            <div *ngIf="consignment.storageId">
+                <a [routerLink]="['/storage', consignment.storageId]">{{consignment.storageId}}</a>
             </div>
         </dd>
         <dt><span>Producers</span></dt>
         <dd>
-            <div *ngIf="consignment.producers">
-                <a [routerLink]="['/producers', consignment.producers?.id]">{{consignment.producers?.id}}</a>
+            <div *ngIf="consignment.producersId">
+                <a [routerLink]="['/producers', consignment.producersId]">{{consignment.producersId}}</a>
             </div>
         </dd>
     </dl>

@@ -34,30 +34,30 @@
 
         <div class="form-group">
             <label for="field_loginOptions">Login Options</label>
-            <select class="form-control" id="field_loginOptions" name="loginOptions" [(ngModel)]="customer.loginOptions">
+            <select class="form-control" id="field_loginOptions" name="loginOptions" [(ngModel)]="customer.loginOptionsId">
                 <option [ngValue]="null"></option>
-                <option [ngValue]="loginOptionsOption.id === customer.loginOptions?.id ? customer.loginOptions : loginOptionsOption" *ngFor="let loginOptionsOption of loginoptions; trackBy: trackLoginOptionsById">{{loginOptionsOption.id}}</option>
+                <option [ngValue]="loginOptionsOption.id" *ngFor="let loginOptionsOption of loginoptions; trackBy: trackLoginOptionsById">{{loginOptionsOption.id}}</option>
             </select>
         </div>
         <div class="form-group">
             <label for="field_address">Address</label>
-            <select class="form-control" id="field_address" name="address" [(ngModel)]="customer.address">
+            <select class="form-control" id="field_address" name="address" [(ngModel)]="customer.addressId">
                 <option [ngValue]="null"></option>
-                <option [ngValue]="addressOption.id === customer.address?.id ? customer.address : addressOption" *ngFor="let addressOption of addresses; trackBy: trackAddressById">{{addressOption.id}}</option>
+                <option [ngValue]="addressOption.id" *ngFor="let addressOption of addresses; trackBy: trackAddressById">{{addressOption.id}}</option>
             </select>
         </div>
         <div class="form-group">
             <label for="field_personalInfo">Personal Info</label>
-            <select class="form-control" id="field_personalInfo" name="personalInfo" [(ngModel)]="customer.personalInfo">
+            <select class="form-control" id="field_personalInfo" name="personalInfo" [(ngModel)]="customer.personalInfoId">
                 <option [ngValue]="null"></option>
-                <option [ngValue]="personalInformationOption.id === customer.personalInfo?.id ? customer.personalInfo : personalInformationOption" *ngFor="let personalInformationOption of personalinfos; trackBy: trackPersonalInformationById">{{personalInformationOption.id}}</option>
+                <option [ngValue]="personalInformationOption.id" *ngFor="let personalInformationOption of personalinfos; trackBy: trackPersonalInformationById">{{personalInformationOption.id}}</option>
             </select>
         </div>
         <div class="form-group">
             <label for="field_avatar">Avatar</label>
-            <select class="form-control" id="field_avatar" name="avatar" [(ngModel)]="customer.avatar">
+            <select class="form-control" id="field_avatar" name="avatar" [(ngModel)]="customer.avatarId">
                 <option [ngValue]="null"></option>
-                <option [ngValue]="avatarOption.id === customer.avatar?.id ? customer.avatar : avatarOption" *ngFor="let avatarOption of avatars; trackBy: trackAvatarById">{{avatarOption.id}}</option>
+                <option [ngValue]="avatarOption.id" *ngFor="let avatarOption of avatars; trackBy: trackAvatarById">{{avatarOption.id}}</option>
             </select>
         </div>
     </div>

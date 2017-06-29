@@ -4,11 +4,14 @@ import com.social.eshop.service.AddressShippingService;
 import com.social.eshop.domain.AddressShipping;
 import com.social.eshop.repository.AddressShippingRepository;
 import com.social.eshop.repository.search.AddressShippingSearchRepository;
+import com.social.eshop.service.dto.AddressShippingDTO;
+import com.social.eshop.service.mapper.AddressShippingMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -26,24 +29,29 @@ public class AddressShippingServiceImpl implements AddressShippingService{
 
     private final AddressShippingRepository addressShippingRepository;
 
+    private final AddressShippingMapper addressShippingMapper;
+
     private final AddressShippingSearchRepository addressShippingSearchRepository;
 
-    public AddressShippingServiceImpl(AddressShippingRepository addressShippingRepository, AddressShippingSearchRepository addressShippingSearchRepository) {
+    public AddressShippingServiceImpl(AddressShippingRepository addressShippingRepository, AddressShippingMapper addressShippingMapper, AddressShippingSearchRepository addressShippingSearchRepository) {
         this.addressShippingRepository = addressShippingRepository;
+        this.addressShippingMapper = addressShippingMapper;
         this.addressShippingSearchRepository = addressShippingSearchRepository;
     }
 
     /**
      * Save a addressShipping.
      *
-     * @param addressShipping the entity to save
+     * @param addressShippingDTO the entity to save
      * @return the persisted entity
      */
     @Override
-    public AddressShipping save(AddressShipping addressShipping) {
-        log.debug("Request to save AddressShipping : {}", addressShipping);
-        AddressShipping result = addressShippingRepository.save(addressShipping);
-        addressShippingSearchRepository.save(result);
+    public AddressShippingDTO save(AddressShippingDTO addressShippingDTO) {
+        log.debug("Request to save AddressShipping : {}", addressShippingDTO);
+        AddressShipping addressShipping = addressShippingMapper.toEntity(addressShippingDTO);
+        addressShipping = addressShippingRepository.save(addressShipping);
+        AddressShippingDTO result = addressShippingMapper.toDto(addressShipping);
+        addressShippingSearchRepository.save(addressShipping);
         return result;
     }
 
@@ -54,9 +62,11 @@ public class AddressShippingServiceImpl implements AddressShippingService{
      */
     @Override
     @Transactional(readOnly = true)
-    public List<AddressShipping> findAll() {
+    public List<AddressShippingDTO> findAll() {
         log.debug("Request to get all AddressShippings");
-        return addressShippingRepository.findAll();
+        return addressShippingRepository.findAll().stream()
+            .map(addressShippingMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
     }
 
     /**
@@ -67,9 +77,10 @@ public class AddressShippingServiceImpl implements AddressShippingService{
      */
     @Override
     @Transactional(readOnly = true)
-    public AddressShipping findOne(Long id) {
+    public AddressShippingDTO findOne(Long id) {
         log.debug("Request to get AddressShipping : {}", id);
-        return addressShippingRepository.findOne(id);
+        AddressShipping addressShipping = addressShippingRepository.findOne(id);
+        return addressShippingMapper.toDto(addressShipping);
     }
 
     /**
@@ -92,10 +103,11 @@ public class AddressShippingServiceImpl implements AddressShippingService{
      */
     @Override
     @Transactional(readOnly = true)
-    public List<AddressShipping> search(String query) {
+    public List<AddressShippingDTO> search(String query) {
         log.debug("Request to search AddressShippings for query {}", query);
         return StreamSupport
             .stream(addressShippingSearchRepository.search(queryStringQuery(query)).spliterator(), false)
+            .map(addressShippingMapper::toDto)
             .collect(Collectors.toList());
     }
 }

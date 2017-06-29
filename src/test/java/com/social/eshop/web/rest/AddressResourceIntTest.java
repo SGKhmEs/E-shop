@@ -6,6 +6,8 @@ import com.social.eshop.domain.Address;
 import com.social.eshop.repository.AddressRepository;
 import com.social.eshop.service.AddressService;
 import com.social.eshop.repository.search.AddressSearchRepository;
+import com.social.eshop.service.dto.AddressDTO;
+import com.social.eshop.service.mapper.AddressMapper;
 import com.social.eshop.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -62,6 +64,9 @@ public class AddressResourceIntTest {
 
     @Autowired
     private AddressRepository addressRepository;
+
+    @Autowired
+    private AddressMapper addressMapper;
 
     @Autowired
     private AddressService addressService;
@@ -125,9 +130,10 @@ public class AddressResourceIntTest {
         int databaseSizeBeforeCreate = addressRepository.findAll().size();
 
         // Create the Address
+        AddressDTO addressDTO = addressMapper.toDto(address);
         restAddressMockMvc.perform(post("/api/addresses")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(address)))
+            .content(TestUtil.convertObjectToJsonBytes(addressDTO)))
             .andExpect(status().isCreated());
 
         // Validate the Address in the database
@@ -154,11 +160,12 @@ public class AddressResourceIntTest {
 
         // Create the Address with an existing ID
         address.setId(1L);
+        AddressDTO addressDTO = addressMapper.toDto(address);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restAddressMockMvc.perform(post("/api/addresses")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(address)))
+            .content(TestUtil.convertObjectToJsonBytes(addressDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -174,10 +181,11 @@ public class AddressResourceIntTest {
         address.setCountry(null);
 
         // Create the Address, which fails.
+        AddressDTO addressDTO = addressMapper.toDto(address);
 
         restAddressMockMvc.perform(post("/api/addresses")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(address)))
+            .content(TestUtil.convertObjectToJsonBytes(addressDTO)))
             .andExpect(status().isBadRequest());
 
         List<Address> addressList = addressRepository.findAll();
@@ -192,10 +200,11 @@ public class AddressResourceIntTest {
         address.setCity(null);
 
         // Create the Address, which fails.
+        AddressDTO addressDTO = addressMapper.toDto(address);
 
         restAddressMockMvc.perform(post("/api/addresses")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(address)))
+            .content(TestUtil.convertObjectToJsonBytes(addressDTO)))
             .andExpect(status().isBadRequest());
 
         List<Address> addressList = addressRepository.findAll();
@@ -210,10 +219,11 @@ public class AddressResourceIntTest {
         address.setStreet(null);
 
         // Create the Address, which fails.
+        AddressDTO addressDTO = addressMapper.toDto(address);
 
         restAddressMockMvc.perform(post("/api/addresses")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(address)))
+            .content(TestUtil.convertObjectToJsonBytes(addressDTO)))
             .andExpect(status().isBadRequest());
 
         List<Address> addressList = addressRepository.findAll();
@@ -228,10 +238,11 @@ public class AddressResourceIntTest {
         address.setBuilding(null);
 
         // Create the Address, which fails.
+        AddressDTO addressDTO = addressMapper.toDto(address);
 
         restAddressMockMvc.perform(post("/api/addresses")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(address)))
+            .content(TestUtil.convertObjectToJsonBytes(addressDTO)))
             .andExpect(status().isBadRequest());
 
         List<Address> addressList = addressRepository.findAll();
@@ -290,8 +301,8 @@ public class AddressResourceIntTest {
     @Transactional
     public void updateAddress() throws Exception {
         // Initialize the database
-        addressService.save(address);
-
+        addressRepository.saveAndFlush(address);
+        addressSearchRepository.save(address);
         int databaseSizeBeforeUpdate = addressRepository.findAll().size();
 
         // Update the address
@@ -304,10 +315,11 @@ public class AddressResourceIntTest {
             .street(UPDATED_STREET)
             .building(UPDATED_BUILDING)
             .appartment(UPDATED_APPARTMENT);
+        AddressDTO addressDTO = addressMapper.toDto(updatedAddress);
 
         restAddressMockMvc.perform(put("/api/addresses")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(updatedAddress)))
+            .content(TestUtil.convertObjectToJsonBytes(addressDTO)))
             .andExpect(status().isOk());
 
         // Validate the Address in the database
@@ -333,11 +345,12 @@ public class AddressResourceIntTest {
         int databaseSizeBeforeUpdate = addressRepository.findAll().size();
 
         // Create the Address
+        AddressDTO addressDTO = addressMapper.toDto(address);
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
         restAddressMockMvc.perform(put("/api/addresses")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(address)))
+            .content(TestUtil.convertObjectToJsonBytes(addressDTO)))
             .andExpect(status().isCreated());
 
         // Validate the Address in the database
@@ -349,8 +362,8 @@ public class AddressResourceIntTest {
     @Transactional
     public void deleteAddress() throws Exception {
         // Initialize the database
-        addressService.save(address);
-
+        addressRepository.saveAndFlush(address);
+        addressSearchRepository.save(address);
         int databaseSizeBeforeDelete = addressRepository.findAll().size();
 
         // Get the address
@@ -371,7 +384,8 @@ public class AddressResourceIntTest {
     @Transactional
     public void searchAddress() throws Exception {
         // Initialize the database
-        addressService.save(address);
+        addressRepository.saveAndFlush(address);
+        addressSearchRepository.save(address);
 
         // Search the address
         restAddressMockMvc.perform(get("/api/_search/addresses?query=id:" + address.getId()))
@@ -400,5 +414,28 @@ public class AddressResourceIntTest {
         assertThat(address1).isNotEqualTo(address2);
         address1.setId(null);
         assertThat(address1).isNotEqualTo(address2);
+    }
+
+    @Test
+    @Transactional
+    public void dtoEqualsVerifier() throws Exception {
+        TestUtil.equalsVerifier(AddressDTO.class);
+        AddressDTO addressDTO1 = new AddressDTO();
+        addressDTO1.setId(1L);
+        AddressDTO addressDTO2 = new AddressDTO();
+        assertThat(addressDTO1).isNotEqualTo(addressDTO2);
+        addressDTO2.setId(addressDTO1.getId());
+        assertThat(addressDTO1).isEqualTo(addressDTO2);
+        addressDTO2.setId(2L);
+        assertThat(addressDTO1).isNotEqualTo(addressDTO2);
+        addressDTO1.setId(null);
+        assertThat(addressDTO1).isNotEqualTo(addressDTO2);
+    }
+
+    @Test
+    @Transactional
+    public void testEntityFromId() {
+        assertThat(addressMapper.fromId(42L).getId()).isEqualTo(42);
+        assertThat(addressMapper.fromId(null)).isNull();
     }
 }

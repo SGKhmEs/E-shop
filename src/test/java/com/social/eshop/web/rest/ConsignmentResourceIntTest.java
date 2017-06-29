@@ -6,6 +6,8 @@ import com.social.eshop.domain.Consignment;
 import com.social.eshop.repository.ConsignmentRepository;
 import com.social.eshop.service.ConsignmentService;
 import com.social.eshop.repository.search.ConsignmentSearchRepository;
+import com.social.eshop.service.dto.ConsignmentDTO;
+import com.social.eshop.service.mapper.ConsignmentMapper;
 import com.social.eshop.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -45,6 +47,9 @@ public class ConsignmentResourceIntTest {
 
     @Autowired
     private ConsignmentRepository consignmentRepository;
+
+    @Autowired
+    private ConsignmentMapper consignmentMapper;
 
     @Autowired
     private ConsignmentService consignmentService;
@@ -102,9 +107,10 @@ public class ConsignmentResourceIntTest {
         int databaseSizeBeforeCreate = consignmentRepository.findAll().size();
 
         // Create the Consignment
+        ConsignmentDTO consignmentDTO = consignmentMapper.toDto(consignment);
         restConsignmentMockMvc.perform(post("/api/consignments")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(consignment)))
+            .content(TestUtil.convertObjectToJsonBytes(consignmentDTO)))
             .andExpect(status().isCreated());
 
         // Validate the Consignment in the database
@@ -125,11 +131,12 @@ public class ConsignmentResourceIntTest {
 
         // Create the Consignment with an existing ID
         consignment.setId(1L);
+        ConsignmentDTO consignmentDTO = consignmentMapper.toDto(consignment);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restConsignmentMockMvc.perform(post("/api/consignments")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(consignment)))
+            .content(TestUtil.convertObjectToJsonBytes(consignmentDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -145,10 +152,11 @@ public class ConsignmentResourceIntTest {
         consignment.setPrice(null);
 
         // Create the Consignment, which fails.
+        ConsignmentDTO consignmentDTO = consignmentMapper.toDto(consignment);
 
         restConsignmentMockMvc.perform(post("/api/consignments")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(consignment)))
+            .content(TestUtil.convertObjectToJsonBytes(consignmentDTO)))
             .andExpect(status().isBadRequest());
 
         List<Consignment> consignmentList = consignmentRepository.findAll();
@@ -195,18 +203,19 @@ public class ConsignmentResourceIntTest {
     @Transactional
     public void updateConsignment() throws Exception {
         // Initialize the database
-        consignmentService.save(consignment);
-
+        consignmentRepository.saveAndFlush(consignment);
+        consignmentSearchRepository.save(consignment);
         int databaseSizeBeforeUpdate = consignmentRepository.findAll().size();
 
         // Update the consignment
         Consignment updatedConsignment = consignmentRepository.findOne(consignment.getId());
         updatedConsignment
             .price(UPDATED_PRICE);
+        ConsignmentDTO consignmentDTO = consignmentMapper.toDto(updatedConsignment);
 
         restConsignmentMockMvc.perform(put("/api/consignments")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(updatedConsignment)))
+            .content(TestUtil.convertObjectToJsonBytes(consignmentDTO)))
             .andExpect(status().isOk());
 
         // Validate the Consignment in the database
@@ -226,11 +235,12 @@ public class ConsignmentResourceIntTest {
         int databaseSizeBeforeUpdate = consignmentRepository.findAll().size();
 
         // Create the Consignment
+        ConsignmentDTO consignmentDTO = consignmentMapper.toDto(consignment);
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
         restConsignmentMockMvc.perform(put("/api/consignments")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(consignment)))
+            .content(TestUtil.convertObjectToJsonBytes(consignmentDTO)))
             .andExpect(status().isCreated());
 
         // Validate the Consignment in the database
@@ -242,8 +252,8 @@ public class ConsignmentResourceIntTest {
     @Transactional
     public void deleteConsignment() throws Exception {
         // Initialize the database
-        consignmentService.save(consignment);
-
+        consignmentRepository.saveAndFlush(consignment);
+        consignmentSearchRepository.save(consignment);
         int databaseSizeBeforeDelete = consignmentRepository.findAll().size();
 
         // Get the consignment
@@ -264,7 +274,8 @@ public class ConsignmentResourceIntTest {
     @Transactional
     public void searchConsignment() throws Exception {
         // Initialize the database
-        consignmentService.save(consignment);
+        consignmentRepository.saveAndFlush(consignment);
+        consignmentSearchRepository.save(consignment);
 
         // Search the consignment
         restConsignmentMockMvc.perform(get("/api/_search/consignments?query=id:" + consignment.getId()))
@@ -287,5 +298,28 @@ public class ConsignmentResourceIntTest {
         assertThat(consignment1).isNotEqualTo(consignment2);
         consignment1.setId(null);
         assertThat(consignment1).isNotEqualTo(consignment2);
+    }
+
+    @Test
+    @Transactional
+    public void dtoEqualsVerifier() throws Exception {
+        TestUtil.equalsVerifier(ConsignmentDTO.class);
+        ConsignmentDTO consignmentDTO1 = new ConsignmentDTO();
+        consignmentDTO1.setId(1L);
+        ConsignmentDTO consignmentDTO2 = new ConsignmentDTO();
+        assertThat(consignmentDTO1).isNotEqualTo(consignmentDTO2);
+        consignmentDTO2.setId(consignmentDTO1.getId());
+        assertThat(consignmentDTO1).isEqualTo(consignmentDTO2);
+        consignmentDTO2.setId(2L);
+        assertThat(consignmentDTO1).isNotEqualTo(consignmentDTO2);
+        consignmentDTO1.setId(null);
+        assertThat(consignmentDTO1).isNotEqualTo(consignmentDTO2);
+    }
+
+    @Test
+    @Transactional
+    public void testEntityFromId() {
+        assertThat(consignmentMapper.fromId(42L).getId()).isEqualTo(42);
+        assertThat(consignmentMapper.fromId(null)).isNull();
     }
 }

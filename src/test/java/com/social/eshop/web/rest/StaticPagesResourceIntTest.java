@@ -6,6 +6,8 @@ import com.social.eshop.domain.StaticPages;
 import com.social.eshop.repository.StaticPagesRepository;
 import com.social.eshop.service.StaticPagesService;
 import com.social.eshop.repository.search.StaticPagesSearchRepository;
+import com.social.eshop.service.dto.StaticPagesDTO;
+import com.social.eshop.service.mapper.StaticPagesMapper;
 import com.social.eshop.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -41,6 +43,9 @@ public class StaticPagesResourceIntTest {
 
     @Autowired
     private StaticPagesRepository staticPagesRepository;
+
+    @Autowired
+    private StaticPagesMapper staticPagesMapper;
 
     @Autowired
     private StaticPagesService staticPagesService;
@@ -97,9 +102,10 @@ public class StaticPagesResourceIntTest {
         int databaseSizeBeforeCreate = staticPagesRepository.findAll().size();
 
         // Create the StaticPages
+        StaticPagesDTO staticPagesDTO = staticPagesMapper.toDto(staticPages);
         restStaticPagesMockMvc.perform(post("/api/static-pages")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(staticPages)))
+            .content(TestUtil.convertObjectToJsonBytes(staticPagesDTO)))
             .andExpect(status().isCreated());
 
         // Validate the StaticPages in the database
@@ -119,11 +125,12 @@ public class StaticPagesResourceIntTest {
 
         // Create the StaticPages with an existing ID
         staticPages.setId(1L);
+        StaticPagesDTO staticPagesDTO = staticPagesMapper.toDto(staticPages);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restStaticPagesMockMvc.perform(post("/api/static-pages")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(staticPages)))
+            .content(TestUtil.convertObjectToJsonBytes(staticPagesDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -169,16 +176,17 @@ public class StaticPagesResourceIntTest {
     @Transactional
     public void updateStaticPages() throws Exception {
         // Initialize the database
-        staticPagesService.save(staticPages);
-
+        staticPagesRepository.saveAndFlush(staticPages);
+        staticPagesSearchRepository.save(staticPages);
         int databaseSizeBeforeUpdate = staticPagesRepository.findAll().size();
 
         // Update the staticPages
         StaticPages updatedStaticPages = staticPagesRepository.findOne(staticPages.getId());
+        StaticPagesDTO staticPagesDTO = staticPagesMapper.toDto(updatedStaticPages);
 
         restStaticPagesMockMvc.perform(put("/api/static-pages")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(updatedStaticPages)))
+            .content(TestUtil.convertObjectToJsonBytes(staticPagesDTO)))
             .andExpect(status().isOk());
 
         // Validate the StaticPages in the database
@@ -197,11 +205,12 @@ public class StaticPagesResourceIntTest {
         int databaseSizeBeforeUpdate = staticPagesRepository.findAll().size();
 
         // Create the StaticPages
+        StaticPagesDTO staticPagesDTO = staticPagesMapper.toDto(staticPages);
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
         restStaticPagesMockMvc.perform(put("/api/static-pages")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(staticPages)))
+            .content(TestUtil.convertObjectToJsonBytes(staticPagesDTO)))
             .andExpect(status().isCreated());
 
         // Validate the StaticPages in the database
@@ -213,8 +222,8 @@ public class StaticPagesResourceIntTest {
     @Transactional
     public void deleteStaticPages() throws Exception {
         // Initialize the database
-        staticPagesService.save(staticPages);
-
+        staticPagesRepository.saveAndFlush(staticPages);
+        staticPagesSearchRepository.save(staticPages);
         int databaseSizeBeforeDelete = staticPagesRepository.findAll().size();
 
         // Get the staticPages
@@ -235,7 +244,8 @@ public class StaticPagesResourceIntTest {
     @Transactional
     public void searchStaticPages() throws Exception {
         // Initialize the database
-        staticPagesService.save(staticPages);
+        staticPagesRepository.saveAndFlush(staticPages);
+        staticPagesSearchRepository.save(staticPages);
 
         // Search the staticPages
         restStaticPagesMockMvc.perform(get("/api/_search/static-pages?query=id:" + staticPages.getId()))
@@ -257,5 +267,28 @@ public class StaticPagesResourceIntTest {
         assertThat(staticPages1).isNotEqualTo(staticPages2);
         staticPages1.setId(null);
         assertThat(staticPages1).isNotEqualTo(staticPages2);
+    }
+
+    @Test
+    @Transactional
+    public void dtoEqualsVerifier() throws Exception {
+        TestUtil.equalsVerifier(StaticPagesDTO.class);
+        StaticPagesDTO staticPagesDTO1 = new StaticPagesDTO();
+        staticPagesDTO1.setId(1L);
+        StaticPagesDTO staticPagesDTO2 = new StaticPagesDTO();
+        assertThat(staticPagesDTO1).isNotEqualTo(staticPagesDTO2);
+        staticPagesDTO2.setId(staticPagesDTO1.getId());
+        assertThat(staticPagesDTO1).isEqualTo(staticPagesDTO2);
+        staticPagesDTO2.setId(2L);
+        assertThat(staticPagesDTO1).isNotEqualTo(staticPagesDTO2);
+        staticPagesDTO1.setId(null);
+        assertThat(staticPagesDTO1).isNotEqualTo(staticPagesDTO2);
+    }
+
+    @Test
+    @Transactional
+    public void testEntityFromId() {
+        assertThat(staticPagesMapper.fromId(42L).getId()).isEqualTo(42);
+        assertThat(staticPagesMapper.fromId(null)).isNull();
     }
 }

@@ -9,13 +9,13 @@ export class Products implements BaseEntity {
         public rating?: number,
         public fresh?: boolean,
         public description?: string,
-        public options?: BaseEntity,
+        public optionsId?: number,
         public media?: BaseEntity[],
         public comments?: BaseEntity[],
         public productInBuckets?: BaseEntity[],
         public tagForProducts?: BaseEntity[],
-        public consignment?: BaseEntity,
-        public subCategory?: BaseEntity,
+        public consignmentId?: number,
+        public subCategoryId?: number,
     ) {
         this.fresh = false;
     }

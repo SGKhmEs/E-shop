@@ -1,6 +1,6 @@
 package com.social.eshop.service;
 
-import com.social.eshop.domain.TagForProduct;
+import com.social.eshop.service.dto.TagForProductDTO;
 import java.util.List;
 
 /**
@@ -11,17 +11,17 @@ public interface TagForProductService {
     /**
      * Save a tagForProduct.
      *
-     * @param tagForProduct the entity to save
+     * @param tagForProductDTO the entity to save
      * @return the persisted entity
      */
-    TagForProduct save(TagForProduct tagForProduct);
+    TagForProductDTO save(TagForProductDTO tagForProductDTO);
 
     /**
      *  Get all the tagForProducts.
      *
      *  @return the list of entities
      */
-    List<TagForProduct> findAll();
+    List<TagForProductDTO> findAll();
 
     /**
      *  Get the "id" tagForProduct.
@@ -29,7 +29,7 @@ public interface TagForProductService {
      *  @param id the id of the entity
      *  @return the entity
      */
-    TagForProduct findOne(Long id);
+    TagForProductDTO findOne(Long id);
 
     /**
      *  Delete the "id" tagForProduct.
@@ -45,5 +45,5 @@ public interface TagForProductService {
      *  
      *  @return the list of entities
      */
-    List<TagForProduct> search(String query);
+    List<TagForProductDTO> search(String query);
 }

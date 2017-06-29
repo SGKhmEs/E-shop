@@ -78,7 +78,7 @@ entity Products {
 }
 
 entity Tags {
-	name String required
+	name String
 }
 
 entity  Consignment {
@@ -105,11 +105,11 @@ entity SubCategory {
 }
 
 entity Media {
-	name String required,
-	type String required,
-	contentType String required,
-	location String required,
-	size String required
+	name String,
+	type String,
+	contentType String,
+	location String,
+	size String
 }
 
 entity Comments {
@@ -118,9 +118,11 @@ entity Comments {
 }
 
 entity Options {
-	color Integer required,
-    weight Double required,
-    metal String required,
+    metal String,
+	color String,
+    stone String,
+    marking String,
+    weight Double,
     size Double,
     length Integer
 }
@@ -187,7 +189,7 @@ relationship ManyToOne {
 paginate Products, Bucket, Customer with infinite-scroll
 //paginate Consignment with pagination
 
-// dto Manager, Bucket, CustomerRoom , Customer with mapstruct
+dto * with mapstruct
 
 // Set service options to all except few
 service all with serviceImpl 

@@ -36,9 +36,9 @@
             <th jhiSortBy="rating"><span>Rating</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="fresh"><span>Fresh</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="description"><span>Description</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="options.id"><span>Options</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="consignment.id"><span>Consignment</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="subCategory.id"><span>Sub Category</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="optionsId"><span>Options</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="consignmentId"><span>Consignment</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="subCategoryId"><span>Sub Category</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -52,18 +52,18 @@
                 <td>{{products.fresh}}</td>
                 <td>{{products.description}}</td>
                 <td>
-                    <div *ngIf="products.options">
-                        <a [routerLink]="['../options', products.options?.id ]" >{{products.options?.id}}</a>
+                    <div *ngIf="products.optionsId">
+                        <a [routerLink]="['../options', products.optionsId  ]" >{{products.optionsId}}</a>
                     </div>
                 </td>
                 <td>
-                    <div *ngIf="products.consignment">
-                        <a [routerLink]="['../consignment', products.consignment?.id ]" >{{products.consignment?.id}}</a>
+                    <div *ngIf="products.consignmentId">
+                        <a [routerLink]="['../consignment', products.consignmentId  ]" >{{products.consignmentId}}</a>
                     </div>
                 </td>
                 <td>
-                    <div *ngIf="products.subCategory">
-                        <a [routerLink]="['../sub-category', products.subCategory?.id ]" >{{products.subCategory?.id}}</a>
+                    <div *ngIf="products.subCategoryId">
+                        <a [routerLink]="['../sub-category', products.subCategoryId  ]" >{{products.subCategoryId}}</a>
                     </div>
                 </td>
                 <td class="text-right">

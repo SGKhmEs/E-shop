@@ -48,8 +48,8 @@
                 <td>{{media.location}}</td>
                 <td>{{media.size}}</td>
                 <td>
-                    <div *ngIf="media.products">
-                        <a [routerLink]="['../products', media.products?.id ]" >{{media.products?.id}}</a>
+                    <div *ngIf="media.productsId">
+                        <a [routerLink]="['../products', media.productsId  ]" >{{media.productsId}}</a>
                     </div>
                 </td>
                 <td class="text-right">

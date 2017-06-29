@@ -8,7 +8,7 @@ export class Media implements BaseEntity {
         public contentType?: string,
         public location?: string,
         public size?: string,
-        public products?: BaseEntity,
+        public productsId?: number,
     ) {
     }
 }

@@ -26,7 +26,7 @@ spring:
         serialization.indent_output: true
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:h2:file:./build/h2db/db/eshop;DB_CLOSE_DELAY=-1
+        url: jdbc:h2:file:./target/h2db/db/eshop;DB_CLOSE_DELAY=-1
         username: eshop
         password:
     h2:
@@ -48,8 +48,8 @@ spring:
             cluster-nodes:
             properties:
                 path:
-                    logs: build/elasticsearch/log
-                    data: build/elasticsearch/data
+                    logs: target/elasticsearch/log
+                    data: target/elasticsearch/data
     mail:
         host: localhost
         port: 25
@@ -105,12 +105,9 @@ jhipster:
         allow-credentials: true
         max-age: 1800
     security:
-        authentication:
-            jwt:
-                secret: my-secret-token-to-change-in-production
-                # Token is valid 24 hours
-                token-validity-in-seconds: 86400
-                token-validity-in-seconds-for-remember-me: 2592000
+        remember-me:
+            # security key (this key should be unique for your application, and kept secret)
+            key: c427e790bd3ab980f96a57b52e5e5496182833e0
     mail: # specific JHipster mail property, for standard properties see MailProperties
         from: eshop@localhost
         base-url: http://127.0.0.1:8080

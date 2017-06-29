@@ -89,12 +89,9 @@ jhipster:
             time-to-live-seconds: 3600 # By default objects stay 1 hour in the cache
             max-entries: 1000 # Number of objects in each cache entry
     security:
-        authentication:
-            jwt:
-                secret: c0125e8a630392866c17c1302ca15e3d96798532
-                # Token is valid 24 hours
-                token-validity-in-seconds: 86400
-                token-validity-in-seconds-for-remember-me: 2592000
+        remember-me:
+            # security key (this key should be unique for your application, and kept secret)
+            key: c427e790bd3ab980f96a57b52e5e5496182833e0
     mail: # specific JHipster mail property, for standard properties see MailProperties
         from: eshop@localhost
         base-url: http://my-server-url-to-change # Modify according to your server's URL

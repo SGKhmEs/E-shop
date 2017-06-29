@@ -10,8 +10,8 @@
         </dd>
         <dt><span>Category</span></dt>
         <dd>
-            <div *ngIf="subCategory.category">
-                <a [routerLink]="['/category', subCategory.category?.id]">{{subCategory.category?.id}}</a>
+            <div *ngIf="subCategory.categoryId">
+                <a [routerLink]="['/category', subCategory.categoryId]">{{subCategory.categoryId}}</a>
             </div>
         </dd>
     </dl>

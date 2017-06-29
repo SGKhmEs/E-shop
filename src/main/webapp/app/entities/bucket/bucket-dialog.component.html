@@ -59,23 +59,23 @@
 
         <div class="form-group">
             <label for="field_manager">Manager</label>
-            <select class="form-control" id="field_manager" name="manager" [(ngModel)]="bucket.manager" >
+            <select class="form-control" id="field_manager" name="manager" [(ngModel)]="bucket.managerId" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="managerOption.id === bucket.manager?.id ? bucket.manager : managerOption" *ngFor="let managerOption of managers; trackBy: trackManagerById">{{managerOption.id}}</option>
+                <option [ngValue]="managerOption.id" *ngFor="let managerOption of managers; trackBy: trackManagerById">{{managerOption.id}}</option>
             </select>
         </div>
         <div class="form-group">
             <label for="field_addressShipping">Address Shipping</label>
-            <select class="form-control" id="field_addressShipping" name="addressShipping" [(ngModel)]="bucket.addressShipping">
+            <select class="form-control" id="field_addressShipping" name="addressShipping" [(ngModel)]="bucket.addressShippingId">
                 <option [ngValue]="null"></option>
-                <option [ngValue]="addressShippingOption.id === bucket.addressShipping?.id ? bucket.addressShipping : addressShippingOption" *ngFor="let addressShippingOption of addressshippings; trackBy: trackAddressShippingById">{{addressShippingOption.id}}</option>
+                <option [ngValue]="addressShippingOption.id" *ngFor="let addressShippingOption of addressshippings; trackBy: trackAddressShippingById">{{addressShippingOption.id}}</option>
             </select>
         </div>
         <div class="form-group">
             <label for="field_customer">Customer</label>
-            <select class="form-control" id="field_customer" name="customer" [(ngModel)]="bucket.customer" >
+            <select class="form-control" id="field_customer" name="customer" [(ngModel)]="bucket.customerId" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="customerOption.id === bucket.customer?.id ? bucket.customer : customerOption" *ngFor="let customerOption of customers; trackBy: trackCustomerById">{{customerOption.id}}</option>
+                <option [ngValue]="customerOption.id" *ngFor="let customerOption of customers; trackBy: trackCustomerById">{{customerOption.id}}</option>
             </select>
         </div>
     </div>

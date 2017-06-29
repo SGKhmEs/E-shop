@@ -4,11 +4,14 @@ import com.social.eshop.service.AddressService;
 import com.social.eshop.domain.Address;
 import com.social.eshop.repository.AddressRepository;
 import com.social.eshop.repository.search.AddressSearchRepository;
+import com.social.eshop.service.dto.AddressDTO;
+import com.social.eshop.service.mapper.AddressMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -26,24 +29,29 @@ public class AddressServiceImpl implements AddressService{
 
     private final AddressRepository addressRepository;
 
+    private final AddressMapper addressMapper;
+
     private final AddressSearchRepository addressSearchRepository;
 
-    public AddressServiceImpl(AddressRepository addressRepository, AddressSearchRepository addressSearchRepository) {
+    public AddressServiceImpl(AddressRepository addressRepository, AddressMapper addressMapper, AddressSearchRepository addressSearchRepository) {
         this.addressRepository = addressRepository;
+        this.addressMapper = addressMapper;
         this.addressSearchRepository = addressSearchRepository;
     }
 
     /**
      * Save a address.
      *
-     * @param address the entity to save
+     * @param addressDTO the entity to save
      * @return the persisted entity
      */
     @Override
-    public Address save(Address address) {
-        log.debug("Request to save Address : {}", address);
-        Address result = addressRepository.save(address);
-        addressSearchRepository.save(result);
+    public AddressDTO save(AddressDTO addressDTO) {
+        log.debug("Request to save Address : {}", addressDTO);
+        Address address = addressMapper.toEntity(addressDTO);
+        address = addressRepository.save(address);
+        AddressDTO result = addressMapper.toDto(address);
+        addressSearchRepository.save(address);
         return result;
     }
 
@@ -54,9 +62,11 @@ public class AddressServiceImpl implements AddressService{
      */
     @Override
     @Transactional(readOnly = true)
-    public List<Address> findAll() {
+    public List<AddressDTO> findAll() {
         log.debug("Request to get all Addresses");
-        return addressRepository.findAll();
+        return addressRepository.findAll().stream()
+            .map(addressMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
     }
 
     /**
@@ -67,9 +77,10 @@ public class AddressServiceImpl implements AddressService{
      */
     @Override
     @Transactional(readOnly = true)
-    public Address findOne(Long id) {
+    public AddressDTO findOne(Long id) {
         log.debug("Request to get Address : {}", id);
-        return addressRepository.findOne(id);
+        Address address = addressRepository.findOne(id);
+        return addressMapper.toDto(address);
     }
 
     /**
@@ -92,10 +103,11 @@ public class AddressServiceImpl implements AddressService{
      */
     @Override
     @Transactional(readOnly = true)
-    public List<Address> search(String query) {
+    public List<AddressDTO> search(String query) {
         log.debug("Request to search Addresses for query {}", query);
         return StreamSupport
             .stream(addressSearchRepository.search(queryStringQuery(query)).spliterator(), false)
+            .map(addressMapper::toDto)
             .collect(Collectors.toList());
     }
 }

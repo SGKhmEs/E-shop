@@ -1,6 +1,6 @@
 package com.social.eshop.service;
 
-import com.social.eshop.domain.Manager;
+import com.social.eshop.service.dto.ManagerDTO;
 import java.util.List;
 
 /**
@@ -11,17 +11,17 @@ public interface ManagerService {
     /**
      * Save a manager.
      *
-     * @param manager the entity to save
+     * @param managerDTO the entity to save
      * @return the persisted entity
      */
-    Manager save(Manager manager);
+    ManagerDTO save(ManagerDTO managerDTO);
 
     /**
      *  Get all the managers.
      *
      *  @return the list of entities
      */
-    List<Manager> findAll();
+    List<ManagerDTO> findAll();
 
     /**
      *  Get the "id" manager.
@@ -29,7 +29,7 @@ public interface ManagerService {
      *  @param id the id of the entity
      *  @return the entity
      */
-    Manager findOne(Long id);
+    ManagerDTO findOne(Long id);
 
     /**
      *  Delete the "id" manager.
@@ -45,5 +45,5 @@ public interface ManagerService {
      *  
      *  @return the list of entities
      */
-    List<Manager> search(String query);
+    List<ManagerDTO> search(String query);
 }

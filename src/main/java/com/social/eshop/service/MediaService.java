@@ -1,6 +1,6 @@
 package com.social.eshop.service;
 
-import com.social.eshop.domain.Media;
+import com.social.eshop.service.dto.MediaDTO;
 import java.util.List;
 
 /**
@@ -11,17 +11,17 @@ public interface MediaService {
     /**
      * Save a media.
      *
-     * @param media the entity to save
+     * @param mediaDTO the entity to save
      * @return the persisted entity
      */
-    Media save(Media media);
+    MediaDTO save(MediaDTO mediaDTO);
 
     /**
      *  Get all the media.
      *
      *  @return the list of entities
      */
-    List<Media> findAll();
+    List<MediaDTO> findAll();
 
     /**
      *  Get the "id" media.
@@ -29,7 +29,7 @@ public interface MediaService {
      *  @param id the id of the entity
      *  @return the entity
      */
-    Media findOne(Long id);
+    MediaDTO findOne(Long id);
 
     /**
      *  Delete the "id" media.
@@ -45,5 +45,5 @@ public interface MediaService {
      *  
      *  @return the list of entities
      */
-    List<Media> search(String query);
+    List<MediaDTO> search(String query);
 }

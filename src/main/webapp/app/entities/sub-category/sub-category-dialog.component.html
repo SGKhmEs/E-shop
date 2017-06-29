@@ -26,9 +26,9 @@
 
         <div class="form-group">
             <label for="field_category">Category</label>
-            <select class="form-control" id="field_category" name="category" [(ngModel)]="subCategory.category" >
+            <select class="form-control" id="field_category" name="category" [(ngModel)]="subCategory.categoryId" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="categoryOption.id === subCategory.category?.id ? subCategory.category : categoryOption" *ngFor="let categoryOption of categories; trackBy: trackCategoryById">{{categoryOption.id}}</option>
+                <option [ngValue]="categoryOption.id" *ngFor="let categoryOption of categories; trackBy: trackCategoryById">{{categoryOption.id}}</option>
             </select>
         </div>
     </div>

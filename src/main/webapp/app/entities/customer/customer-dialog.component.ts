@@ -51,11 +51,11 @@ export class CustomerDialogComponent implements OnInit {
         this.loginOptionsService
             .query({filter: 'customer-is-null'})
             .subscribe((res: ResponseWrapper) => {
-                if (!this.customer.loginOptions || !this.customer.loginOptions.id) {
+                if (!this.customer.loginOptionsId) {
                     this.loginoptions = res.json;
                 } else {
                     this.loginOptionsService
-                        .find(this.customer.loginOptions.id)
+                        .find(this.customer.loginOptionsId)
                         .subscribe((subRes: LoginOptions) => {
                             this.loginoptions = [subRes].concat(res.json);
                         }, (subRes: ResponseWrapper) => this.onError(subRes.json));
@@ -64,11 +64,11 @@ export class CustomerDialogComponent implements OnInit {
         this.addressService
             .query({filter: 'customer-is-null'})
             .subscribe((res: ResponseWrapper) => {
-                if (!this.customer.address || !this.customer.address.id) {
+                if (!this.customer.addressId) {
                     this.addresses = res.json;
                 } else {
                     this.addressService
-                        .find(this.customer.address.id)
+                        .find(this.customer.addressId)
                         .subscribe((subRes: Address) => {
                             this.addresses = [subRes].concat(res.json);
                         }, (subRes: ResponseWrapper) => this.onError(subRes.json));
@@ -77,11 +77,11 @@ export class CustomerDialogComponent implements OnInit {
         this.personalInformationService
             .query({filter: 'customer-is-null'})
             .subscribe((res: ResponseWrapper) => {
-                if (!this.customer.personalInfo || !this.customer.personalInfo.id) {
+                if (!this.customer.personalInfoId) {
                     this.personalinfos = res.json;
                 } else {
                     this.personalInformationService
-                        .find(this.customer.personalInfo.id)
+                        .find(this.customer.personalInfoId)
                         .subscribe((subRes: PersonalInformation) => {
                             this.personalinfos = [subRes].concat(res.json);
                         }, (subRes: ResponseWrapper) => this.onError(subRes.json));
@@ -90,11 +90,11 @@ export class CustomerDialogComponent implements OnInit {
         this.avatarService
             .query({filter: 'customer-is-null'})
             .subscribe((res: ResponseWrapper) => {
-                if (!this.customer.avatar || !this.customer.avatar.id) {
+                if (!this.customer.avatarId) {
                     this.avatars = res.json;
                 } else {
                     this.avatarService
-                        .find(this.customer.avatar.id)
+                        .find(this.customer.avatarId)
                         .subscribe((subRes: Avatar) => {
                             this.avatars = [subRes].concat(res.json);
                         }, (subRes: ResponseWrapper) => this.onError(subRes.json));

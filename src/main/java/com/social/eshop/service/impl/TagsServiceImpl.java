@@ -4,11 +4,14 @@ import com.social.eshop.service.TagsService;
 import com.social.eshop.domain.Tags;
 import com.social.eshop.repository.TagsRepository;
 import com.social.eshop.repository.search.TagsSearchRepository;
+import com.social.eshop.service.dto.TagsDTO;
+import com.social.eshop.service.mapper.TagsMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -26,24 +29,29 @@ public class TagsServiceImpl implements TagsService{
 
     private final TagsRepository tagsRepository;
 
+    private final TagsMapper tagsMapper;
+
     private final TagsSearchRepository tagsSearchRepository;
 
-    public TagsServiceImpl(TagsRepository tagsRepository, TagsSearchRepository tagsSearchRepository) {
+    public TagsServiceImpl(TagsRepository tagsRepository, TagsMapper tagsMapper, TagsSearchRepository tagsSearchRepository) {
         this.tagsRepository = tagsRepository;
+        this.tagsMapper = tagsMapper;
         this.tagsSearchRepository = tagsSearchRepository;
     }
 
     /**
      * Save a tags.
      *
-     * @param tags the entity to save
+     * @param tagsDTO the entity to save
      * @return the persisted entity
      */
     @Override
-    public Tags save(Tags tags) {
-        log.debug("Request to save Tags : {}", tags);
-        Tags result = tagsRepository.save(tags);
-        tagsSearchRepository.save(result);
+    public TagsDTO save(TagsDTO tagsDTO) {
+        log.debug("Request to save Tags : {}", tagsDTO);
+        Tags tags = tagsMapper.toEntity(tagsDTO);
+        tags = tagsRepository.save(tags);
+        TagsDTO result = tagsMapper.toDto(tags);
+        tagsSearchRepository.save(tags);
         return result;
     }
 
@@ -54,9 +62,11 @@ public class TagsServiceImpl implements TagsService{
      */
     @Override
     @Transactional(readOnly = true)
-    public List<Tags> findAll() {
+    public List<TagsDTO> findAll() {
         log.debug("Request to get all Tags");
-        return tagsRepository.findAll();
+        return tagsRepository.findAll().stream()
+            .map(tagsMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
     }
 
     /**
@@ -67,9 +77,10 @@ public class TagsServiceImpl implements TagsService{
      */
     @Override
     @Transactional(readOnly = true)
-    public Tags findOne(Long id) {
+    public TagsDTO findOne(Long id) {
         log.debug("Request to get Tags : {}", id);
-        return tagsRepository.findOne(id);
+        Tags tags = tagsRepository.findOne(id);
+        return tagsMapper.toDto(tags);
     }
 
     /**
@@ -92,10 +103,11 @@ public class TagsServiceImpl implements TagsService{
      */
     @Override
     @Transactional(readOnly = true)
-    public List<Tags> search(String query) {
+    public List<TagsDTO> search(String query) {
         log.debug("Request to search Tags for query {}", query);
         return StreamSupport
             .stream(tagsSearchRepository.search(queryStringQuery(query)).spliterator(), false)
+            .map(tagsMapper::toDto)
             .collect(Collectors.toList());
     }
 }

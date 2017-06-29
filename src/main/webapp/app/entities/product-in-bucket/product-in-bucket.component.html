@@ -39,13 +39,13 @@
             <tr *ngFor="let productInBucket of productInBuckets ;trackBy: trackId">
                 <td><a [routerLink]="['../product-in-bucket', productInBucket.id ]">{{productInBucket.id}}</a></td>
                 <td>
-                    <div *ngIf="productInBucket.bucket">
-                        <a [routerLink]="['../bucket', productInBucket.bucket?.id ]" >{{productInBucket.bucket?.id}}</a>
+                    <div *ngIf="productInBucket.bucketId">
+                        <a [routerLink]="['../bucket', productInBucket.bucketId  ]" >{{productInBucket.bucketId}}</a>
                     </div>
                 </td>
                 <td>
-                    <div *ngIf="productInBucket.products">
-                        <a [routerLink]="['../products', productInBucket.products?.id ]" >{{productInBucket.products?.id}}</a>
+                    <div *ngIf="productInBucket.productsId">
+                        <a [routerLink]="['../products', productInBucket.productsId  ]" >{{productInBucket.productsId}}</a>
                     </div>
                 </td>
                 <td class="text-right">

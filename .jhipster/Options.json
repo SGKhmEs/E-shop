@@ -3,25 +3,24 @@
     "relationships": [],
     "fields": [
         {
+            "fieldName": "metal",
+            "fieldType": "String"
+        },
+        {
             "fieldName": "color",
-            "fieldType": "Integer",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "stone",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "marking",
+            "fieldType": "String"
         },
         {
             "fieldName": "weight",
-            "fieldType": "Double",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
-            "fieldName": "metal",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldType": "Double"
         },
         {
             "fieldName": "size",
@@ -32,9 +31,9 @@
             "fieldType": "Integer"
         }
     ],
-    "changelogDate": "20170623182248",
+    "changelogDate": "20170629140054",
     "entityTableName": "options",
-    "dto": "no",
+    "dto": "mapstruct",
     "pagination": "no",
     "service": "serviceImpl"
 }

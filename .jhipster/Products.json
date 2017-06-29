@@ -78,9 +78,9 @@
             "fieldType": "String"
         }
     ],
-    "changelogDate": "20170623182239",
+    "changelogDate": "20170629140045",
     "entityTableName": "products",
-    "dto": "no",
+    "dto": "mapstruct",
     "pagination": "infinite-scroll",
     "service": "serviceImpl"
 }

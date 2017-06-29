@@ -30,16 +30,16 @@
 
         <div class="form-group">
             <label for="field_storage">Storage</label>
-            <select class="form-control" id="field_storage" name="storage" [(ngModel)]="consignment.storage" >
+            <select class="form-control" id="field_storage" name="storage" [(ngModel)]="consignment.storageId" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="storageOption.id === consignment.storage?.id ? consignment.storage : storageOption" *ngFor="let storageOption of storages; trackBy: trackStorageById">{{storageOption.id}}</option>
+                <option [ngValue]="storageOption.id" *ngFor="let storageOption of storages; trackBy: trackStorageById">{{storageOption.id}}</option>
             </select>
         </div>
         <div class="form-group">
             <label for="field_producers">Producers</label>
-            <select class="form-control" id="field_producers" name="producers" [(ngModel)]="consignment.producers" >
+            <select class="form-control" id="field_producers" name="producers" [(ngModel)]="consignment.producersId" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="producersOption.id === consignment.producers?.id ? consignment.producers : producersOption" *ngFor="let producersOption of producers; trackBy: trackProducersById">{{producersOption.id}}</option>
+                <option [ngValue]="producersOption.id" *ngFor="let producersOption of producers; trackBy: trackProducersById">{{producersOption.id}}</option>
             </select>
         </div>
     </div>

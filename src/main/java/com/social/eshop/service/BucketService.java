@@ -1,6 +1,6 @@
 package com.social.eshop.service;
 
-import com.social.eshop.domain.Bucket;
+import com.social.eshop.service.dto.BucketDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -12,10 +12,10 @@ public interface BucketService {
     /**
      * Save a bucket.
      *
-     * @param bucket the entity to save
+     * @param bucketDTO the entity to save
      * @return the persisted entity
      */
-    Bucket save(Bucket bucket);
+    BucketDTO save(BucketDTO bucketDTO);
 
     /**
      *  Get all the buckets.
@@ -23,7 +23,7 @@ public interface BucketService {
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    Page<Bucket> findAll(Pageable pageable);
+    Page<BucketDTO> findAll(Pageable pageable);
 
     /**
      *  Get the "id" bucket.
@@ -31,7 +31,7 @@ public interface BucketService {
      *  @param id the id of the entity
      *  @return the entity
      */
-    Bucket findOne(Long id);
+    BucketDTO findOne(Long id);
 
     /**
      *  Delete the "id" bucket.
@@ -48,5 +48,5 @@ public interface BucketService {
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    Page<Bucket> search(String query, Pageable pageable);
+    Page<BucketDTO> search(String query, Pageable pageable);
 }

@@ -4,11 +4,14 @@ import com.social.eshop.service.PersonalInformationService;
 import com.social.eshop.domain.PersonalInformation;
 import com.social.eshop.repository.PersonalInformationRepository;
 import com.social.eshop.repository.search.PersonalInformationSearchRepository;
+import com.social.eshop.service.dto.PersonalInformationDTO;
+import com.social.eshop.service.mapper.PersonalInformationMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -26,24 +29,29 @@ public class PersonalInformationServiceImpl implements PersonalInformationServic
 
     private final PersonalInformationRepository personalInformationRepository;
 
+    private final PersonalInformationMapper personalInformationMapper;
+
     private final PersonalInformationSearchRepository personalInformationSearchRepository;
 
-    public PersonalInformationServiceImpl(PersonalInformationRepository personalInformationRepository, PersonalInformationSearchRepository personalInformationSearchRepository) {
+    public PersonalInformationServiceImpl(PersonalInformationRepository personalInformationRepository, PersonalInformationMapper personalInformationMapper, PersonalInformationSearchRepository personalInformationSearchRepository) {
         this.personalInformationRepository = personalInformationRepository;
+        this.personalInformationMapper = personalInformationMapper;
         this.personalInformationSearchRepository = personalInformationSearchRepository;
     }
 
     /**
      * Save a personalInformation.
      *
-     * @param personalInformation the entity to save
+     * @param personalInformationDTO the entity to save
      * @return the persisted entity
      */
     @Override
-    public PersonalInformation save(PersonalInformation personalInformation) {
-        log.debug("Request to save PersonalInformation : {}", personalInformation);
-        PersonalInformation result = personalInformationRepository.save(personalInformation);
-        personalInformationSearchRepository.save(result);
+    public PersonalInformationDTO save(PersonalInformationDTO personalInformationDTO) {
+        log.debug("Request to save PersonalInformation : {}", personalInformationDTO);
+        PersonalInformation personalInformation = personalInformationMapper.toEntity(personalInformationDTO);
+        personalInformation = personalInformationRepository.save(personalInformation);
+        PersonalInformationDTO result = personalInformationMapper.toDto(personalInformation);
+        personalInformationSearchRepository.save(personalInformation);
         return result;
     }
 
@@ -54,9 +62,11 @@ public class PersonalInformationServiceImpl implements PersonalInformationServic
      */
     @Override
     @Transactional(readOnly = true)
-    public List<PersonalInformation> findAll() {
+    public List<PersonalInformationDTO> findAll() {
         log.debug("Request to get all PersonalInformations");
-        return personalInformationRepository.findAll();
+        return personalInformationRepository.findAll().stream()
+            .map(personalInformationMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
     }
 
     /**
@@ -67,9 +77,10 @@ public class PersonalInformationServiceImpl implements PersonalInformationServic
      */
     @Override
     @Transactional(readOnly = true)
-    public PersonalInformation findOne(Long id) {
+    public PersonalInformationDTO findOne(Long id) {
         log.debug("Request to get PersonalInformation : {}", id);
-        return personalInformationRepository.findOne(id);
+        PersonalInformation personalInformation = personalInformationRepository.findOne(id);
+        return personalInformationMapper.toDto(personalInformation);
     }
 
     /**
@@ -92,10 +103,11 @@ public class PersonalInformationServiceImpl implements PersonalInformationServic
      */
     @Override
     @Transactional(readOnly = true)
-    public List<PersonalInformation> search(String query) {
+    public List<PersonalInformationDTO> search(String query) {
         log.debug("Request to search PersonalInformations for query {}", query);
         return StreamSupport
             .stream(personalInformationSearchRepository.search(queryStringQuery(query)).spliterator(), false)
+            .map(personalInformationMapper::toDto)
             .collect(Collectors.toList());
     }
 }

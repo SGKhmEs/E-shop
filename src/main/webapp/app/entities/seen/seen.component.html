@@ -41,13 +41,13 @@
                 <td><a [routerLink]="['../seen', seen.id ]">{{seen.id}}</a></td>
                 <td>{{seen.date | date:'mediumDate'}}</td>
                 <td>
-                    <div *ngIf="seen.customer">
-                        <a [routerLink]="['../customer', seen.customer?.id ]" >{{seen.customer?.id}}</a>
+                    <div *ngIf="seen.customerId">
+                        <a [routerLink]="['../customer', seen.customerId  ]" >{{seen.customerId}}</a>
                     </div>
                 </td>
                 <td>
-                    <div *ngIf="seen.products">
-                        <a [routerLink]="['../products', seen.products?.id ]" >{{seen.products?.id}}</a>
+                    <div *ngIf="seen.productsId">
+                        <a [routerLink]="['../products', seen.productsId  ]" >{{seen.productsId}}</a>
                     </div>
                 </td>
                 <td class="text-right">

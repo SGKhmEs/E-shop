@@ -14,14 +14,14 @@
         </dd>
         <dt><span>Customer</span></dt>
         <dd>
-            <div *ngIf="comments.customer">
-                <a [routerLink]="['/customer', comments.customer?.id]">{{comments.customer?.id}}</a>
+            <div *ngIf="comments.customerId">
+                <a [routerLink]="['/customer', comments.customerId]">{{comments.customerId}}</a>
             </div>
         </dd>
         <dt><span>Products</span></dt>
         <dd>
-            <div *ngIf="comments.products">
-                <a [routerLink]="['/products', comments.products?.id]">{{comments.products?.id}}</a>
+            <div *ngIf="comments.productsId">
+                <a [routerLink]="['/products', comments.productsId]">{{comments.productsId}}</a>
             </div>
         </dd>
     </dl>

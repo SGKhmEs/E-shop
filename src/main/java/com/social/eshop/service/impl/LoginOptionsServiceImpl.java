@@ -4,11 +4,14 @@ import com.social.eshop.service.LoginOptionsService;
 import com.social.eshop.domain.LoginOptions;
 import com.social.eshop.repository.LoginOptionsRepository;
 import com.social.eshop.repository.search.LoginOptionsSearchRepository;
+import com.social.eshop.service.dto.LoginOptionsDTO;
+import com.social.eshop.service.mapper.LoginOptionsMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -26,24 +29,29 @@ public class LoginOptionsServiceImpl implements LoginOptionsService{
 
     private final LoginOptionsRepository loginOptionsRepository;
 
+    private final LoginOptionsMapper loginOptionsMapper;
+
     private final LoginOptionsSearchRepository loginOptionsSearchRepository;
 
-    public LoginOptionsServiceImpl(LoginOptionsRepository loginOptionsRepository, LoginOptionsSearchRepository loginOptionsSearchRepository) {
+    public LoginOptionsServiceImpl(LoginOptionsRepository loginOptionsRepository, LoginOptionsMapper loginOptionsMapper, LoginOptionsSearchRepository loginOptionsSearchRepository) {
         this.loginOptionsRepository = loginOptionsRepository;
+        this.loginOptionsMapper = loginOptionsMapper;
         this.loginOptionsSearchRepository = loginOptionsSearchRepository;
     }
 
     /**
      * Save a loginOptions.
      *
-     * @param loginOptions the entity to save
+     * @param loginOptionsDTO the entity to save
      * @return the persisted entity
      */
     @Override
-    public LoginOptions save(LoginOptions loginOptions) {
-        log.debug("Request to save LoginOptions : {}", loginOptions);
-        LoginOptions result = loginOptionsRepository.save(loginOptions);
-        loginOptionsSearchRepository.save(result);
+    public LoginOptionsDTO save(LoginOptionsDTO loginOptionsDTO) {
+        log.debug("Request to save LoginOptions : {}", loginOptionsDTO);
+        LoginOptions loginOptions = loginOptionsMapper.toEntity(loginOptionsDTO);
+        loginOptions = loginOptionsRepository.save(loginOptions);
+        LoginOptionsDTO result = loginOptionsMapper.toDto(loginOptions);
+        loginOptionsSearchRepository.save(loginOptions);
         return result;
     }
 
@@ -54,9 +62,11 @@ public class LoginOptionsServiceImpl implements LoginOptionsService{
      */
     @Override
     @Transactional(readOnly = true)
-    public List<LoginOptions> findAll() {
+    public List<LoginOptionsDTO> findAll() {
         log.debug("Request to get all LoginOptions");
-        return loginOptionsRepository.findAll();
+        return loginOptionsRepository.findAll().stream()
+            .map(loginOptionsMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
     }
 
     /**
@@ -67,9 +77,10 @@ public class LoginOptionsServiceImpl implements LoginOptionsService{
      */
     @Override
     @Transactional(readOnly = true)
-    public LoginOptions findOne(Long id) {
+    public LoginOptionsDTO findOne(Long id) {
         log.debug("Request to get LoginOptions : {}", id);
-        return loginOptionsRepository.findOne(id);
+        LoginOptions loginOptions = loginOptionsRepository.findOne(id);
+        return loginOptionsMapper.toDto(loginOptions);
     }
 
     /**
@@ -92,10 +103,11 @@ public class LoginOptionsServiceImpl implements LoginOptionsService{
      */
     @Override
     @Transactional(readOnly = true)
-    public List<LoginOptions> search(String query) {
+    public List<LoginOptionsDTO> search(String query) {
         log.debug("Request to search LoginOptions for query {}", query);
         return StreamSupport
             .stream(loginOptionsSearchRepository.search(queryStringQuery(query)).spliterator(), false)
+            .map(loginOptionsMapper::toDto)
             .collect(Collectors.toList());
     }
 }

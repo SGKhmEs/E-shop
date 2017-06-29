@@ -6,6 +6,8 @@ import com.social.eshop.domain.PersonalInformation;
 import com.social.eshop.repository.PersonalInformationRepository;
 import com.social.eshop.service.PersonalInformationService;
 import com.social.eshop.repository.search.PersonalInformationSearchRepository;
+import com.social.eshop.service.dto.PersonalInformationDTO;
+import com.social.eshop.service.mapper.PersonalInformationMapper;
 import com.social.eshop.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -65,6 +67,9 @@ public class PersonalInformationResourceIntTest {
 
     @Autowired
     private PersonalInformationRepository personalInformationRepository;
+
+    @Autowired
+    private PersonalInformationMapper personalInformationMapper;
 
     @Autowired
     private PersonalInformationService personalInformationService;
@@ -128,9 +133,10 @@ public class PersonalInformationResourceIntTest {
         int databaseSizeBeforeCreate = personalInformationRepository.findAll().size();
 
         // Create the PersonalInformation
+        PersonalInformationDTO personalInformationDTO = personalInformationMapper.toDto(personalInformation);
         restPersonalInformationMockMvc.perform(post("/api/personal-informations")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(personalInformation)))
+            .content(TestUtil.convertObjectToJsonBytes(personalInformationDTO)))
             .andExpect(status().isCreated());
 
         // Validate the PersonalInformation in the database
@@ -157,11 +163,12 @@ public class PersonalInformationResourceIntTest {
 
         // Create the PersonalInformation with an existing ID
         personalInformation.setId(1L);
+        PersonalInformationDTO personalInformationDTO = personalInformationMapper.toDto(personalInformation);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restPersonalInformationMockMvc.perform(post("/api/personal-informations")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(personalInformation)))
+            .content(TestUtil.convertObjectToJsonBytes(personalInformationDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -177,10 +184,11 @@ public class PersonalInformationResourceIntTest {
         personalInformation.setFirstName(null);
 
         // Create the PersonalInformation, which fails.
+        PersonalInformationDTO personalInformationDTO = personalInformationMapper.toDto(personalInformation);
 
         restPersonalInformationMockMvc.perform(post("/api/personal-informations")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(personalInformation)))
+            .content(TestUtil.convertObjectToJsonBytes(personalInformationDTO)))
             .andExpect(status().isBadRequest());
 
         List<PersonalInformation> personalInformationList = personalInformationRepository.findAll();
@@ -195,10 +203,11 @@ public class PersonalInformationResourceIntTest {
         personalInformation.setLastName(null);
 
         // Create the PersonalInformation, which fails.
+        PersonalInformationDTO personalInformationDTO = personalInformationMapper.toDto(personalInformation);
 
         restPersonalInformationMockMvc.perform(post("/api/personal-informations")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(personalInformation)))
+            .content(TestUtil.convertObjectToJsonBytes(personalInformationDTO)))
             .andExpect(status().isBadRequest());
 
         List<PersonalInformation> personalInformationList = personalInformationRepository.findAll();
@@ -213,10 +222,11 @@ public class PersonalInformationResourceIntTest {
         personalInformation.setPhone(null);
 
         // Create the PersonalInformation, which fails.
+        PersonalInformationDTO personalInformationDTO = personalInformationMapper.toDto(personalInformation);
 
         restPersonalInformationMockMvc.perform(post("/api/personal-informations")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(personalInformation)))
+            .content(TestUtil.convertObjectToJsonBytes(personalInformationDTO)))
             .andExpect(status().isBadRequest());
 
         List<PersonalInformation> personalInformationList = personalInformationRepository.findAll();
@@ -231,10 +241,11 @@ public class PersonalInformationResourceIntTest {
         personalInformation.setEmail(null);
 
         // Create the PersonalInformation, which fails.
+        PersonalInformationDTO personalInformationDTO = personalInformationMapper.toDto(personalInformation);
 
         restPersonalInformationMockMvc.perform(post("/api/personal-informations")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(personalInformation)))
+            .content(TestUtil.convertObjectToJsonBytes(personalInformationDTO)))
             .andExpect(status().isBadRequest());
 
         List<PersonalInformation> personalInformationList = personalInformationRepository.findAll();
@@ -293,8 +304,8 @@ public class PersonalInformationResourceIntTest {
     @Transactional
     public void updatePersonalInformation() throws Exception {
         // Initialize the database
-        personalInformationService.save(personalInformation);
-
+        personalInformationRepository.saveAndFlush(personalInformation);
+        personalInformationSearchRepository.save(personalInformation);
         int databaseSizeBeforeUpdate = personalInformationRepository.findAll().size();
 
         // Update the personalInformation
@@ -307,10 +318,11 @@ public class PersonalInformationResourceIntTest {
             .phone(UPDATED_PHONE)
             .email(UPDATED_EMAIL)
             .dateBirth(UPDATED_DATE_BIRTH);
+        PersonalInformationDTO personalInformationDTO = personalInformationMapper.toDto(updatedPersonalInformation);
 
         restPersonalInformationMockMvc.perform(put("/api/personal-informations")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(updatedPersonalInformation)))
+            .content(TestUtil.convertObjectToJsonBytes(personalInformationDTO)))
             .andExpect(status().isOk());
 
         // Validate the PersonalInformation in the database
@@ -336,11 +348,12 @@ public class PersonalInformationResourceIntTest {
         int databaseSizeBeforeUpdate = personalInformationRepository.findAll().size();
 
         // Create the PersonalInformation
+        PersonalInformationDTO personalInformationDTO = personalInformationMapper.toDto(personalInformation);
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
         restPersonalInformationMockMvc.perform(put("/api/personal-informations")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(personalInformation)))
+            .content(TestUtil.convertObjectToJsonBytes(personalInformationDTO)))
             .andExpect(status().isCreated());
 
         // Validate the PersonalInformation in the database
@@ -352,8 +365,8 @@ public class PersonalInformationResourceIntTest {
     @Transactional
     public void deletePersonalInformation() throws Exception {
         // Initialize the database
-        personalInformationService.save(personalInformation);
-
+        personalInformationRepository.saveAndFlush(personalInformation);
+        personalInformationSearchRepository.save(personalInformation);
         int databaseSizeBeforeDelete = personalInformationRepository.findAll().size();
 
         // Get the personalInformation
@@ -374,7 +387,8 @@ public class PersonalInformationResourceIntTest {
     @Transactional
     public void searchPersonalInformation() throws Exception {
         // Initialize the database
-        personalInformationService.save(personalInformation);
+        personalInformationRepository.saveAndFlush(personalInformation);
+        personalInformationSearchRepository.save(personalInformation);
 
         // Search the personalInformation
         restPersonalInformationMockMvc.perform(get("/api/_search/personal-informations?query=id:" + personalInformation.getId()))
@@ -403,5 +417,28 @@ public class PersonalInformationResourceIntTest {
         assertThat(personalInformation1).isNotEqualTo(personalInformation2);
         personalInformation1.setId(null);
         assertThat(personalInformation1).isNotEqualTo(personalInformation2);
+    }
+
+    @Test
+    @Transactional
+    public void dtoEqualsVerifier() throws Exception {
+        TestUtil.equalsVerifier(PersonalInformationDTO.class);
+        PersonalInformationDTO personalInformationDTO1 = new PersonalInformationDTO();
+        personalInformationDTO1.setId(1L);
+        PersonalInformationDTO personalInformationDTO2 = new PersonalInformationDTO();
+        assertThat(personalInformationDTO1).isNotEqualTo(personalInformationDTO2);
+        personalInformationDTO2.setId(personalInformationDTO1.getId());
+        assertThat(personalInformationDTO1).isEqualTo(personalInformationDTO2);
+        personalInformationDTO2.setId(2L);
+        assertThat(personalInformationDTO1).isNotEqualTo(personalInformationDTO2);
+        personalInformationDTO1.setId(null);
+        assertThat(personalInformationDTO1).isNotEqualTo(personalInformationDTO2);
+    }
+
+    @Test
+    @Transactional
+    public void testEntityFromId() {
+        assertThat(personalInformationMapper.fromId(42L).getId()).isEqualTo(42);
+        assertThat(personalInformationMapper.fromId(null)).isNull();
     }
 }

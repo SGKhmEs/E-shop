@@ -6,6 +6,8 @@ import com.social.eshop.domain.Manager;
 import com.social.eshop.repository.ManagerRepository;
 import com.social.eshop.service.ManagerService;
 import com.social.eshop.repository.search.ManagerSearchRepository;
+import com.social.eshop.service.dto.ManagerDTO;
+import com.social.eshop.service.mapper.ManagerMapper;
 import com.social.eshop.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -45,6 +47,9 @@ public class ManagerResourceIntTest {
 
     @Autowired
     private ManagerRepository managerRepository;
+
+    @Autowired
+    private ManagerMapper managerMapper;
 
     @Autowired
     private ManagerService managerService;
@@ -102,9 +107,10 @@ public class ManagerResourceIntTest {
         int databaseSizeBeforeCreate = managerRepository.findAll().size();
 
         // Create the Manager
+        ManagerDTO managerDTO = managerMapper.toDto(manager);
         restManagerMockMvc.perform(post("/api/managers")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(manager)))
+            .content(TestUtil.convertObjectToJsonBytes(managerDTO)))
             .andExpect(status().isCreated());
 
         // Validate the Manager in the database
@@ -125,11 +131,12 @@ public class ManagerResourceIntTest {
 
         // Create the Manager with an existing ID
         manager.setId(1L);
+        ManagerDTO managerDTO = managerMapper.toDto(manager);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restManagerMockMvc.perform(post("/api/managers")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(manager)))
+            .content(TestUtil.convertObjectToJsonBytes(managerDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -177,18 +184,19 @@ public class ManagerResourceIntTest {
     @Transactional
     public void updateManager() throws Exception {
         // Initialize the database
-        managerService.save(manager);
-
+        managerRepository.saveAndFlush(manager);
+        managerSearchRepository.save(manager);
         int databaseSizeBeforeUpdate = managerRepository.findAll().size();
 
         // Update the manager
         Manager updatedManager = managerRepository.findOne(manager.getId());
         updatedManager
             .roles(UPDATED_ROLES);
+        ManagerDTO managerDTO = managerMapper.toDto(updatedManager);
 
         restManagerMockMvc.perform(put("/api/managers")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(updatedManager)))
+            .content(TestUtil.convertObjectToJsonBytes(managerDTO)))
             .andExpect(status().isOk());
 
         // Validate the Manager in the database
@@ -208,11 +216,12 @@ public class ManagerResourceIntTest {
         int databaseSizeBeforeUpdate = managerRepository.findAll().size();
 
         // Create the Manager
+        ManagerDTO managerDTO = managerMapper.toDto(manager);
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
         restManagerMockMvc.perform(put("/api/managers")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(manager)))
+            .content(TestUtil.convertObjectToJsonBytes(managerDTO)))
             .andExpect(status().isCreated());
 
         // Validate the Manager in the database
@@ -224,8 +233,8 @@ public class ManagerResourceIntTest {
     @Transactional
     public void deleteManager() throws Exception {
         // Initialize the database
-        managerService.save(manager);
-
+        managerRepository.saveAndFlush(manager);
+        managerSearchRepository.save(manager);
         int databaseSizeBeforeDelete = managerRepository.findAll().size();
 
         // Get the manager
@@ -246,7 +255,8 @@ public class ManagerResourceIntTest {
     @Transactional
     public void searchManager() throws Exception {
         // Initialize the database
-        managerService.save(manager);
+        managerRepository.saveAndFlush(manager);
+        managerSearchRepository.save(manager);
 
         // Search the manager
         restManagerMockMvc.perform(get("/api/_search/managers?query=id:" + manager.getId()))
@@ -269,5 +279,28 @@ public class ManagerResourceIntTest {
         assertThat(manager1).isNotEqualTo(manager2);
         manager1.setId(null);
         assertThat(manager1).isNotEqualTo(manager2);
+    }
+
+    @Test
+    @Transactional
+    public void dtoEqualsVerifier() throws Exception {
+        TestUtil.equalsVerifier(ManagerDTO.class);
+        ManagerDTO managerDTO1 = new ManagerDTO();
+        managerDTO1.setId(1L);
+        ManagerDTO managerDTO2 = new ManagerDTO();
+        assertThat(managerDTO1).isNotEqualTo(managerDTO2);
+        managerDTO2.setId(managerDTO1.getId());
+        assertThat(managerDTO1).isEqualTo(managerDTO2);
+        managerDTO2.setId(2L);
+        assertThat(managerDTO1).isNotEqualTo(managerDTO2);
+        managerDTO1.setId(null);
+        assertThat(managerDTO1).isNotEqualTo(managerDTO2);
+    }
+
+    @Test
+    @Transactional
+    public void testEntityFromId() {
+        assertThat(managerMapper.fromId(42L).getId()).isEqualTo(42);
+        assertThat(managerMapper.fromId(null)).isNull();
     }
 }

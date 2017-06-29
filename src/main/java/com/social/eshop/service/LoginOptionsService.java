@@ -1,6 +1,6 @@
 package com.social.eshop.service;
 
-import com.social.eshop.domain.LoginOptions;
+import com.social.eshop.service.dto.LoginOptionsDTO;
 import java.util.List;
 
 /**
@@ -11,17 +11,17 @@ public interface LoginOptionsService {
     /**
      * Save a loginOptions.
      *
-     * @param loginOptions the entity to save
+     * @param loginOptionsDTO the entity to save
      * @return the persisted entity
      */
-    LoginOptions save(LoginOptions loginOptions);
+    LoginOptionsDTO save(LoginOptionsDTO loginOptionsDTO);
 
     /**
      *  Get all the loginOptions.
      *
      *  @return the list of entities
      */
-    List<LoginOptions> findAll();
+    List<LoginOptionsDTO> findAll();
 
     /**
      *  Get the "id" loginOptions.
@@ -29,7 +29,7 @@ public interface LoginOptionsService {
      *  @param id the id of the entity
      *  @return the entity
      */
-    LoginOptions findOne(Long id);
+    LoginOptionsDTO findOne(Long id);
 
     /**
      *  Delete the "id" loginOptions.
@@ -45,5 +45,5 @@ public interface LoginOptionsService {
      *  
      *  @return the list of entities
      */
-    List<LoginOptions> search(String query);
+    List<LoginOptionsDTO> search(String query);
 }

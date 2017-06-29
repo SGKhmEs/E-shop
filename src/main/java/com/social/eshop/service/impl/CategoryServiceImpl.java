@@ -4,11 +4,14 @@ import com.social.eshop.service.CategoryService;
 import com.social.eshop.domain.Category;
 import com.social.eshop.repository.CategoryRepository;
 import com.social.eshop.repository.search.CategorySearchRepository;
+import com.social.eshop.service.dto.CategoryDTO;
+import com.social.eshop.service.mapper.CategoryMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -26,24 +29,29 @@ public class CategoryServiceImpl implements CategoryService{
 
     private final CategoryRepository categoryRepository;
 
+    private final CategoryMapper categoryMapper;
+
     private final CategorySearchRepository categorySearchRepository;
 
-    public CategoryServiceImpl(CategoryRepository categoryRepository, CategorySearchRepository categorySearchRepository) {
+    public CategoryServiceImpl(CategoryRepository categoryRepository, CategoryMapper categoryMapper, CategorySearchRepository categorySearchRepository) {
         this.categoryRepository = categoryRepository;
+        this.categoryMapper = categoryMapper;
         this.categorySearchRepository = categorySearchRepository;
     }
 
     /**
      * Save a category.
      *
-     * @param category the entity to save
+     * @param categoryDTO the entity to save
      * @return the persisted entity
      */
     @Override
-    public Category save(Category category) {
-        log.debug("Request to save Category : {}", category);
-        Category result = categoryRepository.save(category);
-        categorySearchRepository.save(result);
+    public CategoryDTO save(CategoryDTO categoryDTO) {
+        log.debug("Request to save Category : {}", categoryDTO);
+        Category category = categoryMapper.toEntity(categoryDTO);
+        category = categoryRepository.save(category);
+        CategoryDTO result = categoryMapper.toDto(category);
+        categorySearchRepository.save(category);
         return result;
     }
 
@@ -54,9 +62,11 @@ public class CategoryServiceImpl implements CategoryService{
      */
     @Override
     @Transactional(readOnly = true)
-    public List<Category> findAll() {
+    public List<CategoryDTO> findAll() {
         log.debug("Request to get all Categories");
-        return categoryRepository.findAll();
+        return categoryRepository.findAll().stream()
+            .map(categoryMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
     }
 
     /**
@@ -67,9 +77,10 @@ public class CategoryServiceImpl implements CategoryService{
      */
     @Override
     @Transactional(readOnly = true)
-    public Category findOne(Long id) {
+    public CategoryDTO findOne(Long id) {
         log.debug("Request to get Category : {}", id);
-        return categoryRepository.findOne(id);
+        Category category = categoryRepository.findOne(id);
+        return categoryMapper.toDto(category);
     }
 
     /**
@@ -92,10 +103,11 @@ public class CategoryServiceImpl implements CategoryService{
      */
     @Override
     @Transactional(readOnly = true)
-    public List<Category> search(String query) {
+    public List<CategoryDTO> search(String query) {
         log.debug("Request to search Categories for query {}", query);
         return StreamSupport
             .stream(categorySearchRepository.search(queryStringQuery(query)).spliterator(), false)
+            .map(categoryMapper::toDto)
             .collect(Collectors.toList());
     }
 }

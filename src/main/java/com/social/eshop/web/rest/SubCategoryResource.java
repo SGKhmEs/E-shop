@@ -1,9 +1,9 @@
 package com.social.eshop.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-import com.social.eshop.domain.SubCategory;
 import com.social.eshop.service.SubCategoryService;
 import com.social.eshop.web.rest.util.HeaderUtil;
+import com.social.eshop.service.dto.SubCategoryDTO;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,18 +40,18 @@ public class SubCategoryResource {
     /**
      * POST  /sub-categories : Create a new subCategory.
      *
-     * @param subCategory the subCategory to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new subCategory, or with status 400 (Bad Request) if the subCategory has already an ID
+     * @param subCategoryDTO the subCategoryDTO to create
+     * @return the ResponseEntity with status 201 (Created) and with body the new subCategoryDTO, or with status 400 (Bad Request) if the subCategory has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/sub-categories")
     @Timed
-    public ResponseEntity<SubCategory> createSubCategory(@Valid @RequestBody SubCategory subCategory) throws URISyntaxException {
-        log.debug("REST request to save SubCategory : {}", subCategory);
-        if (subCategory.getId() != null) {
+    public ResponseEntity<SubCategoryDTO> createSubCategory(@Valid @RequestBody SubCategoryDTO subCategoryDTO) throws URISyntaxException {
+        log.debug("REST request to save SubCategory : {}", subCategoryDTO);
+        if (subCategoryDTO.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new subCategory cannot already have an ID")).body(null);
         }
-        SubCategory result = subCategoryService.save(subCategory);
+        SubCategoryDTO result = subCategoryService.save(subCategoryDTO);
         return ResponseEntity.created(new URI("/api/sub-categories/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -60,22 +60,22 @@ public class SubCategoryResource {
     /**
      * PUT  /sub-categories : Updates an existing subCategory.
      *
-     * @param subCategory the subCategory to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated subCategory,
-     * or with status 400 (Bad Request) if the subCategory is not valid,
-     * or with status 500 (Internal Server Error) if the subCategory couldn't be updated
+     * @param subCategoryDTO the subCategoryDTO to update
+     * @return the ResponseEntity with status 200 (OK) and with body the updated subCategoryDTO,
+     * or with status 400 (Bad Request) if the subCategoryDTO is not valid,
+     * or with status 500 (Internal Server Error) if the subCategoryDTO couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/sub-categories")
     @Timed
-    public ResponseEntity<SubCategory> updateSubCategory(@Valid @RequestBody SubCategory subCategory) throws URISyntaxException {
-        log.debug("REST request to update SubCategory : {}", subCategory);
-        if (subCategory.getId() == null) {
-            return createSubCategory(subCategory);
+    public ResponseEntity<SubCategoryDTO> updateSubCategory(@Valid @RequestBody SubCategoryDTO subCategoryDTO) throws URISyntaxException {
+        log.debug("REST request to update SubCategory : {}", subCategoryDTO);
+        if (subCategoryDTO.getId() == null) {
+            return createSubCategory(subCategoryDTO);
         }
-        SubCategory result = subCategoryService.save(subCategory);
+        SubCategoryDTO result = subCategoryService.save(subCategoryDTO);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, subCategory.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, subCategoryDTO.getId().toString()))
             .body(result);
     }
 
@@ -86,7 +86,7 @@ public class SubCategoryResource {
      */
     @GetMapping("/sub-categories")
     @Timed
-    public List<SubCategory> getAllSubCategories() {
+    public List<SubCategoryDTO> getAllSubCategories() {
         log.debug("REST request to get all SubCategories");
         return subCategoryService.findAll();
     }
@@ -94,21 +94,21 @@ public class SubCategoryResource {
     /**
      * GET  /sub-categories/:id : get the "id" subCategory.
      *
-     * @param id the id of the subCategory to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the subCategory, or with status 404 (Not Found)
+     * @param id the id of the subCategoryDTO to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the subCategoryDTO, or with status 404 (Not Found)
      */
     @GetMapping("/sub-categories/{id}")
     @Timed
-    public ResponseEntity<SubCategory> getSubCategory(@PathVariable Long id) {
+    public ResponseEntity<SubCategoryDTO> getSubCategory(@PathVariable Long id) {
         log.debug("REST request to get SubCategory : {}", id);
-        SubCategory subCategory = subCategoryService.findOne(id);
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(subCategory));
+        SubCategoryDTO subCategoryDTO = subCategoryService.findOne(id);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(subCategoryDTO));
     }
 
     /**
      * DELETE  /sub-categories/:id : delete the "id" subCategory.
      *
-     * @param id the id of the subCategory to delete
+     * @param id the id of the subCategoryDTO to delete
      * @return the ResponseEntity with status 200 (OK)
      */
     @DeleteMapping("/sub-categories/{id}")
@@ -128,7 +128,7 @@ public class SubCategoryResource {
      */
     @GetMapping("/_search/sub-categories")
     @Timed
-    public List<SubCategory> searchSubCategories(@RequestParam String query) {
+    public List<SubCategoryDTO> searchSubCategories(@RequestParam String query) {
         log.debug("REST request to search SubCategories for query {}", query);
         return subCategoryService.search(query);
     }

@@ -5,8 +5,8 @@ export class Comments implements BaseEntity {
         public id?: number,
         public comments?: string,
         public date?: any,
-        public customer?: BaseEntity,
-        public products?: BaseEntity,
+        public customerId?: number,
+        public productsId?: number,
     ) {
     }
 }

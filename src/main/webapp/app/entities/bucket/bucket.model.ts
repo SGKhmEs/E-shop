@@ -20,10 +20,10 @@ export class Bucket implements BaseEntity {
         public count?: number,
         public status?: Status,
         public consignmentNote?: string,
-        public manager?: BaseEntity,
-        public addressShipping?: BaseEntity,
+        public managerId?: number,
+        public addressShippingId?: number,
         public productInBuckets?: BaseEntity[],
-        public customer?: BaseEntity,
+        public customerId?: number,
     ) {
     }
 }

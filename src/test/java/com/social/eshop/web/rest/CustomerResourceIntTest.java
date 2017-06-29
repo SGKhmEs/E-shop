@@ -6,6 +6,8 @@ import com.social.eshop.domain.Customer;
 import com.social.eshop.repository.CustomerRepository;
 import com.social.eshop.service.CustomerService;
 import com.social.eshop.repository.search.CustomerSearchRepository;
+import com.social.eshop.service.dto.CustomerDTO;
+import com.social.eshop.service.mapper.CustomerMapper;
 import com.social.eshop.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -51,6 +53,9 @@ public class CustomerResourceIntTest {
 
     @Autowired
     private CustomerRepository customerRepository;
+
+    @Autowired
+    private CustomerMapper customerMapper;
 
     @Autowired
     private CustomerService customerService;
@@ -110,9 +115,10 @@ public class CustomerResourceIntTest {
         int databaseSizeBeforeCreate = customerRepository.findAll().size();
 
         // Create the Customer
+        CustomerDTO customerDTO = customerMapper.toDto(customer);
         restCustomerMockMvc.perform(post("/api/customers")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(customer)))
+            .content(TestUtil.convertObjectToJsonBytes(customerDTO)))
             .andExpect(status().isCreated());
 
         // Validate the Customer in the database
@@ -135,11 +141,12 @@ public class CustomerResourceIntTest {
 
         // Create the Customer with an existing ID
         customer.setId(1L);
+        CustomerDTO customerDTO = customerMapper.toDto(customer);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restCustomerMockMvc.perform(post("/api/customers")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(customer)))
+            .content(TestUtil.convertObjectToJsonBytes(customerDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -191,8 +198,8 @@ public class CustomerResourceIntTest {
     @Transactional
     public void updateCustomer() throws Exception {
         // Initialize the database
-        customerService.save(customer);
-
+        customerRepository.saveAndFlush(customer);
+        customerSearchRepository.save(customer);
         int databaseSizeBeforeUpdate = customerRepository.findAll().size();
 
         // Update the customer
@@ -201,10 +208,11 @@ public class CustomerResourceIntTest {
             .subScription(UPDATED_SUB_SCRIPTION)
             .sosialConnect(UPDATED_SOSIAL_CONNECT)
             .sessionId(UPDATED_SESSION_ID);
+        CustomerDTO customerDTO = customerMapper.toDto(updatedCustomer);
 
         restCustomerMockMvc.perform(put("/api/customers")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(updatedCustomer)))
+            .content(TestUtil.convertObjectToJsonBytes(customerDTO)))
             .andExpect(status().isOk());
 
         // Validate the Customer in the database
@@ -226,11 +234,12 @@ public class CustomerResourceIntTest {
         int databaseSizeBeforeUpdate = customerRepository.findAll().size();
 
         // Create the Customer
+        CustomerDTO customerDTO = customerMapper.toDto(customer);
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
         restCustomerMockMvc.perform(put("/api/customers")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(customer)))
+            .content(TestUtil.convertObjectToJsonBytes(customerDTO)))
             .andExpect(status().isCreated());
 
         // Validate the Customer in the database
@@ -242,8 +251,8 @@ public class CustomerResourceIntTest {
     @Transactional
     public void deleteCustomer() throws Exception {
         // Initialize the database
-        customerService.save(customer);
-
+        customerRepository.saveAndFlush(customer);
+        customerSearchRepository.save(customer);
         int databaseSizeBeforeDelete = customerRepository.findAll().size();
 
         // Get the customer
@@ -264,7 +273,8 @@ public class CustomerResourceIntTest {
     @Transactional
     public void searchCustomer() throws Exception {
         // Initialize the database
-        customerService.save(customer);
+        customerRepository.saveAndFlush(customer);
+        customerSearchRepository.save(customer);
 
         // Search the customer
         restCustomerMockMvc.perform(get("/api/_search/customers?query=id:" + customer.getId()))
@@ -289,5 +299,28 @@ public class CustomerResourceIntTest {
         assertThat(customer1).isNotEqualTo(customer2);
         customer1.setId(null);
         assertThat(customer1).isNotEqualTo(customer2);
+    }
+
+    @Test
+    @Transactional
+    public void dtoEqualsVerifier() throws Exception {
+        TestUtil.equalsVerifier(CustomerDTO.class);
+        CustomerDTO customerDTO1 = new CustomerDTO();
+        customerDTO1.setId(1L);
+        CustomerDTO customerDTO2 = new CustomerDTO();
+        assertThat(customerDTO1).isNotEqualTo(customerDTO2);
+        customerDTO2.setId(customerDTO1.getId());
+        assertThat(customerDTO1).isEqualTo(customerDTO2);
+        customerDTO2.setId(2L);
+        assertThat(customerDTO1).isNotEqualTo(customerDTO2);
+        customerDTO1.setId(null);
+        assertThat(customerDTO1).isNotEqualTo(customerDTO2);
+    }
+
+    @Test
+    @Transactional
+    public void testEntityFromId() {
+        assertThat(customerMapper.fromId(42L).getId()).isEqualTo(42);
+        assertThat(customerMapper.fromId(null)).isNull();
     }
 }

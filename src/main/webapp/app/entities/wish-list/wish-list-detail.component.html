@@ -10,14 +10,14 @@
         </dd>
         <dt><span>Customer</span></dt>
         <dd>
-            <div *ngIf="wishList.customer">
-                <a [routerLink]="['/customer', wishList.customer?.id]">{{wishList.customer?.id}}</a>
+            <div *ngIf="wishList.customerId">
+                <a [routerLink]="['/customer', wishList.customerId]">{{wishList.customerId}}</a>
             </div>
         </dd>
         <dt><span>Product</span></dt>
         <dd>
-            <div *ngIf="wishList.product">
-                <a [routerLink]="['/products', wishList.product?.id]">{{wishList.product?.id}}</a>
+            <div *ngIf="wishList.productId">
+                <a [routerLink]="['/products', wishList.productId]">{{wishList.productId}}</a>
             </div>
         </dd>
     </dl>

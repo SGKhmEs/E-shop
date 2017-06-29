@@ -1,11 +1,9 @@
 package com.social.eshop.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-import com.social.eshop.domain.Comments;
 import com.social.eshop.service.CommentsService;
-import com.social.eshop.service.dto.CommentsDTO;
-import com.social.eshop.service.impl.CommentsDTOServiceImpl;
 import com.social.eshop.web.rest.util.HeaderUtil;
+import com.social.eshop.service.dto.CommentsDTO;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,28 +31,26 @@ public class CommentsResource {
     private static final String ENTITY_NAME = "comments";
 
     private final CommentsService commentsService;
-    private final CommentsDTOServiceImpl commentsDTOService;
 
-    public CommentsResource(CommentsService commentsService, CommentsDTOServiceImpl commentsDTOService) {
+    public CommentsResource(CommentsService commentsService) {
         this.commentsService = commentsService;
-        this.commentsDTOService = commentsDTOService;
     }
 
     /**
      * POST  /comments : Create a new comments.
      *
-     * @param comments the comments to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new comments, or with status 400 (Bad Request) if the comments has already an ID
+     * @param commentsDTO the commentsDTO to create
+     * @return the ResponseEntity with status 201 (Created) and with body the new commentsDTO, or with status 400 (Bad Request) if the comments has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/comments")
     @Timed
-    public ResponseEntity<Comments> createComments(@RequestBody Comments comments) throws URISyntaxException {
-        log.debug("REST request to save Comments : {}", comments);
-        if (comments.getId() != null) {
+    public ResponseEntity<CommentsDTO> createComments(@RequestBody CommentsDTO commentsDTO) throws URISyntaxException {
+        log.debug("REST request to save Comments : {}", commentsDTO);
+        if (commentsDTO.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new comments cannot already have an ID")).body(null);
         }
-        Comments result = commentsService.save(comments);
+        CommentsDTO result = commentsService.save(commentsDTO);
         return ResponseEntity.created(new URI("/api/comments/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -63,22 +59,22 @@ public class CommentsResource {
     /**
      * PUT  /comments : Updates an existing comments.
      *
-     * @param comments the comments to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated comments,
-     * or with status 400 (Bad Request) if the comments is not valid,
-     * or with status 500 (Internal Server Error) if the comments couldn't be updated
+     * @param commentsDTO the commentsDTO to update
+     * @return the ResponseEntity with status 200 (OK) and with body the updated commentsDTO,
+     * or with status 400 (Bad Request) if the commentsDTO is not valid,
+     * or with status 500 (Internal Server Error) if the commentsDTO couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/comments")
     @Timed
-    public ResponseEntity<Comments> updateComments(@RequestBody Comments comments) throws URISyntaxException {
-        log.debug("REST request to update Comments : {}", comments);
-        if (comments.getId() == null) {
-            return createComments(comments);
+    public ResponseEntity<CommentsDTO> updateComments(@RequestBody CommentsDTO commentsDTO) throws URISyntaxException {
+        log.debug("REST request to update Comments : {}", commentsDTO);
+        if (commentsDTO.getId() == null) {
+            return createComments(commentsDTO);
         }
-        Comments result = commentsService.save(comments);
+        CommentsDTO result = commentsService.save(commentsDTO);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, comments.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, commentsDTO.getId().toString()))
             .body(result);
     }
 
@@ -89,7 +85,7 @@ public class CommentsResource {
      */
     @GetMapping("/comments")
     @Timed
-    public List<Comments> getAllComments() {
+    public List<CommentsDTO> getAllComments() {
         log.debug("REST request to get all Comments");
         return commentsService.findAll();
     }
@@ -97,21 +93,21 @@ public class CommentsResource {
     /**
      * GET  /comments/:id : get the "id" comments.
      *
-     * @param id the id of the comments to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the comments, or with status 404 (Not Found)
+     * @param id the id of the commentsDTO to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the commentsDTO, or with status 404 (Not Found)
      */
     @GetMapping("/comments/{id}")
     @Timed
     public ResponseEntity<CommentsDTO> getComments(@PathVariable Long id) {
         log.debug("REST request to get Comments : {}", id);
-        CommentsDTO comments = commentsDTOService.findOne(id);
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(comments));
+        CommentsDTO commentsDTO = commentsService.findOne(id);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(commentsDTO));
     }
 
     /**
      * DELETE  /comments/:id : delete the "id" comments.
      *
-     * @param id the id of the comments to delete
+     * @param id the id of the commentsDTO to delete
      * @return the ResponseEntity with status 200 (OK)
      */
     @DeleteMapping("/comments/{id}")
@@ -131,7 +127,7 @@ public class CommentsResource {
      */
     @GetMapping("/_search/comments")
     @Timed
-    public List<Comments> searchComments(@RequestParam String query) {
+    public List<CommentsDTO> searchComments(@RequestParam String query) {
         log.debug("REST request to search Comments for query {}", query);
         return commentsService.search(query);
     }

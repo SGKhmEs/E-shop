@@ -1,23 +1,48 @@
 package com.social.eshop.service.dto;
 
-import com.social.eshop.domain.AddressShipping;
+
+import java.time.ZonedDateTime;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Objects;
 import com.social.eshop.domain.enumeration.Status;
 
-import java.math.BigDecimal;
-import java.time.ZonedDateTime;
+/**
+ * A DTO for the Bucket entity.
+ */
+public class BucketDTO implements Serializable {
 
-public class BucketDTO {
+    private Long id;
+
     private String name;
-    private ZonedDateTime dateTime;
-    private BigDecimal sum;
-    private int orderNumber;
-    private Status status;
-    private int count;
-    private String consignmentNote;
-    private AddressShipping addressShipping;
-    private ProductsDTO productsDTO;
 
-    public BucketDTO() {}
+    private ZonedDateTime date;
+
+    private BigDecimal sum;
+
+    private Integer orderNumber;
+
+    private Integer count;
+
+    private Status status;
+
+    private String consignmentNote;
+
+    private Long managerId;
+
+    private Long addressShippingId;
+
+    private Long customerId;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -27,12 +52,12 @@ public class BucketDTO {
         this.name = name;
     }
 
-    public ZonedDateTime getDateTime() {
-        return dateTime;
+    public ZonedDateTime getDate() {
+        return date;
     }
 
-    public void setDateTime(ZonedDateTime dateTime) {
-        this.dateTime = dateTime;
+    public void setDate(ZonedDateTime date) {
+        this.date = date;
     }
 
     public BigDecimal getSum() {
@@ -43,12 +68,20 @@ public class BucketDTO {
         this.sum = sum;
     }
 
-    public int getOrderNumber() {
+    public Integer getOrderNumber() {
         return orderNumber;
     }
 
-    public void setOrderNumber(int orderNumber) {
+    public void setOrderNumber(Integer orderNumber) {
         this.orderNumber = orderNumber;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
     }
 
     public Status getStatus() {
@@ -59,14 +92,6 @@ public class BucketDTO {
         this.status = status;
     }
 
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
-
     public String getConsignmentNote() {
         return consignmentNote;
     }
@@ -75,34 +100,62 @@ public class BucketDTO {
         this.consignmentNote = consignmentNote;
     }
 
-    public AddressShipping getAddressShipping() {
-        return addressShipping;
+    public Long getManagerId() {
+        return managerId;
     }
 
-    public void setAddressShipping(AddressShipping addressShipping) {
-        this.addressShipping = addressShipping;
+    public void setManagerId(Long managerId) {
+        this.managerId = managerId;
     }
 
-    public ProductsDTO getProductsDTO() {
-        return productsDTO;
+    public Long getAddressShippingId() {
+        return addressShippingId;
     }
 
-    public void setProductsDTO(ProductsDTO productsDTO) {
-        this.productsDTO = productsDTO;
+    public void setAddressShippingId(Long addressShippingId) {
+        this.addressShippingId = addressShippingId;
+    }
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        BucketDTO bucketDTO = (BucketDTO) o;
+        if(bucketDTO.getId() == null || getId() == null) {
+            return false;
+        }
+        return Objects.equals(getId(), bucketDTO.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getId());
     }
 
     @Override
     public String toString() {
         return "BucketDTO{" +
-            "name='" + name + '\'' +
-            ", dateTime=" + dateTime +
-            ", sum=" + sum +
-            ", orderNumber=" + orderNumber +
-            ", status=" + status +
-            ", count=" + count +
-            ", consignmentNote='" + consignmentNote + '\'' +
-            ", addressShipping=" + addressShipping +
-            ", productsDTO=" + productsDTO +
-            '}';
+            "id=" + getId() +
+            ", name='" + getName() + "'" +
+            ", date='" + getDate() + "'" +
+            ", sum='" + getSum() + "'" +
+            ", orderNumber='" + getOrderNumber() + "'" +
+            ", count='" + getCount() + "'" +
+            ", status='" + getStatus() + "'" +
+            ", consignmentNote='" + getConsignmentNote() + "'" +
+            "}";
     }
 }

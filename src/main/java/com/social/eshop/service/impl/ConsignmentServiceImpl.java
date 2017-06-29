@@ -4,11 +4,14 @@ import com.social.eshop.service.ConsignmentService;
 import com.social.eshop.domain.Consignment;
 import com.social.eshop.repository.ConsignmentRepository;
 import com.social.eshop.repository.search.ConsignmentSearchRepository;
+import com.social.eshop.service.dto.ConsignmentDTO;
+import com.social.eshop.service.mapper.ConsignmentMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -26,24 +29,29 @@ public class ConsignmentServiceImpl implements ConsignmentService{
 
     private final ConsignmentRepository consignmentRepository;
 
+    private final ConsignmentMapper consignmentMapper;
+
     private final ConsignmentSearchRepository consignmentSearchRepository;
 
-    public ConsignmentServiceImpl(ConsignmentRepository consignmentRepository, ConsignmentSearchRepository consignmentSearchRepository) {
+    public ConsignmentServiceImpl(ConsignmentRepository consignmentRepository, ConsignmentMapper consignmentMapper, ConsignmentSearchRepository consignmentSearchRepository) {
         this.consignmentRepository = consignmentRepository;
+        this.consignmentMapper = consignmentMapper;
         this.consignmentSearchRepository = consignmentSearchRepository;
     }
 
     /**
      * Save a consignment.
      *
-     * @param consignment the entity to save
+     * @param consignmentDTO the entity to save
      * @return the persisted entity
      */
     @Override
-    public Consignment save(Consignment consignment) {
-        log.debug("Request to save Consignment : {}", consignment);
-        Consignment result = consignmentRepository.save(consignment);
-        consignmentSearchRepository.save(result);
+    public ConsignmentDTO save(ConsignmentDTO consignmentDTO) {
+        log.debug("Request to save Consignment : {}", consignmentDTO);
+        Consignment consignment = consignmentMapper.toEntity(consignmentDTO);
+        consignment = consignmentRepository.save(consignment);
+        ConsignmentDTO result = consignmentMapper.toDto(consignment);
+        consignmentSearchRepository.save(consignment);
         return result;
     }
 
@@ -54,9 +62,11 @@ public class ConsignmentServiceImpl implements ConsignmentService{
      */
     @Override
     @Transactional(readOnly = true)
-    public List<Consignment> findAll() {
+    public List<ConsignmentDTO> findAll() {
         log.debug("Request to get all Consignments");
-        return consignmentRepository.findAll();
+        return consignmentRepository.findAll().stream()
+            .map(consignmentMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
     }
 
     /**
@@ -67,9 +77,10 @@ public class ConsignmentServiceImpl implements ConsignmentService{
      */
     @Override
     @Transactional(readOnly = true)
-    public Consignment findOne(Long id) {
+    public ConsignmentDTO findOne(Long id) {
         log.debug("Request to get Consignment : {}", id);
-        return consignmentRepository.findOne(id);
+        Consignment consignment = consignmentRepository.findOne(id);
+        return consignmentMapper.toDto(consignment);
     }
 
     /**
@@ -92,10 +103,11 @@ public class ConsignmentServiceImpl implements ConsignmentService{
      */
     @Override
     @Transactional(readOnly = true)
-    public List<Consignment> search(String query) {
+    public List<ConsignmentDTO> search(String query) {
         log.debug("Request to search Consignments for query {}", query);
         return StreamSupport
             .stream(consignmentSearchRepository.search(queryStringQuery(query)).spliterator(), false)
+            .map(consignmentMapper::toDto)
             .collect(Collectors.toList());
     }
 }

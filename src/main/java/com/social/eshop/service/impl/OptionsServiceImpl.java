@@ -4,11 +4,14 @@ import com.social.eshop.service.OptionsService;
 import com.social.eshop.domain.Options;
 import com.social.eshop.repository.OptionsRepository;
 import com.social.eshop.repository.search.OptionsSearchRepository;
+import com.social.eshop.service.dto.OptionsDTO;
+import com.social.eshop.service.mapper.OptionsMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -26,24 +29,29 @@ public class OptionsServiceImpl implements OptionsService{
 
     private final OptionsRepository optionsRepository;
 
+    private final OptionsMapper optionsMapper;
+
     private final OptionsSearchRepository optionsSearchRepository;
 
-    public OptionsServiceImpl(OptionsRepository optionsRepository, OptionsSearchRepository optionsSearchRepository) {
+    public OptionsServiceImpl(OptionsRepository optionsRepository, OptionsMapper optionsMapper, OptionsSearchRepository optionsSearchRepository) {
         this.optionsRepository = optionsRepository;
+        this.optionsMapper = optionsMapper;
         this.optionsSearchRepository = optionsSearchRepository;
     }
 
     /**
      * Save a options.
      *
-     * @param options the entity to save
+     * @param optionsDTO the entity to save
      * @return the persisted entity
      */
     @Override
-    public Options save(Options options) {
-        log.debug("Request to save Options : {}", options);
-        Options result = optionsRepository.save(options);
-        optionsSearchRepository.save(result);
+    public OptionsDTO save(OptionsDTO optionsDTO) {
+        log.debug("Request to save Options : {}", optionsDTO);
+        Options options = optionsMapper.toEntity(optionsDTO);
+        options = optionsRepository.save(options);
+        OptionsDTO result = optionsMapper.toDto(options);
+        optionsSearchRepository.save(options);
         return result;
     }
 
@@ -54,9 +62,11 @@ public class OptionsServiceImpl implements OptionsService{
      */
     @Override
     @Transactional(readOnly = true)
-    public List<Options> findAll() {
+    public List<OptionsDTO> findAll() {
         log.debug("Request to get all Options");
-        return optionsRepository.findAll();
+        return optionsRepository.findAll().stream()
+            .map(optionsMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
     }
 
     /**
@@ -67,9 +77,10 @@ public class OptionsServiceImpl implements OptionsService{
      */
     @Override
     @Transactional(readOnly = true)
-    public Options findOne(Long id) {
+    public OptionsDTO findOne(Long id) {
         log.debug("Request to get Options : {}", id);
-        return optionsRepository.findOne(id);
+        Options options = optionsRepository.findOne(id);
+        return optionsMapper.toDto(options);
     }
 
     /**
@@ -92,10 +103,11 @@ public class OptionsServiceImpl implements OptionsService{
      */
     @Override
     @Transactional(readOnly = true)
-    public List<Options> search(String query) {
+    public List<OptionsDTO> search(String query) {
         log.debug("Request to search Options for query {}", query);
         return StreamSupport
             .stream(optionsSearchRepository.search(queryStringQuery(query)).spliterator(), false)
+            .map(optionsMapper::toDto)
             .collect(Collectors.toList());
     }
 }

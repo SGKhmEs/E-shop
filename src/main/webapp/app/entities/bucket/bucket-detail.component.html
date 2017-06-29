@@ -34,20 +34,20 @@
         </dd>
         <dt><span>Manager</span></dt>
         <dd>
-            <div *ngIf="bucket.manager">
-                <a [routerLink]="['/manager', bucket.manager?.id]">{{bucket.manager?.id}}</a>
+            <div *ngIf="bucket.managerId">
+                <a [routerLink]="['/manager', bucket.managerId]">{{bucket.managerId}}</a>
             </div>
         </dd>
         <dt><span>Address Shipping</span></dt>
         <dd>
-            <div *ngIf="bucket.addressShipping">
-                <a [routerLink]="['/address-shipping', bucket.addressShipping?.id]">{{bucket.addressShipping?.id}}</a>
+            <div *ngIf="bucket.addressShippingId">
+                <a [routerLink]="['/address-shipping', bucket.addressShippingId]">{{bucket.addressShippingId}}</a>
             </div>
         </dd>
         <dt><span>Customer</span></dt>
         <dd>
-            <div *ngIf="bucket.customer">
-                <a [routerLink]="['/customer', bucket.customer?.id]">{{bucket.customer?.id}}</a>
+            <div *ngIf="bucket.customerId">
+                <a [routerLink]="['/customer', bucket.customerId]">{{bucket.customerId}}</a>
             </div>
         </dd>
     </dl>
