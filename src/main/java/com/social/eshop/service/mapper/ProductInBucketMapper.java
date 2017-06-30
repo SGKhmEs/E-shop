@@ -14,6 +14,10 @@ public interface ProductInBucketMapper extends EntityMapper <ProductInBucketDTO,
     @Mapping(source = "bucket.id", target = "bucketId")
 
     @Mapping(source = "products.id", target = "productsId")
+
+//    @Mapping(source = "products.name", target="name")
+    @Mapping(source = "products", target="product")
+
     ProductInBucketDTO toDto(ProductInBucket productInBucket);
 
     //@Mapping(source = "productInBuckets.products", target = "manyProducts")

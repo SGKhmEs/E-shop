@@ -45,7 +45,7 @@ public class BucketDTO implements Serializable {
 
     private String customerPhone;
 
-    private Set<ProductInBucket> products;
+    private Set<ProductInBucketDTO> products;
 
     public Long getId() {
         return id;
@@ -159,11 +159,11 @@ public class BucketDTO implements Serializable {
         this.customerPhone = customerPhone;
     }
 
-    public Set<ProductInBucket> getProducts() {
+    public Set<ProductInBucketDTO> getProducts() {
         return products;
     }
 
-    public void setProducts(Set<ProductInBucket> products) {
+    public void setProducts(Set<ProductInBucketDTO> products) {
         this.products = products;
     }
 
