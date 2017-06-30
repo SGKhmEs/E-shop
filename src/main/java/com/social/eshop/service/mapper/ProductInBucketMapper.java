@@ -14,12 +14,15 @@ public interface ProductInBucketMapper extends EntityMapper <ProductInBucketDTO,
     @Mapping(source = "bucket.id", target = "bucketId")
 
     @Mapping(source = "products.id", target = "productsId")
-    ProductInBucketDTO toDto(ProductInBucket productInBucket); 
+    ProductInBucketDTO toDto(ProductInBucket productInBucket);
+
+    //@Mapping(source = "productInBuckets.products", target = "manyProducts")
+    ProductInBucketDTO[] toDto(ProductInBucket[] productInBucket);
 
     @Mapping(source = "bucketId", target = "bucket")
 
     @Mapping(source = "productsId", target = "products")
-    ProductInBucket toEntity(ProductInBucketDTO productInBucketDTO); 
+    ProductInBucket toEntity(ProductInBucketDTO productInBucketDTO);
     default ProductInBucket fromId(Long id) {
         if (id == null) {
             return null;

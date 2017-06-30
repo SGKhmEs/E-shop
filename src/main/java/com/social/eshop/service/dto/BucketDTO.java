@@ -5,8 +5,11 @@ import java.time.ZonedDateTime;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
+import java.util.Set;
 
 import com.social.eshop.domain.AddressShipping;
+import com.social.eshop.domain.ProductInBucket;
+import com.social.eshop.domain.Products;
 import com.social.eshop.domain.enumeration.Status;
 
 /**
@@ -32,11 +35,17 @@ public class BucketDTO implements Serializable {
 
     private Long managerId;
 
-    private Long addressShippingId;
+    private Long addressShippingId;  // in the future delete
 
     private AddressShipping addressShippingDTO;
 
-    private Long customerId;
+    private Long customerId; // in the future delete
+
+    private String customerName;
+
+    private String customerPhone;
+
+    private Set<ProductInBucket> products;
 
     public Long getId() {
         return id;
@@ -134,6 +143,30 @@ public class BucketDTO implements Serializable {
         this.customerId = customerId;
     }
 
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public String getCustomerPhone() {
+        return customerPhone;
+    }
+
+    public void setCustomerPhone(String customerPhone) {
+        this.customerPhone = customerPhone;
+    }
+
+    public Set<ProductInBucket> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<ProductInBucket> products) {
+        this.products = products;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -168,8 +201,12 @@ public class BucketDTO implements Serializable {
             ", status=" + status +
             ", consignmentNote='" + consignmentNote + '\'' +
             ", managerId=" + managerId +
-            ", addressShipping=" + addressShippingDTO +
+            ", addressShippingId=" + addressShippingId +
+            ", addressShippingDTO=" + addressShippingDTO +
             ", customerId=" + customerId +
+            ", customerName='" + customerName + '\'' +
+            ", customerPhone='" + customerPhone + '\'' +
+            ", products=" + products +
             '}';
     }
 }

@@ -8,13 +8,16 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity Bucket and its DTO BucketDTO.
  */
-@Mapper(componentModel = "spring", uses = {ManagerMapper.class, AddressShippingMapper.class, CustomerMapper.class, })
+@Mapper(componentModel = "spring", uses = {ManagerMapper.class, AddressShippingMapper.class, CustomerMapper.class, ProductInBucketMapper.class, })
 public interface BucketMapper extends EntityMapper <BucketDTO, Bucket> {
 
     @Mapping(source = "manager.id", target = "managerId")
     @Mapping(source = "addressShipping", target = "addressShippingDTO")
     @Mapping(source = "addressShipping.id", target = "addressShippingId")
+    @Mapping(source = "customer.personalInfo.firstName", target = "customerName")
+    @Mapping(source = "customer.personalInfo.phone", target = "customerPhone")
     @Mapping(source = "customer.id", target = "customerId")
+    @Mapping(source = "productInBuckets", target = "products")
     BucketDTO toDto(Bucket bucket);
 
 
