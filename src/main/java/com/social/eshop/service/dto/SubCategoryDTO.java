@@ -17,7 +17,9 @@ public class SubCategoryDTO implements Serializable {
     @NotNull
     private String name;
 
-    private Long categoryId;
+    private CategoryDTO categoryDTO;
+
+    //private Long categoryId;
 
     public Long getId() {
         return id;
@@ -35,13 +37,21 @@ public class SubCategoryDTO implements Serializable {
         this.name = name;
     }
 
-    public Long getCategoryId() {
-        return categoryId;
+    public CategoryDTO getCategoryDTO() {
+        return categoryDTO;
     }
 
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
+    public void setCategoryDTO(CategoryDTO categoryDTO) {
+        this.categoryDTO = categoryDTO;
     }
+
+    //    public Long getCategoryId() {
+//        return categoryId;
+//    }
+//
+//    public void setCategoryId(Long categoryId) {
+//        this.categoryId = categoryId;
+//    }
 
     @Override
     public boolean equals(Object o) {
@@ -67,8 +77,9 @@ public class SubCategoryDTO implements Serializable {
     @Override
     public String toString() {
         return "SubCategoryDTO{" +
-            "id=" + getId() +
-            ", name='" + getName() + "'" +
-            "}";
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", categoryDTO=" + categoryDTO +
+            '}';
     }
 }

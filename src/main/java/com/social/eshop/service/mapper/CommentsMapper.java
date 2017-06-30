@@ -17,6 +17,8 @@ public interface CommentsMapper extends EntityMapper <CommentsDTO, Comments> {
 
     CommentsDTO toDto(Comments comments);
 
+    CommentsDTO[] toDto(Comments[] comments);
+
     @Mapping(source = "customerId", target = "customer")
 
     @Mapping(source = "productsId", target = "products")

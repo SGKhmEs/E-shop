@@ -1,6 +1,9 @@
 package com.social.eshop.service.dto;
 
 
+import com.social.eshop.domain.Comments;
+import com.social.eshop.domain.Options;
+
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -29,11 +32,18 @@ public class ProductsDTO implements Serializable {
 
     private String description;
 
-    private Long optionsId;
+    private OptionsDTO optionsDTO;
 
-    private Long consignmentId;
+    private SubCategoryDTO subCategoryDTO;
 
-    private Long subCategoryId;
+    private Set<CommentsDTO> commentsDTO;
+
+    private Set<MediaDTO> mediaDTO;
+    //private Long optionsId;
+
+//  private Long subCategoryId;
+
+
 
     public Long getId() {
         return id;
@@ -91,29 +101,53 @@ public class ProductsDTO implements Serializable {
         this.description = description;
     }
 
-    public Long getOptionsId() {
-        return optionsId;
+    public OptionsDTO getOptionsDTO() {
+        return optionsDTO;
     }
 
-    public void setOptionsId(Long optionsId) {
-        this.optionsId = optionsId;
+    public void setOptionsDTO(OptionsDTO optionsDTO) {
+        this.optionsDTO = optionsDTO;
     }
 
-    public Long getConsignmentId() {
-        return consignmentId;
+    public SubCategoryDTO getSubCategoryDTO() {
+        return subCategoryDTO;
     }
 
-    public void setConsignmentId(Long consignmentId) {
-        this.consignmentId = consignmentId;
+    public void setSubCategoryDTO(SubCategoryDTO subCategoryDTO) {
+        this.subCategoryDTO = subCategoryDTO;
     }
 
-    public Long getSubCategoryId() {
-        return subCategoryId;
+    public Set<CommentsDTO> getCommentsDTO() {
+        return commentsDTO;
     }
 
-    public void setSubCategoryId(Long subCategoryId) {
-        this.subCategoryId = subCategoryId;
+    public void setCommentsDTO(Set<CommentsDTO> commentsDTO) {
+        this.commentsDTO = commentsDTO;
     }
+
+    public Set<MediaDTO> getMediaDTO() {
+        return mediaDTO;
+    }
+
+    public void setMediaDTO(Set<MediaDTO> mediaDTO) {
+        this.mediaDTO = mediaDTO;
+    }
+
+    //    public Long getOptionsId() {
+//        return optionsId;
+//    }
+//
+//    public void setOptionsId(Long optionsId) {
+//        this.optionsId = optionsId;
+//    }
+
+//    public Long getSubCategoryId() {
+//        return subCategoryId;
+//    }
+//
+//    public void setSubCategoryId(Long subCategoryId) {
+//        this.subCategoryId = subCategoryId;
+//    }
 
     @Override
     public boolean equals(Object o) {

@@ -11,12 +11,14 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {CategoryMapper.class, })
 public interface SubCategoryMapper extends EntityMapper <SubCategoryDTO, SubCategory> {
 
-    @Mapping(source = "category.id", target = "categoryId")
-    SubCategoryDTO toDto(SubCategory subCategory); 
+    //@Mapping(source = "category.id", target = "categoryId")
 
-    @Mapping(source = "categoryId", target = "category")
+    @Mapping(source = "category", target = "categoryDTO")
+    SubCategoryDTO toDto(SubCategory subCategory);
+
+    //@Mapping(source = "categoryId", target = "category")
     @Mapping(target = "products", ignore = true)
-    SubCategory toEntity(SubCategoryDTO subCategoryDTO); 
+    SubCategory toEntity(SubCategoryDTO subCategoryDTO);
     default SubCategory fromId(Long id) {
         if (id == null) {
             return null;
