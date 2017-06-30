@@ -19,7 +19,7 @@ public class BucketDTO implements Serializable {
 
     private Long id;
 
-    private String name;
+    //private String name;
 
     private ZonedDateTime date;
 
@@ -33,13 +33,13 @@ public class BucketDTO implements Serializable {
 
     private String consignmentNote;
 
-    private Long managerId;
+//    private Long managerId;
 
-    private Long addressShippingId;  // in the future delete
+    //private Long addressShippingId;  // in the future delete
 
     private AddressShipping addressShippingDTO;
 
-    private Long customerId; // in the future delete
+    //private Long customerId; // in the future delete
 
     private String customerName;
 
@@ -55,13 +55,13 @@ public class BucketDTO implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+//    public String getName() {
+//        return name;
+//    }
+//
+//    public void setName(String name) {
+//        this.name = name;
+//    }
 
     public ZonedDateTime getDate() {
         return date;
@@ -111,21 +111,21 @@ public class BucketDTO implements Serializable {
         this.consignmentNote = consignmentNote;
     }
 
-    public Long getManagerId() {
-        return managerId;
-    }
-
-    public void setManagerId(Long managerId) {
-        this.managerId = managerId;
-    }
-
-    public Long getAddressShippingId() {
-        return addressShippingId;
-    }
-
-    public void setAddressShippingId(Long addressShippingId) {
-        this.addressShippingId = addressShippingId;
-    }
+//    public Long getManagerId() {
+//        return managerId;
+//    }
+//
+//    public void setManagerId(Long managerId) {
+//        this.managerId = managerId;
+//    }
+//
+//    public Long getAddressShippingId() {
+//        return addressShippingId;
+//    }
+//
+//    public void setAddressShippingId(Long addressShippingId) {
+//        this.addressShippingId = addressShippingId;
+//    }
 
     public AddressShipping getAddressShippingDTO() {
         return addressShippingDTO;
@@ -135,13 +135,13 @@ public class BucketDTO implements Serializable {
         this.addressShippingDTO = addressShippingDTO;
     }
 
-    public Long getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(Long customerId) {
-        this.customerId = customerId;
-    }
+//    public Long getCustomerId() {
+//        return customerId;
+//    }
+//
+//    public void setCustomerId(Long customerId) {
+//        this.customerId = customerId;
+//    }
 
     public String getCustomerName() {
         return customerName;
@@ -193,17 +193,13 @@ public class BucketDTO implements Serializable {
     public String toString() {
         return "BucketDTO{" +
             "id=" + id +
-            ", name='" + name + '\'' +
             ", date=" + date +
             ", sum=" + sum +
             ", orderNumber=" + orderNumber +
             ", count=" + count +
             ", status=" + status +
             ", consignmentNote='" + consignmentNote + '\'' +
-            ", managerId=" + managerId +
-            ", addressShippingId=" + addressShippingId +
             ", addressShippingDTO=" + addressShippingDTO +
-            ", customerId=" + customerId +
             ", customerName='" + customerName + '\'' +
             ", customerPhone='" + customerPhone + '\'' +
             ", products=" + products +

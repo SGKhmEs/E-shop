@@ -39,6 +39,8 @@ public class ProductsDTO implements Serializable {
     private Set<CommentsDTO> commentsDTO;
 
     private Set<MediaDTO> mediaDTO;
+
+    private Set<TagForProductDTO> tagForProductDTO;
     //private Long optionsId;
 
 //  private Long subCategoryId;
@@ -131,6 +133,14 @@ public class ProductsDTO implements Serializable {
 
     public void setMediaDTO(Set<MediaDTO> mediaDTO) {
         this.mediaDTO = mediaDTO;
+    }
+
+    public Set<TagForProductDTO> getTagForProductDTO() {
+        return tagForProductDTO;
+    }
+
+    public void setTagForProductDTO(Set<TagForProductDTO> tagForProductDTO) {
+        this.tagForProductDTO = tagForProductDTO;
     }
 
     //    public Long getOptionsId() {

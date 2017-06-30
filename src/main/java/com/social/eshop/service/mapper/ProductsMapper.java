@@ -8,23 +8,23 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity Products and its DTO ProductsDTO.
  */
-@Mapper(componentModel = "spring", uses = {OptionsMapper.class, ConsignmentMapper.class, SubCategoryMapper.class, CommentsMapper.class, MediaMapper.class,})
+@Mapper(componentModel = "spring", uses = {OptionsMapper.class, ConsignmentMapper.class, SubCategoryMapper.class, CommentsMapper.class, MediaMapper.class, TagForProductMapper.class, })
 public interface ProductsMapper extends EntityMapper <ProductsDTO, Products> {
 
-    //@Mapping(source = "options.id", target = "optionsId")
+
     @Mapping(source = "options", target = "optionsDTO")
     @Mapping(source = "subCategory", target = "subCategoryDTO")
     @Mapping(source = "comments", target = "commentsDTO")
     @Mapping(source = "media", target = "mediaDTO")
-
-   // @Mapping(source = "consignment.id", target = "consignmentId")
-
+    @Mapping(source = "tagForProducts", target = "tagForProductDTO")
+    //@Mapping(source = "options.id", target = "optionsId")
+    // @Mapping(source = "consignment.id", target = "consignmentId")
     //@Mapping(source = "subCategory.id", target = "subCategoryId")
     ProductsDTO toDto(Products products);
 
 
 
-  //  @Mapping(source = "optionsId", target = "options")
+  // @Mapping(source = "optionsId", target = "options")
     @Mapping(target = "media", ignore = true)
     @Mapping(target = "comments", ignore = true)
     @Mapping(target = "productInBuckets", ignore = true)
