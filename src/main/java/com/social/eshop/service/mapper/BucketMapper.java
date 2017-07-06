@@ -20,16 +20,16 @@ public interface BucketMapper extends EntityMapper <BucketDTO, Bucket> {
     BucketDTO toDto(Bucket bucket);
 
 
-    @Mapping(source = "managerId", target = "manager")
-    @Mapping(source = "addressShippingId", target = "addressShipping")
-    @Mapping(target = "productInBuckets", ignore = true)
-    @Mapping(source = "customerId", target = "customer")
-    //@Mapping(source = "addressShippingDTO", target = "addressShipping")
-    //@Mapping(source = "customerName", target = "customer.personalInfo.firstName")
-    // @Mapping(source = "customerPhone", target = "customer.personalInfo.phone")
-    // @Mapping(source = "products", target = "productInBuckets")
 
-   // @Mapping(source = "customerId", target = "customer")
+   /*
+   *   pay attention to it
+   * */
+//    @Mapping(source = "addressShippingDTO", target = "addressShipping")
+//    @Mapping(source = "customerName", target = "customer.personalInfo.firstName")
+//    @Mapping(source = "customerPhone", target = "customer.personalInfo.phone")
+//    @Mapping(source = "products", target = "productInBuckets")
+//    @Mapping(target = "productInBuckets", ignore = true)
+
     @Mapping(source = "managerId", target = "manager")
     @Mapping(source = "addressShippingId", target = "addressShipping")
     @Mapping(source = "productInBuckets", target = "productInBuckets")
