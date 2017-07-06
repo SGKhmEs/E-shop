@@ -4,9 +4,12 @@ package com.social.eshop.service.dto;
 import java.time.ZonedDateTime;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
+import java.util.Set;
+
+import com.social.eshop.domain.AddressShipping;
+import com.social.eshop.domain.ProductInBucket;
+import com.social.eshop.domain.Products;
 import com.social.eshop.domain.enumeration.Status;
 
 /**
@@ -16,7 +19,7 @@ public class BucketDTO implements Serializable {
 
     private Long id;
 
-    private String name;
+    //private String name;
 
     private ZonedDateTime date;
 
@@ -32,9 +35,18 @@ public class BucketDTO implements Serializable {
 
     private Long managerId;
 
-    private Long addressShippingId;
+    private Long addressShippingId;  // in the future delete
 
-    private Long customerId;
+    private AddressShipping addressShippingDTO;
+
+    private Long customerId; // in the future delete
+
+    private String customerName;
+
+    private String customerPhone;
+
+    private Set<ProductInBucketDTO> productInBucketDTOS;
+
 
     public Long getId() {
         return id;
@@ -42,14 +54,6 @@ public class BucketDTO implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public ZonedDateTime getDate() {
@@ -116,12 +120,44 @@ public class BucketDTO implements Serializable {
         this.addressShippingId = addressShippingId;
     }
 
+    public AddressShipping getAddressShippingDTO() {
+        return addressShippingDTO;
+    }
+
+    public void setAddressShippingDTO(AddressShipping addressShippingDTO) {
+        this.addressShippingDTO = addressShippingDTO;
+    }
+
     public Long getCustomerId() {
         return customerId;
     }
 
     public void setCustomerId(Long customerId) {
         this.customerId = customerId;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public String getCustomerPhone() {
+        return customerPhone;
+    }
+
+    public void setCustomerPhone(String customerPhone) {
+        this.customerPhone = customerPhone;
+    }
+
+    public Set<ProductInBucketDTO> getProductInBucketDTOS() {
+        return productInBucketDTOS;
+    }
+
+    public void setProductInBucketDTOS(Set<ProductInBucketDTO> productInBucketDTOS) {
+        this.productInBucketDTOS = productInBucketDTOS;
     }
 
     @Override
@@ -145,17 +181,24 @@ public class BucketDTO implements Serializable {
         return Objects.hashCode(getId());
     }
 
+
     @Override
     public String toString() {
         return "BucketDTO{" +
-            "id=" + getId() +
-            ", name='" + getName() + "'" +
-            ", date='" + getDate() + "'" +
-            ", sum='" + getSum() + "'" +
-            ", orderNumber='" + getOrderNumber() + "'" +
-            ", count='" + getCount() + "'" +
-            ", status='" + getStatus() + "'" +
-            ", consignmentNote='" + getConsignmentNote() + "'" +
-            "}";
+            "id=" + id +
+            ", date=" + date +
+            ", sum=" + sum +
+            ", orderNumber=" + orderNumber +
+            ", count=" + count +
+            ", status=" + status +
+            ", consignmentNote='" + consignmentNote + '\'' +
+            ", managerId=" + managerId +
+            ", addressShippingId=" + addressShippingId +
+            ", addressShippingDTO=" + addressShippingDTO +
+            ", customerId=" + customerId +
+            ", customerName='" + customerName + '\'' +
+            ", customerPhone='" + customerPhone + '\'' +
+            ", products=" + productInBucketDTOS +
+            '}';
     }
 }

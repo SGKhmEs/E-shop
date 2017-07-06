@@ -20,6 +20,8 @@ public class CommentsDTO implements Serializable {
 
     private Long customerId;
 
+    private String customerName;
+
     private Long productsId;
 
     public Long getId() {
@@ -54,6 +56,14 @@ public class CommentsDTO implements Serializable {
         this.customerId = customerId;
     }
 
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
     public Long getProductsId() {
         return productsId;
     }
@@ -86,9 +96,12 @@ public class CommentsDTO implements Serializable {
     @Override
     public String toString() {
         return "CommentsDTO{" +
-            "id=" + getId() +
-            ", comments='" + getComments() + "'" +
-            ", date='" + getDate() + "'" +
-            "}";
+            "id=" + id +
+            ", comments='" + comments + '\'' +
+            ", date=" + date +
+            ", customerId=" + customerId +
+            ", customerName='" + customerName + '\'' +
+            ", productsId=" + productsId +
+            '}';
     }
 }
