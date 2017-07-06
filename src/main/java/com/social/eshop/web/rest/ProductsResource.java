@@ -145,4 +145,23 @@ public class ProductsResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
+
+
+    /**
+     * GET  /products/bucket/:id  : get all the products .
+     * @param id the id of the bucket to find
+     * @param pageable the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of products in body
+     */
+    @GetMapping("/products/bucket/{id}")
+    @Timed
+    public ResponseEntity<List<ProductsDTO>> getAllProductsInBucket(@PathVariable Long id, @ApiParam Pageable pageable) {
+        log.debug("REST request to get a page of Products", id);
+        List<ProductsDTO> list = productsService.findAllProductsInBucket(id);
+        //  HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(  "/api/products/bucket");
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+
+
+
 }
