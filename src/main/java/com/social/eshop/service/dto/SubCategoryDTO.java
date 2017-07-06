@@ -19,7 +19,7 @@ public class SubCategoryDTO implements Serializable {
 
     private CategoryDTO categoryDTO;
 
-    //private Long categoryId;
+    private Long categoryId;
 
     public Long getId() {
         return id;
@@ -45,13 +45,13 @@ public class SubCategoryDTO implements Serializable {
         this.categoryDTO = categoryDTO;
     }
 
-    //    public Long getCategoryId() {
-//        return categoryId;
-//    }
-//
-//    public void setCategoryId(Long categoryId) {
-//        this.categoryId = categoryId;
-//    }
+    public Long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
+    }
 
     @Override
     public boolean equals(Object o) {

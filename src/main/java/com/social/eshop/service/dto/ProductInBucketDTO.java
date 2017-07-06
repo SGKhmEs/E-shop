@@ -17,7 +17,7 @@ public class ProductInBucketDTO implements Serializable {
 
     private Long productsId;
 
-    private ProductsDTO product;
+    private ProductsDTO productsDTO;
 
 
 
@@ -29,12 +29,12 @@ public class ProductInBucketDTO implements Serializable {
         this.id = id;
     }
 
-    public ProductsDTO getProduct() {
-        return product;
+    public ProductsDTO getProductsDTO() {
+        return productsDTO;
     }
 
-    public void setProduct(ProductsDTO product) {
-        this.product = product;
+    public void setProductsDTO(ProductsDTO productsDTO) {
+        this.productsDTO = productsDTO;
     }
 
     public Long getBucketId() {
@@ -78,7 +78,9 @@ public class ProductInBucketDTO implements Serializable {
     public String toString() {
         return "ProductInBucketDTO{" +
             "id=" + id +
-            ", product=" + product +
+            ", bucketId=" + bucketId +
+            ", productsId=" + productsId +
+            ", productsDTO=" + productsDTO +
             '}';
     }
 }
