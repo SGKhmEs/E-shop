@@ -2,7 +2,15 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+<<<<<<< HEAD
+<<<<<<< HEAD
+import { AlertService, EventManager } from 'ng-jhipster';
+=======
+import { EventManager } from 'ng-jhipster';
+>>>>>>> with_entities
+=======
 import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
+>>>>>>> creatingDtos
 
 import { Storage } from './storage.model';
 import { StoragePopupService } from './storage-popup.service';
@@ -19,8 +27,16 @@ export class StorageDeleteDialogComponent {
     constructor(
         private storageService: StorageService,
         public activeModal: NgbActiveModal,
+<<<<<<< HEAD
+<<<<<<< HEAD
+        private alertService: AlertService,
+=======
+>>>>>>> with_entities
+        private eventManager: EventManager
+=======
         private alertService: JhiAlertService,
         private eventManager: JhiEventManager
+>>>>>>> creatingDtos
     ) {
     }
 
@@ -36,7 +52,14 @@ export class StorageDeleteDialogComponent {
             });
             this.activeModal.dismiss(true);
         });
+<<<<<<< HEAD
+<<<<<<< HEAD
+        this.alertService.success('eshopApp.storage.deleted', { param : id }, null);
+=======
+>>>>>>> with_entities
+=======
         this.alertService.success(`A Storage is deleted with identifier ${id}`, null, null);
+>>>>>>> creatingDtos
     }
 }
 

@@ -1,5 +1,6 @@
 package com.social.eshop.service.dto;
 
+<<<<<<< HEAD
 import com.social.eshop.domain.AddressShipping;
 import com.social.eshop.domain.enumeration.Status;
 
@@ -81,6 +82,59 @@ public class BucketDTO {
 
     public void setAddressShipping(AddressShipping addressShipping) {
         this.addressShipping = addressShipping;
+=======
+
+import java.time.ZonedDateTime;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Objects;
+
+/**
+ * A DTO for the Bucket entity.
+ */
+public class BucketDTO implements Serializable {
+
+    private Long id;
+
+    private ZonedDateTime data;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public ZonedDateTime getData() {
+        return data;
+    }
+
+    public void setData(ZonedDateTime data) {
+        this.data = data;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        BucketDTO bucketDTO = (BucketDTO) o;
+        if(bucketDTO.getId() == null || getId() == null) {
+            return false;
+        }
+        return Objects.equals(getId(), bucketDTO.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getId());
+>>>>>>> with_entities
     }
 
     public ProductsDTO getProductsDTO() {
@@ -94,6 +148,7 @@ public class BucketDTO {
     @Override
     public String toString() {
         return "BucketDTO{" +
+<<<<<<< HEAD
             "name='" + name + '\'' +
             ", dateTime=" + dateTime +
             ", sum=" + sum +
@@ -105,4 +160,14 @@ public class BucketDTO {
             ", productsDTO=" + productsDTO +
             '}';
     }
+<<<<<<< HEAD
+
+=======
+            "id=" + getId() +
+            ", data='" + getData() + "'" +
+            "}";
+    }
+>>>>>>> with_entities
+=======
+>>>>>>> creatingDtos
 }

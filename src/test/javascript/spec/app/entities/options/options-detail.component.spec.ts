@@ -32,8 +32,16 @@ describe('Component Tests', () => {
                     OptionsService,
                     JhiEventManager
                 ]
+<<<<<<< HEAD
             }).overrideTemplate(OptionsDetailComponent, '')
             .compileComponents();
+=======
+            }).overrideComponent(OptionsDetailComponent, {
+                set: {
+                    template: ''
+                }
+            }).compileComponents();
+>>>>>>> with_entities
         }));
 
         beforeEach(() => {

@@ -32,8 +32,16 @@ describe('Component Tests', () => {
                     CategoryService,
                     JhiEventManager
                 ]
+<<<<<<< HEAD
             }).overrideTemplate(CategoryDetailComponent, '')
             .compileComponents();
+=======
+            }).overrideComponent(CategoryDetailComponent, {
+                set: {
+                    template: ''
+                }
+            }).compileComponents();
+>>>>>>> with_entities
         }));
 
         beforeEach(() => {

@@ -32,8 +32,16 @@ describe('Component Tests', () => {
                     SeenService,
                     JhiEventManager
                 ]
+<<<<<<< HEAD
             }).overrideTemplate(SeenDetailComponent, '')
             .compileComponents();
+=======
+            }).overrideComponent(SeenDetailComponent, {
+                set: {
+                    template: ''
+                }
+            }).compileComponents();
+>>>>>>> with_entities
         }));
 
         beforeEach(() => {

@@ -10,10 +10,24 @@
         </dd>
         <dt><span>Category</span></dt>
         <dd>
+<<<<<<< HEAD
             <div *ngIf="subCategory.category">
                 <a [routerLink]="['/category', subCategory.category?.id]">{{subCategory.category?.id}}</a>
             </div>
         </dd>
+<<<<<<< HEAD
+        <dt><span jhiTranslate="eshopApp.subCategory.options">Options</span></dt>
+        <dd>
+            <div *ngIf="subCategory.options">
+                <a [routerLink]="['/options', subCategory.options?.id]">{{subCategory.options?.id}}</a>
+=======
+            <div *ngIf="subCategory.categoryId">
+                <a [routerLink]="['/category', subCategory.categoryId]">{{subCategory.categoryId}}</a>
+>>>>>>> with_entities
+            </div>
+        </dd>
+=======
+>>>>>>> creatingDtos
     </dl>
 
     <button type="submit"

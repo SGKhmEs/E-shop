@@ -1,0 +1,19 @@
+{
+    "eshopApp": {
+        "Status" : {
+            "null": "",
+<<<<<<< HEAD
+            "WAIT": "WAIT",
+            "PURCHASED": "PURCHASED",
+            "SUCCESS": "SUCCESS",
+            "FAILURE": "FAILURE",
+            "REJECT": "REJECT"
+=======
+            "SUCCESS": "SUCCESS",
+            "FAILURE": "FAILURE",
+            "REJECT": "REJECT",
+            "WAIT": "WAIT"
+>>>>>>> with_entities
+        }
+    }
+}

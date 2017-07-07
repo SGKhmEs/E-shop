@@ -5,7 +5,16 @@ const enum Sex {
     'WOMAN'
 }
 
+<<<<<<< HEAD
+};
+<<<<<<< HEAD
+import { Avatar } from '../avatar';
+=======
+>>>>>>> with_entities
+export class PersonalInformation {
+=======
 export class PersonalInformation implements BaseEntity {
+>>>>>>> creatingDtos
     constructor(
         public id?: number,
         public firstName?: string,
@@ -15,6 +24,15 @@ export class PersonalInformation implements BaseEntity {
         public phone?: string,
         public email?: string,
         public dateBirth?: any,
+<<<<<<< HEAD
+<<<<<<< HEAD
+        public avatar?: Avatar,
+=======
+        public avatarId?: number,
+        public addressShippingId?: number,
+>>>>>>> with_entities
+=======
+>>>>>>> creatingDtos
     ) {
     }
 }

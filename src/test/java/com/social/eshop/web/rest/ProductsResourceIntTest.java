@@ -6,6 +6,11 @@ import com.social.eshop.domain.Products;
 import com.social.eshop.repository.ProductsRepository;
 import com.social.eshop.service.ProductsService;
 import com.social.eshop.repository.search.ProductsSearchRepository;
+<<<<<<< HEAD
+=======
+import com.social.eshop.service.dto.ProductsDTO;
+import com.social.eshop.service.mapper.ProductsMapper;
+>>>>>>> with_entities
 import com.social.eshop.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -23,7 +28,10 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+<<<<<<< HEAD
 import java.math.BigDecimal;
+=======
+>>>>>>> with_entities
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -43,11 +51,19 @@ public class ProductsResourceIntTest {
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
 
+<<<<<<< HEAD
     private static final BigDecimal DEFAULT_PRICE = new BigDecimal(1);
     private static final BigDecimal UPDATED_PRICE = new BigDecimal(2);
 
+<<<<<<< HEAD
+=======
+>>>>>>> with_entities
+    private static final String DEFAULT_SALE = "AAAAAAAAAA";
+    private static final String UPDATED_SALE = "BBBBBBBBBB";
+=======
     private static final Integer DEFAULT_SALE = 1;
     private static final Integer UPDATED_SALE = 2;
+>>>>>>> creatingDtos
 
     private static final Double DEFAULT_RATING = 1D;
     private static final Double UPDATED_RATING = 2D;
@@ -62,6 +78,12 @@ public class ProductsResourceIntTest {
     private ProductsRepository productsRepository;
 
     @Autowired
+<<<<<<< HEAD
+=======
+    private ProductsMapper productsMapper;
+
+    @Autowired
+>>>>>>> with_entities
     private ProductsService productsService;
 
     @Autowired
@@ -102,7 +124,10 @@ public class ProductsResourceIntTest {
     public static Products createEntity(EntityManager em) {
         Products products = new Products()
             .name(DEFAULT_NAME)
+<<<<<<< HEAD
             .price(DEFAULT_PRICE)
+=======
+>>>>>>> with_entities
             .sale(DEFAULT_SALE)
             .rating(DEFAULT_RATING)
             .fresh(DEFAULT_FRESH)
@@ -122,9 +147,16 @@ public class ProductsResourceIntTest {
         int databaseSizeBeforeCreate = productsRepository.findAll().size();
 
         // Create the Products
+<<<<<<< HEAD
         restProductsMockMvc.perform(post("/api/products")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(products)))
+=======
+        ProductsDTO productsDTO = productsMapper.toDto(products);
+        restProductsMockMvc.perform(post("/api/products")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(productsDTO)))
+>>>>>>> with_entities
             .andExpect(status().isCreated());
 
         // Validate the Products in the database
@@ -132,7 +164,10 @@ public class ProductsResourceIntTest {
         assertThat(productsList).hasSize(databaseSizeBeforeCreate + 1);
         Products testProducts = productsList.get(productsList.size() - 1);
         assertThat(testProducts.getName()).isEqualTo(DEFAULT_NAME);
+<<<<<<< HEAD
         assertThat(testProducts.getPrice()).isEqualTo(DEFAULT_PRICE);
+=======
+>>>>>>> with_entities
         assertThat(testProducts.getSale()).isEqualTo(DEFAULT_SALE);
         assertThat(testProducts.getRating()).isEqualTo(DEFAULT_RATING);
         assertThat(testProducts.isFresh()).isEqualTo(DEFAULT_FRESH);
@@ -150,11 +185,19 @@ public class ProductsResourceIntTest {
 
         // Create the Products with an existing ID
         products.setId(1L);
+<<<<<<< HEAD
+=======
+        ProductsDTO productsDTO = productsMapper.toDto(products);
+>>>>>>> with_entities
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restProductsMockMvc.perform(post("/api/products")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
+<<<<<<< HEAD
             .content(TestUtil.convertObjectToJsonBytes(products)))
+=======
+            .content(TestUtil.convertObjectToJsonBytes(productsDTO)))
+>>>>>>> with_entities
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -170,6 +213,7 @@ public class ProductsResourceIntTest {
         products.setName(null);
 
         // Create the Products, which fails.
+<<<<<<< HEAD
 
         restProductsMockMvc.perform(post("/api/products")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -192,6 +236,13 @@ public class ProductsResourceIntTest {
         restProductsMockMvc.perform(post("/api/products")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(products)))
+=======
+        ProductsDTO productsDTO = productsMapper.toDto(products);
+
+        restProductsMockMvc.perform(post("/api/products")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(productsDTO)))
+>>>>>>> with_entities
             .andExpect(status().isBadRequest());
 
         List<Products> productsList = productsRepository.findAll();
@@ -210,8 +261,15 @@ public class ProductsResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(products.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
+<<<<<<< HEAD
             .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.intValue())))
+<<<<<<< HEAD
+=======
+>>>>>>> with_entities
+            .andExpect(jsonPath("$.[*].sale").value(hasItem(DEFAULT_SALE.toString())))
+=======
             .andExpect(jsonPath("$.[*].sale").value(hasItem(DEFAULT_SALE)))
+>>>>>>> creatingDtos
             .andExpect(jsonPath("$.[*].rating").value(hasItem(DEFAULT_RATING.doubleValue())))
             .andExpect(jsonPath("$.[*].fresh").value(hasItem(DEFAULT_FRESH.booleanValue())))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())));
@@ -229,8 +287,15 @@ public class ProductsResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(products.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
+<<<<<<< HEAD
             .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.intValue()))
+<<<<<<< HEAD
+=======
+>>>>>>> with_entities
+            .andExpect(jsonPath("$.sale").value(DEFAULT_SALE.toString()))
+=======
             .andExpect(jsonPath("$.sale").value(DEFAULT_SALE))
+>>>>>>> creatingDtos
             .andExpect(jsonPath("$.rating").value(DEFAULT_RATING.doubleValue()))
             .andExpect(jsonPath("$.fresh").value(DEFAULT_FRESH.booleanValue()))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()));
@@ -248,14 +313,20 @@ public class ProductsResourceIntTest {
     @Transactional
     public void updateProducts() throws Exception {
         // Initialize the database
+<<<<<<< HEAD
         productsService.save(products);
 
+=======
+        productsRepository.saveAndFlush(products);
+        productsSearchRepository.save(products);
+>>>>>>> with_entities
         int databaseSizeBeforeUpdate = productsRepository.findAll().size();
 
         // Update the products
         Products updatedProducts = productsRepository.findOne(products.getId());
         updatedProducts
             .name(UPDATED_NAME)
+<<<<<<< HEAD
             .price(UPDATED_PRICE)
             .sale(UPDATED_SALE)
             .rating(UPDATED_RATING)
@@ -265,6 +336,16 @@ public class ProductsResourceIntTest {
         restProductsMockMvc.perform(put("/api/products")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(updatedProducts)))
+=======
+            .sale(UPDATED_SALE)
+            .rating(UPDATED_RATING)
+            .fresh(UPDATED_FRESH);
+        ProductsDTO productsDTO = productsMapper.toDto(updatedProducts);
+
+        restProductsMockMvc.perform(put("/api/products")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(productsDTO)))
+>>>>>>> with_entities
             .andExpect(status().isOk());
 
         // Validate the Products in the database
@@ -272,7 +353,10 @@ public class ProductsResourceIntTest {
         assertThat(productsList).hasSize(databaseSizeBeforeUpdate);
         Products testProducts = productsList.get(productsList.size() - 1);
         assertThat(testProducts.getName()).isEqualTo(UPDATED_NAME);
+<<<<<<< HEAD
         assertThat(testProducts.getPrice()).isEqualTo(UPDATED_PRICE);
+=======
+>>>>>>> with_entities
         assertThat(testProducts.getSale()).isEqualTo(UPDATED_SALE);
         assertThat(testProducts.getRating()).isEqualTo(UPDATED_RATING);
         assertThat(testProducts.isFresh()).isEqualTo(UPDATED_FRESH);
@@ -289,11 +373,19 @@ public class ProductsResourceIntTest {
         int databaseSizeBeforeUpdate = productsRepository.findAll().size();
 
         // Create the Products
+<<<<<<< HEAD
+=======
+        ProductsDTO productsDTO = productsMapper.toDto(products);
+>>>>>>> with_entities
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
         restProductsMockMvc.perform(put("/api/products")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
+<<<<<<< HEAD
             .content(TestUtil.convertObjectToJsonBytes(products)))
+=======
+            .content(TestUtil.convertObjectToJsonBytes(productsDTO)))
+>>>>>>> with_entities
             .andExpect(status().isCreated());
 
         // Validate the Products in the database
@@ -305,8 +397,13 @@ public class ProductsResourceIntTest {
     @Transactional
     public void deleteProducts() throws Exception {
         // Initialize the database
+<<<<<<< HEAD
         productsService.save(products);
 
+=======
+        productsRepository.saveAndFlush(products);
+        productsSearchRepository.save(products);
+>>>>>>> with_entities
         int databaseSizeBeforeDelete = productsRepository.findAll().size();
 
         // Get the products
@@ -327,7 +424,12 @@ public class ProductsResourceIntTest {
     @Transactional
     public void searchProducts() throws Exception {
         // Initialize the database
+<<<<<<< HEAD
         productsService.save(products);
+=======
+        productsRepository.saveAndFlush(products);
+        productsSearchRepository.save(products);
+>>>>>>> with_entities
 
         // Search the products
         restProductsMockMvc.perform(get("/api/_search/products?query=id:" + products.getId()))
@@ -335,8 +437,15 @@ public class ProductsResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(products.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
+<<<<<<< HEAD
             .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.intValue())))
+<<<<<<< HEAD
+=======
+>>>>>>> with_entities
+            .andExpect(jsonPath("$.[*].sale").value(hasItem(DEFAULT_SALE.toString())))
+=======
             .andExpect(jsonPath("$.[*].sale").value(hasItem(DEFAULT_SALE)))
+>>>>>>> creatingDtos
             .andExpect(jsonPath("$.[*].rating").value(hasItem(DEFAULT_RATING.doubleValue())))
             .andExpect(jsonPath("$.[*].fresh").value(hasItem(DEFAULT_FRESH.booleanValue())))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())));
@@ -356,4 +465,30 @@ public class ProductsResourceIntTest {
         products1.setId(null);
         assertThat(products1).isNotEqualTo(products2);
     }
+<<<<<<< HEAD
+=======
+
+    @Test
+    @Transactional
+    public void dtoEqualsVerifier() throws Exception {
+        TestUtil.equalsVerifier(ProductsDTO.class);
+        ProductsDTO productsDTO1 = new ProductsDTO();
+        productsDTO1.setId(1L);
+        ProductsDTO productsDTO2 = new ProductsDTO();
+        assertThat(productsDTO1).isNotEqualTo(productsDTO2);
+        productsDTO2.setId(productsDTO1.getId());
+        assertThat(productsDTO1).isEqualTo(productsDTO2);
+        productsDTO2.setId(2L);
+        assertThat(productsDTO1).isNotEqualTo(productsDTO2);
+        productsDTO1.setId(null);
+        assertThat(productsDTO1).isNotEqualTo(productsDTO2);
+    }
+
+    @Test
+    @Transactional
+    public void testEntityFromId() {
+        assertThat(productsMapper.fromId(42L).getId()).isEqualTo(42);
+        assertThat(productsMapper.fromId(null)).isNull();
+    }
+>>>>>>> with_entities
 }

@@ -29,6 +29,28 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+<<<<<<< HEAD
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="name"><span jhiTranslate="eshopApp.products.name">Name</span> <span class="fa fa-sort"></span></th>
+<<<<<<< HEAD
+            <th jhiSortBy="price"><span jhiTranslate="eshopApp.products.price">Price</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="sale"><span jhiTranslate="eshopApp.products.sale">Sale</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="rating"><span jhiTranslate="eshopApp.products.rating">Rating</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="fresh"><span jhiTranslate="eshopApp.products.fresh">Fresh</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="consignment.id"><span jhiTranslate="eshopApp.products.consignment">Consignment</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="subCategory.id"><span jhiTranslate="eshopApp.products.subCategory">Sub Category</span> <span class="fa fa-sort"></span></th>
+=======
+            <th jhiSortBy="sale"><span jhiTranslate="eshopApp.products.sale">Sale</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="rating"><span jhiTranslate="eshopApp.products.rating">Rating</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="fresh"><span jhiTranslate="eshopApp.products.fresh">Fresh</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="wishListId"><span jhiTranslate="eshopApp.products.wishList">Wish List</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="seenId"><span jhiTranslate="eshopApp.products.seen">Seen</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="bucketId"><span jhiTranslate="eshopApp.products.bucket">Bucket</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="subCategoryId"><span jhiTranslate="eshopApp.products.subCategory">Sub Category</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="mediaId"><span jhiTranslate="eshopApp.products.media">Media</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="tagsId"><span jhiTranslate="eshopApp.products.tags">Tags</span> <span class="fa fa-sort"></span></th>
+>>>>>>> with_entities
+=======
             <th jhiSortBy="id"><span>ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="name"><span>Name</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="price"><span>Price</span> <span class="fa fa-sort"></span></th>
@@ -39,6 +61,7 @@
             <th jhiSortBy="options.id"><span>Options</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="consignment.id"><span>Consignment</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="subCategory.id"><span>Sub Category</span> <span class="fa fa-sort"></span></th>
+>>>>>>> creatingDtos
             <th></th>
             </tr>
             </thead>
@@ -46,7 +69,10 @@
             <tr *ngFor="let products of products ;trackBy: trackId">
                 <td><a [routerLink]="['../products', products.id ]">{{products.id}}</a></td>
                 <td>{{products.name}}</td>
+<<<<<<< HEAD
                 <td>{{products.price}}</td>
+=======
+>>>>>>> with_entities
                 <td>{{products.sale}}</td>
                 <td>{{products.rating}}</td>
                 <td>{{products.fresh}}</td>
@@ -57,6 +83,7 @@
                     </div>
                 </td>
                 <td>
+<<<<<<< HEAD
                     <div *ngIf="products.consignment">
                         <a [routerLink]="['../consignment', products.consignment?.id ]" >{{products.consignment?.id}}</a>
                     </div>
@@ -64,6 +91,35 @@
                 <td>
                     <div *ngIf="products.subCategory">
                         <a [routerLink]="['../sub-category', products.subCategory?.id ]" >{{products.subCategory?.id}}</a>
+=======
+                    <div *ngIf="products.wishListId">
+                        <a [routerLink]="['../wish-list', products.wishListId  ]" >{{products.wishListId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="products.seenId">
+                        <a [routerLink]="['../seen', products.seenId  ]" >{{products.seenId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="products.bucketId">
+                        <a [routerLink]="['../bucket', products.bucketId  ]" >{{products.bucketId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="products.subCategoryId">
+                        <a [routerLink]="['../sub-category', products.subCategoryId  ]" >{{products.subCategoryId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="products.mediaId">
+                        <a [routerLink]="['../media', products.mediaId  ]" >{{products.mediaId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="products.tagsId">
+                        <a [routerLink]="['../tags', products.tagsId  ]" >{{products.tagsId}}</a>
+>>>>>>> with_entities
                     </div>
                 </td>
                 <td class="text-right">

@@ -9,6 +9,16 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { Options } from './options.model';
 import { OptionsPopupService } from './options-popup.service';
 import { OptionsService } from './options.service';
+<<<<<<< HEAD
+import { Value, ValueService } from '../value';
+import { Type, TypeService } from '../type';
+<<<<<<< HEAD
+=======
+import { SubCategory, SubCategoryService } from '../sub-category';
+>>>>>>> with_entities
+import { ResponseWrapper } from '../../shared';
+=======
+>>>>>>> creatingDtos
 
 @Component({
     selector: 'jhi-options-dialog',
@@ -20,19 +30,92 @@ export class OptionsDialogComponent implements OnInit {
     authorities: any[];
     isSaving: boolean;
 
+<<<<<<< HEAD
+    values: Value[];
+
+    types: Type[];
+
+<<<<<<< HEAD
+=======
+    subcategories: SubCategory[];
+
+>>>>>>> with_entities
+=======
+>>>>>>> creatingDtos
     constructor(
         public activeModal: NgbActiveModal,
         private alertService: JhiAlertService,
         private optionsService: OptionsService,
+<<<<<<< HEAD
+        private valueService: ValueService,
+        private typeService: TypeService,
+<<<<<<< HEAD
+=======
+        private subCategoryService: SubCategoryService,
+>>>>>>> with_entities
+        private eventManager: EventManager
+=======
         private eventManager: JhiEventManager
+>>>>>>> creatingDtos
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
+<<<<<<< HEAD
+        this.valueService
+            .query({filter: 'options-is-null'})
+            .subscribe((res: ResponseWrapper) => {
+<<<<<<< HEAD
+                if (!this.options.value || !this.options.value.id) {
+                    this.values = res.json;
+                } else {
+                    this.valueService
+                        .find(this.options.value.id)
+=======
+                if (!this.options.valueId) {
+                    this.values = res.json;
+                } else {
+                    this.valueService
+                        .find(this.options.valueId)
+>>>>>>> with_entities
+                        .subscribe((subRes: Value) => {
+                            this.values = [subRes].concat(res.json);
+                        }, (subRes: ResponseWrapper) => this.onError(subRes.json));
+                }
+            }, (res: ResponseWrapper) => this.onError(res.json));
+        this.typeService
+            .query({filter: 'options-is-null'})
+            .subscribe((res: ResponseWrapper) => {
+<<<<<<< HEAD
+                if (!this.options.type || !this.options.type.id) {
+                    this.types = res.json;
+                } else {
+                    this.typeService
+                        .find(this.options.type.id)
+=======
+                if (!this.options.typeId) {
+                    this.types = res.json;
+                } else {
+                    this.typeService
+                        .find(this.options.typeId)
+>>>>>>> with_entities
+                        .subscribe((subRes: Type) => {
+                            this.types = [subRes].concat(res.json);
+                        }, (subRes: ResponseWrapper) => this.onError(subRes.json));
+                }
+            }, (res: ResponseWrapper) => this.onError(res.json));
+<<<<<<< HEAD
+=======
+>>>>>>> creatingDtos
     }
 
+=======
+        this.subCategoryService.query()
+            .subscribe((res: ResponseWrapper) => { this.subcategories = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+    }
+>>>>>>> with_entities
     clear() {
         this.activeModal.dismiss('cancel');
     }
@@ -41,6 +124,7 @@ export class OptionsDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.options.id !== undefined) {
             this.subscribeToSaveResponse(
+<<<<<<< HEAD
                 this.optionsService.update(this.options), false);
         } else {
             this.subscribeToSaveResponse(
@@ -59,6 +143,21 @@ export class OptionsDialogComponent implements OnInit {
             : `A Options is updated with identifier ${result.id}`,
             null, null);
 
+=======
+                this.optionsService.update(this.options));
+        } else {
+            this.subscribeToSaveResponse(
+                this.optionsService.create(this.options));
+        }
+    }
+
+    private subscribeToSaveResponse(result: Observable<Options>) {
+        result.subscribe((res: Options) =>
+            this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
+    }
+
+    private onSaveSuccess(result: Options) {
+>>>>>>> with_entities
         this.eventManager.broadcast({ name: 'optionsListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
@@ -77,6 +176,24 @@ export class OptionsDialogComponent implements OnInit {
     private onError(error) {
         this.alertService.error(error.message, null, null);
     }
+<<<<<<< HEAD
+
+    trackValueById(index: number, item: Value) {
+        return item.id;
+    }
+
+    trackTypeById(index: number, item: Type) {
+        return item.id;
+    }
+<<<<<<< HEAD
+=======
+
+    trackSubCategoryById(index: number, item: SubCategory) {
+        return item.id;
+    }
+>>>>>>> with_entities
+=======
+>>>>>>> creatingDtos
 }
 
 @Component({

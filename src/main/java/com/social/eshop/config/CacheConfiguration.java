@@ -42,6 +42,7 @@ public class CacheConfiguration {
             cm.createCache(com.social.eshop.domain.User.class.getName() + ".authorities", jcacheConfiguration);
             cm.createCache(com.social.eshop.domain.SocialUserConnection.class.getName(), jcacheConfiguration);
             cm.createCache(com.social.eshop.domain.Customer.class.getName(), jcacheConfiguration);
+<<<<<<< HEAD
             cm.createCache(com.social.eshop.domain.Customer.class.getName() + ".seens", jcacheConfiguration);
             cm.createCache(com.social.eshop.domain.Customer.class.getName() + ".wishLists", jcacheConfiguration);
             cm.createCache(com.social.eshop.domain.Customer.class.getName() + ".comments", jcacheConfiguration);
@@ -66,10 +67,48 @@ public class CacheConfiguration {
             cm.createCache(com.social.eshop.domain.Tags.class.getName() + ".tagForProducts", jcacheConfiguration);
             cm.createCache(com.social.eshop.domain.Consignment.class.getName(), jcacheConfiguration);
             cm.createCache(com.social.eshop.domain.Consignment.class.getName() + ".products", jcacheConfiguration);
+=======
+            cm.createCache(com.social.eshop.domain.Customer.class.getName() + ".customers", jcacheConfiguration);
+            cm.createCache(com.social.eshop.domain.CustomerRoom.class.getName(), jcacheConfiguration);
+            cm.createCache(com.social.eshop.domain.CustomerRoom.class.getName() + ".customers", jcacheConfiguration);
+            cm.createCache(com.social.eshop.domain.Comments.class.getName(), jcacheConfiguration);
+            cm.createCache(com.social.eshop.domain.Comments.class.getName() + ".customers", jcacheConfiguration);
+            cm.createCache(com.social.eshop.domain.PersonalInformation.class.getName(), jcacheConfiguration);
+            cm.createCache(com.social.eshop.domain.HistoryOrder.class.getName(), jcacheConfiguration);
+            cm.createCache(com.social.eshop.domain.AddressShipping.class.getName(), jcacheConfiguration);
+            cm.createCache(com.social.eshop.domain.Confirm.class.getName(), jcacheConfiguration);
+            cm.createCache(com.social.eshop.domain.LoginOptions.class.getName(), jcacheConfiguration);
+            cm.createCache(com.social.eshop.domain.WishList.class.getName(), jcacheConfiguration);
+            cm.createCache(com.social.eshop.domain.WishList.class.getName() + ".products", jcacheConfiguration);
+            cm.createCache(com.social.eshop.domain.Address.class.getName(), jcacheConfiguration);
+            cm.createCache(com.social.eshop.domain.SessionId.class.getName(), jcacheConfiguration);
+            cm.createCache(com.social.eshop.domain.Seen.class.getName(), jcacheConfiguration);
+            cm.createCache(com.social.eshop.domain.Seen.class.getName() + ".products", jcacheConfiguration);
+            cm.createCache(com.social.eshop.domain.Bucket.class.getName(), jcacheConfiguration);
+            cm.createCache(com.social.eshop.domain.Bucket.class.getName() + ".products", jcacheConfiguration);
+            cm.createCache(com.social.eshop.domain.Avatar.class.getName(), jcacheConfiguration);
+            cm.createCache(com.social.eshop.domain.Options.class.getName(), jcacheConfiguration);
+            cm.createCache(com.social.eshop.domain.Type.class.getName(), jcacheConfiguration);
+            cm.createCache(com.social.eshop.domain.Value.class.getName(), jcacheConfiguration);
+            cm.createCache(com.social.eshop.domain.Products.class.getName(), jcacheConfiguration);
+            cm.createCache(com.social.eshop.domain.Products.class.getName() + ".comments", jcacheConfiguration);
+            cm.createCache(com.social.eshop.domain.Products.class.getName() + ".consignments", jcacheConfiguration);
+            cm.createCache(com.social.eshop.domain.Category.class.getName(), jcacheConfiguration);
+            cm.createCache(com.social.eshop.domain.Category.class.getName() + ".subCats", jcacheConfiguration);
+            cm.createCache(com.social.eshop.domain.SubCategory.class.getName(), jcacheConfiguration);
+            cm.createCache(com.social.eshop.domain.SubCategory.class.getName() + ".options", jcacheConfiguration);
+            cm.createCache(com.social.eshop.domain.SubCategory.class.getName() + ".products", jcacheConfiguration);
+            cm.createCache(com.social.eshop.domain.Media.class.getName(), jcacheConfiguration);
+            cm.createCache(com.social.eshop.domain.Media.class.getName() + ".products", jcacheConfiguration);
+            cm.createCache(com.social.eshop.domain.Tags.class.getName(), jcacheConfiguration);
+            cm.createCache(com.social.eshop.domain.Tags.class.getName() + ".products", jcacheConfiguration);
+            cm.createCache(com.social.eshop.domain.Consignment.class.getName(), jcacheConfiguration);
+>>>>>>> with_entities
             cm.createCache(com.social.eshop.domain.Storage.class.getName(), jcacheConfiguration);
             cm.createCache(com.social.eshop.domain.Storage.class.getName() + ".consignments", jcacheConfiguration);
             cm.createCache(com.social.eshop.domain.Producers.class.getName(), jcacheConfiguration);
             cm.createCache(com.social.eshop.domain.Producers.class.getName() + ".consignments", jcacheConfiguration);
+<<<<<<< HEAD
             cm.createCache(com.social.eshop.domain.Category.class.getName(), jcacheConfiguration);
             cm.createCache(com.social.eshop.domain.Category.class.getName() + ".subCats", jcacheConfiguration);
             cm.createCache(com.social.eshop.domain.SubCategory.class.getName(), jcacheConfiguration);
@@ -79,6 +118,8 @@ public class CacheConfiguration {
             cm.createCache(com.social.eshop.domain.Options.class.getName(), jcacheConfiguration);
             cm.createCache(com.social.eshop.domain.TagForProduct.class.getName(), jcacheConfiguration);
             cm.createCache(com.social.eshop.domain.ProductInBucket.class.getName(), jcacheConfiguration);
+=======
+>>>>>>> with_entities
             // jhipster-needle-ehcache-add-entry
         };
     }

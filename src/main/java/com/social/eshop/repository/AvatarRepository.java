@@ -12,5 +12,9 @@ import org.springframework.data.jpa.repository.*;
 @SuppressWarnings("unused")
 @Repository
 public interface AvatarRepository extends JpaRepository<Avatar,Long> {
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> with_entities
 }

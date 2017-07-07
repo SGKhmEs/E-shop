@@ -3,8 +3,13 @@
     "relationships": [
         {
             "relationshipType": "one-to-many",
+<<<<<<< HEAD
             "relationshipName": "tagForProduct",
             "otherEntityName": "tagForProduct",
+=======
+            "relationshipName": "product",
+            "otherEntityName": "products",
+>>>>>>> with_entities
             "otherEntityRelationshipName": "tags"
         }
     ],
@@ -17,9 +22,19 @@
             ]
         }
     ],
+<<<<<<< HEAD
+<<<<<<< HEAD
+    "changelogDate": "20170610234457",
+=======
     "changelogDate": "20170623182240",
+>>>>>>> creatingDtos
     "entityTableName": "tags",
     "dto": "no",
+=======
+    "changelogDate": "20170525235453",
+    "entityTableName": "tags",
+    "dto": "mapstruct",
+>>>>>>> with_entities
     "pagination": "no",
     "service": "serviceImpl"
 }

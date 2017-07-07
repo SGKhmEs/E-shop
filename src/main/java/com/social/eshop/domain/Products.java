@@ -8,7 +8,10 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+<<<<<<< HEAD
 import java.math.BigDecimal;
+=======
+>>>>>>> with_entities
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
@@ -33,10 +36,13 @@ public class Products implements Serializable {
     @Column(name = "name", nullable = false)
     private String name;
 
+<<<<<<< HEAD
     @NotNull
     @Column(name = "price", precision=10, scale=2, nullable = false)
     private BigDecimal price;
 
+=======
+>>>>>>> with_entities
     @Column(name = "sale")
     private Integer sale;
 
@@ -46,6 +52,9 @@ public class Products implements Serializable {
     @Column(name = "fresh")
     private Boolean fresh;
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
     @Column(name = "description")
     private String description;
 
@@ -53,10 +62,21 @@ public class Products implements Serializable {
     @JoinColumn(unique = true)
     private Options options;
 
+>>>>>>> creatingDtos
     @OneToMany(mappedBy = "products")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Media> media = new HashSet<>();
+=======
+    @ManyToOne
+    private WishList wishList;
+
+    @ManyToOne
+    private Seen seen;
+
+    @ManyToOne
+    private Bucket bucket;
+>>>>>>> with_entities
 
     @OneToMany(mappedBy = "products")
     @JsonIgnore
@@ -66,6 +86,7 @@ public class Products implements Serializable {
     @OneToMany(mappedBy = "products")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+<<<<<<< HEAD
     private Set<ProductInBucket> productInBuckets = new HashSet<>();
 
     @OneToMany(mappedBy = "products")
@@ -78,6 +99,18 @@ public class Products implements Serializable {
 
     @ManyToOne
     private SubCategory subCategory;
+=======
+    private Set<Consignment> consignments = new HashSet<>();
+
+    @ManyToOne
+    private SubCategory subCategory;
+
+    @ManyToOne
+    private Media media;
+
+    @ManyToOne
+    private Tags tags;
+>>>>>>> with_entities
 
     public Long getId() {
         return id;
@@ -100,6 +133,7 @@ public class Products implements Serializable {
         this.name = name;
     }
 
+<<<<<<< HEAD
     public BigDecimal getPrice() {
         return price;
     }
@@ -113,7 +147,13 @@ public class Products implements Serializable {
         this.price = price;
     }
 
+<<<<<<< HEAD
+=======
+>>>>>>> with_entities
+    public String getSale() {
+=======
     public Integer getSale() {
+>>>>>>> creatingDtos
         return sale;
     }
 
@@ -152,6 +192,9 @@ public class Products implements Serializable {
         this.fresh = fresh;
     }
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
     public String getDescription() {
         return description;
     }
@@ -178,6 +221,7 @@ public class Products implements Serializable {
         this.options = options;
     }
 
+>>>>>>> creatingDtos
     public Set<Media> getMedia() {
         return media;
     }
@@ -201,6 +245,45 @@ public class Products implements Serializable {
 
     public void setMedia(Set<Media> media) {
         this.media = media;
+=======
+    public WishList getWishList() {
+        return wishList;
+    }
+
+    public Products wishList(WishList wishList) {
+        this.wishList = wishList;
+        return this;
+    }
+
+    public void setWishList(WishList wishList) {
+        this.wishList = wishList;
+    }
+
+    public Seen getSeen() {
+        return seen;
+    }
+
+    public Products seen(Seen seen) {
+        this.seen = seen;
+        return this;
+    }
+
+    public void setSeen(Seen seen) {
+        this.seen = seen;
+    }
+
+    public Bucket getBucket() {
+        return bucket;
+    }
+
+    public Products bucket(Bucket bucket) {
+        this.bucket = bucket;
+        return this;
+    }
+
+    public void setBucket(Bucket bucket) {
+        this.bucket = bucket;
+>>>>>>> with_entities
     }
 
     public Set<Comments> getComments() {
@@ -228,6 +311,7 @@ public class Products implements Serializable {
         this.comments = comments;
     }
 
+<<<<<<< HEAD
     public Set<ProductInBucket> getProductInBuckets() {
         return productInBuckets;
     }
@@ -302,6 +386,70 @@ public class Products implements Serializable {
 
     public void setSubCategory(SubCategory subCategory) {
         this.subCategory = subCategory;
+=======
+    public Set<Consignment> getConsignments() {
+        return consignments;
+    }
+
+    public Products consignments(Set<Consignment> consignments) {
+        this.consignments = consignments;
+        return this;
+    }
+
+    public Products addConsignment(Consignment consignment) {
+        this.consignments.add(consignment);
+        consignment.setProducts(this);
+        return this;
+    }
+
+    public Products removeConsignment(Consignment consignment) {
+        this.consignments.remove(consignment);
+        consignment.setProducts(null);
+        return this;
+    }
+
+    public void setConsignments(Set<Consignment> consignments) {
+        this.consignments = consignments;
+    }
+
+    public SubCategory getSubCategory() {
+        return subCategory;
+    }
+
+    public Products subCategory(SubCategory subCategory) {
+        this.subCategory = subCategory;
+        return this;
+    }
+
+    public void setSubCategory(SubCategory subCategory) {
+        this.subCategory = subCategory;
+    }
+
+    public Media getMedia() {
+        return media;
+    }
+
+    public Products media(Media media) {
+        this.media = media;
+        return this;
+    }
+
+    public void setMedia(Media media) {
+        this.media = media;
+    }
+
+    public Tags getTags() {
+        return tags;
+    }
+
+    public Products tags(Tags tags) {
+        this.tags = tags;
+        return this;
+    }
+
+    public void setTags(Tags tags) {
+        this.tags = tags;
+>>>>>>> with_entities
     }
 
     @Override
@@ -329,7 +477,10 @@ public class Products implements Serializable {
         return "Products{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
+<<<<<<< HEAD
             ", price='" + getPrice() + "'" +
+=======
+>>>>>>> with_entities
             ", sale='" + getSale() + "'" +
             ", rating='" + getRating() + "'" +
             ", fresh='" + isFresh() + "'" +

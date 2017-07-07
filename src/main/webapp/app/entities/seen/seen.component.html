@@ -29,17 +29,32 @@
         <table class="table table-striped">
             <thead>
             <tr>
+<<<<<<< HEAD
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="eshopApp.seen.data">Data</span></th>
+<<<<<<< HEAD
+            <th><span jhiTranslate="eshopApp.seen.customer">Customer</span></th>
+            <th><span jhiTranslate="eshopApp.seen.products">Products</span></th>
+=======
+>>>>>>> with_entities
+=======
             <th><span>ID</span></th>
             <th><span>Date</span></th>
             <th><span>Customer</span></th>
             <th><span>Products</span></th>
+>>>>>>> creatingDtos
             <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let seen of seens ;trackBy: trackId">
                 <td><a [routerLink]="['../seen', seen.id ]">{{seen.id}}</a></td>
+<<<<<<< HEAD
+                <td>{{seen.data | date:'mediumDate'}}</td>
+<<<<<<< HEAD
+=======
                 <td>{{seen.date | date:'mediumDate'}}</td>
+>>>>>>> creatingDtos
                 <td>
                     <div *ngIf="seen.customer">
                         <a [routerLink]="['../customer', seen.customer?.id ]" >{{seen.customer?.id}}</a>
@@ -50,6 +65,8 @@
                         <a [routerLink]="['../products', seen.products?.id ]" >{{seen.products?.id}}</a>
                     </div>
                 </td>
+=======
+>>>>>>> with_entities
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

@@ -32,6 +32,26 @@
         <dd>
             <span>{{personalInformation.dateBirth | date:'mediumDate'}}</span>
         </dd>
+<<<<<<< HEAD
+        <dt><span jhiTranslate="eshopApp.personalInformation.avatar">Avatar</span></dt>
+        <dd>
+<<<<<<< HEAD
+            <div *ngIf="personalInformation.avatar">
+                <a [routerLink]="['/avatar', personalInformation.avatar?.id]">{{personalInformation.avatar?.id}}</a>
+=======
+            <div *ngIf="personalInformation.avatarId">
+                <a [routerLink]="['/avatar', personalInformation.avatarId]">{{personalInformation.avatarId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.personalInformation.addressShipping">Address Shipping</span></dt>
+        <dd>
+            <div *ngIf="personalInformation.addressShippingId">
+                <a [routerLink]="['/address-shipping', personalInformation.addressShippingId]">{{personalInformation.addressShippingId}}</a>
+>>>>>>> with_entities
+            </div>
+        </dd>
+=======
+>>>>>>> creatingDtos
     </dl>
 
     <button type="submit"

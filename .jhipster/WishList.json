@@ -2,6 +2,7 @@
     "fluentMethods": true,
     "relationships": [
         {
+<<<<<<< HEAD
             "relationshipName": "customer",
             "otherEntityName": "customer",
             "relationshipType": "many-to-one",
@@ -13,18 +14,44 @@
             "otherEntityName": "products",
             "otherEntityField": "id",
             "ownerSide": true,
+=======
+            "relationshipType": "one-to-many",
+            "relationshipName": "product",
+            "otherEntityName": "products",
+>>>>>>> with_entities
             "otherEntityRelationshipName": "wishList"
         }
     ],
     "fields": [
         {
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+            "fieldName": "wishsName",
+            "fieldType": "String"
+        },
+        {
+>>>>>>> with_entities
+            "fieldName": "data",
+            "fieldType": "LocalDate"
+        }
+    ],
+<<<<<<< HEAD
+    "changelogDate": "20170610234452",
+=======
             "fieldName": "date",
             "fieldType": "LocalDate"
         }
     ],
     "changelogDate": "20170623182235",
+>>>>>>> creatingDtos
     "entityTableName": "wish_list",
     "dto": "no",
+=======
+    "changelogDate": "20170525235440",
+    "entityTableName": "wish_list",
+    "dto": "mapstruct",
+>>>>>>> with_entities
     "pagination": "no",
     "service": "serviceImpl"
 }

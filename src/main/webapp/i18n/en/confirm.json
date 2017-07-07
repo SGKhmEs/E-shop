@@ -1,0 +1,22 @@
+{
+    "eshopApp": {
+        "confirm" : {
+            "home": {
+                "title": "Confirms",
+                "createLabel": "Create a new Confirm",
+                "createOrEditLabel": "Create or edit a Confirm",
+                "search": "Search for Confirm"
+            },
+            "created": "A new Confirm is created with identifier {{ param }}",
+            "updated": "A Confirm is updated with identifier {{ param }}",
+            "deleted": "A Confirm is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Confirm {{ id }}?"
+            },
+            "detail": {
+                "title": "Confirm"
+            },
+            "pay": "Pay"
+        }
+    }
+}

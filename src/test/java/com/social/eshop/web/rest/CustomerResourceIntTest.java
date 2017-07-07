@@ -6,6 +6,11 @@ import com.social.eshop.domain.Customer;
 import com.social.eshop.repository.CustomerRepository;
 import com.social.eshop.service.CustomerService;
 import com.social.eshop.repository.search.CustomerSearchRepository;
+<<<<<<< HEAD
+=======
+import com.social.eshop.service.dto.CustomerDTO;
+import com.social.eshop.service.mapper.CustomerMapper;
+>>>>>>> with_entities
 import com.social.eshop.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -30,7 +35,14 @@ import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import com.social.eshop.domain.enumeration.Roles;
+>>>>>>> with_entities
+=======
 import com.social.eshop.domain.enumeration.SocialConnect;
+>>>>>>> creatingDtos
 /**
  * Test class for the CustomerResource REST controller.
  *
@@ -40,19 +52,33 @@ import com.social.eshop.domain.enumeration.SocialConnect;
 @SpringBootTest(classes = EshopApp.class)
 public class CustomerResourceIntTest {
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
     private static final Boolean DEFAULT_SUB_SCRIPTION = false;
     private static final Boolean UPDATED_SUB_SCRIPTION = true;
 
     private static final SocialConnect DEFAULT_SOSIAL_CONNECT = SocialConnect.DEFAULT;
     private static final SocialConnect UPDATED_SOSIAL_CONNECT = SocialConnect.GOOGLE;
 
+>>>>>>> creatingDtos
     private static final String DEFAULT_SESSION_ID = "AAAAAAAAAA";
     private static final String UPDATED_SESSION_ID = "BBBBBBBBBB";
+=======
+    private static final Roles DEFAULT_ROLES = Roles.USER;
+    private static final Roles UPDATED_ROLES = Roles.MODERATOR;
+>>>>>>> with_entities
 
     @Autowired
     private CustomerRepository customerRepository;
 
     @Autowired
+<<<<<<< HEAD
+=======
+    private CustomerMapper customerMapper;
+
+    @Autowired
+>>>>>>> with_entities
     private CustomerService customerService;
 
     @Autowired
@@ -92,9 +118,16 @@ public class CustomerResourceIntTest {
      */
     public static Customer createEntity(EntityManager em) {
         Customer customer = new Customer()
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
             .subScription(DEFAULT_SUB_SCRIPTION)
             .sosialConnect(DEFAULT_SOSIAL_CONNECT)
+>>>>>>> creatingDtos
             .sessionId(DEFAULT_SESSION_ID);
+=======
+            .roles(DEFAULT_ROLES);
+>>>>>>> with_entities
         return customer;
     }
 
@@ -110,18 +143,32 @@ public class CustomerResourceIntTest {
         int databaseSizeBeforeCreate = customerRepository.findAll().size();
 
         // Create the Customer
+<<<<<<< HEAD
         restCustomerMockMvc.perform(post("/api/customers")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(customer)))
+=======
+        CustomerDTO customerDTO = customerMapper.toDto(customer);
+        restCustomerMockMvc.perform(post("/api/customers")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(customerDTO)))
+>>>>>>> with_entities
             .andExpect(status().isCreated());
 
         // Validate the Customer in the database
         List<Customer> customerList = customerRepository.findAll();
         assertThat(customerList).hasSize(databaseSizeBeforeCreate + 1);
         Customer testCustomer = customerList.get(customerList.size() - 1);
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
         assertThat(testCustomer.isSubScription()).isEqualTo(DEFAULT_SUB_SCRIPTION);
         assertThat(testCustomer.getSosialConnect()).isEqualTo(DEFAULT_SOSIAL_CONNECT);
+>>>>>>> creatingDtos
         assertThat(testCustomer.getSessionId()).isEqualTo(DEFAULT_SESSION_ID);
+=======
+        assertThat(testCustomer.getRoles()).isEqualTo(DEFAULT_ROLES);
+>>>>>>> with_entities
 
         // Validate the Customer in Elasticsearch
         Customer customerEs = customerSearchRepository.findOne(testCustomer.getId());
@@ -135,11 +182,19 @@ public class CustomerResourceIntTest {
 
         // Create the Customer with an existing ID
         customer.setId(1L);
+<<<<<<< HEAD
+=======
+        CustomerDTO customerDTO = customerMapper.toDto(customer);
+>>>>>>> with_entities
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restCustomerMockMvc.perform(post("/api/customers")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
+<<<<<<< HEAD
             .content(TestUtil.convertObjectToJsonBytes(customer)))
+=======
+            .content(TestUtil.convertObjectToJsonBytes(customerDTO)))
+>>>>>>> with_entities
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -158,9 +213,16 @@ public class CustomerResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(customer.getId().intValue())))
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
             .andExpect(jsonPath("$.[*].subScription").value(hasItem(DEFAULT_SUB_SCRIPTION.booleanValue())))
             .andExpect(jsonPath("$.[*].sosialConnect").value(hasItem(DEFAULT_SOSIAL_CONNECT.toString())))
+>>>>>>> creatingDtos
             .andExpect(jsonPath("$.[*].sessionId").value(hasItem(DEFAULT_SESSION_ID.toString())));
+=======
+            .andExpect(jsonPath("$.[*].roles").value(hasItem(DEFAULT_ROLES.toString())));
+>>>>>>> with_entities
     }
 
     @Test
@@ -174,9 +236,16 @@ public class CustomerResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(customer.getId().intValue()))
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
             .andExpect(jsonPath("$.subScription").value(DEFAULT_SUB_SCRIPTION.booleanValue()))
             .andExpect(jsonPath("$.sosialConnect").value(DEFAULT_SOSIAL_CONNECT.toString()))
+>>>>>>> creatingDtos
             .andExpect(jsonPath("$.sessionId").value(DEFAULT_SESSION_ID.toString()));
+=======
+            .andExpect(jsonPath("$.roles").value(DEFAULT_ROLES.toString()));
+>>>>>>> with_entities
     }
 
     @Test
@@ -191,29 +260,53 @@ public class CustomerResourceIntTest {
     @Transactional
     public void updateCustomer() throws Exception {
         // Initialize the database
+<<<<<<< HEAD
         customerService.save(customer);
 
+=======
+        customerRepository.saveAndFlush(customer);
+        customerSearchRepository.save(customer);
+>>>>>>> with_entities
         int databaseSizeBeforeUpdate = customerRepository.findAll().size();
 
         // Update the customer
         Customer updatedCustomer = customerRepository.findOne(customer.getId());
         updatedCustomer
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
             .subScription(UPDATED_SUB_SCRIPTION)
             .sosialConnect(UPDATED_SOSIAL_CONNECT)
+>>>>>>> creatingDtos
             .sessionId(UPDATED_SESSION_ID);
 
         restCustomerMockMvc.perform(put("/api/customers")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(updatedCustomer)))
+=======
+            .roles(UPDATED_ROLES);
+        CustomerDTO customerDTO = customerMapper.toDto(updatedCustomer);
+
+        restCustomerMockMvc.perform(put("/api/customers")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(customerDTO)))
+>>>>>>> with_entities
             .andExpect(status().isOk());
 
         // Validate the Customer in the database
         List<Customer> customerList = customerRepository.findAll();
         assertThat(customerList).hasSize(databaseSizeBeforeUpdate);
         Customer testCustomer = customerList.get(customerList.size() - 1);
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
         assertThat(testCustomer.isSubScription()).isEqualTo(UPDATED_SUB_SCRIPTION);
         assertThat(testCustomer.getSosialConnect()).isEqualTo(UPDATED_SOSIAL_CONNECT);
+>>>>>>> creatingDtos
         assertThat(testCustomer.getSessionId()).isEqualTo(UPDATED_SESSION_ID);
+=======
+        assertThat(testCustomer.getRoles()).isEqualTo(UPDATED_ROLES);
+>>>>>>> with_entities
 
         // Validate the Customer in Elasticsearch
         Customer customerEs = customerSearchRepository.findOne(testCustomer.getId());
@@ -226,11 +319,19 @@ public class CustomerResourceIntTest {
         int databaseSizeBeforeUpdate = customerRepository.findAll().size();
 
         // Create the Customer
+<<<<<<< HEAD
+=======
+        CustomerDTO customerDTO = customerMapper.toDto(customer);
+>>>>>>> with_entities
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
         restCustomerMockMvc.perform(put("/api/customers")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
+<<<<<<< HEAD
             .content(TestUtil.convertObjectToJsonBytes(customer)))
+=======
+            .content(TestUtil.convertObjectToJsonBytes(customerDTO)))
+>>>>>>> with_entities
             .andExpect(status().isCreated());
 
         // Validate the Customer in the database
@@ -242,8 +343,13 @@ public class CustomerResourceIntTest {
     @Transactional
     public void deleteCustomer() throws Exception {
         // Initialize the database
+<<<<<<< HEAD
         customerService.save(customer);
 
+=======
+        customerRepository.saveAndFlush(customer);
+        customerSearchRepository.save(customer);
+>>>>>>> with_entities
         int databaseSizeBeforeDelete = customerRepository.findAll().size();
 
         // Get the customer
@@ -264,16 +370,28 @@ public class CustomerResourceIntTest {
     @Transactional
     public void searchCustomer() throws Exception {
         // Initialize the database
+<<<<<<< HEAD
         customerService.save(customer);
+=======
+        customerRepository.saveAndFlush(customer);
+        customerSearchRepository.save(customer);
+>>>>>>> with_entities
 
         // Search the customer
         restCustomerMockMvc.perform(get("/api/_search/customers?query=id:" + customer.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(customer.getId().intValue())))
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
             .andExpect(jsonPath("$.[*].subScription").value(hasItem(DEFAULT_SUB_SCRIPTION.booleanValue())))
             .andExpect(jsonPath("$.[*].sosialConnect").value(hasItem(DEFAULT_SOSIAL_CONNECT.toString())))
+>>>>>>> creatingDtos
             .andExpect(jsonPath("$.[*].sessionId").value(hasItem(DEFAULT_SESSION_ID.toString())));
+=======
+            .andExpect(jsonPath("$.[*].roles").value(hasItem(DEFAULT_ROLES.toString())));
+>>>>>>> with_entities
     }
 
     @Test
@@ -290,4 +408,30 @@ public class CustomerResourceIntTest {
         customer1.setId(null);
         assertThat(customer1).isNotEqualTo(customer2);
     }
+<<<<<<< HEAD
+=======
+
+    @Test
+    @Transactional
+    public void dtoEqualsVerifier() throws Exception {
+        TestUtil.equalsVerifier(CustomerDTO.class);
+        CustomerDTO customerDTO1 = new CustomerDTO();
+        customerDTO1.setId(1L);
+        CustomerDTO customerDTO2 = new CustomerDTO();
+        assertThat(customerDTO1).isNotEqualTo(customerDTO2);
+        customerDTO2.setId(customerDTO1.getId());
+        assertThat(customerDTO1).isEqualTo(customerDTO2);
+        customerDTO2.setId(2L);
+        assertThat(customerDTO1).isNotEqualTo(customerDTO2);
+        customerDTO1.setId(null);
+        assertThat(customerDTO1).isNotEqualTo(customerDTO2);
+    }
+
+    @Test
+    @Transactional
+    public void testEntityFromId() {
+        assertThat(customerMapper.fromId(42L).getId()).isEqualTo(42);
+        assertThat(customerMapper.fromId(null)).isNull();
+    }
+>>>>>>> with_entities
 }

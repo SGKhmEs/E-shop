@@ -2,6 +2,7 @@
     "fluentMethods": true,
     "relationships": [
         {
+<<<<<<< HEAD
             "relationshipName": "manager",
             "otherEntityName": "manager",
             "relationshipType": "many-to-one",
@@ -26,10 +27,17 @@
             "relationshipName": "customer",
             "otherEntityName": "customer",
             "otherEntityField": "id"
+=======
+            "relationshipType": "one-to-many",
+            "relationshipName": "product",
+            "otherEntityName": "products",
+            "otherEntityRelationshipName": "bucket"
+>>>>>>> with_entities
         }
     ],
     "fields": [
         {
+<<<<<<< HEAD
             "fieldName": "name",
             "fieldType": "String"
         },
@@ -63,5 +71,15 @@
     "entityTableName": "bucket",
     "dto": "no",
     "pagination": "infinite-scroll",
+=======
+            "fieldName": "data",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "changelogDate": "20170525235444",
+    "entityTableName": "bucket",
+    "dto": "mapstruct",
+    "pagination": "no",
+>>>>>>> with_entities
     "service": "serviceImpl"
 }

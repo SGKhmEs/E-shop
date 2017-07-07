@@ -32,7 +32,10 @@ export class AddressDialogComponent implements OnInit {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> with_entities
     clear() {
         this.activeModal.dismiss('cancel');
     }
@@ -41,6 +44,7 @@ export class AddressDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.address.id !== undefined) {
             this.subscribeToSaveResponse(
+<<<<<<< HEAD
                 this.addressService.update(this.address), false);
         } else {
             this.subscribeToSaveResponse(
@@ -59,6 +63,21 @@ export class AddressDialogComponent implements OnInit {
             : `A Address is updated with identifier ${result.id}`,
             null, null);
 
+=======
+                this.addressService.update(this.address));
+        } else {
+            this.subscribeToSaveResponse(
+                this.addressService.create(this.address));
+        }
+    }
+
+    private subscribeToSaveResponse(result: Observable<Address>) {
+        result.subscribe((res: Address) =>
+            this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
+    }
+
+    private onSaveSuccess(result: Address) {
+>>>>>>> with_entities
         this.eventManager.broadcast({ name: 'addressListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);

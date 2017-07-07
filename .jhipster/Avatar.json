@@ -8,9 +8,19 @@
             "fieldTypeBlobContent": "image"
         }
     ],
+<<<<<<< HEAD
+<<<<<<< HEAD
+    "changelogDate": "20170610234454",
+=======
     "changelogDate": "20170623182237",
+>>>>>>> creatingDtos
     "entityTableName": "avatar",
     "dto": "no",
+=======
+    "changelogDate": "20170525235445",
+    "entityTableName": "avatar",
+    "dto": "mapstruct",
+>>>>>>> with_entities
     "pagination": "no",
     "service": "serviceImpl"
 }

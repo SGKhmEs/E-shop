@@ -10,8 +10,32 @@
             ]
         },
         {
+<<<<<<< HEAD
+            "relationshipType": "one-to-one",
+            "relationshipName": "type",
+            "otherEntityName": "type",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "options"
+<<<<<<< HEAD
+=======
+        },
+        {
+            "relationshipName": "subCategory",
+            "otherEntityName": "subCategory",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+>>>>>>> with_entities
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+=======
             "fieldName": "weight",
             "fieldType": "Double",
+>>>>>>> creatingDtos
             "fieldValidateRules": [
                 "required"
             ]
@@ -32,9 +56,19 @@
             "fieldType": "Integer"
         }
     ],
+<<<<<<< HEAD
+<<<<<<< HEAD
+    "changelogDate": "20170610234507",
+=======
     "changelogDate": "20170623182248",
+>>>>>>> creatingDtos
     "entityTableName": "options",
     "dto": "no",
+=======
+    "changelogDate": "20170525235446",
+    "entityTableName": "options",
+    "dto": "mapstruct",
+>>>>>>> with_entities
     "pagination": "no",
     "service": "serviceImpl"
 }

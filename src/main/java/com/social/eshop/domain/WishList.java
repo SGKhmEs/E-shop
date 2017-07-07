@@ -1,5 +1,9 @@
 package com.social.eshop.domain;
 
+<<<<<<< HEAD
+=======
+import com.fasterxml.jackson.annotation.JsonIgnore;
+>>>>>>> with_entities
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -7,6 +11,11 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+<<<<<<< HEAD
+=======
+import java.util.HashSet;
+import java.util.Set;
+>>>>>>> with_entities
 import java.util.Objects;
 
 /**
@@ -25,8 +34,14 @@ public class WishList implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+    @Column(name = "data")
+    private LocalDate data;
+=======
     @Column(name = "jhi_date")
     private LocalDate date;
+>>>>>>> creatingDtos
 
     @ManyToOne
     private Customer customer;
@@ -34,6 +49,18 @@ public class WishList implements Serializable {
     @OneToOne
     @JoinColumn(unique = true)
     private Products product;
+=======
+    @Column(name = "wishs_name")
+    private String wishsName;
+
+    @Column(name = "data")
+    private LocalDate data;
+
+    @OneToMany(mappedBy = "wishList")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Products> products = new HashSet<>();
+>>>>>>> with_entities
 
     public Long getId() {
         return id;
@@ -43,8 +70,29 @@ public class WishList implements Serializable {
         this.id = id;
     }
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    public String getWishsName() {
+        return wishsName;
+    }
+
+    public WishList wishsName(String wishsName) {
+        this.wishsName = wishsName;
+        return this;
+    }
+
+    public void setWishsName(String wishsName) {
+        this.wishsName = wishsName;
+    }
+
+>>>>>>> with_entities
+    public LocalDate getData() {
+        return data;
+=======
     public LocalDate getDate() {
         return date;
+>>>>>>> creatingDtos
     }
 
     public WishList date(LocalDate date) {
@@ -56,6 +104,7 @@ public class WishList implements Serializable {
         this.date = date;
     }
 
+<<<<<<< HEAD
     public Customer getCustomer() {
         return customer;
     }
@@ -80,6 +129,31 @@ public class WishList implements Serializable {
 
     public void setProduct(Products products) {
         this.product = products;
+=======
+    public Set<Products> getProducts() {
+        return products;
+    }
+
+    public WishList products(Set<Products> products) {
+        this.products = products;
+        return this;
+    }
+
+    public WishList addProduct(Products products) {
+        this.products.add(products);
+        products.setWishList(this);
+        return this;
+    }
+
+    public WishList removeProduct(Products products) {
+        this.products.remove(products);
+        products.setWishList(null);
+        return this;
+    }
+
+    public void setProducts(Set<Products> products) {
+        this.products = products;
+>>>>>>> with_entities
     }
 
     @Override
@@ -106,7 +180,15 @@ public class WishList implements Serializable {
     public String toString() {
         return "WishList{" +
             "id=" + getId() +
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+            ", wishsName='" + getWishsName() + "'" +
+>>>>>>> with_entities
+            ", data='" + getData() + "'" +
+=======
             ", date='" + getDate() + "'" +
+>>>>>>> creatingDtos
             "}";
     }
 }

@@ -1,6 +1,30 @@
 {
     "fluentMethods": true,
+<<<<<<< HEAD
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "avatar",
+            "otherEntityName": "avatar",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "personalInformation"
+<<<<<<< HEAD
+=======
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "addressShipping",
+            "otherEntityName": "addressShipping",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "personalInformation"
+>>>>>>> with_entities
+        }
+    ],
+=======
     "relationships": [],
+>>>>>>> creatingDtos
     "fields": [
         {
             "fieldName": "firstName",
@@ -44,9 +68,19 @@
             "fieldType": "LocalDate"
         }
     ],
+<<<<<<< HEAD
+<<<<<<< HEAD
+    "changelogDate": "20170610234455",
+=======
     "changelogDate": "20170623182238",
+>>>>>>> creatingDtos
     "entityTableName": "personal_information",
     "dto": "no",
+=======
+    "changelogDate": "20170525235435",
+    "entityTableName": "personal_information",
+    "dto": "mapstruct",
+>>>>>>> with_entities
     "pagination": "no",
     "service": "serviceImpl"
 }

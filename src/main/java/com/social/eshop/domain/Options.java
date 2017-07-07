@@ -43,6 +43,12 @@ public class Options implements Serializable {
     @Column(name = "length")
     private Integer length;
 
+<<<<<<< HEAD
+=======
+    @ManyToOne
+    private SubCategory subCategory;
+
+>>>>>>> with_entities
     public Long getId() {
         return id;
     }
@@ -116,6 +122,22 @@ public class Options implements Serializable {
         this.length = length;
     }
 
+<<<<<<< HEAD
+=======
+    public SubCategory getSubCategory() {
+        return subCategory;
+    }
+
+    public Options subCategory(SubCategory subCategory) {
+        this.subCategory = subCategory;
+        return this;
+    }
+
+    public void setSubCategory(SubCategory subCategory) {
+        this.subCategory = subCategory;
+    }
+
+>>>>>>> with_entities
     @Override
     public boolean equals(Object o) {
         if (this == o) {

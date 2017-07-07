@@ -12,16 +12,32 @@
         <dd>
             <span>{{comments.date | date:'medium'}}</span>
         </dd>
+<<<<<<< HEAD
+<<<<<<< HEAD
+        <dt><span jhiTranslate="eshopApp.comments.customer">Customer</span></dt>
+=======
         <dt><span>Customer</span></dt>
+>>>>>>> creatingDtos
         <dd>
             <div *ngIf="comments.customer">
                 <a [routerLink]="['/customer', comments.customer?.id]">{{comments.customer?.id}}</a>
+=======
+        <dt><span jhiTranslate="eshopApp.comments.customerRoom">Customer Room</span></dt>
+        <dd>
+            <div *ngIf="comments.customerRoomId">
+                <a [routerLink]="['/customer-room', comments.customerRoomId]">{{comments.customerRoomId}}</a>
+>>>>>>> with_entities
             </div>
         </dd>
         <dt><span>Products</span></dt>
         <dd>
+<<<<<<< HEAD
             <div *ngIf="comments.products">
                 <a [routerLink]="['/products', comments.products?.id]">{{comments.products?.id}}</a>
+=======
+            <div *ngIf="comments.productsId">
+                <a [routerLink]="['/products', comments.productsId]">{{comments.productsId}}</a>
+>>>>>>> with_entities
             </div>
         </dd>
     </dl>

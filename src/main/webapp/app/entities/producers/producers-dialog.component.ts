@@ -32,7 +32,10 @@ export class ProducersDialogComponent implements OnInit {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> with_entities
     clear() {
         this.activeModal.dismiss('cancel');
     }
@@ -41,6 +44,7 @@ export class ProducersDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.producers.id !== undefined) {
             this.subscribeToSaveResponse(
+<<<<<<< HEAD
                 this.producersService.update(this.producers), false);
         } else {
             this.subscribeToSaveResponse(
@@ -59,6 +63,21 @@ export class ProducersDialogComponent implements OnInit {
             : `A Producers is updated with identifier ${result.id}`,
             null, null);
 
+=======
+                this.producersService.update(this.producers));
+        } else {
+            this.subscribeToSaveResponse(
+                this.producersService.create(this.producers));
+        }
+    }
+
+    private subscribeToSaveResponse(result: Observable<Producers>) {
+        result.subscribe((res: Producers) =>
+            this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
+    }
+
+    private onSaveSuccess(result: Producers) {
+>>>>>>> with_entities
         this.eventManager.broadcast({ name: 'producersListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);

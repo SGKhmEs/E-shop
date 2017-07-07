@@ -4,6 +4,10 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
+<<<<<<< HEAD
+<<<<<<< HEAD
+        <dt><span jhiTranslate="eshopApp.customer.sessionId">Session Id</span></dt>
+=======
         <dt><span>Sub Scription</span></dt>
         <dd>
             <span>{{customer.subScription}}</span>
@@ -13,6 +17,7 @@
             <span>{{customer.sosialConnect}}</span>
         </dd>
         <dt><span>Session Id</span></dt>
+>>>>>>> creatingDtos
         <dd>
             <span>{{customer.sessionId}}</span>
         </dd>
@@ -36,8 +41,35 @@
         </dd>
         <dt><span>Avatar</span></dt>
         <dd>
+<<<<<<< HEAD
+            <div *ngIf="customer.customerRoom">
+                <a [routerLink]="['/customer-room', customer.customerRoom?.id]">{{customer.customerRoom?.id}}</a>
+=======
+        <dt><span jhiTranslate="eshopApp.customer.roles">Roles</span></dt>
+        <dd>
+            <span jhiTranslate="{{'eshopApp.Roles.' + customer.roles}}">{{customer.roles}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.customer.loginOptions">Login Options</span></dt>
+        <dd>
+            <div *ngIf="customer.loginOptionsId">
+                <a [routerLink]="['/login-options', customer.loginOptionsId]">{{customer.loginOptionsId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.customer.confirm">Confirm</span></dt>
+        <dd>
+            <div *ngIf="customer.confirmId">
+                <a [routerLink]="['/confirm', customer.confirmId]">{{customer.confirmId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.customer.userRoom">User Room</span></dt>
+        <dd>
+            <div *ngIf="customer.userRoomId">
+                <a [routerLink]="['/customer-room', customer.userRoomId]">{{customer.userRoomId}}</a>
+>>>>>>> with_entities
+=======
             <div *ngIf="customer.avatar">
                 <a [routerLink]="['/avatar', customer.avatar?.id]">{{customer.avatar?.id}}</a>
+>>>>>>> creatingDtos
             </div>
         </dd>
     </dl>

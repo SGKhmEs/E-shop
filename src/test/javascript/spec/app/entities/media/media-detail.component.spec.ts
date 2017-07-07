@@ -32,8 +32,16 @@ describe('Component Tests', () => {
                     MediaService,
                     JhiEventManager
                 ]
+<<<<<<< HEAD
             }).overrideTemplate(MediaDetailComponent, '')
             .compileComponents();
+=======
+            }).overrideComponent(MediaDetailComponent, {
+                set: {
+                    template: ''
+                }
+            }).compileComponents();
+>>>>>>> with_entities
         }));
 
         beforeEach(() => {

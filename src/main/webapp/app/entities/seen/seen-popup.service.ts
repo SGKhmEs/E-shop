@@ -3,7 +3,10 @@ import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Seen } from './seen.model';
 import { SeenService } from './seen.service';
+<<<<<<< HEAD
 
+=======
+>>>>>>> with_entities
 @Injectable()
 export class SeenPopupService {
     private isOpen = false;

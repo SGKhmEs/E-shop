@@ -9,7 +9,11 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { Comments } from './comments.model';
 import { CommentsPopupService } from './comments-popup.service';
 import { CommentsService } from './comments.service';
+<<<<<<< HEAD
 import { Customer, CustomerService } from '../customer';
+=======
+import { CustomerRoom, CustomerRoomService } from '../customer-room';
+>>>>>>> with_entities
 import { Products, ProductsService } from '../products';
 import { ResponseWrapper } from '../../shared';
 
@@ -23,7 +27,11 @@ export class CommentsDialogComponent implements OnInit {
     authorities: any[];
     isSaving: boolean;
 
+<<<<<<< HEAD
     customers: Customer[];
+=======
+    customerrooms: CustomerRoom[];
+>>>>>>> with_entities
 
     products: Products[];
 
@@ -31,7 +39,11 @@ export class CommentsDialogComponent implements OnInit {
         public activeModal: NgbActiveModal,
         private alertService: JhiAlertService,
         private commentsService: CommentsService,
+<<<<<<< HEAD
         private customerService: CustomerService,
+=======
+        private customerRoomService: CustomerRoomService,
+>>>>>>> with_entities
         private productsService: ProductsService,
         private eventManager: JhiEventManager
     ) {
@@ -40,12 +52,20 @@ export class CommentsDialogComponent implements OnInit {
     ngOnInit() {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
+<<<<<<< HEAD
         this.customerService.query()
             .subscribe((res: ResponseWrapper) => { this.customers = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
         this.productsService.query()
             .subscribe((res: ResponseWrapper) => { this.products = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
+=======
+        this.customerRoomService.query()
+            .subscribe((res: ResponseWrapper) => { this.customerrooms = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        this.productsService.query()
+            .subscribe((res: ResponseWrapper) => { this.products = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+    }
+>>>>>>> with_entities
     clear() {
         this.activeModal.dismiss('cancel');
     }
@@ -54,6 +74,7 @@ export class CommentsDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.comments.id !== undefined) {
             this.subscribeToSaveResponse(
+<<<<<<< HEAD
                 this.commentsService.update(this.comments), false);
         } else {
             this.subscribeToSaveResponse(
@@ -72,6 +93,21 @@ export class CommentsDialogComponent implements OnInit {
             : `A Comments is updated with identifier ${result.id}`,
             null, null);
 
+=======
+                this.commentsService.update(this.comments));
+        } else {
+            this.subscribeToSaveResponse(
+                this.commentsService.create(this.comments));
+        }
+    }
+
+    private subscribeToSaveResponse(result: Observable<Comments>) {
+        result.subscribe((res: Comments) =>
+            this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
+    }
+
+    private onSaveSuccess(result: Comments) {
+>>>>>>> with_entities
         this.eventManager.broadcast({ name: 'commentsListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
@@ -91,7 +127,11 @@ export class CommentsDialogComponent implements OnInit {
         this.alertService.error(error.message, null, null);
     }
 
+<<<<<<< HEAD
     trackCustomerById(index: number, item: Customer) {
+=======
+    trackCustomerRoomById(index: number, item: CustomerRoom) {
+>>>>>>> with_entities
         return item.id;
     }
 

@@ -24,10 +24,21 @@
         <dd>
             <span>{{media.size}}</span>
         </dd>
+<<<<<<< HEAD
+<<<<<<< HEAD
+        <dt><span jhiTranslate="eshopApp.media.products">Products</span></dt>
+=======
         <dt><span>Products</span></dt>
+>>>>>>> creatingDtos
         <dd>
             <div *ngIf="media.products">
                 <a [routerLink]="['/products', media.products?.id]">{{media.products?.id}}</a>
+=======
+        <dt><span jhiTranslate="eshopApp.media.comments">Comments</span></dt>
+        <dd>
+            <div *ngIf="media.commentsId">
+                <a [routerLink]="['/comments', media.commentsId]">{{media.commentsId}}</a>
+>>>>>>> with_entities
             </div>
         </dd>
     </dl>

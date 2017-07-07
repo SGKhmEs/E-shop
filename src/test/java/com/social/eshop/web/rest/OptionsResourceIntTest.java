@@ -6,6 +6,11 @@ import com.social.eshop.domain.Options;
 import com.social.eshop.repository.OptionsRepository;
 import com.social.eshop.service.OptionsService;
 import com.social.eshop.repository.search.OptionsSearchRepository;
+<<<<<<< HEAD
+=======
+import com.social.eshop.service.dto.OptionsDTO;
+import com.social.eshop.service.mapper.OptionsMapper;
+>>>>>>> with_entities
 import com.social.eshop.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -58,6 +63,12 @@ public class OptionsResourceIntTest {
     private OptionsRepository optionsRepository;
 
     @Autowired
+<<<<<<< HEAD
+=======
+    private OptionsMapper optionsMapper;
+
+    @Autowired
+>>>>>>> with_entities
     private OptionsService optionsService;
 
     @Autowired
@@ -117,9 +128,16 @@ public class OptionsResourceIntTest {
         int databaseSizeBeforeCreate = optionsRepository.findAll().size();
 
         // Create the Options
+<<<<<<< HEAD
         restOptionsMockMvc.perform(post("/api/options")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(options)))
+=======
+        OptionsDTO optionsDTO = optionsMapper.toDto(options);
+        restOptionsMockMvc.perform(post("/api/options")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(optionsDTO)))
+>>>>>>> with_entities
             .andExpect(status().isCreated());
 
         // Validate the Options in the database
@@ -144,11 +162,19 @@ public class OptionsResourceIntTest {
 
         // Create the Options with an existing ID
         options.setId(1L);
+<<<<<<< HEAD
+=======
+        OptionsDTO optionsDTO = optionsMapper.toDto(options);
+>>>>>>> with_entities
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restOptionsMockMvc.perform(post("/api/options")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
+<<<<<<< HEAD
             .content(TestUtil.convertObjectToJsonBytes(options)))
+=======
+            .content(TestUtil.convertObjectToJsonBytes(optionsDTO)))
+>>>>>>> with_entities
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -182,10 +208,18 @@ public class OptionsResourceIntTest {
         options.setWeight(null);
 
         // Create the Options, which fails.
+<<<<<<< HEAD
 
         restOptionsMockMvc.perform(post("/api/options")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(options)))
+=======
+        OptionsDTO optionsDTO = optionsMapper.toDto(options);
+
+        restOptionsMockMvc.perform(post("/api/options")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(optionsDTO)))
+>>>>>>> with_entities
             .andExpect(status().isBadRequest());
 
         List<Options> optionsList = optionsRepository.findAll();
@@ -200,10 +234,18 @@ public class OptionsResourceIntTest {
         options.setMetal(null);
 
         // Create the Options, which fails.
+<<<<<<< HEAD
 
         restOptionsMockMvc.perform(post("/api/options")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(options)))
+=======
+        OptionsDTO optionsDTO = optionsMapper.toDto(options);
+
+        restOptionsMockMvc.perform(post("/api/options")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(optionsDTO)))
+>>>>>>> with_entities
             .andExpect(status().isBadRequest());
 
         List<Options> optionsList = optionsRepository.findAll();
@@ -258,22 +300,40 @@ public class OptionsResourceIntTest {
     @Transactional
     public void updateOptions() throws Exception {
         // Initialize the database
+<<<<<<< HEAD
         optionsService.save(options);
 
+=======
+        optionsRepository.saveAndFlush(options);
+        optionsSearchRepository.save(options);
+>>>>>>> with_entities
         int databaseSizeBeforeUpdate = optionsRepository.findAll().size();
 
         // Update the options
         Options updatedOptions = optionsRepository.findOne(options.getId());
         updatedOptions
+<<<<<<< HEAD
+            .name(UPDATED_NAME)
+            .level(UPDATED_LEVEL);
+<<<<<<< HEAD
+=======
             .color(UPDATED_COLOR)
             .weight(UPDATED_WEIGHT)
             .metal(UPDATED_METAL)
             .size(UPDATED_SIZE)
             .length(UPDATED_LENGTH);
+>>>>>>> creatingDtos
 
         restOptionsMockMvc.perform(put("/api/options")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(updatedOptions)))
+=======
+        OptionsDTO optionsDTO = optionsMapper.toDto(updatedOptions);
+
+        restOptionsMockMvc.perform(put("/api/options")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(optionsDTO)))
+>>>>>>> with_entities
             .andExpect(status().isOk());
 
         // Validate the Options in the database
@@ -297,11 +357,19 @@ public class OptionsResourceIntTest {
         int databaseSizeBeforeUpdate = optionsRepository.findAll().size();
 
         // Create the Options
+<<<<<<< HEAD
+=======
+        OptionsDTO optionsDTO = optionsMapper.toDto(options);
+>>>>>>> with_entities
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
         restOptionsMockMvc.perform(put("/api/options")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
+<<<<<<< HEAD
             .content(TestUtil.convertObjectToJsonBytes(options)))
+=======
+            .content(TestUtil.convertObjectToJsonBytes(optionsDTO)))
+>>>>>>> with_entities
             .andExpect(status().isCreated());
 
         // Validate the Options in the database
@@ -313,8 +381,13 @@ public class OptionsResourceIntTest {
     @Transactional
     public void deleteOptions() throws Exception {
         // Initialize the database
+<<<<<<< HEAD
         optionsService.save(options);
 
+=======
+        optionsRepository.saveAndFlush(options);
+        optionsSearchRepository.save(options);
+>>>>>>> with_entities
         int databaseSizeBeforeDelete = optionsRepository.findAll().size();
 
         // Get the options
@@ -335,7 +408,12 @@ public class OptionsResourceIntTest {
     @Transactional
     public void searchOptions() throws Exception {
         // Initialize the database
+<<<<<<< HEAD
         optionsService.save(options);
+=======
+        optionsRepository.saveAndFlush(options);
+        optionsSearchRepository.save(options);
+>>>>>>> with_entities
 
         // Search the options
         restOptionsMockMvc.perform(get("/api/_search/options?query=id:" + options.getId()))
@@ -363,4 +441,30 @@ public class OptionsResourceIntTest {
         options1.setId(null);
         assertThat(options1).isNotEqualTo(options2);
     }
+<<<<<<< HEAD
+=======
+
+    @Test
+    @Transactional
+    public void dtoEqualsVerifier() throws Exception {
+        TestUtil.equalsVerifier(OptionsDTO.class);
+        OptionsDTO optionsDTO1 = new OptionsDTO();
+        optionsDTO1.setId(1L);
+        OptionsDTO optionsDTO2 = new OptionsDTO();
+        assertThat(optionsDTO1).isNotEqualTo(optionsDTO2);
+        optionsDTO2.setId(optionsDTO1.getId());
+        assertThat(optionsDTO1).isEqualTo(optionsDTO2);
+        optionsDTO2.setId(2L);
+        assertThat(optionsDTO1).isNotEqualTo(optionsDTO2);
+        optionsDTO1.setId(null);
+        assertThat(optionsDTO1).isNotEqualTo(optionsDTO2);
+    }
+
+    @Test
+    @Transactional
+    public void testEntityFromId() {
+        assertThat(optionsMapper.fromId(42L).getId()).isEqualTo(42);
+        assertThat(optionsMapper.fromId(null)).isNull();
+    }
+>>>>>>> with_entities
 }

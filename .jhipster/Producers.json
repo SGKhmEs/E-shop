@@ -24,9 +24,19 @@
             ]
         }
     ],
+<<<<<<< HEAD
+<<<<<<< HEAD
+    "changelogDate": "20170610234500",
+=======
     "changelogDate": "20170623182243",
+>>>>>>> creatingDtos
     "entityTableName": "producers",
     "dto": "no",
+=======
+    "changelogDate": "20170525235456",
+    "entityTableName": "producers",
+    "dto": "mapstruct",
+>>>>>>> with_entities
     "pagination": "no",
     "service": "serviceImpl"
 }

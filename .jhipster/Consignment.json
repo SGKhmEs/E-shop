@@ -2,10 +2,17 @@
     "fluentMethods": true,
     "relationships": [
         {
+<<<<<<< HEAD
             "relationshipType": "one-to-many",
             "relationshipName": "products",
             "otherEntityName": "products",
             "otherEntityRelationshipName": "consignment"
+=======
+            "relationshipName": "products",
+            "otherEntityName": "products",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+>>>>>>> with_entities
         },
         {
             "relationshipName": "storage",
@@ -29,9 +36,20 @@
             ]
         }
     ],
+<<<<<<< HEAD
+<<<<<<< HEAD
+    "changelogDate": "20170610234458",
+=======
     "changelogDate": "20170623182241",
+>>>>>>> creatingDtos
     "entityTableName": "consignment",
     "dto": "no",
     "pagination": "no",
+=======
+    "changelogDate": "20170525235454",
+    "entityTableName": "consignment",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+>>>>>>> with_entities
     "service": "serviceImpl"
 }

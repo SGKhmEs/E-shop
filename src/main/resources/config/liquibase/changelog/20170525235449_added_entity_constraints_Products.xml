@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity Products.
+    -->
+    <changeSet id="20170525235449-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="wish_list_id"
+                                 baseTableName="products"
+                                 constraintName="fk_products_wish_list_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="wish_list"/>
+
+        <addForeignKeyConstraint baseColumnNames="seen_id"
+                                 baseTableName="products"
+                                 constraintName="fk_products_seen_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="seen"/>
+
+        <addForeignKeyConstraint baseColumnNames="bucket_id"
+                                 baseTableName="products"
+                                 constraintName="fk_products_bucket_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="bucket"/>
+
+        <addForeignKeyConstraint baseColumnNames="sub_category_id"
+                                 baseTableName="products"
+                                 constraintName="fk_products_sub_category_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sub_category"/>
+
+        <addForeignKeyConstraint baseColumnNames="media_id"
+                                 baseTableName="products"
+                                 constraintName="fk_products_media_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="media"/>
+
+        <addForeignKeyConstraint baseColumnNames="tags_id"
+                                 baseTableName="products"
+                                 constraintName="fk_products_tags_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tags"/>
+
+    </changeSet>
+</databaseChangeLog>

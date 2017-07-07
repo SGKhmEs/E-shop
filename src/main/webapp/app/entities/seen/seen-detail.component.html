@@ -8,7 +8,12 @@
         <dd>
             <span>{{seen.date | date:'mediumDate'}}</span>
         </dd>
+<<<<<<< HEAD
+<<<<<<< HEAD
+        <dt><span jhiTranslate="eshopApp.seen.customer">Customer</span></dt>
+=======
         <dt><span>Customer</span></dt>
+>>>>>>> creatingDtos
         <dd>
             <div *ngIf="seen.customer">
                 <a [routerLink]="['/customer', seen.customer?.id]">{{seen.customer?.id}}</a>
@@ -20,6 +25,8 @@
                 <a [routerLink]="['/products', seen.products?.id]">{{seen.products?.id}}</a>
             </div>
         </dd>
+=======
+>>>>>>> with_entities
     </dl>
 
     <button type="submit"
