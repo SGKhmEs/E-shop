@@ -4,20 +4,27 @@ import com.social.eshop.domain.Customer;
 import com.social.eshop.service.mapper.AutoMapping;
 
 import java.time.ZonedDateTime;
+import java.util.List;
 
 public class CommentsDTO implements AutoMapping {
 
-    private String comments;
+    private List<String> comments;
     private ZonedDateTime date;
-    private Customer customer;
+    private CustomerDTO customerDTO;
 
     public CommentsDTO() { }
 
-    public String getComments() {
+    public CommentsDTO(List<String> comments, ZonedDateTime date, CustomerDTO customerDTO) {
+        this.comments = comments;
+        this.date = date;
+        this.customerDTO = customerDTO;
+    }
+
+    public List<String> getComments() {
         return comments;
     }
 
-    public void setComments(String comments) {
+    public void setComments(List<String> comments) {
         this.comments = comments;
     }
 
@@ -29,20 +36,21 @@ public class CommentsDTO implements AutoMapping {
         this.date = date;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public CustomerDTO getCustomerDTO() {
+        return customerDTO;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomerDTO(CustomerDTO customerDTO) {
+        this.customerDTO = customerDTO;
     }
 
     @Override
     public String toString() {
         return "CommentsDTO{" +
-            "comments='" + comments + '\'' +
+            "comments=" + comments +
             ", date=" + date +
-            ", customer=" + customer +
+            ", customerDTO=" + customerDTO +
             '}';
     }
+    
 }

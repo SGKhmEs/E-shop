@@ -8,26 +8,24 @@ import com.social.eshop.service.mapper.AutoMapping;
 public class CustomerRoomDTO implements AutoMapping {
 
     private boolean subscription;
-    private SocialConnect socialConnect;
+    // private SocialConnect socialConnect; // think about it
     private Address address;
     private PersonalInformation personalInformation;
 
     public CustomerRoomDTO() { }
 
-    public boolean isSubscription() {
+    public CustomerRoomDTO(boolean subscription, Address address, PersonalInformation personalInformation) {
+        this.subscription = subscription;
+        this.address = address;
+        this.personalInformation = personalInformation;
+    }
+
+    public boolean getSubscription() {
         return subscription;
     }
 
     public void setSubscription(boolean subscription) {
         this.subscription = subscription;
-    }
-
-    public SocialConnect getSocialConnect() {
-        return socialConnect;
-    }
-
-    public void setSocialConnect(SocialConnect socialConnect) {
-        this.socialConnect = socialConnect;
     }
 
     public Address getAddress() {
@@ -50,10 +48,8 @@ public class CustomerRoomDTO implements AutoMapping {
     public String toString() {
         return "CustomerRoomDTO{" +
             "subscription=" + subscription +
-            ", socialConnect=" + socialConnect +
             ", address=" + address +
             ", personalInformation=" + personalInformation +
             '}';
     }
-
 }

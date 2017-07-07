@@ -8,19 +8,17 @@ import java.util.List;
 
 public class CustomerDTO implements AutoMapping {
 
-    private String sessionId;
+    //private String sessionId;  // think about it
     private List<WishList> wishLists;
     private List<Seen> seens;
-    private List<ProductsDTO> products;
+    private CustomerRoomDTO customerRoomDTO;
 
     public CustomerDTO() { }
 
-    public String getSessionId() {
-        return sessionId;
-    }
-
-    public void setSessionId(String sessionId) {
-        this.sessionId = sessionId;
+    public CustomerDTO(List<WishList> wishLists, List<Seen> seens, CustomerRoomDTO customerRoomDTO) {
+        this.wishLists = wishLists;
+        this.seens = seens;
+        this.customerRoomDTO = customerRoomDTO;
     }
 
     public List<WishList> getWishLists() {
@@ -39,21 +37,21 @@ public class CustomerDTO implements AutoMapping {
         this.seens = seens;
     }
 
-    public List<ProductsDTO> getProducts() {
-        return products;
+    public CustomerRoomDTO getCustomerRoomDTO() {
+        return customerRoomDTO;
     }
 
-    public void setProducts(List<ProductsDTO> products) {
-        this.products = products;
+    public void setCustomerRoomDTO(CustomerRoomDTO customerRoomDTO) {
+        this.customerRoomDTO = customerRoomDTO;
     }
 
     @Override
     public String toString() {
         return "CustomerDTO{" +
-            "sessionId='" + sessionId + '\'' +
-            ", wishLists=" + wishLists +
+            "wishLists=" + wishLists +
             ", seens=" + seens +
-            ", products=" + products +
+            ", customerRoomDTO=" + customerRoomDTO +
             '}';
     }
+
 }

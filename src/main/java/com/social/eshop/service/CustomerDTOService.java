@@ -1,5 +1,6 @@
 package com.social.eshop.service;
 
+<<<<<<< HEAD
 import com.social.eshop.domain.Customer;
 import com.social.eshop.repository.CustomerRepository;
 import com.social.eshop.service.dto.CustomerDTO;
@@ -28,4 +29,8 @@ public class CustomerDTOService {
         Customer customer = customerRepository.findOne(id);
         return customerDTO;
     }
+=======
+public interface CustomerDTOService {
+
+>>>>>>> creatingServices
 }
