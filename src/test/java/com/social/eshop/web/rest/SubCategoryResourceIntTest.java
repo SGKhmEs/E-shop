@@ -6,6 +6,11 @@ import com.social.eshop.domain.SubCategory;
 import com.social.eshop.repository.SubCategoryRepository;
 import com.social.eshop.service.SubCategoryService;
 import com.social.eshop.repository.search.SubCategorySearchRepository;
+<<<<<<< HEAD
+=======
+import com.social.eshop.service.dto.SubCategoryDTO;
+import com.social.eshop.service.mapper.SubCategoryMapper;
+>>>>>>> with_entities
 import com.social.eshop.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -46,6 +51,12 @@ public class SubCategoryResourceIntTest {
     private SubCategoryRepository subCategoryRepository;
 
     @Autowired
+<<<<<<< HEAD
+=======
+    private SubCategoryMapper subCategoryMapper;
+
+    @Autowired
+>>>>>>> with_entities
     private SubCategoryService subCategoryService;
 
     @Autowired
@@ -101,9 +112,16 @@ public class SubCategoryResourceIntTest {
         int databaseSizeBeforeCreate = subCategoryRepository.findAll().size();
 
         // Create the SubCategory
+<<<<<<< HEAD
         restSubCategoryMockMvc.perform(post("/api/sub-categories")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(subCategory)))
+=======
+        SubCategoryDTO subCategoryDTO = subCategoryMapper.toDto(subCategory);
+        restSubCategoryMockMvc.perform(post("/api/sub-categories")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(subCategoryDTO)))
+>>>>>>> with_entities
             .andExpect(status().isCreated());
 
         // Validate the SubCategory in the database
@@ -124,11 +142,19 @@ public class SubCategoryResourceIntTest {
 
         // Create the SubCategory with an existing ID
         subCategory.setId(1L);
+<<<<<<< HEAD
+=======
+        SubCategoryDTO subCategoryDTO = subCategoryMapper.toDto(subCategory);
+>>>>>>> with_entities
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restSubCategoryMockMvc.perform(post("/api/sub-categories")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
+<<<<<<< HEAD
             .content(TestUtil.convertObjectToJsonBytes(subCategory)))
+=======
+            .content(TestUtil.convertObjectToJsonBytes(subCategoryDTO)))
+>>>>>>> with_entities
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -144,10 +170,18 @@ public class SubCategoryResourceIntTest {
         subCategory.setName(null);
 
         // Create the SubCategory, which fails.
+<<<<<<< HEAD
 
         restSubCategoryMockMvc.perform(post("/api/sub-categories")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(subCategory)))
+=======
+        SubCategoryDTO subCategoryDTO = subCategoryMapper.toDto(subCategory);
+
+        restSubCategoryMockMvc.perform(post("/api/sub-categories")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(subCategoryDTO)))
+>>>>>>> with_entities
             .andExpect(status().isBadRequest());
 
         List<SubCategory> subCategoryList = subCategoryRepository.findAll();
@@ -194,18 +228,31 @@ public class SubCategoryResourceIntTest {
     @Transactional
     public void updateSubCategory() throws Exception {
         // Initialize the database
+<<<<<<< HEAD
         subCategoryService.save(subCategory);
 
+=======
+        subCategoryRepository.saveAndFlush(subCategory);
+        subCategorySearchRepository.save(subCategory);
+>>>>>>> with_entities
         int databaseSizeBeforeUpdate = subCategoryRepository.findAll().size();
 
         // Update the subCategory
         SubCategory updatedSubCategory = subCategoryRepository.findOne(subCategory.getId());
         updatedSubCategory
             .name(UPDATED_NAME);
+<<<<<<< HEAD
 
         restSubCategoryMockMvc.perform(put("/api/sub-categories")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(updatedSubCategory)))
+=======
+        SubCategoryDTO subCategoryDTO = subCategoryMapper.toDto(updatedSubCategory);
+
+        restSubCategoryMockMvc.perform(put("/api/sub-categories")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(subCategoryDTO)))
+>>>>>>> with_entities
             .andExpect(status().isOk());
 
         // Validate the SubCategory in the database
@@ -225,11 +272,19 @@ public class SubCategoryResourceIntTest {
         int databaseSizeBeforeUpdate = subCategoryRepository.findAll().size();
 
         // Create the SubCategory
+<<<<<<< HEAD
+=======
+        SubCategoryDTO subCategoryDTO = subCategoryMapper.toDto(subCategory);
+>>>>>>> with_entities
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
         restSubCategoryMockMvc.perform(put("/api/sub-categories")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
+<<<<<<< HEAD
             .content(TestUtil.convertObjectToJsonBytes(subCategory)))
+=======
+            .content(TestUtil.convertObjectToJsonBytes(subCategoryDTO)))
+>>>>>>> with_entities
             .andExpect(status().isCreated());
 
         // Validate the SubCategory in the database
@@ -241,8 +296,13 @@ public class SubCategoryResourceIntTest {
     @Transactional
     public void deleteSubCategory() throws Exception {
         // Initialize the database
+<<<<<<< HEAD
         subCategoryService.save(subCategory);
 
+=======
+        subCategoryRepository.saveAndFlush(subCategory);
+        subCategorySearchRepository.save(subCategory);
+>>>>>>> with_entities
         int databaseSizeBeforeDelete = subCategoryRepository.findAll().size();
 
         // Get the subCategory
@@ -263,7 +323,12 @@ public class SubCategoryResourceIntTest {
     @Transactional
     public void searchSubCategory() throws Exception {
         // Initialize the database
+<<<<<<< HEAD
         subCategoryService.save(subCategory);
+=======
+        subCategoryRepository.saveAndFlush(subCategory);
+        subCategorySearchRepository.save(subCategory);
+>>>>>>> with_entities
 
         // Search the subCategory
         restSubCategoryMockMvc.perform(get("/api/_search/sub-categories?query=id:" + subCategory.getId()))
@@ -287,4 +352,30 @@ public class SubCategoryResourceIntTest {
         subCategory1.setId(null);
         assertThat(subCategory1).isNotEqualTo(subCategory2);
     }
+<<<<<<< HEAD
+=======
+
+    @Test
+    @Transactional
+    public void dtoEqualsVerifier() throws Exception {
+        TestUtil.equalsVerifier(SubCategoryDTO.class);
+        SubCategoryDTO subCategoryDTO1 = new SubCategoryDTO();
+        subCategoryDTO1.setId(1L);
+        SubCategoryDTO subCategoryDTO2 = new SubCategoryDTO();
+        assertThat(subCategoryDTO1).isNotEqualTo(subCategoryDTO2);
+        subCategoryDTO2.setId(subCategoryDTO1.getId());
+        assertThat(subCategoryDTO1).isEqualTo(subCategoryDTO2);
+        subCategoryDTO2.setId(2L);
+        assertThat(subCategoryDTO1).isNotEqualTo(subCategoryDTO2);
+        subCategoryDTO1.setId(null);
+        assertThat(subCategoryDTO1).isNotEqualTo(subCategoryDTO2);
+    }
+
+    @Test
+    @Transactional
+    public void testEntityFromId() {
+        assertThat(subCategoryMapper.fromId(42L).getId()).isEqualTo(42);
+        assertThat(subCategoryMapper.fromId(null)).isNull();
+    }
+>>>>>>> with_entities
 }

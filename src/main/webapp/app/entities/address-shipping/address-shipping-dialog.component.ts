@@ -32,7 +32,10 @@ export class AddressShippingDialogComponent implements OnInit {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> with_entities
     clear() {
         this.activeModal.dismiss('cancel');
     }
@@ -41,6 +44,7 @@ export class AddressShippingDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.addressShipping.id !== undefined) {
             this.subscribeToSaveResponse(
+<<<<<<< HEAD
                 this.addressShippingService.update(this.addressShipping), false);
         } else {
             this.subscribeToSaveResponse(
@@ -59,6 +63,21 @@ export class AddressShippingDialogComponent implements OnInit {
             : 'eshopApp.addressShipping.updated',
             { param : result.id }, null);
 
+=======
+                this.addressShippingService.update(this.addressShipping));
+        } else {
+            this.subscribeToSaveResponse(
+                this.addressShippingService.create(this.addressShipping));
+        }
+    }
+
+    private subscribeToSaveResponse(result: Observable<AddressShipping>) {
+        result.subscribe((res: AddressShipping) =>
+            this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
+    }
+
+    private onSaveSuccess(result: AddressShipping) {
+>>>>>>> with_entities
         this.eventManager.broadcast({ name: 'addressShippingListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);

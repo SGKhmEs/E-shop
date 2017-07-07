@@ -28,6 +28,7 @@
     <div class="table-responsive" *ngIf="customers">
         <table class="table table-striped">
             <thead>
+<<<<<<< HEAD
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="sessionId"><span jhiTranslate="eshopApp.customer.sessionId">Session Id</span> <span class="fa fa-sort"></span></th>
@@ -48,6 +49,34 @@
                 <td>
                     <div *ngIf="customer.customerRoom">
                         <a [routerLink]="['../customer-room', customer.customerRoom?.id ]" >{{customer.customerRoom?.id}}</a>
+=======
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="eshopApp.customer.roles">Roles</span></th>
+            <th><span jhiTranslate="eshopApp.customer.loginOptions">Login Options</span></th>
+            <th><span jhiTranslate="eshopApp.customer.confirm">Confirm</span></th>
+            <th><span jhiTranslate="eshopApp.customer.userRoom">User Room</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let customer of customers ;trackBy: trackId">
+                <td><a [routerLink]="['../customer', customer.id ]">{{customer.id}}</a></td>
+                <td jhiTranslate="{{'eshopApp.Roles.' + customer.roles}}">{{customer.roles}}</td>
+                <td>
+                    <div *ngIf="customer.loginOptionsId">
+                        <a [routerLink]="['../login-options', customer.loginOptionsId  ]" >{{customer.loginOptionsId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="customer.confirmId">
+                        <a [routerLink]="['../confirm', customer.confirmId  ]" >{{customer.confirmId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="customer.userRoomId">
+                        <a [routerLink]="['../customer-room', customer.userRoomId  ]" >{{customer.userRoomId}}</a>
+>>>>>>> with_entities
                     </div>
                 </td>
                 <td class="text-right">

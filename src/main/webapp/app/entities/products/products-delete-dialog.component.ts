@@ -2,7 +2,11 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+<<<<<<< HEAD
 import { AlertService, EventManager } from 'ng-jhipster';
+=======
+import { EventManager } from 'ng-jhipster';
+>>>>>>> with_entities
 
 import { Products } from './products.model';
 import { ProductsPopupService } from './products-popup.service';
@@ -19,7 +23,10 @@ export class ProductsDeleteDialogComponent {
     constructor(
         private productsService: ProductsService,
         public activeModal: NgbActiveModal,
+<<<<<<< HEAD
         private alertService: AlertService,
+=======
+>>>>>>> with_entities
         private eventManager: EventManager
     ) {
     }
@@ -36,7 +43,10 @@ export class ProductsDeleteDialogComponent {
             });
             this.activeModal.dismiss(true);
         });
+<<<<<<< HEAD
         this.alertService.success('eshopApp.products.deleted', { param : id }, null);
+=======
+>>>>>>> with_entities
     }
 }
 

@@ -1,0 +1,45 @@
+
+<div *ngIf="historyOrder">
+    <h2><span jhiTranslate="eshopApp.historyOrder.detail.title">History Order</span> {{historyOrder.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="eshopApp.historyOrder.orderNumber">Order Number</span></dt>
+        <dd>
+            <span>{{historyOrder.orderNumber}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.historyOrder.date">Date</span></dt>
+        <dd>
+            <span>{{historyOrder.date | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.historyOrder.count">Count</span></dt>
+        <dd>
+            <span>{{historyOrder.count}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.historyOrder.sum">Sum</span></dt>
+        <dd>
+            <span>{{historyOrder.sum}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.historyOrder.status">Status</span></dt>
+        <dd>
+            <span jhiTranslate="{{'eshopApp.Status.' + historyOrder.status}}">{{historyOrder.status}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.historyOrder.consignmentNote">Consignment Note</span></dt>
+        <dd>
+            <span>{{historyOrder.consignmentNote}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'history-order/'+ historyOrder.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

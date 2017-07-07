@@ -16,6 +16,7 @@
             "detail": {
                 "title": "Bucket"
             },
+<<<<<<< HEAD
             "name": "Name",
             "data": "Data",
             "sum": "Sum",
@@ -27,6 +28,10 @@
             "addressShipping": "Address Shipping",
             "productInBucket": "Product In Bucket",
             "customer": "Customer"
+=======
+            "data": "Data",
+            "product": "Product"
+>>>>>>> with_entities
         }
     }
 }

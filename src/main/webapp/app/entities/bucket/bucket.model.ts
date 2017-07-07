@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 const enum Status {
     'WAIT',
@@ -25,6 +26,13 @@ export class Bucket {
         public addressShipping?: AddressShipping,
         public productInBucket?: ProductInBucket,
         public customer?: Customer,
+=======
+export class Bucket {
+    constructor(
+        public id?: number,
+        public data?: any,
+        public productId?: number,
+>>>>>>> with_entities
     ) {
     }
 }

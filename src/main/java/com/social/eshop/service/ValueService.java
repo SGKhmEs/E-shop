@@ -1,6 +1,10 @@
 package com.social.eshop.service;
 
+<<<<<<< HEAD
 import com.social.eshop.domain.Value;
+=======
+import com.social.eshop.service.dto.ValueDTO;
+>>>>>>> with_entities
 import java.util.List;
 
 /**
@@ -11,6 +15,7 @@ public interface ValueService {
     /**
      * Save a value.
      *
+<<<<<<< HEAD
      * @param value the entity to save
      * @return the persisted entity
      */
@@ -22,6 +27,19 @@ public interface ValueService {
      *  @return the list of entities
      */
     List<Value> findAll();
+=======
+     * @param valueDTO the entity to save
+     * @return the persisted entity
+     */
+    ValueDTO save(ValueDTO valueDTO);
+
+    /**
+     *  Get all the values.
+     *  
+     *  @return the list of entities
+     */
+    List<ValueDTO> findAll();
+>>>>>>> with_entities
 
     /**
      *  Get the "id" value.
@@ -29,7 +47,11 @@ public interface ValueService {
      *  @param id the id of the entity
      *  @return the entity
      */
+<<<<<<< HEAD
     Value findOne(Long id);
+=======
+    ValueDTO findOne(Long id);
+>>>>>>> with_entities
 
     /**
      *  Delete the "id" value.
@@ -45,5 +67,9 @@ public interface ValueService {
      *  
      *  @return the list of entities
      */
+<<<<<<< HEAD
     List<Value> search(String query);
+=======
+    List<ValueDTO> search(String query);
+>>>>>>> with_entities
 }

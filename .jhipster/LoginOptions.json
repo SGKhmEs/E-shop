@@ -17,9 +17,15 @@
             ]
         }
     ],
+<<<<<<< HEAD
     "changelogDate": "20170610234445",
     "entityTableName": "login_options",
     "dto": "no",
+=======
+    "changelogDate": "20170525235439",
+    "entityTableName": "login_options",
+    "dto": "mapstruct",
+>>>>>>> with_entities
     "pagination": "no",
     "service": "serviceImpl"
 }

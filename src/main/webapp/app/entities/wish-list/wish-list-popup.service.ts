@@ -3,7 +3,10 @@ import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { WishList } from './wish-list.model';
 import { WishListService } from './wish-list.service';
+<<<<<<< HEAD
 
+=======
+>>>>>>> with_entities
 @Injectable()
 export class WishListPopupService {
     private isOpen = false;

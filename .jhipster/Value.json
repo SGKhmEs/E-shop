@@ -10,9 +10,15 @@
             ]
         }
     ],
+<<<<<<< HEAD
     "changelogDate": "20170610234506",
     "entityTableName": "value",
     "dto": "no",
+=======
+    "changelogDate": "20170525235448",
+    "entityTableName": "value",
+    "dto": "mapstruct",
+>>>>>>> with_entities
     "pagination": "no",
     "service": "serviceImpl"
 }

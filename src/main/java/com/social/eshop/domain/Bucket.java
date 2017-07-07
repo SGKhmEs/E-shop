@@ -7,14 +7,20 @@ import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
 import java.io.Serializable;
+<<<<<<< HEAD
 import java.math.BigDecimal;
+=======
+>>>>>>> with_entities
 import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
 
+<<<<<<< HEAD
 import com.social.eshop.domain.enumeration.Status;
 
+=======
+>>>>>>> with_entities
 /**
  * A Bucket.
  */
@@ -31,6 +37,7 @@ public class Bucket implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
+<<<<<<< HEAD
     @Column(name = "name")
     private String name;
 
@@ -67,6 +74,15 @@ public class Bucket implements Serializable {
 
     @ManyToOne
     private Customer customer;
+=======
+    @Column(name = "data")
+    private ZonedDateTime data;
+
+    @OneToMany(mappedBy = "bucket")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Products> products = new HashSet<>();
+>>>>>>> with_entities
 
     public Long getId() {
         return id;
@@ -76,6 +92,7 @@ public class Bucket implements Serializable {
         this.id = id;
     }
 
+<<<<<<< HEAD
     public String getName() {
         return name;
     }
@@ -89,6 +106,8 @@ public class Bucket implements Serializable {
         this.name = name;
     }
 
+=======
+>>>>>>> with_entities
     public ZonedDateTime getData() {
         return data;
     }
@@ -102,6 +121,7 @@ public class Bucket implements Serializable {
         this.data = data;
     }
 
+<<<<<<< HEAD
     public BigDecimal getSum() {
         return sum;
     }
@@ -229,6 +249,31 @@ public class Bucket implements Serializable {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+=======
+    public Set<Products> getProducts() {
+        return products;
+    }
+
+    public Bucket products(Set<Products> products) {
+        this.products = products;
+        return this;
+    }
+
+    public Bucket addProduct(Products products) {
+        this.products.add(products);
+        products.setBucket(this);
+        return this;
+    }
+
+    public Bucket removeProduct(Products products) {
+        this.products.remove(products);
+        products.setBucket(null);
+        return this;
+    }
+
+    public void setProducts(Set<Products> products) {
+        this.products = products;
+>>>>>>> with_entities
     }
 
     @Override
@@ -255,6 +300,7 @@ public class Bucket implements Serializable {
     public String toString() {
         return "Bucket{" +
             "id=" + getId() +
+<<<<<<< HEAD
             ", name='" + getName() + "'" +
             ", data='" + getData() + "'" +
             ", sum='" + getSum() + "'" +
@@ -262,6 +308,9 @@ public class Bucket implements Serializable {
             ", count='" + getCount() + "'" +
             ", status='" + getStatus() + "'" +
             ", consignmentNote='" + getConsignmentNote() + "'" +
+=======
+            ", data='" + getData() + "'" +
+>>>>>>> with_entities
             "}";
     }
 }

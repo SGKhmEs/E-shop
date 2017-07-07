@@ -1,0 +1,10 @@
+{
+    "eshopApp": {
+        "Payment" : {
+            "null": "",
+            "CASH": "CASH",
+            "CREDITCARD": "CREDITCARD",
+            "PAYMENTSYSTEM": "PAYMENTSYSTEM"
+        }
+    }
+}

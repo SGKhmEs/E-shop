@@ -1,0 +1,65 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myHistoryOrderLabel" jhiTranslate="eshopApp.historyOrder.home.createOrEditLabel">Create or edit a History Order</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!historyOrder.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="historyOrder.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="eshopApp.historyOrder.orderNumber" for="field_orderNumber">Order Number</label>
+            <input type="number" class="form-control" name="orderNumber" id="field_orderNumber"
+                [(ngModel)]="historyOrder.orderNumber"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="eshopApp.historyOrder.date" for="field_date">Date</label>
+            <div class="d-flex">
+                <input id="field_date" type="datetime-local" class="form-control" name="date" [(ngModel)]="historyOrder.date"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="eshopApp.historyOrder.count" for="field_count">Count</label>
+            <input type="number" class="form-control" name="count" id="field_count"
+                [(ngModel)]="historyOrder.count"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="eshopApp.historyOrder.sum" for="field_sum">Sum</label>
+            <input type="number" class="form-control" name="sum" id="field_sum"
+                [(ngModel)]="historyOrder.sum"
+             />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="eshopApp.historyOrder.status" for="field_status">Status</label>
+            <select class="form-control" name="status" [(ngModel)]="historyOrder.status" id="field_status" >
+                <option value="SUCCESS" jhiTranslate="eshopApp.Status.SUCCESS">SUCCESS</option>
+                <option value="FAILURE" jhiTranslate="eshopApp.Status.FAILURE">FAILURE</option>
+                <option value="REJECT" jhiTranslate="eshopApp.Status.REJECT">REJECT</option>
+                <option value="WAIT" jhiTranslate="eshopApp.Status.WAIT">WAIT</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="eshopApp.historyOrder.consignmentNote" for="field_consignmentNote">Consignment Note</label>
+            <input type="text" class="form-control" name="consignmentNote" id="field_consignmentNote"
+                [(ngModel)]="historyOrder.consignmentNote"
+             />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

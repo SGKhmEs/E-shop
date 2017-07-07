@@ -32,7 +32,10 @@ export class ValueDialogComponent implements OnInit {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> with_entities
     clear() {
         this.activeModal.dismiss('cancel');
     }
@@ -41,6 +44,7 @@ export class ValueDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.value.id !== undefined) {
             this.subscribeToSaveResponse(
+<<<<<<< HEAD
                 this.valueService.update(this.value), false);
         } else {
             this.subscribeToSaveResponse(
@@ -59,6 +63,21 @@ export class ValueDialogComponent implements OnInit {
             : 'eshopApp.value.updated',
             { param : result.id }, null);
 
+=======
+                this.valueService.update(this.value));
+        } else {
+            this.subscribeToSaveResponse(
+                this.valueService.create(this.value));
+        }
+    }
+
+    private subscribeToSaveResponse(result: Observable<Value>) {
+        result.subscribe((res: Value) =>
+            this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
+    }
+
+    private onSaveSuccess(result: Value) {
+>>>>>>> with_entities
         this.eventManager.broadcast({ name: 'valueListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);

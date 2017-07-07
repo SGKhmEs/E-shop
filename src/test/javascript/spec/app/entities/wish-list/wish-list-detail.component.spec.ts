@@ -32,8 +32,16 @@ describe('Component Tests', () => {
                     WishListService,
                     EventManager
                 ]
+<<<<<<< HEAD
             }).overrideTemplate(WishListDetailComponent, '')
             .compileComponents();
+=======
+            }).overrideComponent(WishListDetailComponent, {
+                set: {
+                    template: ''
+                }
+            }).compileComponents();
+>>>>>>> with_entities
         }));
 
         beforeEach(() => {

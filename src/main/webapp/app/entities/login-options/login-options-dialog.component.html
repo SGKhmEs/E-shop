@@ -15,7 +15,12 @@
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="eshopApp.loginOptions.login" for="field_login">Login</label>
             <input type="text" class="form-control" name="login" id="field_login"
+<<<<<<< HEAD
                 [(ngModel)]="loginOptions.login" required />
+=======
+                [(ngModel)]="loginOptions.login"
+            required />
+>>>>>>> with_entities
             <div [hidden]="!(editForm.controls.login?.dirty && editForm.controls.login?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.login?.errors?.required" jhiTranslate="entity.validation.required">
@@ -26,7 +31,12 @@
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="eshopApp.loginOptions.password" for="field_password">Password</label>
             <input type="text" class="form-control" name="password" id="field_password"
+<<<<<<< HEAD
                 [(ngModel)]="loginOptions.password" required />
+=======
+                [(ngModel)]="loginOptions.password"
+            required />
+>>>>>>> with_entities
             <div [hidden]="!(editForm.controls.password?.dirty && editForm.controls.password?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.password?.errors?.required" jhiTranslate="entity.validation.required">

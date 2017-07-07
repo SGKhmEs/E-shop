@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity CustomerRoom.
+    -->
+    <changeSet id="20170525235433-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="personal_info_id"
+                                 baseTableName="customer_room"
+                                 constraintName="fk_customer_room_personal_info_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="personal_information"/>
+
+        <addForeignKeyConstraint baseColumnNames="wish_list_id"
+                                 baseTableName="customer_room"
+                                 constraintName="fk_customer_room_wish_list_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="wish_list"/>
+
+        <addForeignKeyConstraint baseColumnNames="address_id"
+                                 baseTableName="customer_room"
+                                 constraintName="fk_customer_room_address_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="address"/>
+
+        <addForeignKeyConstraint baseColumnNames="bucket_id"
+                                 baseTableName="customer_room"
+                                 constraintName="fk_customer_room_bucket_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="bucket"/>
+
+        <addForeignKeyConstraint baseColumnNames="seen_id"
+                                 baseTableName="customer_room"
+                                 constraintName="fk_customer_room_seen_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="seen"/>
+
+        <addForeignKeyConstraint baseColumnNames="history_order_id"
+                                 baseTableName="customer_room"
+                                 constraintName="fk_customer_room_history_order_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="history_order"/>
+
+    </changeSet>
+</databaseChangeLog>

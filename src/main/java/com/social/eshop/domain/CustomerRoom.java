@@ -1,11 +1,20 @@
 package com.social.eshop.domain;
 
+<<<<<<< HEAD
+=======
+import com.fasterxml.jackson.annotation.JsonIgnore;
+>>>>>>> with_entities
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
 import java.io.Serializable;
+<<<<<<< HEAD
+=======
+import java.util.HashSet;
+import java.util.Set;
+>>>>>>> with_entities
 import java.util.Objects;
 
 import com.social.eshop.domain.enumeration.SocialConnect;
@@ -35,11 +44,39 @@ public class CustomerRoom implements Serializable {
 
     @OneToOne
     @JoinColumn(unique = true)
+<<<<<<< HEAD
+=======
+    private PersonalInformation personalInfo;
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    private WishList wishList;
+
+    @OneToOne
+    @JoinColumn(unique = true)
+>>>>>>> with_entities
     private Address address;
 
     @OneToOne
     @JoinColumn(unique = true)
+<<<<<<< HEAD
     private PersonalInformation personalInfo;
+=======
+    private Bucket bucket;
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Seen seen;
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    private HistoryOrder historyOrder;
+
+    @OneToMany(mappedBy = "customerRoom")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Comments> customers = new HashSet<>();
+>>>>>>> with_entities
 
     public Long getId() {
         return id;
@@ -75,6 +112,35 @@ public class CustomerRoom implements Serializable {
         this.sosialConnect = sosialConnect;
     }
 
+<<<<<<< HEAD
+=======
+    public PersonalInformation getPersonalInfo() {
+        return personalInfo;
+    }
+
+    public CustomerRoom personalInfo(PersonalInformation personalInformation) {
+        this.personalInfo = personalInformation;
+        return this;
+    }
+
+    public void setPersonalInfo(PersonalInformation personalInformation) {
+        this.personalInfo = personalInformation;
+    }
+
+    public WishList getWishList() {
+        return wishList;
+    }
+
+    public CustomerRoom wishList(WishList wishList) {
+        this.wishList = wishList;
+        return this;
+    }
+
+    public void setWishList(WishList wishList) {
+        this.wishList = wishList;
+    }
+
+>>>>>>> with_entities
     public Address getAddress() {
         return address;
     }
@@ -88,6 +154,7 @@ public class CustomerRoom implements Serializable {
         this.address = address;
     }
 
+<<<<<<< HEAD
     public PersonalInformation getPersonalInfo() {
         return personalInfo;
     }
@@ -99,6 +166,70 @@ public class CustomerRoom implements Serializable {
 
     public void setPersonalInfo(PersonalInformation personalInformation) {
         this.personalInfo = personalInformation;
+=======
+    public Bucket getBucket() {
+        return bucket;
+    }
+
+    public CustomerRoom bucket(Bucket bucket) {
+        this.bucket = bucket;
+        return this;
+    }
+
+    public void setBucket(Bucket bucket) {
+        this.bucket = bucket;
+    }
+
+    public Seen getSeen() {
+        return seen;
+    }
+
+    public CustomerRoom seen(Seen seen) {
+        this.seen = seen;
+        return this;
+    }
+
+    public void setSeen(Seen seen) {
+        this.seen = seen;
+    }
+
+    public HistoryOrder getHistoryOrder() {
+        return historyOrder;
+    }
+
+    public CustomerRoom historyOrder(HistoryOrder historyOrder) {
+        this.historyOrder = historyOrder;
+        return this;
+    }
+
+    public void setHistoryOrder(HistoryOrder historyOrder) {
+        this.historyOrder = historyOrder;
+    }
+
+    public Set<Comments> getCustomers() {
+        return customers;
+    }
+
+    public CustomerRoom customers(Set<Comments> comments) {
+        this.customers = comments;
+        return this;
+    }
+
+    public CustomerRoom addCustomer(Comments comments) {
+        this.customers.add(comments);
+        comments.setCustomerRoom(this);
+        return this;
+    }
+
+    public CustomerRoom removeCustomer(Comments comments) {
+        this.customers.remove(comments);
+        comments.setCustomerRoom(null);
+        return this;
+    }
+
+    public void setCustomers(Set<Comments> comments) {
+        this.customers = comments;
+>>>>>>> with_entities
     }
 
     @Override

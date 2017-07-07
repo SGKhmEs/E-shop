@@ -32,7 +32,10 @@ export class LoginOptionsDialogComponent implements OnInit {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> with_entities
     clear() {
         this.activeModal.dismiss('cancel');
     }
@@ -41,6 +44,7 @@ export class LoginOptionsDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.loginOptions.id !== undefined) {
             this.subscribeToSaveResponse(
+<<<<<<< HEAD
                 this.loginOptionsService.update(this.loginOptions), false);
         } else {
             this.subscribeToSaveResponse(
@@ -59,6 +63,21 @@ export class LoginOptionsDialogComponent implements OnInit {
             : 'eshopApp.loginOptions.updated',
             { param : result.id }, null);
 
+=======
+                this.loginOptionsService.update(this.loginOptions));
+        } else {
+            this.subscribeToSaveResponse(
+                this.loginOptionsService.create(this.loginOptions));
+        }
+    }
+
+    private subscribeToSaveResponse(result: Observable<LoginOptions>) {
+        result.subscribe((res: LoginOptions) =>
+            this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
+    }
+
+    private onSaveSuccess(result: LoginOptions) {
+>>>>>>> with_entities
         this.eventManager.broadcast({ name: 'loginOptionsListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);

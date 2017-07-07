@@ -32,8 +32,16 @@ describe('Component Tests', () => {
                     ConsignmentService,
                     EventManager
                 ]
+<<<<<<< HEAD
             }).overrideTemplate(ConsignmentDetailComponent, '')
             .compileComponents();
+=======
+            }).overrideComponent(ConsignmentDetailComponent, {
+                set: {
+                    template: ''
+                }
+            }).compileComponents();
+>>>>>>> with_entities
         }));
 
         beforeEach(() => {

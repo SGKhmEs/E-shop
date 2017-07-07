@@ -1,0 +1,22 @@
+{
+    "eshopApp": {
+        "confirm" : {
+            "home": {
+                "title": "Confirms",
+                "createLabel": "Создать новый Confirm",
+                "createOrEditLabel": "Создать или отредактировать Confirm",
+                "search": "Найти Confirm"
+            },
+            "created": "Новый Confirm создан с идентификатором {{ param }}",
+            "updated": "Confirm обновлен с идентификатором {{ param }}",
+            "deleted": "Confirm удален с идентификатором {{ param }}",
+            "delete": {
+                "question": "Вы уверены что хотите удалить Confirm {{ id }}?"
+            },
+            "detail": {
+                "title": "Confirm"
+            },
+            "pay": "Pay"
+        }
+    }
+}

@@ -11,6 +11,11 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
 
+<<<<<<< HEAD
+=======
+import com.social.eshop.domain.enumeration.Roles;
+
+>>>>>>> with_entities
 /**
  * A Customer.
  */
@@ -27,8 +32,14 @@ public class Customer implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
+<<<<<<< HEAD
     @Column(name = "session_id")
     private String sessionId;
+=======
+    @Enumerated(EnumType.STRING)
+    @Column(name = "jhi_roles")
+    private Roles roles;
+>>>>>>> with_entities
 
     @OneToOne
     @JoinColumn(unique = true)
@@ -36,6 +47,7 @@ public class Customer implements Serializable {
 
     @OneToOne
     @JoinColumn(unique = true)
+<<<<<<< HEAD
     private CustomerRoom customerRoom;
 
     @OneToMany(mappedBy = "customer")
@@ -47,11 +59,22 @@ public class Customer implements Serializable {
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<WishList> wishLists = new HashSet<>();
+=======
+    private Confirm confirm;
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    private CustomerRoom userRoom;
+>>>>>>> with_entities
 
     @OneToMany(mappedBy = "customer")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+<<<<<<< HEAD
     private Set<Comments> comments = new HashSet<>();
+=======
+    private Set<SessionId> customers = new HashSet<>();
+>>>>>>> with_entities
 
     public Long getId() {
         return id;
@@ -61,6 +84,7 @@ public class Customer implements Serializable {
         this.id = id;
     }
 
+<<<<<<< HEAD
     public String getSessionId() {
         return sessionId;
     }
@@ -72,6 +96,19 @@ public class Customer implements Serializable {
 
     public void setSessionId(String sessionId) {
         this.sessionId = sessionId;
+=======
+    public Roles getRoles() {
+        return roles;
+    }
+
+    public Customer roles(Roles roles) {
+        this.roles = roles;
+        return this;
+    }
+
+    public void setRoles(Roles roles) {
+        this.roles = roles;
+>>>>>>> with_entities
     }
 
     public LoginOptions getLoginOptions() {
@@ -87,6 +124,7 @@ public class Customer implements Serializable {
         this.loginOptions = loginOptions;
     }
 
+<<<<<<< HEAD
     public CustomerRoom getCustomerRoom() {
         return customerRoom;
     }
@@ -173,6 +211,57 @@ public class Customer implements Serializable {
 
     public void setComments(Set<Comments> comments) {
         this.comments = comments;
+=======
+    public Confirm getConfirm() {
+        return confirm;
+    }
+
+    public Customer confirm(Confirm confirm) {
+        this.confirm = confirm;
+        return this;
+    }
+
+    public void setConfirm(Confirm confirm) {
+        this.confirm = confirm;
+    }
+
+    public CustomerRoom getUserRoom() {
+        return userRoom;
+    }
+
+    public Customer userRoom(CustomerRoom customerRoom) {
+        this.userRoom = customerRoom;
+        return this;
+    }
+
+    public void setUserRoom(CustomerRoom customerRoom) {
+        this.userRoom = customerRoom;
+    }
+
+    public Set<SessionId> getCustomers() {
+        return customers;
+    }
+
+    public Customer customers(Set<SessionId> sessionIds) {
+        this.customers = sessionIds;
+        return this;
+    }
+
+    public Customer addCustomer(SessionId sessionId) {
+        this.customers.add(sessionId);
+        sessionId.setCustomer(this);
+        return this;
+    }
+
+    public Customer removeCustomer(SessionId sessionId) {
+        this.customers.remove(sessionId);
+        sessionId.setCustomer(null);
+        return this;
+    }
+
+    public void setCustomers(Set<SessionId> sessionIds) {
+        this.customers = sessionIds;
+>>>>>>> with_entities
     }
 
     @Override
@@ -199,7 +288,11 @@ public class Customer implements Serializable {
     public String toString() {
         return "Customer{" +
             "id=" + getId() +
+<<<<<<< HEAD
             ", sessionId='" + getSessionId() + "'" +
+=======
+            ", roles='" + getRoles() + "'" +
+>>>>>>> with_entities
             "}";
     }
 }

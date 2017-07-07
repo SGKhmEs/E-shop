@@ -17,6 +17,7 @@
                 "title": "Products"
             },
             "name": "Name",
+<<<<<<< HEAD
             "price": "Price",
             "sale": "Sale",
             "rating": "Rating",
@@ -27,6 +28,19 @@
             "tagForProduct": "Tag For Product",
             "consignment": "Consignment",
             "subCategory": "Sub Category"
+=======
+            "sale": "Sale",
+            "rating": "Rating",
+            "fresh": "Fresh",
+            "wishList": "Wish List",
+            "seen": "Seen",
+            "bucket": "Bucket",
+            "comments": "Comments",
+            "consignment": "Consignment",
+            "subCategory": "Sub Category",
+            "media": "Media",
+            "tags": "Tags"
+>>>>>>> with_entities
         }
     }
 }

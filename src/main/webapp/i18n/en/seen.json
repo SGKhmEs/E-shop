@@ -17,8 +17,12 @@
                 "title": "Seen"
             },
             "data": "Data",
+<<<<<<< HEAD
             "customer": "Customer",
             "products": "Products"
+=======
+            "product": "Product"
+>>>>>>> with_entities
         }
     }
 }

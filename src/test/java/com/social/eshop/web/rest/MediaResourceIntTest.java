@@ -6,6 +6,11 @@ import com.social.eshop.domain.Media;
 import com.social.eshop.repository.MediaRepository;
 import com.social.eshop.service.MediaService;
 import com.social.eshop.repository.search.MediaSearchRepository;
+<<<<<<< HEAD
+=======
+import com.social.eshop.service.dto.MediaDTO;
+import com.social.eshop.service.mapper.MediaMapper;
+>>>>>>> with_entities
 import com.social.eshop.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -58,6 +63,12 @@ public class MediaResourceIntTest {
     private MediaRepository mediaRepository;
 
     @Autowired
+<<<<<<< HEAD
+=======
+    private MediaMapper mediaMapper;
+
+    @Autowired
+>>>>>>> with_entities
     private MediaService mediaService;
 
     @Autowired
@@ -117,9 +128,16 @@ public class MediaResourceIntTest {
         int databaseSizeBeforeCreate = mediaRepository.findAll().size();
 
         // Create the Media
+<<<<<<< HEAD
         restMediaMockMvc.perform(post("/api/media")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(media)))
+=======
+        MediaDTO mediaDTO = mediaMapper.toDto(media);
+        restMediaMockMvc.perform(post("/api/media")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(mediaDTO)))
+>>>>>>> with_entities
             .andExpect(status().isCreated());
 
         // Validate the Media in the database
@@ -144,11 +162,19 @@ public class MediaResourceIntTest {
 
         // Create the Media with an existing ID
         media.setId(1L);
+<<<<<<< HEAD
+=======
+        MediaDTO mediaDTO = mediaMapper.toDto(media);
+>>>>>>> with_entities
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restMediaMockMvc.perform(post("/api/media")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
+<<<<<<< HEAD
             .content(TestUtil.convertObjectToJsonBytes(media)))
+=======
+            .content(TestUtil.convertObjectToJsonBytes(mediaDTO)))
+>>>>>>> with_entities
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -164,10 +190,18 @@ public class MediaResourceIntTest {
         media.setName(null);
 
         // Create the Media, which fails.
+<<<<<<< HEAD
 
         restMediaMockMvc.perform(post("/api/media")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(media)))
+=======
+        MediaDTO mediaDTO = mediaMapper.toDto(media);
+
+        restMediaMockMvc.perform(post("/api/media")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(mediaDTO)))
+>>>>>>> with_entities
             .andExpect(status().isBadRequest());
 
         List<Media> mediaList = mediaRepository.findAll();
@@ -182,10 +216,18 @@ public class MediaResourceIntTest {
         media.setType(null);
 
         // Create the Media, which fails.
+<<<<<<< HEAD
 
         restMediaMockMvc.perform(post("/api/media")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(media)))
+=======
+        MediaDTO mediaDTO = mediaMapper.toDto(media);
+
+        restMediaMockMvc.perform(post("/api/media")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(mediaDTO)))
+>>>>>>> with_entities
             .andExpect(status().isBadRequest());
 
         List<Media> mediaList = mediaRepository.findAll();
@@ -200,10 +242,18 @@ public class MediaResourceIntTest {
         media.setContentType(null);
 
         // Create the Media, which fails.
+<<<<<<< HEAD
 
         restMediaMockMvc.perform(post("/api/media")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(media)))
+=======
+        MediaDTO mediaDTO = mediaMapper.toDto(media);
+
+        restMediaMockMvc.perform(post("/api/media")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(mediaDTO)))
+>>>>>>> with_entities
             .andExpect(status().isBadRequest());
 
         List<Media> mediaList = mediaRepository.findAll();
@@ -218,10 +268,18 @@ public class MediaResourceIntTest {
         media.setLocation(null);
 
         // Create the Media, which fails.
+<<<<<<< HEAD
 
         restMediaMockMvc.perform(post("/api/media")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(media)))
+=======
+        MediaDTO mediaDTO = mediaMapper.toDto(media);
+
+        restMediaMockMvc.perform(post("/api/media")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(mediaDTO)))
+>>>>>>> with_entities
             .andExpect(status().isBadRequest());
 
         List<Media> mediaList = mediaRepository.findAll();
@@ -236,10 +294,18 @@ public class MediaResourceIntTest {
         media.setSize(null);
 
         // Create the Media, which fails.
+<<<<<<< HEAD
 
         restMediaMockMvc.perform(post("/api/media")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(media)))
+=======
+        MediaDTO mediaDTO = mediaMapper.toDto(media);
+
+        restMediaMockMvc.perform(post("/api/media")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(mediaDTO)))
+>>>>>>> with_entities
             .andExpect(status().isBadRequest());
 
         List<Media> mediaList = mediaRepository.findAll();
@@ -294,8 +360,13 @@ public class MediaResourceIntTest {
     @Transactional
     public void updateMedia() throws Exception {
         // Initialize the database
+<<<<<<< HEAD
         mediaService.save(media);
 
+=======
+        mediaRepository.saveAndFlush(media);
+        mediaSearchRepository.save(media);
+>>>>>>> with_entities
         int databaseSizeBeforeUpdate = mediaRepository.findAll().size();
 
         // Update the media
@@ -306,10 +377,18 @@ public class MediaResourceIntTest {
             .contentType(UPDATED_CONTENT_TYPE)
             .location(UPDATED_LOCATION)
             .size(UPDATED_SIZE);
+<<<<<<< HEAD
 
         restMediaMockMvc.perform(put("/api/media")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(updatedMedia)))
+=======
+        MediaDTO mediaDTO = mediaMapper.toDto(updatedMedia);
+
+        restMediaMockMvc.perform(put("/api/media")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(mediaDTO)))
+>>>>>>> with_entities
             .andExpect(status().isOk());
 
         // Validate the Media in the database
@@ -333,11 +412,19 @@ public class MediaResourceIntTest {
         int databaseSizeBeforeUpdate = mediaRepository.findAll().size();
 
         // Create the Media
+<<<<<<< HEAD
+=======
+        MediaDTO mediaDTO = mediaMapper.toDto(media);
+>>>>>>> with_entities
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
         restMediaMockMvc.perform(put("/api/media")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
+<<<<<<< HEAD
             .content(TestUtil.convertObjectToJsonBytes(media)))
+=======
+            .content(TestUtil.convertObjectToJsonBytes(mediaDTO)))
+>>>>>>> with_entities
             .andExpect(status().isCreated());
 
         // Validate the Media in the database
@@ -349,8 +436,13 @@ public class MediaResourceIntTest {
     @Transactional
     public void deleteMedia() throws Exception {
         // Initialize the database
+<<<<<<< HEAD
         mediaService.save(media);
 
+=======
+        mediaRepository.saveAndFlush(media);
+        mediaSearchRepository.save(media);
+>>>>>>> with_entities
         int databaseSizeBeforeDelete = mediaRepository.findAll().size();
 
         // Get the media
@@ -371,7 +463,12 @@ public class MediaResourceIntTest {
     @Transactional
     public void searchMedia() throws Exception {
         // Initialize the database
+<<<<<<< HEAD
         mediaService.save(media);
+=======
+        mediaRepository.saveAndFlush(media);
+        mediaSearchRepository.save(media);
+>>>>>>> with_entities
 
         // Search the media
         restMediaMockMvc.perform(get("/api/_search/media?query=id:" + media.getId()))
@@ -399,4 +496,30 @@ public class MediaResourceIntTest {
         media1.setId(null);
         assertThat(media1).isNotEqualTo(media2);
     }
+<<<<<<< HEAD
+=======
+
+    @Test
+    @Transactional
+    public void dtoEqualsVerifier() throws Exception {
+        TestUtil.equalsVerifier(MediaDTO.class);
+        MediaDTO mediaDTO1 = new MediaDTO();
+        mediaDTO1.setId(1L);
+        MediaDTO mediaDTO2 = new MediaDTO();
+        assertThat(mediaDTO1).isNotEqualTo(mediaDTO2);
+        mediaDTO2.setId(mediaDTO1.getId());
+        assertThat(mediaDTO1).isEqualTo(mediaDTO2);
+        mediaDTO2.setId(2L);
+        assertThat(mediaDTO1).isNotEqualTo(mediaDTO2);
+        mediaDTO1.setId(null);
+        assertThat(mediaDTO1).isNotEqualTo(mediaDTO2);
+    }
+
+    @Test
+    @Transactional
+    public void testEntityFromId() {
+        assertThat(mediaMapper.fromId(42L).getId()).isEqualTo(42);
+        assertThat(mediaMapper.fromId(null)).isNull();
+    }
+>>>>>>> with_entities
 }

@@ -10,6 +10,10 @@ import { Customer } from './customer.model';
 import { CustomerPopupService } from './customer-popup.service';
 import { CustomerService } from './customer.service';
 import { LoginOptions, LoginOptionsService } from '../login-options';
+<<<<<<< HEAD
+=======
+import { Confirm, ConfirmService } from '../confirm';
+>>>>>>> with_entities
 import { CustomerRoom, CustomerRoomService } from '../customer-room';
 import { ResponseWrapper } from '../../shared';
 
@@ -25,13 +29,23 @@ export class CustomerDialogComponent implements OnInit {
 
     loginoptions: LoginOptions[];
 
+<<<<<<< HEAD
     customerrooms: CustomerRoom[];
+=======
+    confirms: Confirm[];
+
+    userrooms: CustomerRoom[];
+>>>>>>> with_entities
 
     constructor(
         public activeModal: NgbActiveModal,
         private alertService: AlertService,
         private customerService: CustomerService,
         private loginOptionsService: LoginOptionsService,
+<<<<<<< HEAD
+=======
+        private confirmService: ConfirmService,
+>>>>>>> with_entities
         private customerRoomService: CustomerRoomService,
         private eventManager: EventManager
     ) {
@@ -43,16 +57,25 @@ export class CustomerDialogComponent implements OnInit {
         this.loginOptionsService
             .query({filter: 'customer-is-null'})
             .subscribe((res: ResponseWrapper) => {
+<<<<<<< HEAD
                 if (!this.customer.loginOptions || !this.customer.loginOptions.id) {
                     this.loginoptions = res.json;
                 } else {
                     this.loginOptionsService
                         .find(this.customer.loginOptions.id)
+=======
+                if (!this.customer.loginOptionsId) {
+                    this.loginoptions = res.json;
+                } else {
+                    this.loginOptionsService
+                        .find(this.customer.loginOptionsId)
+>>>>>>> with_entities
                         .subscribe((subRes: LoginOptions) => {
                             this.loginoptions = [subRes].concat(res.json);
                         }, (subRes: ResponseWrapper) => this.onError(subRes.json));
                 }
             }, (res: ResponseWrapper) => this.onError(res.json));
+<<<<<<< HEAD
         this.customerRoomService
             .query({filter: 'customer-is-null'})
             .subscribe((res: ResponseWrapper) => {
@@ -63,11 +86,39 @@ export class CustomerDialogComponent implements OnInit {
                         .find(this.customer.customerRoom.id)
                         .subscribe((subRes: CustomerRoom) => {
                             this.customerrooms = [subRes].concat(res.json);
+=======
+        this.confirmService
+            .query({filter: 'customer-is-null'})
+            .subscribe((res: ResponseWrapper) => {
+                if (!this.customer.confirmId) {
+                    this.confirms = res.json;
+                } else {
+                    this.confirmService
+                        .find(this.customer.confirmId)
+                        .subscribe((subRes: Confirm) => {
+                            this.confirms = [subRes].concat(res.json);
+                        }, (subRes: ResponseWrapper) => this.onError(subRes.json));
+                }
+            }, (res: ResponseWrapper) => this.onError(res.json));
+        this.customerRoomService
+            .query({filter: 'customer-is-null'})
+            .subscribe((res: ResponseWrapper) => {
+                if (!this.customer.userRoomId) {
+                    this.userrooms = res.json;
+                } else {
+                    this.customerRoomService
+                        .find(this.customer.userRoomId)
+                        .subscribe((subRes: CustomerRoom) => {
+                            this.userrooms = [subRes].concat(res.json);
+>>>>>>> with_entities
                         }, (subRes: ResponseWrapper) => this.onError(subRes.json));
                 }
             }, (res: ResponseWrapper) => this.onError(res.json));
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> with_entities
     clear() {
         this.activeModal.dismiss('cancel');
     }
@@ -76,6 +127,7 @@ export class CustomerDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.customer.id !== undefined) {
             this.subscribeToSaveResponse(
+<<<<<<< HEAD
                 this.customerService.update(this.customer), false);
         } else {
             this.subscribeToSaveResponse(
@@ -94,6 +146,21 @@ export class CustomerDialogComponent implements OnInit {
             : 'eshopApp.customer.updated',
             { param : result.id }, null);
 
+=======
+                this.customerService.update(this.customer));
+        } else {
+            this.subscribeToSaveResponse(
+                this.customerService.create(this.customer));
+        }
+    }
+
+    private subscribeToSaveResponse(result: Observable<Customer>) {
+        result.subscribe((res: Customer) =>
+            this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
+    }
+
+    private onSaveSuccess(result: Customer) {
+>>>>>>> with_entities
         this.eventManager.broadcast({ name: 'customerListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
@@ -117,6 +184,13 @@ export class CustomerDialogComponent implements OnInit {
         return item.id;
     }
 
+<<<<<<< HEAD
+=======
+    trackConfirmById(index: number, item: Confirm) {
+        return item.id;
+    }
+
+>>>>>>> with_entities
     trackCustomerRoomById(index: number, item: CustomerRoom) {
         return item.id;
     }

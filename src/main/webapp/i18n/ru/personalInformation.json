@@ -23,7 +23,12 @@
             "phone": "Phone",
             "email": "Email",
             "dateBirth": "Date Birth",
+<<<<<<< HEAD
             "avatar": "Avatar"
+=======
+            "avatar": "Avatar",
+            "addressShipping": "Address Shipping"
+>>>>>>> with_entities
         }
     }
 }

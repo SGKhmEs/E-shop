@@ -15,7 +15,12 @@
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="eshopApp.media.name" for="field_name">Name</label>
             <input type="text" class="form-control" name="name" id="field_name"
+<<<<<<< HEAD
                 [(ngModel)]="media.name" required />
+=======
+                [(ngModel)]="media.name"
+            required />
+>>>>>>> with_entities
             <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
@@ -26,7 +31,12 @@
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="eshopApp.media.type" for="field_type">Type</label>
             <input type="text" class="form-control" name="type" id="field_type"
+<<<<<<< HEAD
                 [(ngModel)]="media.type" required />
+=======
+                [(ngModel)]="media.type"
+            required />
+>>>>>>> with_entities
             <div [hidden]="!(editForm.controls.type?.dirty && editForm.controls.type?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.type?.errors?.required" jhiTranslate="entity.validation.required">
@@ -37,7 +47,12 @@
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="eshopApp.media.contentType" for="field_contentType">Content Type</label>
             <input type="text" class="form-control" name="contentType" id="field_contentType"
+<<<<<<< HEAD
                 [(ngModel)]="media.contentType" required />
+=======
+                [(ngModel)]="media.contentType"
+            required />
+>>>>>>> with_entities
             <div [hidden]="!(editForm.controls.contentType?.dirty && editForm.controls.contentType?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.contentType?.errors?.required" jhiTranslate="entity.validation.required">
@@ -48,7 +63,12 @@
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="eshopApp.media.location" for="field_location">Location</label>
             <input type="text" class="form-control" name="location" id="field_location"
+<<<<<<< HEAD
                 [(ngModel)]="media.location" required />
+=======
+                [(ngModel)]="media.location"
+            required />
+>>>>>>> with_entities
             <div [hidden]="!(editForm.controls.location?.dirty && editForm.controls.location?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.location?.errors?.required" jhiTranslate="entity.validation.required">
@@ -59,7 +79,12 @@
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="eshopApp.media.size" for="field_size">Size</label>
             <input type="text" class="form-control" name="size" id="field_size"
+<<<<<<< HEAD
                 [(ngModel)]="media.size" required />
+=======
+                [(ngModel)]="media.size"
+            required />
+>>>>>>> with_entities
             <div [hidden]="!(editForm.controls.size?.dirty && editForm.controls.size?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.size?.errors?.required" jhiTranslate="entity.validation.required">
@@ -69,10 +94,17 @@
         </div>
 
         <div class="form-group">
+<<<<<<< HEAD
             <label jhiTranslate="eshopApp.media.products" for="field_products">Products</label>
             <select class="form-control" id="field_products" name="products" [(ngModel)]="media.products" >
                 <option [ngValue]="null"></option>
                 <option [ngValue]="productsOption.id === media.products?.id ? media.products : productsOption" *ngFor="let productsOption of products; trackBy: trackProductsById">{{productsOption.id}}</option>
+=======
+            <label jhiTranslate="eshopApp.media.comments" for="field_comments">Comments</label>
+            <select class="form-control" id="field_comments" name="comments" [(ngModel)]="media.commentsId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="commentsOption.id" *ngFor="let commentsOption of comments; trackBy: trackCommentsById">{{commentsOption.id}}</option>
+>>>>>>> with_entities
             </select>
         </div>
     </div>

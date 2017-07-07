@@ -13,6 +13,7 @@ import { PaginationConfig } from '../../blocks/config/uib-pagination.config';
     templateUrl: './customer.component.html'
 })
 export class CustomerComponent implements OnInit, OnDestroy {
+<<<<<<< HEAD
 
     customers: Customer[];
     currentAccount: any;
@@ -24,12 +25,18 @@ export class CustomerComponent implements OnInit, OnDestroy {
     queryCount: any;
     reverse: any;
     totalItems: number;
+=======
+customers: Customer[];
+    currentAccount: any;
+    eventSubscriber: Subscription;
+>>>>>>> with_entities
     currentSearch: string;
 
     constructor(
         private customerService: CustomerService,
         private alertService: AlertService,
         private eventManager: EventManager,
+<<<<<<< HEAD
         private parseLinks: ParseLinks,
         private activatedRoute: ActivatedRoute,
         private principal: Principal
@@ -42,6 +49,11 @@ export class CustomerComponent implements OnInit, OnDestroy {
         };
         this.predicate = 'id';
         this.reverse = true;
+=======
+        private activatedRoute: ActivatedRoute,
+        private principal: Principal
+    ) {
+>>>>>>> with_entities
         this.currentSearch = activatedRoute.snapshot.params['search'] ? activatedRoute.snapshot.params['search'] : '';
     }
 
@@ -49,6 +61,7 @@ export class CustomerComponent implements OnInit, OnDestroy {
         if (this.currentSearch) {
             this.customerService.search({
                 query: this.currentSearch,
+<<<<<<< HEAD
                 page: this.page,
                 size: this.itemsPerPage,
                 sort: this.sort()
@@ -64,10 +77,24 @@ export class CustomerComponent implements OnInit, OnDestroy {
             sort: this.sort()
         }).subscribe(
             (res: ResponseWrapper) => this.onSuccess(res.json, res.headers),
+=======
+                }).subscribe(
+                    (res: ResponseWrapper) => this.customers = res.json,
+                    (res: ResponseWrapper) => this.onError(res.json)
+                );
+            return;
+       }
+        this.customerService.query().subscribe(
+            (res: ResponseWrapper) => {
+                this.customers = res.json;
+                this.currentSearch = '';
+            },
+>>>>>>> with_entities
             (res: ResponseWrapper) => this.onError(res.json)
         );
     }
 
+<<<<<<< HEAD
     reset() {
         this.page = 0;
         this.customers = [];
@@ -91,10 +118,13 @@ export class CustomerComponent implements OnInit, OnDestroy {
         this.loadAll();
     }
 
+=======
+>>>>>>> with_entities
     search(query) {
         if (!query) {
             return this.clear();
         }
+<<<<<<< HEAD
         this.customers = [];
         this.links = {
             last: 0
@@ -105,6 +135,16 @@ export class CustomerComponent implements OnInit, OnDestroy {
         this.currentSearch = query;
         this.loadAll();
     }
+=======
+        this.currentSearch = query;
+        this.loadAll();
+    }
+
+    clear() {
+        this.currentSearch = '';
+        this.loadAll();
+    }
+>>>>>>> with_entities
     ngOnInit() {
         this.loadAll();
         this.principal.identity().then((account) => {
@@ -121,6 +161,7 @@ export class CustomerComponent implements OnInit, OnDestroy {
         return item.id;
     }
     registerChangeInCustomers() {
+<<<<<<< HEAD
         this.eventSubscriber = this.eventManager.subscribe('customerListModification', (response) => this.reset());
     }
 
@@ -138,6 +179,9 @@ export class CustomerComponent implements OnInit, OnDestroy {
         for (let i = 0; i < data.length; i++) {
             this.customers.push(data[i]);
         }
+=======
+        this.eventSubscriber = this.eventManager.subscribe('customerListModification', (response) => this.loadAll());
+>>>>>>> with_entities
     }
 
     private onError(error) {

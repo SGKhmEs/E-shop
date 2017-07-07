@@ -9,9 +9,12 @@ import { EventManager, AlertService } from 'ng-jhipster';
 import { Seen } from './seen.model';
 import { SeenPopupService } from './seen-popup.service';
 import { SeenService } from './seen.service';
+<<<<<<< HEAD
 import { Customer, CustomerService } from '../customer';
 import { Products, ProductsService } from '../products';
 import { ResponseWrapper } from '../../shared';
+=======
+>>>>>>> with_entities
 
 @Component({
     selector: 'jhi-seen-dialog',
@@ -22,18 +25,24 @@ export class SeenDialogComponent implements OnInit {
     seen: Seen;
     authorities: any[];
     isSaving: boolean;
+<<<<<<< HEAD
 
     customers: Customer[];
 
     products: Products[];
+=======
+>>>>>>> with_entities
     dataDp: any;
 
     constructor(
         public activeModal: NgbActiveModal,
         private alertService: AlertService,
         private seenService: SeenService,
+<<<<<<< HEAD
         private customerService: CustomerService,
         private productsService: ProductsService,
+=======
+>>>>>>> with_entities
         private eventManager: EventManager
     ) {
     }
@@ -41,6 +50,7 @@ export class SeenDialogComponent implements OnInit {
     ngOnInit() {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
+<<<<<<< HEAD
         this.customerService.query()
             .subscribe((res: ResponseWrapper) => { this.customers = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
         this.productsService
@@ -58,6 +68,9 @@ export class SeenDialogComponent implements OnInit {
             }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
+=======
+    }
+>>>>>>> with_entities
     clear() {
         this.activeModal.dismiss('cancel');
     }
@@ -66,6 +79,7 @@ export class SeenDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.seen.id !== undefined) {
             this.subscribeToSaveResponse(
+<<<<<<< HEAD
                 this.seenService.update(this.seen), false);
         } else {
             this.subscribeToSaveResponse(
@@ -84,6 +98,21 @@ export class SeenDialogComponent implements OnInit {
             : 'eshopApp.seen.updated',
             { param : result.id }, null);
 
+=======
+                this.seenService.update(this.seen));
+        } else {
+            this.subscribeToSaveResponse(
+                this.seenService.create(this.seen));
+        }
+    }
+
+    private subscribeToSaveResponse(result: Observable<Seen>) {
+        result.subscribe((res: Seen) =>
+            this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
+    }
+
+    private onSaveSuccess(result: Seen) {
+>>>>>>> with_entities
         this.eventManager.broadcast({ name: 'seenListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
@@ -102,6 +131,7 @@ export class SeenDialogComponent implements OnInit {
     private onError(error) {
         this.alertService.error(error.message, null, null);
     }
+<<<<<<< HEAD
 
     trackCustomerById(index: number, item: Customer) {
         return item.id;
@@ -110,6 +140,8 @@ export class SeenDialogComponent implements OnInit {
     trackProductsById(index: number, item: Products) {
         return item.id;
     }
+=======
+>>>>>>> with_entities
 }
 
 @Component({

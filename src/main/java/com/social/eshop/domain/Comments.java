@@ -1,5 +1,9 @@
 package com.social.eshop.domain;
 
+<<<<<<< HEAD
+=======
+import com.fasterxml.jackson.annotation.JsonIgnore;
+>>>>>>> with_entities
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -7,6 +11,11 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
+<<<<<<< HEAD
+=======
+import java.util.HashSet;
+import java.util.Set;
+>>>>>>> with_entities
 import java.util.Objects;
 
 /**
@@ -32,7 +41,16 @@ public class Comments implements Serializable {
     private ZonedDateTime data;
 
     @ManyToOne
+<<<<<<< HEAD
     private Customer customer;
+=======
+    private CustomerRoom customerRoom;
+
+    @OneToMany(mappedBy = "comments")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Media> customers = new HashSet<>();
+>>>>>>> with_entities
 
     @ManyToOne
     private Products products;
@@ -71,6 +89,7 @@ public class Comments implements Serializable {
         this.data = data;
     }
 
+<<<<<<< HEAD
     public Customer getCustomer() {
         return customer;
     }
@@ -82,6 +101,44 @@ public class Comments implements Serializable {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+=======
+    public CustomerRoom getCustomerRoom() {
+        return customerRoom;
+    }
+
+    public Comments customerRoom(CustomerRoom customerRoom) {
+        this.customerRoom = customerRoom;
+        return this;
+    }
+
+    public void setCustomerRoom(CustomerRoom customerRoom) {
+        this.customerRoom = customerRoom;
+    }
+
+    public Set<Media> getCustomers() {
+        return customers;
+    }
+
+    public Comments customers(Set<Media> media) {
+        this.customers = media;
+        return this;
+    }
+
+    public Comments addCustomer(Media media) {
+        this.customers.add(media);
+        media.setComments(this);
+        return this;
+    }
+
+    public Comments removeCustomer(Media media) {
+        this.customers.remove(media);
+        media.setComments(null);
+        return this;
+    }
+
+    public void setCustomers(Set<Media> media) {
+        this.customers = media;
+>>>>>>> with_entities
     }
 
     public Products getProducts() {

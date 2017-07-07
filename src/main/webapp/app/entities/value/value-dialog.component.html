@@ -15,7 +15,12 @@
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="eshopApp.value.data" for="field_data">Data</label>
             <input type="text" class="form-control" name="data" id="field_data"
+<<<<<<< HEAD
                 [(ngModel)]="value.data" required />
+=======
+                [(ngModel)]="value.data"
+            required />
+>>>>>>> with_entities
             <div [hidden]="!(editForm.controls.data?.dirty && editForm.controls.data?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.data?.errors?.required" jhiTranslate="entity.validation.required">

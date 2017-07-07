@@ -1,0 +1,17 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "customer",
+            "otherEntityName": "customer",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [],
+    "changelogDate": "20170525235442",
+    "entityTableName": "session_id",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl"
+}

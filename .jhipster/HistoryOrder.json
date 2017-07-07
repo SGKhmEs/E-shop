@@ -1,0 +1,36 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "orderNumber",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "date",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "count",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "sum",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "Status",
+            "fieldValues": "SUCCESS,FAILURE,REJECT,WAIT"
+        },
+        {
+            "fieldName": "consignmentNote",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170525235436",
+    "entityTableName": "history_order",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl"
+}
