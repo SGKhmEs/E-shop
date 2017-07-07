@@ -32,12 +32,17 @@
             <th><span jhiTranslate="global.field.id">ID</span></th>
             <th><span jhiTranslate="eshopApp.customerRoom.subScription">Sub Scription</span></th>
             <th><span jhiTranslate="eshopApp.customerRoom.sosialConnect">Sosial Connect</span></th>
+<<<<<<< HEAD
+            <th><span jhiTranslate="eshopApp.customerRoom.address">Address</span></th>
+            <th><span jhiTranslate="eshopApp.customerRoom.personalInfo">Personal Info</span></th>
+=======
             <th><span jhiTranslate="eshopApp.customerRoom.personalInfo">Personal Info</span></th>
             <th><span jhiTranslate="eshopApp.customerRoom.wishList">Wish List</span></th>
             <th><span jhiTranslate="eshopApp.customerRoom.address">Address</span></th>
             <th><span jhiTranslate="eshopApp.customerRoom.bucket">Bucket</span></th>
             <th><span jhiTranslate="eshopApp.customerRoom.seen">Seen</span></th>
             <th><span jhiTranslate="eshopApp.customerRoom.historyOrder">History Order</span></th>
+>>>>>>> with_entities
             <th></th>
             </tr>
             </thead>
@@ -47,6 +52,15 @@
                 <td>{{customerRoom.subScription}}</td>
                 <td jhiTranslate="{{'eshopApp.SocialConnect.' + customerRoom.sosialConnect}}">{{customerRoom.sosialConnect}}</td>
                 <td>
+<<<<<<< HEAD
+                    <div *ngIf="customerRoom.address">
+                        <a [routerLink]="['../address', customerRoom.address?.id ]" >{{customerRoom.address?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="customerRoom.personalInfo">
+                        <a [routerLink]="['../personal-information', customerRoom.personalInfo?.id ]" >{{customerRoom.personalInfo?.id}}</a>
+=======
                     <div *ngIf="customerRoom.personalInfoId">
                         <a [routerLink]="['../personal-information', customerRoom.personalInfoId  ]" >{{customerRoom.personalInfoId}}</a>
                     </div>
@@ -74,6 +88,7 @@
                 <td>
                     <div *ngIf="customerRoom.historyOrderId">
                         <a [routerLink]="['../history-order', customerRoom.historyOrderId  ]" >{{customerRoom.historyOrderId}}</a>
+>>>>>>> with_entities
                     </div>
                 </td>
                 <td class="text-right">

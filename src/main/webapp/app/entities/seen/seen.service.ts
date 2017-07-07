@@ -61,7 +61,11 @@ export class SeenService {
         for (let i = 0; i < jsonResponse.length; i++) {
             this.convertItemFromServer(jsonResponse[i]);
         }
+<<<<<<< HEAD
+        return new ResponseWrapper(res.headers, jsonResponse, res.status);
+=======
         return new ResponseWrapper(res.headers, jsonResponse);
+>>>>>>> with_entities
     }
 
     private convertItemFromServer(entity: any) {

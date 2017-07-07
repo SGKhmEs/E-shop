@@ -8,6 +8,20 @@
             "entities": {
                 "main": "Entities",
                 "customer": "Customer",
+<<<<<<< HEAD
+                "loginOptions": "Login Options",
+                "staticPages": "Static Pages",
+                "manager": "Manager",
+                "bucket": "Bucket",
+                "addressShipping": "Address Shipping",
+                "customerRoom": "Customer Room",
+                "seen": "Seen",
+                "wishList": "Wish List",
+                "address": "Address",
+                "avatar": "Avatar",
+                "personalInformation": "Personal Information",
+                "products": "Products",
+=======
                 "customerRoom": "Customer Room",
                 "comments": "Comments",
                 "personalInformation": "Personal Information",
@@ -28,10 +42,23 @@
                 "category": "Category",
                 "subCategory": "Sub Category",
                 "media": "Media",
+>>>>>>> with_entities
                 "tags": "Tags",
                 "consignment": "Consignment",
                 "storage": "Storage",
                 "producers": "Producers",
+<<<<<<< HEAD
+                "category": "Category",
+                "subCategory": "Sub Category",
+                "type": "Type",
+                "media": "Media",
+                "comments": "Comments",
+                "value": "Value",
+                "options": "Options",
+                "tagForProduct": "Tag For Product",
+                "productInBucket": "Product In Bucket",
+=======
+>>>>>>> with_entities
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
@@ -108,7 +135,8 @@
         },
         "ribbon": {
             "dev":"Development"
-        }
+        },
+        "item-count": "Showing {{first}} - {{second}} of {{total}} items."
     },
     "entity": {
         "action": {

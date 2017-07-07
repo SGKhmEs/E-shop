@@ -32,11 +32,16 @@ describe('Component Tests', () => {
                     CategoryService,
                     EventManager
                 ]
+<<<<<<< HEAD
+            }).overrideTemplate(CategoryDetailComponent, '')
+            .compileComponents();
+=======
             }).overrideComponent(CategoryDetailComponent, {
                 set: {
                     template: ''
                 }
             }).compileComponents();
+>>>>>>> with_entities
         }));
 
         beforeEach(() => {

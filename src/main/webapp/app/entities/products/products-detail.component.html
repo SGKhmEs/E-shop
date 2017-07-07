@@ -8,6 +8,13 @@
         <dd>
             <span>{{products.name}}</span>
         </dd>
+<<<<<<< HEAD
+        <dt><span jhiTranslate="eshopApp.products.price">Price</span></dt>
+        <dd>
+            <span>{{products.price}}</span>
+        </dd>
+=======
+>>>>>>> with_entities
         <dt><span jhiTranslate="eshopApp.products.sale">Sale</span></dt>
         <dd>
             <span>{{products.sale}}</span>
@@ -20,6 +27,12 @@
         <dd>
             <span>{{products.fresh}}</span>
         </dd>
+<<<<<<< HEAD
+        <dt><span jhiTranslate="eshopApp.products.consignment">Consignment</span></dt>
+        <dd>
+            <div *ngIf="products.consignment">
+                <a [routerLink]="['/consignment', products.consignment?.id]">{{products.consignment?.id}}</a>
+=======
         <dt><span jhiTranslate="eshopApp.products.wishList">Wish List</span></dt>
         <dd>
             <div *ngIf="products.wishListId">
@@ -36,10 +49,15 @@
         <dd>
             <div *ngIf="products.bucketId">
                 <a [routerLink]="['/bucket', products.bucketId]">{{products.bucketId}}</a>
+>>>>>>> with_entities
             </div>
         </dd>
         <dt><span jhiTranslate="eshopApp.products.subCategory">Sub Category</span></dt>
         <dd>
+<<<<<<< HEAD
+            <div *ngIf="products.subCategory">
+                <a [routerLink]="['/sub-category', products.subCategory?.id]">{{products.subCategory?.id}}</a>
+=======
             <div *ngIf="products.subCategoryId">
                 <a [routerLink]="['/sub-category', products.subCategoryId]">{{products.subCategoryId}}</a>
             </div>
@@ -54,6 +72,7 @@
         <dd>
             <div *ngIf="products.tagsId">
                 <a [routerLink]="['/tags', products.tagsId]">{{products.tagsId}}</a>
+>>>>>>> with_entities
             </div>
         </dd>
     </dl>

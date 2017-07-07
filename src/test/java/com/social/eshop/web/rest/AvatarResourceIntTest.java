@@ -6,8 +6,11 @@ import com.social.eshop.domain.Avatar;
 import com.social.eshop.repository.AvatarRepository;
 import com.social.eshop.service.AvatarService;
 import com.social.eshop.repository.search.AvatarSearchRepository;
+<<<<<<< HEAD
+=======
 import com.social.eshop.service.dto.AvatarDTO;
 import com.social.eshop.service.mapper.AvatarMapper;
+>>>>>>> with_entities
 import com.social.eshop.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -51,9 +54,12 @@ public class AvatarResourceIntTest {
     private AvatarRepository avatarRepository;
 
     @Autowired
+<<<<<<< HEAD
+=======
     private AvatarMapper avatarMapper;
 
     @Autowired
+>>>>>>> with_entities
     private AvatarService avatarService;
 
     @Autowired
@@ -110,10 +116,16 @@ public class AvatarResourceIntTest {
         int databaseSizeBeforeCreate = avatarRepository.findAll().size();
 
         // Create the Avatar
+<<<<<<< HEAD
+        restAvatarMockMvc.perform(post("/api/avatars")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(avatar)))
+=======
         AvatarDTO avatarDTO = avatarMapper.toDto(avatar);
         restAvatarMockMvc.perform(post("/api/avatars")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(avatarDTO)))
+>>>>>>> with_entities
             .andExpect(status().isCreated());
 
         // Validate the Avatar in the database
@@ -135,12 +147,19 @@ public class AvatarResourceIntTest {
 
         // Create the Avatar with an existing ID
         avatar.setId(1L);
+<<<<<<< HEAD
+=======
         AvatarDTO avatarDTO = avatarMapper.toDto(avatar);
+>>>>>>> with_entities
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restAvatarMockMvc.perform(post("/api/avatars")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
+<<<<<<< HEAD
+            .content(TestUtil.convertObjectToJsonBytes(avatar)))
+=======
             .content(TestUtil.convertObjectToJsonBytes(avatarDTO)))
+>>>>>>> with_entities
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -190,8 +209,13 @@ public class AvatarResourceIntTest {
     @Transactional
     public void updateAvatar() throws Exception {
         // Initialize the database
+<<<<<<< HEAD
+        avatarService.save(avatar);
+
+=======
         avatarRepository.saveAndFlush(avatar);
         avatarSearchRepository.save(avatar);
+>>>>>>> with_entities
         int databaseSizeBeforeUpdate = avatarRepository.findAll().size();
 
         // Update the avatar
@@ -199,11 +223,18 @@ public class AvatarResourceIntTest {
         updatedAvatar
             .usersImage(UPDATED_USERS_IMAGE)
             .usersImageContentType(UPDATED_USERS_IMAGE_CONTENT_TYPE);
+<<<<<<< HEAD
+
+        restAvatarMockMvc.perform(put("/api/avatars")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(updatedAvatar)))
+=======
         AvatarDTO avatarDTO = avatarMapper.toDto(updatedAvatar);
 
         restAvatarMockMvc.perform(put("/api/avatars")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(avatarDTO)))
+>>>>>>> with_entities
             .andExpect(status().isOk());
 
         // Validate the Avatar in the database
@@ -224,12 +255,19 @@ public class AvatarResourceIntTest {
         int databaseSizeBeforeUpdate = avatarRepository.findAll().size();
 
         // Create the Avatar
+<<<<<<< HEAD
+=======
         AvatarDTO avatarDTO = avatarMapper.toDto(avatar);
+>>>>>>> with_entities
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
         restAvatarMockMvc.perform(put("/api/avatars")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
+<<<<<<< HEAD
+            .content(TestUtil.convertObjectToJsonBytes(avatar)))
+=======
             .content(TestUtil.convertObjectToJsonBytes(avatarDTO)))
+>>>>>>> with_entities
             .andExpect(status().isCreated());
 
         // Validate the Avatar in the database
@@ -241,8 +279,13 @@ public class AvatarResourceIntTest {
     @Transactional
     public void deleteAvatar() throws Exception {
         // Initialize the database
+<<<<<<< HEAD
+        avatarService.save(avatar);
+
+=======
         avatarRepository.saveAndFlush(avatar);
         avatarSearchRepository.save(avatar);
+>>>>>>> with_entities
         int databaseSizeBeforeDelete = avatarRepository.findAll().size();
 
         // Get the avatar
@@ -263,8 +306,12 @@ public class AvatarResourceIntTest {
     @Transactional
     public void searchAvatar() throws Exception {
         // Initialize the database
+<<<<<<< HEAD
+        avatarService.save(avatar);
+=======
         avatarRepository.saveAndFlush(avatar);
         avatarSearchRepository.save(avatar);
+>>>>>>> with_entities
 
         // Search the avatar
         restAvatarMockMvc.perform(get("/api/_search/avatars?query=id:" + avatar.getId()))
@@ -289,6 +336,8 @@ public class AvatarResourceIntTest {
         avatar1.setId(null);
         assertThat(avatar1).isNotEqualTo(avatar2);
     }
+<<<<<<< HEAD
+=======
 
     @Test
     @Transactional
@@ -312,4 +361,5 @@ public class AvatarResourceIntTest {
         assertThat(avatarMapper.fromId(42L).getId()).isEqualTo(42);
         assertThat(avatarMapper.fromId(null)).isNull();
     }
+>>>>>>> with_entities
 }

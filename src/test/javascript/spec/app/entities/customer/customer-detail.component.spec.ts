@@ -32,11 +32,16 @@ describe('Component Tests', () => {
                     CustomerService,
                     EventManager
                 ]
+<<<<<<< HEAD
+            }).overrideTemplate(CustomerDetailComponent, '')
+            .compileComponents();
+=======
             }).overrideComponent(CustomerDetailComponent, {
                 set: {
                     template: ''
                 }
             }).compileComponents();
+>>>>>>> with_entities
         }));
 
         beforeEach(() => {

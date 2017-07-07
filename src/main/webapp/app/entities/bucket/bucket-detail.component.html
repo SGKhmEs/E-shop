@@ -4,10 +4,58 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
+<<<<<<< HEAD
+        <dt><span jhiTranslate="eshopApp.bucket.name">Name</span></dt>
+        <dd>
+            <span>{{bucket.name}}</span>
+        </dd>
+=======
+>>>>>>> with_entities
         <dt><span jhiTranslate="eshopApp.bucket.data">Data</span></dt>
         <dd>
             <span>{{bucket.data | date:'medium'}}</span>
         </dd>
+<<<<<<< HEAD
+        <dt><span jhiTranslate="eshopApp.bucket.sum">Sum</span></dt>
+        <dd>
+            <span>{{bucket.sum}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.bucket.orderNumber">Order Number</span></dt>
+        <dd>
+            <span>{{bucket.orderNumber}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.bucket.count">Count</span></dt>
+        <dd>
+            <span>{{bucket.count}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.bucket.status">Status</span></dt>
+        <dd>
+            <span jhiTranslate="{{'eshopApp.Status.' + bucket.status}}">{{bucket.status}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.bucket.consignmentNote">Consignment Note</span></dt>
+        <dd>
+            <span>{{bucket.consignmentNote}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.bucket.manager">Manager</span></dt>
+        <dd>
+            <div *ngIf="bucket.manager">
+                <a [routerLink]="['/manager', bucket.manager?.id]">{{bucket.manager?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.bucket.addressShipping">Address Shipping</span></dt>
+        <dd>
+            <div *ngIf="bucket.addressShipping">
+                <a [routerLink]="['/address-shipping', bucket.addressShipping?.id]">{{bucket.addressShipping?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.bucket.customer">Customer</span></dt>
+        <dd>
+            <div *ngIf="bucket.customer">
+                <a [routerLink]="['/customer', bucket.customer?.id]">{{bucket.customer?.id}}</a>
+            </div>
+        </dd>
+=======
+>>>>>>> with_entities
     </dl>
 
     <button type="submit"

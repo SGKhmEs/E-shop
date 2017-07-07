@@ -2,7 +2,11 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+<<<<<<< HEAD
+import { AlertService, EventManager } from 'ng-jhipster';
+=======
 import { EventManager } from 'ng-jhipster';
+>>>>>>> with_entities
 
 import { Comments } from './comments.model';
 import { CommentsPopupService } from './comments-popup.service';
@@ -19,6 +23,10 @@ export class CommentsDeleteDialogComponent {
     constructor(
         private commentsService: CommentsService,
         public activeModal: NgbActiveModal,
+<<<<<<< HEAD
+        private alertService: AlertService,
+=======
+>>>>>>> with_entities
         private eventManager: EventManager
     ) {
     }
@@ -35,6 +43,10 @@ export class CommentsDeleteDialogComponent {
             });
             this.activeModal.dismiss(true);
         });
+<<<<<<< HEAD
+        this.alertService.success('eshopApp.comments.deleted', { param : id }, null);
+=======
+>>>>>>> with_entities
     }
 }
 

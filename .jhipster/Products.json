@@ -2,6 +2,12 @@
     "fluentMethods": true,
     "relationships": [
         {
+<<<<<<< HEAD
+            "relationshipType": "one-to-many",
+            "relationshipName": "media",
+            "otherEntityName": "media",
+            "otherEntityRelationshipName": "products"
+=======
             "relationshipName": "wishList",
             "otherEntityName": "wishList",
             "relationshipType": "many-to-one",
@@ -18,6 +24,7 @@
             "otherEntityName": "bucket",
             "relationshipType": "many-to-one",
             "otherEntityField": "id"
+>>>>>>> with_entities
         },
         {
             "relationshipType": "one-to-many",
@@ -27,6 +34,21 @@
         },
         {
             "relationshipType": "one-to-many",
+<<<<<<< HEAD
+            "relationshipName": "productInBucket",
+            "otherEntityName": "productInBucket",
+            "otherEntityRelationshipName": "products"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "tagForProduct",
+            "otherEntityName": "tagForProduct",
+            "otherEntityRelationshipName": "products"
+        },
+        {
+            "relationshipName": "consignment",
+            "otherEntityName": "consignment",
+=======
             "relationshipName": "consignment",
             "otherEntityName": "consignment",
             "otherEntityRelationshipName": "products"
@@ -40,12 +62,18 @@
         {
             "relationshipName": "media",
             "otherEntityName": "media",
+>>>>>>> with_entities
             "relationshipType": "many-to-one",
             "otherEntityField": "id"
         },
         {
+<<<<<<< HEAD
+            "relationshipName": "subCategory",
+            "otherEntityName": "subCategory",
+=======
             "relationshipName": "tags",
             "otherEntityName": "tags",
+>>>>>>> with_entities
             "relationshipType": "many-to-one",
             "otherEntityField": "id"
         }
@@ -59,6 +87,16 @@
             ]
         },
         {
+<<<<<<< HEAD
+            "fieldName": "price",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+=======
+>>>>>>> with_entities
             "fieldName": "sale",
             "fieldType": "String"
         },
@@ -71,9 +109,15 @@
             "fieldType": "Boolean"
         }
     ],
+<<<<<<< HEAD
+    "changelogDate": "20170610234456",
+    "entityTableName": "products",
+    "dto": "no",
+=======
     "changelogDate": "20170525235449",
     "entityTableName": "products",
     "dto": "mapstruct",
+>>>>>>> with_entities
     "pagination": "infinite-scroll",
     "service": "serviceImpl"
 }

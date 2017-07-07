@@ -32,11 +32,16 @@ describe('Component Tests', () => {
                     AddressShippingService,
                     EventManager
                 ]
+<<<<<<< HEAD
+            }).overrideTemplate(AddressShippingDetailComponent, '')
+            .compileComponents();
+=======
             }).overrideComponent(AddressShippingDetailComponent, {
                 set: {
                     template: ''
                 }
             }).compileComponents();
+>>>>>>> with_entities
         }));
 
         beforeEach(() => {

@@ -4,6 +4,13 @@ import com.social.eshop.service.ProducersService;
 import com.social.eshop.domain.Producers;
 import com.social.eshop.repository.ProducersRepository;
 import com.social.eshop.repository.search.ProducersSearchRepository;
+<<<<<<< HEAD
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+=======
 import com.social.eshop.service.dto.ProducersDTO;
 import com.social.eshop.service.mapper.ProducersMapper;
 import org.slf4j.Logger;
@@ -12,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
+>>>>>>> with_entities
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -26,6 +34,15 @@ import static org.elasticsearch.index.query.QueryBuilders.*;
 public class ProducersServiceImpl implements ProducersService{
 
     private final Logger log = LoggerFactory.getLogger(ProducersServiceImpl.class);
+<<<<<<< HEAD
+
+    private final ProducersRepository producersRepository;
+
+    private final ProducersSearchRepository producersSearchRepository;
+
+    public ProducersServiceImpl(ProducersRepository producersRepository, ProducersSearchRepository producersSearchRepository) {
+        this.producersRepository = producersRepository;
+=======
     
     private final ProducersRepository producersRepository;
 
@@ -36,12 +53,23 @@ public class ProducersServiceImpl implements ProducersService{
     public ProducersServiceImpl(ProducersRepository producersRepository, ProducersMapper producersMapper, ProducersSearchRepository producersSearchRepository) {
         this.producersRepository = producersRepository;
         this.producersMapper = producersMapper;
+>>>>>>> with_entities
         this.producersSearchRepository = producersSearchRepository;
     }
 
     /**
      * Save a producers.
      *
+<<<<<<< HEAD
+     * @param producers the entity to save
+     * @return the persisted entity
+     */
+    @Override
+    public Producers save(Producers producers) {
+        log.debug("Request to save Producers : {}", producers);
+        Producers result = producersRepository.save(producers);
+        producersSearchRepository.save(result);
+=======
      * @param producersDTO the entity to save
      * @return the persisted entity
      */
@@ -52,16 +80,26 @@ public class ProducersServiceImpl implements ProducersService{
         producers = producersRepository.save(producers);
         ProducersDTO result = producersMapper.toDto(producers);
         producersSearchRepository.save(producers);
+>>>>>>> with_entities
         return result;
     }
 
     /**
      *  Get all the producers.
+<<<<<<< HEAD
+     *
+=======
      *  
+>>>>>>> with_entities
      *  @return the list of entities
      */
     @Override
     @Transactional(readOnly = true)
+<<<<<<< HEAD
+    public List<Producers> findAll() {
+        log.debug("Request to get all Producers");
+        return producersRepository.findAll();
+=======
     public List<ProducersDTO> findAll() {
         log.debug("Request to get all Producers");
         List<ProducersDTO> result = producersRepository.findAll().stream()
@@ -69,6 +107,7 @@ public class ProducersServiceImpl implements ProducersService{
             .collect(Collectors.toCollection(LinkedList::new));
 
         return result;
+>>>>>>> with_entities
     }
 
     /**
@@ -79,11 +118,17 @@ public class ProducersServiceImpl implements ProducersService{
      */
     @Override
     @Transactional(readOnly = true)
+<<<<<<< HEAD
+    public Producers findOne(Long id) {
+        log.debug("Request to get Producers : {}", id);
+        return producersRepository.findOne(id);
+=======
     public ProducersDTO findOne(Long id) {
         log.debug("Request to get Producers : {}", id);
         Producers producers = producersRepository.findOne(id);
         ProducersDTO producersDTO = producersMapper.toDto(producers);
         return producersDTO;
+>>>>>>> with_entities
     }
 
     /**
@@ -106,11 +151,18 @@ public class ProducersServiceImpl implements ProducersService{
      */
     @Override
     @Transactional(readOnly = true)
+<<<<<<< HEAD
+    public List<Producers> search(String query) {
+        log.debug("Request to search Producers for query {}", query);
+        return StreamSupport
+            .stream(producersSearchRepository.search(queryStringQuery(query)).spliterator(), false)
+=======
     public List<ProducersDTO> search(String query) {
         log.debug("Request to search Producers for query {}", query);
         return StreamSupport
             .stream(producersSearchRepository.search(queryStringQuery(query)).spliterator(), false)
             .map(producersMapper::toDto)
+>>>>>>> with_entities
             .collect(Collectors.toList());
     }
 }

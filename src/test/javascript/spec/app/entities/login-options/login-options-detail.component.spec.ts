@@ -32,11 +32,16 @@ describe('Component Tests', () => {
                     LoginOptionsService,
                     EventManager
                 ]
+<<<<<<< HEAD
+            }).overrideTemplate(LoginOptionsDetailComponent, '')
+            .compileComponents();
+=======
             }).overrideComponent(LoginOptionsDetailComponent, {
                 set: {
                     template: ''
                 }
             }).compileComponents();
+>>>>>>> with_entities
         }));
 
         beforeEach(() => {

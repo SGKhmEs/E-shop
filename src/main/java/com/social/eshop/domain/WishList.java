@@ -1,6 +1,9 @@
 package com.social.eshop.domain;
 
+<<<<<<< HEAD
+=======
 import com.fasterxml.jackson.annotation.JsonIgnore;
+>>>>>>> with_entities
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -8,8 +11,11 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+<<<<<<< HEAD
+=======
 import java.util.HashSet;
 import java.util.Set;
+>>>>>>> with_entities
 import java.util.Objects;
 
 /**
@@ -28,6 +34,17 @@ public class WishList implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
+<<<<<<< HEAD
+    @Column(name = "data")
+    private LocalDate data;
+
+    @ManyToOne
+    private Customer customer;
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Products product;
+=======
     @Column(name = "wishs_name")
     private String wishsName;
 
@@ -38,6 +55,7 @@ public class WishList implements Serializable {
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Products> products = new HashSet<>();
+>>>>>>> with_entities
 
     public Long getId() {
         return id;
@@ -47,6 +65,8 @@ public class WishList implements Serializable {
         this.id = id;
     }
 
+<<<<<<< HEAD
+=======
     public String getWishsName() {
         return wishsName;
     }
@@ -60,6 +80,7 @@ public class WishList implements Serializable {
         this.wishsName = wishsName;
     }
 
+>>>>>>> with_entities
     public LocalDate getData() {
         return data;
     }
@@ -73,6 +94,32 @@ public class WishList implements Serializable {
         this.data = data;
     }
 
+<<<<<<< HEAD
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public WishList customer(Customer customer) {
+        this.customer = customer;
+        return this;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Products getProduct() {
+        return product;
+    }
+
+    public WishList product(Products products) {
+        this.product = products;
+        return this;
+    }
+
+    public void setProduct(Products products) {
+        this.product = products;
+=======
     public Set<Products> getProducts() {
         return products;
     }
@@ -96,6 +143,7 @@ public class WishList implements Serializable {
 
     public void setProducts(Set<Products> products) {
         this.products = products;
+>>>>>>> with_entities
     }
 
     @Override
@@ -122,7 +170,10 @@ public class WishList implements Serializable {
     public String toString() {
         return "WishList{" +
             "id=" + getId() +
+<<<<<<< HEAD
+=======
             ", wishsName='" + getWishsName() + "'" +
+>>>>>>> with_entities
             ", data='" + getData() + "'" +
             "}";
     }

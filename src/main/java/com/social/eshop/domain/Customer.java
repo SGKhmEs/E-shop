@@ -11,8 +11,11 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
 
+<<<<<<< HEAD
+=======
 import com.social.eshop.domain.enumeration.Roles;
 
+>>>>>>> with_entities
 /**
  * A Customer.
  */
@@ -29,9 +32,14 @@ public class Customer implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
+<<<<<<< HEAD
+    @Column(name = "session_id")
+    private String sessionId;
+=======
     @Enumerated(EnumType.STRING)
     @Column(name = "jhi_roles")
     private Roles roles;
+>>>>>>> with_entities
 
     @OneToOne
     @JoinColumn(unique = true)
@@ -39,16 +47,34 @@ public class Customer implements Serializable {
 
     @OneToOne
     @JoinColumn(unique = true)
+<<<<<<< HEAD
+    private CustomerRoom customerRoom;
+
+    @OneToMany(mappedBy = "customer")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Seen> seens = new HashSet<>();
+
+    @OneToMany(mappedBy = "customer")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<WishList> wishLists = new HashSet<>();
+=======
     private Confirm confirm;
 
     @OneToOne
     @JoinColumn(unique = true)
     private CustomerRoom userRoom;
+>>>>>>> with_entities
 
     @OneToMany(mappedBy = "customer")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+<<<<<<< HEAD
+    private Set<Comments> comments = new HashSet<>();
+=======
     private Set<SessionId> customers = new HashSet<>();
+>>>>>>> with_entities
 
     public Long getId() {
         return id;
@@ -58,6 +84,19 @@ public class Customer implements Serializable {
         this.id = id;
     }
 
+<<<<<<< HEAD
+    public String getSessionId() {
+        return sessionId;
+    }
+
+    public Customer sessionId(String sessionId) {
+        this.sessionId = sessionId;
+        return this;
+    }
+
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
+=======
     public Roles getRoles() {
         return roles;
     }
@@ -69,6 +108,7 @@ public class Customer implements Serializable {
 
     public void setRoles(Roles roles) {
         this.roles = roles;
+>>>>>>> with_entities
     }
 
     public LoginOptions getLoginOptions() {
@@ -84,6 +124,94 @@ public class Customer implements Serializable {
         this.loginOptions = loginOptions;
     }
 
+<<<<<<< HEAD
+    public CustomerRoom getCustomerRoom() {
+        return customerRoom;
+    }
+
+    public Customer customerRoom(CustomerRoom customerRoom) {
+        this.customerRoom = customerRoom;
+        return this;
+    }
+
+    public void setCustomerRoom(CustomerRoom customerRoom) {
+        this.customerRoom = customerRoom;
+    }
+
+    public Set<Seen> getSeens() {
+        return seens;
+    }
+
+    public Customer seens(Set<Seen> seens) {
+        this.seens = seens;
+        return this;
+    }
+
+    public Customer addSeen(Seen seen) {
+        this.seens.add(seen);
+        seen.setCustomer(this);
+        return this;
+    }
+
+    public Customer removeSeen(Seen seen) {
+        this.seens.remove(seen);
+        seen.setCustomer(null);
+        return this;
+    }
+
+    public void setSeens(Set<Seen> seens) {
+        this.seens = seens;
+    }
+
+    public Set<WishList> getWishLists() {
+        return wishLists;
+    }
+
+    public Customer wishLists(Set<WishList> wishLists) {
+        this.wishLists = wishLists;
+        return this;
+    }
+
+    public Customer addWishList(WishList wishList) {
+        this.wishLists.add(wishList);
+        wishList.setCustomer(this);
+        return this;
+    }
+
+    public Customer removeWishList(WishList wishList) {
+        this.wishLists.remove(wishList);
+        wishList.setCustomer(null);
+        return this;
+    }
+
+    public void setWishLists(Set<WishList> wishLists) {
+        this.wishLists = wishLists;
+    }
+
+    public Set<Comments> getComments() {
+        return comments;
+    }
+
+    public Customer comments(Set<Comments> comments) {
+        this.comments = comments;
+        return this;
+    }
+
+    public Customer addComments(Comments comments) {
+        this.comments.add(comments);
+        comments.setCustomer(this);
+        return this;
+    }
+
+    public Customer removeComments(Comments comments) {
+        this.comments.remove(comments);
+        comments.setCustomer(null);
+        return this;
+    }
+
+    public void setComments(Set<Comments> comments) {
+        this.comments = comments;
+=======
     public Confirm getConfirm() {
         return confirm;
     }
@@ -133,6 +261,7 @@ public class Customer implements Serializable {
 
     public void setCustomers(Set<SessionId> sessionIds) {
         this.customers = sessionIds;
+>>>>>>> with_entities
     }
 
     @Override
@@ -159,7 +288,11 @@ public class Customer implements Serializable {
     public String toString() {
         return "Customer{" +
             "id=" + getId() +
+<<<<<<< HEAD
+            ", sessionId='" + getSessionId() + "'" +
+=======
             ", roles='" + getRoles() + "'" +
+>>>>>>> with_entities
             "}";
     }
 }

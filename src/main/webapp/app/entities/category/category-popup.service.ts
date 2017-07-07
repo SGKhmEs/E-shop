@@ -3,6 +3,10 @@ import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Category } from './category.model';
 import { CategoryService } from './category.service';
+<<<<<<< HEAD
+
+=======
+>>>>>>> with_entities
 @Injectable()
 export class CategoryPopupService {
     private isOpen = false;

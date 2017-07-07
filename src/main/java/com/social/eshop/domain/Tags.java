@@ -35,7 +35,11 @@ public class Tags implements Serializable {
     @OneToMany(mappedBy = "tags")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+<<<<<<< HEAD
+    private Set<TagForProduct> tagForProducts = new HashSet<>();
+=======
     private Set<Products> products = new HashSet<>();
+>>>>>>> with_entities
 
     public Long getId() {
         return id;
@@ -58,6 +62,31 @@ public class Tags implements Serializable {
         this.name = name;
     }
 
+<<<<<<< HEAD
+    public Set<TagForProduct> getTagForProducts() {
+        return tagForProducts;
+    }
+
+    public Tags tagForProducts(Set<TagForProduct> tagForProducts) {
+        this.tagForProducts = tagForProducts;
+        return this;
+    }
+
+    public Tags addTagForProduct(TagForProduct tagForProduct) {
+        this.tagForProducts.add(tagForProduct);
+        tagForProduct.setTags(this);
+        return this;
+    }
+
+    public Tags removeTagForProduct(TagForProduct tagForProduct) {
+        this.tagForProducts.remove(tagForProduct);
+        tagForProduct.setTags(null);
+        return this;
+    }
+
+    public void setTagForProducts(Set<TagForProduct> tagForProducts) {
+        this.tagForProducts = tagForProducts;
+=======
     public Set<Products> getProducts() {
         return products;
     }
@@ -81,6 +110,7 @@ public class Tags implements Serializable {
 
     public void setProducts(Set<Products> products) {
         this.products = products;
+>>>>>>> with_entities
     }
 
     @Override

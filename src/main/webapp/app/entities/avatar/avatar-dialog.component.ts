@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
+=======
 import { Component, OnInit, OnDestroy } from '@angular/core';
+>>>>>>> with_entities
 import { ActivatedRoute } from '@angular/router';
 import { Response } from '@angular/http';
 
@@ -25,6 +29,10 @@ export class AvatarDialogComponent implements OnInit {
         private dataUtils: DataUtils,
         private alertService: AlertService,
         private avatarService: AvatarService,
+<<<<<<< HEAD
+        private elementRef: ElementRef,
+=======
+>>>>>>> with_entities
         private eventManager: EventManager
     ) {
     }
@@ -33,6 +41,10 @@ export class AvatarDialogComponent implements OnInit {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
     }
+<<<<<<< HEAD
+
+=======
+>>>>>>> with_entities
     byteSize(field) {
         return this.dataUtils.byteSize(field);
     }
@@ -42,7 +54,11 @@ export class AvatarDialogComponent implements OnInit {
     }
 
     setFileData(event, avatar, field, isImage) {
+<<<<<<< HEAD
+        if (event && event.target.files && event.target.files[0]) {
+=======
         if (event.target.files && event.target.files[0]) {
+>>>>>>> with_entities
             const file = event.target.files[0];
             if (isImage && !/^image\//.test(file.type)) {
                 return;
@@ -53,6 +69,14 @@ export class AvatarDialogComponent implements OnInit {
             });
         }
     }
+<<<<<<< HEAD
+
+    clearInputImage(field: string, fieldContentType: string, idInput: string) {
+        this.dataUtils.clearInputImage(this.avatar, this.elementRef, field, fieldContentType, idInput);
+    }
+
+=======
+>>>>>>> with_entities
     clear() {
         this.activeModal.dismiss('cancel');
     }
@@ -61,6 +85,26 @@ export class AvatarDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.avatar.id !== undefined) {
             this.subscribeToSaveResponse(
+<<<<<<< HEAD
+                this.avatarService.update(this.avatar), false);
+        } else {
+            this.subscribeToSaveResponse(
+                this.avatarService.create(this.avatar), true);
+        }
+    }
+
+    private subscribeToSaveResponse(result: Observable<Avatar>, isCreated: boolean) {
+        result.subscribe((res: Avatar) =>
+            this.onSaveSuccess(res, isCreated), (res: Response) => this.onSaveError(res));
+    }
+
+    private onSaveSuccess(result: Avatar, isCreated: boolean) {
+        this.alertService.success(
+            isCreated ? 'eshopApp.avatar.created'
+            : 'eshopApp.avatar.updated',
+            { param : result.id }, null);
+
+=======
                 this.avatarService.update(this.avatar));
         } else {
             this.subscribeToSaveResponse(
@@ -74,6 +118,7 @@ export class AvatarDialogComponent implements OnInit {
     }
 
     private onSaveSuccess(result: Avatar) {
+>>>>>>> with_entities
         this.eventManager.broadcast({ name: 'avatarListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);

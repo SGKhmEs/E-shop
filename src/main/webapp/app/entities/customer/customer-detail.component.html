@@ -4,6 +4,22 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
+<<<<<<< HEAD
+        <dt><span jhiTranslate="eshopApp.customer.sessionId">Session Id</span></dt>
+        <dd>
+            <span>{{customer.sessionId}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.customer.loginOptions">Login Options</span></dt>
+        <dd>
+            <div *ngIf="customer.loginOptions">
+                <a [routerLink]="['/login-options', customer.loginOptions?.id]">{{customer.loginOptions?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.customer.customerRoom">Customer Room</span></dt>
+        <dd>
+            <div *ngIf="customer.customerRoom">
+                <a [routerLink]="['/customer-room', customer.customerRoom?.id]">{{customer.customerRoom?.id}}</a>
+=======
         <dt><span jhiTranslate="eshopApp.customer.roles">Roles</span></dt>
         <dd>
             <span jhiTranslate="{{'eshopApp.Roles.' + customer.roles}}">{{customer.roles}}</span>
@@ -24,6 +40,7 @@
         <dd>
             <div *ngIf="customer.userRoomId">
                 <a [routerLink]="['/customer-room', customer.userRoomId]">{{customer.userRoomId}}</a>
+>>>>>>> with_entities
             </div>
         </dd>
     </dl>

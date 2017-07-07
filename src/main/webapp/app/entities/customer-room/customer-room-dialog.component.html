@@ -15,8 +15,12 @@
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="eshopApp.customerRoom.subScription" for="field_subScription">Sub Scription</label>
             <input type="checkbox" class="form-control" name="subScription" id="field_subScription"
+<<<<<<< HEAD
+                [(ngModel)]="customerRoom.subScription"  />
+=======
                 [(ngModel)]="customerRoom.subScription"
              />
+>>>>>>> with_entities
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="eshopApp.customerRoom.sosialConnect" for="field_sosialConnect">Sosial Connect</label>
@@ -31,6 +35,19 @@
         </div>
 
         <div class="form-group">
+<<<<<<< HEAD
+            <label jhiTranslate="eshopApp.customerRoom.address" for="field_address">Address</label>
+            <select class="form-control" id="field_address" name="address" [(ngModel)]="customerRoom.address">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="addressOption.id === customerRoom.address?.id ? customerRoom.address : addressOption" *ngFor="let addressOption of addresses; trackBy: trackAddressById">{{addressOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="eshopApp.customerRoom.personalInfo" for="field_personalInfo">Personal Info</label>
+            <select class="form-control" id="field_personalInfo" name="personalInfo" [(ngModel)]="customerRoom.personalInfo">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="personalInformationOption.id === customerRoom.personalInfo?.id ? customerRoom.personalInfo : personalInformationOption" *ngFor="let personalInformationOption of personalinfos; trackBy: trackPersonalInformationById">{{personalInformationOption.id}}</option>
+=======
             <label jhiTranslate="eshopApp.customerRoom.personalInfo" for="field_personalInfo">Personal Info</label>
             <select class="form-control" id="field_personalInfo" name="personalInfo" [(ngModel)]="customerRoom.personalInfoId">
                 <option [ngValue]="null"></option>
@@ -70,6 +87,7 @@
             <select class="form-control" id="field_historyOrder" name="historyOrder" [(ngModel)]="customerRoom.historyOrderId">
                 <option [ngValue]="null"></option>
                 <option [ngValue]="historyOrderOption.id" *ngFor="let historyOrderOption of historyorders; trackBy: trackHistoryOrderById">{{historyOrderOption.id}}</option>
+>>>>>>> with_entities
             </select>
         </div>
     </div>

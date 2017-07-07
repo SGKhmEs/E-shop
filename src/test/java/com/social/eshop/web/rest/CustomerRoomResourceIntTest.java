@@ -6,8 +6,11 @@ import com.social.eshop.domain.CustomerRoom;
 import com.social.eshop.repository.CustomerRoomRepository;
 import com.social.eshop.service.CustomerRoomService;
 import com.social.eshop.repository.search.CustomerRoomSearchRepository;
+<<<<<<< HEAD
+=======
 import com.social.eshop.service.dto.CustomerRoomDTO;
 import com.social.eshop.service.mapper.CustomerRoomMapper;
+>>>>>>> with_entities
 import com.social.eshop.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -52,9 +55,12 @@ public class CustomerRoomResourceIntTest {
     private CustomerRoomRepository customerRoomRepository;
 
     @Autowired
+<<<<<<< HEAD
+=======
     private CustomerRoomMapper customerRoomMapper;
 
     @Autowired
+>>>>>>> with_entities
     private CustomerRoomService customerRoomService;
 
     @Autowired
@@ -111,10 +117,16 @@ public class CustomerRoomResourceIntTest {
         int databaseSizeBeforeCreate = customerRoomRepository.findAll().size();
 
         // Create the CustomerRoom
+<<<<<<< HEAD
+        restCustomerRoomMockMvc.perform(post("/api/customer-rooms")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(customerRoom)))
+=======
         CustomerRoomDTO customerRoomDTO = customerRoomMapper.toDto(customerRoom);
         restCustomerRoomMockMvc.perform(post("/api/customer-rooms")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(customerRoomDTO)))
+>>>>>>> with_entities
             .andExpect(status().isCreated());
 
         // Validate the CustomerRoom in the database
@@ -136,12 +148,19 @@ public class CustomerRoomResourceIntTest {
 
         // Create the CustomerRoom with an existing ID
         customerRoom.setId(1L);
+<<<<<<< HEAD
+=======
         CustomerRoomDTO customerRoomDTO = customerRoomMapper.toDto(customerRoom);
+>>>>>>> with_entities
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restCustomerRoomMockMvc.perform(post("/api/customer-rooms")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
+<<<<<<< HEAD
+            .content(TestUtil.convertObjectToJsonBytes(customerRoom)))
+=======
             .content(TestUtil.convertObjectToJsonBytes(customerRoomDTO)))
+>>>>>>> with_entities
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -191,8 +210,13 @@ public class CustomerRoomResourceIntTest {
     @Transactional
     public void updateCustomerRoom() throws Exception {
         // Initialize the database
+<<<<<<< HEAD
+        customerRoomService.save(customerRoom);
+
+=======
         customerRoomRepository.saveAndFlush(customerRoom);
         customerRoomSearchRepository.save(customerRoom);
+>>>>>>> with_entities
         int databaseSizeBeforeUpdate = customerRoomRepository.findAll().size();
 
         // Update the customerRoom
@@ -200,11 +224,18 @@ public class CustomerRoomResourceIntTest {
         updatedCustomerRoom
             .subScription(UPDATED_SUB_SCRIPTION)
             .sosialConnect(UPDATED_SOSIAL_CONNECT);
+<<<<<<< HEAD
+
+        restCustomerRoomMockMvc.perform(put("/api/customer-rooms")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(updatedCustomerRoom)))
+=======
         CustomerRoomDTO customerRoomDTO = customerRoomMapper.toDto(updatedCustomerRoom);
 
         restCustomerRoomMockMvc.perform(put("/api/customer-rooms")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(customerRoomDTO)))
+>>>>>>> with_entities
             .andExpect(status().isOk());
 
         // Validate the CustomerRoom in the database
@@ -225,12 +256,19 @@ public class CustomerRoomResourceIntTest {
         int databaseSizeBeforeUpdate = customerRoomRepository.findAll().size();
 
         // Create the CustomerRoom
+<<<<<<< HEAD
+=======
         CustomerRoomDTO customerRoomDTO = customerRoomMapper.toDto(customerRoom);
+>>>>>>> with_entities
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
         restCustomerRoomMockMvc.perform(put("/api/customer-rooms")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
+<<<<<<< HEAD
+            .content(TestUtil.convertObjectToJsonBytes(customerRoom)))
+=======
             .content(TestUtil.convertObjectToJsonBytes(customerRoomDTO)))
+>>>>>>> with_entities
             .andExpect(status().isCreated());
 
         // Validate the CustomerRoom in the database
@@ -242,8 +280,13 @@ public class CustomerRoomResourceIntTest {
     @Transactional
     public void deleteCustomerRoom() throws Exception {
         // Initialize the database
+<<<<<<< HEAD
+        customerRoomService.save(customerRoom);
+
+=======
         customerRoomRepository.saveAndFlush(customerRoom);
         customerRoomSearchRepository.save(customerRoom);
+>>>>>>> with_entities
         int databaseSizeBeforeDelete = customerRoomRepository.findAll().size();
 
         // Get the customerRoom
@@ -264,8 +307,12 @@ public class CustomerRoomResourceIntTest {
     @Transactional
     public void searchCustomerRoom() throws Exception {
         // Initialize the database
+<<<<<<< HEAD
+        customerRoomService.save(customerRoom);
+=======
         customerRoomRepository.saveAndFlush(customerRoom);
         customerRoomSearchRepository.save(customerRoom);
+>>>>>>> with_entities
 
         // Search the customerRoom
         restCustomerRoomMockMvc.perform(get("/api/_search/customer-rooms?query=id:" + customerRoom.getId()))
@@ -290,6 +337,8 @@ public class CustomerRoomResourceIntTest {
         customerRoom1.setId(null);
         assertThat(customerRoom1).isNotEqualTo(customerRoom2);
     }
+<<<<<<< HEAD
+=======
 
     @Test
     @Transactional
@@ -313,4 +362,5 @@ public class CustomerRoomResourceIntTest {
         assertThat(customerRoomMapper.fromId(42L).getId()).isEqualTo(42);
         assertThat(customerRoomMapper.fromId(null)).isNull();
     }
+>>>>>>> with_entities
 }

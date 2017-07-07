@@ -15,8 +15,12 @@
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="eshopApp.consignment.price" for="field_price">Price</label>
             <input type="number" class="form-control" name="price" id="field_price"
+<<<<<<< HEAD
+                [(ngModel)]="consignment.price" required />
+=======
                 [(ngModel)]="consignment.price"
             required />
+>>>>>>> with_entities
             <div [hidden]="!(editForm.controls.price?.dirty && editForm.controls.price?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.price?.errors?.required" jhiTranslate="entity.validation.required">
@@ -30,6 +34,12 @@
         </div>
 
         <div class="form-group">
+<<<<<<< HEAD
+            <label jhiTranslate="eshopApp.consignment.storage" for="field_storage">Storage</label>
+            <select class="form-control" id="field_storage" name="storage" [(ngModel)]="consignment.storage" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="storageOption.id === consignment.storage?.id ? consignment.storage : storageOption" *ngFor="let storageOption of storages; trackBy: trackStorageById">{{storageOption.id}}</option>
+=======
             <label jhiTranslate="eshopApp.consignment.products" for="field_products">Products</label>
             <select class="form-control" id="field_products" name="products" [(ngModel)]="consignment.productsId" >
                 <option [ngValue]="null"></option>
@@ -41,13 +51,20 @@
             <select class="form-control" id="field_storage" name="storage" [(ngModel)]="consignment.storageId" >
                 <option [ngValue]="null"></option>
                 <option [ngValue]="storageOption.id" *ngFor="let storageOption of storages; trackBy: trackStorageById">{{storageOption.id}}</option>
+>>>>>>> with_entities
             </select>
         </div>
         <div class="form-group">
             <label jhiTranslate="eshopApp.consignment.producers" for="field_producers">Producers</label>
+<<<<<<< HEAD
+            <select class="form-control" id="field_producers" name="producers" [(ngModel)]="consignment.producers" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="producersOption.id === consignment.producers?.id ? consignment.producers : producersOption" *ngFor="let producersOption of producers; trackBy: trackProducersById">{{producersOption.id}}</option>
+=======
             <select class="form-control" id="field_producers" name="producers" [(ngModel)]="consignment.producersId" >
                 <option [ngValue]="null"></option>
                 <option [ngValue]="producersOption.id" *ngFor="let producersOption of producers; trackBy: trackProducersById">{{producersOption.id}}</option>
+>>>>>>> with_entities
             </select>
         </div>
     </div>

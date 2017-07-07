@@ -12,6 +12,18 @@
         <dd>
             <span jhiTranslate="{{'eshopApp.SocialConnect.' + customerRoom.sosialConnect}}">{{customerRoom.sosialConnect}}</span>
         </dd>
+<<<<<<< HEAD
+        <dt><span jhiTranslate="eshopApp.customerRoom.address">Address</span></dt>
+        <dd>
+            <div *ngIf="customerRoom.address">
+                <a [routerLink]="['/address', customerRoom.address?.id]">{{customerRoom.address?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.customerRoom.personalInfo">Personal Info</span></dt>
+        <dd>
+            <div *ngIf="customerRoom.personalInfo">
+                <a [routerLink]="['/personal-information', customerRoom.personalInfo?.id]">{{customerRoom.personalInfo?.id}}</a>
+=======
         <dt><span jhiTranslate="eshopApp.customerRoom.personalInfo">Personal Info</span></dt>
         <dd>
             <div *ngIf="customerRoom.personalInfoId">
@@ -46,6 +58,7 @@
         <dd>
             <div *ngIf="customerRoom.historyOrderId">
                 <a [routerLink]="['/history-order', customerRoom.historyOrderId]">{{customerRoom.historyOrderId}}</a>
+>>>>>>> with_entities
             </div>
         </dd>
     </dl>

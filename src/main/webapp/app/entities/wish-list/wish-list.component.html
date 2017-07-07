@@ -30,16 +30,36 @@
             <thead>
             <tr>
             <th><span jhiTranslate="global.field.id">ID</span></th>
+<<<<<<< HEAD
+            <th><span jhiTranslate="eshopApp.wishList.data">Data</span></th>
+            <th><span jhiTranslate="eshopApp.wishList.customer">Customer</span></th>
+            <th><span jhiTranslate="eshopApp.wishList.product">Product</span></th>
+=======
             <th><span jhiTranslate="eshopApp.wishList.wishsName">Wishs Name</span></th>
             <th><span jhiTranslate="eshopApp.wishList.data">Data</span></th>
+>>>>>>> with_entities
             <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let wishList of wishLists ;trackBy: trackId">
                 <td><a [routerLink]="['../wish-list', wishList.id ]">{{wishList.id}}</a></td>
+<<<<<<< HEAD
+                <td>{{wishList.data | date:'mediumDate'}}</td>
+                <td>
+                    <div *ngIf="wishList.customer">
+                        <a [routerLink]="['../customer', wishList.customer?.id ]" >{{wishList.customer?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="wishList.product">
+                        <a [routerLink]="['../products', wishList.product?.id ]" >{{wishList.product?.id}}</a>
+                    </div>
+                </td>
+=======
                 <td>{{wishList.wishsName}}</td>
                 <td>{{wishList.data | date:'mediumDate'}}</td>
+>>>>>>> with_entities
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

@@ -34,7 +34,10 @@
             <th><span jhiTranslate="eshopApp.options.level">Level</span></th>
             <th><span jhiTranslate="eshopApp.options.value">Value</span></th>
             <th><span jhiTranslate="eshopApp.options.type">Type</span></th>
+<<<<<<< HEAD
+=======
             <th><span jhiTranslate="eshopApp.options.subCategory">Sub Category</span></th>
+>>>>>>> with_entities
             <th></th>
             </tr>
             </thead>
@@ -44,6 +47,15 @@
                 <td>{{options.name}}</td>
                 <td>{{options.level}}</td>
                 <td>
+<<<<<<< HEAD
+                    <div *ngIf="options.value">
+                        <a [routerLink]="['../value', options.value?.id ]" >{{options.value?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="options.type">
+                        <a [routerLink]="['../type', options.type?.id ]" >{{options.type?.id}}</a>
+=======
                     <div *ngIf="options.valueId">
                         <a [routerLink]="['../value', options.valueId  ]" >{{options.valueId}}</a>
                     </div>
@@ -56,6 +68,7 @@
                 <td>
                     <div *ngIf="options.subCategoryId">
                         <a [routerLink]="['../sub-category', options.subCategoryId  ]" >{{options.subCategoryId}}</a>
+>>>>>>> with_entities
                     </div>
                 </td>
                 <td class="text-right">

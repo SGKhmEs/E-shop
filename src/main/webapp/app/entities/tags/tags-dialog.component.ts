@@ -32,6 +32,10 @@ export class TagsDialogComponent implements OnInit {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
     }
+<<<<<<< HEAD
+
+=======
+>>>>>>> with_entities
     clear() {
         this.activeModal.dismiss('cancel');
     }
@@ -40,6 +44,26 @@ export class TagsDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.tags.id !== undefined) {
             this.subscribeToSaveResponse(
+<<<<<<< HEAD
+                this.tagsService.update(this.tags), false);
+        } else {
+            this.subscribeToSaveResponse(
+                this.tagsService.create(this.tags), true);
+        }
+    }
+
+    private subscribeToSaveResponse(result: Observable<Tags>, isCreated: boolean) {
+        result.subscribe((res: Tags) =>
+            this.onSaveSuccess(res, isCreated), (res: Response) => this.onSaveError(res));
+    }
+
+    private onSaveSuccess(result: Tags, isCreated: boolean) {
+        this.alertService.success(
+            isCreated ? 'eshopApp.tags.created'
+            : 'eshopApp.tags.updated',
+            { param : result.id }, null);
+
+=======
                 this.tagsService.update(this.tags));
         } else {
             this.subscribeToSaveResponse(
@@ -53,6 +77,7 @@ export class TagsDialogComponent implements OnInit {
     }
 
     private onSaveSuccess(result: Tags) {
+>>>>>>> with_entities
         this.eventManager.broadcast({ name: 'tagsListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);

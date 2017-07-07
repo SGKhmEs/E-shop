@@ -12,5 +12,9 @@ import org.springframework.data.jpa.repository.*;
 @SuppressWarnings("unused")
 @Repository
 public interface AddressRepository extends JpaRepository<Address,Long> {
+<<<<<<< HEAD
+    
+=======
 
+>>>>>>> with_entities
 }

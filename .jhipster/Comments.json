@@ -2,18 +2,26 @@
     "fluentMethods": true,
     "relationships": [
         {
+<<<<<<< HEAD
+            "relationshipName": "customer",
+            "otherEntityName": "customer",
+=======
             "relationshipName": "customerRoom",
             "otherEntityName": "customerRoom",
+>>>>>>> with_entities
             "relationshipType": "many-to-one",
             "otherEntityField": "id"
         },
         {
+<<<<<<< HEAD
+=======
             "relationshipType": "one-to-many",
             "relationshipName": "customer",
             "otherEntityName": "media",
             "otherEntityRelationshipName": "comments"
         },
         {
+>>>>>>> with_entities
             "relationshipName": "products",
             "otherEntityName": "products",
             "relationshipType": "many-to-one",
@@ -30,9 +38,15 @@
             "fieldType": "ZonedDateTime"
         }
     ],
+<<<<<<< HEAD
+    "changelogDate": "20170610234505",
+    "entityTableName": "comments",
+    "dto": "no",
+=======
     "changelogDate": "20170525235434",
     "entityTableName": "comments",
     "dto": "mapstruct",
+>>>>>>> with_entities
     "pagination": "no",
     "service": "serviceImpl"
 }

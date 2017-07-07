@@ -6,8 +6,11 @@ import com.social.eshop.domain.Type;
 import com.social.eshop.repository.TypeRepository;
 import com.social.eshop.service.TypeService;
 import com.social.eshop.repository.search.TypeSearchRepository;
+<<<<<<< HEAD
+=======
 import com.social.eshop.service.dto.TypeDTO;
 import com.social.eshop.service.mapper.TypeMapper;
+>>>>>>> with_entities
 import com.social.eshop.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -51,9 +54,12 @@ public class TypeResourceIntTest {
     private TypeRepository typeRepository;
 
     @Autowired
+<<<<<<< HEAD
+=======
     private TypeMapper typeMapper;
 
     @Autowired
+>>>>>>> with_entities
     private TypeService typeService;
 
     @Autowired
@@ -110,10 +116,16 @@ public class TypeResourceIntTest {
         int databaseSizeBeforeCreate = typeRepository.findAll().size();
 
         // Create the Type
+<<<<<<< HEAD
+        restTypeMockMvc.perform(post("/api/types")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(type)))
+=======
         TypeDTO typeDTO = typeMapper.toDto(type);
         restTypeMockMvc.perform(post("/api/types")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(typeDTO)))
+>>>>>>> with_entities
             .andExpect(status().isCreated());
 
         // Validate the Type in the database
@@ -135,12 +147,19 @@ public class TypeResourceIntTest {
 
         // Create the Type with an existing ID
         type.setId(1L);
+<<<<<<< HEAD
+=======
         TypeDTO typeDTO = typeMapper.toDto(type);
+>>>>>>> with_entities
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restTypeMockMvc.perform(post("/api/types")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
+<<<<<<< HEAD
+            .content(TestUtil.convertObjectToJsonBytes(type)))
+=======
             .content(TestUtil.convertObjectToJsonBytes(typeDTO)))
+>>>>>>> with_entities
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -156,11 +175,18 @@ public class TypeResourceIntTest {
         type.setName(null);
 
         // Create the Type, which fails.
+<<<<<<< HEAD
+
+        restTypeMockMvc.perform(post("/api/types")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(type)))
+=======
         TypeDTO typeDTO = typeMapper.toDto(type);
 
         restTypeMockMvc.perform(post("/api/types")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(typeDTO)))
+>>>>>>> with_entities
             .andExpect(status().isBadRequest());
 
         List<Type> typeList = typeRepository.findAll();
@@ -175,11 +201,18 @@ public class TypeResourceIntTest {
         type.setBehavior(null);
 
         // Create the Type, which fails.
+<<<<<<< HEAD
+
+        restTypeMockMvc.perform(post("/api/types")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(type)))
+=======
         TypeDTO typeDTO = typeMapper.toDto(type);
 
         restTypeMockMvc.perform(post("/api/types")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(typeDTO)))
+>>>>>>> with_entities
             .andExpect(status().isBadRequest());
 
         List<Type> typeList = typeRepository.findAll();
@@ -228,8 +261,13 @@ public class TypeResourceIntTest {
     @Transactional
     public void updateType() throws Exception {
         // Initialize the database
+<<<<<<< HEAD
+        typeService.save(type);
+
+=======
         typeRepository.saveAndFlush(type);
         typeSearchRepository.save(type);
+>>>>>>> with_entities
         int databaseSizeBeforeUpdate = typeRepository.findAll().size();
 
         // Update the type
@@ -237,11 +275,18 @@ public class TypeResourceIntTest {
         updatedType
             .name(UPDATED_NAME)
             .behavior(UPDATED_BEHAVIOR);
+<<<<<<< HEAD
+
+        restTypeMockMvc.perform(put("/api/types")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(updatedType)))
+=======
         TypeDTO typeDTO = typeMapper.toDto(updatedType);
 
         restTypeMockMvc.perform(put("/api/types")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(typeDTO)))
+>>>>>>> with_entities
             .andExpect(status().isOk());
 
         // Validate the Type in the database
@@ -262,12 +307,19 @@ public class TypeResourceIntTest {
         int databaseSizeBeforeUpdate = typeRepository.findAll().size();
 
         // Create the Type
+<<<<<<< HEAD
+=======
         TypeDTO typeDTO = typeMapper.toDto(type);
+>>>>>>> with_entities
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
         restTypeMockMvc.perform(put("/api/types")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
+<<<<<<< HEAD
+            .content(TestUtil.convertObjectToJsonBytes(type)))
+=======
             .content(TestUtil.convertObjectToJsonBytes(typeDTO)))
+>>>>>>> with_entities
             .andExpect(status().isCreated());
 
         // Validate the Type in the database
@@ -279,8 +331,13 @@ public class TypeResourceIntTest {
     @Transactional
     public void deleteType() throws Exception {
         // Initialize the database
+<<<<<<< HEAD
+        typeService.save(type);
+
+=======
         typeRepository.saveAndFlush(type);
         typeSearchRepository.save(type);
+>>>>>>> with_entities
         int databaseSizeBeforeDelete = typeRepository.findAll().size();
 
         // Get the type
@@ -301,8 +358,12 @@ public class TypeResourceIntTest {
     @Transactional
     public void searchType() throws Exception {
         // Initialize the database
+<<<<<<< HEAD
+        typeService.save(type);
+=======
         typeRepository.saveAndFlush(type);
         typeSearchRepository.save(type);
+>>>>>>> with_entities
 
         // Search the type
         restTypeMockMvc.perform(get("/api/_search/types?query=id:" + type.getId()))
@@ -327,6 +388,8 @@ public class TypeResourceIntTest {
         type1.setId(null);
         assertThat(type1).isNotEqualTo(type2);
     }
+<<<<<<< HEAD
+=======
 
     @Test
     @Transactional
@@ -350,4 +413,5 @@ public class TypeResourceIntTest {
         assertThat(typeMapper.fromId(42L).getId()).isEqualTo(42);
         assertThat(typeMapper.fromId(null)).isNull();
     }
+>>>>>>> with_entities
 }

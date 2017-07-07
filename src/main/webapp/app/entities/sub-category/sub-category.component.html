@@ -32,6 +32,10 @@
             <th><span jhiTranslate="global.field.id">ID</span></th>
             <th><span jhiTranslate="eshopApp.subCategory.name">Name</span></th>
             <th><span jhiTranslate="eshopApp.subCategory.category">Category</span></th>
+<<<<<<< HEAD
+            <th><span jhiTranslate="eshopApp.subCategory.options">Options</span></th>
+=======
+>>>>>>> with_entities
             <th></th>
             </tr>
             </thead>
@@ -40,8 +44,18 @@
                 <td><a [routerLink]="['../sub-category', subCategory.id ]">{{subCategory.id}}</a></td>
                 <td>{{subCategory.name}}</td>
                 <td>
+<<<<<<< HEAD
+                    <div *ngIf="subCategory.category">
+                        <a [routerLink]="['../category', subCategory.category?.id ]" >{{subCategory.category?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="subCategory.options">
+                        <a [routerLink]="['../options', subCategory.options?.id ]" >{{subCategory.options?.id}}</a>
+=======
                     <div *ngIf="subCategory.categoryId">
                         <a [routerLink]="['../category', subCategory.categoryId  ]" >{{subCategory.categoryId}}</a>
+>>>>>>> with_entities
                     </div>
                 </td>
                 <td class="text-right">

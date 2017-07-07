@@ -6,8 +6,11 @@ import com.social.eshop.domain.Tags;
 import com.social.eshop.repository.TagsRepository;
 import com.social.eshop.service.TagsService;
 import com.social.eshop.repository.search.TagsSearchRepository;
+<<<<<<< HEAD
+=======
 import com.social.eshop.service.dto.TagsDTO;
 import com.social.eshop.service.mapper.TagsMapper;
+>>>>>>> with_entities
 import com.social.eshop.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -48,9 +51,12 @@ public class TagsResourceIntTest {
     private TagsRepository tagsRepository;
 
     @Autowired
+<<<<<<< HEAD
+=======
     private TagsMapper tagsMapper;
 
     @Autowired
+>>>>>>> with_entities
     private TagsService tagsService;
 
     @Autowired
@@ -106,10 +112,16 @@ public class TagsResourceIntTest {
         int databaseSizeBeforeCreate = tagsRepository.findAll().size();
 
         // Create the Tags
+<<<<<<< HEAD
+        restTagsMockMvc.perform(post("/api/tags")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(tags)))
+=======
         TagsDTO tagsDTO = tagsMapper.toDto(tags);
         restTagsMockMvc.perform(post("/api/tags")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(tagsDTO)))
+>>>>>>> with_entities
             .andExpect(status().isCreated());
 
         // Validate the Tags in the database
@@ -130,12 +142,19 @@ public class TagsResourceIntTest {
 
         // Create the Tags with an existing ID
         tags.setId(1L);
+<<<<<<< HEAD
+=======
         TagsDTO tagsDTO = tagsMapper.toDto(tags);
+>>>>>>> with_entities
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restTagsMockMvc.perform(post("/api/tags")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
+<<<<<<< HEAD
+            .content(TestUtil.convertObjectToJsonBytes(tags)))
+=======
             .content(TestUtil.convertObjectToJsonBytes(tagsDTO)))
+>>>>>>> with_entities
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -151,11 +170,18 @@ public class TagsResourceIntTest {
         tags.setName(null);
 
         // Create the Tags, which fails.
+<<<<<<< HEAD
+
+        restTagsMockMvc.perform(post("/api/tags")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(tags)))
+=======
         TagsDTO tagsDTO = tagsMapper.toDto(tags);
 
         restTagsMockMvc.perform(post("/api/tags")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(tagsDTO)))
+>>>>>>> with_entities
             .andExpect(status().isBadRequest());
 
         List<Tags> tagsList = tagsRepository.findAll();
@@ -202,19 +228,31 @@ public class TagsResourceIntTest {
     @Transactional
     public void updateTags() throws Exception {
         // Initialize the database
+<<<<<<< HEAD
+        tagsService.save(tags);
+
+=======
         tagsRepository.saveAndFlush(tags);
         tagsSearchRepository.save(tags);
+>>>>>>> with_entities
         int databaseSizeBeforeUpdate = tagsRepository.findAll().size();
 
         // Update the tags
         Tags updatedTags = tagsRepository.findOne(tags.getId());
         updatedTags
             .name(UPDATED_NAME);
+<<<<<<< HEAD
+
+        restTagsMockMvc.perform(put("/api/tags")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(updatedTags)))
+=======
         TagsDTO tagsDTO = tagsMapper.toDto(updatedTags);
 
         restTagsMockMvc.perform(put("/api/tags")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(tagsDTO)))
+>>>>>>> with_entities
             .andExpect(status().isOk());
 
         // Validate the Tags in the database
@@ -234,12 +272,19 @@ public class TagsResourceIntTest {
         int databaseSizeBeforeUpdate = tagsRepository.findAll().size();
 
         // Create the Tags
+<<<<<<< HEAD
+=======
         TagsDTO tagsDTO = tagsMapper.toDto(tags);
+>>>>>>> with_entities
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
         restTagsMockMvc.perform(put("/api/tags")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
+<<<<<<< HEAD
+            .content(TestUtil.convertObjectToJsonBytes(tags)))
+=======
             .content(TestUtil.convertObjectToJsonBytes(tagsDTO)))
+>>>>>>> with_entities
             .andExpect(status().isCreated());
 
         // Validate the Tags in the database
@@ -251,8 +296,13 @@ public class TagsResourceIntTest {
     @Transactional
     public void deleteTags() throws Exception {
         // Initialize the database
+<<<<<<< HEAD
+        tagsService.save(tags);
+
+=======
         tagsRepository.saveAndFlush(tags);
         tagsSearchRepository.save(tags);
+>>>>>>> with_entities
         int databaseSizeBeforeDelete = tagsRepository.findAll().size();
 
         // Get the tags
@@ -273,8 +323,12 @@ public class TagsResourceIntTest {
     @Transactional
     public void searchTags() throws Exception {
         // Initialize the database
+<<<<<<< HEAD
+        tagsService.save(tags);
+=======
         tagsRepository.saveAndFlush(tags);
         tagsSearchRepository.save(tags);
+>>>>>>> with_entities
 
         // Search the tags
         restTagsMockMvc.perform(get("/api/_search/tags?query=id:" + tags.getId()))
@@ -298,6 +352,8 @@ public class TagsResourceIntTest {
         tags1.setId(null);
         assertThat(tags1).isNotEqualTo(tags2);
     }
+<<<<<<< HEAD
+=======
 
     @Test
     @Transactional
@@ -321,4 +377,5 @@ public class TagsResourceIntTest {
         assertThat(tagsMapper.fromId(42L).getId()).isEqualTo(42);
         assertThat(tagsMapper.fromId(null)).isNull();
     }
+>>>>>>> with_entities
 }

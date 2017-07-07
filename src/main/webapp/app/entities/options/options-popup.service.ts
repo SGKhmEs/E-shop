@@ -3,6 +3,10 @@ import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Options } from './options.model';
 import { OptionsService } from './options.service';
+<<<<<<< HEAD
+
+=======
+>>>>>>> with_entities
 @Injectable()
 export class OptionsPopupService {
     private isOpen = false;

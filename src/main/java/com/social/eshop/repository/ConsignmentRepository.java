@@ -12,5 +12,9 @@ import org.springframework.data.jpa.repository.*;
 @SuppressWarnings("unused")
 @Repository
 public interface ConsignmentRepository extends JpaRepository<Consignment,Long> {
+<<<<<<< HEAD
+    
+=======
 
+>>>>>>> with_entities
 }

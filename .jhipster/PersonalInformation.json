@@ -8,6 +8,8 @@
             "otherEntityField": "id",
             "ownerSide": true,
             "otherEntityRelationshipName": "personalInformation"
+<<<<<<< HEAD
+=======
         },
         {
             "relationshipType": "one-to-one",
@@ -16,6 +18,7 @@
             "otherEntityField": "id",
             "ownerSide": true,
             "otherEntityRelationshipName": "personalInformation"
+>>>>>>> with_entities
         }
     ],
     "fields": [
@@ -61,9 +64,15 @@
             "fieldType": "LocalDate"
         }
     ],
+<<<<<<< HEAD
+    "changelogDate": "20170610234455",
+    "entityTableName": "personal_information",
+    "dto": "no",
+=======
     "changelogDate": "20170525235435",
     "entityTableName": "personal_information",
     "dto": "mapstruct",
+>>>>>>> with_entities
     "pagination": "no",
     "service": "serviceImpl"
 }

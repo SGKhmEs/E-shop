@@ -2,7 +2,11 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+<<<<<<< HEAD
+import { AlertService, EventManager } from 'ng-jhipster';
+=======
 import { EventManager } from 'ng-jhipster';
+>>>>>>> with_entities
 
 import { Address } from './address.model';
 import { AddressPopupService } from './address-popup.service';
@@ -19,6 +23,10 @@ export class AddressDeleteDialogComponent {
     constructor(
         private addressService: AddressService,
         public activeModal: NgbActiveModal,
+<<<<<<< HEAD
+        private alertService: AlertService,
+=======
+>>>>>>> with_entities
         private eventManager: EventManager
     ) {
     }
@@ -35,6 +43,10 @@ export class AddressDeleteDialogComponent {
             });
             this.activeModal.dismiss(true);
         });
+<<<<<<< HEAD
+        this.alertService.success('eshopApp.address.deleted', { param : id }, null);
+=======
+>>>>>>> with_entities
     }
 }
 

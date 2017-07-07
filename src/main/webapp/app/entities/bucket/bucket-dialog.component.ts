@@ -9,6 +9,13 @@ import { EventManager, AlertService } from 'ng-jhipster';
 import { Bucket } from './bucket.model';
 import { BucketPopupService } from './bucket-popup.service';
 import { BucketService } from './bucket.service';
+<<<<<<< HEAD
+import { Manager, ManagerService } from '../manager';
+import { AddressShipping, AddressShippingService } from '../address-shipping';
+import { Customer, CustomerService } from '../customer';
+import { ResponseWrapper } from '../../shared';
+=======
+>>>>>>> with_entities
 
 @Component({
     selector: 'jhi-bucket-dialog',
@@ -20,10 +27,25 @@ export class BucketDialogComponent implements OnInit {
     authorities: any[];
     isSaving: boolean;
 
+<<<<<<< HEAD
+    managers: Manager[];
+
+    addressshippings: AddressShipping[];
+
+    customers: Customer[];
+
+=======
+>>>>>>> with_entities
     constructor(
         public activeModal: NgbActiveModal,
         private alertService: AlertService,
         private bucketService: BucketService,
+<<<<<<< HEAD
+        private managerService: ManagerService,
+        private addressShippingService: AddressShippingService,
+        private customerService: CustomerService,
+=======
+>>>>>>> with_entities
         private eventManager: EventManager
     ) {
     }
@@ -31,7 +53,29 @@ export class BucketDialogComponent implements OnInit {
     ngOnInit() {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
+<<<<<<< HEAD
+        this.managerService.query()
+            .subscribe((res: ResponseWrapper) => { this.managers = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        this.addressShippingService
+            .query({filter: 'bucket-is-null'})
+            .subscribe((res: ResponseWrapper) => {
+                if (!this.bucket.addressShipping || !this.bucket.addressShipping.id) {
+                    this.addressshippings = res.json;
+                } else {
+                    this.addressShippingService
+                        .find(this.bucket.addressShipping.id)
+                        .subscribe((subRes: AddressShipping) => {
+                            this.addressshippings = [subRes].concat(res.json);
+                        }, (subRes: ResponseWrapper) => this.onError(subRes.json));
+                }
+            }, (res: ResponseWrapper) => this.onError(res.json));
+        this.customerService.query()
+            .subscribe((res: ResponseWrapper) => { this.customers = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
+
+=======
+    }
+>>>>>>> with_entities
     clear() {
         this.activeModal.dismiss('cancel');
     }
@@ -40,6 +84,26 @@ export class BucketDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.bucket.id !== undefined) {
             this.subscribeToSaveResponse(
+<<<<<<< HEAD
+                this.bucketService.update(this.bucket), false);
+        } else {
+            this.subscribeToSaveResponse(
+                this.bucketService.create(this.bucket), true);
+        }
+    }
+
+    private subscribeToSaveResponse(result: Observable<Bucket>, isCreated: boolean) {
+        result.subscribe((res: Bucket) =>
+            this.onSaveSuccess(res, isCreated), (res: Response) => this.onSaveError(res));
+    }
+
+    private onSaveSuccess(result: Bucket, isCreated: boolean) {
+        this.alertService.success(
+            isCreated ? 'eshopApp.bucket.created'
+            : 'eshopApp.bucket.updated',
+            { param : result.id }, null);
+
+=======
                 this.bucketService.update(this.bucket));
         } else {
             this.subscribeToSaveResponse(
@@ -53,6 +117,7 @@ export class BucketDialogComponent implements OnInit {
     }
 
     private onSaveSuccess(result: Bucket) {
+>>>>>>> with_entities
         this.eventManager.broadcast({ name: 'bucketListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
@@ -71,6 +136,21 @@ export class BucketDialogComponent implements OnInit {
     private onError(error) {
         this.alertService.error(error.message, null, null);
     }
+<<<<<<< HEAD
+
+    trackManagerById(index: number, item: Manager) {
+        return item.id;
+    }
+
+    trackAddressShippingById(index: number, item: AddressShipping) {
+        return item.id;
+    }
+
+    trackCustomerById(index: number, item: Customer) {
+        return item.id;
+    }
+=======
+>>>>>>> with_entities
 }
 
 @Component({

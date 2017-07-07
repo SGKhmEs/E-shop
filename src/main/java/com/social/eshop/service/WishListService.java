@@ -1,6 +1,10 @@
 package com.social.eshop.service;
 
+<<<<<<< HEAD
+import com.social.eshop.domain.WishList;
+=======
 import com.social.eshop.service.dto.WishListDTO;
+>>>>>>> with_entities
 import java.util.List;
 
 /**
@@ -11,6 +15,19 @@ public interface WishListService {
     /**
      * Save a wishList.
      *
+<<<<<<< HEAD
+     * @param wishList the entity to save
+     * @return the persisted entity
+     */
+    WishList save(WishList wishList);
+
+    /**
+     *  Get all the wishLists.
+     *
+     *  @return the list of entities
+     */
+    List<WishList> findAll();
+=======
      * @param wishListDTO the entity to save
      * @return the persisted entity
      */
@@ -22,6 +39,7 @@ public interface WishListService {
      *  @return the list of entities
      */
     List<WishListDTO> findAll();
+>>>>>>> with_entities
 
     /**
      *  Get the "id" wishList.
@@ -29,7 +47,11 @@ public interface WishListService {
      *  @param id the id of the entity
      *  @return the entity
      */
+<<<<<<< HEAD
+    WishList findOne(Long id);
+=======
     WishListDTO findOne(Long id);
+>>>>>>> with_entities
 
     /**
      *  Delete the "id" wishList.
@@ -45,5 +67,9 @@ public interface WishListService {
      *  
      *  @return the list of entities
      */
+<<<<<<< HEAD
+    List<WishList> search(String query);
+=======
     List<WishListDTO> search(String query);
+>>>>>>> with_entities
 }

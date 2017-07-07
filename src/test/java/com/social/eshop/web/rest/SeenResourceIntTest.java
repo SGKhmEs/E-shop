@@ -6,8 +6,11 @@ import com.social.eshop.domain.Seen;
 import com.social.eshop.repository.SeenRepository;
 import com.social.eshop.service.SeenService;
 import com.social.eshop.repository.search.SeenSearchRepository;
+<<<<<<< HEAD
+=======
 import com.social.eshop.service.dto.SeenDTO;
 import com.social.eshop.service.mapper.SeenMapper;
+>>>>>>> with_entities
 import com.social.eshop.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -50,9 +53,12 @@ public class SeenResourceIntTest {
     private SeenRepository seenRepository;
 
     @Autowired
+<<<<<<< HEAD
+=======
     private SeenMapper seenMapper;
 
     @Autowired
+>>>>>>> with_entities
     private SeenService seenService;
 
     @Autowired
@@ -108,10 +114,16 @@ public class SeenResourceIntTest {
         int databaseSizeBeforeCreate = seenRepository.findAll().size();
 
         // Create the Seen
+<<<<<<< HEAD
+        restSeenMockMvc.perform(post("/api/seens")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(seen)))
+=======
         SeenDTO seenDTO = seenMapper.toDto(seen);
         restSeenMockMvc.perform(post("/api/seens")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(seenDTO)))
+>>>>>>> with_entities
             .andExpect(status().isCreated());
 
         // Validate the Seen in the database
@@ -132,12 +144,19 @@ public class SeenResourceIntTest {
 
         // Create the Seen with an existing ID
         seen.setId(1L);
+<<<<<<< HEAD
+=======
         SeenDTO seenDTO = seenMapper.toDto(seen);
+>>>>>>> with_entities
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restSeenMockMvc.perform(post("/api/seens")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
+<<<<<<< HEAD
+            .content(TestUtil.convertObjectToJsonBytes(seen)))
+=======
             .content(TestUtil.convertObjectToJsonBytes(seenDTO)))
+>>>>>>> with_entities
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -185,19 +204,31 @@ public class SeenResourceIntTest {
     @Transactional
     public void updateSeen() throws Exception {
         // Initialize the database
+<<<<<<< HEAD
+        seenService.save(seen);
+
+=======
         seenRepository.saveAndFlush(seen);
         seenSearchRepository.save(seen);
+>>>>>>> with_entities
         int databaseSizeBeforeUpdate = seenRepository.findAll().size();
 
         // Update the seen
         Seen updatedSeen = seenRepository.findOne(seen.getId());
         updatedSeen
             .data(UPDATED_DATA);
+<<<<<<< HEAD
+
+        restSeenMockMvc.perform(put("/api/seens")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(updatedSeen)))
+=======
         SeenDTO seenDTO = seenMapper.toDto(updatedSeen);
 
         restSeenMockMvc.perform(put("/api/seens")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(seenDTO)))
+>>>>>>> with_entities
             .andExpect(status().isOk());
 
         // Validate the Seen in the database
@@ -217,12 +248,19 @@ public class SeenResourceIntTest {
         int databaseSizeBeforeUpdate = seenRepository.findAll().size();
 
         // Create the Seen
+<<<<<<< HEAD
+=======
         SeenDTO seenDTO = seenMapper.toDto(seen);
+>>>>>>> with_entities
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
         restSeenMockMvc.perform(put("/api/seens")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
+<<<<<<< HEAD
+            .content(TestUtil.convertObjectToJsonBytes(seen)))
+=======
             .content(TestUtil.convertObjectToJsonBytes(seenDTO)))
+>>>>>>> with_entities
             .andExpect(status().isCreated());
 
         // Validate the Seen in the database
@@ -234,8 +272,13 @@ public class SeenResourceIntTest {
     @Transactional
     public void deleteSeen() throws Exception {
         // Initialize the database
+<<<<<<< HEAD
+        seenService.save(seen);
+
+=======
         seenRepository.saveAndFlush(seen);
         seenSearchRepository.save(seen);
+>>>>>>> with_entities
         int databaseSizeBeforeDelete = seenRepository.findAll().size();
 
         // Get the seen
@@ -256,8 +299,12 @@ public class SeenResourceIntTest {
     @Transactional
     public void searchSeen() throws Exception {
         // Initialize the database
+<<<<<<< HEAD
+        seenService.save(seen);
+=======
         seenRepository.saveAndFlush(seen);
         seenSearchRepository.save(seen);
+>>>>>>> with_entities
 
         // Search the seen
         restSeenMockMvc.perform(get("/api/_search/seens?query=id:" + seen.getId()))
@@ -281,6 +328,8 @@ public class SeenResourceIntTest {
         seen1.setId(null);
         assertThat(seen1).isNotEqualTo(seen2);
     }
+<<<<<<< HEAD
+=======
 
     @Test
     @Transactional
@@ -304,4 +353,5 @@ public class SeenResourceIntTest {
         assertThat(seenMapper.fromId(42L).getId()).isEqualTo(42);
         assertThat(seenMapper.fromId(null)).isNull();
     }
+>>>>>>> with_entities
 }

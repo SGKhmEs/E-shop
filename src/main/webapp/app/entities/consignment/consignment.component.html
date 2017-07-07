@@ -28,12 +28,20 @@
     <div class="table-responsive" *ngIf="consignments">
         <table class="table table-striped">
             <thead>
+<<<<<<< HEAD
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="eshopApp.consignment.price">Price</span></th>
+            <th><span jhiTranslate="eshopApp.consignment.storage">Storage</span></th>
+            <th><span jhiTranslate="eshopApp.consignment.producers">Producers</span></th>
+=======
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="price"><span jhiTranslate="eshopApp.consignment.price">Price</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="productsId"><span jhiTranslate="eshopApp.consignment.products">Products</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="storageId"><span jhiTranslate="eshopApp.consignment.storage">Storage</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="producersId"><span jhiTranslate="eshopApp.consignment.producers">Producers</span> <span class="fa fa-sort"></span></th>
+>>>>>>> with_entities
             <th></th>
             </tr>
             </thead>
@@ -42,6 +50,15 @@
                 <td><a [routerLink]="['../consignment', consignment.id ]">{{consignment.id}}</a></td>
                 <td>{{consignment.price}}</td>
                 <td>
+<<<<<<< HEAD
+                    <div *ngIf="consignment.storage">
+                        <a [routerLink]="['../storage', consignment.storage?.id ]" >{{consignment.storage?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="consignment.producers">
+                        <a [routerLink]="['../producers', consignment.producers?.id ]" >{{consignment.producers?.id}}</a>
+=======
                     <div *ngIf="consignment.productsId">
                         <a [routerLink]="['../products', consignment.productsId  ]" >{{consignment.productsId}}</a>
                     </div>
@@ -54,6 +71,7 @@
                 <td>
                     <div *ngIf="consignment.producersId">
                         <a [routerLink]="['../producers', consignment.producersId  ]" >{{consignment.producersId}}</a>
+>>>>>>> with_entities
                     </div>
                 </td>
                 <td class="text-right">
@@ -84,6 +102,8 @@
             </tbody>
         </table>
     </div>
+<<<<<<< HEAD
+=======
         <div *ngIf="consignments && consignments.length">
             <div class="row justify-content-center">
                 <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
@@ -92,4 +112,5 @@
                 <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
             </div>
         </div>
+>>>>>>> with_entities
 </div>

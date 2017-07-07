@@ -32,11 +32,16 @@ describe('Component Tests', () => {
                     SeenService,
                     EventManager
                 ]
+<<<<<<< HEAD
+            }).overrideTemplate(SeenDetailComponent, '')
+            .compileComponents();
+=======
             }).overrideComponent(SeenDetailComponent, {
                 set: {
                     template: ''
                 }
             }).compileComponents();
+>>>>>>> with_entities
         }));
 
         beforeEach(() => {

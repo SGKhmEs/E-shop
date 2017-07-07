@@ -32,11 +32,16 @@ describe('Component Tests', () => {
                     StorageService,
                     EventManager
                 ]
+<<<<<<< HEAD
+            }).overrideTemplate(StorageDetailComponent, '')
+            .compileComponents();
+=======
             }).overrideComponent(StorageDetailComponent, {
                 set: {
                     template: ''
                 }
             }).compileComponents();
+>>>>>>> with_entities
         }));
 
         beforeEach(() => {

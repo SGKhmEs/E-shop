@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { Observable } from 'rxjs/Rx';
 import { EshopTestModule } from '../../../test.module';
 import { PasswordComponent } from '../../../../../../main/webapp/app/account/password/password.component';
-import { Password } from '../../../../../../main/webapp/app/account/password/password.service';
+import { PasswordService } from '../../../../../../main/webapp/app/account/password/password.service';
 import { Principal } from '../../../../../../main/webapp/app/shared/auth/principal.service';
 import { AccountService } from '../../../../../../main/webapp/app/shared/auth/account.service';
 import { JhiTrackerService } from '../../../../../../main/webapp/app/shared/tracker/tracker.service';
@@ -15,7 +15,7 @@ describe('Component Tests', () => {
 
         let comp: PasswordComponent;
         let fixture: ComponentFixture<PasswordComponent>;
-        let service: Password;
+        let service: PasswordService;
 
         beforeEach(async(() => {
             TestBed.configureTestingModule({
@@ -28,19 +28,16 @@ describe('Component Tests', () => {
                         provide: JhiTrackerService,
                         useClass: MockTrackerService
                     },
-                    Password
+                    PasswordService
                 ]
-            }).overrideComponent(PasswordComponent, {
-                set: {
-                    template: ''
-                }
-            }).compileComponents();
+            }).overrideTemplate(PasswordComponent, '')
+            .compileComponents();
         }));
 
         beforeEach(() => {
             fixture = TestBed.createComponent(PasswordComponent);
             comp = fixture.componentInstance;
-            service = fixture.debugElement.injector.get(Password);
+            service = fixture.debugElement.injector.get(PasswordService);
         });
 
         it('should show error if passwords do not match', () => {

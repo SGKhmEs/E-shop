@@ -7,11 +7,20 @@ import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
 import java.io.Serializable;
+<<<<<<< HEAD
+import java.math.BigDecimal;
+=======
+>>>>>>> with_entities
 import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
 
+<<<<<<< HEAD
+import com.social.eshop.domain.enumeration.Status;
+
+=======
+>>>>>>> with_entities
 /**
  * A Bucket.
  */
@@ -28,6 +37,44 @@ public class Bucket implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
+<<<<<<< HEAD
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "data")
+    private ZonedDateTime data;
+
+    @Column(name = "sum", precision=10, scale=2)
+    private BigDecimal sum;
+
+    @Column(name = "order_number")
+    private Integer orderNumber;
+
+    @Column(name = "count")
+    private Integer count;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private Status status;
+
+    @Column(name = "consignment_note")
+    private String consignmentNote;
+
+    @ManyToOne
+    private Manager manager;
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    private AddressShipping addressShipping;
+
+    @OneToMany(mappedBy = "bucket")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<ProductInBucket> productInBuckets = new HashSet<>();
+
+    @ManyToOne
+    private Customer customer;
+=======
     @Column(name = "data")
     private ZonedDateTime data;
 
@@ -35,6 +82,7 @@ public class Bucket implements Serializable {
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Products> products = new HashSet<>();
+>>>>>>> with_entities
 
     public Long getId() {
         return id;
@@ -44,6 +92,22 @@ public class Bucket implements Serializable {
         this.id = id;
     }
 
+<<<<<<< HEAD
+    public String getName() {
+        return name;
+    }
+
+    public Bucket name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+=======
+>>>>>>> with_entities
     public ZonedDateTime getData() {
         return data;
     }
@@ -57,6 +121,135 @@ public class Bucket implements Serializable {
         this.data = data;
     }
 
+<<<<<<< HEAD
+    public BigDecimal getSum() {
+        return sum;
+    }
+
+    public Bucket sum(BigDecimal sum) {
+        this.sum = sum;
+        return this;
+    }
+
+    public void setSum(BigDecimal sum) {
+        this.sum = sum;
+    }
+
+    public Integer getOrderNumber() {
+        return orderNumber;
+    }
+
+    public Bucket orderNumber(Integer orderNumber) {
+        this.orderNumber = orderNumber;
+        return this;
+    }
+
+    public void setOrderNumber(Integer orderNumber) {
+        this.orderNumber = orderNumber;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public Bucket count(Integer count) {
+        this.count = count;
+        return this;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public Bucket status(Status status) {
+        this.status = status;
+        return this;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public String getConsignmentNote() {
+        return consignmentNote;
+    }
+
+    public Bucket consignmentNote(String consignmentNote) {
+        this.consignmentNote = consignmentNote;
+        return this;
+    }
+
+    public void setConsignmentNote(String consignmentNote) {
+        this.consignmentNote = consignmentNote;
+    }
+
+    public Manager getManager() {
+        return manager;
+    }
+
+    public Bucket manager(Manager manager) {
+        this.manager = manager;
+        return this;
+    }
+
+    public void setManager(Manager manager) {
+        this.manager = manager;
+    }
+
+    public AddressShipping getAddressShipping() {
+        return addressShipping;
+    }
+
+    public Bucket addressShipping(AddressShipping addressShipping) {
+        this.addressShipping = addressShipping;
+        return this;
+    }
+
+    public void setAddressShipping(AddressShipping addressShipping) {
+        this.addressShipping = addressShipping;
+    }
+
+    public Set<ProductInBucket> getProductInBuckets() {
+        return productInBuckets;
+    }
+
+    public Bucket productInBuckets(Set<ProductInBucket> productInBuckets) {
+        this.productInBuckets = productInBuckets;
+        return this;
+    }
+
+    public Bucket addProductInBucket(ProductInBucket productInBucket) {
+        this.productInBuckets.add(productInBucket);
+        productInBucket.setBucket(this);
+        return this;
+    }
+
+    public Bucket removeProductInBucket(ProductInBucket productInBucket) {
+        this.productInBuckets.remove(productInBucket);
+        productInBucket.setBucket(null);
+        return this;
+    }
+
+    public void setProductInBuckets(Set<ProductInBucket> productInBuckets) {
+        this.productInBuckets = productInBuckets;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public Bucket customer(Customer customer) {
+        this.customer = customer;
+        return this;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+=======
     public Set<Products> getProducts() {
         return products;
     }
@@ -80,6 +273,7 @@ public class Bucket implements Serializable {
 
     public void setProducts(Set<Products> products) {
         this.products = products;
+>>>>>>> with_entities
     }
 
     @Override
@@ -106,7 +300,17 @@ public class Bucket implements Serializable {
     public String toString() {
         return "Bucket{" +
             "id=" + getId() +
+<<<<<<< HEAD
+            ", name='" + getName() + "'" +
             ", data='" + getData() + "'" +
+            ", sum='" + getSum() + "'" +
+            ", orderNumber='" + getOrderNumber() + "'" +
+            ", count='" + getCount() + "'" +
+            ", status='" + getStatus() + "'" +
+            ", consignmentNote='" + getConsignmentNote() + "'" +
+=======
+            ", data='" + getData() + "'" +
+>>>>>>> with_entities
             "}";
     }
 }

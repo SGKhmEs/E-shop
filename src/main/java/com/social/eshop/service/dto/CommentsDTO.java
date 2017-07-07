@@ -1,5 +1,19 @@
 package com.social.eshop.service.dto;
 
+<<<<<<< HEAD
+import com.social.eshop.domain.Customer;
+import com.social.eshop.service.mapper.AutoMapping;
+
+import java.time.ZonedDateTime;
+
+public class CommentsDTO implements AutoMapping {
+
+    private String comments;
+    private ZonedDateTime date;
+    private Customer customer;
+
+    public CommentsDTO() { }
+=======
 
 import java.time.ZonedDateTime;
 import java.io.Serializable;
@@ -29,6 +43,7 @@ public class CommentsDTO implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+>>>>>>> with_entities
 
     public String getComments() {
         return comments;
@@ -38,6 +53,22 @@ public class CommentsDTO implements Serializable {
         this.comments = comments;
     }
 
+<<<<<<< HEAD
+    public ZonedDateTime getDate() {
+        return date;
+    }
+
+    public void setDate(ZonedDateTime date) {
+        this.date = date;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+=======
     public ZonedDateTime getData() {
         return data;
     }
@@ -81,14 +112,22 @@ public class CommentsDTO implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hashCode(getId());
+>>>>>>> with_entities
     }
 
     @Override
     public String toString() {
         return "CommentsDTO{" +
+<<<<<<< HEAD
+            "comments='" + comments + '\'' +
+            ", date=" + date +
+            ", customer=" + customer +
+            '}';
+=======
             "id=" + getId() +
             ", comments='" + getComments() + "'" +
             ", data='" + getData() + "'" +
             "}";
+>>>>>>> with_entities
     }
 }

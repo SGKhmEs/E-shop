@@ -1,6 +1,9 @@
 package com.social.eshop.domain;
 
+<<<<<<< HEAD
+=======
 import com.fasterxml.jackson.annotation.JsonIgnore;
+>>>>>>> with_entities
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -8,8 +11,11 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+<<<<<<< HEAD
+=======
 import java.util.HashSet;
 import java.util.Set;
+>>>>>>> with_entities
 import java.util.Objects;
 
 /**
@@ -49,12 +55,16 @@ public class Media implements Serializable {
     private String size;
 
     @ManyToOne
+<<<<<<< HEAD
+    private Products products;
+=======
     private Comments comments;
 
     @OneToMany(mappedBy = "media")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Products> products = new HashSet<>();
+>>>>>>> with_entities
 
     public Long getId() {
         return id;
@@ -129,6 +139,13 @@ public class Media implements Serializable {
         this.size = size;
     }
 
+<<<<<<< HEAD
+    public Products getProducts() {
+        return products;
+    }
+
+    public Media products(Products products) {
+=======
     public Comments getComments() {
         return comments;
     }
@@ -147,10 +164,14 @@ public class Media implements Serializable {
     }
 
     public Media products(Set<Products> products) {
+>>>>>>> with_entities
         this.products = products;
         return this;
     }
 
+<<<<<<< HEAD
+    public void setProducts(Products products) {
+=======
     public Media addProduct(Products products) {
         this.products.add(products);
         products.setMedia(this);
@@ -164,6 +185,7 @@ public class Media implements Serializable {
     }
 
     public void setProducts(Set<Products> products) {
+>>>>>>> with_entities
         this.products = products;
     }
 

@@ -16,8 +16,13 @@
             "detail": {
                 "title": "Wish List"
             },
+<<<<<<< HEAD
+            "data": "Data",
+            "customer": "Customer",
+=======
             "wishsName": "Wishs Name",
             "data": "Data",
+>>>>>>> with_entities
             "product": "Product"
         }
     }

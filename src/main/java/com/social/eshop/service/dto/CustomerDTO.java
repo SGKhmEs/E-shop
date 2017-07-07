@@ -1,5 +1,52 @@
 package com.social.eshop.service.dto;
 
+<<<<<<< HEAD
+import com.social.eshop.domain.Seen;
+import com.social.eshop.domain.WishList;
+import com.social.eshop.service.mapper.AutoMapping;
+
+import java.util.List;
+
+public class CustomerDTO implements AutoMapping {
+
+    private String sessionId;
+    private List<WishList> wishLists;
+    private List<Seen> seens;
+    private List<ProductsDTO> products;
+
+    public CustomerDTO() { }
+
+    public String getSessionId() {
+        return sessionId;
+    }
+
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
+    }
+
+    public List<WishList> getWishLists() {
+        return wishLists;
+    }
+
+    public void setWishLists(List<WishList> wishLists) {
+        this.wishLists = wishLists;
+    }
+
+    public List<Seen> getSeens() {
+        return seens;
+    }
+
+    public void setSeens(List<Seen> seens) {
+        this.seens = seens;
+    }
+
+    public List<ProductsDTO> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<ProductsDTO> products) {
+        this.products = products;
+=======
 
 import java.io.Serializable;
 import java.util.HashSet;
@@ -81,13 +128,22 @@ public class CustomerDTO implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hashCode(getId());
+>>>>>>> with_entities
     }
 
     @Override
     public String toString() {
         return "CustomerDTO{" +
+<<<<<<< HEAD
+            "sessionId='" + sessionId + '\'' +
+            ", wishLists=" + wishLists +
+            ", seens=" + seens +
+            ", products=" + products +
+            '}';
+=======
             "id=" + getId() +
             ", roles='" + getRoles() + "'" +
             "}";
+>>>>>>> with_entities
     }
 }

@@ -32,11 +32,16 @@ describe('Component Tests', () => {
                     SubCategoryService,
                     EventManager
                 ]
+<<<<<<< HEAD
+            }).overrideTemplate(SubCategoryDetailComponent, '')
+            .compileComponents();
+=======
             }).overrideComponent(SubCategoryDetailComponent, {
                 set: {
                     template: ''
                 }
             }).compileComponents();
+>>>>>>> with_entities
         }));
 
         beforeEach(() => {

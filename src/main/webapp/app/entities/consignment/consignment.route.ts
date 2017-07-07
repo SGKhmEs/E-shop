@@ -11,6 +11,8 @@ import { ConsignmentDeletePopupComponent } from './consignment-delete-dialog.com
 
 import { Principal } from '../../shared';
 
+<<<<<<< HEAD
+=======
 @Injectable()
 export class ConsignmentResolvePagingParams implements Resolve<any> {
 
@@ -27,13 +29,17 @@ export class ConsignmentResolvePagingParams implements Resolve<any> {
     }
 }
 
+>>>>>>> with_entities
 export const consignmentRoute: Routes = [
     {
         path: 'consignment',
         component: ConsignmentComponent,
+<<<<<<< HEAD
+=======
         resolve: {
             'pagingParams': ConsignmentResolvePagingParams
         },
+>>>>>>> with_entities
         data: {
             authorities: ['ROLE_USER'],
             pageTitle: 'eshopApp.consignment.home.title'

@@ -2,6 +2,12 @@
     "fluentMethods": true,
     "relationships": [
         {
+<<<<<<< HEAD
+            "relationshipName": "products",
+            "otherEntityName": "products",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+=======
             "relationshipName": "comments",
             "otherEntityName": "comments",
             "relationshipType": "many-to-one",
@@ -12,6 +18,7 @@
             "relationshipName": "product",
             "otherEntityName": "products",
             "otherEntityRelationshipName": "media"
+>>>>>>> with_entities
         }
     ],
     "fields": [
@@ -51,9 +58,15 @@
             ]
         }
     ],
+<<<<<<< HEAD
+    "changelogDate": "20170610234504",
+    "entityTableName": "media",
+    "dto": "no",
+=======
     "changelogDate": "20170525235452",
     "entityTableName": "media",
     "dto": "mapstruct",
+>>>>>>> with_entities
     "pagination": "no",
     "service": "serviceImpl"
 }

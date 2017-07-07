@@ -11,29 +11,61 @@
         },
         {
             "relationshipType": "one-to-one",
+<<<<<<< HEAD
+            "relationshipName": "customerRoom",
+            "otherEntityName": "customerRoom",
+=======
             "relationshipName": "confirm",
             "otherEntityName": "confirm",
+>>>>>>> with_entities
             "otherEntityField": "id",
             "ownerSide": true,
             "otherEntityRelationshipName": "customer"
         },
         {
+<<<<<<< HEAD
+            "relationshipType": "one-to-many",
+            "relationshipName": "seen",
+            "otherEntityName": "seen",
+            "otherEntityRelationshipName": "customer"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "wishList",
+            "otherEntityName": "wishList",
+=======
             "relationshipType": "one-to-one",
             "relationshipName": "userRoom",
             "otherEntityName": "customerRoom",
             "otherEntityField": "id",
             "ownerSide": true,
+>>>>>>> with_entities
             "otherEntityRelationshipName": "customer"
         },
         {
             "relationshipType": "one-to-many",
+<<<<<<< HEAD
+            "relationshipName": "comments",
+            "otherEntityName": "comments",
+=======
             "relationshipName": "customer",
             "otherEntityName": "sessionId",
+>>>>>>> with_entities
             "otherEntityRelationshipName": "customer"
         }
     ],
     "fields": [
         {
+<<<<<<< HEAD
+            "fieldName": "sessionId",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170610234444",
+    "entityTableName": "customer",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+=======
             "fieldName": "roles",
             "fieldType": "Roles",
             "fieldValues": "USER,MODERATOR,ADMINISTRATOR,OWNER"
@@ -43,5 +75,6 @@
     "entityTableName": "customer",
     "dto": "mapstruct",
     "pagination": "no",
+>>>>>>> with_entities
     "service": "serviceImpl"
 }

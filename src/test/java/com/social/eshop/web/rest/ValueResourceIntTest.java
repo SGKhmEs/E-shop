@@ -6,8 +6,11 @@ import com.social.eshop.domain.Value;
 import com.social.eshop.repository.ValueRepository;
 import com.social.eshop.service.ValueService;
 import com.social.eshop.repository.search.ValueSearchRepository;
+<<<<<<< HEAD
+=======
 import com.social.eshop.service.dto.ValueDTO;
 import com.social.eshop.service.mapper.ValueMapper;
+>>>>>>> with_entities
 import com.social.eshop.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -48,9 +51,12 @@ public class ValueResourceIntTest {
     private ValueRepository valueRepository;
 
     @Autowired
+<<<<<<< HEAD
+=======
     private ValueMapper valueMapper;
 
     @Autowired
+>>>>>>> with_entities
     private ValueService valueService;
 
     @Autowired
@@ -106,10 +112,16 @@ public class ValueResourceIntTest {
         int databaseSizeBeforeCreate = valueRepository.findAll().size();
 
         // Create the Value
+<<<<<<< HEAD
+        restValueMockMvc.perform(post("/api/values")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(value)))
+=======
         ValueDTO valueDTO = valueMapper.toDto(value);
         restValueMockMvc.perform(post("/api/values")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(valueDTO)))
+>>>>>>> with_entities
             .andExpect(status().isCreated());
 
         // Validate the Value in the database
@@ -130,12 +142,19 @@ public class ValueResourceIntTest {
 
         // Create the Value with an existing ID
         value.setId(1L);
+<<<<<<< HEAD
+=======
         ValueDTO valueDTO = valueMapper.toDto(value);
+>>>>>>> with_entities
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restValueMockMvc.perform(post("/api/values")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
+<<<<<<< HEAD
+            .content(TestUtil.convertObjectToJsonBytes(value)))
+=======
             .content(TestUtil.convertObjectToJsonBytes(valueDTO)))
+>>>>>>> with_entities
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -151,11 +170,18 @@ public class ValueResourceIntTest {
         value.setData(null);
 
         // Create the Value, which fails.
+<<<<<<< HEAD
+
+        restValueMockMvc.perform(post("/api/values")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(value)))
+=======
         ValueDTO valueDTO = valueMapper.toDto(value);
 
         restValueMockMvc.perform(post("/api/values")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(valueDTO)))
+>>>>>>> with_entities
             .andExpect(status().isBadRequest());
 
         List<Value> valueList = valueRepository.findAll();
@@ -202,19 +228,31 @@ public class ValueResourceIntTest {
     @Transactional
     public void updateValue() throws Exception {
         // Initialize the database
+<<<<<<< HEAD
+        valueService.save(value);
+
+=======
         valueRepository.saveAndFlush(value);
         valueSearchRepository.save(value);
+>>>>>>> with_entities
         int databaseSizeBeforeUpdate = valueRepository.findAll().size();
 
         // Update the value
         Value updatedValue = valueRepository.findOne(value.getId());
         updatedValue
             .data(UPDATED_DATA);
+<<<<<<< HEAD
+
+        restValueMockMvc.perform(put("/api/values")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(updatedValue)))
+=======
         ValueDTO valueDTO = valueMapper.toDto(updatedValue);
 
         restValueMockMvc.perform(put("/api/values")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(valueDTO)))
+>>>>>>> with_entities
             .andExpect(status().isOk());
 
         // Validate the Value in the database
@@ -234,12 +272,19 @@ public class ValueResourceIntTest {
         int databaseSizeBeforeUpdate = valueRepository.findAll().size();
 
         // Create the Value
+<<<<<<< HEAD
+=======
         ValueDTO valueDTO = valueMapper.toDto(value);
+>>>>>>> with_entities
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
         restValueMockMvc.perform(put("/api/values")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
+<<<<<<< HEAD
+            .content(TestUtil.convertObjectToJsonBytes(value)))
+=======
             .content(TestUtil.convertObjectToJsonBytes(valueDTO)))
+>>>>>>> with_entities
             .andExpect(status().isCreated());
 
         // Validate the Value in the database
@@ -251,8 +296,13 @@ public class ValueResourceIntTest {
     @Transactional
     public void deleteValue() throws Exception {
         // Initialize the database
+<<<<<<< HEAD
+        valueService.save(value);
+
+=======
         valueRepository.saveAndFlush(value);
         valueSearchRepository.save(value);
+>>>>>>> with_entities
         int databaseSizeBeforeDelete = valueRepository.findAll().size();
 
         // Get the value
@@ -273,8 +323,12 @@ public class ValueResourceIntTest {
     @Transactional
     public void searchValue() throws Exception {
         // Initialize the database
+<<<<<<< HEAD
+        valueService.save(value);
+=======
         valueRepository.saveAndFlush(value);
         valueSearchRepository.save(value);
+>>>>>>> with_entities
 
         // Search the value
         restValueMockMvc.perform(get("/api/_search/values?query=id:" + value.getId()))
@@ -298,6 +352,8 @@ public class ValueResourceIntTest {
         value1.setId(null);
         assertThat(value1).isNotEqualTo(value2);
     }
+<<<<<<< HEAD
+=======
 
     @Test
     @Transactional
@@ -321,4 +377,5 @@ public class ValueResourceIntTest {
         assertThat(valueMapper.fromId(42L).getId()).isEqualTo(42);
         assertThat(valueMapper.fromId(null)).isNull();
     }
+>>>>>>> with_entities
 }

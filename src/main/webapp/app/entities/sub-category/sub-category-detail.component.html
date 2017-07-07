@@ -10,8 +10,19 @@
         </dd>
         <dt><span jhiTranslate="eshopApp.subCategory.category">Category</span></dt>
         <dd>
+<<<<<<< HEAD
+            <div *ngIf="subCategory.category">
+                <a [routerLink]="['/category', subCategory.category?.id]">{{subCategory.category?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.subCategory.options">Options</span></dt>
+        <dd>
+            <div *ngIf="subCategory.options">
+                <a [routerLink]="['/options', subCategory.options?.id]">{{subCategory.options?.id}}</a>
+=======
             <div *ngIf="subCategory.categoryId">
                 <a [routerLink]="['/category', subCategory.categoryId]">{{subCategory.categoryId}}</a>
+>>>>>>> with_entities
             </div>
         </dd>
     </dl>

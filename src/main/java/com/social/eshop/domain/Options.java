@@ -41,9 +41,12 @@ public class Options implements Serializable {
     @JoinColumn(unique = true)
     private Type type;
 
+<<<<<<< HEAD
+=======
     @ManyToOne
     private SubCategory subCategory;
 
+>>>>>>> with_entities
     public Long getId() {
         return id;
     }
@@ -104,6 +107,8 @@ public class Options implements Serializable {
         this.type = type;
     }
 
+<<<<<<< HEAD
+=======
     public SubCategory getSubCategory() {
         return subCategory;
     }
@@ -117,6 +122,7 @@ public class Options implements Serializable {
         this.subCategory = subCategory;
     }
 
+>>>>>>> with_entities
     @Override
     public boolean equals(Object o) {
         if (this == o) {

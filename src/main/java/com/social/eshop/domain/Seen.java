@@ -1,6 +1,9 @@
 package com.social.eshop.domain;
 
+<<<<<<< HEAD
+=======
 import com.fasterxml.jackson.annotation.JsonIgnore;
+>>>>>>> with_entities
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -8,8 +11,11 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+<<<<<<< HEAD
+=======
 import java.util.HashSet;
 import java.util.Set;
+>>>>>>> with_entities
 import java.util.Objects;
 
 /**
@@ -31,10 +37,19 @@ public class Seen implements Serializable {
     @Column(name = "data")
     private LocalDate data;
 
+<<<<<<< HEAD
+    @ManyToOne
+    private Customer customer;
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Products products;
+=======
     @OneToMany(mappedBy = "seen")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Products> products = new HashSet<>();
+>>>>>>> with_entities
 
     public Long getId() {
         return id;
@@ -57,6 +72,31 @@ public class Seen implements Serializable {
         this.data = data;
     }
 
+<<<<<<< HEAD
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public Seen customer(Customer customer) {
+        this.customer = customer;
+        return this;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Products getProducts() {
+        return products;
+    }
+
+    public Seen products(Products products) {
+        this.products = products;
+        return this;
+    }
+
+    public void setProducts(Products products) {
+=======
     public Set<Products> getProducts() {
         return products;
     }
@@ -79,6 +119,7 @@ public class Seen implements Serializable {
     }
 
     public void setProducts(Set<Products> products) {
+>>>>>>> with_entities
         this.products = products;
     }
 

@@ -16,8 +16,22 @@
             "detail": {
                 "title": "Bucket"
             },
+<<<<<<< HEAD
+            "name": "Name",
+            "data": "Data",
+            "sum": "Sum",
+            "orderNumber": "Order Number",
+            "count": "Count",
+            "status": "Status",
+            "consignmentNote": "Consignment Note",
+            "manager": "Manager",
+            "addressShipping": "Address Shipping",
+            "productInBucket": "Product In Bucket",
+            "customer": "Customer"
+=======
             "data": "Data",
             "product": "Product"
+>>>>>>> with_entities
         }
     }
 }

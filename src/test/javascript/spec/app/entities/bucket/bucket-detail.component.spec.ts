@@ -32,11 +32,16 @@ describe('Component Tests', () => {
                     BucketService,
                     EventManager
                 ]
+<<<<<<< HEAD
+            }).overrideTemplate(BucketDetailComponent, '')
+            .compileComponents();
+=======
             }).overrideComponent(BucketDetailComponent, {
                 set: {
                     template: ''
                 }
             }).compileComponents();
+>>>>>>> with_entities
         }));
 
         beforeEach(() => {

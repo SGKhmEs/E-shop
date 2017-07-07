@@ -6,8 +6,11 @@ import com.social.eshop.domain.Category;
 import com.social.eshop.repository.CategoryRepository;
 import com.social.eshop.service.CategoryService;
 import com.social.eshop.repository.search.CategorySearchRepository;
+<<<<<<< HEAD
+=======
 import com.social.eshop.service.dto.CategoryDTO;
 import com.social.eshop.service.mapper.CategoryMapper;
+>>>>>>> with_entities
 import com.social.eshop.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -48,9 +51,12 @@ public class CategoryResourceIntTest {
     private CategoryRepository categoryRepository;
 
     @Autowired
+<<<<<<< HEAD
+=======
     private CategoryMapper categoryMapper;
 
     @Autowired
+>>>>>>> with_entities
     private CategoryService categoryService;
 
     @Autowired
@@ -106,10 +112,16 @@ public class CategoryResourceIntTest {
         int databaseSizeBeforeCreate = categoryRepository.findAll().size();
 
         // Create the Category
+<<<<<<< HEAD
+        restCategoryMockMvc.perform(post("/api/categories")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(category)))
+=======
         CategoryDTO categoryDTO = categoryMapper.toDto(category);
         restCategoryMockMvc.perform(post("/api/categories")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(categoryDTO)))
+>>>>>>> with_entities
             .andExpect(status().isCreated());
 
         // Validate the Category in the database
@@ -130,12 +142,19 @@ public class CategoryResourceIntTest {
 
         // Create the Category with an existing ID
         category.setId(1L);
+<<<<<<< HEAD
+=======
         CategoryDTO categoryDTO = categoryMapper.toDto(category);
+>>>>>>> with_entities
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restCategoryMockMvc.perform(post("/api/categories")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
+<<<<<<< HEAD
+            .content(TestUtil.convertObjectToJsonBytes(category)))
+=======
             .content(TestUtil.convertObjectToJsonBytes(categoryDTO)))
+>>>>>>> with_entities
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -151,11 +170,18 @@ public class CategoryResourceIntTest {
         category.setName(null);
 
         // Create the Category, which fails.
+<<<<<<< HEAD
+
+        restCategoryMockMvc.perform(post("/api/categories")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(category)))
+=======
         CategoryDTO categoryDTO = categoryMapper.toDto(category);
 
         restCategoryMockMvc.perform(post("/api/categories")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(categoryDTO)))
+>>>>>>> with_entities
             .andExpect(status().isBadRequest());
 
         List<Category> categoryList = categoryRepository.findAll();
@@ -202,19 +228,31 @@ public class CategoryResourceIntTest {
     @Transactional
     public void updateCategory() throws Exception {
         // Initialize the database
+<<<<<<< HEAD
+        categoryService.save(category);
+
+=======
         categoryRepository.saveAndFlush(category);
         categorySearchRepository.save(category);
+>>>>>>> with_entities
         int databaseSizeBeforeUpdate = categoryRepository.findAll().size();
 
         // Update the category
         Category updatedCategory = categoryRepository.findOne(category.getId());
         updatedCategory
             .name(UPDATED_NAME);
+<<<<<<< HEAD
+
+        restCategoryMockMvc.perform(put("/api/categories")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(updatedCategory)))
+=======
         CategoryDTO categoryDTO = categoryMapper.toDto(updatedCategory);
 
         restCategoryMockMvc.perform(put("/api/categories")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(categoryDTO)))
+>>>>>>> with_entities
             .andExpect(status().isOk());
 
         // Validate the Category in the database
@@ -234,12 +272,19 @@ public class CategoryResourceIntTest {
         int databaseSizeBeforeUpdate = categoryRepository.findAll().size();
 
         // Create the Category
+<<<<<<< HEAD
+=======
         CategoryDTO categoryDTO = categoryMapper.toDto(category);
+>>>>>>> with_entities
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
         restCategoryMockMvc.perform(put("/api/categories")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
+<<<<<<< HEAD
+            .content(TestUtil.convertObjectToJsonBytes(category)))
+=======
             .content(TestUtil.convertObjectToJsonBytes(categoryDTO)))
+>>>>>>> with_entities
             .andExpect(status().isCreated());
 
         // Validate the Category in the database
@@ -251,8 +296,13 @@ public class CategoryResourceIntTest {
     @Transactional
     public void deleteCategory() throws Exception {
         // Initialize the database
+<<<<<<< HEAD
+        categoryService.save(category);
+
+=======
         categoryRepository.saveAndFlush(category);
         categorySearchRepository.save(category);
+>>>>>>> with_entities
         int databaseSizeBeforeDelete = categoryRepository.findAll().size();
 
         // Get the category
@@ -273,8 +323,12 @@ public class CategoryResourceIntTest {
     @Transactional
     public void searchCategory() throws Exception {
         // Initialize the database
+<<<<<<< HEAD
+        categoryService.save(category);
+=======
         categoryRepository.saveAndFlush(category);
         categorySearchRepository.save(category);
+>>>>>>> with_entities
 
         // Search the category
         restCategoryMockMvc.perform(get("/api/_search/categories?query=id:" + category.getId()))
@@ -298,6 +352,8 @@ public class CategoryResourceIntTest {
         category1.setId(null);
         assertThat(category1).isNotEqualTo(category2);
     }
+<<<<<<< HEAD
+=======
 
     @Test
     @Transactional
@@ -321,4 +377,5 @@ public class CategoryResourceIntTest {
         assertThat(categoryMapper.fromId(42L).getId()).isEqualTo(42);
         assertThat(categoryMapper.fromId(null)).isNull();
     }
+>>>>>>> with_entities
 }

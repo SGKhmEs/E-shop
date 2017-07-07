@@ -18,7 +18,10 @@
             },
             "comments": "Comments",
             "data": "Data",
+<<<<<<< HEAD
+=======
             "customerRoom": "Customer Room",
+>>>>>>> with_entities
             "customer": "Customer",
             "products": "Products"
         }

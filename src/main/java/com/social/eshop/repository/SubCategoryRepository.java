@@ -12,5 +12,9 @@ import org.springframework.data.jpa.repository.*;
 @SuppressWarnings("unused")
 @Repository
 public interface SubCategoryRepository extends JpaRepository<SubCategory,Long> {
+<<<<<<< HEAD
+    
+=======
 
+>>>>>>> with_entities
 }

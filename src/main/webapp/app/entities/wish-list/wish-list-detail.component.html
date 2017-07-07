@@ -4,6 +4,23 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
+<<<<<<< HEAD
+        <dt><span jhiTranslate="eshopApp.wishList.data">Data</span></dt>
+        <dd>
+            <span>{{wishList.data | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.wishList.customer">Customer</span></dt>
+        <dd>
+            <div *ngIf="wishList.customer">
+                <a [routerLink]="['/customer', wishList.customer?.id]">{{wishList.customer?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.wishList.product">Product</span></dt>
+        <dd>
+            <div *ngIf="wishList.product">
+                <a [routerLink]="['/products', wishList.product?.id]">{{wishList.product?.id}}</a>
+            </div>
+=======
         <dt><span jhiTranslate="eshopApp.wishList.wishsName">Wishs Name</span></dt>
         <dd>
             <span>{{wishList.wishsName}}</span>
@@ -11,6 +28,7 @@
         <dt><span jhiTranslate="eshopApp.wishList.data">Data</span></dt>
         <dd>
             <span>{{wishList.data | date:'mediumDate'}}</span>
+>>>>>>> with_entities
         </dd>
     </dl>
 

@@ -1,14 +1,20 @@
 package com.social.eshop.domain;
 
+<<<<<<< HEAD
+=======
 import com.fasterxml.jackson.annotation.JsonIgnore;
+>>>>>>> with_entities
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
 import java.io.Serializable;
+<<<<<<< HEAD
+=======
 import java.util.HashSet;
 import java.util.Set;
+>>>>>>> with_entities
 import java.util.Objects;
 
 import com.social.eshop.domain.enumeration.SocialConnect;
@@ -38,6 +44,8 @@ public class CustomerRoom implements Serializable {
 
     @OneToOne
     @JoinColumn(unique = true)
+<<<<<<< HEAD
+=======
     private PersonalInformation personalInfo;
 
     @OneToOne
@@ -46,10 +54,14 @@ public class CustomerRoom implements Serializable {
 
     @OneToOne
     @JoinColumn(unique = true)
+>>>>>>> with_entities
     private Address address;
 
     @OneToOne
     @JoinColumn(unique = true)
+<<<<<<< HEAD
+    private PersonalInformation personalInfo;
+=======
     private Bucket bucket;
 
     @OneToOne
@@ -64,6 +76,7 @@ public class CustomerRoom implements Serializable {
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Comments> customers = new HashSet<>();
+>>>>>>> with_entities
 
     public Long getId() {
         return id;
@@ -99,6 +112,8 @@ public class CustomerRoom implements Serializable {
         this.sosialConnect = sosialConnect;
     }
 
+<<<<<<< HEAD
+=======
     public PersonalInformation getPersonalInfo() {
         return personalInfo;
     }
@@ -125,6 +140,7 @@ public class CustomerRoom implements Serializable {
         this.wishList = wishList;
     }
 
+>>>>>>> with_entities
     public Address getAddress() {
         return address;
     }
@@ -138,6 +154,19 @@ public class CustomerRoom implements Serializable {
         this.address = address;
     }
 
+<<<<<<< HEAD
+    public PersonalInformation getPersonalInfo() {
+        return personalInfo;
+    }
+
+    public CustomerRoom personalInfo(PersonalInformation personalInformation) {
+        this.personalInfo = personalInformation;
+        return this;
+    }
+
+    public void setPersonalInfo(PersonalInformation personalInformation) {
+        this.personalInfo = personalInformation;
+=======
     public Bucket getBucket() {
         return bucket;
     }
@@ -200,6 +229,7 @@ public class CustomerRoom implements Serializable {
 
     public void setCustomers(Set<Comments> comments) {
         this.customers = comments;
+>>>>>>> with_entities
     }
 
     @Override

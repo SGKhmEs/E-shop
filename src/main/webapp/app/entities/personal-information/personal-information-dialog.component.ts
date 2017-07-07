@@ -10,7 +10,10 @@ import { PersonalInformation } from './personal-information.model';
 import { PersonalInformationPopupService } from './personal-information-popup.service';
 import { PersonalInformationService } from './personal-information.service';
 import { Avatar, AvatarService } from '../avatar';
+<<<<<<< HEAD
+=======
 import { AddressShipping, AddressShippingService } from '../address-shipping';
+>>>>>>> with_entities
 import { ResponseWrapper } from '../../shared';
 
 @Component({
@@ -24,8 +27,11 @@ export class PersonalInformationDialogComponent implements OnInit {
     isSaving: boolean;
 
     avatars: Avatar[];
+<<<<<<< HEAD
+=======
 
     addressshippings: AddressShipping[];
+>>>>>>> with_entities
     dateBirthDp: any;
 
     constructor(
@@ -33,7 +39,10 @@ export class PersonalInformationDialogComponent implements OnInit {
         private alertService: AlertService,
         private personalInformationService: PersonalInformationService,
         private avatarService: AvatarService,
+<<<<<<< HEAD
+=======
         private addressShippingService: AddressShippingService,
+>>>>>>> with_entities
         private eventManager: EventManager
     ) {
     }
@@ -44,16 +53,28 @@ export class PersonalInformationDialogComponent implements OnInit {
         this.avatarService
             .query({filter: 'personalinformation-is-null'})
             .subscribe((res: ResponseWrapper) => {
+<<<<<<< HEAD
+                if (!this.personalInformation.avatar || !this.personalInformation.avatar.id) {
+                    this.avatars = res.json;
+                } else {
+                    this.avatarService
+                        .find(this.personalInformation.avatar.id)
+=======
                 if (!this.personalInformation.avatarId) {
                     this.avatars = res.json;
                 } else {
                     this.avatarService
                         .find(this.personalInformation.avatarId)
+>>>>>>> with_entities
                         .subscribe((subRes: Avatar) => {
                             this.avatars = [subRes].concat(res.json);
                         }, (subRes: ResponseWrapper) => this.onError(subRes.json));
                 }
             }, (res: ResponseWrapper) => this.onError(res.json));
+<<<<<<< HEAD
+    }
+
+=======
         this.addressShippingService
             .query({filter: 'personalinformation-is-null'})
             .subscribe((res: ResponseWrapper) => {
@@ -68,6 +89,7 @@ export class PersonalInformationDialogComponent implements OnInit {
                 }
             }, (res: ResponseWrapper) => this.onError(res.json));
     }
+>>>>>>> with_entities
     clear() {
         this.activeModal.dismiss('cancel');
     }
@@ -76,6 +98,26 @@ export class PersonalInformationDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.personalInformation.id !== undefined) {
             this.subscribeToSaveResponse(
+<<<<<<< HEAD
+                this.personalInformationService.update(this.personalInformation), false);
+        } else {
+            this.subscribeToSaveResponse(
+                this.personalInformationService.create(this.personalInformation), true);
+        }
+    }
+
+    private subscribeToSaveResponse(result: Observable<PersonalInformation>, isCreated: boolean) {
+        result.subscribe((res: PersonalInformation) =>
+            this.onSaveSuccess(res, isCreated), (res: Response) => this.onSaveError(res));
+    }
+
+    private onSaveSuccess(result: PersonalInformation, isCreated: boolean) {
+        this.alertService.success(
+            isCreated ? 'eshopApp.personalInformation.created'
+            : 'eshopApp.personalInformation.updated',
+            { param : result.id }, null);
+
+=======
                 this.personalInformationService.update(this.personalInformation));
         } else {
             this.subscribeToSaveResponse(
@@ -89,6 +131,7 @@ export class PersonalInformationDialogComponent implements OnInit {
     }
 
     private onSaveSuccess(result: PersonalInformation) {
+>>>>>>> with_entities
         this.eventManager.broadcast({ name: 'personalInformationListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
@@ -111,10 +154,13 @@ export class PersonalInformationDialogComponent implements OnInit {
     trackAvatarById(index: number, item: Avatar) {
         return item.id;
     }
+<<<<<<< HEAD
+=======
 
     trackAddressShippingById(index: number, item: AddressShipping) {
         return item.id;
     }
+>>>>>>> with_entities
 }
 
 @Component({

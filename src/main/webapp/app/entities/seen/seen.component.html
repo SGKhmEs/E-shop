@@ -31,6 +31,11 @@
             <tr>
             <th><span jhiTranslate="global.field.id">ID</span></th>
             <th><span jhiTranslate="eshopApp.seen.data">Data</span></th>
+<<<<<<< HEAD
+            <th><span jhiTranslate="eshopApp.seen.customer">Customer</span></th>
+            <th><span jhiTranslate="eshopApp.seen.products">Products</span></th>
+=======
+>>>>>>> with_entities
             <th></th>
             </tr>
             </thead>
@@ -38,6 +43,19 @@
             <tr *ngFor="let seen of seens ;trackBy: trackId">
                 <td><a [routerLink]="['../seen', seen.id ]">{{seen.id}}</a></td>
                 <td>{{seen.data | date:'mediumDate'}}</td>
+<<<<<<< HEAD
+                <td>
+                    <div *ngIf="seen.customer">
+                        <a [routerLink]="['../customer', seen.customer?.id ]" >{{seen.customer?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="seen.products">
+                        <a [routerLink]="['../products', seen.products?.id ]" >{{seen.products?.id}}</a>
+                    </div>
+                </td>
+=======
+>>>>>>> with_entities
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

@@ -13,6 +13,20 @@ import { PaginationConfig } from '../../blocks/config/uib-pagination.config';
     templateUrl: './consignment.component.html'
 })
 export class ConsignmentComponent implements OnInit, OnDestroy {
+<<<<<<< HEAD
+consignments: Consignment[];
+    currentAccount: any;
+    eventSubscriber: Subscription;
+    currentSearch: string;
+
+    constructor(
+        private consignmentService: ConsignmentService,
+        private alertService: AlertService,
+        private eventManager: EventManager,
+        private activatedRoute: ActivatedRoute,
+        private principal: Principal
+    ) {
+=======
 
 currentAccount: any;
     consignments: Consignment[];
@@ -48,6 +62,7 @@ currentAccount: any;
             this.reverse = data['pagingParams'].ascending;
             this.predicate = data['pagingParams'].predicate;
         });
+>>>>>>> with_entities
         this.currentSearch = activatedRoute.snapshot.params['search'] ? activatedRoute.snapshot.params['search'] : '';
     }
 
@@ -55,6 +70,28 @@ currentAccount: any;
         if (this.currentSearch) {
             this.consignmentService.search({
                 query: this.currentSearch,
+<<<<<<< HEAD
+                }).subscribe(
+                    (res: ResponseWrapper) => this.consignments = res.json,
+                    (res: ResponseWrapper) => this.onError(res.json)
+                );
+            return;
+       }
+        this.consignmentService.query().subscribe(
+            (res: ResponseWrapper) => {
+                this.consignments = res.json;
+                this.currentSearch = '';
+            },
+            (res: ResponseWrapper) => this.onError(res.json)
+        );
+    }
+
+    search(query) {
+        if (!query) {
+            return this.clear();
+        }
+        this.currentSearch = query;
+=======
                 size: this.itemsPerPage,
                 sort: this.sort()}).subscribe(
                     (res: ResponseWrapper) => this.onSuccess(res.json, res.headers),
@@ -85,10 +122,14 @@ currentAccount: any;
                 sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
             }
         });
+>>>>>>> with_entities
         this.loadAll();
     }
 
     clear() {
+<<<<<<< HEAD
+        this.currentSearch = '';
+=======
         this.page = 0;
         this.currentSearch = '';
         this.router.navigate(['/consignment', {
@@ -108,6 +149,7 @@ currentAccount: any;
             page: this.page,
             sort: this.predicate + ',' + (this.reverse ? 'asc' : 'desc')
         }]);
+>>>>>>> with_entities
         this.loadAll();
     }
     ngOnInit() {
@@ -129,6 +171,8 @@ currentAccount: any;
         this.eventSubscriber = this.eventManager.subscribe('consignmentListModification', (response) => this.loadAll());
     }
 
+<<<<<<< HEAD
+=======
     sort() {
         const result = [this.predicate + ',' + (this.reverse ? 'asc' : 'desc')];
         if (this.predicate !== 'id') {
@@ -144,6 +188,7 @@ currentAccount: any;
         // this.page = pagingParams.page;
         this.consignments = data;
     }
+>>>>>>> with_entities
     private onError(error) {
         this.alertService.error(error.message, null, null);
     }

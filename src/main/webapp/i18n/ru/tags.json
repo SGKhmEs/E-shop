@@ -17,7 +17,11 @@
                 "title": "Tags"
             },
             "name": "Name",
+<<<<<<< HEAD
+            "tagForProduct": "Tag For Product"
+=======
             "product": "Product"
+>>>>>>> with_entities
         }
     }
 }

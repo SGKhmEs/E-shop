@@ -21,8 +21,12 @@
             "contentType": "Content Type",
             "location": "Location",
             "size": "Size",
+<<<<<<< HEAD
+            "products": "Products"
+=======
             "comments": "Comments",
             "product": "Product"
+>>>>>>> with_entities
         }
     }
 }

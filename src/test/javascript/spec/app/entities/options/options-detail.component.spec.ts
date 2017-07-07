@@ -32,11 +32,16 @@ describe('Component Tests', () => {
                     OptionsService,
                     EventManager
                 ]
+<<<<<<< HEAD
+            }).overrideTemplate(OptionsDetailComponent, '')
+            .compileComponents();
+=======
             }).overrideComponent(OptionsDetailComponent, {
                 set: {
                     template: ''
                 }
             }).compileComponents();
+>>>>>>> with_entities
         }));
 
         beforeEach(() => {

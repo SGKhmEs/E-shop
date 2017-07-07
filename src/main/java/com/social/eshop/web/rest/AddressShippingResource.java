@@ -1,9 +1,15 @@
 package com.social.eshop.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+<<<<<<< HEAD
+import com.social.eshop.domain.AddressShipping;
+import com.social.eshop.service.AddressShippingService;
+import com.social.eshop.web.rest.util.HeaderUtil;
+=======
 import com.social.eshop.service.AddressShippingService;
 import com.social.eshop.web.rest.util.HeaderUtil;
 import com.social.eshop.service.dto.AddressShippingDTO;
+>>>>>>> with_entities
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,7 +36,11 @@ public class AddressShippingResource {
     private final Logger log = LoggerFactory.getLogger(AddressShippingResource.class);
 
     private static final String ENTITY_NAME = "addressShipping";
+<<<<<<< HEAD
+
+=======
         
+>>>>>>> with_entities
     private final AddressShippingService addressShippingService;
 
     public AddressShippingResource(AddressShippingService addressShippingService) {
@@ -40,18 +50,32 @@ public class AddressShippingResource {
     /**
      * POST  /address-shippings : Create a new addressShipping.
      *
+<<<<<<< HEAD
+     * @param addressShipping the addressShipping to create
+     * @return the ResponseEntity with status 201 (Created) and with body the new addressShipping, or with status 400 (Bad Request) if the addressShipping has already an ID
+=======
      * @param addressShippingDTO the addressShippingDTO to create
      * @return the ResponseEntity with status 201 (Created) and with body the new addressShippingDTO, or with status 400 (Bad Request) if the addressShipping has already an ID
+>>>>>>> with_entities
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/address-shippings")
     @Timed
+<<<<<<< HEAD
+    public ResponseEntity<AddressShipping> createAddressShipping(@Valid @RequestBody AddressShipping addressShipping) throws URISyntaxException {
+        log.debug("REST request to save AddressShipping : {}", addressShipping);
+        if (addressShipping.getId() != null) {
+            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new addressShipping cannot already have an ID")).body(null);
+        }
+        AddressShipping result = addressShippingService.save(addressShipping);
+=======
     public ResponseEntity<AddressShippingDTO> createAddressShipping(@Valid @RequestBody AddressShippingDTO addressShippingDTO) throws URISyntaxException {
         log.debug("REST request to save AddressShipping : {}", addressShippingDTO);
         if (addressShippingDTO.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new addressShipping cannot already have an ID")).body(null);
         }
         AddressShippingDTO result = addressShippingService.save(addressShippingDTO);
+>>>>>>> with_entities
         return ResponseEntity.created(new URI("/api/address-shippings/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -60,14 +84,31 @@ public class AddressShippingResource {
     /**
      * PUT  /address-shippings : Updates an existing addressShipping.
      *
+<<<<<<< HEAD
+     * @param addressShipping the addressShipping to update
+     * @return the ResponseEntity with status 200 (OK) and with body the updated addressShipping,
+     * or with status 400 (Bad Request) if the addressShipping is not valid,
+     * or with status 500 (Internal Server Error) if the addressShipping couldn't be updated
+=======
      * @param addressShippingDTO the addressShippingDTO to update
      * @return the ResponseEntity with status 200 (OK) and with body the updated addressShippingDTO,
      * or with status 400 (Bad Request) if the addressShippingDTO is not valid,
      * or with status 500 (Internal Server Error) if the addressShippingDTO couldnt be updated
+>>>>>>> with_entities
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/address-shippings")
     @Timed
+<<<<<<< HEAD
+    public ResponseEntity<AddressShipping> updateAddressShipping(@Valid @RequestBody AddressShipping addressShipping) throws URISyntaxException {
+        log.debug("REST request to update AddressShipping : {}", addressShipping);
+        if (addressShipping.getId() == null) {
+            return createAddressShipping(addressShipping);
+        }
+        AddressShipping result = addressShippingService.save(addressShipping);
+        return ResponseEntity.ok()
+            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, addressShipping.getId().toString()))
+=======
     public ResponseEntity<AddressShippingDTO> updateAddressShipping(@Valid @RequestBody AddressShippingDTO addressShippingDTO) throws URISyntaxException {
         log.debug("REST request to update AddressShipping : {}", addressShippingDTO);
         if (addressShippingDTO.getId() == null) {
@@ -76,6 +117,7 @@ public class AddressShippingResource {
         AddressShippingDTO result = addressShippingService.save(addressShippingDTO);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, addressShippingDTO.getId().toString()))
+>>>>>>> with_entities
             .body(result);
     }
 
@@ -86,7 +128,11 @@ public class AddressShippingResource {
      */
     @GetMapping("/address-shippings")
     @Timed
+<<<<<<< HEAD
+    public List<AddressShipping> getAllAddressShippings() {
+=======
     public List<AddressShippingDTO> getAllAddressShippings() {
+>>>>>>> with_entities
         log.debug("REST request to get all AddressShippings");
         return addressShippingService.findAll();
     }
@@ -94,6 +140,17 @@ public class AddressShippingResource {
     /**
      * GET  /address-shippings/:id : get the "id" addressShipping.
      *
+<<<<<<< HEAD
+     * @param id the id of the addressShipping to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the addressShipping, or with status 404 (Not Found)
+     */
+    @GetMapping("/address-shippings/{id}")
+    @Timed
+    public ResponseEntity<AddressShipping> getAddressShipping(@PathVariable Long id) {
+        log.debug("REST request to get AddressShipping : {}", id);
+        AddressShipping addressShipping = addressShippingService.findOne(id);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(addressShipping));
+=======
      * @param id the id of the addressShippingDTO to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the addressShippingDTO, or with status 404 (Not Found)
      */
@@ -103,12 +160,17 @@ public class AddressShippingResource {
         log.debug("REST request to get AddressShipping : {}", id);
         AddressShippingDTO addressShippingDTO = addressShippingService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(addressShippingDTO));
+>>>>>>> with_entities
     }
 
     /**
      * DELETE  /address-shippings/:id : delete the "id" addressShipping.
      *
+<<<<<<< HEAD
+     * @param id the id of the addressShipping to delete
+=======
      * @param id the id of the addressShippingDTO to delete
+>>>>>>> with_entities
      * @return the ResponseEntity with status 200 (OK)
      */
     @DeleteMapping("/address-shippings/{id}")
@@ -123,15 +185,26 @@ public class AddressShippingResource {
      * SEARCH  /_search/address-shippings?query=:query : search for the addressShipping corresponding
      * to the query.
      *
+<<<<<<< HEAD
+     * @param query the query of the addressShipping search
+=======
      * @param query the query of the addressShipping search 
+>>>>>>> with_entities
      * @return the result of the search
      */
     @GetMapping("/_search/address-shippings")
     @Timed
+<<<<<<< HEAD
+    public List<AddressShipping> searchAddressShippings(@RequestParam String query) {
+=======
     public List<AddressShippingDTO> searchAddressShippings(@RequestParam String query) {
+>>>>>>> with_entities
         log.debug("REST request to search AddressShippings for query {}", query);
         return addressShippingService.search(query);
     }
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> with_entities
 }

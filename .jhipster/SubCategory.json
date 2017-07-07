@@ -8,9 +8,17 @@
             "otherEntityField": "id"
         },
         {
+<<<<<<< HEAD
+            "relationshipType": "one-to-one",
+            "relationshipName": "options",
+            "otherEntityName": "options",
+            "otherEntityField": "id",
+            "ownerSide": true,
+=======
             "relationshipType": "one-to-many",
             "relationshipName": "options",
             "otherEntityName": "options",
+>>>>>>> with_entities
             "otherEntityRelationshipName": "subCategory"
         },
         {
@@ -29,9 +37,15 @@
             ]
         }
     ],
+<<<<<<< HEAD
+    "changelogDate": "20170610234502",
+    "entityTableName": "sub_category",
+    "dto": "no",
+=======
     "changelogDate": "20170525235451",
     "entityTableName": "sub_category",
     "dto": "mapstruct",
+>>>>>>> with_entities
     "pagination": "no",
     "service": "serviceImpl"
 }

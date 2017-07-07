@@ -4,6 +4,10 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '@angular/common';
 import { Comments } from './comments.model';
 import { CommentsService } from './comments.service';
+<<<<<<< HEAD
+
+=======
+>>>>>>> with_entities
 @Injectable()
 export class CommentsPopupService {
     private isOpen = false;

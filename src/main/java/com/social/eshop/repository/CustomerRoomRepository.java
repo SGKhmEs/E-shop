@@ -12,5 +12,9 @@ import org.springframework.data.jpa.repository.*;
 @SuppressWarnings("unused")
 @Repository
 public interface CustomerRoomRepository extends JpaRepository<CustomerRoom,Long> {
+<<<<<<< HEAD
+    
+=======
 
+>>>>>>> with_entities
 }

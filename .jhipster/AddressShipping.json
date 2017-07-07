@@ -43,9 +43,15 @@
             "fieldType": "String"
         }
     ],
+<<<<<<< HEAD
+    "changelogDate": "20170610234449",
+    "entityTableName": "address_shipping",
+    "dto": "no",
+=======
     "changelogDate": "20170525235437",
     "entityTableName": "address_shipping",
     "dto": "mapstruct",
+>>>>>>> with_entities
     "pagination": "no",
     "service": "serviceImpl"
 }

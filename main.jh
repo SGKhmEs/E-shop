@@ -1,3 +1,27 @@
+<<<<<<< HEAD
+entity Customer { 
+	sessionId String
+}
+
+entity LoginOptions {
+	login String  required, 
+    password String required  
+}
+entity StaticPages {
+
+}
+
+entity Manager {  
+	roles Roles
+}
+
+entity Bucket {
+	name String,
+    data ZonedDateTime,
+    sum BigDecimal, //or double
+    orderNumber Integer, 
+    count Integer,   	
+=======
 entity Customer {  
 	roles Roles
 }
@@ -27,6 +51,7 @@ entity HistoryOrder {
     date ZonedDateTime,
     count Integer, 
     sum Double, 			
+>>>>>>> with_entities
     status Status, 
     consignmentNote String
 }
@@ -41,6 +66,18 @@ entity AddressShipping {
 	appartment String 
 }
 
+<<<<<<< HEAD
+entity CustomerRoom { 
+	subScription Boolean,
+    sosialConnect SocialConnect
+}
+
+entity Seen {
+    data LocalDate
+}
+
+entity WishList {
+=======
 entity Confirm {
    pay Payment
 }
@@ -52,6 +89,7 @@ entity LoginOptions {
 
 entity WishList {
 	wishsName String,
+>>>>>>> with_entities
 	data LocalDate 
 }
 
@@ -65,6 +103,8 @@ entity Address {
 	appartment String 
 }
 
+<<<<<<< HEAD
+=======
 entity SessionId {
 }
 
@@ -76,10 +116,152 @@ entity Bucket {
     data ZonedDateTime
 }
 
+>>>>>>> with_entities
 entity Avatar {
 	usersImage ImageBlob
 }
 
+<<<<<<< HEAD
+entity PersonalInformation {
+	firstName String  required, 
+  	lastName String required, 
+    middleName String, 
+    sex Sex,
+    phone String  required,  
+    email String  required, 
+    dateBirth LocalDate  
+}
+
+entity Products {
+	name String required,
+    price BigDecimal required,
+	sale String,
+	rating Double,
+	fresh Boolean    
+}
+
+entity Tags {
+	name String required
+}
+
+entity  Consignment {
+	price BigDecimal required
+}
+
+entity Storage {
+	name String required,
+	actualite Boolean required,
+	quantity Integer required
+}
+
+entity  Producers {
+	name String required,
+	country String required
+}
+
+entity Category{
+	name String required
+}
+
+entity SubCategory{
+	name String required
+}
+
+entity Type {
+	name String required,
+	behavior String required
+}
+
+entity Media {
+	name String required,
+	type String required,
+	contentType String required,
+	location String required,
+	size String required
+}
+
+entity Comments {
+	comments String,
+    data ZonedDateTime
+}
+
+entity Value {
+	data String required
+}
+
+entity Options{
+	name String required,
+	level Integer required
+}
+
+entity TagForProduct{
+
+}
+
+entity ProductInBucket{
+
+}
+
+enum Roles {
+	USER, MODERATOR, ADMINISTRATOR, OWNER
+}
+
+enum Sex {
+	MAN, WOMAN
+}
+
+enum SocialConnect {
+	DEFAULT, GOOGLE, FACEBOOK, VK, TWITTER, OK
+}
+
+enum Status {
+	WAIT, PURCHASED, SUCCESS, FAILURE, REJECT
+}
+
+relationship OneToOne {
+	Seen {products} to Products,
+	WishList {product} to Products,
+	Customer {loginOptions} to LoginOptions,
+    Manager {loginOptions} to LoginOptions,
+    Customer {customerRoom} to CustomerRoom,
+    CustomerRoom {address} to Address,
+    CustomerRoom {personalInfo} to PersonalInformation,
+    Manager {personalInfo} to PersonalInformation,
+    PersonalInformation {avatar} to Avatar,
+    Bucket {addressShipping} to AddressShipping,
+    Options {value} to Value,
+ 	Options {type} to Type,
+    SubCategory {options} to Options    
+}
+
+relationship OneToMany {
+	Customer {seen} to Seen,    
+ 	Manager {maneger} to Bucket,
+    Customer {wishList} to WishList,
+    Products {media} to Media,
+    Products {comments} to Comments,
+    Customer {comments} to Comments,
+    Category {subCat} to SubCategory,
+    SubCategory {product} to Products,    
+    Producers {consignment} to Consignment,
+    Storage {consignment} to Consignment,
+    Consignment {products} to Products,    
+    Products {productInBucket} to ProductInBucket,
+    Bucket{productInBucket} to ProductInBucket,    
+    Products {tagForProduct} to TagForProduct,
+    Tags{tagForProduct} to TagForProduct    
+}
+
+relationship ManyToOne {
+	Bucket {customer} to Customer
+}
+
+// Set pagination options
+paginate Products , Bucket, Customer with infinite-scroll
+//paginate Consignment with pagination
+
+// dto Manager, Bucket, CustomerRoom , Customer with mapstruct
+=======
 enum Roles {
 	USER, MODERATOR, ADMINISTRATOR, OWNER
 }
@@ -235,8 +417,13 @@ paginate Products with infinite-scroll
 paginate Consignment with pagination
 
 dto * with mapstruct
+>>>>>>> with_entities
 
 // Set service options to all except few
 service all with serviceImpl 
 // Set an angular suffix
+<<<<<<< HEAD
+// angularSuffix * with mySuffix
+=======
 
+>>>>>>> with_entities

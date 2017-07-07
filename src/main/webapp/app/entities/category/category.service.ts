@@ -51,7 +51,11 @@ export class CategoryService {
 
     private convertResponse(res: Response): ResponseWrapper {
         const jsonResponse = res.json();
+<<<<<<< HEAD
+        return new ResponseWrapper(res.headers, jsonResponse, res.status);
+=======
         return new ResponseWrapper(res.headers, jsonResponse);
+>>>>>>> with_entities
     }
 
     private convert(category: Category): Category {
