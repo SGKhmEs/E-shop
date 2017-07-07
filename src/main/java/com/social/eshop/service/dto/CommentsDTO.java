@@ -5,12 +5,13 @@ import com.social.eshop.domain.Customer;
 import com.social.eshop.service.mapper.AutoMapping;
 
 import java.time.ZonedDateTime;
+import java.util.List;
 
 public class CommentsDTO implements AutoMapping {
 
-    private String comments;
+    private List<String> comments;
     private ZonedDateTime date;
-    private Customer customer;
+    private CustomerDTO customerDTO;
 
     public CommentsDTO() { }
 =======
@@ -45,11 +46,17 @@ public class CommentsDTO implements Serializable {
     }
 >>>>>>> with_entities
 
-    public String getComments() {
+    public CommentsDTO(List<String> comments, ZonedDateTime date, CustomerDTO customerDTO) {
+        this.comments = comments;
+        this.date = date;
+        this.customerDTO = customerDTO;
+    }
+
+    public List<String> getComments() {
         return comments;
     }
 
-    public void setComments(String comments) {
+    public void setComments(List<String> comments) {
         this.comments = comments;
     }
 
@@ -62,10 +69,11 @@ public class CommentsDTO implements Serializable {
         this.date = date;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public CustomerDTO getCustomerDTO() {
+        return customerDTO;
     }
 
+<<<<<<< HEAD
     public void setCustomer(Customer customer) {
         this.customer = customer;
 =======
@@ -113,15 +121,23 @@ public class CommentsDTO implements Serializable {
     public int hashCode() {
         return Objects.hashCode(getId());
 >>>>>>> with_entities
+=======
+    public void setCustomerDTO(CustomerDTO customerDTO) {
+        this.customerDTO = customerDTO;
+>>>>>>> creatingServices
     }
 
     @Override
     public String toString() {
         return "CommentsDTO{" +
 <<<<<<< HEAD
+<<<<<<< HEAD
             "comments='" + comments + '\'' +
+=======
+            "comments=" + comments +
+>>>>>>> creatingServices
             ", date=" + date +
-            ", customer=" + customer +
+            ", customerDTO=" + customerDTO +
             '}';
 =======
             "id=" + getId() +
@@ -130,4 +146,5 @@ public class CommentsDTO implements Serializable {
             "}";
 >>>>>>> with_entities
     }
+    
 }

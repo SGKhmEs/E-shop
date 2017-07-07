@@ -5,6 +5,8 @@ import org.springframework.stereotype.Repository;
 
 import org.springframework.data.jpa.repository.*;
 
+import java.util.List;
+
 
 /**
  * Spring Data JPA repository for the Bucket entity.
@@ -13,8 +15,13 @@ import org.springframework.data.jpa.repository.*;
 @Repository
 public interface BucketRepository extends JpaRepository<Bucket,Long> {
 <<<<<<< HEAD
+<<<<<<< HEAD
     
 =======
 
 >>>>>>> with_entities
+=======
+    @Query(" FROM Bucket where products_id =?1")
+    public List<Bucket> findByProductsId(Long id);
+>>>>>>> creatingServices
 }

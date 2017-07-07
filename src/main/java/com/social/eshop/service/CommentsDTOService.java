@@ -1,5 +1,6 @@
 package com.social.eshop.service;
 
+<<<<<<< HEAD
 import com.social.eshop.domain.Comments;
 import com.social.eshop.repository.CommentsRepository;
 import com.social.eshop.service.dto.CommentsDTO;
@@ -60,4 +61,8 @@ public class CommentsDTOService  {
         }
         return commentDTOList;
     }
+=======
+public interface CommentsDTOService {
+
+>>>>>>> creatingServices
 }

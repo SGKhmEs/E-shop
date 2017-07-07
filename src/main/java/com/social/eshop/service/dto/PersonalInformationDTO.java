@@ -1,5 +1,6 @@
 package com.social.eshop.service.dto;
 
+<<<<<<< HEAD
 
 import java.time.LocalDate;
 import javax.validation.constraints.*;
@@ -52,6 +53,28 @@ public class PersonalInformationDTO implements Serializable {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+=======
+/**
+ * Created by Alexander Torchynskyi on 15.06.2017.
+ */
+public class PersonalInformationDTO {
+    private String firstname;
+    private String lastName;
+
+    public PersonalInformationDTO() {  }
+
+    public PersonalInformationDTO(String firstname, String lastName) {
+        this.firstname = firstname;
+        this.lastName = lastName;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+>>>>>>> creatingServices
     }
 
     public String getLastName() {
@@ -62,6 +85,7 @@ public class PersonalInformationDTO implements Serializable {
         this.lastName = lastName;
     }
 
+<<<<<<< HEAD
     public String getMiddleName() {
         return middleName;
     }
@@ -151,5 +175,12 @@ public class PersonalInformationDTO implements Serializable {
             ", email='" + getEmail() + "'" +
             ", dateBirth='" + getDateBirth() + "'" +
             "}";
+=======
+    @Override
+    public String toString() {
+        return "PersonalInformationDTO{" +
+            "lastName='" + lastName + '\'' +
+            '}';
+>>>>>>> creatingServices
     }
 }

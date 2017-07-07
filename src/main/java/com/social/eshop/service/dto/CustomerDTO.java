@@ -9,19 +9,17 @@ import java.util.List;
 
 public class CustomerDTO implements AutoMapping {
 
-    private String sessionId;
+    //private String sessionId;  // think about it
     private List<WishList> wishLists;
     private List<Seen> seens;
-    private List<ProductsDTO> products;
+    private CustomerRoomDTO customerRoomDTO;
 
     public CustomerDTO() { }
 
-    public String getSessionId() {
-        return sessionId;
-    }
-
-    public void setSessionId(String sessionId) {
-        this.sessionId = sessionId;
+    public CustomerDTO(List<WishList> wishLists, List<Seen> seens, CustomerRoomDTO customerRoomDTO) {
+        this.wishLists = wishLists;
+        this.seens = seens;
+        this.customerRoomDTO = customerRoomDTO;
     }
 
     public List<WishList> getWishLists() {
@@ -40,10 +38,11 @@ public class CustomerDTO implements AutoMapping {
         this.seens = seens;
     }
 
-    public List<ProductsDTO> getProducts() {
-        return products;
+    public CustomerRoomDTO getCustomerRoomDTO() {
+        return customerRoomDTO;
     }
 
+<<<<<<< HEAD
     public void setProducts(List<ProductsDTO> products) {
         this.products = products;
 =======
@@ -129,16 +128,24 @@ public class CustomerDTO implements Serializable {
     public int hashCode() {
         return Objects.hashCode(getId());
 >>>>>>> with_entities
+=======
+    public void setCustomerRoomDTO(CustomerRoomDTO customerRoomDTO) {
+        this.customerRoomDTO = customerRoomDTO;
+>>>>>>> creatingServices
     }
 
     @Override
     public String toString() {
         return "CustomerDTO{" +
 <<<<<<< HEAD
+<<<<<<< HEAD
             "sessionId='" + sessionId + '\'' +
             ", wishLists=" + wishLists +
+=======
+            "wishLists=" + wishLists +
+>>>>>>> creatingServices
             ", seens=" + seens +
-            ", products=" + products +
+            ", customerRoomDTO=" + customerRoomDTO +
             '}';
 =======
             "id=" + getId() +
@@ -146,4 +153,5 @@ public class CustomerDTO implements Serializable {
             "}";
 >>>>>>> with_entities
     }
+
 }

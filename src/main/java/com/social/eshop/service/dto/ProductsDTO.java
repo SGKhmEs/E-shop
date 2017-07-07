@@ -9,7 +9,7 @@ import com.social.eshop.service.mapper.AutoMapping;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class ProductsDTO implements AutoMapping {
+public class   ProductsDTO implements AutoMapping {
 
     private String name;
     private BigDecimal price;
@@ -17,10 +17,25 @@ public class ProductsDTO implements AutoMapping {
     private double rating;
     private boolean fresh;
     private List<Media> media;
-    private List<Comments> comments;
+    private List<CommentsDTO> commentsDTO;
     private List<SubCategory> subCategories;
 
     public ProductsDTO() { }
+
+    public ProductsDTO(String name, BigDecimal price,
+                       String sale, double rating,
+                       boolean fresh, List<Media> media,
+                       List<CommentsDTO> commentsDTO,
+                       List<SubCategory> subCategories) {
+        this.name = name;
+        this.price = price;
+        this.sale = sale;
+        this.rating = rating;
+        this.fresh = fresh;
+        this.media = media;
+        this.commentsDTO = commentsDTO;
+        this.subCategories = subCategories;
+    }
 
     public String getName() {
         return name;
@@ -106,7 +121,7 @@ public class ProductsDTO implements Serializable {
         this.rating = rating;
     }
 
-    public boolean isFresh() {
+    public boolean getFresh() {
         return fresh;
     }
 
@@ -122,12 +137,12 @@ public class ProductsDTO implements Serializable {
         this.media = media;
     }
 
-    public List<Comments> getComments() {
-        return comments;
+    public List<CommentsDTO> getCommentsDTO() {
+        return commentsDTO;
     }
 
-    public void setComments(List<Comments> comments) {
-        this.comments = comments;
+    public void setCommentsDTO(List<CommentsDTO> commentsDTO) {
+        this.commentsDTO = commentsDTO;
     }
 
     public List<SubCategory> getSubCategories() {
@@ -233,7 +248,7 @@ public class ProductsDTO implements Serializable {
             ", rating=" + rating +
             ", fresh=" + fresh +
             ", media=" + media +
-            ", comments=" + comments +
+            ", commentsDTO=" + commentsDTO +
             ", subCategories=" + subCategories +
             '}';
 =======
@@ -245,4 +260,5 @@ public class ProductsDTO implements Serializable {
             "}";
 >>>>>>> with_entities
     }
+
 }
