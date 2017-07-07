@@ -15,7 +15,7 @@
         }
     ],
     "fields": [],
-    "changelogDate": "20170610234509",
+    "changelogDate": "20170623182250",
     "entityTableName": "product_in_bucket",
     "dto": "no",
     "pagination": "no",

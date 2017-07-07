@@ -12,12 +12,33 @@
         {
             "relationshipType": "one-to-one",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "relationshipName": "customerRoom",
             "otherEntityName": "customerRoom",
 =======
             "relationshipName": "confirm",
             "otherEntityName": "confirm",
 >>>>>>> with_entities
+=======
+            "relationshipName": "address",
+            "otherEntityName": "address",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "customer"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "personalInfo",
+            "otherEntityName": "personalInformation",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "customer"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "avatar",
+            "otherEntityName": "avatar",
+>>>>>>> creatingDtos
             "otherEntityField": "id",
             "ownerSide": true,
             "otherEntityRelationshipName": "customer"
@@ -57,11 +78,23 @@
     "fields": [
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+            "fieldName": "subScription",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "sosialConnect",
+            "fieldType": "SocialConnect",
+            "fieldValues": "DEFAULT,GOOGLE,FACEBOOK,TWITTER"
+        },
+        {
+>>>>>>> creatingDtos
             "fieldName": "sessionId",
             "fieldType": "String"
         }
     ],
-    "changelogDate": "20170610234444",
+    "changelogDate": "20170623182228",
     "entityTableName": "customer",
     "dto": "no",
     "pagination": "infinite-scroll",

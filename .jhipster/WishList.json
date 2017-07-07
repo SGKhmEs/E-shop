@@ -25,6 +25,7 @@
     "fields": [
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             "fieldName": "wishsName",
             "fieldType": "String"
@@ -37,6 +38,13 @@
     ],
 <<<<<<< HEAD
     "changelogDate": "20170610234452",
+=======
+            "fieldName": "date",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "changelogDate": "20170623182235",
+>>>>>>> creatingDtos
     "entityTableName": "wish_list",
     "dto": "no",
 =======

@@ -4,17 +4,20 @@ import { Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EventManager, AlertService } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { PersonalInformation } from './personal-information.model';
 import { PersonalInformationPopupService } from './personal-information-popup.service';
 import { PersonalInformationService } from './personal-information.service';
+<<<<<<< HEAD
 import { Avatar, AvatarService } from '../avatar';
 <<<<<<< HEAD
 =======
 import { AddressShipping, AddressShippingService } from '../address-shipping';
 >>>>>>> with_entities
 import { ResponseWrapper } from '../../shared';
+=======
+>>>>>>> creatingDtos
 
 @Component({
     selector: 'jhi-personal-information-dialog',
@@ -25,6 +28,7 @@ export class PersonalInformationDialogComponent implements OnInit {
     personalInformation: PersonalInformation;
     authorities: any[];
     isSaving: boolean;
+<<<<<<< HEAD
 
     avatars: Avatar[];
 <<<<<<< HEAD
@@ -32,24 +36,31 @@ export class PersonalInformationDialogComponent implements OnInit {
 
     addressshippings: AddressShipping[];
 >>>>>>> with_entities
+=======
+>>>>>>> creatingDtos
     dateBirthDp: any;
 
     constructor(
         public activeModal: NgbActiveModal,
-        private alertService: AlertService,
+        private alertService: JhiAlertService,
         private personalInformationService: PersonalInformationService,
+<<<<<<< HEAD
         private avatarService: AvatarService,
 <<<<<<< HEAD
 =======
         private addressShippingService: AddressShippingService,
 >>>>>>> with_entities
         private eventManager: EventManager
+=======
+        private eventManager: JhiEventManager
+>>>>>>> creatingDtos
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
+<<<<<<< HEAD
         this.avatarService
             .query({filter: 'personalinformation-is-null'})
             .subscribe((res: ResponseWrapper) => {
@@ -72,6 +83,8 @@ export class PersonalInformationDialogComponent implements OnInit {
                 }
             }, (res: ResponseWrapper) => this.onError(res.json));
 <<<<<<< HEAD
+=======
+>>>>>>> creatingDtos
     }
 
 =======
@@ -113,9 +126,9 @@ export class PersonalInformationDialogComponent implements OnInit {
 
     private onSaveSuccess(result: PersonalInformation, isCreated: boolean) {
         this.alertService.success(
-            isCreated ? 'eshopApp.personalInformation.created'
-            : 'eshopApp.personalInformation.updated',
-            { param : result.id }, null);
+            isCreated ? `A new Personal Information is created with identifier ${result.id}`
+            : `A Personal Information is updated with identifier ${result.id}`,
+            null, null);
 
 =======
                 this.personalInformationService.update(this.personalInformation));
@@ -150,6 +163,7 @@ export class PersonalInformationDialogComponent implements OnInit {
     private onError(error) {
         this.alertService.error(error.message, null, null);
     }
+<<<<<<< HEAD
 
     trackAvatarById(index: number, item: Avatar) {
         return item.id;
@@ -161,6 +175,8 @@ export class PersonalInformationDialogComponent implements OnInit {
         return item.id;
     }
 >>>>>>> with_entities
+=======
+>>>>>>> creatingDtos
 }
 
 @Component({

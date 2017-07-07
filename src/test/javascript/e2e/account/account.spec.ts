@@ -13,8 +13,8 @@ describe('account', () => {
     });
 
     it('should fail to login with bad password', () => {
-        const expect1 = /home.title/;
-        element.all(by.css('h1')).first().getAttribute('jhiTranslate').then((value) => {
+        const expect1 = /Welcome, Java Hipster!/;
+        element.all(by.css('h1')).first().getText().then((value) => {
             expect(value).toMatch(expect1);
         });
         accountMenu.click();
@@ -24,15 +24,15 @@ describe('account', () => {
         password.sendKeys('foo');
         element(by.css('button[type=submit]')).click();
 
-        const expect2 = /login.messages.error.authentication/;
-        element.all(by.css('.alert-danger')).first().getAttribute('jhiTranslate').then((value) => {
+        const expect2 = /Failed to sign in!/;
+        element.all(by.css('.alert-danger')).first().getText().then((value) => {
             expect(value).toMatch(expect2);
         });
     });
 
     it('should login successfully with admin account', () => {
-        const expect1 = /global.form.username/;
-        element.all(by.css('.modal-content label')).first().getAttribute('jhiTranslate').then((value) => {
+        const expect1 = /Login/;
+        element.all(by.css('.modal-content label')).first().getText().then((value) => {
             expect(value).toMatch(expect1);
         });
         username.clear();
@@ -43,8 +43,8 @@ describe('account', () => {
 
         browser.waitForAngular();
 
-        const expect2 = /home.logged.message/;
-        element.all(by.css('.alert-success span')).getAttribute('jhiTranslate').then((value) => {
+        const expect2 = /You are logged in as user "admin"/;
+        element.all(by.css('.alert-success span')).getText().then((value) => {
             expect(value).toMatch(expect2);
         });
     });
@@ -53,14 +53,14 @@ describe('account', () => {
         accountMenu.click();
         element(by.css('[routerLink="settings"]')).click();
 
-        const expect1 = /settings.title/;
-        element.all(by.css('h2')).first().getAttribute('jhiTranslate').then((value) => {
+        const expect1 = /User settings for \[admin\]/;
+        element.all(by.css('h2')).first().getText().then((value) => {
             expect(value).toMatch(expect1);
         });
         element(by.css('button[type=submit]')).click();
 
-        const expect2 = /settings.messages.success/;
-        element.all(by.css('.alert-success')).first().getAttribute('jhiTranslate').then((value) => {
+        const expect2 = /Settings saved!/;
+        element.all(by.css('.alert-success')).first().getText().then((value) => {
             expect(value).toMatch(expect2);
         });
     });
@@ -69,16 +69,16 @@ describe('account', () => {
         accountMenu.click();
         element(by.css('[routerLink="password"]')).click();
 
-        const expect1 = /password.title/;
-        element.all(by.css('h2')).first().getAttribute('jhiTranslate').then((value) => {
+        const expect1 = /Password for \[admin\]/;
+        element.all(by.css('h2')).first().getText().then((value) => {
             expect(value).toMatch(expect1);
         });
         password.sendKeys('newpassword');
         element(by.id('confirmPassword')).sendKeys('newpassword');
         element(by.css('button[type=submit]')).click();
 
-        const expect2 = /password.messages.success/;
-        element.all(by.css('.alert-success')).first().getAttribute('jhiTranslate').then((value) => {
+        const expect2 = /Password changed!/;
+        element.all(by.css('.alert-success')).first().getText().then((value) => {
             expect(value).toMatch(expect2);
         });
         accountMenu.click();

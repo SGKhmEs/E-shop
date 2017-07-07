@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes, CanActivate } from '@angular/router';
 
 import { UserRouteAccessService } from '../../shared';
-import { PaginationUtil } from 'ng-jhipster';
+import { JhiPaginationUtil } from 'ng-jhipster';
 
 import { LoginOptionsComponent } from './login-options.component';
 import { LoginOptionsDetailComponent } from './login-options-detail.component';
@@ -17,7 +17,7 @@ export const loginOptionsRoute: Routes = [
         component: LoginOptionsComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.loginOptions.home.title'
+            pageTitle: 'LoginOptions'
         },
         canActivate: [UserRouteAccessService]
     }, {
@@ -25,7 +25,7 @@ export const loginOptionsRoute: Routes = [
         component: LoginOptionsDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.loginOptions.home.title'
+            pageTitle: 'LoginOptions'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -37,7 +37,7 @@ export const loginOptionsPopupRoute: Routes = [
         component: LoginOptionsPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.loginOptions.home.title'
+            pageTitle: 'LoginOptions'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -47,7 +47,7 @@ export const loginOptionsPopupRoute: Routes = [
         component: LoginOptionsPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.loginOptions.home.title'
+            pageTitle: 'LoginOptions'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -57,7 +57,7 @@ export const loginOptionsPopupRoute: Routes = [
         component: LoginOptionsDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.loginOptions.home.title'
+            pageTitle: 'LoginOptions'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

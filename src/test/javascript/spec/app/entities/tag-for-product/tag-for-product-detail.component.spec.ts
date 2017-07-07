@@ -3,7 +3,7 @@ import { OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
-import { DateUtils, DataUtils, EventManager } from 'ng-jhipster';
+import { JhiDateUtils, JhiDataUtils, JhiEventManager } from 'ng-jhipster';
 import { EshopTestModule } from '../../../test.module';
 import { MockActivatedRoute } from '../../../helpers/mock-route.service';
 import { TagForProductDetailComponent } from '../../../../../../main/webapp/app/entities/tag-for-product/tag-for-product-detail.component';
@@ -22,15 +22,15 @@ describe('Component Tests', () => {
                 imports: [EshopTestModule],
                 declarations: [TagForProductDetailComponent],
                 providers: [
-                    DateUtils,
-                    DataUtils,
+                    JhiDateUtils,
+                    JhiDataUtils,
                     DatePipe,
                     {
                         provide: ActivatedRoute,
                         useValue: new MockActivatedRoute({id: 123})
                     },
                     TagForProductService,
-                    EventManager
+                    JhiEventManager
                 ]
             }).overrideTemplate(TagForProductDetailComponent, '')
             .compileComponents();

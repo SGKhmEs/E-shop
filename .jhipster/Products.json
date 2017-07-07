@@ -3,6 +3,17 @@
     "relationships": [
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+            "relationshipType": "one-to-one",
+            "relationshipName": "options",
+            "otherEntityName": "options",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "products"
+        },
+        {
+>>>>>>> creatingDtos
             "relationshipType": "one-to-many",
             "relationshipName": "media",
             "otherEntityName": "media",
@@ -98,7 +109,7 @@
 =======
 >>>>>>> with_entities
             "fieldName": "sale",
-            "fieldType": "String"
+            "fieldType": "Integer"
         },
         {
             "fieldName": "rating",
@@ -107,10 +118,18 @@
         {
             "fieldName": "fresh",
             "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
         }
     ],
 <<<<<<< HEAD
+<<<<<<< HEAD
     "changelogDate": "20170610234456",
+=======
+    "changelogDate": "20170623182239",
+>>>>>>> creatingDtos
     "entityTableName": "products",
     "dto": "no",
 =======

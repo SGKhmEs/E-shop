@@ -27,8 +27,8 @@ export class CommentsPopupService {
 
         if (id) {
             this.commentsService.find(id).subscribe((comments) => {
-                comments.data = this.datePipe
-                    .transform(comments.data, 'yyyy-MM-ddThh:mm');
+                comments.date = this.datePipe
+                    .transform(comments.date, 'yyyy-MM-ddThh:mm');
                 this.commentsModalRef(component, comments);
             });
         } else {

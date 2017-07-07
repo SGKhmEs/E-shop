@@ -4,16 +4,19 @@ import { Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EventManager, AlertService } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { SubCategory } from './sub-category.model';
 import { SubCategoryPopupService } from './sub-category-popup.service';
 import { SubCategoryService } from './sub-category.service';
 import { Category, CategoryService } from '../category';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { Options, OptionsService } from '../options';
 =======
 >>>>>>> with_entities
+=======
+>>>>>>> creatingDtos
 import { ResponseWrapper } from '../../shared';
 
 @Component({
@@ -29,20 +32,27 @@ export class SubCategoryDialogComponent implements OnInit {
     categories: Category[];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     options: Options[];
 
 =======
 >>>>>>> with_entities
+=======
+>>>>>>> creatingDtos
     constructor(
         public activeModal: NgbActiveModal,
-        private alertService: AlertService,
+        private alertService: JhiAlertService,
         private subCategoryService: SubCategoryService,
         private categoryService: CategoryService,
+<<<<<<< HEAD
 <<<<<<< HEAD
         private optionsService: OptionsService,
 =======
 >>>>>>> with_entities
         private eventManager: EventManager
+=======
+        private eventManager: JhiEventManager
+>>>>>>> creatingDtos
     ) {
     }
 
@@ -51,6 +61,7 @@ export class SubCategoryDialogComponent implements OnInit {
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
         this.categoryService.query()
             .subscribe((res: ResponseWrapper) => { this.categories = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+<<<<<<< HEAD
 <<<<<<< HEAD
         this.optionsService
             .query({filter: 'subcategory-is-null'})
@@ -65,6 +76,8 @@ export class SubCategoryDialogComponent implements OnInit {
                         }, (subRes: ResponseWrapper) => this.onError(subRes.json));
                 }
             }, (res: ResponseWrapper) => this.onError(res.json));
+=======
+>>>>>>> creatingDtos
     }
 
 =======
@@ -93,9 +106,9 @@ export class SubCategoryDialogComponent implements OnInit {
 
     private onSaveSuccess(result: SubCategory, isCreated: boolean) {
         this.alertService.success(
-            isCreated ? 'eshopApp.subCategory.created'
-            : 'eshopApp.subCategory.updated',
-            { param : result.id }, null);
+            isCreated ? `A new Sub Category is created with identifier ${result.id}`
+            : `A Sub Category is updated with identifier ${result.id}`,
+            null, null);
 
 =======
                 this.subCategoryService.update(this.subCategory));
@@ -135,12 +148,15 @@ export class SubCategoryDialogComponent implements OnInit {
         return item.id;
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     trackOptionsById(index: number, item: Options) {
         return item.id;
     }
 =======
 >>>>>>> with_entities
+=======
+>>>>>>> creatingDtos
 }
 
 @Component({

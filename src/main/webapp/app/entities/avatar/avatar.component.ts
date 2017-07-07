@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
-import { EventManager, ParseLinks, PaginationUtil, JhiLanguageService, AlertService, DataUtils } from 'ng-jhipster';
+import { JhiEventManager, JhiParseLinks, JhiPaginationUtil, JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 
 import { Avatar } from './avatar.model';
 import { AvatarService } from './avatar.service';
@@ -20,9 +20,9 @@ avatars: Avatar[];
 
     constructor(
         private avatarService: AvatarService,
-        private alertService: AlertService,
-        private dataUtils: DataUtils,
-        private eventManager: EventManager,
+        private alertService: JhiAlertService,
+        private dataUtils: JhiDataUtils,
+        private eventManager: JhiEventManager,
         private activatedRoute: ActivatedRoute,
         private principal: Principal
     ) {

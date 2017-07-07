@@ -1,80 +1,90 @@
 <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
 
     <div class="modal-header">
-        <h4 class="modal-title" id="myBucketLabel" jhiTranslate="eshopApp.bucket.home.createOrEditLabel">Create or edit a Bucket</h4>
+        <h4 class="modal-title" id="myBucketLabel">Create or edit a Bucket</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 (click)="clear()">&times;</button>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
         <div class="form-group" [hidden]="!bucket.id">
-            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <label for="id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
                    [(ngModel)]="bucket.id" readonly />
         </div>
         <div class="form-group">
 <<<<<<< HEAD
+<<<<<<< HEAD
             <label class="form-control-label" jhiTranslate="eshopApp.bucket.name" for="field_name">Name</label>
+=======
+            <label class="form-control-label" for="field_name">Name</label>
+>>>>>>> creatingDtos
             <input type="text" class="form-control" name="name" id="field_name"
                 [(ngModel)]="bucket.name"  />
         </div>
         <div class="form-group">
+<<<<<<< HEAD
 =======
 >>>>>>> with_entities
             <label class="form-control-label" jhiTranslate="eshopApp.bucket.data" for="field_data">Data</label>
+=======
+            <label class="form-control-label" for="field_date">Date</label>
+>>>>>>> creatingDtos
             <div class="d-flex">
-                <input id="field_data" type="datetime-local" class="form-control" name="data" [(ngModel)]="bucket.data"
+                <input id="field_date" type="datetime-local" class="form-control" name="date" [(ngModel)]="bucket.date"
                   />
             </div>
         </div>
 <<<<<<< HEAD
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="eshopApp.bucket.sum" for="field_sum">Sum</label>
+            <label class="form-control-label" for="field_sum">Sum</label>
             <input type="number" class="form-control" name="sum" id="field_sum"
                 [(ngModel)]="bucket.sum"  />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="eshopApp.bucket.orderNumber" for="field_orderNumber">Order Number</label>
+            <label class="form-control-label" for="field_orderNumber">Order Number</label>
             <input type="number" class="form-control" name="orderNumber" id="field_orderNumber"
                 [(ngModel)]="bucket.orderNumber"  />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="eshopApp.bucket.count" for="field_count">Count</label>
+            <label class="form-control-label" for="field_count">Count</label>
             <input type="number" class="form-control" name="count" id="field_count"
                 [(ngModel)]="bucket.count"  />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="eshopApp.bucket.status" for="field_status">Status</label>
+            <label class="form-control-label" for="field_status">Status</label>
             <select class="form-control" name="status" [(ngModel)]="bucket.status" id="field_status" >
-                <option value="WAIT" jhiTranslate="eshopApp.Status.WAIT">WAIT</option>
-                <option value="PURCHASED" jhiTranslate="eshopApp.Status.PURCHASED">PURCHASED</option>
-                <option value="SUCCESS" jhiTranslate="eshopApp.Status.SUCCESS">SUCCESS</option>
-                <option value="FAILURE" jhiTranslate="eshopApp.Status.FAILURE">FAILURE</option>
-                <option value="REJECT" jhiTranslate="eshopApp.Status.REJECT">REJECT</option>
+                <option value="WAIT">WAIT</option>
+                <option value="PROCESSING">PROCESSING</option>
+                <option value="CHECKED">CHECKED</option>
+                <option value="FILLED">FILLED</option>
+                <option value="SUCCESS">SUCCESS</option>
+                <option value="FAILURE">FAILURE</option>
+                <option value="REJECT">REJECT</option>
             </select>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="eshopApp.bucket.consignmentNote" for="field_consignmentNote">Consignment Note</label>
+            <label class="form-control-label" for="field_consignmentNote">Consignment Note</label>
             <input type="text" class="form-control" name="consignmentNote" id="field_consignmentNote"
                 [(ngModel)]="bucket.consignmentNote"  />
         </div>
 
         <div class="form-group">
-            <label jhiTranslate="eshopApp.bucket.manager" for="field_manager">Manager</label>
+            <label for="field_manager">Manager</label>
             <select class="form-control" id="field_manager" name="manager" [(ngModel)]="bucket.manager" >
                 <option [ngValue]="null"></option>
                 <option [ngValue]="managerOption.id === bucket.manager?.id ? bucket.manager : managerOption" *ngFor="let managerOption of managers; trackBy: trackManagerById">{{managerOption.id}}</option>
             </select>
         </div>
         <div class="form-group">
-            <label jhiTranslate="eshopApp.bucket.addressShipping" for="field_addressShipping">Address Shipping</label>
+            <label for="field_addressShipping">Address Shipping</label>
             <select class="form-control" id="field_addressShipping" name="addressShipping" [(ngModel)]="bucket.addressShipping">
                 <option [ngValue]="null"></option>
                 <option [ngValue]="addressShippingOption.id === bucket.addressShipping?.id ? bucket.addressShipping : addressShippingOption" *ngFor="let addressShippingOption of addressshippings; trackBy: trackAddressShippingById">{{addressShippingOption.id}}</option>
             </select>
         </div>
         <div class="form-group">
-            <label jhiTranslate="eshopApp.bucket.customer" for="field_customer">Customer</label>
+            <label for="field_customer">Customer</label>
             <select class="form-control" id="field_customer" name="customer" [(ngModel)]="bucket.customer" >
                 <option [ngValue]="null"></option>
                 <option [ngValue]="customerOption.id === bucket.customer?.id ? bucket.customer : customerOption" *ngFor="let customerOption of customers; trackBy: trackCustomerById">{{customerOption.id}}</option>
@@ -86,10 +96,10 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
-            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
         </button>
         <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
-            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
         </button>
     </div>
 </form>

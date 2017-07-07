@@ -1,18 +1,22 @@
 package com.social.eshop.service.dto;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import com.social.eshop.domain.Customer;
 import com.social.eshop.service.mapper.AutoMapping;
 
+=======
+>>>>>>> creatingDtos
 import java.time.ZonedDateTime;
 import java.util.List;
 
-public class CommentsDTO implements AutoMapping {
+public class CommentsDTO {
 
     private List<String> comments;
     private ZonedDateTime date;
     private CustomerDTO customerDTO;
 
+<<<<<<< HEAD
     public CommentsDTO() { }
 =======
 
@@ -51,6 +55,9 @@ public class CommentsDTO implements Serializable {
         this.date = date;
         this.customerDTO = customerDTO;
     }
+=======
+    public CommentsDTO() {}
+>>>>>>> creatingDtos
 
     public List<String> getComments() {
         return comments;
@@ -146,5 +153,4 @@ public class CommentsDTO implements Serializable {
             "}";
 >>>>>>> with_entities
     }
-    
 }

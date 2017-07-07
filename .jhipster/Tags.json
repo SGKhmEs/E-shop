@@ -23,7 +23,11 @@
         }
     ],
 <<<<<<< HEAD
+<<<<<<< HEAD
     "changelogDate": "20170610234457",
+=======
+    "changelogDate": "20170623182240",
+>>>>>>> creatingDtos
     "entityTableName": "tags",
     "dto": "no",
 =======

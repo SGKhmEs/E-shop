@@ -1,27 +1,30 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import { BaseEntity } from './../../shared';
+>>>>>>> creatingDtos
 
 const enum Status {
     'WAIT',
-    'PURCHASED',
+    'PROCESSING',
+    'CHECKED',
+    'FILLED',
     'SUCCESS',
     'FAILURE',
     'REJECT'
+}
 
-};
-import { Manager } from '../manager';
-import { AddressShipping } from '../address-shipping';
-import { ProductInBucket } from '../product-in-bucket';
-import { Customer } from '../customer';
-export class Bucket {
+export class Bucket implements BaseEntity {
     constructor(
         public id?: number,
         public name?: string,
-        public data?: any,
+        public date?: any,
         public sum?: number,
         public orderNumber?: number,
         public count?: number,
         public status?: Status,
         public consignmentNote?: string,
+<<<<<<< HEAD
         public manager?: Manager,
         public addressShipping?: AddressShipping,
         public productInBucket?: ProductInBucket,
@@ -33,6 +36,12 @@ export class Bucket {
         public data?: any,
         public productId?: number,
 >>>>>>> with_entities
+=======
+        public manager?: BaseEntity,
+        public addressShipping?: BaseEntity,
+        public productInBuckets?: BaseEntity[],
+        public customer?: BaseEntity,
+>>>>>>> creatingDtos
     ) {
     }
 }

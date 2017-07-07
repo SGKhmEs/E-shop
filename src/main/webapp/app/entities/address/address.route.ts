@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes, CanActivate } from '@angular/router';
 
 import { UserRouteAccessService } from '../../shared';
-import { PaginationUtil } from 'ng-jhipster';
+import { JhiPaginationUtil } from 'ng-jhipster';
 
 import { AddressComponent } from './address.component';
 import { AddressDetailComponent } from './address-detail.component';
@@ -17,7 +17,7 @@ export const addressRoute: Routes = [
         component: AddressComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.address.home.title'
+            pageTitle: 'Addresses'
         },
         canActivate: [UserRouteAccessService]
     }, {
@@ -25,7 +25,7 @@ export const addressRoute: Routes = [
         component: AddressDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.address.home.title'
+            pageTitle: 'Addresses'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -37,7 +37,7 @@ export const addressPopupRoute: Routes = [
         component: AddressPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.address.home.title'
+            pageTitle: 'Addresses'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -47,7 +47,7 @@ export const addressPopupRoute: Routes = [
         component: AddressPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.address.home.title'
+            pageTitle: 'Addresses'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -57,7 +57,7 @@ export const addressPopupRoute: Routes = [
         component: AddressDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.address.home.title'
+            pageTitle: 'Addresses'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

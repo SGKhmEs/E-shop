@@ -25,11 +25,11 @@ export class WishListPopupService {
 
         if (id) {
             this.wishListService.find(id).subscribe((wishList) => {
-                if (wishList.data) {
-                    wishList.data = {
-                        year: wishList.data.getFullYear(),
-                        month: wishList.data.getMonth() + 1,
-                        day: wishList.data.getDate()
+                if (wishList.date) {
+                    wishList.date = {
+                        year: wishList.date.getFullYear(),
+                        month: wishList.date.getMonth() + 1,
+                        day: wishList.date.getDate()
                     };
                 }
                 this.wishListModalRef(component, wishList);

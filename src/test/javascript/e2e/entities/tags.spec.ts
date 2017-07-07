@@ -24,8 +24,8 @@ describe('Tags e2e test', () => {
     it('should load Tags', () => {
         entityMenu.click();
         element.all(by.css('[routerLink="tags"]')).first().click().then(() => {
-            const expectVal = /eshopApp.tags.home.title/;
-            element.all(by.css('h2 span')).first().getAttribute('jhiTranslate').then((value) => {
+            const expectVal = /Tags/;
+            element.all(by.css('h2 span')).first().getText().then((value) => {
                 expect(value).toMatch(expectVal);
             });
         });
@@ -33,8 +33,8 @@ describe('Tags e2e test', () => {
 
     it('should load create Tags dialog', function () {
         element(by.css('button.create-tags')).click().then(() => {
-            const expectVal = /eshopApp.tags.home.createOrEditLabel/;
-            element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
+            const expectVal = /Create or edit a Tags/;
+            element.all(by.css('h4.modal-title')).first().getText().then((value) => {
                 expect(value).toMatch(expectVal);
             });
 

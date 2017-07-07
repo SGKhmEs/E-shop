@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes, CanActivate } from '@angular/router';
 
 import { UserRouteAccessService } from '../../shared';
-import { PaginationUtil } from 'ng-jhipster';
+import { JhiPaginationUtil } from 'ng-jhipster';
 
 import { ProductInBucketComponent } from './product-in-bucket.component';
 import { ProductInBucketDetailComponent } from './product-in-bucket-detail.component';
@@ -17,7 +17,7 @@ export const productInBucketRoute: Routes = [
         component: ProductInBucketComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.productInBucket.home.title'
+            pageTitle: 'ProductInBuckets'
         },
         canActivate: [UserRouteAccessService]
     }, {
@@ -25,7 +25,7 @@ export const productInBucketRoute: Routes = [
         component: ProductInBucketDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.productInBucket.home.title'
+            pageTitle: 'ProductInBuckets'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -37,7 +37,7 @@ export const productInBucketPopupRoute: Routes = [
         component: ProductInBucketPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.productInBucket.home.title'
+            pageTitle: 'ProductInBuckets'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -47,7 +47,7 @@ export const productInBucketPopupRoute: Routes = [
         component: ProductInBucketPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.productInBucket.home.title'
+            pageTitle: 'ProductInBuckets'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -57,7 +57,7 @@ export const productInBucketPopupRoute: Routes = [
         component: ProductInBucketDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.productInBucket.home.title'
+            pageTitle: 'ProductInBuckets'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

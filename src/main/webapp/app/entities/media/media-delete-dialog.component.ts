@@ -3,10 +3,14 @@ import { ActivatedRoute } from '@angular/router';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { AlertService, EventManager } from 'ng-jhipster';
 =======
 import { EventManager } from 'ng-jhipster';
 >>>>>>> with_entities
+=======
+import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
+>>>>>>> creatingDtos
 
 import { Media } from './media.model';
 import { MediaPopupService } from './media-popup.service';
@@ -24,10 +28,15 @@ export class MediaDeleteDialogComponent {
         private mediaService: MediaService,
         public activeModal: NgbActiveModal,
 <<<<<<< HEAD
+<<<<<<< HEAD
         private alertService: AlertService,
 =======
 >>>>>>> with_entities
         private eventManager: EventManager
+=======
+        private alertService: JhiAlertService,
+        private eventManager: JhiEventManager
+>>>>>>> creatingDtos
     ) {
     }
 
@@ -44,9 +53,13 @@ export class MediaDeleteDialogComponent {
             this.activeModal.dismiss(true);
         });
 <<<<<<< HEAD
+<<<<<<< HEAD
         this.alertService.success('eshopApp.media.deleted', { param : id }, null);
 =======
 >>>>>>> with_entities
+=======
+        this.alertService.success(`A Media is deleted with identifier ${id}`, null, null);
+>>>>>>> creatingDtos
     }
 }
 

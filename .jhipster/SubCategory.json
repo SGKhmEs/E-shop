@@ -9,6 +9,7 @@
         },
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             "relationshipType": "one-to-one",
             "relationshipName": "options",
             "otherEntityName": "options",
@@ -22,6 +23,8 @@
             "otherEntityRelationshipName": "subCategory"
         },
         {
+=======
+>>>>>>> creatingDtos
             "relationshipType": "one-to-many",
             "relationshipName": "product",
             "otherEntityName": "products",
@@ -38,7 +41,11 @@
         }
     ],
 <<<<<<< HEAD
+<<<<<<< HEAD
     "changelogDate": "20170610234502",
+=======
+    "changelogDate": "20170623182245",
+>>>>>>> creatingDtos
     "entityTableName": "sub_category",
     "dto": "no",
 =======

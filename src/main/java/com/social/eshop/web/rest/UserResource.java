@@ -36,13 +36,12 @@ import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * REST controller for managing users.
- *
- * <p>This class accesses the User entity, and needs to fetch its collection of authorities.</p>
+ * <p>
+ * This class accesses the User entity, and needs to fetch its collection of authorities.
  * <p>
  * For a normal use-case, it would be better to have an eager relationship between User and Authority,
  * and send everything to the client side: there would be no View Model and DTO, a lot less code, and an outer-join
  * which would be good for performance.
- * </p>
  * <p>
  * We use a View Model and a DTO for 3 reasons:
  * <ul>
@@ -56,7 +55,8 @@ import static org.elasticsearch.index.query.QueryBuilders.*;
  * (which will get lots of data from the database, for each HTTP call).</li>
  * <li> As this manages users, for security reasons, we'd rather have a DTO layer.</li>
  * </ul>
- * <p>Another option would be to have a specific JPA entity graph to handle this case.</p>
+ * <p>
+ * Another option would be to have a specific JPA entity graph to handle this case.
  */
 @RestController
 @RequestMapping("/api")
@@ -89,7 +89,6 @@ public class UserResource {
      * Creates a new user if the login and email are not already used, and sends an
      * mail with an activation link.
      * The user needs to be activated on creation.
-     * </p>
      *
      * @param managedUserVM the user to create
      * @return the ResponseEntity with status 201 (Created) and with body the new user, or with status 400 (Bad Request) if the login or email is already in use
@@ -118,7 +117,7 @@ public class UserResource {
             User newUser = userService.createUser(managedUserVM);
             mailService.sendCreationEmail(newUser);
             return ResponseEntity.created(new URI("/api/users/" + newUser.getLogin()))
-                .headers(HeaderUtil.createAlert( "userManagement.created", newUser.getLogin()))
+                .headers(HeaderUtil.createAlert( "A user is created with identifier " + newUser.getLogin(), newUser.getLogin()))
                 .body(newUser);
         }
     }
@@ -147,7 +146,7 @@ public class UserResource {
         Optional<UserDTO> updatedUser = userService.updateUser(managedUserVM);
 
         return ResponseUtil.wrapOrNotFound(updatedUser,
-            HeaderUtil.createAlert("userManagement.updated", managedUserVM.getLogin()));
+            HeaderUtil.createAlert("A user is updated with identifier " + managedUserVM.getLogin(), managedUserVM.getLogin()));
     }
 
     /**
@@ -201,7 +200,7 @@ public class UserResource {
     public ResponseEntity<Void> deleteUser(@PathVariable String login) {
         log.debug("REST request to delete User: {}", login);
         userService.deleteUser(login);
-        return ResponseEntity.ok().headers(HeaderUtil.createAlert( "userManagement.deleted", login)).build();
+        return ResponseEntity.ok().headers(HeaderUtil.createAlert( "A user is deleted with identifier " + login, login)).build();
     }
 
     /**

@@ -36,6 +36,7 @@ public class SubCategory implements Serializable {
     private Category category;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     @OneToOne
     @JoinColumn(unique = true)
     private Options options;
@@ -46,6 +47,8 @@ public class SubCategory implements Serializable {
     private Set<Options> options = new HashSet<>();
 >>>>>>> with_entities
 
+=======
+>>>>>>> creatingDtos
     @OneToMany(mappedBy = "subCategory")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -86,6 +89,7 @@ public class SubCategory implements Serializable {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     public Options getOptions() {
         return options;
     }
@@ -122,6 +126,8 @@ public class SubCategory implements Serializable {
         this.options = options;
     }
 
+=======
+>>>>>>> creatingDtos
     public Set<Products> getProducts() {
         return products;
     }

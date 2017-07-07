@@ -1,19 +1,19 @@
 <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
 
     <div class="modal-header">
-        <h4 class="modal-title" id="myAddressShippingLabel" jhiTranslate="eshopApp.addressShipping.home.createOrEditLabel">Create or edit a Address Shipping</h4>
+        <h4 class="modal-title" id="myAddressShippingLabel">Create or edit a Address Shipping</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 (click)="clear()">&times;</button>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
         <div class="form-group" [hidden]="!addressShipping.id">
-            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <label for="id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
                    [(ngModel)]="addressShipping.id" readonly />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="eshopApp.addressShipping.country" for="field_country">Country</label>
+            <label class="form-control-label" for="field_country">Country</label>
             <input type="text" class="form-control" name="country" id="field_country"
 <<<<<<< HEAD
                 [(ngModel)]="addressShipping.country" required />
@@ -23,13 +23,13 @@
 >>>>>>> with_entities
             <div [hidden]="!(editForm.controls.country?.dirty && editForm.controls.country?.invalid)">
                 <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.country?.errors?.required" jhiTranslate="entity.validation.required">
+                   [hidden]="!editForm.controls.country?.errors?.required">
                    This field is required.
                 </small>
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="eshopApp.addressShipping.city" for="field_city">City</label>
+            <label class="form-control-label" for="field_city">City</label>
             <input type="text" class="form-control" name="city" id="field_city"
 <<<<<<< HEAD
                 [(ngModel)]="addressShipping.city" required />
@@ -39,13 +39,13 @@
 >>>>>>> with_entities
             <div [hidden]="!(editForm.controls.city?.dirty && editForm.controls.city?.invalid)">
                 <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.city?.errors?.required" jhiTranslate="entity.validation.required">
+                   [hidden]="!editForm.controls.city?.errors?.required">
                    This field is required.
                 </small>
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="eshopApp.addressShipping.state" for="field_state">State</label>
+            <label class="form-control-label" for="field_state">State</label>
             <input type="text" class="form-control" name="state" id="field_state"
 <<<<<<< HEAD
                 [(ngModel)]="addressShipping.state"  />
@@ -55,7 +55,7 @@
 >>>>>>> with_entities
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="eshopApp.addressShipping.region" for="field_region">Region</label>
+            <label class="form-control-label" for="field_region">Region</label>
             <input type="text" class="form-control" name="region" id="field_region"
 <<<<<<< HEAD
                 [(ngModel)]="addressShipping.region"  />
@@ -65,7 +65,7 @@
 >>>>>>> with_entities
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="eshopApp.addressShipping.street" for="field_street">Street</label>
+            <label class="form-control-label" for="field_street">Street</label>
             <input type="text" class="form-control" name="street" id="field_street"
 <<<<<<< HEAD
                 [(ngModel)]="addressShipping.street" required />
@@ -75,13 +75,13 @@
 >>>>>>> with_entities
             <div [hidden]="!(editForm.controls.street?.dirty && editForm.controls.street?.invalid)">
                 <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.street?.errors?.required" jhiTranslate="entity.validation.required">
+                   [hidden]="!editForm.controls.street?.errors?.required">
                    This field is required.
                 </small>
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="eshopApp.addressShipping.building" for="field_building">Building</label>
+            <label class="form-control-label" for="field_building">Building</label>
             <input type="text" class="form-control" name="building" id="field_building"
 <<<<<<< HEAD
                 [(ngModel)]="addressShipping.building" required />
@@ -91,13 +91,13 @@
 >>>>>>> with_entities
             <div [hidden]="!(editForm.controls.building?.dirty && editForm.controls.building?.invalid)">
                 <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.building?.errors?.required" jhiTranslate="entity.validation.required">
+                   [hidden]="!editForm.controls.building?.errors?.required">
                    This field is required.
                 </small>
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="eshopApp.addressShipping.appartment" for="field_appartment">Appartment</label>
+            <label class="form-control-label" for="field_appartment">Appartment</label>
             <input type="text" class="form-control" name="appartment" id="field_appartment"
 <<<<<<< HEAD
                 [(ngModel)]="addressShipping.appartment"  />
@@ -110,10 +110,10 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
-            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
         </button>
         <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
-            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
         </button>
     </div>
 </form>

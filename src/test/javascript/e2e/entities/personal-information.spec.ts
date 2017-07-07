@@ -24,8 +24,8 @@ describe('PersonalInformation e2e test', () => {
     it('should load PersonalInformations', () => {
         entityMenu.click();
         element.all(by.css('[routerLink="personal-information"]')).first().click().then(() => {
-            const expectVal = /eshopApp.personalInformation.home.title/;
-            element.all(by.css('h2 span')).first().getAttribute('jhiTranslate').then((value) => {
+            const expectVal = /Personal Informations/;
+            element.all(by.css('h2 span')).first().getText().then((value) => {
                 expect(value).toMatch(expectVal);
             });
         });
@@ -33,8 +33,8 @@ describe('PersonalInformation e2e test', () => {
 
     it('should load create PersonalInformation dialog', function () {
         element(by.css('button.create-personal-information')).click().then(() => {
-            const expectVal = /eshopApp.personalInformation.home.createOrEditLabel/;
-            element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
+            const expectVal = /Create or edit a Personal Information/;
+            element.all(by.css('h4.modal-title')).first().getText().then((value) => {
                 expect(value).toMatch(expectVal);
             });
 

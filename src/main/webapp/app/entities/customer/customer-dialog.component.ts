@@ -4,17 +4,23 @@ import { Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EventManager, AlertService } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { Customer } from './customer.model';
 import { CustomerPopupService } from './customer-popup.service';
 import { CustomerService } from './customer.service';
 import { LoginOptions, LoginOptionsService } from '../login-options';
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import { Confirm, ConfirmService } from '../confirm';
 >>>>>>> with_entities
 import { CustomerRoom, CustomerRoomService } from '../customer-room';
+=======
+import { Address, AddressService } from '../address';
+import { PersonalInformation, PersonalInformationService } from '../personal-information';
+import { Avatar, AvatarService } from '../avatar';
+>>>>>>> creatingDtos
 import { ResponseWrapper } from '../../shared';
 
 @Component({
@@ -30,24 +36,39 @@ export class CustomerDialogComponent implements OnInit {
     loginoptions: LoginOptions[];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     customerrooms: CustomerRoom[];
 =======
     confirms: Confirm[];
 
     userrooms: CustomerRoom[];
 >>>>>>> with_entities
+=======
+    addresses: Address[];
+
+    personalinfos: PersonalInformation[];
+
+    avatars: Avatar[];
+>>>>>>> creatingDtos
 
     constructor(
         public activeModal: NgbActiveModal,
-        private alertService: AlertService,
+        private alertService: JhiAlertService,
         private customerService: CustomerService,
         private loginOptionsService: LoginOptionsService,
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
         private confirmService: ConfirmService,
 >>>>>>> with_entities
         private customerRoomService: CustomerRoomService,
         private eventManager: EventManager
+=======
+        private addressService: AddressService,
+        private personalInformationService: PersonalInformationService,
+        private avatarService: AvatarService,
+        private eventManager: JhiEventManager
+>>>>>>> creatingDtos
     ) {
     }
 
@@ -76,12 +97,43 @@ export class CustomerDialogComponent implements OnInit {
                 }
             }, (res: ResponseWrapper) => this.onError(res.json));
 <<<<<<< HEAD
+<<<<<<< HEAD
         this.customerRoomService
+=======
+        this.addressService
             .query({filter: 'customer-is-null'})
             .subscribe((res: ResponseWrapper) => {
-                if (!this.customer.customerRoom || !this.customer.customerRoom.id) {
-                    this.customerrooms = res.json;
+                if (!this.customer.address || !this.customer.address.id) {
+                    this.addresses = res.json;
                 } else {
+                    this.addressService
+                        .find(this.customer.address.id)
+                        .subscribe((subRes: Address) => {
+                            this.addresses = [subRes].concat(res.json);
+                        }, (subRes: ResponseWrapper) => this.onError(subRes.json));
+                }
+            }, (res: ResponseWrapper) => this.onError(res.json));
+        this.personalInformationService
+            .query({filter: 'customer-is-null'})
+            .subscribe((res: ResponseWrapper) => {
+                if (!this.customer.personalInfo || !this.customer.personalInfo.id) {
+                    this.personalinfos = res.json;
+                } else {
+                    this.personalInformationService
+                        .find(this.customer.personalInfo.id)
+                        .subscribe((subRes: PersonalInformation) => {
+                            this.personalinfos = [subRes].concat(res.json);
+                        }, (subRes: ResponseWrapper) => this.onError(subRes.json));
+                }
+            }, (res: ResponseWrapper) => this.onError(res.json));
+        this.avatarService
+>>>>>>> creatingDtos
+            .query({filter: 'customer-is-null'})
+            .subscribe((res: ResponseWrapper) => {
+                if (!this.customer.avatar || !this.customer.avatar.id) {
+                    this.avatars = res.json;
+                } else {
+<<<<<<< HEAD
                     this.customerRoomService
                         .find(this.customer.customerRoom.id)
                         .subscribe((subRes: CustomerRoom) => {
@@ -111,6 +163,12 @@ export class CustomerDialogComponent implements OnInit {
                         .subscribe((subRes: CustomerRoom) => {
                             this.userrooms = [subRes].concat(res.json);
 >>>>>>> with_entities
+=======
+                    this.avatarService
+                        .find(this.customer.avatar.id)
+                        .subscribe((subRes: Avatar) => {
+                            this.avatars = [subRes].concat(res.json);
+>>>>>>> creatingDtos
                         }, (subRes: ResponseWrapper) => this.onError(subRes.json));
                 }
             }, (res: ResponseWrapper) => this.onError(res.json));
@@ -142,9 +200,9 @@ export class CustomerDialogComponent implements OnInit {
 
     private onSaveSuccess(result: Customer, isCreated: boolean) {
         this.alertService.success(
-            isCreated ? 'eshopApp.customer.created'
-            : 'eshopApp.customer.updated',
-            { param : result.id }, null);
+            isCreated ? `A new Customer is created with identifier ${result.id}`
+            : `A Customer is updated with identifier ${result.id}`,
+            null, null);
 
 =======
                 this.customerService.update(this.customer));
@@ -185,6 +243,7 @@ export class CustomerDialogComponent implements OnInit {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     trackConfirmById(index: number, item: Confirm) {
         return item.id;
@@ -192,6 +251,17 @@ export class CustomerDialogComponent implements OnInit {
 
 >>>>>>> with_entities
     trackCustomerRoomById(index: number, item: CustomerRoom) {
+=======
+    trackAddressById(index: number, item: Address) {
+        return item.id;
+    }
+
+    trackPersonalInformationById(index: number, item: PersonalInformation) {
+        return item.id;
+    }
+
+    trackAvatarById(index: number, item: Avatar) {
+>>>>>>> creatingDtos
         return item.id;
     }
 }

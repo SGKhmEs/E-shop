@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
-import { EventManager, ParseLinks, PaginationUtil, JhiLanguageService, AlertService } from 'ng-jhipster';
+import { JhiEventManager, JhiParseLinks, JhiPaginationUtil, JhiAlertService } from 'ng-jhipster';
 
 import { Products } from './products.model';
 import { ProductsService } from './products.service';
@@ -28,9 +28,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
     constructor(
         private productsService: ProductsService,
-        private alertService: AlertService,
-        private eventManager: EventManager,
-        private parseLinks: ParseLinks,
+        private alertService: JhiAlertService,
+        private eventManager: JhiEventManager,
+        private parseLinks: JhiParseLinks,
         private activatedRoute: ActivatedRoute,
         private principal: Principal
     ) {

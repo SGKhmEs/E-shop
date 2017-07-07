@@ -24,8 +24,8 @@ describe('Category e2e test', () => {
     it('should load Categories', () => {
         entityMenu.click();
         element.all(by.css('[routerLink="category"]')).first().click().then(() => {
-            const expectVal = /eshopApp.category.home.title/;
-            element.all(by.css('h2 span')).first().getAttribute('jhiTranslate').then((value) => {
+            const expectVal = /Categories/;
+            element.all(by.css('h2 span')).first().getText().then((value) => {
                 expect(value).toMatch(expectVal);
             });
         });
@@ -33,8 +33,8 @@ describe('Category e2e test', () => {
 
     it('should load create Category dialog', function () {
         element(by.css('button.create-category')).click().then(() => {
-            const expectVal = /eshopApp.category.home.createOrEditLabel/;
-            element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
+            const expectVal = /Create or edit a Category/;
+            element.all(by.css('h4.modal-title')).first().getText().then((value) => {
                 expect(value).toMatch(expectVal);
             });
 

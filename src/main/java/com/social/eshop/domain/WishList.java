@@ -35,8 +35,13 @@ public class WishList implements Serializable {
     private Long id;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     @Column(name = "data")
     private LocalDate data;
+=======
+    @Column(name = "jhi_date")
+    private LocalDate date;
+>>>>>>> creatingDtos
 
     @ManyToOne
     private Customer customer;
@@ -66,6 +71,7 @@ public class WishList implements Serializable {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     public String getWishsName() {
         return wishsName;
@@ -83,15 +89,19 @@ public class WishList implements Serializable {
 >>>>>>> with_entities
     public LocalDate getData() {
         return data;
+=======
+    public LocalDate getDate() {
+        return date;
+>>>>>>> creatingDtos
     }
 
-    public WishList data(LocalDate data) {
-        this.data = data;
+    public WishList date(LocalDate date) {
+        this.date = date;
         return this;
     }
 
-    public void setData(LocalDate data) {
-        this.data = data;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
 <<<<<<< HEAD
@@ -171,10 +181,14 @@ public class WishList implements Serializable {
         return "WishList{" +
             "id=" + getId() +
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             ", wishsName='" + getWishsName() + "'" +
 >>>>>>> with_entities
             ", data='" + getData() + "'" +
+=======
+            ", date='" + getDate() + "'" +
+>>>>>>> creatingDtos
             "}";
     }
 }

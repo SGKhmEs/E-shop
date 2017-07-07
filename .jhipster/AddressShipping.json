@@ -44,7 +44,11 @@
         }
     ],
 <<<<<<< HEAD
+<<<<<<< HEAD
     "changelogDate": "20170610234449",
+=======
+    "changelogDate": "20170623182233",
+>>>>>>> creatingDtos
     "entityTableName": "address_shipping",
     "dto": "no",
 =======

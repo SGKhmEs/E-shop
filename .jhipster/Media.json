@@ -59,7 +59,11 @@
         }
     ],
 <<<<<<< HEAD
+<<<<<<< HEAD
     "changelogDate": "20170610234504",
+=======
+    "changelogDate": "20170623182246",
+>>>>>>> creatingDtos
     "entityTableName": "media",
     "dto": "no",
 =======

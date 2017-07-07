@@ -24,8 +24,8 @@ describe('Bucket e2e test', () => {
     it('should load Buckets', () => {
         entityMenu.click();
         element.all(by.css('[routerLink="bucket"]')).first().click().then(() => {
-            const expectVal = /eshopApp.bucket.home.title/;
-            element.all(by.css('h2 span')).first().getAttribute('jhiTranslate').then((value) => {
+            const expectVal = /Buckets/;
+            element.all(by.css('h2 span')).first().getText().then((value) => {
                 expect(value).toMatch(expectVal);
             });
         });
@@ -33,8 +33,8 @@ describe('Bucket e2e test', () => {
 
     it('should load create Bucket dialog', function () {
         element(by.css('button.create-bucket')).click().then(() => {
-            const expectVal = /eshopApp.bucket.home.createOrEditLabel/;
-            element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
+            const expectVal = /Create or edit a Bucket/;
+            element.all(by.css('h4.modal-title')).first().getText().then((value) => {
                 expect(value).toMatch(expectVal);
             });
 

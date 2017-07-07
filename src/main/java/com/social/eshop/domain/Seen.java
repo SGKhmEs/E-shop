@@ -34,8 +34,8 @@ public class Seen implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Column(name = "data")
-    private LocalDate data;
+    @Column(name = "jhi_date")
+    private LocalDate date;
 
 <<<<<<< HEAD
     @ManyToOne
@@ -59,17 +59,17 @@ public class Seen implements Serializable {
         this.id = id;
     }
 
-    public LocalDate getData() {
-        return data;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public Seen data(LocalDate data) {
-        this.data = data;
+    public Seen date(LocalDate date) {
+        this.date = date;
         return this;
     }
 
-    public void setData(LocalDate data) {
-        this.data = data;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
 <<<<<<< HEAD
@@ -147,7 +147,7 @@ public class Seen implements Serializable {
     public String toString() {
         return "Seen{" +
             "id=" + getId() +
-            ", data='" + getData() + "'" +
+            ", date='" + getDate() + "'" +
             "}";
     }
 }

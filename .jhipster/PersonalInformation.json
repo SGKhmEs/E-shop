@@ -1,5 +1,6 @@
 {
     "fluentMethods": true,
+<<<<<<< HEAD
     "relationships": [
         {
             "relationshipType": "one-to-one",
@@ -21,6 +22,9 @@
 >>>>>>> with_entities
         }
     ],
+=======
+    "relationships": [],
+>>>>>>> creatingDtos
     "fields": [
         {
             "fieldName": "firstName",
@@ -65,7 +69,11 @@
         }
     ],
 <<<<<<< HEAD
+<<<<<<< HEAD
     "changelogDate": "20170610234455",
+=======
+    "changelogDate": "20170623182238",
+>>>>>>> creatingDtos
     "entityTableName": "personal_information",
     "dto": "no",
 =======

@@ -42,7 +42,7 @@
             "fieldType": "String"
         },
         {
-            "fieldName": "data",
+            "fieldName": "date",
             "fieldType": "ZonedDateTime"
         },
         {
@@ -60,14 +60,14 @@
         {
             "fieldName": "status",
             "fieldType": "Status",
-            "fieldValues": "WAIT,PURCHASED,SUCCESS,FAILURE,REJECT"
+            "fieldValues": "WAIT,PROCESSING,CHECKED,FILLED,SUCCESS,FAILURE,REJECT"
         },
         {
             "fieldName": "consignmentNote",
             "fieldType": "String"
         }
     ],
-    "changelogDate": "20170610234448",
+    "changelogDate": "20170623182232",
     "entityTableName": "bucket",
     "dto": "no",
     "pagination": "infinite-scroll",

@@ -36,9 +36,13 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import com.social.eshop.domain.enumeration.Roles;
 >>>>>>> with_entities
+=======
+import com.social.eshop.domain.enumeration.SocialConnect;
+>>>>>>> creatingDtos
 /**
  * Test class for the CustomerResource REST controller.
  *
@@ -49,6 +53,15 @@ import com.social.eshop.domain.enumeration.Roles;
 public class CustomerResourceIntTest {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    private static final Boolean DEFAULT_SUB_SCRIPTION = false;
+    private static final Boolean UPDATED_SUB_SCRIPTION = true;
+
+    private static final SocialConnect DEFAULT_SOSIAL_CONNECT = SocialConnect.DEFAULT;
+    private static final SocialConnect UPDATED_SOSIAL_CONNECT = SocialConnect.GOOGLE;
+
+>>>>>>> creatingDtos
     private static final String DEFAULT_SESSION_ID = "AAAAAAAAAA";
     private static final String UPDATED_SESSION_ID = "BBBBBBBBBB";
 =======
@@ -106,6 +119,11 @@ public class CustomerResourceIntTest {
     public static Customer createEntity(EntityManager em) {
         Customer customer = new Customer()
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+            .subScription(DEFAULT_SUB_SCRIPTION)
+            .sosialConnect(DEFAULT_SOSIAL_CONNECT)
+>>>>>>> creatingDtos
             .sessionId(DEFAULT_SESSION_ID);
 =======
             .roles(DEFAULT_ROLES);
@@ -142,6 +160,11 @@ public class CustomerResourceIntTest {
         assertThat(customerList).hasSize(databaseSizeBeforeCreate + 1);
         Customer testCustomer = customerList.get(customerList.size() - 1);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+        assertThat(testCustomer.isSubScription()).isEqualTo(DEFAULT_SUB_SCRIPTION);
+        assertThat(testCustomer.getSosialConnect()).isEqualTo(DEFAULT_SOSIAL_CONNECT);
+>>>>>>> creatingDtos
         assertThat(testCustomer.getSessionId()).isEqualTo(DEFAULT_SESSION_ID);
 =======
         assertThat(testCustomer.getRoles()).isEqualTo(DEFAULT_ROLES);
@@ -191,6 +214,11 @@ public class CustomerResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(customer.getId().intValue())))
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+            .andExpect(jsonPath("$.[*].subScription").value(hasItem(DEFAULT_SUB_SCRIPTION.booleanValue())))
+            .andExpect(jsonPath("$.[*].sosialConnect").value(hasItem(DEFAULT_SOSIAL_CONNECT.toString())))
+>>>>>>> creatingDtos
             .andExpect(jsonPath("$.[*].sessionId").value(hasItem(DEFAULT_SESSION_ID.toString())));
 =======
             .andExpect(jsonPath("$.[*].roles").value(hasItem(DEFAULT_ROLES.toString())));
@@ -209,6 +237,11 @@ public class CustomerResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(customer.getId().intValue()))
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+            .andExpect(jsonPath("$.subScription").value(DEFAULT_SUB_SCRIPTION.booleanValue()))
+            .andExpect(jsonPath("$.sosialConnect").value(DEFAULT_SOSIAL_CONNECT.toString()))
+>>>>>>> creatingDtos
             .andExpect(jsonPath("$.sessionId").value(DEFAULT_SESSION_ID.toString()));
 =======
             .andExpect(jsonPath("$.roles").value(DEFAULT_ROLES.toString()));
@@ -240,6 +273,11 @@ public class CustomerResourceIntTest {
         Customer updatedCustomer = customerRepository.findOne(customer.getId());
         updatedCustomer
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+            .subScription(UPDATED_SUB_SCRIPTION)
+            .sosialConnect(UPDATED_SOSIAL_CONNECT)
+>>>>>>> creatingDtos
             .sessionId(UPDATED_SESSION_ID);
 
         restCustomerMockMvc.perform(put("/api/customers")
@@ -260,6 +298,11 @@ public class CustomerResourceIntTest {
         assertThat(customerList).hasSize(databaseSizeBeforeUpdate);
         Customer testCustomer = customerList.get(customerList.size() - 1);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+        assertThat(testCustomer.isSubScription()).isEqualTo(UPDATED_SUB_SCRIPTION);
+        assertThat(testCustomer.getSosialConnect()).isEqualTo(UPDATED_SOSIAL_CONNECT);
+>>>>>>> creatingDtos
         assertThat(testCustomer.getSessionId()).isEqualTo(UPDATED_SESSION_ID);
 =======
         assertThat(testCustomer.getRoles()).isEqualTo(UPDATED_ROLES);
@@ -340,6 +383,11 @@ public class CustomerResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(customer.getId().intValue())))
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+            .andExpect(jsonPath("$.[*].subScription").value(hasItem(DEFAULT_SUB_SCRIPTION.booleanValue())))
+            .andExpect(jsonPath("$.[*].sosialConnect").value(hasItem(DEFAULT_SOSIAL_CONNECT.toString())))
+>>>>>>> creatingDtos
             .andExpect(jsonPath("$.[*].sessionId").value(hasItem(DEFAULT_SESSION_ID.toString())));
 =======
             .andExpect(jsonPath("$.[*].roles").value(hasItem(DEFAULT_ROLES.toString())));

@@ -27,8 +27,8 @@ export class BucketPopupService {
 
         if (id) {
             this.bucketService.find(id).subscribe((bucket) => {
-                bucket.data = this.datePipe
-                    .transform(bucket.data, 'yyyy-MM-ddThh:mm');
+                bucket.date = this.datePipe
+                    .transform(bucket.date, 'yyyy-MM-ddThh:mm');
                 this.bucketModalRef(component, bucket);
             });
         } else {

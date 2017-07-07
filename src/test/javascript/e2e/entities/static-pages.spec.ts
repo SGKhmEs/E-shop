@@ -24,8 +24,8 @@ describe('StaticPages e2e test', () => {
     it('should load StaticPages', () => {
         entityMenu.click();
         element.all(by.css('[routerLink="static-pages"]')).first().click().then(() => {
-            const expectVal = /eshopApp.staticPages.home.title/;
-            element.all(by.css('h2 span')).first().getAttribute('jhiTranslate').then((value) => {
+            const expectVal = /Static Pages/;
+            element.all(by.css('h2 span')).first().getText().then((value) => {
                 expect(value).toMatch(expectVal);
             });
         });
@@ -33,8 +33,8 @@ describe('StaticPages e2e test', () => {
 
     it('should load create StaticPages dialog', function () {
         element(by.css('button.create-static-pages')).click().then(() => {
-            const expectVal = /eshopApp.staticPages.home.createOrEditLabel/;
-            element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
+            const expectVal = /Create or edit a Static Pages/;
+            element.all(by.css('h4.modal-title')).first().getText().then((value) => {
                 expect(value).toMatch(expectVal);
             });
 

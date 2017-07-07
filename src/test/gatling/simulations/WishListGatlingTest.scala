@@ -69,10 +69,14 @@ class WishListGatlingTest extends Simulation {
             .post("/api/wish-lists")
             .headers(headers_http_authenticated)
 <<<<<<< HEAD
+<<<<<<< HEAD
             .body(StringBody("""{"id":null, "data":"2020-01-01T00:00:00.000Z"}""")).asJSON
 =======
             .body(StringBody("""{"id":null, "wishsName":"SAMPLE_TEXT", "data":"2020-01-01T00:00:00.000Z"}""")).asJSON
 >>>>>>> with_entities
+=======
+            .body(StringBody("""{"id":null, "date":"2020-01-01T00:00:00.000Z"}""")).asJSON
+>>>>>>> creatingDtos
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_wishList_url"))).exitHereIfFailed
             .pause(10)

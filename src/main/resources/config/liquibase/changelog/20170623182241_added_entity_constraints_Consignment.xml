@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity Consignment.
+    -->
+    <changeSet id="20170623182241-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="storage_id"
+                                 baseTableName="consignment"
+                                 constraintName="fk_consignment_storage_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="storage"/>
+
+        <addForeignKeyConstraint baseColumnNames="producers_id"
+                                 baseTableName="consignment"
+                                 constraintName="fk_consignment_producers_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="producers"/>
+
+    </changeSet>
+</databaseChangeLog>

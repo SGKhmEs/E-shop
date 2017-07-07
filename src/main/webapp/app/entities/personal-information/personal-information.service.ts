@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
-import { DateUtils } from 'ng-jhipster';
+import { JhiDateUtils } from 'ng-jhipster';
 
 import { PersonalInformation } from './personal-information.model';
 import { ResponseWrapper, createRequestOption } from '../../shared';
@@ -12,7 +12,7 @@ export class PersonalInformationService {
     private resourceUrl = 'api/personal-informations';
     private resourceSearchUrl = 'api/_search/personal-informations';
 
-    constructor(private http: Http, private dateUtils: DateUtils) { }
+    constructor(private http: Http, private dateUtils: JhiDateUtils) { }
 
     create(personalInformation: PersonalInformation): Observable<PersonalInformation> {
         const copy = this.convert(personalInformation);

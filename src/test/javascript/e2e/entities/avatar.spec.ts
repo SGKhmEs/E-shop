@@ -24,8 +24,8 @@ describe('Avatar e2e test', () => {
     it('should load Avatars', () => {
         entityMenu.click();
         element.all(by.css('[routerLink="avatar"]')).first().click().then(() => {
-            const expectVal = /eshopApp.avatar.home.title/;
-            element.all(by.css('h2 span')).first().getAttribute('jhiTranslate').then((value) => {
+            const expectVal = /Avatars/;
+            element.all(by.css('h2 span')).first().getText().then((value) => {
                 expect(value).toMatch(expectVal);
             });
         });
@@ -33,8 +33,8 @@ describe('Avatar e2e test', () => {
 
     it('should load create Avatar dialog', function () {
         element(by.css('button.create-avatar')).click().then(() => {
-            const expectVal = /eshopApp.avatar.home.createOrEditLabel/;
-            element.all(by.css('h4.modal-title')).first().getAttribute('jhiTranslate').then((value) => {
+            const expectVal = /Create or edit a Avatar/;
+            element.all(by.css('h4.modal-title')).first().getText().then((value) => {
                 expect(value).toMatch(expectVal);
             });
 

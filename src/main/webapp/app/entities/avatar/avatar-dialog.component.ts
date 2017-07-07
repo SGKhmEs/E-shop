@@ -8,7 +8,7 @@ import { Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EventManager, AlertService, DataUtils } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 
 import { Avatar } from './avatar.model';
 import { AvatarPopupService } from './avatar-popup.service';
@@ -26,14 +26,18 @@ export class AvatarDialogComponent implements OnInit {
 
     constructor(
         public activeModal: NgbActiveModal,
-        private dataUtils: DataUtils,
-        private alertService: AlertService,
+        private dataUtils: JhiDataUtils,
+        private alertService: JhiAlertService,
         private avatarService: AvatarService,
 <<<<<<< HEAD
         private elementRef: ElementRef,
+<<<<<<< HEAD
 =======
 >>>>>>> with_entities
         private eventManager: EventManager
+=======
+        private eventManager: JhiEventManager
+>>>>>>> creatingDtos
     ) {
     }
 
@@ -100,9 +104,9 @@ export class AvatarDialogComponent implements OnInit {
 
     private onSaveSuccess(result: Avatar, isCreated: boolean) {
         this.alertService.success(
-            isCreated ? 'eshopApp.avatar.created'
-            : 'eshopApp.avatar.updated',
-            { param : result.id }, null);
+            isCreated ? `A new Avatar is created with identifier ${result.id}`
+            : `A Avatar is updated with identifier ${result.id}`,
+            null, null);
 
 =======
                 this.avatarService.update(this.avatar));

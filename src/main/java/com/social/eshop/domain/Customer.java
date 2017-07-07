@@ -12,10 +12,15 @@ import java.util.Set;
 import java.util.Objects;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import com.social.eshop.domain.enumeration.Roles;
 
 >>>>>>> with_entities
+=======
+import com.social.eshop.domain.enumeration.SocialConnect;
+
+>>>>>>> creatingDtos
 /**
  * A Customer.
  */
@@ -33,6 +38,16 @@ public class Customer implements Serializable {
     private Long id;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    @Column(name = "sub_scription")
+    private Boolean subScription;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "sosial_connect")
+    private SocialConnect sosialConnect;
+
+>>>>>>> creatingDtos
     @Column(name = "session_id")
     private String sessionId;
 =======
@@ -48,7 +63,19 @@ public class Customer implements Serializable {
     @OneToOne
     @JoinColumn(unique = true)
 <<<<<<< HEAD
+<<<<<<< HEAD
     private CustomerRoom customerRoom;
+=======
+    private Address address;
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    private PersonalInformation personalInfo;
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Avatar avatar;
+>>>>>>> creatingDtos
 
     @OneToMany(mappedBy = "customer")
     @JsonIgnore
@@ -85,6 +112,35 @@ public class Customer implements Serializable {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    public Boolean isSubScription() {
+        return subScription;
+    }
+
+    public Customer subScription(Boolean subScription) {
+        this.subScription = subScription;
+        return this;
+    }
+
+    public void setSubScription(Boolean subScription) {
+        this.subScription = subScription;
+    }
+
+    public SocialConnect getSosialConnect() {
+        return sosialConnect;
+    }
+
+    public Customer sosialConnect(SocialConnect sosialConnect) {
+        this.sosialConnect = sosialConnect;
+        return this;
+    }
+
+    public void setSosialConnect(SocialConnect sosialConnect) {
+        this.sosialConnect = sosialConnect;
+    }
+
+>>>>>>> creatingDtos
     public String getSessionId() {
         return sessionId;
     }
@@ -125,17 +181,48 @@ public class Customer implements Serializable {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     public CustomerRoom getCustomerRoom() {
         return customerRoom;
+=======
+    public Address getAddress() {
+        return address;
     }
 
-    public Customer customerRoom(CustomerRoom customerRoom) {
-        this.customerRoom = customerRoom;
+    public Customer address(Address address) {
+        this.address = address;
         return this;
     }
 
-    public void setCustomerRoom(CustomerRoom customerRoom) {
-        this.customerRoom = customerRoom;
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public PersonalInformation getPersonalInfo() {
+        return personalInfo;
+    }
+
+    public Customer personalInfo(PersonalInformation personalInformation) {
+        this.personalInfo = personalInformation;
+        return this;
+    }
+
+    public void setPersonalInfo(PersonalInformation personalInformation) {
+        this.personalInfo = personalInformation;
+    }
+
+    public Avatar getAvatar() {
+        return avatar;
+>>>>>>> creatingDtos
+    }
+
+    public Customer avatar(Avatar avatar) {
+        this.avatar = avatar;
+        return this;
+    }
+
+    public void setAvatar(Avatar avatar) {
+        this.avatar = avatar;
     }
 
     public Set<Seen> getSeens() {
@@ -289,6 +376,11 @@ public class Customer implements Serializable {
         return "Customer{" +
             "id=" + getId() +
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+            ", subScription='" + isSubScription() + "'" +
+            ", sosialConnect='" + getSosialConnect() + "'" +
+>>>>>>> creatingDtos
             ", sessionId='" + getSessionId() + "'" +
 =======
             ", roles='" + getRoles() + "'" +

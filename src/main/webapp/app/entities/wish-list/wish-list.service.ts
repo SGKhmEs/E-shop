@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
-import { DateUtils } from 'ng-jhipster';
+import { JhiDateUtils } from 'ng-jhipster';
 
 import { WishList } from './wish-list.model';
 import { ResponseWrapper, createRequestOption } from '../../shared';
@@ -12,7 +12,7 @@ export class WishListService {
     private resourceUrl = 'api/wish-lists';
     private resourceSearchUrl = 'api/_search/wish-lists';
 
-    constructor(private http: Http, private dateUtils: DateUtils) { }
+    constructor(private http: Http, private dateUtils: JhiDateUtils) { }
 
     create(wishList: WishList): Observable<WishList> {
         const copy = this.convert(wishList);
@@ -69,14 +69,14 @@ export class WishListService {
     }
 
     private convertItemFromServer(entity: any) {
-        entity.data = this.dateUtils
-            .convertLocalDateFromServer(entity.data);
+        entity.date = this.dateUtils
+            .convertLocalDateFromServer(entity.date);
     }
 
     private convert(wishList: WishList): WishList {
         const copy: WishList = Object.assign({}, wishList);
-        copy.data = this.dateUtils
-            .convertLocalDateToServer(wishList.data);
+        copy.date = this.dateUtils
+            .convertLocalDateToServer(wishList.date);
         return copy;
     }
 }

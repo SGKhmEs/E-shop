@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { AlertService, EventManager } from 'ng-jhipster';
+import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
 
 import { Manager } from './manager.model';
 import { ManagerPopupService } from './manager-popup.service';
@@ -19,8 +19,8 @@ export class ManagerDeleteDialogComponent {
     constructor(
         private managerService: ManagerService,
         public activeModal: NgbActiveModal,
-        private alertService: AlertService,
-        private eventManager: EventManager
+        private alertService: JhiAlertService,
+        private eventManager: JhiEventManager
     ) {
     }
 
@@ -36,7 +36,7 @@ export class ManagerDeleteDialogComponent {
             });
             this.activeModal.dismiss(true);
         });
-        this.alertService.success('eshopApp.manager.deleted', { param : id }, null);
+        this.alertService.success(`A Manager is deleted with identifier ${id}`, null, null);
     }
 }
 

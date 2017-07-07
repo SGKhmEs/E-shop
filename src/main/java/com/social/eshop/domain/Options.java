@@ -26,20 +26,22 @@ public class Options implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "name", nullable = false)
-    private String name;
+    @Column(name = "color", nullable = false)
+    private Integer color;
 
     @NotNull
-    @Column(name = "jhi_level", nullable = false)
-    private Integer level;
+    @Column(name = "weight", nullable = false)
+    private Double weight;
 
-    @OneToOne
-    @JoinColumn(unique = true)
-    private Value value;
+    @NotNull
+    @Column(name = "metal", nullable = false)
+    private String metal;
 
-    @OneToOne
-    @JoinColumn(unique = true)
-    private Type type;
+    @Column(name = "jhi_size")
+    private Double size;
+
+    @Column(name = "length")
+    private Integer length;
 
 <<<<<<< HEAD
 =======
@@ -55,56 +57,69 @@ public class Options implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Integer getColor() {
+        return color;
     }
 
-    public Options name(String name) {
-        this.name = name;
+    public Options color(Integer color) {
+        this.color = color;
         return this;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setColor(Integer color) {
+        this.color = color;
     }
 
-    public Integer getLevel() {
-        return level;
+    public Double getWeight() {
+        return weight;
     }
 
-    public Options level(Integer level) {
-        this.level = level;
+    public Options weight(Double weight) {
+        this.weight = weight;
         return this;
     }
 
-    public void setLevel(Integer level) {
-        this.level = level;
+    public void setWeight(Double weight) {
+        this.weight = weight;
     }
 
-    public Value getValue() {
-        return value;
+    public String getMetal() {
+        return metal;
     }
 
-    public Options value(Value value) {
-        this.value = value;
+    public Options metal(String metal) {
+        this.metal = metal;
         return this;
     }
 
-    public void setValue(Value value) {
-        this.value = value;
+    public void setMetal(String metal) {
+        this.metal = metal;
     }
 
-    public Type getType() {
-        return type;
+    public Double getSize() {
+        return size;
     }
 
-    public Options type(Type type) {
-        this.type = type;
+    public Options size(Double size) {
+        this.size = size;
         return this;
     }
 
-    public void setType(Type type) {
-        this.type = type;
+    public void setSize(Double size) {
+        this.size = size;
+    }
+
+    public Integer getLength() {
+        return length;
+    }
+
+    public Options length(Integer length) {
+        this.length = length;
+        return this;
+    }
+
+    public void setLength(Integer length) {
+        this.length = length;
     }
 
 <<<<<<< HEAD
@@ -147,8 +162,11 @@ public class Options implements Serializable {
     public String toString() {
         return "Options{" +
             "id=" + getId() +
-            ", name='" + getName() + "'" +
-            ", level='" + getLevel() + "'" +
+            ", color='" + getColor() + "'" +
+            ", weight='" + getWeight() + "'" +
+            ", metal='" + getMetal() + "'" +
+            ", size='" + getSize() + "'" +
+            ", length='" + getLength() + "'" +
             "}";
     }
 }

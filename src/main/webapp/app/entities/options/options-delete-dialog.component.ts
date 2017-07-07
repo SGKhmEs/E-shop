@@ -3,10 +3,14 @@ import { ActivatedRoute } from '@angular/router';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { AlertService, EventManager } from 'ng-jhipster';
 =======
 import { EventManager } from 'ng-jhipster';
 >>>>>>> with_entities
+=======
+import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
+>>>>>>> creatingDtos
 
 import { Options } from './options.model';
 import { OptionsPopupService } from './options-popup.service';
@@ -24,10 +28,15 @@ export class OptionsDeleteDialogComponent {
         private optionsService: OptionsService,
         public activeModal: NgbActiveModal,
 <<<<<<< HEAD
+<<<<<<< HEAD
         private alertService: AlertService,
 =======
 >>>>>>> with_entities
         private eventManager: EventManager
+=======
+        private alertService: JhiAlertService,
+        private eventManager: JhiEventManager
+>>>>>>> creatingDtos
     ) {
     }
 
@@ -44,9 +53,13 @@ export class OptionsDeleteDialogComponent {
             this.activeModal.dismiss(true);
         });
 <<<<<<< HEAD
+<<<<<<< HEAD
         this.alertService.success('eshopApp.options.deleted', { param : id }, null);
 =======
 >>>>>>> with_entities
+=======
+        this.alertService.success(`A Options is deleted with identifier ${id}`, null, null);
+>>>>>>> creatingDtos
     }
 }
 

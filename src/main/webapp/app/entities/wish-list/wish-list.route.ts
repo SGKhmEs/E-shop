@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes, CanActivate } from '@angular/router';
 
 import { UserRouteAccessService } from '../../shared';
-import { PaginationUtil } from 'ng-jhipster';
+import { JhiPaginationUtil } from 'ng-jhipster';
 
 import { WishListComponent } from './wish-list.component';
 import { WishListDetailComponent } from './wish-list-detail.component';
@@ -17,7 +17,7 @@ export const wishListRoute: Routes = [
         component: WishListComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.wishList.home.title'
+            pageTitle: 'WishLists'
         },
         canActivate: [UserRouteAccessService]
     }, {
@@ -25,7 +25,7 @@ export const wishListRoute: Routes = [
         component: WishListDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.wishList.home.title'
+            pageTitle: 'WishLists'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -37,7 +37,7 @@ export const wishListPopupRoute: Routes = [
         component: WishListPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.wishList.home.title'
+            pageTitle: 'WishLists'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -47,7 +47,7 @@ export const wishListPopupRoute: Routes = [
         component: WishListPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.wishList.home.title'
+            pageTitle: 'WishLists'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -57,7 +57,7 @@ export const wishListPopupRoute: Routes = [
         component: WishListDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.wishList.home.title'
+            pageTitle: 'WishLists'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

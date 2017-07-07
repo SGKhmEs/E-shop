@@ -3,13 +3,11 @@ package com.social.eshop.service.dto;
 <<<<<<< HEAD
 import com.social.eshop.domain.AddressShipping;
 import com.social.eshop.domain.enumeration.Status;
-import com.social.eshop.service.mapper.AutoMapping;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 
-public class BucketDTO implements AutoMapping{
-
+public class BucketDTO {
     private String name;
     private ZonedDateTime dateTime;
     private BigDecimal sum;
@@ -18,8 +16,9 @@ public class BucketDTO implements AutoMapping{
     private int count;
     private String consignmentNote;
     private AddressShipping addressShipping;
+    private ProductsDTO productsDTO;
 
-    public BucketDTO() { }
+    public BucketDTO() {}
 
     public String getName() {
         return name;
@@ -138,6 +137,14 @@ public class BucketDTO implements Serializable {
 >>>>>>> with_entities
     }
 
+    public ProductsDTO getProductsDTO() {
+        return productsDTO;
+    }
+
+    public void setProductsDTO(ProductsDTO productsDTO) {
+        this.productsDTO = productsDTO;
+    }
+
     @Override
     public String toString() {
         return "BucketDTO{" +
@@ -150,8 +157,10 @@ public class BucketDTO implements Serializable {
             ", count=" + count +
             ", consignmentNote='" + consignmentNote + '\'' +
             ", addressShipping=" + addressShipping +
+            ", productsDTO=" + productsDTO +
             '}';
     }
+<<<<<<< HEAD
 
 =======
             "id=" + getId() +
@@ -159,4 +168,6 @@ public class BucketDTO implements Serializable {
             "}";
     }
 >>>>>>> with_entities
+=======
+>>>>>>> creatingDtos
 }

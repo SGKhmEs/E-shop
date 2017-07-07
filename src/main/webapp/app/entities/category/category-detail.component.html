@@ -1,10 +1,10 @@
 
 <div *ngIf="category">
-    <h2><span jhiTranslate="eshopApp.category.detail.title">Category</span> {{category.id}}</h2>
+    <h2><span>Category</span> {{category.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="eshopApp.category.name">Name</span></dt>
+        <dt><span>Name</span></dt>
         <dd>
             <span>{{category.name}}</span>
         </dd>
@@ -13,13 +13,13 @@
     <button type="submit"
             (click)="previousState()"
             class="btn btn-info">
-        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
     </button>
 
     <button type="button"
             [routerLink]="['/', { outlets: { popup: 'category/'+ category.id + '/edit'} }]"
             replaceUrl="true"
             class="btn btn-primary">
-        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
     </button>
 </div>

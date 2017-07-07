@@ -68,7 +68,7 @@ class SeenGatlingTest extends Simulation {
             .exec(http("Create new seen")
             .post("/api/seens")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "data":"2020-01-01T00:00:00.000Z"}""")).asJSON
+            .body(StringBody("""{"id":null, "date":"2020-01-01T00:00:00.000Z"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_seen_url"))).exitHereIfFailed
             .pause(10)

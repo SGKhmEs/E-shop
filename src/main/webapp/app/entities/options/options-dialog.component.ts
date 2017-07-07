@@ -4,11 +4,12 @@ import { Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EventManager, AlertService } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { Options } from './options.model';
 import { OptionsPopupService } from './options-popup.service';
 import { OptionsService } from './options.service';
+<<<<<<< HEAD
 import { Value, ValueService } from '../value';
 import { Type, TypeService } from '../type';
 <<<<<<< HEAD
@@ -16,6 +17,8 @@ import { Type, TypeService } from '../type';
 import { SubCategory, SubCategoryService } from '../sub-category';
 >>>>>>> with_entities
 import { ResponseWrapper } from '../../shared';
+=======
+>>>>>>> creatingDtos
 
 @Component({
     selector: 'jhi-options-dialog',
@@ -27,6 +30,7 @@ export class OptionsDialogComponent implements OnInit {
     authorities: any[];
     isSaving: boolean;
 
+<<<<<<< HEAD
     values: Value[];
 
     types: Type[];
@@ -36,10 +40,13 @@ export class OptionsDialogComponent implements OnInit {
     subcategories: SubCategory[];
 
 >>>>>>> with_entities
+=======
+>>>>>>> creatingDtos
     constructor(
         public activeModal: NgbActiveModal,
-        private alertService: AlertService,
+        private alertService: JhiAlertService,
         private optionsService: OptionsService,
+<<<<<<< HEAD
         private valueService: ValueService,
         private typeService: TypeService,
 <<<<<<< HEAD
@@ -47,12 +54,16 @@ export class OptionsDialogComponent implements OnInit {
         private subCategoryService: SubCategoryService,
 >>>>>>> with_entities
         private eventManager: EventManager
+=======
+        private eventManager: JhiEventManager
+>>>>>>> creatingDtos
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
+<<<<<<< HEAD
         this.valueService
             .query({filter: 'options-is-null'})
             .subscribe((res: ResponseWrapper) => {
@@ -96,6 +107,8 @@ export class OptionsDialogComponent implements OnInit {
                 }
             }, (res: ResponseWrapper) => this.onError(res.json));
 <<<<<<< HEAD
+=======
+>>>>>>> creatingDtos
     }
 
 =======
@@ -126,9 +139,9 @@ export class OptionsDialogComponent implements OnInit {
 
     private onSaveSuccess(result: Options, isCreated: boolean) {
         this.alertService.success(
-            isCreated ? 'eshopApp.options.created'
-            : 'eshopApp.options.updated',
-            { param : result.id }, null);
+            isCreated ? `A new Options is created with identifier ${result.id}`
+            : `A Options is updated with identifier ${result.id}`,
+            null, null);
 
 =======
                 this.optionsService.update(this.options));
@@ -163,6 +176,7 @@ export class OptionsDialogComponent implements OnInit {
     private onError(error) {
         this.alertService.error(error.message, null, null);
     }
+<<<<<<< HEAD
 
     trackValueById(index: number, item: Value) {
         return item.id;
@@ -178,6 +192,8 @@ export class OptionsDialogComponent implements OnInit {
         return item.id;
     }
 >>>>>>> with_entities
+=======
+>>>>>>> creatingDtos
 }
 
 @Component({

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes, CanActivate } from '@angular/router';
 
 import { UserRouteAccessService } from '../../shared';
-import { PaginationUtil } from 'ng-jhipster';
+import { JhiPaginationUtil } from 'ng-jhipster';
 
 import { AvatarComponent } from './avatar.component';
 import { AvatarDetailComponent } from './avatar-detail.component';
@@ -17,7 +17,7 @@ export const avatarRoute: Routes = [
         component: AvatarComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.avatar.home.title'
+            pageTitle: 'Avatars'
         },
         canActivate: [UserRouteAccessService]
     }, {
@@ -25,7 +25,7 @@ export const avatarRoute: Routes = [
         component: AvatarDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.avatar.home.title'
+            pageTitle: 'Avatars'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -37,7 +37,7 @@ export const avatarPopupRoute: Routes = [
         component: AvatarPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.avatar.home.title'
+            pageTitle: 'Avatars'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -47,7 +47,7 @@ export const avatarPopupRoute: Routes = [
         component: AvatarPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.avatar.home.title'
+            pageTitle: 'Avatars'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -57,7 +57,7 @@ export const avatarPopupRoute: Routes = [
         component: AvatarDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.avatar.home.title'
+            pageTitle: 'Avatars'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

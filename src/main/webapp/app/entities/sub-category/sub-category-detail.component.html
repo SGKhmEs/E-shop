@@ -1,20 +1,21 @@
 
 <div *ngIf="subCategory">
-    <h2><span jhiTranslate="eshopApp.subCategory.detail.title">Sub Category</span> {{subCategory.id}}</h2>
+    <h2><span>Sub Category</span> {{subCategory.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="eshopApp.subCategory.name">Name</span></dt>
+        <dt><span>Name</span></dt>
         <dd>
             <span>{{subCategory.name}}</span>
         </dd>
-        <dt><span jhiTranslate="eshopApp.subCategory.category">Category</span></dt>
+        <dt><span>Category</span></dt>
         <dd>
 <<<<<<< HEAD
             <div *ngIf="subCategory.category">
                 <a [routerLink]="['/category', subCategory.category?.id]">{{subCategory.category?.id}}</a>
             </div>
         </dd>
+<<<<<<< HEAD
         <dt><span jhiTranslate="eshopApp.subCategory.options">Options</span></dt>
         <dd>
             <div *ngIf="subCategory.options">
@@ -25,18 +26,20 @@
 >>>>>>> with_entities
             </div>
         </dd>
+=======
+>>>>>>> creatingDtos
     </dl>
 
     <button type="submit"
             (click)="previousState()"
             class="btn btn-info">
-        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
     </button>
 
     <button type="button"
             [routerLink]="['/', { outlets: { popup: 'sub-category/'+ subCategory.id + '/edit'} }]"
             replaceUrl="true"
             class="btn btn-primary">
-        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
     </button>
 </div>

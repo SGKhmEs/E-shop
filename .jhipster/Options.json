@@ -1,15 +1,16 @@
 {
     "fluentMethods": true,
-    "relationships": [
+    "relationships": [],
+    "fields": [
         {
-            "relationshipType": "one-to-one",
-            "relationshipName": "value",
-            "otherEntityName": "value",
-            "otherEntityField": "id",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "options"
+            "fieldName": "color",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
         },
         {
+<<<<<<< HEAD
             "relationshipType": "one-to-one",
             "relationshipName": "type",
             "otherEntityName": "type",
@@ -31,20 +32,36 @@
         {
             "fieldName": "name",
             "fieldType": "String",
+=======
+            "fieldName": "weight",
+            "fieldType": "Double",
+>>>>>>> creatingDtos
             "fieldValidateRules": [
                 "required"
             ]
         },
         {
-            "fieldName": "level",
-            "fieldType": "Integer",
+            "fieldName": "metal",
+            "fieldType": "String",
             "fieldValidateRules": [
                 "required"
             ]
+        },
+        {
+            "fieldName": "size",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "length",
+            "fieldType": "Integer"
         }
     ],
 <<<<<<< HEAD
+<<<<<<< HEAD
     "changelogDate": "20170610234507",
+=======
+    "changelogDate": "20170623182248",
+>>>>>>> creatingDtos
     "entityTableName": "options",
     "dto": "no",
 =======

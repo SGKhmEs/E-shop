@@ -1,9 +1,9 @@
 <div>
     <h2>
-        <span jhiTranslate="eshopApp.wishList.home.title">Wish Lists</span>
+        <span>Wish Lists</span>
         <button class="btn btn-primary float-right create-wish-list" [routerLink]="['/', { outlets: { popup: ['wish-list-new'] } }]">
             <span class="fa fa-plus"></span>
-            <span class="hidden-sm-down"  jhiTranslate="eshopApp.wishList.home.createLabel">
+            <span class="hidden-sm-down" >
             Create new Wish List
             </span>
         </button>
@@ -13,7 +13,7 @@
         <div class="col-sm-12">
             <form name="searchForm" class="form-inline">
                 <div class="input-group w-100 mt-3">
-                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'eshopApp.wishList.home.search' | translate }}">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="Query">
                     <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
                         <span class="fa fa-search"></span>
                     </button>
@@ -29,6 +29,7 @@
         <table class="table table-striped">
             <thead>
             <tr>
+<<<<<<< HEAD
             <th><span jhiTranslate="global.field.id">ID</span></th>
 <<<<<<< HEAD
             <th><span jhiTranslate="eshopApp.wishList.data">Data</span></th>
@@ -38,6 +39,12 @@
             <th><span jhiTranslate="eshopApp.wishList.wishsName">Wishs Name</span></th>
             <th><span jhiTranslate="eshopApp.wishList.data">Data</span></th>
 >>>>>>> with_entities
+=======
+            <th><span>ID</span></th>
+            <th><span>Date</span></th>
+            <th><span>Customer</span></th>
+            <th><span>Product</span></th>
+>>>>>>> creatingDtos
             <th></th>
             </tr>
             </thead>
@@ -45,7 +52,11 @@
             <tr *ngFor="let wishList of wishLists ;trackBy: trackId">
                 <td><a [routerLink]="['../wish-list', wishList.id ]">{{wishList.id}}</a></td>
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <td>{{wishList.data | date:'mediumDate'}}</td>
+=======
+                <td>{{wishList.date | date:'mediumDate'}}</td>
+>>>>>>> creatingDtos
                 <td>
                     <div *ngIf="wishList.customer">
                         <a [routerLink]="['../customer', wishList.customer?.id ]" >{{wishList.customer?.id}}</a>
@@ -66,21 +77,21 @@
                                 [routerLink]="['../wish-list', wishList.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
-                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                            <span class="hidden-md-down">View</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'wish-list/'+ wishList.id + '/edit'} }]"
                                 replaceUrl="true"
                                 class="btn btn-primary btn-sm">
                             <span class="fa fa-pencil"></span>
-                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                            <span class="hidden-md-down">Edit</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'wish-list/'+ wishList.id + '/delete'} }]"
                                 replaceUrl="true"
                                 class="btn btn-danger btn-sm">
                             <span class="fa fa-remove"></span>
-                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                            <span class="hidden-md-down">Delete</span>
                         </button>
                     </div>
                 </td>

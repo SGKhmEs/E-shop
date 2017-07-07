@@ -1,5 +1,7 @@
 <<<<<<< HEAD
 entity Customer { 
+	subScription Boolean,
+    sosialConnect SocialConnect,
 	sessionId String
 }
 
@@ -7,17 +9,17 @@ entity LoginOptions {
 	login String  required, 
     password String required  
 }
-entity StaticPages {
 
+entity StaticPages {
 }
 
-entity Manager {  
-	roles Roles
+entity Manager { 
+    roles Roles
 }
 
 entity Bucket {
 	name String,
-    data ZonedDateTime,
+    date ZonedDateTime,
     sum BigDecimal, //or double
     orderNumber Integer, 
     count Integer,   	
@@ -67,16 +69,20 @@ entity AddressShipping {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 entity CustomerRoom { 
 	subScription Boolean,
     sosialConnect SocialConnect
 }
 
+=======
+>>>>>>> creatingDtos
 entity Seen {
-    data LocalDate
+    date LocalDate
 }
 
 entity WishList {
+<<<<<<< HEAD
 =======
 entity Confirm {
    pay Payment
@@ -91,6 +97,9 @@ entity WishList {
 	wishsName String,
 >>>>>>> with_entities
 	data LocalDate 
+=======
+	date LocalDate 
+>>>>>>> creatingDtos
 }
 
 entity Address {
@@ -135,9 +144,10 @@ entity PersonalInformation {
 entity Products {
 	name String required,
     price BigDecimal required,
-	sale String,
+	sale Integer, 
 	rating Double,
-	fresh Boolean    
+	fresh Boolean,
+    description String
 }
 
 entity Tags {
@@ -159,17 +169,12 @@ entity  Producers {
 	country String required
 }
 
-entity Category{
+entity Category {
 	name String required
 }
 
-entity SubCategory{
+entity SubCategory {
 	name String required
-}
-
-entity Type {
-	name String required,
-	behavior String required
 }
 
 entity Media {
@@ -182,28 +187,21 @@ entity Media {
 
 entity Comments {
 	comments String,
-    data ZonedDateTime
+    date ZonedDateTime
 }
 
-entity Value {
-	data String required
+entity Options {
+	color Integer required,
+    weight Double required,
+    metal String required,
+    size Double,
+    length Integer
 }
 
-entity Options{
-	name String required,
-	level Integer required
+entity TagForProduct {
 }
 
-entity TagForProduct{
-
-}
-
-entity ProductInBucket{
-
-}
-
-enum Roles {
-	USER, MODERATOR, ADMINISTRATOR, OWNER
+entity ProductInBucket {
 }
 
 enum Sex {
@@ -211,11 +209,15 @@ enum Sex {
 }
 
 enum SocialConnect {
-	DEFAULT, GOOGLE, FACEBOOK, VK, TWITTER, OK
+	DEFAULT, GOOGLE, FACEBOOK, TWITTER
+}
+
+enum Roles {
+	SMM, MODERATOR, ADMIN, OWNER
 }
 
 enum Status {
-	WAIT, PURCHASED, SUCCESS, FAILURE, REJECT
+	WAIT, PROCESSING, CHECKED, FILLED, SUCCESS, FAILURE, REJECT
 }
 
 relationship OneToOne {
@@ -223,15 +225,13 @@ relationship OneToOne {
 	WishList {product} to Products,
 	Customer {loginOptions} to LoginOptions,
     Manager {loginOptions} to LoginOptions,
-    Customer {customerRoom} to CustomerRoom,
-    CustomerRoom {address} to Address,
-    CustomerRoom {personalInfo} to PersonalInformation,
+    Customer {address} to Address,
+    Customer {personalInfo} to PersonalInformation,
     Manager {personalInfo} to PersonalInformation,
-    PersonalInformation {avatar} to Avatar,
+    Manager {avatar} to Avatar,
+    Customer {avatar} to Avatar,
     Bucket {addressShipping} to AddressShipping,
-    Options {value} to Value,
- 	Options {type} to Type,
-    SubCategory {options} to Options    
+    Products {options} to Options    
 }
 
 relationship OneToMany {
@@ -247,9 +247,9 @@ relationship OneToMany {
     Storage {consignment} to Consignment,
     Consignment {products} to Products,    
     Products {productInBucket} to ProductInBucket,
-    Bucket{productInBucket} to ProductInBucket,    
+    Bucket {productInBucket} to ProductInBucket,    
     Products {tagForProduct} to TagForProduct,
-    Tags{tagForProduct} to TagForProduct    
+    Tags {tagForProduct} to TagForProduct
 }
 
 relationship ManyToOne {
@@ -257,7 +257,7 @@ relationship ManyToOne {
 }
 
 // Set pagination options
-paginate Products , Bucket, Customer with infinite-scroll
+paginate Products, Bucket, Customer with infinite-scroll
 //paginate Consignment with pagination
 
 // dto Manager, Bucket, CustomerRoom , Customer with mapstruct

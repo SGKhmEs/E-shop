@@ -37,7 +37,11 @@
         }
     ],
 <<<<<<< HEAD
+<<<<<<< HEAD
     "changelogDate": "20170610234458",
+=======
+    "changelogDate": "20170623182241",
+>>>>>>> creatingDtos
     "entityTableName": "consignment",
     "dto": "no",
     "pagination": "no",

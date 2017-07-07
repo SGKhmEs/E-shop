@@ -1,10 +1,10 @@
-import { Products } from '../products';
-import { Tags } from '../tags';
-export class TagForProduct {
+import { BaseEntity } from './../../shared';
+
+export class TagForProduct implements BaseEntity {
     constructor(
         public id?: number,
-        public products?: Products,
-        public tags?: Tags,
+        public products?: BaseEntity,
+        public tags?: BaseEntity,
     ) {
     }
 }

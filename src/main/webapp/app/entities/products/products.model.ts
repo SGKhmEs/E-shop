@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { Media } from '../media';
 import { Comments } from '../comments';
 import { ProductInBucket } from '../product-in-bucket';
@@ -8,14 +9,20 @@ import { SubCategory } from '../sub-category';
 =======
 >>>>>>> with_entities
 export class Products {
+=======
+import { BaseEntity } from './../../shared';
+
+export class Products implements BaseEntity {
+>>>>>>> creatingDtos
     constructor(
         public id?: number,
         public name?: string,
 <<<<<<< HEAD
         public price?: number,
-        public sale?: string,
+        public sale?: number,
         public rating?: number,
         public fresh?: boolean,
+<<<<<<< HEAD
         public media?: Media,
         public comments?: Comments,
         public productInBucket?: ProductInBucket,
@@ -35,6 +42,16 @@ export class Products {
         public mediaId?: number,
         public tagsId?: number,
 >>>>>>> with_entities
+=======
+        public description?: string,
+        public options?: BaseEntity,
+        public media?: BaseEntity[],
+        public comments?: BaseEntity[],
+        public productInBuckets?: BaseEntity[],
+        public tagForProducts?: BaseEntity[],
+        public consignment?: BaseEntity,
+        public subCategory?: BaseEntity,
+>>>>>>> creatingDtos
     ) {
         this.fresh = false;
     }

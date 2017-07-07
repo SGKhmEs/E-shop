@@ -2,7 +2,7 @@
     "fluentMethods": true,
     "relationships": [],
     "fields": [],
-    "changelogDate": "20170610234446",
+    "changelogDate": "20170623182230",
     "entityTableName": "static_pages",
     "dto": "no",
     "pagination": "no",

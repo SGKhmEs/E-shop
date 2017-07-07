@@ -46,8 +46,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = EshopApp.class)
 public class SeenResourceIntTest {
 
-    private static final LocalDate DEFAULT_DATA = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_DATA = LocalDate.now(ZoneId.systemDefault());
+    private static final LocalDate DEFAULT_DATE = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_DATE = LocalDate.now(ZoneId.systemDefault());
 
     @Autowired
     private SeenRepository seenRepository;
@@ -98,7 +98,7 @@ public class SeenResourceIntTest {
      */
     public static Seen createEntity(EntityManager em) {
         Seen seen = new Seen()
-            .data(DEFAULT_DATA);
+            .date(DEFAULT_DATE);
         return seen;
     }
 
@@ -130,7 +130,7 @@ public class SeenResourceIntTest {
         List<Seen> seenList = seenRepository.findAll();
         assertThat(seenList).hasSize(databaseSizeBeforeCreate + 1);
         Seen testSeen = seenList.get(seenList.size() - 1);
-        assertThat(testSeen.getData()).isEqualTo(DEFAULT_DATA);
+        assertThat(testSeen.getDate()).isEqualTo(DEFAULT_DATE);
 
         // Validate the Seen in Elasticsearch
         Seen seenEs = seenSearchRepository.findOne(testSeen.getId());
@@ -175,7 +175,7 @@ public class SeenResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(seen.getId().intValue())))
-            .andExpect(jsonPath("$.[*].data").value(hasItem(DEFAULT_DATA.toString())));
+            .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())));
     }
 
     @Test
@@ -189,7 +189,7 @@ public class SeenResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(seen.getId().intValue()))
-            .andExpect(jsonPath("$.data").value(DEFAULT_DATA.toString()));
+            .andExpect(jsonPath("$.date").value(DEFAULT_DATE.toString()));
     }
 
     @Test
@@ -216,8 +216,12 @@ public class SeenResourceIntTest {
         // Update the seen
         Seen updatedSeen = seenRepository.findOne(seen.getId());
         updatedSeen
+<<<<<<< HEAD
             .data(UPDATED_DATA);
 <<<<<<< HEAD
+=======
+            .date(UPDATED_DATE);
+>>>>>>> creatingDtos
 
         restSeenMockMvc.perform(put("/api/seens")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -235,7 +239,7 @@ public class SeenResourceIntTest {
         List<Seen> seenList = seenRepository.findAll();
         assertThat(seenList).hasSize(databaseSizeBeforeUpdate);
         Seen testSeen = seenList.get(seenList.size() - 1);
-        assertThat(testSeen.getData()).isEqualTo(UPDATED_DATA);
+        assertThat(testSeen.getDate()).isEqualTo(UPDATED_DATE);
 
         // Validate the Seen in Elasticsearch
         Seen seenEs = seenSearchRepository.findOne(testSeen.getId());
@@ -311,7 +315,7 @@ public class SeenResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(seen.getId().intValue())))
-            .andExpect(jsonPath("$.[*].data").value(hasItem(DEFAULT_DATA.toString())));
+            .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())));
     }
 
     @Test

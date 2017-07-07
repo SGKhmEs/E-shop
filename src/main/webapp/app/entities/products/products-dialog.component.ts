@@ -4,12 +4,16 @@ import { Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EventManager, AlertService } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { Products } from './products.model';
 import { ProductsPopupService } from './products-popup.service';
 import { ProductsService } from './products.service';
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import { Options, OptionsService } from '../options';
+>>>>>>> creatingDtos
 import { Consignment, ConsignmentService } from '../consignment';
 import { SubCategory, SubCategoryService } from '../sub-category';
 =======
@@ -33,6 +37,11 @@ export class ProductsDialogComponent implements OnInit {
     isSaving: boolean;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    options: Options[];
+
+>>>>>>> creatingDtos
     consignments: Consignment[];
 
     subcategories: SubCategory[];
@@ -53,8 +62,9 @@ export class ProductsDialogComponent implements OnInit {
 >>>>>>> with_entities
     constructor(
         public activeModal: NgbActiveModal,
-        private alertService: AlertService,
+        private alertService: JhiAlertService,
         private productsService: ProductsService,
+<<<<<<< HEAD
 <<<<<<< HEAD
         private consignmentService: ConsignmentService,
         private subCategoryService: SubCategoryService,
@@ -67,6 +77,12 @@ export class ProductsDialogComponent implements OnInit {
         private tagsService: TagsService,
 >>>>>>> with_entities
         private eventManager: EventManager
+=======
+        private optionsService: OptionsService,
+        private consignmentService: ConsignmentService,
+        private subCategoryService: SubCategoryService,
+        private eventManager: JhiEventManager
+>>>>>>> creatingDtos
     ) {
     }
 
@@ -74,6 +90,22 @@ export class ProductsDialogComponent implements OnInit {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+        this.optionsService
+            .query({filter: 'products-is-null'})
+            .subscribe((res: ResponseWrapper) => {
+                if (!this.products.options || !this.products.options.id) {
+                    this.options = res.json;
+                } else {
+                    this.optionsService
+                        .find(this.products.options.id)
+                        .subscribe((subRes: Options) => {
+                            this.options = [subRes].concat(res.json);
+                        }, (subRes: ResponseWrapper) => this.onError(subRes.json));
+                }
+            }, (res: ResponseWrapper) => this.onError(res.json));
+>>>>>>> creatingDtos
         this.consignmentService.query()
             .subscribe((res: ResponseWrapper) => { this.consignments = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
         this.subCategoryService.query()
@@ -118,9 +150,9 @@ export class ProductsDialogComponent implements OnInit {
 
     private onSaveSuccess(result: Products, isCreated: boolean) {
         this.alertService.success(
-            isCreated ? 'eshopApp.products.created'
-            : 'eshopApp.products.updated',
-            { param : result.id }, null);
+            isCreated ? `A new Products is created with identifier ${result.id}`
+            : `A Products is updated with identifier ${result.id}`,
+            null, null);
 
 =======
                 this.productsService.update(this.products));
@@ -157,6 +189,13 @@ export class ProductsDialogComponent implements OnInit {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    trackOptionsById(index: number, item: Options) {
+        return item.id;
+    }
+
+>>>>>>> creatingDtos
     trackConsignmentById(index: number, item: Consignment) {
 =======
     trackWishListById(index: number, item: WishList) {

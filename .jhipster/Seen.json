@@ -24,12 +24,16 @@
     ],
     "fields": [
         {
-            "fieldName": "data",
+            "fieldName": "date",
             "fieldType": "LocalDate"
         }
     ],
 <<<<<<< HEAD
+<<<<<<< HEAD
     "changelogDate": "20170610234451",
+=======
+    "changelogDate": "20170623182234",
+>>>>>>> creatingDtos
     "entityTableName": "seen",
     "dto": "no",
 =======

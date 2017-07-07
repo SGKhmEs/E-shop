@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
-import { DateUtils } from 'ng-jhipster';
+import { JhiDateUtils } from 'ng-jhipster';
 
 import { Seen } from './seen.model';
 import { ResponseWrapper, createRequestOption } from '../../shared';
@@ -12,7 +12,7 @@ export class SeenService {
     private resourceUrl = 'api/seens';
     private resourceSearchUrl = 'api/_search/seens';
 
-    constructor(private http: Http, private dateUtils: DateUtils) { }
+    constructor(private http: Http, private dateUtils: JhiDateUtils) { }
 
     create(seen: Seen): Observable<Seen> {
         const copy = this.convert(seen);
@@ -69,14 +69,14 @@ export class SeenService {
     }
 
     private convertItemFromServer(entity: any) {
-        entity.data = this.dateUtils
-            .convertLocalDateFromServer(entity.data);
+        entity.date = this.dateUtils
+            .convertLocalDateFromServer(entity.date);
     }
 
     private convert(seen: Seen): Seen {
         const copy: Seen = Object.assign({}, seen);
-        copy.data = this.dateUtils
-            .convertLocalDateToServer(seen.data);
+        copy.date = this.dateUtils
+            .convertLocalDateToServer(seen.date);
         return copy;
     }
 }

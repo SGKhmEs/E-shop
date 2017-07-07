@@ -44,7 +44,7 @@ public class Products implements Serializable {
 =======
 >>>>>>> with_entities
     @Column(name = "sale")
-    private String sale;
+    private Integer sale;
 
     @Column(name = "rating")
     private Double rating;
@@ -53,6 +53,16 @@ public class Products implements Serializable {
     private Boolean fresh;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    @Column(name = "description")
+    private String description;
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Options options;
+
+>>>>>>> creatingDtos
     @OneToMany(mappedBy = "products")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -137,18 +147,22 @@ public class Products implements Serializable {
         this.price = price;
     }
 
+<<<<<<< HEAD
 =======
 >>>>>>> with_entities
     public String getSale() {
+=======
+    public Integer getSale() {
+>>>>>>> creatingDtos
         return sale;
     }
 
-    public Products sale(String sale) {
+    public Products sale(Integer sale) {
         this.sale = sale;
         return this;
     }
 
-    public void setSale(String sale) {
+    public void setSale(Integer sale) {
         this.sale = sale;
     }
 
@@ -179,6 +193,35 @@ public class Products implements Serializable {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    public String getDescription() {
+        return description;
+    }
+
+    public Products description(String description) {
+        this.description = description;
+        return this;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Options getOptions() {
+        return options;
+    }
+
+    public Products options(Options options) {
+        this.options = options;
+        return this;
+    }
+
+    public void setOptions(Options options) {
+        this.options = options;
+    }
+
+>>>>>>> creatingDtos
     public Set<Media> getMedia() {
         return media;
     }
@@ -441,6 +484,7 @@ public class Products implements Serializable {
             ", sale='" + getSale() + "'" +
             ", rating='" + getRating() + "'" +
             ", fresh='" + isFresh() + "'" +
+            ", description='" + getDescription() + "'" +
             "}";
     }
 }

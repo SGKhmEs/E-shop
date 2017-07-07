@@ -1,9 +1,9 @@
 <div>
     <h2>
-        <span jhiTranslate="eshopApp.products.home.title">Products</span>
+        <span>Products</span>
         <button class="btn btn-primary float-right create-products" [routerLink]="['/', { outlets: { popup: ['products-new'] } }]">
             <span class="fa fa-plus"></span>
-            <span class="hidden-sm-down"  jhiTranslate="eshopApp.products.home.createLabel">
+            <span class="hidden-sm-down" >
             Create new Products
             </span>
         </button>
@@ -13,7 +13,7 @@
         <div class="col-sm-12">
             <form name="searchForm" class="form-inline">
                 <div class="input-group w-100 mt-3">
-                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'eshopApp.products.home.search' | translate }}">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="Query">
                     <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
                         <span class="fa fa-search"></span>
                     </button>
@@ -29,6 +29,7 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+<<<<<<< HEAD
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="name"><span jhiTranslate="eshopApp.products.name">Name</span> <span class="fa fa-sort"></span></th>
 <<<<<<< HEAD
@@ -49,6 +50,18 @@
             <th jhiSortBy="mediaId"><span jhiTranslate="eshopApp.products.media">Media</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="tagsId"><span jhiTranslate="eshopApp.products.tags">Tags</span> <span class="fa fa-sort"></span></th>
 >>>>>>> with_entities
+=======
+            <th jhiSortBy="id"><span>ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="name"><span>Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="price"><span>Price</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="sale"><span>Sale</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="rating"><span>Rating</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="fresh"><span>Fresh</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="description"><span>Description</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="options.id"><span>Options</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="consignment.id"><span>Consignment</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="subCategory.id"><span>Sub Category</span> <span class="fa fa-sort"></span></th>
+>>>>>>> creatingDtos
             <th></th>
             </tr>
             </thead>
@@ -63,6 +76,12 @@
                 <td>{{products.sale}}</td>
                 <td>{{products.rating}}</td>
                 <td>{{products.fresh}}</td>
+                <td>{{products.description}}</td>
+                <td>
+                    <div *ngIf="products.options">
+                        <a [routerLink]="['../options', products.options?.id ]" >{{products.options?.id}}</a>
+                    </div>
+                </td>
                 <td>
 <<<<<<< HEAD
                     <div *ngIf="products.consignment">
@@ -109,21 +128,21 @@
                                 [routerLink]="['../products', products.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
-                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                            <span class="hidden-md-down">View</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'products/'+ products.id + '/edit'} }]"
                                 replaceUrl="true"
                                 class="btn btn-primary btn-sm">
                             <span class="fa fa-pencil"></span>
-                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                            <span class="hidden-md-down">Edit</span>
                         </button>
                         <button type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'products/'+ products.id + '/delete'} }]"
                                 replaceUrl="true"
                                 class="btn btn-danger btn-sm">
                             <span class="fa fa-remove"></span>
-                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                            <span class="hidden-md-down">Delete</span>
                         </button>
                     </div>
                 </td>

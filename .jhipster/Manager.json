@@ -18,6 +18,14 @@
             "otherEntityRelationshipName": "manager"
         },
         {
+            "relationshipType": "one-to-one",
+            "relationshipName": "avatar",
+            "otherEntityName": "avatar",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "manager"
+        },
+        {
             "relationshipType": "one-to-many",
             "relationshipName": "maneger",
             "otherEntityName": "bucket",
@@ -28,10 +36,10 @@
         {
             "fieldName": "roles",
             "fieldType": "Roles",
-            "fieldValues": "USER,MODERATOR,ADMINISTRATOR,OWNER"
+            "fieldValues": "SMM,MODERATOR,ADMIN,OWNER"
         }
     ],
-    "changelogDate": "20170610234447",
+    "changelogDate": "20170623182231",
     "entityTableName": "manager",
     "dto": "no",
     "pagination": "no",

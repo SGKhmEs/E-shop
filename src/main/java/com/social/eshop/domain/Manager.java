@@ -41,6 +41,10 @@ public class Manager implements Serializable {
     @JoinColumn(unique = true)
     private PersonalInformation personalInfo;
 
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Avatar avatar;
+
     @OneToMany(mappedBy = "manager")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -91,6 +95,19 @@ public class Manager implements Serializable {
 
     public void setPersonalInfo(PersonalInformation personalInformation) {
         this.personalInfo = personalInformation;
+    }
+
+    public Avatar getAvatar() {
+        return avatar;
+    }
+
+    public Manager avatar(Avatar avatar) {
+        this.avatar = avatar;
+        return this;
+    }
+
+    public void setAvatar(Avatar avatar) {
+        this.avatar = avatar;
     }
 
     public Set<Bucket> getManegers() {

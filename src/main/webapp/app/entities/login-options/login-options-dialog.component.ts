@@ -4,7 +4,7 @@ import { Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EventManager, AlertService } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { LoginOptions } from './login-options.model';
 import { LoginOptionsPopupService } from './login-options-popup.service';
@@ -22,9 +22,9 @@ export class LoginOptionsDialogComponent implements OnInit {
 
     constructor(
         public activeModal: NgbActiveModal,
-        private alertService: AlertService,
+        private alertService: JhiAlertService,
         private loginOptionsService: LoginOptionsService,
-        private eventManager: EventManager
+        private eventManager: JhiEventManager
     ) {
     }
 
@@ -59,9 +59,9 @@ export class LoginOptionsDialogComponent implements OnInit {
 
     private onSaveSuccess(result: LoginOptions, isCreated: boolean) {
         this.alertService.success(
-            isCreated ? 'eshopApp.loginOptions.created'
-            : 'eshopApp.loginOptions.updated',
-            { param : result.id }, null);
+            isCreated ? `A new Login Options is created with identifier ${result.id}`
+            : `A Login Options is updated with identifier ${result.id}`,
+            null, null);
 
 =======
                 this.loginOptionsService.update(this.loginOptions));

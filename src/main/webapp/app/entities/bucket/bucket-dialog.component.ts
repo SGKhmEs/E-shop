@@ -4,7 +4,7 @@ import { Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EventManager, AlertService } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { Bucket } from './bucket.model';
 import { BucketPopupService } from './bucket-popup.service';
@@ -38,15 +38,19 @@ export class BucketDialogComponent implements OnInit {
 >>>>>>> with_entities
     constructor(
         public activeModal: NgbActiveModal,
-        private alertService: AlertService,
+        private alertService: JhiAlertService,
         private bucketService: BucketService,
 <<<<<<< HEAD
         private managerService: ManagerService,
         private addressShippingService: AddressShippingService,
         private customerService: CustomerService,
+<<<<<<< HEAD
 =======
 >>>>>>> with_entities
         private eventManager: EventManager
+=======
+        private eventManager: JhiEventManager
+>>>>>>> creatingDtos
     ) {
     }
 
@@ -99,9 +103,9 @@ export class BucketDialogComponent implements OnInit {
 
     private onSaveSuccess(result: Bucket, isCreated: boolean) {
         this.alertService.success(
-            isCreated ? 'eshopApp.bucket.created'
-            : 'eshopApp.bucket.updated',
-            { param : result.id }, null);
+            isCreated ? `A new Bucket is created with identifier ${result.id}`
+            : `A Bucket is updated with identifier ${result.id}`,
+            null, null);
 
 =======
                 this.bucketService.update(this.bucket));

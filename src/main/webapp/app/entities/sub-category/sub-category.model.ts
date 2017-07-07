@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { Category } from '../category';
 import { Options } from '../options';
 import { Products } from '../products';
@@ -17,6 +18,16 @@ export class SubCategory {
         public optionsId?: number,
         public productId?: number,
 >>>>>>> with_entities
+=======
+import { BaseEntity } from './../../shared';
+
+export class SubCategory implements BaseEntity {
+    constructor(
+        public id?: number,
+        public name?: string,
+        public category?: BaseEntity,
+        public products?: BaseEntity[],
+>>>>>>> creatingDtos
     ) {
     }
 }

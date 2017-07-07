@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes, CanActivate } from '@angular/router';
 
 import { UserRouteAccessService } from '../../shared';
-import { PaginationUtil } from 'ng-jhipster';
+import { JhiPaginationUtil } from 'ng-jhipster';
 
 import { SeenComponent } from './seen.component';
 import { SeenDetailComponent } from './seen-detail.component';
@@ -17,7 +17,7 @@ export const seenRoute: Routes = [
         component: SeenComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.seen.home.title'
+            pageTitle: 'Seens'
         },
         canActivate: [UserRouteAccessService]
     }, {
@@ -25,7 +25,7 @@ export const seenRoute: Routes = [
         component: SeenDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.seen.home.title'
+            pageTitle: 'Seens'
         },
         canActivate: [UserRouteAccessService]
     }
@@ -37,7 +37,7 @@ export const seenPopupRoute: Routes = [
         component: SeenPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.seen.home.title'
+            pageTitle: 'Seens'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -47,7 +47,7 @@ export const seenPopupRoute: Routes = [
         component: SeenPopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.seen.home.title'
+            pageTitle: 'Seens'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
@@ -57,7 +57,7 @@ export const seenPopupRoute: Routes = [
         component: SeenDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'eshopApp.seen.home.title'
+            pageTitle: 'Seens'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

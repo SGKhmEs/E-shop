@@ -47,6 +47,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class WishListResourceIntTest {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     private static final String DEFAULT_WISHS_NAME = "AAAAAAAAAA";
     private static final String UPDATED_WISHS_NAME = "BBBBBBBBBB";
@@ -54,6 +55,10 @@ public class WishListResourceIntTest {
 >>>>>>> with_entities
     private static final LocalDate DEFAULT_DATA = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_DATA = LocalDate.now(ZoneId.systemDefault());
+=======
+    private static final LocalDate DEFAULT_DATE = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_DATE = LocalDate.now(ZoneId.systemDefault());
+>>>>>>> creatingDtos
 
     @Autowired
     private WishListRepository wishListRepository;
@@ -105,10 +110,14 @@ public class WishListResourceIntTest {
     public static WishList createEntity(EntityManager em) {
         WishList wishList = new WishList()
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             .wishsName(DEFAULT_WISHS_NAME)
 >>>>>>> with_entities
             .data(DEFAULT_DATA);
+=======
+            .date(DEFAULT_DATE);
+>>>>>>> creatingDtos
         return wishList;
     }
 
@@ -141,10 +150,14 @@ public class WishListResourceIntTest {
         assertThat(wishListList).hasSize(databaseSizeBeforeCreate + 1);
         WishList testWishList = wishListList.get(wishListList.size() - 1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         assertThat(testWishList.getWishsName()).isEqualTo(DEFAULT_WISHS_NAME);
 >>>>>>> with_entities
         assertThat(testWishList.getData()).isEqualTo(DEFAULT_DATA);
+=======
+        assertThat(testWishList.getDate()).isEqualTo(DEFAULT_DATE);
+>>>>>>> creatingDtos
 
         // Validate the WishList in Elasticsearch
         WishList wishListEs = wishListSearchRepository.findOne(testWishList.getId());
@@ -190,10 +203,14 @@ public class WishListResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(wishList.getId().intValue())))
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             .andExpect(jsonPath("$.[*].wishsName").value(hasItem(DEFAULT_WISHS_NAME.toString())))
 >>>>>>> with_entities
             .andExpect(jsonPath("$.[*].data").value(hasItem(DEFAULT_DATA.toString())));
+=======
+            .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())));
+>>>>>>> creatingDtos
     }
 
     @Test
@@ -208,10 +225,14 @@ public class WishListResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(wishList.getId().intValue()))
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             .andExpect(jsonPath("$.wishsName").value(DEFAULT_WISHS_NAME.toString()))
 >>>>>>> with_entities
             .andExpect(jsonPath("$.data").value(DEFAULT_DATA.toString()));
+=======
+            .andExpect(jsonPath("$.date").value(DEFAULT_DATE.toString()));
+>>>>>>> creatingDtos
     }
 
     @Test
@@ -239,7 +260,11 @@ public class WishListResourceIntTest {
         WishList updatedWishList = wishListRepository.findOne(wishList.getId());
         updatedWishList
 <<<<<<< HEAD
+<<<<<<< HEAD
             .data(UPDATED_DATA);
+=======
+            .date(UPDATED_DATE);
+>>>>>>> creatingDtos
 
         restWishListMockMvc.perform(put("/api/wish-lists")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -260,10 +285,14 @@ public class WishListResourceIntTest {
         assertThat(wishListList).hasSize(databaseSizeBeforeUpdate);
         WishList testWishList = wishListList.get(wishListList.size() - 1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         assertThat(testWishList.getWishsName()).isEqualTo(UPDATED_WISHS_NAME);
 >>>>>>> with_entities
         assertThat(testWishList.getData()).isEqualTo(UPDATED_DATA);
+=======
+        assertThat(testWishList.getDate()).isEqualTo(UPDATED_DATE);
+>>>>>>> creatingDtos
 
         // Validate the WishList in Elasticsearch
         WishList wishListEs = wishListSearchRepository.findOne(testWishList.getId());
@@ -340,10 +369,14 @@ public class WishListResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(wishList.getId().intValue())))
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             .andExpect(jsonPath("$.[*].wishsName").value(hasItem(DEFAULT_WISHS_NAME.toString())))
 >>>>>>> with_entities
             .andExpect(jsonPath("$.[*].data").value(hasItem(DEFAULT_DATA.toString())));
+=======
+            .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())));
+>>>>>>> creatingDtos
     }
 
     @Test

@@ -1,41 +1,35 @@
 package com.social.eshop.service.dto;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import com.social.eshop.domain.Comments;
+=======
+>>>>>>> creatingDtos
 import com.social.eshop.domain.Media;
+import com.social.eshop.domain.Options;
 import com.social.eshop.domain.SubCategory;
-import com.social.eshop.service.mapper.AutoMapping;
 
 import java.math.BigDecimal;
 import java.util.List;
 
+<<<<<<< HEAD
 public class   ProductsDTO implements AutoMapping {
 
+=======
+public class ProductsDTO {
+>>>>>>> creatingDtos
     private String name;
     private BigDecimal price;
-    private String sale;
+    private int sale;
     private double rating;
     private boolean fresh;
+    private String description;
     private List<Media> media;
     private List<CommentsDTO> commentsDTO;
     private List<SubCategory> subCategories;
+    private Options options;
 
-    public ProductsDTO() { }
-
-    public ProductsDTO(String name, BigDecimal price,
-                       String sale, double rating,
-                       boolean fresh, List<Media> media,
-                       List<CommentsDTO> commentsDTO,
-                       List<SubCategory> subCategories) {
-        this.name = name;
-        this.price = price;
-        this.sale = sale;
-        this.rating = rating;
-        this.fresh = fresh;
-        this.media = media;
-        this.commentsDTO = commentsDTO;
-        this.subCategories = subCategories;
-    }
+    public ProductsDTO() {}
 
     public String getName() {
         return name;
@@ -104,11 +98,11 @@ public class ProductsDTO implements Serializable {
 >>>>>>> with_entities
     }
 
-    public String getSale() {
+    public int getSale() {
         return sale;
     }
 
-    public void setSale(String sale) {
+    public void setSale(int sale) {
         this.sale = sale;
     }
 
@@ -127,6 +121,14 @@ public class ProductsDTO implements Serializable {
 
     public void setFresh(boolean fresh) {
         this.fresh = fresh;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public List<Media> getMedia() {
@@ -238,18 +240,28 @@ public class ProductsDTO implements Serializable {
 >>>>>>> with_entities
     }
 
+    public Options getOptions() {
+        return options;
+    }
+
+    public void setOptions(Options options) {
+        this.options = options;
+    }
+
     @Override
     public String toString() {
         return "ProductsDTO{" +
 <<<<<<< HEAD
             "name='" + name + '\'' +
             ", price=" + price +
-            ", sale='" + sale + '\'' +
+            ", sale=" + sale +
             ", rating=" + rating +
             ", fresh=" + fresh +
+            ", description='" + description + '\'' +
             ", media=" + media +
             ", commentsDTO=" + commentsDTO +
             ", subCategories=" + subCategories +
+            ", options=" + options +
             '}';
 =======
             "id=" + getId() +
@@ -260,5 +272,4 @@ public class ProductsDTO implements Serializable {
             "}";
 >>>>>>> with_entities
     }
-
 }

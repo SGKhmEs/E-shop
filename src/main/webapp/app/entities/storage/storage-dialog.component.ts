@@ -4,7 +4,7 @@ import { Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EventManager, AlertService } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { Storage } from './storage.model';
 import { StoragePopupService } from './storage-popup.service';
@@ -22,9 +22,9 @@ export class StorageDialogComponent implements OnInit {
 
     constructor(
         public activeModal: NgbActiveModal,
-        private alertService: AlertService,
+        private alertService: JhiAlertService,
         private storageService: StorageService,
-        private eventManager: EventManager
+        private eventManager: JhiEventManager
     ) {
     }
 
@@ -59,9 +59,9 @@ export class StorageDialogComponent implements OnInit {
 
     private onSaveSuccess(result: Storage, isCreated: boolean) {
         this.alertService.success(
-            isCreated ? 'eshopApp.storage.created'
-            : 'eshopApp.storage.updated',
-            { param : result.id }, null);
+            isCreated ? `A new Storage is created with identifier ${result.id}`
+            : `A Storage is updated with identifier ${result.id}`,
+            null, null);
 
 =======
                 this.storageService.update(this.storage));

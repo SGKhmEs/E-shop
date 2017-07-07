@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { Customer } from '../customer';
 import { Products } from '../products';
 =======
@@ -13,6 +14,16 @@ export class Seen {
 =======
         public productId?: number,
 >>>>>>> with_entities
+=======
+import { BaseEntity } from './../../shared';
+
+export class Seen implements BaseEntity {
+    constructor(
+        public id?: number,
+        public date?: any,
+        public customer?: BaseEntity,
+        public products?: BaseEntity,
+>>>>>>> creatingDtos
     ) {
     }
 }
