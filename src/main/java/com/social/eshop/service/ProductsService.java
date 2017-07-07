@@ -4,6 +4,8 @@ import com.social.eshop.service.dto.ProductsDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 /**
  * Service Interface for managing Products.
  */
@@ -44,9 +46,18 @@ public interface ProductsService {
      * Search for the products corresponding to the query.
      *
      *  @param query the query of the search
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
     Page<ProductsDTO> search(String query, Pageable pageable);
+
+
+    /**
+     *  Get all the products from specific bucket.
+     *
+     *  @param id the id of the bucket
+     *  @return the list of entities
+     */
+    List<ProductsDTO> findAllProductsInBucket(Long id) ;
 }

@@ -12,14 +12,14 @@ import org.mapstruct.*;
 public interface TagForProductMapper extends EntityMapper <TagForProductDTO, TagForProduct> {
 
     @Mapping(source = "products.id", target = "productsId")
-
     @Mapping(source = "tags.id", target = "tagsId")
-    TagForProductDTO toDto(TagForProduct tagForProduct); 
+    @Mapping(source = "tags", target = "tagsDTO")
+    TagForProductDTO toDto(TagForProduct tagForProduct);
 
     @Mapping(source = "productsId", target = "products")
 
     @Mapping(source = "tagsId", target = "tags")
-    TagForProduct toEntity(TagForProductDTO tagForProductDTO); 
+    TagForProduct toEntity(TagForProductDTO tagForProductDTO);
     default TagForProduct fromId(Long id) {
         if (id == null) {
             return null;

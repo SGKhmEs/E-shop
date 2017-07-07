@@ -102,7 +102,7 @@ public class CommentsResource {
         log.debug("REST request to get Comments : {}", id);
         CommentsDTO commentsDTO = commentsService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(commentsDTO));
-    }
+}
 
     /**
      * DELETE  /comments/:id : delete the "id" comments.

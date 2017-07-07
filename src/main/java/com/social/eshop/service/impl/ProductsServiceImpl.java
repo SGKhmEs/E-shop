@@ -1,5 +1,6 @@
 package com.social.eshop.service.impl;
 
+import com.social.eshop.repository.ProductInBucketRepository;
 import com.social.eshop.service.ProductsService;
 import com.social.eshop.domain.Products;
 import com.social.eshop.repository.ProductsRepository;
@@ -13,6 +14,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
+import java.util.List;
 
 import static org.elasticsearch.index.query.QueryBuilders.*;
 
@@ -31,10 +34,13 @@ public class ProductsServiceImpl implements ProductsService{
 
     private final ProductsSearchRepository productsSearchRepository;
 
-    public ProductsServiceImpl(ProductsRepository productsRepository, ProductsMapper productsMapper, ProductsSearchRepository productsSearchRepository) {
+    private final ProductInBucketRepository productInBucketRepository;
+
+    public ProductsServiceImpl(ProductsRepository productsRepository, ProductsMapper productsMapper, ProductsSearchRepository productsSearchRepository, ProductInBucketRepository productInBucketRepository) {
         this.productsRepository = productsRepository;
         this.productsMapper = productsMapper;
         this.productsSearchRepository = productsSearchRepository;
+        this.productInBucketRepository = productInBucketRepository;
     }
 
     /**
@@ -107,4 +113,23 @@ public class ProductsServiceImpl implements ProductsService{
         Page<Products> result = productsSearchRepository.search(queryStringQuery(query), pageable);
         return result.map(productsMapper::toDto);
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<ProductsDTO> findAllProductsInBucket(Long id) {
+        log.debug("Request to get all Buckets");
+        List<Products> products = productInBucketRepository.findAllProductsByBucketId(id);
+
+        return productsMapper.toDto(products);
+    }
 }
+
+
+
+
+
+
+
+
+
+

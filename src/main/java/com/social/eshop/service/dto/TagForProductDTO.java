@@ -17,6 +17,8 @@ public class TagForProductDTO implements Serializable {
 
     private Long tagsId;
 
+    private TagsDTO tagsDTO;
+
     public Long getId() {
         return id;
     }
@@ -39,6 +41,14 @@ public class TagForProductDTO implements Serializable {
 
     public void setTagsId(Long tagsId) {
         this.tagsId = tagsId;
+    }
+
+    public TagsDTO getTagsDTO() {
+        return tagsDTO;
+    }
+
+    public void setTagsDTO(TagsDTO tagsDTO) {
+        this.tagsDTO = tagsDTO;
     }
 
     @Override
