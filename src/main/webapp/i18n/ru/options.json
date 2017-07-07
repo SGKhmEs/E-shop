@@ -19,7 +19,12 @@
             "name": "Name",
             "level": "Level",
             "value": "Value",
+<<<<<<< HEAD
             "type": "Type"
+=======
+            "type": "Type",
+            "subCategory": "Sub Category"
+>>>>>>> with_entities
         }
     }
 }

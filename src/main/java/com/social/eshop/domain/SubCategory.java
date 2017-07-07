@@ -35,9 +35,16 @@ public class SubCategory implements Serializable {
     @ManyToOne
     private Category category;
 
+<<<<<<< HEAD
     @OneToOne
     @JoinColumn(unique = true)
     private Options options;
+=======
+    @OneToMany(mappedBy = "subCategory")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Options> options = new HashSet<>();
+>>>>>>> with_entities
 
     @OneToMany(mappedBy = "subCategory")
     @JsonIgnore
@@ -78,16 +85,40 @@ public class SubCategory implements Serializable {
         this.category = category;
     }
 
+<<<<<<< HEAD
     public Options getOptions() {
         return options;
     }
 
     public SubCategory options(Options options) {
+=======
+    public Set<Options> getOptions() {
+        return options;
+    }
+
+    public SubCategory options(Set<Options> options) {
+>>>>>>> with_entities
         this.options = options;
         return this;
     }
 
+<<<<<<< HEAD
     public void setOptions(Options options) {
+=======
+    public SubCategory addOptions(Options options) {
+        this.options.add(options);
+        options.setSubCategory(this);
+        return this;
+    }
+
+    public SubCategory removeOptions(Options options) {
+        this.options.remove(options);
+        options.setSubCategory(null);
+        return this;
+    }
+
+    public void setOptions(Set<Options> options) {
+>>>>>>> with_entities
         this.options = options;
     }
 

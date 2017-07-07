@@ -3,6 +3,25 @@
     "relationships": [
         {
             "relationshipType": "one-to-one",
+<<<<<<< HEAD
+=======
+            "relationshipName": "personalInfo",
+            "otherEntityName": "personalInformation",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "customerRoom"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "wishList",
+            "otherEntityName": "wishList",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "customerRoom"
+        },
+        {
+            "relationshipType": "one-to-one",
+>>>>>>> with_entities
             "relationshipName": "address",
             "otherEntityName": "address",
             "otherEntityField": "id",
@@ -11,11 +30,41 @@
         },
         {
             "relationshipType": "one-to-one",
+<<<<<<< HEAD
             "relationshipName": "personalInfo",
             "otherEntityName": "personalInformation",
             "otherEntityField": "id",
             "ownerSide": true,
             "otherEntityRelationshipName": "customerRoom"
+=======
+            "relationshipName": "bucket",
+            "otherEntityName": "bucket",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "customerRoom"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "seen",
+            "otherEntityName": "seen",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "customerRoom"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "historyOrder",
+            "otherEntityName": "historyOrder",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "customerRoom"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "customer",
+            "otherEntityName": "comments",
+            "otherEntityRelationshipName": "customerRoom"
+>>>>>>> with_entities
         }
     ],
     "fields": [
@@ -29,9 +78,15 @@
             "fieldValues": "DEFAULT,GOOGLE,FACEBOOK,VK,TWITTER,OK"
         }
     ],
+<<<<<<< HEAD
     "changelogDate": "20170610234450",
     "entityTableName": "customer_room",
     "dto": "no",
+=======
+    "changelogDate": "20170525235433",
+    "entityTableName": "customer_room",
+    "dto": "mapstruct",
+>>>>>>> with_entities
     "pagination": "no",
     "service": "serviceImpl"
 }

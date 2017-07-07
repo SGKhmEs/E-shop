@@ -1,0 +1,27 @@
+{
+    "eshopApp": {
+        "historyOrder" : {
+            "home": {
+                "title": "History Orders",
+                "createLabel": "Создать новый History Order",
+                "createOrEditLabel": "Создать или отредактировать History Order",
+                "search": "Найти History Order"
+            },
+            "created": "Новый History Order создан с идентификатором {{ param }}",
+            "updated": "History Order обновлен с идентификатором {{ param }}",
+            "deleted": "History Order удален с идентификатором {{ param }}",
+            "delete": {
+                "question": "Вы уверены что хотите удалить History Order {{ id }}?"
+            },
+            "detail": {
+                "title": "History Order"
+            },
+            "orderNumber": "Order Number",
+            "date": "Date",
+            "count": "Count",
+            "sum": "Sum",
+            "status": "Status",
+            "consignmentNote": "Consignment Note"
+        }
+    }
+}

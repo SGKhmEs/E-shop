@@ -15,7 +15,12 @@
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="eshopApp.storage.name" for="field_name">Name</label>
             <input type="text" class="form-control" name="name" id="field_name"
+<<<<<<< HEAD
                 [(ngModel)]="storage.name" required />
+=======
+                [(ngModel)]="storage.name"
+            required />
+>>>>>>> with_entities
             <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
@@ -26,7 +31,12 @@
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="eshopApp.storage.actualite" for="field_actualite">Actualite</label>
             <input type="checkbox" class="form-control" name="actualite" id="field_actualite"
+<<<<<<< HEAD
                 [(ngModel)]="storage.actualite"  />
+=======
+                [(ngModel)]="storage.actualite"
+             />
+>>>>>>> with_entities
             <div [hidden]="!(editForm.controls.actualite?.dirty && editForm.controls.actualite?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.actualite?.errors?.required" jhiTranslate="entity.validation.required">
@@ -37,7 +47,12 @@
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="eshopApp.storage.quantity" for="field_quantity">Quantity</label>
             <input type="number" class="form-control" name="quantity" id="field_quantity"
+<<<<<<< HEAD
                 [(ngModel)]="storage.quantity" required />
+=======
+                [(ngModel)]="storage.quantity"
+            required />
+>>>>>>> with_entities
             <div [hidden]="!(editForm.controls.quantity?.dirty && editForm.controls.quantity?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.quantity?.errors?.required" jhiTranslate="entity.validation.required">

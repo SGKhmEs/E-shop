@@ -18,6 +18,7 @@
                 <img [src]="'data:' + avatar.usersImageContentType + ';base64,' + avatar.usersImage" style="max-height: 100px;" *ngIf="avatar.usersImage" alt="avatar image"/>
                 <div *ngIf="avatar.usersImage" class="form-text text-danger clearfix">
                     <span class="pull-left">{{avatar.usersImageContentType}}, {{byteSize(avatar.usersImage)}}</span>
+<<<<<<< HEAD
                     <button type="button" (click)="clearInputImage('usersImage', 'usersImageContentType', 'fileImage')" class="btn btn-default btn-xs pull-right">
                         <span class="fa fa-times"></span>
                     </button>
@@ -26,6 +27,18 @@
             </div>
             <input type="hidden" class="form-control" name="usersImage" id="field_usersImage"
                 [(ngModel)]="avatar.usersImage"  />
+=======
+                    <button type="button" (click)="avatar.usersImage=null;avatar.usersImageContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" (change)="setFileData($event, avatar, 'usersImage', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+            </div>
+            <input type="hidden" class="form-control" name="usersImage" id="field_usersImage"
+                [(ngModel)]="avatar.usersImage"
+             />
+>>>>>>> with_entities
             <input type="hidden" class="form-control" name="usersImageContentType" id="field_usersImageContentType"
                 [(ngModel)]="avatar.usersImageContentType" />
         </div>

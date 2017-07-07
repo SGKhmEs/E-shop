@@ -14,6 +14,14 @@ import java.util.List;
 @SuppressWarnings("unused")
 @Repository
 public interface BucketRepository extends JpaRepository<Bucket,Long> {
+<<<<<<< HEAD
+<<<<<<< HEAD
+    
+=======
+
+>>>>>>> with_entities
+=======
     @Query(" FROM Bucket where products_id =?1")
     public List<Bucket> findByProductsId(Long id);
+>>>>>>> creatingServices
 }

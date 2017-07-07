@@ -4,7 +4,10 @@ const enum Sex {
     'WOMAN'
 
 };
+<<<<<<< HEAD
 import { Avatar } from '../avatar';
+=======
+>>>>>>> with_entities
 export class PersonalInformation {
     constructor(
         public id?: number,
@@ -15,7 +18,12 @@ export class PersonalInformation {
         public phone?: string,
         public email?: string,
         public dateBirth?: any,
+<<<<<<< HEAD
         public avatar?: Avatar,
+=======
+        public avatarId?: number,
+        public addressShippingId?: number,
+>>>>>>> with_entities
     ) {
     }
 }

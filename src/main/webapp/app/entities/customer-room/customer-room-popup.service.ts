@@ -3,7 +3,10 @@ import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { CustomerRoom } from './customer-room.model';
 import { CustomerRoomService } from './customer-room.service';
+<<<<<<< HEAD
 
+=======
+>>>>>>> with_entities
 @Injectable()
 export class CustomerRoomPopupService {
     private isOpen = false;

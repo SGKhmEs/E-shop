@@ -23,6 +23,7 @@
             </div>
         </div>
 
+<<<<<<< HEAD
         <div class="form-group">
             <label jhiTranslate="eshopApp.seen.customer" for="field_customer">Customer</label>
             <select class="form-control" id="field_customer" name="customer" [(ngModel)]="seen.customer" >
@@ -37,6 +38,8 @@
                 <option [ngValue]="productsOption.id === seen.products?.id ? seen.products : productsOption" *ngFor="let productsOption of products; trackBy: trackProductsById">{{productsOption.id}}</option>
             </select>
         </div>
+=======
+>>>>>>> with_entities
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">

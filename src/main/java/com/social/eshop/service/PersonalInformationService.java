@@ -1,6 +1,10 @@
 package com.social.eshop.service;
 
+<<<<<<< HEAD
 import com.social.eshop.domain.PersonalInformation;
+=======
+import com.social.eshop.service.dto.PersonalInformationDTO;
+>>>>>>> with_entities
 import java.util.List;
 
 /**
@@ -11,6 +15,7 @@ public interface PersonalInformationService {
     /**
      * Save a personalInformation.
      *
+<<<<<<< HEAD
      * @param personalInformation the entity to save
      * @return the persisted entity
      */
@@ -22,6 +27,19 @@ public interface PersonalInformationService {
      *  @return the list of entities
      */
     List<PersonalInformation> findAll();
+=======
+     * @param personalInformationDTO the entity to save
+     * @return the persisted entity
+     */
+    PersonalInformationDTO save(PersonalInformationDTO personalInformationDTO);
+
+    /**
+     *  Get all the personalInformations.
+     *  
+     *  @return the list of entities
+     */
+    List<PersonalInformationDTO> findAll();
+>>>>>>> with_entities
 
     /**
      *  Get the "id" personalInformation.
@@ -29,7 +47,11 @@ public interface PersonalInformationService {
      *  @param id the id of the entity
      *  @return the entity
      */
+<<<<<<< HEAD
     PersonalInformation findOne(Long id);
+=======
+    PersonalInformationDTO findOne(Long id);
+>>>>>>> with_entities
 
     /**
      *  Delete the "id" personalInformation.
@@ -45,5 +67,9 @@ public interface PersonalInformationService {
      *  
      *  @return the list of entities
      */
+<<<<<<< HEAD
     List<PersonalInformation> search(String query);
+=======
+    List<PersonalInformationDTO> search(String query);
+>>>>>>> with_entities
 }

@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 import { Products } from '../products';
+=======
+>>>>>>> with_entities
 export class Media {
     constructor(
         public id?: number,
@@ -7,7 +10,12 @@ export class Media {
         public contentType?: string,
         public location?: string,
         public size?: string,
+<<<<<<< HEAD
         public products?: Products,
+=======
+        public commentsId?: number,
+        public productId?: number,
+>>>>>>> with_entities
     ) {
     }
 }

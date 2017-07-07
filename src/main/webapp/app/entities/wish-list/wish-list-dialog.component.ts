@@ -9,9 +9,12 @@ import { EventManager, AlertService } from 'ng-jhipster';
 import { WishList } from './wish-list.model';
 import { WishListPopupService } from './wish-list-popup.service';
 import { WishListService } from './wish-list.service';
+<<<<<<< HEAD
 import { Customer, CustomerService } from '../customer';
 import { Products, ProductsService } from '../products';
 import { ResponseWrapper } from '../../shared';
+=======
+>>>>>>> with_entities
 
 @Component({
     selector: 'jhi-wish-list-dialog',
@@ -22,18 +25,24 @@ export class WishListDialogComponent implements OnInit {
     wishList: WishList;
     authorities: any[];
     isSaving: boolean;
+<<<<<<< HEAD
 
     customers: Customer[];
 
     products: Products[];
+=======
+>>>>>>> with_entities
     dataDp: any;
 
     constructor(
         public activeModal: NgbActiveModal,
         private alertService: AlertService,
         private wishListService: WishListService,
+<<<<<<< HEAD
         private customerService: CustomerService,
         private productsService: ProductsService,
+=======
+>>>>>>> with_entities
         private eventManager: EventManager
     ) {
     }
@@ -41,6 +50,7 @@ export class WishListDialogComponent implements OnInit {
     ngOnInit() {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
+<<<<<<< HEAD
         this.customerService.query()
             .subscribe((res: ResponseWrapper) => { this.customers = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
         this.productsService
@@ -58,6 +68,9 @@ export class WishListDialogComponent implements OnInit {
             }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
+=======
+    }
+>>>>>>> with_entities
     clear() {
         this.activeModal.dismiss('cancel');
     }
@@ -66,6 +79,7 @@ export class WishListDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.wishList.id !== undefined) {
             this.subscribeToSaveResponse(
+<<<<<<< HEAD
                 this.wishListService.update(this.wishList), false);
         } else {
             this.subscribeToSaveResponse(
@@ -84,6 +98,21 @@ export class WishListDialogComponent implements OnInit {
             : 'eshopApp.wishList.updated',
             { param : result.id }, null);
 
+=======
+                this.wishListService.update(this.wishList));
+        } else {
+            this.subscribeToSaveResponse(
+                this.wishListService.create(this.wishList));
+        }
+    }
+
+    private subscribeToSaveResponse(result: Observable<WishList>) {
+        result.subscribe((res: WishList) =>
+            this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
+    }
+
+    private onSaveSuccess(result: WishList) {
+>>>>>>> with_entities
         this.eventManager.broadcast({ name: 'wishListListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
@@ -102,6 +131,7 @@ export class WishListDialogComponent implements OnInit {
     private onError(error) {
         this.alertService.error(error.message, null, null);
     }
+<<<<<<< HEAD
 
     trackCustomerById(index: number, item: Customer) {
         return item.id;
@@ -110,6 +140,8 @@ export class WishListDialogComponent implements OnInit {
     trackProductsById(index: number, item: Products) {
         return item.id;
     }
+=======
+>>>>>>> with_entities
 }
 
 @Component({

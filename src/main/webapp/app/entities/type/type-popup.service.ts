@@ -3,7 +3,10 @@ import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Type } from './type.model';
 import { TypeService } from './type.service';
+<<<<<<< HEAD
 
+=======
+>>>>>>> with_entities
 @Injectable()
 export class TypePopupService {
     private isOpen = false;

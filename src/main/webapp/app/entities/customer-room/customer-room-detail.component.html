@@ -12,6 +12,7 @@
         <dd>
             <span jhiTranslate="{{'eshopApp.SocialConnect.' + customerRoom.sosialConnect}}">{{customerRoom.sosialConnect}}</span>
         </dd>
+<<<<<<< HEAD
         <dt><span jhiTranslate="eshopApp.customerRoom.address">Address</span></dt>
         <dd>
             <div *ngIf="customerRoom.address">
@@ -22,6 +23,42 @@
         <dd>
             <div *ngIf="customerRoom.personalInfo">
                 <a [routerLink]="['/personal-information', customerRoom.personalInfo?.id]">{{customerRoom.personalInfo?.id}}</a>
+=======
+        <dt><span jhiTranslate="eshopApp.customerRoom.personalInfo">Personal Info</span></dt>
+        <dd>
+            <div *ngIf="customerRoom.personalInfoId">
+                <a [routerLink]="['/personal-information', customerRoom.personalInfoId]">{{customerRoom.personalInfoId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.customerRoom.wishList">Wish List</span></dt>
+        <dd>
+            <div *ngIf="customerRoom.wishListId">
+                <a [routerLink]="['/wish-list', customerRoom.wishListId]">{{customerRoom.wishListId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.customerRoom.address">Address</span></dt>
+        <dd>
+            <div *ngIf="customerRoom.addressId">
+                <a [routerLink]="['/address', customerRoom.addressId]">{{customerRoom.addressId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.customerRoom.bucket">Bucket</span></dt>
+        <dd>
+            <div *ngIf="customerRoom.bucketId">
+                <a [routerLink]="['/bucket', customerRoom.bucketId]">{{customerRoom.bucketId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.customerRoom.seen">Seen</span></dt>
+        <dd>
+            <div *ngIf="customerRoom.seenId">
+                <a [routerLink]="['/seen', customerRoom.seenId]">{{customerRoom.seenId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="eshopApp.customerRoom.historyOrder">History Order</span></dt>
+        <dd>
+            <div *ngIf="customerRoom.historyOrderId">
+                <a [routerLink]="['/history-order', customerRoom.historyOrderId]">{{customerRoom.historyOrderId}}</a>
+>>>>>>> with_entities
             </div>
         </dd>
     </dl>

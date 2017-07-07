@@ -15,7 +15,12 @@
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="eshopApp.personalInformation.firstName" for="field_firstName">First Name</label>
             <input type="text" class="form-control" name="firstName" id="field_firstName"
+<<<<<<< HEAD
                 [(ngModel)]="personalInformation.firstName" required />
+=======
+                [(ngModel)]="personalInformation.firstName"
+            required />
+>>>>>>> with_entities
             <div [hidden]="!(editForm.controls.firstName?.dirty && editForm.controls.firstName?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.firstName?.errors?.required" jhiTranslate="entity.validation.required">
@@ -26,7 +31,12 @@
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="eshopApp.personalInformation.lastName" for="field_lastName">Last Name</label>
             <input type="text" class="form-control" name="lastName" id="field_lastName"
+<<<<<<< HEAD
                 [(ngModel)]="personalInformation.lastName" required />
+=======
+                [(ngModel)]="personalInformation.lastName"
+            required />
+>>>>>>> with_entities
             <div [hidden]="!(editForm.controls.lastName?.dirty && editForm.controls.lastName?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.lastName?.errors?.required" jhiTranslate="entity.validation.required">
@@ -37,7 +47,12 @@
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="eshopApp.personalInformation.middleName" for="field_middleName">Middle Name</label>
             <input type="text" class="form-control" name="middleName" id="field_middleName"
+<<<<<<< HEAD
                 [(ngModel)]="personalInformation.middleName"  />
+=======
+                [(ngModel)]="personalInformation.middleName"
+             />
+>>>>>>> with_entities
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="eshopApp.personalInformation.sex" for="field_sex">Sex</label>
@@ -49,7 +64,12 @@
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="eshopApp.personalInformation.phone" for="field_phone">Phone</label>
             <input type="text" class="form-control" name="phone" id="field_phone"
+<<<<<<< HEAD
                 [(ngModel)]="personalInformation.phone" required />
+=======
+                [(ngModel)]="personalInformation.phone"
+            required />
+>>>>>>> with_entities
             <div [hidden]="!(editForm.controls.phone?.dirty && editForm.controls.phone?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.phone?.errors?.required" jhiTranslate="entity.validation.required">
@@ -60,7 +80,12 @@
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="eshopApp.personalInformation.email" for="field_email">Email</label>
             <input type="text" class="form-control" name="email" id="field_email"
+<<<<<<< HEAD
                 [(ngModel)]="personalInformation.email" required />
+=======
+                [(ngModel)]="personalInformation.email"
+            required />
+>>>>>>> with_entities
             <div [hidden]="!(editForm.controls.email?.dirty && editForm.controls.email?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.email?.errors?.required" jhiTranslate="entity.validation.required">
@@ -81,9 +106,22 @@
 
         <div class="form-group">
             <label jhiTranslate="eshopApp.personalInformation.avatar" for="field_avatar">Avatar</label>
+<<<<<<< HEAD
             <select class="form-control" id="field_avatar" name="avatar" [(ngModel)]="personalInformation.avatar">
                 <option [ngValue]="null"></option>
                 <option [ngValue]="avatarOption.id === personalInformation.avatar?.id ? personalInformation.avatar : avatarOption" *ngFor="let avatarOption of avatars; trackBy: trackAvatarById">{{avatarOption.id}}</option>
+=======
+            <select class="form-control" id="field_avatar" name="avatar" [(ngModel)]="personalInformation.avatarId">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="avatarOption.id" *ngFor="let avatarOption of avatars; trackBy: trackAvatarById">{{avatarOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="eshopApp.personalInformation.addressShipping" for="field_addressShipping">Address Shipping</label>
+            <select class="form-control" id="field_addressShipping" name="addressShipping" [(ngModel)]="personalInformation.addressShippingId">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="addressShippingOption.id" *ngFor="let addressShippingOption of addressshippings; trackBy: trackAddressShippingById">{{addressShippingOption.id}}</option>
+>>>>>>> with_entities
             </select>
         </div>
     </div>

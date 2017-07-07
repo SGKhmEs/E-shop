@@ -9,10 +9,13 @@ import { EventManager, AlertService } from 'ng-jhipster';
 import { Bucket } from './bucket.model';
 import { BucketPopupService } from './bucket-popup.service';
 import { BucketService } from './bucket.service';
+<<<<<<< HEAD
 import { Manager, ManagerService } from '../manager';
 import { AddressShipping, AddressShippingService } from '../address-shipping';
 import { Customer, CustomerService } from '../customer';
 import { ResponseWrapper } from '../../shared';
+=======
+>>>>>>> with_entities
 
 @Component({
     selector: 'jhi-bucket-dialog',
@@ -24,19 +27,25 @@ export class BucketDialogComponent implements OnInit {
     authorities: any[];
     isSaving: boolean;
 
+<<<<<<< HEAD
     managers: Manager[];
 
     addressshippings: AddressShipping[];
 
     customers: Customer[];
 
+=======
+>>>>>>> with_entities
     constructor(
         public activeModal: NgbActiveModal,
         private alertService: AlertService,
         private bucketService: BucketService,
+<<<<<<< HEAD
         private managerService: ManagerService,
         private addressShippingService: AddressShippingService,
         private customerService: CustomerService,
+=======
+>>>>>>> with_entities
         private eventManager: EventManager
     ) {
     }
@@ -44,6 +53,7 @@ export class BucketDialogComponent implements OnInit {
     ngOnInit() {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
+<<<<<<< HEAD
         this.managerService.query()
             .subscribe((res: ResponseWrapper) => { this.managers = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
         this.addressShippingService
@@ -63,6 +73,9 @@ export class BucketDialogComponent implements OnInit {
             .subscribe((res: ResponseWrapper) => { this.customers = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
+=======
+    }
+>>>>>>> with_entities
     clear() {
         this.activeModal.dismiss('cancel');
     }
@@ -71,6 +84,7 @@ export class BucketDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.bucket.id !== undefined) {
             this.subscribeToSaveResponse(
+<<<<<<< HEAD
                 this.bucketService.update(this.bucket), false);
         } else {
             this.subscribeToSaveResponse(
@@ -89,6 +103,21 @@ export class BucketDialogComponent implements OnInit {
             : 'eshopApp.bucket.updated',
             { param : result.id }, null);
 
+=======
+                this.bucketService.update(this.bucket));
+        } else {
+            this.subscribeToSaveResponse(
+                this.bucketService.create(this.bucket));
+        }
+    }
+
+    private subscribeToSaveResponse(result: Observable<Bucket>) {
+        result.subscribe((res: Bucket) =>
+            this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
+    }
+
+    private onSaveSuccess(result: Bucket) {
+>>>>>>> with_entities
         this.eventManager.broadcast({ name: 'bucketListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
@@ -107,6 +136,7 @@ export class BucketDialogComponent implements OnInit {
     private onError(error) {
         this.alertService.error(error.message, null, null);
     }
+<<<<<<< HEAD
 
     trackManagerById(index: number, item: Manager) {
         return item.id;
@@ -119,6 +149,8 @@ export class BucketDialogComponent implements OnInit {
     trackCustomerById(index: number, item: Customer) {
         return item.id;
     }
+=======
+>>>>>>> with_entities
 }
 
 @Component({

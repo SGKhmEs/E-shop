@@ -35,7 +35,11 @@
             <th><span jhiTranslate="eshopApp.media.contentType">Content Type</span></th>
             <th><span jhiTranslate="eshopApp.media.location">Location</span></th>
             <th><span jhiTranslate="eshopApp.media.size">Size</span></th>
+<<<<<<< HEAD
             <th><span jhiTranslate="eshopApp.media.products">Products</span></th>
+=======
+            <th><span jhiTranslate="eshopApp.media.comments">Comments</span></th>
+>>>>>>> with_entities
             <th></th>
             </tr>
             </thead>
@@ -48,8 +52,13 @@
                 <td>{{media.location}}</td>
                 <td>{{media.size}}</td>
                 <td>
+<<<<<<< HEAD
                     <div *ngIf="media.products">
                         <a [routerLink]="['../products', media.products?.id ]" >{{media.products?.id}}</a>
+=======
+                    <div *ngIf="media.commentsId">
+                        <a [routerLink]="['../comments', media.commentsId  ]" >{{media.commentsId}}</a>
+>>>>>>> with_entities
                     </div>
                 </td>
                 <td class="text-right">

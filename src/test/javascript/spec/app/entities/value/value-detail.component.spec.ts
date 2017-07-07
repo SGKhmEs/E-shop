@@ -32,8 +32,16 @@ describe('Component Tests', () => {
                     ValueService,
                     EventManager
                 ]
+<<<<<<< HEAD
             }).overrideTemplate(ValueDetailComponent, '')
             .compileComponents();
+=======
+            }).overrideComponent(ValueDetailComponent, {
+                set: {
+                    template: ''
+                }
+            }).compileComponents();
+>>>>>>> with_entities
         }));
 
         beforeEach(() => {

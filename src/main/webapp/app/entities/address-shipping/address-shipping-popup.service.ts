@@ -3,7 +3,10 @@ import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { AddressShipping } from './address-shipping.model';
 import { AddressShippingService } from './address-shipping.service';
+<<<<<<< HEAD
 
+=======
+>>>>>>> with_entities
 @Injectable()
 export class AddressShippingPopupService {
     private isOpen = false;

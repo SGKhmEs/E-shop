@@ -58,6 +58,13 @@ public class PersonalInformation implements Serializable {
     @JoinColumn(unique = true)
     private Avatar avatar;
 
+<<<<<<< HEAD
+=======
+    @OneToOne
+    @JoinColumn(unique = true)
+    private AddressShipping addressShipping;
+
+>>>>>>> with_entities
     public Long getId() {
         return id;
     }
@@ -170,6 +177,22 @@ public class PersonalInformation implements Serializable {
         this.avatar = avatar;
     }
 
+<<<<<<< HEAD
+=======
+    public AddressShipping getAddressShipping() {
+        return addressShipping;
+    }
+
+    public PersonalInformation addressShipping(AddressShipping addressShipping) {
+        this.addressShipping = addressShipping;
+        return this;
+    }
+
+    public void setAddressShipping(AddressShipping addressShipping) {
+        this.addressShipping = addressShipping;
+    }
+
+>>>>>>> with_entities
     @Override
     public boolean equals(Object o) {
         if (this == o) {

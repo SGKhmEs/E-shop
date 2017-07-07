@@ -32,7 +32,10 @@ export class TypeDialogComponent implements OnInit {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> with_entities
     clear() {
         this.activeModal.dismiss('cancel');
     }
@@ -41,6 +44,7 @@ export class TypeDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.type.id !== undefined) {
             this.subscribeToSaveResponse(
+<<<<<<< HEAD
                 this.typeService.update(this.type), false);
         } else {
             this.subscribeToSaveResponse(
@@ -59,6 +63,21 @@ export class TypeDialogComponent implements OnInit {
             : 'eshopApp.type.updated',
             { param : result.id }, null);
 
+=======
+                this.typeService.update(this.type));
+        } else {
+            this.subscribeToSaveResponse(
+                this.typeService.create(this.type));
+        }
+    }
+
+    private subscribeToSaveResponse(result: Observable<Type>) {
+        result.subscribe((res: Type) =>
+            this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
+    }
+
+    private onSaveSuccess(result: Type) {
+>>>>>>> with_entities
         this.eventManager.broadcast({ name: 'typeListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);

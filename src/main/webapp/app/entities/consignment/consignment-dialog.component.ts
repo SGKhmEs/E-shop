@@ -9,6 +9,10 @@ import { EventManager, AlertService } from 'ng-jhipster';
 import { Consignment } from './consignment.model';
 import { ConsignmentPopupService } from './consignment-popup.service';
 import { ConsignmentService } from './consignment.service';
+<<<<<<< HEAD
+=======
+import { Products, ProductsService } from '../products';
+>>>>>>> with_entities
 import { Storage, StorageService } from '../storage';
 import { Producers, ProducersService } from '../producers';
 import { ResponseWrapper } from '../../shared';
@@ -23,6 +27,11 @@ export class ConsignmentDialogComponent implements OnInit {
     authorities: any[];
     isSaving: boolean;
 
+<<<<<<< HEAD
+=======
+    products: Products[];
+
+>>>>>>> with_entities
     storages: Storage[];
 
     producers: Producers[];
@@ -31,6 +40,10 @@ export class ConsignmentDialogComponent implements OnInit {
         public activeModal: NgbActiveModal,
         private alertService: AlertService,
         private consignmentService: ConsignmentService,
+<<<<<<< HEAD
+=======
+        private productsService: ProductsService,
+>>>>>>> with_entities
         private storageService: StorageService,
         private producersService: ProducersService,
         private eventManager: EventManager
@@ -40,12 +53,20 @@ export class ConsignmentDialogComponent implements OnInit {
     ngOnInit() {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
+<<<<<<< HEAD
+=======
+        this.productsService.query()
+            .subscribe((res: ResponseWrapper) => { this.products = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+>>>>>>> with_entities
         this.storageService.query()
             .subscribe((res: ResponseWrapper) => { this.storages = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
         this.producersService.query()
             .subscribe((res: ResponseWrapper) => { this.producers = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> with_entities
     clear() {
         this.activeModal.dismiss('cancel');
     }
@@ -54,6 +75,7 @@ export class ConsignmentDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.consignment.id !== undefined) {
             this.subscribeToSaveResponse(
+<<<<<<< HEAD
                 this.consignmentService.update(this.consignment), false);
         } else {
             this.subscribeToSaveResponse(
@@ -72,6 +94,21 @@ export class ConsignmentDialogComponent implements OnInit {
             : 'eshopApp.consignment.updated',
             { param : result.id }, null);
 
+=======
+                this.consignmentService.update(this.consignment));
+        } else {
+            this.subscribeToSaveResponse(
+                this.consignmentService.create(this.consignment));
+        }
+    }
+
+    private subscribeToSaveResponse(result: Observable<Consignment>) {
+        result.subscribe((res: Consignment) =>
+            this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
+    }
+
+    private onSaveSuccess(result: Consignment) {
+>>>>>>> with_entities
         this.eventManager.broadcast({ name: 'consignmentListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
@@ -91,6 +128,13 @@ export class ConsignmentDialogComponent implements OnInit {
         this.alertService.error(error.message, null, null);
     }
 
+<<<<<<< HEAD
+=======
+    trackProductsById(index: number, item: Products) {
+        return item.id;
+    }
+
+>>>>>>> with_entities
     trackStorageById(index: number, item: Storage) {
         return item.id;
     }
