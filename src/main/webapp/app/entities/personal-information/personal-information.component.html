@@ -37,6 +37,7 @@
             <th><span>Phone</span></th>
             <th><span>Email</span></th>
             <th><span>Date Birth</span></th>
+            <th><span>Customer</span></th>
             <th></th>
             </tr>
             </thead>
@@ -50,6 +51,11 @@
                 <td>{{personalInformation.phone}}</td>
                 <td>{{personalInformation.email}}</td>
                 <td>{{personalInformation.dateBirth | date:'mediumDate'}}</td>
+                <td>
+                    <div *ngIf="personalInformation.customerId">
+                        <a [routerLink]="['../customer', personalInformation.customerId  ]" >{{personalInformation.customerId}}</a>
+                    </div>
+                </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

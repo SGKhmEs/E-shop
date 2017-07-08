@@ -1,6 +1,15 @@
 {
     "fluentMethods": true,
-    "relationships": [],
+    "relationships": [
+        {
+        "relationshipName": "customer",
+        "otherEntityName": "customer",
+        "relationshipType": "one-to-one",
+        "otherEntityField": "id",
+        "ownerSide": true,
+        "otherEntityRelationshipName": "personalInformation"
+        }
+        ],
     "fields": [
         {
             "fieldName": "firstName",

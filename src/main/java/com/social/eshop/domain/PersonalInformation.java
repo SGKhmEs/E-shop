@@ -54,6 +54,10 @@ public class PersonalInformation implements Serializable {
     @Column(name = "date_birth")
     private LocalDate dateBirth;
 
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Customer customer;
+
     public Long getId() {
         return id;
     }
@@ -151,6 +155,19 @@ public class PersonalInformation implements Serializable {
 
     public void setDateBirth(LocalDate dateBirth) {
         this.dateBirth = dateBirth;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public PersonalInformation customer(Customer customer) {
+        this.customer = customer;
+        return this;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     @Override

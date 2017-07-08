@@ -32,6 +32,12 @@
         <dd>
             <span>{{personalInformation.dateBirth | date:'mediumDate'}}</span>
         </dd>
+        <dt><span>Customer</span></dt>
+        <dd>
+            <div *ngIf="personalInformation.customerId">
+                <a [routerLink]="['/customer', personalInformation.customerId]">{{personalInformation.customerId}}</a>
+            </div>
+        </dd>
     </dl>
 
     <button type="submit"

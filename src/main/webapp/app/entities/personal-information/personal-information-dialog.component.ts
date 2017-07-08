@@ -9,6 +9,8 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { PersonalInformation } from './personal-information.model';
 import { PersonalInformationPopupService } from './personal-information-popup.service';
 import { PersonalInformationService } from './personal-information.service';
+import { Customer, CustomerService } from '../customer';
+import { ResponseWrapper } from '../../shared';
 
 @Component({
     selector: 'jhi-personal-information-dialog',
@@ -19,12 +21,15 @@ export class PersonalInformationDialogComponent implements OnInit {
     personalInformation: PersonalInformation;
     authorities: any[];
     isSaving: boolean;
+
+    customers: Customer[];
     dateBirthDp: any;
 
     constructor(
         public activeModal: NgbActiveModal,
         private alertService: JhiAlertService,
         private personalInformationService: PersonalInformationService,
+        private customerService: CustomerService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -32,6 +37,19 @@ export class PersonalInformationDialogComponent implements OnInit {
     ngOnInit() {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
+        this.customerService
+            .query({filter: 'personalinformation-is-null'})
+            .subscribe((res: ResponseWrapper) => {
+                if (!this.personalInformation.customerId) {
+                    this.customers = res.json;
+                } else {
+                    this.customerService
+                        .find(this.personalInformation.customerId)
+                        .subscribe((subRes: Customer) => {
+                            this.customers = [subRes].concat(res.json);
+                        }, (subRes: ResponseWrapper) => this.onError(subRes.json));
+                }
+            }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     clear() {
@@ -77,6 +95,10 @@ export class PersonalInformationDialogComponent implements OnInit {
 
     private onError(error) {
         this.alertService.error(error.message, null, null);
+    }
+
+    trackCustomerById(index: number, item: Customer) {
+        return item.id;
     }
 }
 
