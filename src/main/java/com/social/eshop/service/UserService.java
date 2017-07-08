@@ -1,7 +1,6 @@
 package com.social.eshop.service;
 
-import com.social.eshop.domain.Authority;
-import com.social.eshop.domain.User;
+import com.social.eshop.domain.*;
 import com.social.eshop.repository.AuthorityRepository;
 import com.social.eshop.repository.PersistentTokenRepository;
 import com.social.eshop.config.Constants;
@@ -9,6 +8,12 @@ import com.social.eshop.repository.UserRepository;
 import com.social.eshop.repository.search.UserSearchRepository;
 import com.social.eshop.security.AuthoritiesConstants;
 import com.social.eshop.security.SecurityUtils;
+import com.social.eshop.service.dto.CustomerAccountDTO;
+import com.social.eshop.service.dto.CustomerDTO;
+import com.social.eshop.service.dto.PersonalInformationDTO;
+import com.social.eshop.service.mapper.CustomerAccountMapper;
+import com.social.eshop.service.mapper.CustomerMapper;
+import com.social.eshop.service.mapper.PersonalInformationMapper;
 import com.social.eshop.service.util.RandomUtil;
 import com.social.eshop.service.dto.UserDTO;
 
@@ -21,6 +26,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.inject.Inject;
 import java.time.LocalDate;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
@@ -48,13 +54,35 @@ public class UserService {
 
     private final AuthorityRepository authorityRepository;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, SocialService socialService, UserSearchRepository userSearchRepository, PersistentTokenRepository persistentTokenRepository, AuthorityRepository authorityRepository) {
+    @Inject
+    private CustomerAccountService customerAccountService;
+
+    @Inject
+    private PersonalInformationService personalInformationService;
+
+    @Inject
+    private CustomerService customerService;
+
+    private CustomerAccountMapper customerAccountMapper;
+
+    private CustomerMapper customerMapper;
+
+    private PersonalInformationMapper personalInformationMapper;
+
+
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, SocialService socialService,
+                       UserSearchRepository userSearchRepository, PersistentTokenRepository persistentTokenRepository,
+                       AuthorityRepository authorityRepository, CustomerAccountMapper customerAccountMapper,
+                       CustomerMapper customerMapper, PersonalInformationMapper personalInformationMapper) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.socialService = socialService;
         this.userSearchRepository = userSearchRepository;
         this.persistentTokenRepository = persistentTokenRepository;
         this.authorityRepository = authorityRepository;
+        this.customerAccountMapper = customerAccountMapper;
+        this.customerMapper = customerMapper;
+        this.personalInformationMapper = personalInformationMapper;
     }
 
     public Optional<User> activateRegistration(String key) {
@@ -69,6 +97,41 @@ public class UserService {
                 return user;
             });
     }
+
+    private void createdCustomerAccount (User user){
+
+        CustomerAccount customerAccount = new CustomerAccount(user.getId());
+        Customer customer = new Customer(user.getId());
+
+        PersonalInformation personalInformation = new PersonalInformation();
+        personalInformation.setId(user.getId());
+
+
+
+        customerAccount.setUser(user);
+        CustomerAccountDTO customerAccountDTO = customerAccountMapper.toDto(customerAccount);
+        customerAccountService.save(customerAccountDTO);
+
+        customer.setCustomerAccount(customerAccount);
+        CustomerDTO customerDTO = customerMapper.toDto(customer);
+        customerService.save(customerDTO);
+
+        personalInformation.setCustomer(customer);
+        PersonalInformationDTO personalInformationDTO = personalInformationMapper.toDto(personalInformation);
+        personalInformationService.save(personalInformationDTO);
+
+
+
+        customerAccount.setCustomer(customer);
+        customerAccountDTO = customerAccountMapper.toDto(customerAccount);
+        customerAccountService.save(customerAccountDTO);
+
+        customer.setPersonalInfo(personalInformation);
+        customerDTO = customerMapper.toDto(customer);
+        customerService.save(customerDTO);
+
+    }
+
 
     public Optional<User> completePasswordReset(String newPassword, String key) {
        log.debug("Reset user password for reset key {}", key);
@@ -117,6 +180,7 @@ public class UserService {
         userRepository.save(newUser);
         userSearchRepository.save(newUser);
         log.debug("Created Information for User: {}", newUser);
+        createdCustomerAccount (newUser);
         return newUser;
     }
 

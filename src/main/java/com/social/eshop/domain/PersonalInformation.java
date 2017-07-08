@@ -1,5 +1,6 @@
 package com.social.eshop.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -23,8 +24,8 @@ public class PersonalInformation implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-    @SequenceGenerator(name = "sequenceGenerator")
+ //   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
+ //   @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
     @Column(name = "first_name")
@@ -49,6 +50,7 @@ public class PersonalInformation implements Serializable {
     @Column(name = "date_birth")
     private LocalDate dateBirth;
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(unique = true)
     private Customer customer;

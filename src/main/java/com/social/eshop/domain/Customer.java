@@ -25,8 +25,8 @@ public class Customer implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-    @SequenceGenerator(name = "sequenceGenerator")
+ //   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
+ //   @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
     @Column(name = "sub_scription")
@@ -73,6 +73,13 @@ public class Customer implements Serializable {
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Comments> comments = new HashSet<>();
+
+    public Customer() {
+    }
+
+    public Customer(Long id) {
+        this.id = id;
+    }
 
     public Long getId() {
         return id;
