@@ -81,6 +81,7 @@ public class CacheConfiguration {
             cm.createCache(com.social.eshop.domain.Options.class.getName(), jcacheConfiguration);
             cm.createCache(com.social.eshop.domain.TagForProduct.class.getName(), jcacheConfiguration);
             cm.createCache(com.social.eshop.domain.ProductInBucket.class.getName(), jcacheConfiguration);
+            cm.createCache(com.social.eshop.domain.CustomerAccount.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

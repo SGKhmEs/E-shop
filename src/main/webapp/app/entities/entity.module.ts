@@ -23,6 +23,7 @@ import { EshopCommentsModule } from './comments/comments.module';
 import { EshopOptionsModule } from './options/options.module';
 import { EshopTagForProductModule } from './tag-for-product/tag-for-product.module';
 import { EshopProductInBucketModule } from './product-in-bucket/product-in-bucket.module';
+import { EshopCustomerAccountModule } from './customer-account/customer-account.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -50,6 +51,7 @@ import { EshopProductInBucketModule } from './product-in-bucket/product-in-bucke
         EshopOptionsModule,
         EshopTagForProductModule,
         EshopProductInBucketModule,
+        EshopCustomerAccountModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],
