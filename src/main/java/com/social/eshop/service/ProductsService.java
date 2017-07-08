@@ -60,4 +60,6 @@ public interface ProductsService {
      *  @return the list of entities
      */
     List<ProductsDTO> findAllProductsInBucket(Long id) ;
+
+    List<ProductsDTO> findAllProductsWithTag(Long id);
 }

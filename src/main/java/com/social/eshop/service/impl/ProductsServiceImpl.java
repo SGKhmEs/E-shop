@@ -1,6 +1,7 @@
 package com.social.eshop.service.impl;
 
 import com.social.eshop.repository.ProductInBucketRepository;
+import com.social.eshop.repository.TagForProductRepository;
 import com.social.eshop.service.ProductsService;
 import com.social.eshop.domain.Products;
 import com.social.eshop.repository.ProductsRepository;
@@ -36,11 +37,18 @@ public class ProductsServiceImpl implements ProductsService{
 
     private final ProductInBucketRepository productInBucketRepository;
 
-    public ProductsServiceImpl(ProductsRepository productsRepository, ProductsMapper productsMapper, ProductsSearchRepository productsSearchRepository, ProductInBucketRepository productInBucketRepository) {
+    private final TagForProductRepository tagForProductRepository;
+
+    public ProductsServiceImpl(ProductsRepository productsRepository,
+                               ProductsMapper productsMapper,
+                               ProductsSearchRepository productsSearchRepository,
+                               ProductInBucketRepository productInBucketRepository,
+                               TagForProductRepository tagForProductRepository) {
         this.productsRepository = productsRepository;
         this.productsMapper = productsMapper;
         this.productsSearchRepository = productsSearchRepository;
         this.productInBucketRepository = productInBucketRepository;
+        this.tagForProductRepository = tagForProductRepository;
     }
 
     /**
@@ -121,6 +129,15 @@ public class ProductsServiceImpl implements ProductsService{
         List<Products> products = productInBucketRepository.findAllProductsByBucketId(id);
 
         return productsMapper.toDto(products);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<ProductsDTO> findAllProductsWithTag(Long id) {
+        log.debug("Request to get all Products");
+        List<Products> products = tagForProductRepository.findByTagId(id);
+        return productsMapper.toDto(products);
+
     }
 }
 

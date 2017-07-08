@@ -45,8 +45,17 @@ public class BucketDTO implements Serializable {
 
     private String customerPhone;
 
+    private  Set<ProductInBucket> productInBuckets; // in the future delete
+
     private Set<ProductInBucketDTO> productInBucketDTOS;
 
+    public Set<ProductInBucket> getProductInBuckets() {
+        return productInBuckets;
+    }
+
+    public void setProductInBuckets(Set<ProductInBucket> productInBuckets) {
+        this.productInBuckets = productInBuckets;
+    }
 
     public Long getId() {
         return id;
@@ -181,7 +190,6 @@ public class BucketDTO implements Serializable {
         return Objects.hashCode(getId());
     }
 
-
     @Override
     public String toString() {
         return "BucketDTO{" +
@@ -198,7 +206,8 @@ public class BucketDTO implements Serializable {
             ", customerId=" + customerId +
             ", customerName='" + customerName + '\'' +
             ", customerPhone='" + customerPhone + '\'' +
-            ", products=" + productInBucketDTOS +
+            ", productInBuckets=" + productInBuckets +
+            ", productInBucketDTOS=" + productInBucketDTOS +
             '}';
     }
 }
