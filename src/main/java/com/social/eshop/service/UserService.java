@@ -106,6 +106,13 @@ public class UserService {
         PersonalInformation personalInformation = new PersonalInformation();
         personalInformation.setId(user.getId());
 
+        Avatar avatar = new Avatar();
+        avatar.getId(user.getId());
+
+        Address address = new Address();
+        address.getId(user.getId());
+
+
 
 
         customerAccount.setUser(user);
@@ -129,6 +136,15 @@ public class UserService {
         customer.setPersonalInfo(personalInformation);
         customerDTO = customerMapper.toDto(customer);
         customerService.save(customerDTO);
+
+        customer.setAvatar(avatar);
+        customerDTO = customerMapper.toDto(customer);
+        customerService.save(customerDTO);
+
+        customer.setAddress(address);
+        customerDTO = customerMapper.toDto(customer);
+        customerService.save(customerDTO);
+
 
     }
 

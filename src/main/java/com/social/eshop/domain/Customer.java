@@ -6,6 +6,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
+import javax.servlet.http.HttpSession;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -77,8 +78,10 @@ public class Customer implements Serializable {
     public Customer() {
     }
 
-    public Customer(Long id) {
+    public Customer(Long id ) {
         this.id = id;
+        this.subScription = false;
+        this.sosialConnect = SocialConnect.DEFAULT;
     }
 
     public Long getId() {
