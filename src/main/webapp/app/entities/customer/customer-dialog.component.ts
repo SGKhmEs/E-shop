@@ -13,6 +13,7 @@ import { LoginOptions, LoginOptionsService } from '../login-options';
 import { Address, AddressService } from '../address';
 import { PersonalInformation, PersonalInformationService } from '../personal-information';
 import { Avatar, AvatarService } from '../avatar';
+import { CustomerAccount, CustomerAccountService } from '../customer-account';
 import { ResponseWrapper } from '../../shared';
 
 @Component({
@@ -33,6 +34,8 @@ export class CustomerDialogComponent implements OnInit {
 
     avatars: Avatar[];
 
+    customeraccounts: CustomerAccount[];
+
     constructor(
         public activeModal: NgbActiveModal,
         private alertService: JhiAlertService,
@@ -41,6 +44,7 @@ export class CustomerDialogComponent implements OnInit {
         private addressService: AddressService,
         private personalInformationService: PersonalInformationService,
         private avatarService: AvatarService,
+        private customerAccountService: CustomerAccountService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -97,6 +101,19 @@ export class CustomerDialogComponent implements OnInit {
                         .find(this.customer.avatarId)
                         .subscribe((subRes: Avatar) => {
                             this.avatars = [subRes].concat(res.json);
+                        }, (subRes: ResponseWrapper) => this.onError(subRes.json));
+                }
+            }, (res: ResponseWrapper) => this.onError(res.json));
+        this.customerAccountService
+            .query({filter: 'customer-is-null'})
+            .subscribe((res: ResponseWrapper) => {
+                if (!this.customer.customerAccountId) {
+                    this.customeraccounts = res.json;
+                } else {
+                    this.customerAccountService
+                        .find(this.customer.customerAccountId)
+                        .subscribe((subRes: CustomerAccount) => {
+                            this.customeraccounts = [subRes].concat(res.json);
                         }, (subRes: ResponseWrapper) => this.onError(subRes.json));
                 }
             }, (res: ResponseWrapper) => this.onError(res.json));
@@ -160,6 +177,10 @@ export class CustomerDialogComponent implements OnInit {
     }
 
     trackAvatarById(index: number, item: Avatar) {
+        return item.id;
+    }
+
+    trackCustomerAccountById(index: number, item: CustomerAccount) {
         return item.id;
     }
 }

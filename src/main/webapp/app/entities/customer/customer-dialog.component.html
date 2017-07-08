@@ -60,6 +60,13 @@
                 <option [ngValue]="avatarOption.id" *ngFor="let avatarOption of avatars; trackBy: trackAvatarById">{{avatarOption.id}}</option>
             </select>
         </div>
+        <div class="form-group">
+            <label for="field_customerAccount">Customer Account</label>
+            <select class="form-control" id="field_customerAccount" name="customerAccount" [(ngModel)]="customer.customerAccountId">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="customerAccountOption.id" *ngFor="let customerAccountOption of customeraccounts; trackBy: trackCustomerAccountById">{{customerAccountOption.id}}</option>
+            </select>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">

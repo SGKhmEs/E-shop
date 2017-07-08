@@ -37,6 +37,7 @@
             <th jhiSortBy="addressId"><span>Address</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="personalInfoId"><span>Personal Info</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="avatarId"><span>Avatar</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="customerAccountId"><span>Customer Account</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -64,6 +65,11 @@
                 <td>
                     <div *ngIf="customer.avatarId">
                         <a [routerLink]="['../avatar', customer.avatarId  ]" >{{customer.avatarId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="customer.customerAccountId">
+                        <a [routerLink]="['../customer-account', customer.customerAccountId  ]" >{{customer.customerAccountId}}</a>
                     </div>
                 </td>
                 <td class="text-right">

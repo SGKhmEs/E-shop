@@ -40,6 +40,12 @@
                 <a [routerLink]="['/avatar', customer.avatarId]">{{customer.avatarId}}</a>
             </div>
         </dd>
+        <dt><span>Customer Account</span></dt>
+        <dd>
+            <div *ngIf="customer.customerAccountId">
+                <a [routerLink]="['/customer-account', customer.customerAccountId]">{{customer.customerAccountId}}</a>
+            </div>
+        </dd>
     </dl>
 
     <button type="submit"

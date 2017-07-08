@@ -46,6 +46,14 @@
             "otherEntityRelationshipName": "customer"
         },
         {
+            "relationshipName": "customerAccount",
+            "otherEntityName": "customerAccount",
+            "relationshipType": "one-to-one",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "customer"
+        },
+        {
             "relationshipType": "one-to-many",
             "relationshipName": "comments",
             "otherEntityName": "comments",

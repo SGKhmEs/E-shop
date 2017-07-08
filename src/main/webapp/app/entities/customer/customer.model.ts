@@ -19,6 +19,7 @@ export class Customer implements BaseEntity {
         public avatarId?: number,
         public seens?: BaseEntity[],
         public wishLists?: BaseEntity[],
+        public customerAccountId?: number,
         public comments?: BaseEntity[],
     ) {
         this.subScription = false;

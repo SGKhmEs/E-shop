@@ -8,7 +8,7 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity Customer and its DTO CustomerDTO.
  */
-@Mapper(componentModel = "spring", uses = {LoginOptionsMapper.class, AddressMapper.class, PersonalInformationMapper.class, AvatarMapper.class, })
+@Mapper(componentModel = "spring", uses = {LoginOptionsMapper.class, AddressMapper.class, PersonalInformationMapper.class, AvatarMapper.class, CustomerAccountMapper.class, })
 public interface CustomerMapper extends EntityMapper <CustomerDTO, Customer> {
 
     @Mapping(source = "loginOptions.id", target = "loginOptionsId")
@@ -18,6 +18,8 @@ public interface CustomerMapper extends EntityMapper <CustomerDTO, Customer> {
     @Mapping(source = "personalInfo.id", target = "personalInfoId")
 
     @Mapping(source = "avatar.id", target = "avatarId")
+
+    @Mapping(source = "customerAccount.id", target = "customerAccountId")
     CustomerDTO toDto(Customer customer); 
 
     @Mapping(source = "loginOptionsId", target = "loginOptions")
@@ -29,6 +31,8 @@ public interface CustomerMapper extends EntityMapper <CustomerDTO, Customer> {
     @Mapping(source = "avatarId", target = "avatar")
     @Mapping(target = "seens", ignore = true)
     @Mapping(target = "wishLists", ignore = true)
+
+    @Mapping(source = "customerAccountId", target = "customerAccount")
     @Mapping(target = "comments", ignore = true)
     Customer toEntity(CustomerDTO customerDTO); 
     default Customer fromId(Long id) {

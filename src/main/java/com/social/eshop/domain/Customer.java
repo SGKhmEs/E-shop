@@ -65,6 +65,10 @@ public class Customer implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<WishList> wishLists = new HashSet<>();
 
+    @OneToOne
+    @JoinColumn(unique = true)
+    private CustomerAccount customerAccount;
+
     @OneToMany(mappedBy = "customer")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -217,6 +221,19 @@ public class Customer implements Serializable {
 
     public void setWishLists(Set<WishList> wishLists) {
         this.wishLists = wishLists;
+    }
+
+    public CustomerAccount getCustomerAccount() {
+        return customerAccount;
+    }
+
+    public Customer customerAccount(CustomerAccount customerAccount) {
+        this.customerAccount = customerAccount;
+        return this;
+    }
+
+    public void setCustomerAccount(CustomerAccount customerAccount) {
+        this.customerAccount = customerAccount;
     }
 
     public Set<Comments> getComments() {
