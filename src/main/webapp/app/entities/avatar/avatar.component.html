@@ -31,6 +31,7 @@
             <tr>
             <th><span>ID</span></th>
             <th><span>Users Image</span></th>
+            <th><span>Customer</span></th>
             <th></th>
             </tr>
             </thead>
@@ -42,6 +43,11 @@
                         <img [src]="'data:' + avatar.usersImageContentType + ';base64,' + avatar.usersImage" style="max-height: 30px;" alt="avatar image"/>
                     </a>
                     <span *ngIf="avatar.usersImage">{{avatar.usersImageContentType}}, {{byteSize(avatar.usersImage)}}</span>
+                </td>
+                <td>
+                    <div *ngIf="avatar.customerId">
+                        <a [routerLink]="['../customer', avatar.customerId  ]" >{{avatar.customerId}}</a>
+                    </div>
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">

@@ -9,6 +9,8 @@ import { JhiEventManager, JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 import { Avatar } from './avatar.model';
 import { AvatarPopupService } from './avatar-popup.service';
 import { AvatarService } from './avatar.service';
+import { Customer, CustomerService } from '../customer';
+import { ResponseWrapper } from '../../shared';
 
 @Component({
     selector: 'jhi-avatar-dialog',
@@ -20,11 +22,14 @@ export class AvatarDialogComponent implements OnInit {
     authorities: any[];
     isSaving: boolean;
 
+    customers: Customer[];
+
     constructor(
         public activeModal: NgbActiveModal,
         private dataUtils: JhiDataUtils,
         private alertService: JhiAlertService,
         private avatarService: AvatarService,
+        private customerService: CustomerService,
         private elementRef: ElementRef,
         private eventManager: JhiEventManager
     ) {
@@ -33,6 +38,19 @@ export class AvatarDialogComponent implements OnInit {
     ngOnInit() {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
+        this.customerService
+            .query({filter: 'avatar-is-null'})
+            .subscribe((res: ResponseWrapper) => {
+                if (!this.avatar.customerId) {
+                    this.customers = res.json;
+                } else {
+                    this.customerService
+                        .find(this.avatar.customerId)
+                        .subscribe((subRes: Customer) => {
+                            this.customers = [subRes].concat(res.json);
+                        }, (subRes: ResponseWrapper) => this.onError(subRes.json));
+                }
+            }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     byteSize(field) {
@@ -103,6 +121,10 @@ export class AvatarDialogComponent implements OnInit {
 
     private onError(error) {
         this.alertService.error(error.message, null, null);
+    }
+
+    trackCustomerById(index: number, item: Customer) {
+        return item.id;
     }
 }
 

@@ -13,6 +13,12 @@
                 {{avatar.usersImageContentType}}, {{byteSize(avatar.usersImage)}}
             </div>
         </dd>
+        <dt><span>Customer</span></dt>
+        <dd>
+            <div *ngIf="avatar.customerId">
+                <a [routerLink]="['/customer', avatar.customerId]">{{avatar.customerId}}</a>
+            </div>
+        </dd>
     </dl>
 
     <button type="submit"

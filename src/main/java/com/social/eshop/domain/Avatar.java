@@ -31,6 +31,10 @@ public class Avatar implements Serializable {
     @Column(name = "users_image_content_type")
     private String usersImageContentType;
 
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Customer customer;
+
     public Long getId() {
         return id;
     }
@@ -63,6 +67,19 @@ public class Avatar implements Serializable {
 
     public void setUsersImageContentType(String usersImageContentType) {
         this.usersImageContentType = usersImageContentType;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public Avatar customer(Customer customer) {
+        this.customer = customer;
+        return this;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     @Override

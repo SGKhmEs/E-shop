@@ -2,6 +2,8 @@ package com.social.eshop.service.dto;
 
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 import javax.persistence.Lob;
 
@@ -15,6 +17,8 @@ public class AvatarDTO implements Serializable {
     @Lob
     private byte[] usersImage;
     private String usersImageContentType;
+
+    private Long customerId;
 
     public Long getId() {
         return id;
@@ -38,6 +42,14 @@ public class AvatarDTO implements Serializable {
 
     public void setUsersImageContentType(String usersImageContentType) {
         this.usersImageContentType = usersImageContentType;
+    }
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 
     @Override
