@@ -67,6 +67,9 @@ public class UserService {
     @Inject
     private BucketService bucketService;
 
+    @Inject
+    private WishListService wishListService;
+
 
     private CustomerAccountMapper customerAccountMapper;
 
@@ -80,7 +83,9 @@ public class UserService {
 
     private BucketMapper bucketMapper;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, SocialService socialService, UserSearchRepository userSearchRepository, PersistentTokenRepository persistentTokenRepository, AuthorityRepository authorityRepository, CustomerAccountMapper customerAccountMapper, CustomerMapper customerMapper, PersonalInformationMapper personalInformationMapper, AvatarMapper avatarMapper, AddressMapper addressMapper, BucketMapper bucketMapper) {
+    private WishListMapper wishListMapper;
+
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, SocialService socialService, UserSearchRepository userSearchRepository, PersistentTokenRepository persistentTokenRepository, AuthorityRepository authorityRepository, CustomerAccountMapper customerAccountMapper, CustomerMapper customerMapper, PersonalInformationMapper personalInformationMapper, AvatarMapper avatarMapper, AddressMapper addressMapper, BucketMapper bucketMapper, WishListMapper wishListMapper) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.socialService = socialService;
@@ -93,6 +98,7 @@ public class UserService {
         this.avatarMapper = avatarMapper;
         this.addressMapper = addressMapper;
         this.bucketMapper = bucketMapper;
+        this.wishListMapper = wishListMapper;
     }
 
     public Optional<User> activateRegistration(String key) {
@@ -125,6 +131,9 @@ public class UserService {
         Bucket bucket = new Bucket();
         bucket.setId(user.getId());
 
+        WishList wishList = new WishList();
+        wishList.setId(user.getId());
+
         customerAccount.setUser(user);
         CustomerAccountDTO customerAccountDTO = customerAccountMapper.toDto(customerAccount);
         customerAccountService.save(customerAccountDTO);
@@ -148,6 +157,10 @@ public class UserService {
         avatar.setCustomer(customer);
         AvatarDTO avatarDTO = avatarMapper.toDto(avatar);
         avatarService.save(avatarDTO);
+
+        wishList.setCustomer(customer);
+        WishListDTO wishListDTO = wishListMapper.toDto(wishList);
+        wishListService.save(wishListDTO);
 
         customerAccount.setCustomer(customer);
         customerAccountDTO = customerAccountMapper.toDto(customerAccount);
