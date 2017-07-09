@@ -30,6 +30,7 @@ public interface CustomerMapper extends EntityMapper <CustomerDTO, Customer> {
 
     @Mapping(source = "avatarId", target = "avatar")
     @Mapping(target = "seens", ignore = true)
+    @Mapping(target = "buckets", ignore = true)
     @Mapping(target = "wishLists", ignore = true)
 
     @Mapping(source = "customerAccountId", target = "customerAccount")

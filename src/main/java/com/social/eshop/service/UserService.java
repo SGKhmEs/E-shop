@@ -64,6 +64,10 @@ public class UserService {
     @Inject
     private AvatarService avatarService;
 
+    @Inject
+    private BucketService bucketService;
+
+
     private CustomerAccountMapper customerAccountMapper;
 
     private CustomerMapper customerMapper;
@@ -74,7 +78,9 @@ public class UserService {
 
     private AddressMapper addressMapper;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, SocialService socialService, UserSearchRepository userSearchRepository, PersistentTokenRepository persistentTokenRepository, AuthorityRepository authorityRepository, CustomerAccountMapper customerAccountMapper, CustomerMapper customerMapper, PersonalInformationMapper personalInformationMapper, AvatarMapper avatarMapper, AddressMapper addressMapper) {
+    private BucketMapper bucketMapper;
+
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, SocialService socialService, UserSearchRepository userSearchRepository, PersistentTokenRepository persistentTokenRepository, AuthorityRepository authorityRepository, CustomerAccountMapper customerAccountMapper, CustomerMapper customerMapper, PersonalInformationMapper personalInformationMapper, AvatarMapper avatarMapper, AddressMapper addressMapper, BucketMapper bucketMapper) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.socialService = socialService;
@@ -86,6 +92,7 @@ public class UserService {
         this.personalInformationMapper = personalInformationMapper;
         this.avatarMapper = avatarMapper;
         this.addressMapper = addressMapper;
+        this.bucketMapper = bucketMapper;
     }
 
     public Optional<User> activateRegistration(String key) {
@@ -115,6 +122,9 @@ public class UserService {
         Address address = new Address();
         address.setId(user.getId());
 
+        Bucket bucket = new Bucket();
+        bucket.setId(user.getId());
+
         customerAccount.setUser(user);
         CustomerAccountDTO customerAccountDTO = customerAccountMapper.toDto(customerAccount);
         customerAccountService.save(customerAccountDTO);
@@ -126,6 +136,10 @@ public class UserService {
         personalInformation.setCustomer(customer);
         PersonalInformationDTO personalInformationDTO = personalInformationMapper.toDto(personalInformation);
         personalInformationService.save(personalInformationDTO);
+
+        bucket.setCustomer(customer);
+        BucketDTO bucketDTO = bucketMapper.toDto(bucket);
+        bucketService.save(bucketDTO);
 
         address.setCustomer(customer);
         AddressDTO addressDTO = addressMapper.toDto(address);
@@ -142,6 +156,14 @@ public class UserService {
         customer.setPersonalInfo(personalInformation);
         customerDTO = customerMapper.toDto(customer);
         customerService.save(customerDTO);
+
+//        Set<Bucket> buckets = new HashSet<Bucket>();
+//
+//        buckets.add(bucket);
+//
+//        customer.setBuckets(buckets);
+//        bucketDTO = bucketMapper.toDto(bucket);
+//        bucketService.save(bucketDTO);
 
         customer.setAvatar(avatar);
         customerDTO = customerMapper.toDto(customer);

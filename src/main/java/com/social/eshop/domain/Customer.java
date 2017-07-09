@@ -6,7 +6,6 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
-import javax.servlet.http.HttpSession;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -60,6 +59,11 @@ public class Customer implements Serializable {
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Seen> seens = new HashSet<>();
+
+    @OneToMany(mappedBy = "customer")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Bucket> buckets = new HashSet<>();
 
     @OneToMany(mappedBy = "customer")
     @JsonIgnore
@@ -206,6 +210,31 @@ public class Customer implements Serializable {
 
     public void setSeens(Set<Seen> seens) {
         this.seens = seens;
+    }
+
+    public Set<Bucket> getBuckets() {
+        return buckets;
+    }
+
+    public Customer buckets(Set<Bucket> buckets) {
+        this.buckets = buckets;
+        return this;
+    }
+
+    public Customer addBucket(Bucket bucket) {
+        this.buckets.add(bucket);
+        bucket.setCustomer(this);
+        return this;
+    }
+
+    public Customer removeBucket(Bucket bucket) {
+        this.buckets.remove(bucket);
+        bucket.setCustomer(null);
+        return this;
+    }
+
+    public void setBuckets(Set<Bucket> buckets) {
+        this.buckets = buckets;
     }
 
     public Set<WishList> getWishLists() {

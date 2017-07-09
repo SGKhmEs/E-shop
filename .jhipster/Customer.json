@@ -41,6 +41,12 @@
         },
         {
             "relationshipType": "one-to-many",
+            "relationshipName": "bucket",
+            "otherEntityName": "bucket",
+            "otherEntityRelationshipName": "customer"
+        },
+        {
+            "relationshipType": "one-to-many",
             "relationshipName": "wishList",
             "otherEntityName": "wishList",
             "otherEntityRelationshipName": "customer"

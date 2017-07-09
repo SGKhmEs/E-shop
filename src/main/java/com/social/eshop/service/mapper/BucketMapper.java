@@ -10,7 +10,7 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring", uses = {ManagerMapper.class, AddressShippingMapper.class, CustomerMapper.class, ProductInBucketMapper.class, })
 public interface BucketMapper extends EntityMapper <BucketDTO, Bucket> {
-//    @Mapping(source = "customer.id", target = "customerId")
+    @Mapping(source = "customer.id", target = "customerId")
     @Mapping(source = "manager.id", target = "managerId")
     @Mapping(source = "addressShipping", target = "addressShippingDTO")
     @Mapping(source = "addressShipping.id", target = "addressShippingId")
