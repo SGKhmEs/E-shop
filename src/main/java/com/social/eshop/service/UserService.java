@@ -70,6 +70,8 @@ public class UserService {
     @Inject
     private WishListService wishListService;
 
+    @Inject
+    private SeenService seenService;
 
     private CustomerAccountMapper customerAccountMapper;
 
@@ -85,7 +87,14 @@ public class UserService {
 
     private WishListMapper wishListMapper;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, SocialService socialService, UserSearchRepository userSearchRepository, PersistentTokenRepository persistentTokenRepository, AuthorityRepository authorityRepository, CustomerAccountMapper customerAccountMapper, CustomerMapper customerMapper, PersonalInformationMapper personalInformationMapper, AvatarMapper avatarMapper, AddressMapper addressMapper, BucketMapper bucketMapper, WishListMapper wishListMapper) {
+    private SeenMapper seenMapper;
+
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, SocialService socialService,
+                       UserSearchRepository userSearchRepository, PersistentTokenRepository persistentTokenRepository,
+                       AuthorityRepository authorityRepository, CustomerAccountMapper customerAccountMapper,
+                       CustomerMapper customerMapper, PersonalInformationMapper personalInformationMapper,
+                       AvatarMapper avatarMapper, AddressMapper addressMapper, BucketMapper bucketMapper,
+                       WishListMapper wishListMapper, SeenMapper seenMapper) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.socialService = socialService;
@@ -99,6 +108,7 @@ public class UserService {
         this.addressMapper = addressMapper;
         this.bucketMapper = bucketMapper;
         this.wishListMapper = wishListMapper;
+        this.seenMapper = seenMapper;
     }
 
     public Optional<User> activateRegistration(String key) {
@@ -134,6 +144,9 @@ public class UserService {
         WishList wishList = new WishList();
         wishList.setId(user.getId());
 
+        Seen seen = new Seen();
+        seen.setId(user.getId());
+
         customerAccount.setUser(user);
         CustomerAccountDTO customerAccountDTO = customerAccountMapper.toDto(customerAccount);
         customerAccountService.save(customerAccountDTO);
@@ -161,6 +174,10 @@ public class UserService {
         wishList.setCustomer(customer);
         WishListDTO wishListDTO = wishListMapper.toDto(wishList);
         wishListService.save(wishListDTO);
+
+        seen.setCustomer(customer);
+        SeenDTO seenDTO = seenMapper.toDto(seen);
+        seenService.save(seenDTO);
 
         customerAccount.setCustomer(customer);
         customerAccountDTO = customerAccountMapper.toDto(customerAccount);
@@ -227,7 +244,7 @@ public class UserService {
         newUser.setImageUrl(imageUrl);
         newUser.setLangKey(langKey);
         // new user is not active
-        newUser.setActivated(false);
+        newUser.setActivated(true); //in the future change to false
         // new user gets registration key
         newUser.setActivationKey(RandomUtil.generateActivationKey());
         authorities.add(authority);
