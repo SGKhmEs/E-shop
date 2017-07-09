@@ -1,17 +1,4 @@
 /*------------------------------------------------------------------
-	Template Name:	Olongker - eCommerce Bootstrap Template
-    Template URI: http://bootexperts.com
-    Description: Bootstrap eCommerce Template
-    Author: BootExperts
-    Author URI: http://bootexperts.com
-    License: 
-    License URI: 
-    Version: 1.0
-    
-    All files, unless otherwise stated, are released under the GNU General Public License
-    version 3.0 (http://www.your-site.com/index.html)
--------------------------------------------------------------------*/
-/*------------------------------------------------------------------
 [Table of contents]
 	1. Body
 	2. Common Class
@@ -46,7 +33,7 @@
 	15. Product Details
 	16. Cart Page
 	17. Checkout Page
-	
+
 -------------------------------------------------------------------*/
 
 /*----------------------
@@ -463,7 +450,7 @@ img {
 .menu-area {
   background:#ebebeb;
 }
-.main-menu {
+    .main-menu {
   text-align: center;
 }
 .main-menu > nav{}
@@ -785,7 +772,7 @@ img {
  .slider-progress.pos_hover{
 	-webkit-animation-play-state: paused;
 	animation-play-state: paused;
- }	
+ }
 /*---------- Home 3 Slider -----------*/
 .home-3-slider {}
 .home-3-slider .slide-text {
@@ -1306,7 +1293,7 @@ img {
 }
 /*----- 3.12 Testimonial Area -----*/
 .testimonial-area {
-  background: url(img/testimonial/testimonial-bg.jpg) no-repeat center center; 
+  background: url(img/testimonial/testimonial-bg.jpg) no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -1659,7 +1646,7 @@ img {
 }
 .view-mode > a i{}
 .sort-by, .show-product{
-  padding: 3px 0;	
+  padding: 3px 0;
 }
 .sort-by {
   margin-right: 15px;
@@ -2297,7 +2284,7 @@ h4.heading {
   font-weight: 600;
   margin-bottom: 20px;
   text-transform: uppercase;
-}	
+}
 .contact-info p{
 	color: #3e3f3f;
 	font-size: 14px;
@@ -2587,7 +2574,7 @@ h4.heading {
   opacity: 0.5;
   position: absolute;
   top: 0;
-  width: 100%;	
+  width: 100%;
 }
 .not-found_opacity{
   height: 100%;
@@ -2850,7 +2837,7 @@ h4.heading {
 .action-btn a:hover {
   background:#e09e25;
   color:#fff;
-} 
+}
 .product-page .description {
   margin-bottom: 30px;
 }
