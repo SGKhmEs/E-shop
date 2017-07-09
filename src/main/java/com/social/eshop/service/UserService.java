@@ -9,9 +9,7 @@ import com.social.eshop.repository.search.UserSearchRepository;
 import com.social.eshop.security.AuthoritiesConstants;
 import com.social.eshop.security.SecurityUtils;
 import com.social.eshop.service.dto.*;
-import com.social.eshop.service.mapper.CustomerAccountMapper;
-import com.social.eshop.service.mapper.CustomerMapper;
-import com.social.eshop.service.mapper.PersonalInformationMapper;
+import com.social.eshop.service.mapper.*;
 import com.social.eshop.service.util.RandomUtil;
 
 import org.slf4j.Logger;
@@ -72,11 +70,11 @@ public class UserService {
 
     private PersonalInformationMapper personalInformationMapper;
 
+    private AvatarMapper avatarMapper;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, SocialService socialService,
-                       UserSearchRepository userSearchRepository, PersistentTokenRepository persistentTokenRepository,
-                       AuthorityRepository authorityRepository, CustomerAccountMapper customerAccountMapper,
-                       CustomerMapper customerMapper, PersonalInformationMapper personalInformationMapper) {
+    private AddressMapper addressMapper;
+
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, SocialService socialService, UserSearchRepository userSearchRepository, PersistentTokenRepository persistentTokenRepository, AuthorityRepository authorityRepository, CustomerAccountMapper customerAccountMapper, CustomerMapper customerMapper, PersonalInformationMapper personalInformationMapper, AvatarMapper avatarMapper, AddressMapper addressMapper) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.socialService = socialService;
@@ -86,6 +84,8 @@ public class UserService {
         this.customerAccountMapper = customerAccountMapper;
         this.customerMapper = customerMapper;
         this.personalInformationMapper = personalInformationMapper;
+        this.avatarMapper = avatarMapper;
+        this.addressMapper = addressMapper;
     }
 
     public Optional<User> activateRegistration(String key) {
@@ -115,9 +115,6 @@ public class UserService {
         Address address = new Address();
         address.setId(user.getId());
 
-
-
-
         customerAccount.setUser(user);
         CustomerAccountDTO customerAccountDTO = customerAccountMapper.toDto(customerAccount);
         customerAccountService.save(customerAccountDTO);
@@ -130,7 +127,13 @@ public class UserService {
         PersonalInformationDTO personalInformationDTO = personalInformationMapper.toDto(personalInformation);
         personalInformationService.save(personalInformationDTO);
 
+        address.setCustomer(customer);
+        AddressDTO addressDTO = addressMapper.toDto(address);
+        addressService.save(addressDTO);
 
+        avatar.setCustomer(customer);
+        AvatarDTO avatarDTO = avatarMapper.toDto(avatar);
+        avatarService.save(avatarDTO);
 
         customerAccount.setCustomer(customer);
         customerAccountDTO = customerAccountMapper.toDto(customerAccount);
@@ -141,14 +144,12 @@ public class UserService {
         customerService.save(customerDTO);
 
         customer.setAvatar(avatar);
-        AvatarDTO avatarDTO = customerMapper.toDto(avatar);
-        avatarService.save(avatarDTO);
+        customerDTO = customerMapper.toDto(customer);
+        customerService.save(customerDTO);
 
         customer.setAddress(address);
-        AddressDTO addressDTO = customerMapper.toDto(address);
-        addressService.save(addressDTO);
-
-
+        customerDTO = customerMapper.toDto(customer);
+        customerService.save(customerDTO);
     }
 
 

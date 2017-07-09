@@ -1,5 +1,6 @@
 package com.social.eshop.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -20,8 +21,8 @@ public class Avatar implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-    @SequenceGenerator(name = "sequenceGenerator")
+ //   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
+ //   @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
     @Lob
@@ -31,6 +32,7 @@ public class Avatar implements Serializable {
     @Column(name = "users_image_content_type")
     private String usersImageContentType;
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(unique = true)
     private Customer customer;

@@ -51,10 +51,6 @@ public class Address implements Serializable {
     @JoinColumn(unique = true)
     private Customer customer;
 
-    public Address(Long id) {
-        this.id = id;
-    }
-
     public Long getId() {
         return id;
     }
