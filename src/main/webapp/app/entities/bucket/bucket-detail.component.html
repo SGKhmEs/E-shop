@@ -1,0 +1,67 @@
+
+<div *ngIf="bucket">
+    <h2><span>Bucket</span> {{bucket.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Name</span></dt>
+        <dd>
+            <span>{{bucket.name}}</span>
+        </dd>
+        <dt><span>Date</span></dt>
+        <dd>
+            <span>{{bucket.date | date:'medium'}}</span>
+        </dd>
+        <dt><span>Sum</span></dt>
+        <dd>
+            <span>{{bucket.sum}}</span>
+        </dd>
+        <dt><span>Order Number</span></dt>
+        <dd>
+            <span>{{bucket.orderNumber}}</span>
+        </dd>
+        <dt><span>Count</span></dt>
+        <dd>
+            <span>{{bucket.count}}</span>
+        </dd>
+        <dt><span>Status</span></dt>
+        <dd>
+            <span>{{bucket.status}}</span>
+        </dd>
+        <dt><span>Consignment Note</span></dt>
+        <dd>
+            <span>{{bucket.consignmentNote}}</span>
+        </dd>
+        <dt><span>Manager</span></dt>
+        <dd>
+            <div *ngIf="bucket.managerId">
+                <a [routerLink]="['/manager', bucket.managerId]">{{bucket.managerId}}</a>
+            </div>
+        </dd>
+        <dt><span>Address Shipping</span></dt>
+        <dd>
+            <div *ngIf="bucket.addressShippingId">
+                <a [routerLink]="['/address-shipping', bucket.addressShippingId]">{{bucket.addressShippingId}}</a>
+            </div>
+        </dd>
+        <dt><span>Customer</span></dt>
+        <dd>
+            <div *ngIf="bucket.customerId">
+                <a [routerLink]="['/customer', bucket.customerId]">{{bucket.customerId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'bucket/'+ bucket.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>
