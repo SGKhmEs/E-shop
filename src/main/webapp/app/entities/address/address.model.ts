@@ -10,6 +10,7 @@ export class Address implements BaseEntity {
         public street?: string,
         public building?: string,
         public appartment?: string,
+        public customerId?: number,
     ) {
     }
 }

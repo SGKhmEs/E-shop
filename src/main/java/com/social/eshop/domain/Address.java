@@ -1,11 +1,11 @@
 package com.social.eshop.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -21,16 +21,14 @@ public class Address implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-    @SequenceGenerator(name = "sequenceGenerator")
+ //   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
+ //   @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @NotNull
-    @Column(name = "country", nullable = false)
+    @Column(name = "country")
     private String country;
 
-    @NotNull
-    @Column(name = "city", nullable = false)
+    @Column(name = "city")
     private String city;
 
     @Column(name = "state")
@@ -39,16 +37,23 @@ public class Address implements Serializable {
     @Column(name = "region")
     private String region;
 
-    @NotNull
-    @Column(name = "street", nullable = false)
+    @Column(name = "street")
     private String street;
 
-    @NotNull
-    @Column(name = "building", nullable = false)
+    @Column(name = "building")
     private String building;
 
     @Column(name = "appartment")
     private String appartment;
+
+    @JsonIgnore
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Customer customer;
+
+    public Address(Long id) {
+        this.id = id;
+    }
 
     public Long getId() {
         return id;
@@ -147,6 +152,19 @@ public class Address implements Serializable {
 
     public void setAppartment(String appartment) {
         this.appartment = appartment;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public Address customer(Customer customer) {
+        this.customer = customer;
+        return this;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     @Override

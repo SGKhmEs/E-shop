@@ -37,6 +37,7 @@
             <th><span>Street</span></th>
             <th><span>Building</span></th>
             <th><span>Appartment</span></th>
+            <th><span>Customer</span></th>
             <th></th>
             </tr>
             </thead>
@@ -50,6 +51,11 @@
                 <td>{{address.street}}</td>
                 <td>{{address.building}}</td>
                 <td>{{address.appartment}}</td>
+                <td>
+                    <div *ngIf="address.customerId">
+                        <a [routerLink]="['../customer', address.customerId  ]" >{{address.customerId}}</a>
+                    </div>
+                </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

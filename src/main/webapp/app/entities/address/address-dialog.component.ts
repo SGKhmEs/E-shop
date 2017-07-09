@@ -9,6 +9,8 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { Address } from './address.model';
 import { AddressPopupService } from './address-popup.service';
 import { AddressService } from './address.service';
+import { Customer, CustomerService } from '../customer';
+import { ResponseWrapper } from '../../shared';
 
 @Component({
     selector: 'jhi-address-dialog',
@@ -20,10 +22,13 @@ export class AddressDialogComponent implements OnInit {
     authorities: any[];
     isSaving: boolean;
 
+    customers: Customer[];
+
     constructor(
         public activeModal: NgbActiveModal,
         private alertService: JhiAlertService,
         private addressService: AddressService,
+        private customerService: CustomerService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -31,6 +36,19 @@ export class AddressDialogComponent implements OnInit {
     ngOnInit() {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
+        this.customerService
+            .query({filter: 'address-is-null'})
+            .subscribe((res: ResponseWrapper) => {
+                if (!this.address.customerId) {
+                    this.customers = res.json;
+                } else {
+                    this.customerService
+                        .find(this.address.customerId)
+                        .subscribe((subRes: Customer) => {
+                            this.customers = [subRes].concat(res.json);
+                        }, (subRes: ResponseWrapper) => this.onError(subRes.json));
+                }
+            }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     clear() {
@@ -76,6 +94,10 @@ export class AddressDialogComponent implements OnInit {
 
     private onError(error) {
         this.alertService.error(error.message, null, null);
+    }
+
+    trackCustomerById(index: number, item: Customer) {
+        return item.id;
     }
 }
 

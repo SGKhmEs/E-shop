@@ -8,14 +8,11 @@ import com.social.eshop.repository.UserRepository;
 import com.social.eshop.repository.search.UserSearchRepository;
 import com.social.eshop.security.AuthoritiesConstants;
 import com.social.eshop.security.SecurityUtils;
-import com.social.eshop.service.dto.CustomerAccountDTO;
-import com.social.eshop.service.dto.CustomerDTO;
-import com.social.eshop.service.dto.PersonalInformationDTO;
+import com.social.eshop.service.dto.*;
 import com.social.eshop.service.mapper.CustomerAccountMapper;
 import com.social.eshop.service.mapper.CustomerMapper;
 import com.social.eshop.service.mapper.PersonalInformationMapper;
 import com.social.eshop.service.util.RandomUtil;
-import com.social.eshop.service.dto.UserDTO;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -63,6 +60,12 @@ public class UserService {
     @Inject
     private CustomerService customerService;
 
+    @Inject
+    private AddressService addressService;
+
+    @Inject
+    private AvatarService avatarService;
+
     private CustomerAccountMapper customerAccountMapper;
 
     private CustomerMapper customerMapper;
@@ -107,10 +110,10 @@ public class UserService {
         personalInformation.setId(user.getId());
 
         Avatar avatar = new Avatar();
-        avatar.getId(user.getId());
+        avatar.setId(user.getId());
 
         Address address = new Address();
-        address.getId(user.getId());
+        address.setId(user.getId());
 
 
 
@@ -138,12 +141,12 @@ public class UserService {
         customerService.save(customerDTO);
 
         customer.setAvatar(avatar);
-        customerDTO = customerMapper.toDto(customer);
-        customerService.save(customerDTO);
+        AvatarDTO avatarDTO = customerMapper.toDto(avatar);
+        avatarService.save(avatarDTO);
 
         customer.setAddress(address);
-        customerDTO = customerMapper.toDto(customer);
-        customerService.save(customerDTO);
+        AddressDTO addressDTO = customerMapper.toDto(address);
+        addressService.save(addressDTO);
 
 
     }

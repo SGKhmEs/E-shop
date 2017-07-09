@@ -15,24 +15,12 @@
         <div class="form-group">
             <label class="form-control-label" for="field_country">Country</label>
             <input type="text" class="form-control" name="country" id="field_country"
-                [(ngModel)]="address.country" required />
-            <div [hidden]="!(editForm.controls.country?.dirty && editForm.controls.country?.invalid)">
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.country?.errors?.required">
-                   This field is required.
-                </small>
-            </div>
+                [(ngModel)]="address.country"  />
         </div>
         <div class="form-group">
             <label class="form-control-label" for="field_city">City</label>
             <input type="text" class="form-control" name="city" id="field_city"
-                [(ngModel)]="address.city" required />
-            <div [hidden]="!(editForm.controls.city?.dirty && editForm.controls.city?.invalid)">
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.city?.errors?.required">
-                   This field is required.
-                </small>
-            </div>
+                [(ngModel)]="address.city"  />
         </div>
         <div class="form-group">
             <label class="form-control-label" for="field_state">State</label>
@@ -47,24 +35,12 @@
         <div class="form-group">
             <label class="form-control-label" for="field_street">Street</label>
             <input type="text" class="form-control" name="street" id="field_street"
-                [(ngModel)]="address.street" required />
-            <div [hidden]="!(editForm.controls.street?.dirty && editForm.controls.street?.invalid)">
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.street?.errors?.required">
-                   This field is required.
-                </small>
-            </div>
+                [(ngModel)]="address.street"  />
         </div>
         <div class="form-group">
             <label class="form-control-label" for="field_building">Building</label>
             <input type="text" class="form-control" name="building" id="field_building"
-                [(ngModel)]="address.building" required />
-            <div [hidden]="!(editForm.controls.building?.dirty && editForm.controls.building?.invalid)">
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.building?.errors?.required">
-                   This field is required.
-                </small>
-            </div>
+                [(ngModel)]="address.building"  />
         </div>
         <div class="form-group">
             <label class="form-control-label" for="field_appartment">Appartment</label>
@@ -72,6 +48,13 @@
                 [(ngModel)]="address.appartment"  />
         </div>
 
+        <div class="form-group">
+            <label for="field_customer">Customer</label>
+            <select class="form-control" id="field_customer" name="customer" [(ngModel)]="address.customerId">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="customerOption.id" *ngFor="let customerOption of customers; trackBy: trackCustomerById">{{customerOption.id}}</option>
+            </select>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">

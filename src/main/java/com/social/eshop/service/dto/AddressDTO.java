@@ -1,8 +1,9 @@
 package com.social.eshop.service.dto;
 
 
-import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -12,23 +13,21 @@ public class AddressDTO implements Serializable {
 
     private Long id;
 
-    @NotNull
     private String country;
 
-    @NotNull
     private String city;
 
     private String state;
 
     private String region;
 
-    @NotNull
     private String street;
 
-    @NotNull
     private String building;
 
     private String appartment;
+
+    private Long customerId;
 
     public Long getId() {
         return id;
@@ -92,6 +91,14 @@ public class AddressDTO implements Serializable {
 
     public void setAppartment(String appartment) {
         this.appartment = appartment;
+    }
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 
     @Override
