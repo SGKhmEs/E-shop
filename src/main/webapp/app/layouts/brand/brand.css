@@ -1,0 +1,9 @@
+/*----- 3.13 Brand Area -----*/
+.brand-area {}
+.brand-item {
+  text-align: center;
+}
+.brand-item img {
+  display: inline-block!important;
+  width: auto !important;
+}
