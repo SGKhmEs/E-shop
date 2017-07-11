@@ -6,6 +6,7 @@ export class Avatar implements BaseEntity {
         public usersImageContentType?: string,
         public usersImage?: any,
         public customerId?: number,
+        public managerId?: number,
     ) {
     }
 }

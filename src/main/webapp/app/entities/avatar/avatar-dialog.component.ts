@@ -10,6 +10,7 @@ import { Avatar } from './avatar.model';
 import { AvatarPopupService } from './avatar-popup.service';
 import { AvatarService } from './avatar.service';
 import { Customer, CustomerService } from '../customer';
+import { Manager, ManagerService } from '../manager';
 import { ResponseWrapper } from '../../shared';
 
 @Component({
@@ -24,12 +25,15 @@ export class AvatarDialogComponent implements OnInit {
 
     customers: Customer[];
 
+    managers: Manager[];
+
     constructor(
         public activeModal: NgbActiveModal,
         private dataUtils: JhiDataUtils,
         private alertService: JhiAlertService,
         private avatarService: AvatarService,
         private customerService: CustomerService,
+        private managerService: ManagerService,
         private elementRef: ElementRef,
         private eventManager: JhiEventManager
     ) {
@@ -48,6 +52,19 @@ export class AvatarDialogComponent implements OnInit {
                         .find(this.avatar.customerId)
                         .subscribe((subRes: Customer) => {
                             this.customers = [subRes].concat(res.json);
+                        }, (subRes: ResponseWrapper) => this.onError(subRes.json));
+                }
+            }, (res: ResponseWrapper) => this.onError(res.json));
+        this.managerService
+            .query({filter: 'avatar-is-null'})
+            .subscribe((res: ResponseWrapper) => {
+                if (!this.avatar.managerId) {
+                    this.managers = res.json;
+                } else {
+                    this.managerService
+                        .find(this.avatar.managerId)
+                        .subscribe((subRes: Manager) => {
+                            this.managers = [subRes].concat(res.json);
                         }, (subRes: ResponseWrapper) => this.onError(subRes.json));
                 }
             }, (res: ResponseWrapper) => this.onError(res.json));
@@ -86,24 +103,19 @@ export class AvatarDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.avatar.id !== undefined) {
             this.subscribeToSaveResponse(
-                this.avatarService.update(this.avatar), false);
+                this.avatarService.update(this.avatar));
         } else {
             this.subscribeToSaveResponse(
-                this.avatarService.create(this.avatar), true);
+                this.avatarService.create(this.avatar));
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<Avatar>, isCreated: boolean) {
+    private subscribeToSaveResponse(result: Observable<Avatar>) {
         result.subscribe((res: Avatar) =>
-            this.onSaveSuccess(res, isCreated), (res: Response) => this.onSaveError(res));
+            this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
     }
 
-    private onSaveSuccess(result: Avatar, isCreated: boolean) {
-        this.alertService.success(
-            isCreated ? `A new Avatar is created with identifier ${result.id}`
-            : `A Avatar is updated with identifier ${result.id}`,
-            null, null);
-
+    private onSaveSuccess(result: Avatar) {
         this.eventManager.broadcast({ name: 'avatarListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
@@ -124,6 +136,10 @@ export class AvatarDialogComponent implements OnInit {
     }
 
     trackCustomerById(index: number, item: Customer) {
+        return item.id;
+    }
+
+    trackManagerById(index: number, item: Manager) {
         return item.id;
     }
 }

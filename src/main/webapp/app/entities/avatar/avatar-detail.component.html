@@ -19,6 +19,12 @@
                 <a [routerLink]="['/customer', avatar.customerId]">{{avatar.customerId}}</a>
             </div>
         </dd>
+        <dt><span>Manager</span></dt>
+        <dd>
+            <div *ngIf="avatar.managerId">
+                <a [routerLink]="['/manager', avatar.managerId]">{{avatar.managerId}}</a>
+            </div>
+        </dd>
     </dl>
 
     <button type="submit"
