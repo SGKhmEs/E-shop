@@ -7,3 +7,11 @@ import { Route } from '@angular/router';
 //     component: NavbarComponent,
 //     outlet: 'navbar'
 // };
+
+import { SliderComponent } from './layouts';
+
+export const sliderRoute: Route = {
+    path: '',
+    component: SliderComponent,
+    outlet: 'slider'
+}

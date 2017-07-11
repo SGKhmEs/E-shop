@@ -687,6 +687,10 @@ img {
   float: right;
   margin-right: 50px;
 }
+.slide3-text.slide-text {
+  float: right;
+  margin-right: 50px;
+}
 .middle-text {
   display: table-cell;
   vertical-align: middle;
