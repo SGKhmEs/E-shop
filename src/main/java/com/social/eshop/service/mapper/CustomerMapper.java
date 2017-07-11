@@ -12,30 +12,21 @@ import org.mapstruct.*;
 public interface CustomerMapper extends EntityMapper <CustomerDTO, Customer> {
 
     @Mapping(source = "loginOptions.id", target = "loginOptionsId")
-
     @Mapping(source = "address.id", target = "addressId")
-
     @Mapping(source = "personalInfo.id", target = "personalInfoId")
-
     @Mapping(source = "avatar.id", target = "avatarId")
-
     @Mapping(source = "customerAccount.id", target = "customerAccountId")
-    CustomerDTO toDto(Customer customer); 
-
+    CustomerDTO toDto(Customer customer);
     @Mapping(source = "loginOptionsId", target = "loginOptions")
-
     @Mapping(source = "addressId", target = "address")
-
     @Mapping(source = "personalInfoId", target = "personalInfo")
-
     @Mapping(source = "avatarId", target = "avatar")
     @Mapping(target = "seens", ignore = true)
     @Mapping(target = "buckets", ignore = true)
     @Mapping(target = "wishLists", ignore = true)
-
     @Mapping(source = "customerAccountId", target = "customerAccount")
     @Mapping(target = "comments", ignore = true)
-    Customer toEntity(CustomerDTO customerDTO); 
+    Customer toEntity(CustomerDTO customerDTO);
     default Customer fromId(Long id) {
         if (id == null) {
             return null;
