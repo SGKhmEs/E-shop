@@ -38,6 +38,7 @@
             <th><span>Building</span></th>
             <th><span>Appartment</span></th>
             <th><span>Customer</span></th>
+            <th><span>Manager</span></th>
             <th></th>
             </tr>
             </thead>
@@ -54,6 +55,11 @@
                 <td>
                     <div *ngIf="address.customerId">
                         <a [routerLink]="['../customer', address.customerId  ]" >{{address.customerId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="address.managerId">
+                        <a [routerLink]="['../manager', address.managerId  ]" >{{address.managerId}}</a>
                     </div>
                 </td>
                 <td class="text-right">

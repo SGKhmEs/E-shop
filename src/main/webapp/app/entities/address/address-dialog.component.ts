@@ -10,6 +10,7 @@ import { Address } from './address.model';
 import { AddressPopupService } from './address-popup.service';
 import { AddressService } from './address.service';
 import { Customer, CustomerService } from '../customer';
+import { Manager, ManagerService } from '../manager';
 import { ResponseWrapper } from '../../shared';
 
 @Component({
@@ -24,11 +25,14 @@ export class AddressDialogComponent implements OnInit {
 
     customers: Customer[];
 
+    managers: Manager[];
+
     constructor(
         public activeModal: NgbActiveModal,
         private alertService: JhiAlertService,
         private addressService: AddressService,
         private customerService: CustomerService,
+        private managerService: ManagerService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -49,6 +53,19 @@ export class AddressDialogComponent implements OnInit {
                         }, (subRes: ResponseWrapper) => this.onError(subRes.json));
                 }
             }, (res: ResponseWrapper) => this.onError(res.json));
+        this.managerService
+            .query({filter: 'address-is-null'})
+            .subscribe((res: ResponseWrapper) => {
+                if (!this.address.managerId) {
+                    this.managers = res.json;
+                } else {
+                    this.managerService
+                        .find(this.address.managerId)
+                        .subscribe((subRes: Manager) => {
+                            this.managers = [subRes].concat(res.json);
+                        }, (subRes: ResponseWrapper) => this.onError(subRes.json));
+                }
+            }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     clear() {
@@ -59,24 +76,19 @@ export class AddressDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.address.id !== undefined) {
             this.subscribeToSaveResponse(
-                this.addressService.update(this.address), false);
+                this.addressService.update(this.address));
         } else {
             this.subscribeToSaveResponse(
-                this.addressService.create(this.address), true);
+                this.addressService.create(this.address));
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<Address>, isCreated: boolean) {
+    private subscribeToSaveResponse(result: Observable<Address>) {
         result.subscribe((res: Address) =>
-            this.onSaveSuccess(res, isCreated), (res: Response) => this.onSaveError(res));
+            this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
     }
 
-    private onSaveSuccess(result: Address, isCreated: boolean) {
-        this.alertService.success(
-            isCreated ? `A new Address is created with identifier ${result.id}`
-            : `A Address is updated with identifier ${result.id}`,
-            null, null);
-
+    private onSaveSuccess(result: Address) {
         this.eventManager.broadcast({ name: 'addressListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
@@ -97,6 +109,10 @@ export class AddressDialogComponent implements OnInit {
     }
 
     trackCustomerById(index: number, item: Customer) {
+        return item.id;
+    }
+
+    trackManagerById(index: number, item: Manager) {
         return item.id;
     }
 }

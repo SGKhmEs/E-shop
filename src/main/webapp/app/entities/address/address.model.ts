@@ -11,6 +11,7 @@ export class Address implements BaseEntity {
         public building?: string,
         public appartment?: string,
         public customerId?: number,
+        public managerId?: number,
     ) {
     }
 }

@@ -2,7 +2,7 @@
 <databaseChangeLog
     xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
     <!--
         Added the constraints for entity Avatar.
     -->
@@ -13,6 +13,12 @@
                                  constraintName="fk_avatar_customer_id"
                                  referencedColumnNames="id"
                                  referencedTableName="customer"/>
+
+        <addForeignKeyConstraint baseColumnNames="manager_id"
+                                 baseTableName="avatar"
+                                 constraintName="fk_avatar_manager_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="manager"/>
 
     </changeSet>
 </databaseChangeLog>
