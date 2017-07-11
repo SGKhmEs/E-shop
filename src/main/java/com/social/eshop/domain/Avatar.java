@@ -21,8 +21,8 @@ public class Avatar implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
- //   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
- //   @SequenceGenerator(name = "sequenceGenerator")
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
+//    @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
     @Lob
@@ -36,6 +36,11 @@ public class Avatar implements Serializable {
     @OneToOne
     @JoinColumn(unique = true)
     private Customer customer;
+
+    @JsonIgnore
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Manager manager;
 
     public Long getId() {
         return id;
@@ -82,6 +87,19 @@ public class Avatar implements Serializable {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public Manager getManager() {
+        return manager;
+    }
+
+    public Avatar manager(Manager manager) {
+        this.manager = manager;
+        return this;
+    }
+
+    public void setManager(Manager manager) {
+        this.manager = manager;
     }
 
     @Override

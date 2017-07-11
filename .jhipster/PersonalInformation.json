@@ -8,6 +8,14 @@
         "otherEntityField": "id",
         "ownerSide": true,
         "otherEntityRelationshipName": "personalInformation"
+        },
+        {
+            "relationshipName": "manager",
+            "otherEntityName": "manager",
+            "relationshipType": "one-to-one",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "personalInformation"
         }
         ],
     "fields": [

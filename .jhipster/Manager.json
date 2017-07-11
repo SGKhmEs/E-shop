@@ -34,8 +34,16 @@
             "otherEntityRelationshipName": "manager"
         },
         {
+            "relationshipType": "one-to-one",
+            "relationshipName": "address",
+            "otherEntityName": "address",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "manager"
+        },
+        {
             "relationshipType": "one-to-many",
-            "relationshipName": "maneger",
+            "relationshipName": "manager",
             "otherEntityName": "bucket",
             "otherEntityRelationshipName": "manager"
         }

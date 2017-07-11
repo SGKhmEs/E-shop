@@ -49,15 +49,24 @@ public class Manager implements Serializable {
     @JoinColumn(unique = true)
     private Avatar avatar;
 
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Address address;
+
     @OneToMany(mappedBy = "manager")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Bucket> manegers = new HashSet<>();
+    private Set<Bucket> managers = new HashSet<>();
 
     public Manager(Long id) {
         this.id = id;
         this.roles = Roles.ADMIN;
     }
+
+    public Manager() {
+
+    }
+
 
     public Long getId() {
         return id;
@@ -132,29 +141,42 @@ public class Manager implements Serializable {
         this.avatar = avatar;
     }
 
-    public Set<Bucket> getManegers() {
-        return manegers;
+    public Address getAddress() {
+        return address;
     }
 
-    public Manager manegers(Set<Bucket> buckets) {
-        this.manegers = buckets;
+    public Manager address(Address address) {
+        this.address = address;
         return this;
     }
 
-    public Manager addManeger(Bucket bucket) {
-        this.manegers.add(bucket);
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public Set<Bucket> getManagers() {
+        return managers;
+    }
+
+    public Manager managers(Set<Bucket> buckets) {
+        this.managers = buckets;
+        return this;
+    }
+
+    public Manager addManager(Bucket bucket) {
+        this.managers.add(bucket);
         bucket.setManager(this);
         return this;
     }
 
-    public Manager removeManeger(Bucket bucket) {
-        this.manegers.remove(bucket);
+    public Manager removeManager(Bucket bucket) {
+        this.managers.remove(bucket);
         bucket.setManager(null);
         return this;
     }
 
-    public void setManegers(Set<Bucket> buckets) {
-        this.manegers = buckets;
+    public void setManagers(Set<Bucket> buckets) {
+        this.managers = buckets;
     }
 
     @Override
