@@ -1,6 +1,5 @@
 package com.social.eshop.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -22,8 +21,8 @@ public class CustomerAccount implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    //   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-    //   @SequenceGenerator(name = "sequenceGenerator")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
+    @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
     @Column(name = "created_at")
@@ -33,19 +32,9 @@ public class CustomerAccount implements Serializable {
     @JoinColumn(unique = true)
     private User user;
 
-    @JsonIgnore
     @OneToOne
     @JoinColumn(unique = true)
     private Customer customer;
-
-    public CustomerAccount() {
-    }
-
-    public CustomerAccount(Long id) {
-        this.id = id;
-        this.createdAt = LocalDate.now();
-
-    }
 
     public Long getId() {
         return id;

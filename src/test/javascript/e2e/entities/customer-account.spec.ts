@@ -31,7 +31,7 @@ describe('CustomerAccount e2e test', () => {
         });
     });
 
-    it('should load create CustomerAccount dialog', function () {
+    it('should load create CustomerAccount dialog', () => {
         element(by.css('button.create-customer-account')).click().then(() => {
             const expectVal = /Create or edit a Customer Account/;
             element.all(by.css('h4.modal-title')).first().getText().then((value) => {
@@ -42,7 +42,7 @@ describe('CustomerAccount e2e test', () => {
         });
     });
 
-    afterAll(function () {
+    afterAll(() => {
         accountMenu.click();
         logout.click();
     });

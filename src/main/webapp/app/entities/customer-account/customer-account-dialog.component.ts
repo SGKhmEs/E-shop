@@ -66,24 +66,19 @@ export class CustomerAccountDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.customerAccount.id !== undefined) {
             this.subscribeToSaveResponse(
-                this.customerAccountService.update(this.customerAccount), false);
+                this.customerAccountService.update(this.customerAccount));
         } else {
             this.subscribeToSaveResponse(
-                this.customerAccountService.create(this.customerAccount), true);
+                this.customerAccountService.create(this.customerAccount));
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<CustomerAccount>, isCreated: boolean) {
+    private subscribeToSaveResponse(result: Observable<CustomerAccount>) {
         result.subscribe((res: CustomerAccount) =>
-            this.onSaveSuccess(res, isCreated), (res: Response) => this.onSaveError(res));
+            this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
     }
 
-    private onSaveSuccess(result: CustomerAccount, isCreated: boolean) {
-        this.alertService.success(
-            isCreated ? `A new Customer Account is created with identifier ${result.id}`
-            : `A Customer Account is updated with identifier ${result.id}`,
-            null, null);
-
+    private onSaveSuccess(result: CustomerAccount) {
         this.eventManager.broadcast({ name: 'customerAccountListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);

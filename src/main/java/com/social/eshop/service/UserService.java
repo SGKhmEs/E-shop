@@ -59,6 +59,8 @@ public class UserService {
     private WishListService wishListService;
     @Inject
     private SeenService seenService;
+    @Inject
+    private ManagerService managerService;
 
     private CustomerAccountMapper customerAccountMapper;
     private CustomerMapper customerMapper;
@@ -68,13 +70,14 @@ public class UserService {
     private BucketMapper bucketMapper;
     private WishListMapper wishListMapper;
     private SeenMapper seenMapper;
+    private ManagerMapper managerMapper;
 
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, SocialService socialService,
                        UserSearchRepository userSearchRepository, PersistentTokenRepository persistentTokenRepository,
                        AuthorityRepository authorityRepository, CustomerAccountMapper customerAccountMapper,
                        CustomerMapper customerMapper, PersonalInformationMapper personalInformationMapper,
                        AvatarMapper avatarMapper, AddressMapper addressMapper, BucketMapper bucketMapper,
-                       WishListMapper wishListMapper, SeenMapper seenMapper) {
+                       WishListMapper wishListMapper, SeenMapper seenMapper, ManagerMapper managerMapper) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.socialService = socialService;
@@ -89,6 +92,7 @@ public class UserService {
         this.bucketMapper = bucketMapper;
         this.wishListMapper = wishListMapper;
         this.seenMapper = seenMapper;
+        this.managerMapper = managerMapper;
     }
 
     public Optional<User> activateRegistration(String key) {
@@ -235,7 +239,7 @@ public class UserService {
 
     private void createdManagerAccount(User user) {
         CustomerAccount customerAccount = new CustomerAccount(user.getId());
-        Customer customer = new Customer(user.getId());
+        Manager manager = new Manager(user.getId());
 
         PersonalInformation personalInformation = new PersonalInformation();
         personalInformation.setId(user.getId());
@@ -250,36 +254,36 @@ public class UserService {
         CustomerAccountDTO customerAccountDTO = customerAccountMapper.toDto(customerAccount);
         customerAccountService.save(customerAccountDTO);
 
-        customer.setCustomerAccount(customerAccount);
-        CustomerDTO customerDTO = customerMapper.toDto(customer);
-        customerService.save(customerDTO);
+        manager.setCustomerAccount(customerAccount);
+        ManagerDTO managerDTO = managerMapper.toDto(manager);
+        managerService.save(managerDTO);
 
-        personalInformation.setCustomer(customer);
+        personalInformation.setCustomer(manager);
         PersonalInformationDTO personalInformationDTO = personalInformationMapper.toDto(personalInformation);
         personalInformationService.save(personalInformationDTO);
 
-        address.setCustomer(customer);
+        address.setCustomer(manager);
         AddressDTO addressDTO = addressMapper.toDto(address);
         addressService.save(addressDTO);
 
-        avatar.setCustomer(customer);
+        avatar.setCustomer(manager);
         AvatarDTO avatarDTO = avatarMapper.toDto(avatar);
         avatarService.save(avatarDTO);
 
-        customerAccount.setCustomer(customer);
+        customerAccount.setCustomer(manager);
         customerAccountDTO = customerAccountMapper.toDto(customerAccount);
         customerAccountService.save(customerAccountDTO);
 
-        customer.setPersonalInfo(personalInformation);
-        customerDTO = customerMapper.toDto(customer);
+        manager.setPersonalInfo(personalInformation);
+        customerDTO = customerMapper.toDto(manager);
         customerService.save(customerDTO);
 
-        customer.setAvatar(avatar);
-        customerDTO = customerMapper.toDto(customer);
+        manager.setAvatar(avatar);
+        customerDTO = customerMapper.toDto(manager);
         customerService.save(customerDTO);
 
-        customer.setAddress(address);
-        customerDTO = customerMapper.toDto(customer);
+        manager.setAddress(address);
+        customerDTO = customerMapper.toDto(manager);
         customerService.save(customerDTO);
     }
 

@@ -31,7 +31,7 @@ describe('Manager e2e test', () => {
         });
     });
 
-    it('should load create Manager dialog', function () {
+    it('should load create Manager dialog', () => {
         element(by.css('button.create-manager')).click().then(() => {
             const expectVal = /Create or edit a Manager/;
             element.all(by.css('h4.modal-title')).first().getText().then((value) => {
@@ -42,7 +42,7 @@ describe('Manager e2e test', () => {
         });
     });
 
-    afterAll(function () {
+    afterAll(() => {
         accountMenu.click();
         logout.click();
     });

@@ -93,24 +93,19 @@ export class ManagerDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.manager.id !== undefined) {
             this.subscribeToSaveResponse(
-                this.managerService.update(this.manager), false);
+                this.managerService.update(this.manager));
         } else {
             this.subscribeToSaveResponse(
-                this.managerService.create(this.manager), true);
+                this.managerService.create(this.manager));
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<Manager>, isCreated: boolean) {
+    private subscribeToSaveResponse(result: Observable<Manager>) {
         result.subscribe((res: Manager) =>
-            this.onSaveSuccess(res, isCreated), (res: Response) => this.onSaveError(res));
+            this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
     }
 
-    private onSaveSuccess(result: Manager, isCreated: boolean) {
-        this.alertService.success(
-            isCreated ? `A new Manager is created with identifier ${result.id}`
-            : `A Manager is updated with identifier ${result.id}`,
-            null, null);
-
+    private onSaveSuccess(result: Manager) {
         this.eventManager.broadcast({ name: 'managerListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
