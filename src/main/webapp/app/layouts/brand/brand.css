@@ -1,5 +1,44 @@
 /*----- 3.13 Brand Area -----*/
+*{margin:0;padding:0;}
+body {
+  background: #ebebeb none repeat scroll 0 0;
+  color: #3e3f3f;
+  font-family: "Raleway",sans-serif;
+}
 .brand-area {}
+.section {
+  padding: 80px 0;
+}
+.fix{
+	overflow:hidden;
+}
+.container{
+	padding-right:15px;
+	padding-left:15px;
+	margin-right:auto;
+	margin-left:auto
+}
+.row {
+	margin-right:-15px;
+	margin-left:-15px
+}
+.section-title {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.section-title h2 {
+  color: #e09e25;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+.underline {
+  background: #e09e25 none repeat scroll 0 0;
+  height: 2px;
+  margin: 0 auto;
+  width: 100px;
+}
 .brand-item {
   text-align: center;
 }

@@ -26,6 +26,7 @@ import {
 } from './layouts';
 
 import {HeaderComponent} from './layouts/header/header.component';
+import {BrandComponent} from './layouts/brand/brand.component';
 
 @NgModule({
     imports: [
@@ -45,6 +46,7 @@ import {HeaderComponent} from './layouts/header/header.component';
         NavbarComponent,
         ErrorComponent,
         PageRibbonComponent,
+        BrandComponent,
         FooterComponent
     ],
     providers: [
