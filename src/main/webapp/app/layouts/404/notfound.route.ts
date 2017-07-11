@@ -1,3 +1,10 @@
-/**
- * Created by 9torc on 12.07.2017.
- */
+import {NotFoundComponent} from "./notfound.component";
+import { Routes } from '@angular/router';
+
+export const notfoundRouter: Routes = [
+    {
+        path: 'notfound',
+        component: NotFoundComponent,
+        outlet: 'notfound'
+    }
+    ];

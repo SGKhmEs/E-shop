@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 
 @Component({
-    selector: 'jhi-header',
-    templateUrl: './header.component.html',
+    selector: 'jhi-notfound',
+    templateUrl: './notfound.component.html',
     styleUrls: [
-        './header.css'
+        './notfound.css'
     ]
 })
 export class NotFoundComponent {}

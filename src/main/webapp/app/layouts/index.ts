@@ -10,3 +10,5 @@ export * from './profiles/page-ribbon.component';
 export * from './profiles/profile.service';
 export * from './profiles/profile-info.model';
 export * from './layout-routing.module';
+export * from './404/notfound.route';
+export * from './404/notfound.component';
