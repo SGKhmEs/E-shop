@@ -16,6 +16,7 @@ export class PersonalInformation implements BaseEntity {
         public email?: string,
         public dateBirth?: any,
         public customerId?: number,
+        public managerId?: number,
     ) {
     }
 }

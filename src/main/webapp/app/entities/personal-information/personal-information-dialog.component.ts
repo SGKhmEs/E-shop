@@ -10,6 +10,7 @@ import { PersonalInformation } from './personal-information.model';
 import { PersonalInformationPopupService } from './personal-information-popup.service';
 import { PersonalInformationService } from './personal-information.service';
 import { Customer, CustomerService } from '../customer';
+import { Manager, ManagerService } from '../manager';
 import { ResponseWrapper } from '../../shared';
 
 @Component({
@@ -23,6 +24,8 @@ export class PersonalInformationDialogComponent implements OnInit {
     isSaving: boolean;
 
     customers: Customer[];
+
+    managers: Manager[];
     dateBirthDp: any;
 
     constructor(
@@ -30,6 +33,7 @@ export class PersonalInformationDialogComponent implements OnInit {
         private alertService: JhiAlertService,
         private personalInformationService: PersonalInformationService,
         private customerService: CustomerService,
+        private managerService: ManagerService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -50,6 +54,19 @@ export class PersonalInformationDialogComponent implements OnInit {
                         }, (subRes: ResponseWrapper) => this.onError(subRes.json));
                 }
             }, (res: ResponseWrapper) => this.onError(res.json));
+        this.managerService
+            .query({filter: 'personalinformation-is-null'})
+            .subscribe((res: ResponseWrapper) => {
+                if (!this.personalInformation.managerId) {
+                    this.managers = res.json;
+                } else {
+                    this.managerService
+                        .find(this.personalInformation.managerId)
+                        .subscribe((subRes: Manager) => {
+                            this.managers = [subRes].concat(res.json);
+                        }, (subRes: ResponseWrapper) => this.onError(subRes.json));
+                }
+            }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     clear() {
@@ -60,24 +77,19 @@ export class PersonalInformationDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.personalInformation.id !== undefined) {
             this.subscribeToSaveResponse(
-                this.personalInformationService.update(this.personalInformation), false);
+                this.personalInformationService.update(this.personalInformation));
         } else {
             this.subscribeToSaveResponse(
-                this.personalInformationService.create(this.personalInformation), true);
+                this.personalInformationService.create(this.personalInformation));
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<PersonalInformation>, isCreated: boolean) {
+    private subscribeToSaveResponse(result: Observable<PersonalInformation>) {
         result.subscribe((res: PersonalInformation) =>
-            this.onSaveSuccess(res, isCreated), (res: Response) => this.onSaveError(res));
+            this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
     }
 
-    private onSaveSuccess(result: PersonalInformation, isCreated: boolean) {
-        this.alertService.success(
-            isCreated ? `A new Personal Information is created with identifier ${result.id}`
-            : `A Personal Information is updated with identifier ${result.id}`,
-            null, null);
-
+    private onSaveSuccess(result: PersonalInformation) {
         this.eventManager.broadcast({ name: 'personalInformationListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
@@ -98,6 +110,10 @@ export class PersonalInformationDialogComponent implements OnInit {
     }
 
     trackCustomerById(index: number, item: Customer) {
+        return item.id;
+    }
+
+    trackManagerById(index: number, item: Manager) {
         return item.id;
     }
 }
