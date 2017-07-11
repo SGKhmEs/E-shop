@@ -61,6 +61,6 @@ import {NotFoundComponent} from "./layouts/404/notfound.component";
         PaginationConfig,
         UserRouteAccessService
     ],
-    bootstrap: [ JhiMainComponent, HeaderComponent, NavbarComponent ]
+    bootstrap: [ JhiMainComponent, HeaderComponent, NavbarComponent,FooterComponent ]
 })
 export class EshopAppModule {}
