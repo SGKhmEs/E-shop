@@ -14,4 +14,4 @@ export const sliderRoute: Route = {
     path: '',
     component: SliderComponent,
     outlet: 'slider'
-}
+};

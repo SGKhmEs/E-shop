@@ -4,7 +4,6 @@ import { Routes } from '@angular/router';
 export const notfoundRouter: Routes = [
     {
         path: 'notfound',
-        component: NotFoundComponent,
-        outlet: 'notfound'
+        component: NotFoundComponent
     }
     ];
