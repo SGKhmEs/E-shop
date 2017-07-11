@@ -1,0 +1,44 @@
+/*----- 3.14 Support Area -----*/
+*{margin:0;padding:0;}
+body {
+  background: #ebebeb none repeat scroll 0 0;
+  color: #3e3f3f;
+  font-family: "Raleway",sans-serif;
+}
+.support-area {
+  background: #EAE3D7;
+}
+.section {
+  padding: 80px 0;
+}
+.fix{
+  overflow:hidden;
+}
+.container{
+  padding-right:15px;
+  padding-left:15px;
+  margin-right:auto;
+  margin-left:auto
+}
+.row {
+  margin-right:-15px;
+  margin-left:-15px
+}
+.support {
+  text-align: center;
+}
+.support i {
+  color: #e09e25;
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+.support h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.support p {
+  color: #171717;
+  font-size: 13px;
+  font-weight: 300;
+}
