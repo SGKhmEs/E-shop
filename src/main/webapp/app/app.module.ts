@@ -26,6 +26,8 @@ import {
 } from './layouts';
 
 import {HeaderComponent} from './layouts/header/header.component';
+import {BrandComponent} from './layouts/brand/brand.component';
+import {FeatureComponent} from './layouts/feature/feature.component';
 import {SliderComponent} from './layouts/slider/slider.component';
 
 @NgModule({
@@ -47,6 +49,8 @@ import {SliderComponent} from './layouts/slider/slider.component';
         SliderComponent,
         ErrorComponent,
         PageRibbonComponent,
+        BrandComponent,
+        FeatureComponent,
         FooterComponent
     ],
     providers: [
