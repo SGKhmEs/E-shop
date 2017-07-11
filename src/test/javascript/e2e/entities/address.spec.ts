@@ -31,7 +31,7 @@ describe('Address e2e test', () => {
         });
     });
 
-    it('should load create Address dialog', function () {
+    it('should load create Address dialog', () => {
         element(by.css('button.create-address')).click().then(() => {
             const expectVal = /Create or edit a Address/;
             element.all(by.css('h4.modal-title')).first().getText().then((value) => {
@@ -42,7 +42,7 @@ describe('Address e2e test', () => {
         });
     });
 
-    afterAll(function () {
+    afterAll(() => {
         accountMenu.click();
         logout.click();
     });
