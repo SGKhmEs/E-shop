@@ -8,13 +8,17 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity PersonalInformation and its DTO PersonalInformationDTO.
  */
-@Mapper(componentModel = "spring", uses = {CustomerMapper.class, })
+@Mapper(componentModel = "spring", uses = {CustomerMapper.class, ManagerMapper.class, })
 public interface PersonalInformationMapper extends EntityMapper <PersonalInformationDTO, PersonalInformation> {
 
     @Mapping(source = "customer.id", target = "customerId")
+
+    @Mapping(source = "manager.id", target = "managerId")
     PersonalInformationDTO toDto(PersonalInformation personalInformation); 
 
     @Mapping(source = "customerId", target = "customer")
+
+    @Mapping(source = "managerId", target = "manager")
     PersonalInformation toEntity(PersonalInformationDTO personalInformationDTO); 
     default PersonalInformation fromId(Long id) {
         if (id == null) {
