@@ -11,7 +11,7 @@ import { VERSION, DEBUG_INFO_ENABLED } from '../../app.constants';
     selector: 'jhi-slider',
     templateUrl: './slider.html',
     styleUrls: [
-        './slider.css'
+        './slider.css', './../../../content/css/nivo-slider.css'
     ]
 })
 export class SliderComponent implements OnInit {
