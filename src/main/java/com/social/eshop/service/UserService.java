@@ -36,57 +36,37 @@ import java.util.stream.Collectors;
 public class UserService {
 
     private final Logger log = LoggerFactory.getLogger(UserService.class);
-
     private final UserRepository userRepository;
-
     private final PasswordEncoder passwordEncoder;
-
     private final SocialService socialService;
-
     private final UserSearchRepository userSearchRepository;
-
     private final PersistentTokenRepository persistentTokenRepository;
-
     private final AuthorityRepository authorityRepository;
 
     @Inject
     private CustomerAccountService customerAccountService;
-
     @Inject
     private PersonalInformationService personalInformationService;
-
     @Inject
     private CustomerService customerService;
-
     @Inject
     private AddressService addressService;
-
     @Inject
     private AvatarService avatarService;
-
     @Inject
     private BucketService bucketService;
-
     @Inject
     private WishListService wishListService;
-
     @Inject
     private SeenService seenService;
 
     private CustomerAccountMapper customerAccountMapper;
-
     private CustomerMapper customerMapper;
-
     private PersonalInformationMapper personalInformationMapper;
-
     private AvatarMapper avatarMapper;
-
     private AddressMapper addressMapper;
-
     private BucketMapper bucketMapper;
-
     private WishListMapper wishListMapper;
-
     private SeenMapper seenMapper;
 
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, SocialService socialService,
@@ -187,14 +167,6 @@ public class UserService {
         customerDTO = customerMapper.toDto(customer);
         customerService.save(customerDTO);
 
-//        Set<Bucket> buckets = new HashSet<Bucket>();
-//
-//        buckets.add(bucket);
-//
-//        customer.setBuckets(buckets);
-//        bucketDTO = bucketMapper.toDto(bucket);
-//        bucketService.save(bucketDTO);
-
         customer.setAvatar(avatar);
         customerDTO = customerMapper.toDto(customer);
         customerService.save(customerDTO);
@@ -252,9 +224,65 @@ public class UserService {
         userRepository.save(newUser);
         userSearchRepository.save(newUser);
         log.debug("Created Information for User: {}", newUser);
-        createdCustomerAccount (newUser);
+            switch (newUser.getLogin()) {
+                case "manager1" : createdManagerAccount(newUser);
+                break;
+                default: createdCustomerAccount (newUser);
+                break;
+            }
         return newUser;
     }
+
+    private void createdManagerAccount(User user) {
+        CustomerAccount customerAccount = new CustomerAccount(user.getId());
+        Customer customer = new Customer(user.getId());
+
+        PersonalInformation personalInformation = new PersonalInformation();
+        personalInformation.setId(user.getId());
+
+        Avatar avatar = new Avatar();
+        avatar.setId(user.getId());
+
+        Address address = new Address();
+        address.setId(user.getId());
+
+        customerAccount.setUser(user);
+        CustomerAccountDTO customerAccountDTO = customerAccountMapper.toDto(customerAccount);
+        customerAccountService.save(customerAccountDTO);
+
+        customer.setCustomerAccount(customerAccount);
+        CustomerDTO customerDTO = customerMapper.toDto(customer);
+        customerService.save(customerDTO);
+
+        personalInformation.setCustomer(customer);
+        PersonalInformationDTO personalInformationDTO = personalInformationMapper.toDto(personalInformation);
+        personalInformationService.save(personalInformationDTO);
+
+        address.setCustomer(customer);
+        AddressDTO addressDTO = addressMapper.toDto(address);
+        addressService.save(addressDTO);
+
+        avatar.setCustomer(customer);
+        AvatarDTO avatarDTO = avatarMapper.toDto(avatar);
+        avatarService.save(avatarDTO);
+
+        customerAccount.setCustomer(customer);
+        customerAccountDTO = customerAccountMapper.toDto(customerAccount);
+        customerAccountService.save(customerAccountDTO);
+
+        customer.setPersonalInfo(personalInformation);
+        customerDTO = customerMapper.toDto(customer);
+        customerService.save(customerDTO);
+
+        customer.setAvatar(avatar);
+        customerDTO = customerMapper.toDto(customer);
+        customerService.save(customerDTO);
+
+        customer.setAddress(address);
+        customerDTO = customerMapper.toDto(customer);
+        customerService.save(customerDTO);
+    }
+
 
     public User createUser(UserDTO userDTO) {
         User user = new User();
@@ -336,6 +364,8 @@ public class UserService {
             .map(UserDTO::new);
     }
 
+
+
     public void deleteUser(String login) {
         userRepository.findOneByLogin(login).ifPresent(user -> {
             socialService.deleteUserSocialConnection(user.getLogin());
@@ -411,4 +441,21 @@ public class UserService {
     public List<String> getAuthorities() {
         return authorityRepository.findAll().stream().map(Authority::getName).collect(Collectors.toList());
     }
+
+
+//    private void createdUserAccount(User user) {
+//
+//
+//}
+//
+//    private void createdSmmAccount(User user) {
+//    }
+//
+//    private void createdModeratorAccount(User user) {
+//    }
+//
+//    private void createdManagerAccount(User user) {
+//        createdCustomerAccount(user) ;
+//    }
+
 }
