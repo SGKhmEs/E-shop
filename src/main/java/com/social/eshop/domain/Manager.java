@@ -25,8 +25,8 @@ public class Manager implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-    @SequenceGenerator(name = "sequenceGenerator")
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
+//    @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
     @Enumerated(EnumType.STRING)
@@ -43,12 +43,21 @@ public class Manager implements Serializable {
 
     @OneToOne
     @JoinColumn(unique = true)
+    private ManagerAccount managerAccount;
+
+    @OneToOne
+    @JoinColumn(unique = true)
     private Avatar avatar;
 
     @OneToMany(mappedBy = "manager")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Bucket> manegers = new HashSet<>();
+
+    public Manager(Long id) {
+        this.id = id;
+        this.roles = Roles.ADMIN;
+    }
 
     public Long getId() {
         return id;
@@ -95,6 +104,19 @@ public class Manager implements Serializable {
 
     public void setPersonalInfo(PersonalInformation personalInformation) {
         this.personalInfo = personalInformation;
+    }
+
+    public ManagerAccount getManagerAccount() {
+        return managerAccount;
+    }
+
+    public Manager managerAccount(ManagerAccount managerAccount) {
+        this.managerAccount = managerAccount;
+        return this;
+    }
+
+    public void setManagerAccount(ManagerAccount managerAccount) {
+        this.managerAccount = managerAccount;
     }
 
     public Avatar getAvatar() {

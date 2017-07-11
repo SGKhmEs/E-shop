@@ -18,6 +18,14 @@
             "otherEntityRelationshipName": "manager"
         },
         {
+            "relationshipName": "managerAccount",
+            "otherEntityName": "managerAccount",
+            "relationshipType": "one-to-one",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "manager"
+        },
+        {
             "relationshipType": "one-to-one",
             "relationshipName": "avatar",
             "otherEntityName": "avatar",
