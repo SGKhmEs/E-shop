@@ -20,6 +20,8 @@ public class AvatarDTO implements Serializable {
 
     private Long customerId;
 
+    private Long managerId;
+
     public Long getId() {
         return id;
     }
@@ -50,6 +52,14 @@ public class AvatarDTO implements Serializable {
 
     public void setCustomerId(Long customerId) {
         this.customerId = customerId;
+    }
+
+    public Long getManagerId() {
+        return managerId;
+    }
+
+    public void setManagerId(Long managerId) {
+        this.managerId = managerId;
     }
 
     @Override
