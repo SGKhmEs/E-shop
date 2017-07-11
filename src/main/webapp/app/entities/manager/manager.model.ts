@@ -15,7 +15,8 @@ export class Manager implements BaseEntity {
         public personalInfoId?: number,
         public managerAccountId?: number,
         public avatarId?: number,
-        public manegers?: BaseEntity[],
+        public addressId?: number,
+        public managers?: BaseEntity[],
     ) {
     }
 }

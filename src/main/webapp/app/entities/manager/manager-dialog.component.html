@@ -50,6 +50,13 @@
                 <option [ngValue]="avatarOption.id" *ngFor="let avatarOption of avatars; trackBy: trackAvatarById">{{avatarOption.id}}</option>
             </select>
         </div>
+        <div class="form-group">
+            <label for="field_address">Address</label>
+            <select class="form-control" id="field_address" name="address" [(ngModel)]="manager.addressId">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="addressOption.id" *ngFor="let addressOption of addresses; trackBy: trackAddressById">{{addressOption.id}}</option>
+            </select>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">

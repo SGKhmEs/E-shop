@@ -32,6 +32,12 @@
                 <a [routerLink]="['/avatar', manager.avatarId]">{{manager.avatarId}}</a>
             </div>
         </dd>
+        <dt><span>Address</span></dt>
+        <dd>
+            <div *ngIf="manager.addressId">
+                <a [routerLink]="['/address', manager.addressId]">{{manager.addressId}}</a>
+            </div>
+        </dd>
     </dl>
 
     <button type="submit"

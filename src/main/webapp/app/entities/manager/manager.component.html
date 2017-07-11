@@ -35,6 +35,7 @@
             <th><span>Personal Info</span></th>
             <th><span>Manager Account</span></th>
             <th><span>Avatar</span></th>
+            <th><span>Address</span></th>
             <th></th>
             </tr>
             </thead>
@@ -60,6 +61,11 @@
                 <td>
                     <div *ngIf="manager.avatarId">
                         <a [routerLink]="['../avatar', manager.avatarId  ]" >{{manager.avatarId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="manager.addressId">
+                        <a [routerLink]="['../address', manager.addressId  ]" >{{manager.addressId}}</a>
                     </div>
                 </td>
                 <td class="text-right">

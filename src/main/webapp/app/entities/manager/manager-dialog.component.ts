@@ -13,6 +13,7 @@ import { LoginOptions, LoginOptionsService } from '../login-options';
 import { PersonalInformation, PersonalInformationService } from '../personal-information';
 import { ManagerAccount, ManagerAccountService } from '../manager-account';
 import { Avatar, AvatarService } from '../avatar';
+import { Address, AddressService } from '../address';
 import { ResponseWrapper } from '../../shared';
 
 @Component({
@@ -33,6 +34,8 @@ export class ManagerDialogComponent implements OnInit {
 
     avatars: Avatar[];
 
+    addresses: Address[];
+
     constructor(
         public activeModal: NgbActiveModal,
         private alertService: JhiAlertService,
@@ -41,6 +44,7 @@ export class ManagerDialogComponent implements OnInit {
         private personalInformationService: PersonalInformationService,
         private managerAccountService: ManagerAccountService,
         private avatarService: AvatarService,
+        private addressService: AddressService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -100,6 +104,19 @@ export class ManagerDialogComponent implements OnInit {
                         }, (subRes: ResponseWrapper) => this.onError(subRes.json));
                 }
             }, (res: ResponseWrapper) => this.onError(res.json));
+        this.addressService
+            .query({filter: 'manager-is-null'})
+            .subscribe((res: ResponseWrapper) => {
+                if (!this.manager.addressId) {
+                    this.addresses = res.json;
+                } else {
+                    this.addressService
+                        .find(this.manager.addressId)
+                        .subscribe((subRes: Address) => {
+                            this.addresses = [subRes].concat(res.json);
+                        }, (subRes: ResponseWrapper) => this.onError(subRes.json));
+                }
+            }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     clear() {
@@ -155,6 +172,10 @@ export class ManagerDialogComponent implements OnInit {
     }
 
     trackAvatarById(index: number, item: Avatar) {
+        return item.id;
+    }
+
+    trackAddressById(index: number, item: Address) {
         return item.id;
     }
 }
