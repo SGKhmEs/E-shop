@@ -1,3 +1,10 @@
-/**
- * Created by 9torc on 12.07.2017.
- */
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+    selector: 'jhi-header',
+    templateUrl: './header.component.html',
+    styleUrls: [
+        './header.css'
+    ]
+})
+export class NotFoundComponent {}

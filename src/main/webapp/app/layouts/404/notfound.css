@@ -1,0 +1,60 @@
+.not-found_area img {
+    max-width: 100%;
+}
+.not-found_area {
+    position: relative;
+}
+.not-found_opacity::after {
+    background: #111;
+    content: "";
+    height: 100%;
+    left: 0;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.not-found_opacity{
+    height: 100%;
+    left: 0px;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.not-found_opacity h2, .not-found_opacity h3, .not-found_opacity h5, .not-found_opacity p, .not-found_opacity a {
+    color: #fff;
+    position: relative;
+    z-index: 5;
+}
+.not-found-text h2 {
+    margin-top:40px;
+    font-size: 280px;
+    font-weight: 700;
+    line-height: 270px;
+}
+.not-found-text h3 {
+    font-size: 65px;
+    font-weight: 700;
+    margin: 40px 0;
+    text-transform: uppercase;
+}
+.not-found-text h5 {
+    font-size: 30px;
+    font-weight: 400;
+}
+.not-found-text p {
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 50px;
+}
+.not-found-text a {
+    background: #e09e25 none repeat scroll 0 0;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 20px 30px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.not-found-text a:hover {
+    background: #555;
+}
