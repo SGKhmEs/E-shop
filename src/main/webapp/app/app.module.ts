@@ -26,6 +26,7 @@ import {
 } from './layouts';
 
 import {HeaderComponent} from './layouts/header/header.component';
+import {SliderComponent} from './layouts/slider/slider.component';
 
 @NgModule({
     imports: [
@@ -43,6 +44,7 @@ import {HeaderComponent} from './layouts/header/header.component';
         JhiMainComponent,
         HeaderComponent,
         NavbarComponent,
+        SliderComponent,
         ErrorComponent,
         PageRibbonComponent,
         FooterComponent
