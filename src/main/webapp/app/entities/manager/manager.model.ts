@@ -13,6 +13,7 @@ export class Manager implements BaseEntity {
         public roles?: Roles,
         public loginOptionsId?: number,
         public personalInfoId?: number,
+        public managerAccountId?: number,
         public avatarId?: number,
         public manegers?: BaseEntity[],
     ) {

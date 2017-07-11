@@ -37,6 +37,13 @@
             </select>
         </div>
         <div class="form-group">
+            <label for="field_managerAccount">Manager Account</label>
+            <select class="form-control" id="field_managerAccount" name="managerAccount" [(ngModel)]="manager.managerAccountId">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="managerAccountOption.id" *ngFor="let managerAccountOption of manageraccounts; trackBy: trackManagerAccountById">{{managerAccountOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
             <label for="field_avatar">Avatar</label>
             <select class="form-control" id="field_avatar" name="avatar" [(ngModel)]="manager.avatarId">
                 <option [ngValue]="null"></option>

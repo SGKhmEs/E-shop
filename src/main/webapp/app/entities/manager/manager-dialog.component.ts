@@ -11,6 +11,7 @@ import { ManagerPopupService } from './manager-popup.service';
 import { ManagerService } from './manager.service';
 import { LoginOptions, LoginOptionsService } from '../login-options';
 import { PersonalInformation, PersonalInformationService } from '../personal-information';
+import { ManagerAccount, ManagerAccountService } from '../manager-account';
 import { Avatar, AvatarService } from '../avatar';
 import { ResponseWrapper } from '../../shared';
 
@@ -28,6 +29,8 @@ export class ManagerDialogComponent implements OnInit {
 
     personalinfos: PersonalInformation[];
 
+    manageraccounts: ManagerAccount[];
+
     avatars: Avatar[];
 
     constructor(
@@ -36,6 +39,7 @@ export class ManagerDialogComponent implements OnInit {
         private managerService: ManagerService,
         private loginOptionsService: LoginOptionsService,
         private personalInformationService: PersonalInformationService,
+        private managerAccountService: ManagerAccountService,
         private avatarService: AvatarService,
         private eventManager: JhiEventManager
     ) {
@@ -67,6 +71,19 @@ export class ManagerDialogComponent implements OnInit {
                         .find(this.manager.personalInfoId)
                         .subscribe((subRes: PersonalInformation) => {
                             this.personalinfos = [subRes].concat(res.json);
+                        }, (subRes: ResponseWrapper) => this.onError(subRes.json));
+                }
+            }, (res: ResponseWrapper) => this.onError(res.json));
+        this.managerAccountService
+            .query({filter: 'manager-is-null'})
+            .subscribe((res: ResponseWrapper) => {
+                if (!this.manager.managerAccountId) {
+                    this.manageraccounts = res.json;
+                } else {
+                    this.managerAccountService
+                        .find(this.manager.managerAccountId)
+                        .subscribe((subRes: ManagerAccount) => {
+                            this.manageraccounts = [subRes].concat(res.json);
                         }, (subRes: ResponseWrapper) => this.onError(subRes.json));
                 }
             }, (res: ResponseWrapper) => this.onError(res.json));
@@ -130,6 +147,10 @@ export class ManagerDialogComponent implements OnInit {
     }
 
     trackPersonalInformationById(index: number, item: PersonalInformation) {
+        return item.id;
+    }
+
+    trackManagerAccountById(index: number, item: ManagerAccount) {
         return item.id;
     }
 

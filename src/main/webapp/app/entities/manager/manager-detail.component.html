@@ -20,6 +20,12 @@
                 <a [routerLink]="['/personal-information', manager.personalInfoId]">{{manager.personalInfoId}}</a>
             </div>
         </dd>
+        <dt><span>Manager Account</span></dt>
+        <dd>
+            <div *ngIf="manager.managerAccountId">
+                <a [routerLink]="['/manager-account', manager.managerAccountId]">{{manager.managerAccountId}}</a>
+            </div>
+        </dd>
         <dt><span>Avatar</span></dt>
         <dd>
             <div *ngIf="manager.avatarId">

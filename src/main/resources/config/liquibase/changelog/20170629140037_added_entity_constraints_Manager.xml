@@ -20,6 +20,12 @@
                                  referencedColumnNames="id"
                                  referencedTableName="personal_information"/>
 
+        <addForeignKeyConstraint baseColumnNames="manager_account_id"
+                                 baseTableName="manager"
+                                 constraintName="fk_manager_manager_account_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="manager_account"/>
+
         <addForeignKeyConstraint baseColumnNames="avatar_id"
                                  baseTableName="manager"
                                  constraintName="fk_manager_avatar_id"

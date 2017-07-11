@@ -33,6 +33,7 @@
             <th><span>Roles</span></th>
             <th><span>Login Options</span></th>
             <th><span>Personal Info</span></th>
+            <th><span>Manager Account</span></th>
             <th><span>Avatar</span></th>
             <th></th>
             </tr>
@@ -49,6 +50,11 @@
                 <td>
                     <div *ngIf="manager.personalInfoId">
                         <a [routerLink]="['../personal-information', manager.personalInfoId  ]" >{{manager.personalInfoId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="manager.managerAccountId">
+                        <a [routerLink]="['../manager-account', manager.managerAccountId  ]" >{{manager.managerAccountId}}</a>
                     </div>
                 </td>
                 <td>

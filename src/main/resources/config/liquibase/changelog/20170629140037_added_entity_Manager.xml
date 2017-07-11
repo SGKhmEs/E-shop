@@ -28,6 +28,8 @@
                 <constraints unique="true" nullable="true" />
             </column>            <column name="personal_info_id" type="bigint">
                 <constraints unique="true" nullable="true" />
+            </column>            <column name="manager_account_id" type="bigint">
+                <constraints unique="true" nullable="true" />
             </column>            <column name="avatar_id" type="bigint">
                 <constraints unique="true" nullable="true" />
             </column>
