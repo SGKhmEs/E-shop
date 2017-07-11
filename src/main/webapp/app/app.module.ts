@@ -59,6 +59,6 @@ import {SliderComponent} from './layouts/slider/slider.component';
         PaginationConfig,
         UserRouteAccessService
     ],
-    bootstrap: [ JhiMainComponent, HeaderComponent, NavbarComponent ]
+    bootstrap: [ JhiMainComponent, HeaderComponent, NavbarComponent,FooterComponent ]
 })
 export class EshopAppModule {}
