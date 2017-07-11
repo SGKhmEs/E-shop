@@ -46,6 +46,8 @@ public class UserService {
     @Inject
     private CustomerAccountService customerAccountService;
     @Inject
+    private ManagerAccountService managerAccountService;
+    @Inject
     private PersonalInformationService personalInformationService;
     @Inject
     private CustomerService customerService;
@@ -63,6 +65,7 @@ public class UserService {
     private ManagerService managerService;
 
     private CustomerAccountMapper customerAccountMapper;
+    private ManagerAccountMapper managerAccountMapper;
     private CustomerMapper customerMapper;
     private PersonalInformationMapper personalInformationMapper;
     private AvatarMapper avatarMapper;
@@ -75,9 +78,10 @@ public class UserService {
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, SocialService socialService,
                        UserSearchRepository userSearchRepository, PersistentTokenRepository persistentTokenRepository,
                        AuthorityRepository authorityRepository, CustomerAccountMapper customerAccountMapper,
-                       CustomerMapper customerMapper, PersonalInformationMapper personalInformationMapper,
-                       AvatarMapper avatarMapper, AddressMapper addressMapper, BucketMapper bucketMapper,
-                       WishListMapper wishListMapper, SeenMapper seenMapper, ManagerMapper managerMapper) {
+                       ManagerAccountMapper managerAccountMapper, CustomerMapper customerMapper,
+                       PersonalInformationMapper personalInformationMapper, AvatarMapper avatarMapper,
+                       AddressMapper addressMapper, BucketMapper bucketMapper, WishListMapper wishListMapper,
+                       SeenMapper seenMapper, ManagerMapper managerMapper) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.socialService = socialService;
@@ -85,6 +89,7 @@ public class UserService {
         this.persistentTokenRepository = persistentTokenRepository;
         this.authorityRepository = authorityRepository;
         this.customerAccountMapper = customerAccountMapper;
+        this.managerAccountMapper = managerAccountMapper;
         this.customerMapper = customerMapper;
         this.personalInformationMapper = personalInformationMapper;
         this.avatarMapper = avatarMapper;
@@ -238,7 +243,7 @@ public class UserService {
     }
 
     private void createdManagerAccount(User user) {
-        CustomerAccount customerAccount = new CustomerAccount(user.getId());
+        ManagerAccount managerAccount = new ManagerAccount(user.getId());
         Manager manager = new Manager(user.getId());
 
         PersonalInformation personalInformation = new PersonalInformation();
@@ -250,41 +255,42 @@ public class UserService {
         Address address = new Address();
         address.setId(user.getId());
 
-        customerAccount.setUser(user);
-        CustomerAccountDTO customerAccountDTO = customerAccountMapper.toDto(customerAccount);
-        customerAccountService.save(customerAccountDTO);
+        managerAccount.setUser(user);
+        ManagerAccountDTO managerAccountDTO = managerAccountMapper.toDto(managerAccount);
+        managerAccountService.save(managerAccountDTO);
 
-        manager.setCustomerAccount(customerAccount);
+        manager.setManagerAccount(managerAccount);
         ManagerDTO managerDTO = managerMapper.toDto(manager);
         managerService.save(managerDTO);
 
-        personalInformation.setCustomer(manager);
+        personalInformation.setManager(manager);
         PersonalInformationDTO personalInformationDTO = personalInformationMapper.toDto(personalInformation);
         personalInformationService.save(personalInformationDTO);
 
-        address.setCustomer(manager);
+        address.setManager(manager);
         AddressDTO addressDTO = addressMapper.toDto(address);
         addressService.save(addressDTO);
 
-        avatar.setCustomer(manager);
+        avatar.setManager(manager);
         AvatarDTO avatarDTO = avatarMapper.toDto(avatar);
         avatarService.save(avatarDTO);
 
-        customerAccount.setCustomer(manager);
-        customerAccountDTO = customerAccountMapper.toDto(customerAccount);
-        customerAccountService.save(customerAccountDTO);
+        managerAccount.setManager(manager);
+        managerAccountDTO = managerAccountMapper.toDto(managerAccount);
+        managerAccountService.save(managerAccountDTO);
 
         manager.setPersonalInfo(personalInformation);
-        customerDTO = customerMapper.toDto(manager);
-        customerService.save(customerDTO);
+        managerDTO = managerMapper.toDto(manager);
+        managerService.save(managerDTO);
 
         manager.setAvatar(avatar);
-        customerDTO = customerMapper.toDto(manager);
-        customerService.save(customerDTO);
+        managerDTO = managerMapper.toDto(manager);
+        managerService.save(managerDTO);
 
         manager.setAddress(address);
-        customerDTO = customerMapper.toDto(manager);
-        customerService.save(customerDTO);
+        managerDTO = managerMapper.toDto(manager);
+        managerService.save(managerDTO);
+
     }
 
 
