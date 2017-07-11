@@ -5,7 +5,7 @@ import { Route } from '@angular/router';
 // export const navbarRoute: Route = {
 //     path: '',
 //     component: NavbarComponent,
-//     outlet: 'navbar'
+    //     outlet: 'navbar'
 // };
 
 import { SliderComponent } from './layouts';
