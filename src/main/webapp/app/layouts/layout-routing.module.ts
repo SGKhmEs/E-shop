@@ -11,7 +11,7 @@ import {contactRoute} from "./contact/contact.route";
 const LAYOUT_ROUTES = [
     //navbarRoute,
     shopListRouter,
-    sliderRoute,
+   // sliderRoute,
     ...notfoundRouter,
     ...errorRoute,
     ...contactRoute
