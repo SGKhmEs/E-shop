@@ -178,8 +178,8 @@ public class ProductsResource {
     }
 
     /**
-     * GET  /products/category/:id  : get all the products .
-     * @param id the id of the tags to find
+     * GET  /products/category/:id  : get all the products.
+     * @param id the id of the category to find
      * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of products in body
      */
