@@ -35,6 +35,7 @@ import {CategoryComponent} from './layouts/shop-list/category/category.component
 import {PriceComponent} from './layouts/shop-list/price/price.component';
 import {TagComponent} from './layouts/shop-list/tag/tag.component';
 import {FilterComponent} from './layouts/shop-list/filter/filter.component';
+import {ProductComponent} from "./layouts/shop-list/product/product.component";
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import {FilterComponent} from './layouts/shop-list/filter/filter.component';
         CategoryComponent,
         PriceComponent,
         TagComponent,
-        FilterComponent
+        FilterComponent,
+        ProductComponent
     ],
     providers: [
         ProfileService,
