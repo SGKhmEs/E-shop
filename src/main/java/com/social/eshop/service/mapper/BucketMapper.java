@@ -19,6 +19,7 @@ public interface BucketMapper extends EntityMapper <BucketDTO, Bucket> {
     @Mapping(source = "customer.personalInfo.firstName", target = "customerName")
     @Mapping(source = "customer.personalInfo.phone", target = "customerPhone")
     @Mapping(source = "productInBuckets", target = "productInBucketDTOS")
+  //  @Mapping(source = "productInBuckets.id", target = "productInBucketId")
     BucketDTO toDto(Bucket bucket);
 
 
@@ -34,7 +35,7 @@ public interface BucketMapper extends EntityMapper <BucketDTO, Bucket> {
 
     @Mapping(source = "managerId", target = "manager")
     @Mapping(source = "addressShippingId", target = "addressShipping")
-    @Mapping(source = "productInBuckets", target = "productInBuckets")
+    @Mapping(source = "productInBucketDTOS", target = "productInBuckets")
     @Mapping(source = "customerId", target = "customer")
     Bucket toEntity(BucketDTO bucketDTO);
     default Bucket fromId(Long id) {

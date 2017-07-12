@@ -4,6 +4,7 @@ package com.social.eshop.service.dto;
 import java.time.ZonedDateTime;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -19,7 +20,7 @@ public class BucketDTO implements Serializable {
 
     private Long id;
 
-    //private String name;
+    private String name;
 
     private ZonedDateTime date;
 
@@ -45,16 +46,35 @@ public class BucketDTO implements Serializable {
 
     private String customerPhone;
 
-    private  Set<ProductInBucket> productInBuckets; // in the future delete
+    private List<Long> productInBucketId;
+
+
 
     private Set<ProductInBucketDTO> productInBucketDTOS;
 
-    public Set<ProductInBucket> getProductInBuckets() {
-        return productInBuckets;
+//    public Set<ProductInBucket> getProductInBuckets() {
+//        return productInBuckets;
+//    }
+//
+//    public void setProductInBuckets(Set<ProductInBucket> productInBuckets) {
+//        this.productInBuckets = productInBuckets;
+//    }
+
+
+    public String getName() {
+        return name;
     }
 
-    public void setProductInBuckets(Set<ProductInBucket> productInBuckets) {
-        this.productInBuckets = productInBuckets;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Long> getProductInBucketId() {
+        return productInBucketId;
+    }
+
+    public void setProductInBucketId(List<Long> productInBucketId) {
+        this.productInBucketId = productInBucketId;
     }
 
     public Long getId() {
@@ -194,6 +214,7 @@ public class BucketDTO implements Serializable {
     public String toString() {
         return "BucketDTO{" +
             "id=" + id +
+            ", name='" + name + '\'' +
             ", date=" + date +
             ", sum=" + sum +
             ", orderNumber=" + orderNumber +
@@ -206,7 +227,7 @@ public class BucketDTO implements Serializable {
             ", customerId=" + customerId +
             ", customerName='" + customerName + '\'' +
             ", customerPhone='" + customerPhone + '\'' +
-            ", productInBuckets=" + productInBuckets +
+            ", productInBucketId=" + productInBucketId +
             ", productInBucketDTOS=" + productInBucketDTOS +
             '}';
     }
