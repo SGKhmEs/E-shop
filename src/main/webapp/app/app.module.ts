@@ -34,6 +34,7 @@ import {NotFoundComponent} from "./layouts/404/notfound.component";
 import {CategoryComponent} from './layouts/shop-list/category/category.component';
 import {PriceComponent} from './layouts/shop-list/price/price.component';
 import {TagComponent} from './layouts/shop-list/tag/tag.component';
+import {FilterComponent} from './layouts/shop-list/filter/filter.component';
 
 
 @NgModule({
@@ -62,7 +63,8 @@ import {TagComponent} from './layouts/shop-list/tag/tag.component';
         NotFoundComponent,
         CategoryComponent,
         PriceComponent,
-        TagComponent
+        TagComponent,
+        FilterComponent
     ],
     providers: [
         ProfileService,
