@@ -15,3 +15,4 @@ export * from './404/notfound.component';
 export * from './shop-list/shop-list.component';
 export * from './shop-list/shop-list.route';
 export * from './shop-list/category/category.component';
+export * from './shop-list/price/price.component';
