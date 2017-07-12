@@ -234,7 +234,7 @@ public class UserService {
         userSearchRepository.save(newUser);
         log.debug("Created Information for User: {}", newUser);
             switch (newUser.getLogin()) {
-                case "manager1" : createdManagerAccount(newUser);
+                case "managers" : createdManagerAccount(newUser);
                 break;
                 default: createdCustomerAccount (newUser);
                 break;
@@ -451,21 +451,4 @@ public class UserService {
     public List<String> getAuthorities() {
         return authorityRepository.findAll().stream().map(Authority::getName).collect(Collectors.toList());
     }
-
-
-//    private void createdUserAccount(User user) {
-//
-//
-//}
-//
-//    private void createdSmmAccount(User user) {
-//    }
-//
-//    private void createdModeratorAccount(User user) {
-//    }
-//
-//    private void createdManagerAccount(User user) {
-//        createdCustomerAccount(user) ;
-//    }
-
 }
