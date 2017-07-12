@@ -149,7 +149,7 @@ public class ProductsServiceImpl implements ProductsService{
     @Transactional(readOnly = true)
     public List<ProductsDTO> findAllProductsInCategory(Long id) {
         log.debug("Request to get all Products");
-        List<Products> products = categoryRepository.findByCategoryId(id);
+        List<Products> products = productsRepository.findByCategoryId(id);
         return productsMapper.toDto(products);
 
     }

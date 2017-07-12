@@ -146,8 +146,9 @@ public class BucketResource {
 
     /**
      * GET  /buckets/customer/:id  : get all the buckets.
-     * @param id the id of the customer to find
-     * @param pageable the pagination information
+     * @param id the id of the c.0ustomer to find
+     * @param pageable the paginat
+     *                 ion information
      * @return the ResponseEntity with status 200 (OK) and the list of products in body
      */
     @GetMapping("/buckets/customer/{id}")
