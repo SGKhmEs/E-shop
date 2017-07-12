@@ -1,9 +1,9 @@
 import { ShopListComponent } from "./shop-list.component";
-import { Routes } from '@angular/router';
+import {Route, Routes} from '@angular/router';
 
-export const shopListRouter: Routes = [
+export const shopListRouter: Route =
     {
         path: 'shoplist',
-        component: ShopListComponent
-    }
-];
+        component: ShopListComponent,
+        outlet: 'shoplist'
+    };
