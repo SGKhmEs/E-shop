@@ -38,7 +38,11 @@ import {FilterComponent} from './layouts/shop-list/filter/filter.component';
 import {ProductsComponent} from "./layouts/shop-list/products/products.component";
 import {ProductItemComponent} from "./layouts/shop-list/products/product-item/product-item.component";
 import {ProductsService} from "./layouts/shop-list/products/products.service";
-
+import {ContactComponent} from "./layouts/contact/contact.component"
+import {ContactUsComponent} from "./layouts/contact/contactUs/contactus.component";
+import {ContactTitleComponent} from "./layouts/contact/contact.title/title.component";
+import { AgmCoreModule } from '@agm/core';
+import {GoogleMapComponent} from "./layouts/contact/googleMaps/googleMaps.component";
 
 @NgModule({
     imports: [
@@ -50,13 +54,16 @@ import {ProductsService} from "./layouts/shop-list/products/products.service";
         EshopAdminModule,
         EshopAccountModule,
         EshopEntityModule,
+        AgmCoreModule.forRoot({
+            apiKey: 'libraries=places&key=AIzaSyByA7Kxa-fMN2b38G_YcRBVLjsjarFO0Lc'
+        })
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [
         JhiMainComponent,
         HeaderComponent,
         NavbarComponent,
-        SliderComponent,
+       // SliderComponent,
         ErrorComponent,
         PageRibbonComponent,
         BrandComponent,
@@ -69,7 +76,11 @@ import {ProductsService} from "./layouts/shop-list/products/products.service";
         TagComponent,
         FilterComponent,
         ProductsComponent,
-        ProductItemComponent
+        ProductItemComponent,
+        ContactComponent,
+        ContactUsComponent,
+        ContactTitleComponent,
+        GoogleMapComponent
     ],
     providers: [
         ProfileService,
