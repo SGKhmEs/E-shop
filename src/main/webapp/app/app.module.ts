@@ -33,6 +33,7 @@ import {ShopListComponent} from './layouts/shop-list/shop-list.component';
 import {NotFoundComponent} from "./layouts/404/notfound.component";
 import {CategoryComponent} from './layouts/shop-list/category/category.component';
 import {PriceComponent} from './layouts/shop-list/price/price.component';
+import {TagComponent} from './layouts/shop-list/tag/tag.component';
 
 
 @NgModule({
@@ -60,7 +61,8 @@ import {PriceComponent} from './layouts/shop-list/price/price.component';
         ShopListComponent,
         NotFoundComponent,
         CategoryComponent,
-        PriceComponent
+        PriceComponent,
+        TagComponent
     ],
     providers: [
         ProfileService,
