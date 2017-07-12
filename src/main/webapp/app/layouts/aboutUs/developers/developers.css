@@ -1,7 +1,8 @@
 .fix{
+  background: #ebebeb none repeat scroll 0 0;
   overflow:hidden;
 }
-.container{
+.container{  
   padding-right:15px;
   padding-left:15px;
   margin-right:auto;
@@ -13,7 +14,8 @@
 }
 .section-title {
   text-align: center;
-  margin-bottom: 50px;
+  margin-top: 40px;
+  margin-bottom: 35px;
 }
 .section-title h2 {
   color: #e09e25;
@@ -30,6 +32,7 @@
 }
 .designer {
   text-align:center;
+  padding: 15px;
 }
 .designer-img {
   position: relative;
