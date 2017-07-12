@@ -19,4 +19,5 @@ public interface TagForProductRepository extends JpaRepository<TagForProduct,Lon
     @Query("SELECT pt.products FROM TagForProduct pt where tag_id =?1 ")
     List<Products> findByTagId(Long id);
 
+
 }

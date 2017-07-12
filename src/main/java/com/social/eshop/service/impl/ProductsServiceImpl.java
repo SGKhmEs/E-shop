@@ -1,5 +1,6 @@
 package com.social.eshop.service.impl;
 
+import com.social.eshop.repository.CategoryRepository;
 import com.social.eshop.repository.ProductInBucketRepository;
 import com.social.eshop.repository.TagForProductRepository;
 import com.social.eshop.service.ProductsService;
@@ -39,16 +40,20 @@ public class ProductsServiceImpl implements ProductsService{
 
     private final TagForProductRepository tagForProductRepository;
 
+    private final CategoryRepository categoryRepository;
+
     public ProductsServiceImpl(ProductsRepository productsRepository,
                                ProductsMapper productsMapper,
                                ProductsSearchRepository productsSearchRepository,
                                ProductInBucketRepository productInBucketRepository,
-                               TagForProductRepository tagForProductRepository) {
+                               TagForProductRepository tagForProductRepository,
+                               CategoryRepository categoryRepository) {
         this.productsRepository = productsRepository;
         this.productsMapper = productsMapper;
         this.productsSearchRepository = productsSearchRepository;
         this.productInBucketRepository = productInBucketRepository;
         this.tagForProductRepository = tagForProductRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     /**
@@ -136,6 +141,15 @@ public class ProductsServiceImpl implements ProductsService{
     public List<ProductsDTO> findAllProductsWithTag(Long id) {
         log.debug("Request to get all Products");
         List<Products> products = tagForProductRepository.findByTagId(id);
+        return productsMapper.toDto(products);
+
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<ProductsDTO> findAllProductsInCategory(Long id) {
+        log.debug("Request to get all Products");
+        List<Products> products = categoryRepository.findByCategoryId(id);
         return productsMapper.toDto(products);
 
     }
