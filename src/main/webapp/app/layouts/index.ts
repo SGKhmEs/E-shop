@@ -18,4 +18,5 @@ export * from './shop-list/category/category.component';
 export * from './shop-list/price/price.component';
 export * from './shop-list/tag/tag.component';
 export * from './shop-list/filter/filter.component';
-export * from './shop-list/product/product.component';
+export * from './shop-list/products/products.component';
+export * from './shop-list/products/product-item/product-item.component';

@@ -2,6 +2,6 @@ import { Component } from '@angular/core';
 
 @Component({
     selector: 'jhi-product',
-    templateUrl: './product.component.html'
+    templateUrl: './products.component.html'
 })
-export class ProductComponent {}
+export class ProductsComponent {}
