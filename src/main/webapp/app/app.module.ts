@@ -38,7 +38,9 @@ import {FilterComponent} from './layouts/shop-list/filter/filter.component';
 import {ProductsComponent} from "./layouts/shop-list/products/products.component";
 import {ProductItemComponent} from "./layouts/shop-list/products/product-item/product-item.component";
 import {ProductsService} from "./layouts/shop-list/products/products.service";
-import  {ContactComponent} from "./layouts/contact/contact.component"
+import {ContactComponent} from "./layouts/contact/contact.component"
+import {ContactUsComponent} from "./layouts/contact/contactUs/contactus.component";
+import {ContactTitleComponent} from "./layouts/contact/contact.title/title.component";
 
 @NgModule({
     imports: [
@@ -70,7 +72,9 @@ import  {ContactComponent} from "./layouts/contact/contact.component"
         FilterComponent,
         ProductsComponent,
         ProductItemComponent,
-        ContactComponent
+        ContactComponent,
+        ContactUsComponent,
+        ContactTitleComponent
     ],
     providers: [
         ProfileService,

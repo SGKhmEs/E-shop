@@ -23,3 +23,6 @@ export * from './shop-list/products/product-item/product-item.component';
 export * from './shop-list/shop-list.route';
 export * from './contact/contact.component';
 export * from './contact/contact.route';
+export * from './contact/contact.title/title.component';
+export * from './contact/contactUs/contactus.component';
+

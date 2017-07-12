@@ -1,7 +1,7 @@
 import { Component} from '@angular/core';
 
 @Component({
-    selector: 'jhi-contact.title',
+    selector: 'jhi-contactTitle',
     templateUrl: './title.component.html',
     styleUrls: [
         './../contact.css'
