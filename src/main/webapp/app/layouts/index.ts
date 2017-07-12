@@ -25,3 +25,8 @@ export * from './aboutUs/title/title.component';
 export * from './aboutUs/aboutArea/aboutArea.component';
 export * from './aboutUs/developers/developers.component';
 export * from './aboutUs/aboutUs.component';
+export * from './contact/contact.component';
+export * from './contact/contact.route';
+export * from './contact/contact.title/title.component';
+export * from './contact/contactUs/contactus.component';
+export * from './contact/googleMaps/googleMaps.component';
