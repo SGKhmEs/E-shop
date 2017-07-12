@@ -1,3 +1,10 @@
-/**
- * Created by 9torc on 12.07.2017.
- */
+import { Component} from '@angular/core';
+
+@Component({
+    selector: 'jhi-contact',
+    templateUrl: './contact.component.html',
+    styleUrls: [
+        './contact.css'
+    ]
+})
+export class ContactComponent {}
