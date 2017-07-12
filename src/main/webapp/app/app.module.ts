@@ -29,6 +29,7 @@ import {HeaderComponent} from './layouts/header/header.component';
 import {BrandComponent} from './layouts/brand/brand.component';
 import {FeatureComponent} from './layouts/feature/feature.component';
 import {SliderComponent} from './layouts/slider/slider.component';
+import {ShopListComponent} from './layouts/shop-list/shop-list.component';
 
 @NgModule({
     imports: [
@@ -51,7 +52,8 @@ import {SliderComponent} from './layouts/slider/slider.component';
         PageRibbonComponent,
         BrandComponent,
         FeatureComponent,
-        FooterComponent
+        FooterComponent,
+        ShopListComponent
     ],
     providers: [
         ProfileService,

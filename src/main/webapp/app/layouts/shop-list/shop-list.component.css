@@ -1,0 +1,10 @@
+.page-title {
+    background: rgba(0, 0, 0, 0) url("../../../content/images/title-bg.jpg") no-repeat scroll center center / cover ;
+    text-align: center;
+}
+.page-title h2 {
+    color: #fff;
+    font-size: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
