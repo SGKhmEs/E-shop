@@ -10,7 +10,7 @@ import {shopListRouter} from "./shop-list/shop-list.route";
 const LAYOUT_ROUTES = [
     //navbarRoute,
     shopListRouter,
-    sliderRoute,
+    //sliderRoute,
     ...notfoundRouter,
     ...errorRoute
 ];
