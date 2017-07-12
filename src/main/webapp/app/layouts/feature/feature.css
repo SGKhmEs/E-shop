@@ -1,12 +1,13 @@
 /*----- 3.14 Support Area -----*/
-*{margin:0;padding:0;}
+/**{margin:0;padding:0;}
 body {
   background: #ebebeb none repeat scroll 0 0;
   color: #3e3f3f;
   font-family: "Raleway",sans-serif;
-}
+}*/
 .support-area {
   background: #EAE3D7;
+  font-family: "Raleway",sans-serif;
 }
 .section {
   padding: 80px 0;

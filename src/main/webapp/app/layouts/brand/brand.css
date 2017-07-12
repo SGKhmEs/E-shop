@@ -1,11 +1,15 @@
 /*----- 3.13 Brand Area -----*/
-*{margin:0;padding:0;}
+/**{margin:0;padding:0;}
 body {
   background: #ebebeb none repeat scroll 0 0;
   color: #3e3f3f;
   font-family: "Raleway",sans-serif;
+}*/
+.brand-area {
+  background: #ebebeb none repeat scroll 0 0;
+  color: #3e3f3f;
+  font-family: "Raleway",sans-serif;
 }
-.brand-area {}
 .section {
   padding: 80px 0;
 }
