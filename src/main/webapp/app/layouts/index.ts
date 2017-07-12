@@ -21,3 +21,5 @@ export * from './shop-list/filter/filter.component';
 export * from './shop-list/products/products.component';
 export * from './shop-list/products/product-item/product-item.component';
 export * from './shop-list/shop-list.route';
+export * from './contact/contact.component';
+export * from './contact/contact.route';
