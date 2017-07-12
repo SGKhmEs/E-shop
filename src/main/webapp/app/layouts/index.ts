@@ -12,4 +12,5 @@ export * from './profiles/profile-info.model';
 export * from './layout-routing.module';
 export * from './shop-list/shop-list.component';
 export * from './shop-list/shop-list.route';
-
+export * from './404/notfound.route';
+export * from './404/notfound.component';

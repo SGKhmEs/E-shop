@@ -30,6 +30,7 @@ import {BrandComponent} from './layouts/brand/brand.component';
 import {FeatureComponent} from './layouts/feature/feature.component';
 import {SliderComponent} from './layouts/slider/slider.component';
 import {ShopListComponent} from './layouts/shop-list/shop-list.component';
+import {NotFoundComponent} from "./layouts/404/notfound.component";
 
 @NgModule({
     imports: [
@@ -53,7 +54,8 @@ import {ShopListComponent} from './layouts/shop-list/shop-list.component';
         BrandComponent,
         FeatureComponent,
         FooterComponent,
-        ShopListComponent
+        ShopListComponent,
+        NotFoundComponent
     ],
     providers: [
         ProfileService,
