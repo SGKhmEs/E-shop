@@ -37,6 +37,7 @@ import {TagComponent} from './layouts/shop-list/tag/tag.component';
 import {FilterComponent} from './layouts/shop-list/filter/filter.component';
 import {ProductsComponent} from "./layouts/shop-list/products/products.component";
 import {ProductItemComponent} from "./layouts/shop-list/products/product-item/product-item.component";
+import {ProductsService} from "./layouts/shop-list/products/products.service";
 
 
 @NgModule({
@@ -74,7 +75,8 @@ import {ProductItemComponent} from "./layouts/shop-list/products/product-item/pr
         ProfileService,
         customHttpProvider(),
         PaginationConfig,
-        UserRouteAccessService
+        UserRouteAccessService,
+        ProductsService
     ],
     bootstrap: [ JhiMainComponent, HeaderComponent, NavbarComponent,FooterComponent ]
 })
