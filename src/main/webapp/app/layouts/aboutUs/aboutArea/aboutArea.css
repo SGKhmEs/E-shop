@@ -1,0 +1,59 @@
+/*-----------------------
+	7. About Us
+-------------------------*/
+.about-page {}
+.page {
+  padding: 80px 0 0;
+}
+.fix{
+  overflow:hidden;
+}
+.container{
+  padding-right:15px;
+  padding-left:15px;
+  margin-right:auto;
+  margin-left:auto
+}
+.row {
+  margin-right:-15px;
+  margin-left:-15px
+}
+.about-title h2, .about-text h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.about-title span, .about-text span {
+  color: #e09e25;
+}
+.about-title h3 {
+  font-size: 24px;
+  font-weight: 300;
+}
+.about-text {
+  margin-top: 30px;
+}
+.about-text p {
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 15px;
+}
+.about-text p span {
+  color:#e09e25;
+}
+.about-text blockquote {
+  background: #fff none repeat scroll 0 0;
+  border-color: #e09e25;
+}
+.about-text blockquote p {
+  font-size: inherit;
+}
+.about-img {
+  margin-top: 30px;
+}
+.about-margin {
+  margin-top: 25px;
+}
+.about-img img {
+  max-width: 100%;
+}
