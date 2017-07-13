@@ -1,0 +1,90 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myBucketLabel">Create or edit a Bucket</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!bucket.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="bucket.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="bucket.name"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_date">Date</label>
+            <div class="d-flex">
+                <input id="field_date" type="datetime-local" class="form-control" name="date" [(ngModel)]="bucket.date"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_sum">Sum</label>
+            <input type="number" class="form-control" name="sum" id="field_sum"
+                [(ngModel)]="bucket.sum"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_orderNumber">Order Number</label>
+            <input type="number" class="form-control" name="orderNumber" id="field_orderNumber"
+                [(ngModel)]="bucket.orderNumber"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_count">Count</label>
+            <input type="number" class="form-control" name="count" id="field_count"
+                [(ngModel)]="bucket.count"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_status">Status</label>
+            <select class="form-control" name="status" [(ngModel)]="bucket.status" id="field_status" >
+                <option value="WAIT">WAIT</option>
+                <option value="PROCESSING">PROCESSING</option>
+                <option value="CHECKED">CHECKED</option>
+                <option value="FILLED">FILLED</option>
+                <option value="SUCCESS">SUCCESS</option>
+                <option value="FAILURE">FAILURE</option>
+                <option value="REJECT">REJECT</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_consignmentNote">Consignment Note</label>
+            <input type="text" class="form-control" name="consignmentNote" id="field_consignmentNote"
+                [(ngModel)]="bucket.consignmentNote"  />
+        </div>
+
+        <div class="form-group">
+            <label for="field_manager">Manager</label>
+            <select class="form-control" id="field_manager" name="manager" [(ngModel)]="bucket.managerId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="managerOption.id" *ngFor="let managerOption of managers; trackBy: trackManagerById">{{managerOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_addressShipping">Address Shipping</label>
+            <select class="form-control" id="field_addressShipping" name="addressShipping" [(ngModel)]="bucket.addressShippingId">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="addressShippingOption.id" *ngFor="let addressShippingOption of addressshippings; trackBy: trackAddressShippingById">{{addressShippingOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_customer">Customer</label>
+            <select class="form-control" id="field_customer" name="customer" [(ngModel)]="bucket.customerId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="customerOption.id" *ngFor="let customerOption of customers; trackBy: trackCustomerById">{{customerOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

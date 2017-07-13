@@ -1,0 +1,72 @@
+.faq-page {
+  background: #ebebeb none repeat scroll 0 0;
+}
+.page {
+  padding: 80px 0 0;
+}
+.fix{
+  overflow:hidden;
+}
+.container{
+  padding-right:15px;
+  padding-left:15px;
+  margin-right:auto;
+  margin-left:auto
+}
+.row {
+  margin-right:-15px;
+  margin-left:-15px
+}
+.panel-group {
+    margin-bottom: 20px;
+}
+.panel-group .panel {
+    border: 0 none;
+    border-radius: 0;
+    box-shadow: none;
+    margin-bottom: 24px;
+    margin-top: 0 !important;
+}
+.panel-default {
+    border-color: #ddd;
+}
+.panel-default > .panel-heading {
+    background-color: transparent;
+    border: medium none;
+    border-radius: 0;
+    color: inherit;
+    padding: 0;
+}
+.panel-collapse.in {
+    border: none;
+}
+.collapse.in {
+    display: block;
+}
+#faqs .panel-heading a {
+  background: #e09e25 none repeat scroll 0 0;
+  padding: 10px 20px;
+  margin: 0 0 20px;
+  font-size: 17.5px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #fff;
+}
+.panel-title {
+  background: #e09e25 none repeat scroll 0 0;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #fff;
+}
+.panel-title p{
+  margin-bottom: 0;
+}
+.panel-body {
+	background: #fff none repeat scroll 0 0;
+    padding: 10px 20px;
+    margin: 0 0 20px;
+}
+.about-text blockquote p {
+  font-size: inherit;
+}

@@ -1,0 +1,103 @@
+/*.sin-shop-sidebar {*/
+    /*margin-bottom: 30px;*/
+/*}*/
+/*.sin-shop-sidebar */
+h2 {
+    background: #fff none repeat scroll 0 0;
+    color: #e09e25;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    padding: 15px 20px;
+    text-align: center;
+    text-transform: uppercase;
+}
+/*.sin-shop-sidebar > */
+a {
+    display: block;
+    position: relative;
+}
+/*.sin-shop-sidebar > */
+a::before {
+    background-color: rgba(255, 255, 255, 0.15);
+    content: "";
+    height: 0;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    -webkit-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+    width: 0;
+    z-index: 1;
+}
+/*.sin-shop-sidebar > */
+a::after {
+    background-color: rgba(255, 255, 255, 0.15);
+    bottom: 0;
+    content: "";
+    height: 0;
+    position: absolute;
+    right: 0;
+    -webkit-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+    width: 0;
+}
+/*.sin-shop-sidebar > */
+a:hover::before, .sin-shop-sidebar > a:hover::after {
+    height: 100%;
+    -webkit-transition: all 0.4s ease 0s;
+    -o-transition: all 0.4s ease 0s;
+    transition: all 0.4s ease 0s;
+    width: 100%;
+}
+.sin-shop-sidebar > a img {
+    width: 100%;
+}
+/*.sin-shop-sidebar */
+    ul {
+    background: #fff none repeat scroll 0 0;
+    margin: 0;
+    padding: 0;
+}
+/*.sin-shop-sidebar */
+ul li {
+    border-bottom: 1px solid #eee;
+}
+/*.sin-shop-sidebar */
+ul li a {
+    color: #515151;
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 15px 20px;
+    text-transform: uppercase;
+}
+/*.sin-shop-sidebar */
+ul li a:hover {
+    background: #e09e25 none repeat scroll 0 0;
+    color: #fff;
+    padding-left: 30px;
+}
+
+/*.sin-shop-sidebar*/
+.shop-tags ul li a {
+    border: 1px solid #eee;
+    color: #666;
+    font-size: 11px !important;
+    font-weight: 700;
+    margin: 0 5px 5px 0;
+    padding: 5px 9px ;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+/*.sin-shop-sidebar*/
+/*.shop-tags */
+ul li a:hover {
+    background: #e09e25;
+    border: 1px solid #e09e25;
+    color: #fff ;
+}
