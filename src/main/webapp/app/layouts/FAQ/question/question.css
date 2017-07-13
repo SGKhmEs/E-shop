@@ -1,0 +1,19 @@
+.page-title {
+  background: rgba(0, 0, 0, 0) url("../../../../content/images/title-bg.jpg") no-repeat scroll center center / cover ;
+  text-align: center;
+}
+.page-title h2 {
+  color: #fff;
+  font-size: 50px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.fix{
+  overflow:hidden;
+}
+.overlay {
+  background: rgba(224,158,37,0.8);
+}
+.section {
+  padding: 80px 0;
+}
