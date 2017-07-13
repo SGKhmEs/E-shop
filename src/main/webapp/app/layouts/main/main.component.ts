@@ -8,7 +8,7 @@ import { StateStorageService } from '../../shared';
     selector: 'jhi-main',
     templateUrl: './main.component.html',
     styleUrls: [
-        './../../../content/css/font-awesome.min.css'
+        'main.component.css'
     ]
 })
 export class JhiMainComponent implements OnInit {
@@ -16,7 +16,7 @@ export class JhiMainComponent implements OnInit {
     constructor(
         private titleService: Title,
         private router: Router,
-        private $storageService: StateStorageService,
+        private $storageService: StateStorageService
     ) {}
 
     private getPageTitle(routeSnapshot: ActivatedRouteSnapshot) {

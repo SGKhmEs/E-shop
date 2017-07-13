@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 
 @Component({
     selector: 'jhi-filter',
-    templateUrl: './filter.component.html'
+    templateUrl: './filter.component.html',
+    styleUrls: [
+        'filter.component.css'
+    ]
 })
 export class FilterComponent {}

@@ -890,8 +890,8 @@ img {
 }
 .pro-ratting i{}
 .pro-ratting i.on {
-  color: #E09E25;
-}
+     color: #E09E25;
+ }
 .pro-price {
   float: right;
 }

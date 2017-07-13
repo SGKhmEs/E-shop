@@ -13,14 +13,14 @@ import {faqRoute} from "./FAQ/faq.route";
 const LAYOUT_ROUTES = [
     //navbarRoute,
     shopListRouter,
-  
+
     ...notfoundRouter,
     ...errorRoute,
     ...aboutUsRoute,
     //sliderRoute,
-    ...errorRoute,
     ...contactRoute,
-    ...faqRoute
+    ...faqRoute,
+    ...contactRoute
 ];
 
 @NgModule({

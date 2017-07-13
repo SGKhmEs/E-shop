@@ -40,10 +40,7 @@
 }
 .brand-item {
   text-align: center;
-  padding-top: 0px;
-  padding-right: 30px;
-  padding-bottom: 30px;
-  padding-left: 30px;
+    padding: 0px 30px 30px;
 }
 .brand-item img {
   display: inline-block!important;
