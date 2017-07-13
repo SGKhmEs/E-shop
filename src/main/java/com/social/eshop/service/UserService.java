@@ -1,7 +1,6 @@
 package com.social.eshop.service;
 
-import com.social.eshop.domain.Authority;
-import com.social.eshop.domain.User;
+import com.social.eshop.domain.*;
 import com.social.eshop.repository.AuthorityRepository;
 import com.social.eshop.repository.PersistentTokenRepository;
 import com.social.eshop.config.Constants;
@@ -9,8 +8,9 @@ import com.social.eshop.repository.UserRepository;
 import com.social.eshop.repository.search.UserSearchRepository;
 import com.social.eshop.security.AuthoritiesConstants;
 import com.social.eshop.security.SecurityUtils;
+import com.social.eshop.service.dto.*;
+import com.social.eshop.service.mapper.*;
 import com.social.eshop.service.util.RandomUtil;
-import com.social.eshop.service.dto.UserDTO;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +21,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.inject.Inject;
 import java.time.LocalDate;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
@@ -35,26 +36,68 @@ import java.util.stream.Collectors;
 public class UserService {
 
     private final Logger log = LoggerFactory.getLogger(UserService.class);
-
     private final UserRepository userRepository;
-
     private final PasswordEncoder passwordEncoder;
-
     private final SocialService socialService;
-
     private final UserSearchRepository userSearchRepository;
-
     private final PersistentTokenRepository persistentTokenRepository;
-
     private final AuthorityRepository authorityRepository;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, SocialService socialService, UserSearchRepository userSearchRepository, PersistentTokenRepository persistentTokenRepository, AuthorityRepository authorityRepository) {
+    @Inject
+    private CustomerAccountService customerAccountService;
+    @Inject
+    private ManagerAccountService managerAccountService;
+    @Inject
+    private PersonalInformationService personalInformationService;
+    @Inject
+    private CustomerService customerService;
+    @Inject
+    private AddressService addressService;
+    @Inject
+    private AvatarService avatarService;
+    @Inject
+    private BucketService bucketService;
+    @Inject
+    private WishListService wishListService;
+    @Inject
+    private SeenService seenService;
+    @Inject
+    private ManagerService managerService;
+
+    private CustomerAccountMapper customerAccountMapper;
+    private ManagerAccountMapper managerAccountMapper;
+    private CustomerMapper customerMapper;
+    private PersonalInformationMapper personalInformationMapper;
+    private AvatarMapper avatarMapper;
+    private AddressMapper addressMapper;
+    private BucketMapper bucketMapper;
+    private WishListMapper wishListMapper;
+    private SeenMapper seenMapper;
+    private ManagerMapper managerMapper;
+
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, SocialService socialService,
+                       UserSearchRepository userSearchRepository, PersistentTokenRepository persistentTokenRepository,
+                       AuthorityRepository authorityRepository, CustomerAccountMapper customerAccountMapper,
+                       ManagerAccountMapper managerAccountMapper, CustomerMapper customerMapper,
+                       PersonalInformationMapper personalInformationMapper, AvatarMapper avatarMapper,
+                       AddressMapper addressMapper, BucketMapper bucketMapper, WishListMapper wishListMapper,
+                       SeenMapper seenMapper, ManagerMapper managerMapper) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.socialService = socialService;
         this.userSearchRepository = userSearchRepository;
         this.persistentTokenRepository = persistentTokenRepository;
         this.authorityRepository = authorityRepository;
+        this.customerAccountMapper = customerAccountMapper;
+        this.managerAccountMapper = managerAccountMapper;
+        this.customerMapper = customerMapper;
+        this.personalInformationMapper = personalInformationMapper;
+        this.avatarMapper = avatarMapper;
+        this.addressMapper = addressMapper;
+        this.bucketMapper = bucketMapper;
+        this.wishListMapper = wishListMapper;
+        this.seenMapper = seenMapper;
+        this.managerMapper = managerMapper;
     }
 
     public Optional<User> activateRegistration(String key) {
@@ -69,6 +112,79 @@ public class UserService {
                 return user;
             });
     }
+
+    private void createdCustomerAccount (User user){
+
+        CustomerAccount customerAccount = new CustomerAccount(user.getId());
+        Customer customer = new Customer(user.getId());
+
+        PersonalInformation personalInformation = new PersonalInformation();
+        personalInformation.setId(user.getId());
+
+        Avatar avatar = new Avatar();
+        avatar.setId(user.getId());
+
+        Address address = new Address();
+        address.setId(user.getId());
+
+        Bucket bucket = new Bucket();
+        bucket.setId(user.getId());
+
+        WishList wishList = new WishList();
+        wishList.setId(user.getId());
+
+        Seen seen = new Seen();
+        seen.setId(user.getId());
+
+        customerAccount.setUser(user);
+        CustomerAccountDTO customerAccountDTO = customerAccountMapper.toDto(customerAccount);
+        customerAccountService.save(customerAccountDTO);
+
+        customer.setCustomerAccount(customerAccount);
+        CustomerDTO customerDTO = customerMapper.toDto(customer);
+        customerService.save(customerDTO);
+
+        personalInformation.setCustomer(customer);
+        PersonalInformationDTO personalInformationDTO = personalInformationMapper.toDto(personalInformation);
+        personalInformationService.save(personalInformationDTO);
+
+        bucket.setCustomer(customer);
+        BucketDTO bucketDTO = bucketMapper.toDto(bucket);
+        bucketService.save(bucketDTO);
+
+        address.setCustomer(customer);
+        AddressDTO addressDTO = addressMapper.toDto(address);
+        addressService.save(addressDTO);
+
+        avatar.setCustomer(customer);
+        AvatarDTO avatarDTO = avatarMapper.toDto(avatar);
+        avatarService.save(avatarDTO);
+
+        wishList.setCustomer(customer);
+        WishListDTO wishListDTO = wishListMapper.toDto(wishList);
+        wishListService.save(wishListDTO);
+
+        seen.setCustomer(customer);
+        SeenDTO seenDTO = seenMapper.toDto(seen);
+        seenService.save(seenDTO);
+
+        customerAccount.setCustomer(customer);
+        customerAccountDTO = customerAccountMapper.toDto(customerAccount);
+        customerAccountService.save(customerAccountDTO);
+
+        customer.setPersonalInfo(personalInformation);
+        customerDTO = customerMapper.toDto(customer);
+        customerService.save(customerDTO);
+
+        customer.setAvatar(avatar);
+        customerDTO = customerMapper.toDto(customer);
+        customerService.save(customerDTO);
+
+        customer.setAddress(address);
+        customerDTO = customerMapper.toDto(customer);
+        customerService.save(customerDTO);
+    }
+
 
     public Optional<User> completePasswordReset(String newPassword, String key) {
        log.debug("Reset user password for reset key {}", key);
@@ -109,7 +225,7 @@ public class UserService {
         newUser.setImageUrl(imageUrl);
         newUser.setLangKey(langKey);
         // new user is not active
-        newUser.setActivated(false);
+        newUser.setActivated(true); //in the future change to false
         // new user gets registration key
         newUser.setActivationKey(RandomUtil.generateActivationKey());
         authorities.add(authority);
@@ -117,8 +233,66 @@ public class UserService {
         userRepository.save(newUser);
         userSearchRepository.save(newUser);
         log.debug("Created Information for User: {}", newUser);
+            switch (newUser.getLogin()) {
+                case "managers" : createdManagerAccount(newUser);
+                break;
+                default: createdCustomerAccount (newUser);
+                break;
+            }
         return newUser;
     }
+
+    private void createdManagerAccount(User user) {
+        ManagerAccount managerAccount = new ManagerAccount(user.getId());
+        Manager manager = new Manager(user.getId());
+
+        PersonalInformation personalInformation = new PersonalInformation();
+        personalInformation.setId(user.getId());
+
+        Avatar avatar = new Avatar();
+        avatar.setId(user.getId());
+
+        Address address = new Address();
+        address.setId(user.getId());
+
+        managerAccount.setUser(user);
+        ManagerAccountDTO managerAccountDTO = managerAccountMapper.toDto(managerAccount);
+        managerAccountService.save(managerAccountDTO);
+
+        manager.setManagerAccount(managerAccount);
+        ManagerDTO managerDTO = managerMapper.toDto(manager);
+        managerService.save(managerDTO);
+
+        personalInformation.setManager(manager);
+        PersonalInformationDTO personalInformationDTO = personalInformationMapper.toDto(personalInformation);
+        personalInformationService.save(personalInformationDTO);
+
+        address.setManager(manager);
+        AddressDTO addressDTO = addressMapper.toDto(address);
+        addressService.save(addressDTO);
+
+        avatar.setManager(manager);
+        AvatarDTO avatarDTO = avatarMapper.toDto(avatar);
+        avatarService.save(avatarDTO);
+
+        managerAccount.setManager(manager);
+        managerAccountDTO = managerAccountMapper.toDto(managerAccount);
+        managerAccountService.save(managerAccountDTO);
+
+        manager.setPersonalInfo(personalInformation);
+        managerDTO = managerMapper.toDto(manager);
+        managerService.save(managerDTO);
+
+        manager.setAvatar(avatar);
+        managerDTO = managerMapper.toDto(manager);
+        managerService.save(managerDTO);
+
+        manager.setAddress(address);
+        managerDTO = managerMapper.toDto(manager);
+        managerService.save(managerDTO);
+
+    }
+
 
     public User createUser(UserDTO userDTO) {
         User user = new User();
@@ -199,6 +373,8 @@ public class UserService {
             })
             .map(UserDTO::new);
     }
+
+
 
     public void deleteUser(String login) {
         userRepository.findOneByLogin(login).ifPresent(user -> {

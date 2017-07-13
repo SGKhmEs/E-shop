@@ -1,0 +1,110 @@
+/*----- 3.5 Slider Area -----*/
+.slider-wrap {
+    position: relative;
+}
+.slider-image{}
+.nivo-caption{
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    height:100%;
+    opacity:1;
+}
+.slide-text {
+    display: table;
+    float: left;
+    height: 100%;
+    margin-left: 150px;
+}
+.slide2-text.slide-text {
+    float: right;
+    margin-right: 50px;
+}
+.slide3-text.slide-text {
+    float: right;
+    margin-right: 50px;
+}
+.middle-text {
+    display: table-cell;
+    vertical-align: middle;
+}
+.cap-title {
+    margin-bottom: 20px;
+}
+.cap-title h1 {
+    background: rgba(224, 158, 37, 0.6) none repeat scroll 0 0;
+    color: #ebebeb;
+    display: inline-block;
+    font-size: 50px;
+    font-weight: 500;
+    margin-left: 0;
+    padding: 10px 15px;
+    text-transform: uppercase;
+}
+.cap-dec{
+    margin-bottom: 30px;
+}
+.cap-dec h2 {
+    background: rgba(255, 255, 255, 0.6) none repeat scroll 0 0;
+    color: #e09e25;
+    display: inline-block;
+    font-size: 45px;
+    font-weight: 500;
+    padding: 10px 20px;
+    text-transform: uppercase;
+}
+.cap-readmore {
+    display: inline-flex;
+    overflow: hidden;
+}
+.cap-readmore a {
+    background: #e09e25 none repeat scroll 0 0;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 10px 20px;
+    text-transform: uppercase;
+}
+.cap-readmore a:hover {
+    opacity: 0.8;
+}
+.nivo-controlNav {
+    bottom: 30px;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    z-index: 999;
+}
+.nivo-control {
+    background: #fff none repeat scroll 0 0;
+    display: inline-block;
+    height: 10px;
+    margin: 0 5px;
+    text-indent: -99999px;
+    width: 30px;
+}
+.nivo-control.active {
+    background: #e09e25;
+}
+.slider-progress{
+    position:absolute;
+    top:0;
+    left:0;
+    background-color: #e09e25;
+    height:5px;
+    -webkit-animation: timebar 5000ms ease-in-out;
+    -moz-animation: timebar 5000ms ease-in-out;
+    -ms-animation: timebar 5000ms ease-in-out;
+    animation: timebar 5000ms ease-in-out;
+    opacity:0.8;
+}
+@-webkit-keyframes timebar {
+    from {width: 0;}
+    to {width: 100%;}
+}
+@keyframes timebar {
+    from {width: 0;}
+    to {width: 100%;}
+}
+.slider-progress.pos_hover{
+    -webkit-animation-play-state: paused;
+    animation-play-state: paused;
+}

@@ -1,0 +1,149 @@
+.contact-page.page.fix{
+    background: #ebebeb none repeat scroll 0 0;
+    padding:  25px 0 0 0;
+
+}
+.contact_area {
+
+    padding: 40px 0 70px;
+}
+#googleMap {
+    height: 350px;
+    width: 100%;
+}
+.contact-info {
+    margin-bottom: 70px;
+}
+.contact-page-2 .contact-info {
+    margin-bottom: 0;
+    margin-top: 70px;
+}
+.contact-info h4 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+.contact-info p{
+    color: #3e3f3f;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+.info-single {
+    margin-bottom: 15px;
+}
+.contact-page-2 .info-single {
+    margin-bottom: 0;
+    text-align: center;
+}
+.info-single i {
+    border: 1px solid #e09e25;
+    border-radius: 50%;
+    color: #e09e25;
+    float: left;
+    font-size: 20px;
+    height: 40px;
+    line-height: 38px;
+    margin-bottom: 10px;
+    margin-right: 15px;
+    text-align: center;
+    width: 40px;
+}
+.contact-page-2 .info-single i {
+    float: none;
+    margin: 0 auto 15px;
+}
+.info-single p{
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 4px;
+}
+.contact-page-2 .info-single p{}
+.info-single a {
+    display: block;
+}
+.contact-page-2 .info-single a {}
+.info-single a:hover{
+    color: #e09e25;
+}
+.contact-form {
+    margin-top: 70px;
+}
+.contact-form h2 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+}
+.contact-form label, .contact-form input, .contact-form textarea {
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 0;
+    width: 100%;
+}
+.contact-form label{
+    margin-bottom: 5px;
+}
+.contact-form input, .contact-form textarea {
+    background: #ebebeb none repeat scroll 0 0;
+    border: 1px solid #cccccc;
+    margin-bottom: 7px;
+    padding: 5px 10px;
+}
+.contact-form input:last-child{
+    margin-bottom: 0;
+}
+.contact-form textarea {
+    margin-bottom: 20px;
+}
+.contact-form .submit {
+    background: #e09e25 none repeat scroll 0 0;
+    border: 0 none;
+    color: #fff;
+    float: right;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 10px 30px;
+    text-transform: uppercase;
+    -webkit-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+    width: auto;
+}
+.contact-form .submit:hover{
+    background:#555;
+}
+.contact-less {
+    left: 40px;
+    position: absolute;
+    text-align: center;
+    top: 30px;
+}
+.contact-less h3 {
+    color: #fff;
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 35px;
+    text-transform: uppercase;
+}
+
+.page-title {
+    background: rgba(0, 0, 0, 0) url("../../../content/images/title-bg.jpg") no-repeat scroll center center / cover ;
+    text-align: center;
+}
+.page-title h2 {
+    color: #fff;
+    font-size: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.fix{
+    overflow:hidden;
+}
+.overlay {
+    background: rgba(224,158,37,0.8);
+}
+.section {
+    padding: 80px 0;
+}

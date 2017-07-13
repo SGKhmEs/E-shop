@@ -1,6 +1,24 @@
 {
     "fluentMethods": true,
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "customer",
+            "otherEntityName": "customer",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "avatar"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "manager",
+            "otherEntityName": "manager",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "avatar"
+        }
+
+    ],
     "fields": [
         {
             "fieldName": "usersImage",

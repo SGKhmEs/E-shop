@@ -31,7 +31,7 @@ describe('Avatar e2e test', () => {
         });
     });
 
-    it('should load create Avatar dialog', function () {
+    it('should load create Avatar dialog', () => {
         element(by.css('button.create-avatar')).click().then(() => {
             const expectVal = /Create or edit a Avatar/;
             element.all(by.css('h4.modal-title')).first().getText().then((value) => {
@@ -42,7 +42,7 @@ describe('Avatar e2e test', () => {
         });
     });
 
-    afterAll(function () {
+    afterAll(() => {
         accountMenu.click();
         logout.click();
     });

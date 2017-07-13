@@ -35,6 +35,10 @@ public class WishList implements Serializable {
     @JoinColumn(unique = true)
     private Products product;
 
+    public WishList() {
+        this.date = LocalDate.now();
+    }
+
     public Long getId() {
         return id;
     }

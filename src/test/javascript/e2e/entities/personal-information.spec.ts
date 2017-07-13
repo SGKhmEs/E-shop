@@ -31,7 +31,7 @@ describe('PersonalInformation e2e test', () => {
         });
     });
 
-    it('should load create PersonalInformation dialog', function () {
+    it('should load create PersonalInformation dialog', () => {
         element(by.css('button.create-personal-information')).click().then(() => {
             const expectVal = /Create or edit a Personal Information/;
             element.all(by.css('h4.modal-title')).first().getText().then((value) => {
@@ -42,7 +42,7 @@ describe('PersonalInformation e2e test', () => {
         });
     });
 
-    afterAll(function () {
+    afterAll(() => {
         accountMenu.click();
         logout.click();
     });

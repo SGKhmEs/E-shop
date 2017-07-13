@@ -1,292 +1,446 @@
-<nav class="navbar navbar-inverse navbar-toggleable-md jh-navbar">
-    <div class="jh-logo-container float-left">
-        <a class="jh-navbar-toggler hidden-lg-up float-right" href="javascript:void(0);" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbar()">
-            <i class="fa fa-bars"></i>
-        </a>
-        <a class="navbar-brand logo float-left" routerLink="/" (click)="collapseNavbar()">
-            <span class="logo-img"></span>
-            <span class="navbar-title">Eshop</span> <span class="navbar-version">{{version}}</span>
-        </a>
+<!--<nav class="navbar navbar-inverse navbar-toggleable-md jh-navbar">-->
+    <!--<div class="jh-logo-container float-left">-->
+        <!--<a class="jh-navbar-toggler hidden-lg-up float-right" href="javascript:void(0);" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbar()">-->
+            <!--<i class="fa fa-bars"></i>-->
+        <!--</a>-->
+        <!--<a class="navbar-brand logo float-left" routerLink="/" (click)="collapseNavbar()">-->
+            <!--<span class="logo-img"></span>-->
+            <!--<span class="navbar-title">Eshop</span> <span class="navbar-version">{{version}}</span>-->
+        <!--</a>-->
+    <!--</div>-->
+    <!--<div class="navbar-collapse collapse" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="isAuthenticated()">-->
+        <!--<ul class="navbar-nav ml-auto">-->
+            <!--<li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">-->
+                <!--<a class="nav-link" routerLink="/" (click)="collapseNavbar()">-->
+                    <!--<i class="fa fa-home" aria-hidden="true"></i>-->
+                    <!--<span>Home</span>-->
+                <!--</a>-->
+            <!--</li>-->
+            <!--&lt;!&ndash; jhipster-needle-add-element-to-menu - JHipster will add new menu items here &ndash;&gt;-->
+            <!--<li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">-->
+                <!--<a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">-->
+                    <!--<span>-->
+                        <!--<i class="fa fa-th-list" aria-hidden="true"></i>-->
+                        <!--<span>-->
+                            <!--Entities-->
+                        <!--</span>-->
+                        <!--<b class="caret"></b>-->
+                    <!--</span>-->
+                <!--</a>-->
+                <!--<ul class="dropdown-menu" ngbDropdownMenu>-->
+                    <!--<li>-->
+                        <!--<a class="dropdown-item" routerLink="customer" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">-->
+                            <!--<i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>-->
+                            <!--<span>Customer</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a class="dropdown-item" routerLink="login-options" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">-->
+                            <!--<i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>-->
+                            <!--<span>Login Options</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a class="dropdown-item" routerLink="static-pages" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">-->
+                            <!--<i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>-->
+                            <!--<span>Static Pages</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a class="dropdown-item" routerLink="manager" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">-->
+                            <!--<i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>-->
+                            <!--<span>Manager</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a class="dropdown-item" routerLink="bucket" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">-->
+                            <!--<i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>-->
+                            <!--<span>Bucket</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a class="dropdown-item" routerLink="address-shipping" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">-->
+                            <!--<i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>-->
+                            <!--<span>Address Shipping</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a class="dropdown-item" routerLink="seen" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">-->
+                            <!--<i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>-->
+                            <!--<span>Seen</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a class="dropdown-item" routerLink="wish-list" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">-->
+                            <!--<i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>-->
+                            <!--<span>Wish List</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a class="dropdown-item" routerLink="address" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">-->
+                            <!--<i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>-->
+                            <!--<span>Address</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a class="dropdown-item" routerLink="avatar" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">-->
+                            <!--<i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>-->
+                            <!--<span>Avatar</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a class="dropdown-item" routerLink="personal-information" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">-->
+                            <!--<i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>-->
+                            <!--<span>Personal Information</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a class="dropdown-item" routerLink="products" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">-->
+                            <!--<i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>-->
+                            <!--<span>Products</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a class="dropdown-item" routerLink="tags" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">-->
+                            <!--<i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>-->
+                            <!--<span>Tags</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a class="dropdown-item" routerLink="consignment" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">-->
+                            <!--<i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>-->
+                            <!--<span>Consignment</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a class="dropdown-item" routerLink="storage" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">-->
+                            <!--<i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>-->
+                            <!--<span>Storage</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a class="dropdown-item" routerLink="producers" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">-->
+                            <!--<i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>-->
+                            <!--<span>Producers</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a class="dropdown-item" routerLink="category" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">-->
+                            <!--<i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>-->
+                            <!--<span>Category</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a class="dropdown-item" routerLink="sub-category" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">-->
+                            <!--<i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>-->
+                            <!--<span>Sub Category</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a class="dropdown-item" routerLink="media" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">-->
+                            <!--<i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>-->
+                            <!--<span>Media</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a class="dropdown-item" routerLink="comments" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">-->
+                            <!--<i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>-->
+                            <!--<span>Comments</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a class="dropdown-item" routerLink="options" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">-->
+                            <!--<i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>-->
+                            <!--<span>Options</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a class="dropdown-item" routerLink="tag-for-product" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">-->
+                            <!--<i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>-->
+                            <!--<span>Tag For Product</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a class="dropdown-item" routerLink="product-in-bucket" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">-->
+                            <!--<i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>-->
+                            <!--<span>Product In Bucket</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--&lt;!&ndash; jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here &ndash;&gt;-->
+                <!--</ul>-->
+            <!--</li>-->
+            <!--<li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">-->
+                <!--<a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="admin-menu">-->
+                    <!--<span>-->
+                        <!--<i class="fa fa-user-plus" aria-hidden="true"></i>-->
+                        <!--<span>Administration</span>-->
+                        <!--<b class="caret"></b>-->
+                    <!--</span>-->
+                <!--</a>-->
+                <!--<ul class="dropdown-menu" ngbDropdownMenu>-->
+                    <!--<li>-->
+                        <!--<a class="dropdown-item" routerLink="user-management" routerLinkActive="active" (click)="collapseNavbar()">-->
+                            <!--<i class="fa fa-fw fa-user" aria-hidden="true"></i>-->
+                            <!--<span>User management</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a class="dropdown-item" routerLink="jhi-tracker" routerLinkActive="active" (click)="collapseNavbar()">-->
+                            <!--<i class="fa fa-fw fa-eye" aria-hidden="true"></i>-->
+                            <!--<span>User tracker</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a class="dropdown-item" routerLink="jhi-metrics" routerLinkActive="active" (click)="collapseNavbar()">-->
+                            <!--<i class="fa fa-fw fa-tachometer" aria-hidden="true"></i>-->
+                            <!--<span>Metrics</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a class="dropdown-item" routerLink="jhi-health" routerLinkActive="active" (click)="collapseNavbar()">-->
+                            <!--<i class="fa fa-fw fa-heart" aria-hidden="true"></i>-->
+                            <!--<span>Health</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a class="dropdown-item" routerLink="jhi-configuration" routerLinkActive="active" (click)="collapseNavbar()">-->
+                            <!--<i class="fa fa-fw fa-list" aria-hidden="true"></i>-->
+                            <!--<span>Configuration</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a class="dropdown-item" routerLink="audits" routerLinkActive="active" (click)="collapseNavbar()">-->
+                            <!--<i class="fa fa-fw fa-bell" aria-hidden="true"></i>-->
+                            <!--<span>Audits</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a class="dropdown-item" routerLink="logs" routerLinkActive="active" (click)="collapseNavbar()">-->
+                            <!--<i class="fa fa-fw fa-tasks" aria-hidden="true"></i>-->
+                            <!--<span>Logs</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li *ngIf="swaggerEnabled">-->
+                        <!--<a class="dropdown-item" routerLink="docs" routerLinkActive="active" (click)="collapseNavbar()">-->
+                            <!--<i class="fa fa-fw fa-book" aria-hidden="true"></i>-->
+                            <!--<span>API</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--&lt;!&ndash; jhipster-needle-add-element-to-admin-menu - JHipster will add entities to the admin menu here &ndash;&gt;-->
+                    <!--<li *ngIf="!inProduction">-->
+                        <!--<a class="dropdown-item" href='./h2-console' target="_tab" (click)="collapseNavbar()">-->
+                            <!--<i class="fa fa-fw fa-hdd-o" aria-hidden="true"></i>-->
+                            <!--<span>Database</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!--</ul>-->
+            <!--</li>-->
+            <!--<li ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">-->
+                <!--<a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="account-menu">-->
+                  <!--<span *ngIf="!getImageUrl()">-->
+                    <!--<i class="fa fa-user" aria-hidden="true"></i>-->
+                    <!--<span>-->
+                      <!--Account-->
+                    <!--</span>-->
+                    <!--<b class="caret"></b>-->
+                  <!--</span>-->
+                  <!--<span *ngIf="getImageUrl()">-->
+                      <!--<img [src]="getImageUrl()" class="profile-image img-circle" alt="Avatar">-->
+                  <!--</span>-->
+                <!--</a>-->
+                <!--<ul class="dropdown-menu dropdown-menu-right" ngbDropdownMenu>-->
+                    <!--<li *ngSwitchCase="true">-->
+                        <!--<a class="dropdown-item" routerLink="settings" routerLinkActive="active" (click)="collapseNavbar()">-->
+                            <!--<i class="fa fa-fw fa-wrench" aria-hidden="true"></i>-->
+                            <!--<span>Settings</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li *ngSwitchCase="true">-->
+                        <!--<a class="dropdown-item" routerLink="password" routerLinkActive="active" (click)="collapseNavbar()">-->
+                            <!--<i class="fa fa-fw fa-clock-o" aria-hidden="true"></i>-->
+                            <!--<span>Password</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li *ngSwitchCase="true">-->
+                        <!--<a class="dropdown-item" routerLink="sessions" routerLinkActive="active" (click)="collapseNavbar()">-->
+                            <!--<i class="fa fa-fw fa-cloud" aria-hidden="true"></i>-->
+                            <!--<span>Sessions</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li *ngSwitchCase="true">-->
+                        <!--<a class="dropdown-item" (click)="logout()" id="logout">-->
+                            <!--<i class="fa fa-fw fa-sign-out" aria-hidden="true"></i>-->
+                            <!--<span>Sign out</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li *ngSwitchCase="false">-->
+                        <!--<a class="dropdown-item" (click)="login()" id="login">-->
+                            <!--<i class="fa fa-fw fa-sign-in" aria-hidden="true"></i>-->
+                            <!--<span>Sign in</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li *ngSwitchCase="false">-->
+                        <!--<a class="dropdown-item" routerLink="register" routerLinkActive="active" (click)="collapseNavbar()">-->
+                            <!--<i class="fa fa-fw fa-registered" aria-hidden="true"></i>-->
+                            <!--<span>Register</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!--</ul>-->
+            <!--</li>-->
+        <!--</ul>-->
+    <!--</div>-->
+<!--</nav>-->
+
+
+<div class="menu-area"><!--Start Main Menu Area-->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="main-menu hidden-sm hidden-xs">
+                    <nav>
+                        <ul>
+                            <li>
+                                <a href="index.html" class="active">Home</a>
+                            </li>
+                            <li><a href="#">Pages</a>
+                                <div class="mega-menu mega-menu-page">
+                                    <div class="column-1 column">
+                                        <ul>
+                                            <li><a href="about-us.html">About US</a></li>
+                                            <li><a href="blog.html">Blog</a></li>
+                                            <li><a href="blog-left-sidebar.html">Blog left sidebar</a></li>
+                                            <li><a href="blog-right-sidebar.html">Blog right sidebar</a></li>
+                                            <li><a href="blog-details.html">Blog details</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="column-2 column">
+                                        <ul>
+                                            <li><a href="cart.html">Cart</a></li>
+                                            <li><a href="checkout.html">Checkout</a></li>
+                                            <li><a href="coming-soon.html">Coming soon</a></li>
+                                            <li><a href="contact.html">Contact</a></li>
+                                            <li><a href="contact-2.html">Contact 2</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="column-3 column">
+                                        <ul>
+                                            <li><a href="faq.html">FAQ</a></li>
+                                            <li><a href="login.html">Login</a></li>
+                                            <li><a href="portfolio.html">Portfolio 3 column</a></li>
+                                            <li><a href="portfolio-2.html">Portfolio 4 column</a></li>
+                                            <li><a href="404.html">404</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="column-4 column">
+                                        <ul>
+                                            <li><a href="shop.html">Shop</a></li>
+                                            <li><a href="shop-list.html">Shop list</a></li>
+                                            <li><a href="shop-left-sidebar.html">Shop left sidebar</a></li>
+                                            <li><a href="shop-right-sidebar.html">Shop right sidebar</a></li>
+                                            <li><a href="product-details.html">Product details</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li><a href="shop.html">Shop</a>
+                                <div class="mega-menu mega-menu-1">
+                                    <div class="column-1 column">
+                                        <ul>
+                                            <li><a href="shop-list.html">rings</a></li>
+                                            <li><a href="shop-left-sidebar.html">diamond ring</a></li>
+                                            <li><a href="shop-right-sidebar.html">gold ring</a></li>
+                                            <li><a href="shop-list.html">sliver ring</a></li>
+                                            <li><a href="shop-left-sidebar.html">Platinum ring</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="column-2 column">
+                                        <ul>
+                                            <li><a href="shop-list.html">Bracelets</a></li>
+                                            <li><a href="shop-left-sidebar.html">diamond Bracelets</a></li>
+                                            <li><a href="shop-right-sidebar.html">gold Bracelets</a></li>
+                                            <li><a href="shop-left-sidebar.html">sliver Bracelets</a></li>
+                                            <li><a href="shop-right-sidebar.html">Platinum Bracelets</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="column-3 column">
+                                        <ul>
+                                            <li><a href="shop-list.html">lecklaces</a></li>
+                                            <li><a href="shop-right-sidebar.html">diamond lecklaces</a></li>
+                                            <li><a href="shop-left-sidebar.html">gold lecklaces</a></li>
+                                            <li><a href="shop-right-sidebar.html">sliver lecklaces</a></li>
+                                            <li><a href="shop-left-sidebar.html">Platinum lecklaces</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="column-4 column">
+                                        <a href="#"><img src="" alt="" /></a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li><a href="about-us.html">About Us</a></li>
+                            <li><a href="contact.html">Contact</a>
+                                <ul class="sub-menu">
+                                    <li><a href="contact.html">Contact 1</a></li>
+                                    <li><a href="contact-2.html">Contact 2</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <!--<div class="mobile-menu hidden-md hidden-lg">-->
+                    <!--<nav>-->
+                        <!--<ul>-->
+                            <!--<li>-->
+                                <!--<a href="index.html" class="active">Home</a>-->
+                            <!--</li>-->
+                            <!--<li><a href="#">Pages</a>-->
+                                <!--<ul>-->
+                                    <!--<li><a href="cart.html">Cart</a></li>-->
+                                    <!--<li><a href="checkout.html">Checkout</a></li>-->
+                                    <!--<li><a href="faq.html">FAQ</a></li>-->
+                                    <!--<li><a href="login.html">Login</a></li>-->
+                                    <!--<li><a href="404.html">404</a></li>-->
+                                    <!--<li><a href="shop.html">Shop</a></li>-->
+                                    <!--<li><a href="shop-list.html">Shop list</a></li>-->
+                                <!--</ul>-->
+                            <!--</li>-->
+                            <!--<li><a href="shop.html">Shop</a>-->
+                                <!--<ul>-->
+                                    <!--<li><a href="shop-list.html">rings</a>-->
+                                        <!--<ul>-->
+                                            <!--<li><a href="shop-left-sidebar.html">diamond ring</a></li>-->
+                                            <!--<li><a href="shop-right-sidebar.html">gold ring</a></li>-->
+                                            <!--<li><a href="shop-list.html">sliver ring</a></li>-->
+                                            <!--<li><a href="shop-left-sidebar.html">Platinum ring</a></li>-->
+                                        <!--</ul>-->
+                                    <!--</li>-->
+                                    <!--<li><a href="shop-list.html">Bracelets</a>-->
+                                        <!--<ul>-->
+                                            <!--<li><a href="shop-left-sidebar.html">diamond Bracelets</a></li>-->
+                                            <!--<li><a href="shop-right-sidebar.html">gold Bracelets</a></li>-->
+                                            <!--<li><a href="shop-left-sidebar.html">sliver Bracelets</a></li>-->
+                                            <!--<li><a href="shop-right-sidebar.html">Platinum Bracelets</a></li>-->
+                                        <!--</ul>-->
+                                    <!--</li>-->
+                                    <!--<li><a href="shop-list.html">lecklaces</a>-->
+                                        <!--<ul>-->
+                                            <!--<li><a href="shop-right-sidebar.html">diamond lecklaces</a></li>-->
+                                            <!--<li><a href="shop-left-sidebar.html">gold lecklaces</a></li>-->
+                                            <!--<li><a href="shop-right-sidebar.html">sliver lecklaces</a></li>-->
+                                            <!--<li><a href="shop-left-sidebar.html">Platinum lecklaces</a></li>-->
+                                        <!--</ul>-->
+                                    <!--</li>-->
+                                <!--</ul>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<a href="about-us.html">About Us</a></li>-->
+                            <!--<li>-->
+                                <!--<a href="contact.html">Contact</a>-->
+                            <!--</li>-->
+                        <!--</ul>-->
+                    <!--</nav>-->
+                <!--</div>-->
+            </div>
+        </div>
     </div>
-    <div class="navbar-collapse collapse" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="isAuthenticated()">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
-                    <i class="fa fa-home" aria-hidden="true"></i>
-                    <span>Home</span>
-                </a>
-            </li>
-            <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
-            <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
-                    <span>
-                        <i class="fa fa-th-list" aria-hidden="true"></i>
-                        <span>
-                            Entities
-                        </span>
-                        <b class="caret"></b>
-                    </span>
-                </a>
-                <ul class="dropdown-menu" ngbDropdownMenu>
-                    <li>
-                        <a class="dropdown-item" routerLink="customer" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Customer</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="login-options" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Login Options</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="static-pages" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Static Pages</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="manager" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Manager</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="bucket" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Bucket</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="address-shipping" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Address Shipping</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="seen" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Seen</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="wish-list" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Wish List</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="address" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Address</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="avatar" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Avatar</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="personal-information" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Personal Information</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="products" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Products</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="tags" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Tags</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="consignment" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Consignment</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="storage" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Storage</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="producers" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Producers</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="category" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Category</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="sub-category" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Sub Category</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="media" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Media</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="comments" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Comments</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="options" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Options</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="tag-for-product" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Tag For Product</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="product-in-bucket" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Product In Bucket</span>
-                        </a>
-                    </li>
-                    <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
-                </ul>
-            </li>
-            <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="admin-menu">
-                    <span>
-                        <i class="fa fa-user-plus" aria-hidden="true"></i>
-                        <span>Administration</span>
-                        <b class="caret"></b>
-                    </span>
-                </a>
-                <ul class="dropdown-menu" ngbDropdownMenu>
-                    <li>
-                        <a class="dropdown-item" routerLink="user-management" routerLinkActive="active" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-user" aria-hidden="true"></i>
-                            <span>User management</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="jhi-tracker" routerLinkActive="active" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-eye" aria-hidden="true"></i>
-                            <span>User tracker</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="jhi-metrics" routerLinkActive="active" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-tachometer" aria-hidden="true"></i>
-                            <span>Metrics</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="jhi-health" routerLinkActive="active" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-heart" aria-hidden="true"></i>
-                            <span>Health</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="jhi-configuration" routerLinkActive="active" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-list" aria-hidden="true"></i>
-                            <span>Configuration</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="audits" routerLinkActive="active" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-bell" aria-hidden="true"></i>
-                            <span>Audits</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="logs" routerLinkActive="active" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-tasks" aria-hidden="true"></i>
-                            <span>Logs</span>
-                        </a>
-                    </li>
-                    <li *ngIf="swaggerEnabled">
-                        <a class="dropdown-item" routerLink="docs" routerLinkActive="active" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-book" aria-hidden="true"></i>
-                            <span>API</span>
-                        </a>
-                    </li>
-                    <!-- jhipster-needle-add-element-to-admin-menu - JHipster will add entities to the admin menu here -->
-                    <li *ngIf="!inProduction">
-                        <a class="dropdown-item" href='./h2-console' target="_tab" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-hdd-o" aria-hidden="true"></i>
-                            <span>Database</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="account-menu">
-                  <span *ngIf="!getImageUrl()">
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                    <span>
-                      Account
-                    </span>
-                    <b class="caret"></b>
-                  </span>
-                  <span *ngIf="getImageUrl()">
-                      <img [src]="getImageUrl()" class="profile-image img-circle" alt="Avatar">
-                  </span>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-right" ngbDropdownMenu>
-                    <li *ngSwitchCase="true">
-                        <a class="dropdown-item" routerLink="settings" routerLinkActive="active" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-wrench" aria-hidden="true"></i>
-                            <span>Settings</span>
-                        </a>
-                    </li>
-                    <li *ngSwitchCase="true">
-                        <a class="dropdown-item" routerLink="password" routerLinkActive="active" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-clock-o" aria-hidden="true"></i>
-                            <span>Password</span>
-                        </a>
-                    </li>
-                    <li *ngSwitchCase="true">
-                        <a class="dropdown-item" routerLink="sessions" routerLinkActive="active" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-cloud" aria-hidden="true"></i>
-                            <span>Sessions</span>
-                        </a>
-                    </li>
-                    <li *ngSwitchCase="true">
-                        <a class="dropdown-item" (click)="logout()" id="logout">
-                            <i class="fa fa-fw fa-sign-out" aria-hidden="true"></i>
-                            <span>Sign out</span>
-                        </a>
-                    </li>
-                    <li *ngSwitchCase="false">
-                        <a class="dropdown-item" (click)="login()" id="login">
-                            <i class="fa fa-fw fa-sign-in" aria-hidden="true"></i>
-                            <span>Sign in</span>
-                        </a>
-                    </li>
-                    <li *ngSwitchCase="false">
-                        <a class="dropdown-item" routerLink="register" routerLinkActive="active" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-registered" aria-hidden="true"></i>
-                            <span>Register</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-</nav>
+</div><!--End Main Menu Area-->
+

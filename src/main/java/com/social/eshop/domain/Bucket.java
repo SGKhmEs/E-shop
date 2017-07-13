@@ -68,6 +68,11 @@ public class Bucket implements Serializable {
     @ManyToOne
     private Customer customer;
 
+    public Bucket() {
+        this.date = ZonedDateTime.now();
+        this.status = Status.WAIT;
+    }
+
     public Long getId() {
         return id;
     }
