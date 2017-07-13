@@ -1,0 +1,61 @@
+h2 {
+    background: #fff none repeat scroll 0 0;
+    color: #e09e25;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    padding: 15px 20px;
+    text-align: center;
+    text-transform: uppercase;
+
+
+}
+
+/*.sin-shop-sidebar*/
+/*.shop-tags */
+ul li a {
+    border: 1px solid #eee;
+    color: #666;
+    font-size: 11px !important;
+    font-weight: 700;
+    margin: 0 5px 5px 0;
+    padding: 5px 9px ;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+/*.sin-shop-sidebar*/
+/*.shop-tags */
+ul li a:hover {
+    background: #e09e25;
+    border: 1px solid #e09e25;
+    color: #fff ;
+}
+
+/*.shop-tags */
+ul {
+    padding: 15px;
+}
+/*.shop-tags */
+ul li {
+    border: medium none;
+    display: inline-block;
+    margin: 0 0 5px;
+}
+/*.sin-shop-sidebar.shop-tags */
+ul li a, #tags a, #custom-tags a {
+    border: 1px solid #eee;
+    color: #666;
+    font-size: 11px !important;
+    font-weight: 700;
+    margin: 0 5px 5px 0;
+    padding: 5px 9px ;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+/*.sin-shop-sidebar.shop-tags */
+ul li a:hover, #tags a:hover, #custom-tags a:hover {
+    background: #e09e25;
+    border: 1px solid #e09e25;
+    color: #fff ;
+}

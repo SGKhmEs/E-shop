@@ -6,7 +6,10 @@ import {ResponseWrapper} from "../../../shared/model/response-wrapper.model";
 
 @Component({
     selector: 'jhi-product',
-    templateUrl: './products.component.html'
+    templateUrl: './products.component.html',
+    styleUrls: [
+        'products-component.css'
+    ]
 })
 export class ProductsComponent implements OnInit, OnDestroy {
     private itemProduct: Products[];
