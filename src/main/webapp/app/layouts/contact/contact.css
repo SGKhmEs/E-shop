@@ -1,8 +1,10 @@
 .contact-page.page.fix{
-    margin-top: 25px;
-    margin-bottom: 25px;
+    background: #ebebeb none repeat scroll 0 0;
+    padding:  25px 0 0 0;
+
 }
 .contact_area {
+
     padding: 40px 0 70px;
 }
 #googleMap {
