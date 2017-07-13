@@ -8,6 +8,7 @@ import {notfoundRouter} from "./404/notfound.route";
 import {shopListRouter} from "./shop-list/shop-list.route";
 import {aboutUsRoute} from "./aboutUs/aboutUs.route";
 import {contactRoute} from "./contact/contact.route";
+import {faqRoute} from "./FAQ/faq.route";
 
 const LAYOUT_ROUTES = [
     //navbarRoute,
@@ -17,6 +18,8 @@ const LAYOUT_ROUTES = [
     ...errorRoute,
     ...aboutUsRoute,
     //sliderRoute,
+    ...contactRoute,
+    ...faqRoute,
     ...contactRoute
 ];
 

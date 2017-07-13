@@ -8,7 +8,7 @@ import { StateStorageService } from '../../shared';
     selector: 'jhi-main',
     templateUrl: './main.component.html',
     styleUrls: [
-        './../../../content/css/font-awesome.min.css'
+        'main.component.css'
     ]
 })
 export class JhiMainComponent implements OnInit {

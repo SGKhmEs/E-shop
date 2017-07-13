@@ -8,6 +8,16 @@
     font-weight: 700;
     text-transform: uppercase;
 }
+.fix{
+    overflow:hidden;
+}
+.overlay {
+    background: rgba(224,158,37,0.8);
+}
+.section {
+    padding: 80px 0;
+}
+
 .shop-product-area {
     padding-bottom: 0;
 }
@@ -39,223 +49,12 @@
     color: #fff;
 }
 .view-mode > a i{}
-.sort-by, .show-product{
-    padding: 3px 0;
-}
-.sort-by {
-    margin-right: 15px;
-}
-.show-product{}
-.sort-by span, .show-product span {
-    color: #5b5b5b;
-    font-size: 16px;
-    font-weight: 500;
-    margin-right: 5px;
-}
-.sort-by select, .show-product select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background: #fff url("../../../content/images/bottom-arrow.png") no-repeat scroll 90% center;
-    border: 1px solid #d7d7d7;
-    color: #515151;
-    font-size: 16px;
-    font-weight: 500;
-    padding: 0 5px;
-    text-transform: capitalize;
-}
-.show-product select {
-    background-position: 80% center;
-    margin-right: 5px;
-    min-width: 55px;
-}
-.sort-by select option, .show-product select option{
-    padding: 2px 5px;
-}
-.pro-Showing {
-    float: right;
-    margin: 7px 0;
-}
-.hot-pro, .new-pro {
-    display: inline-block;
-    position: absolute;
-    right: 10px;
-    top: 0;
-    z-index: 9999;
-}
-.hot-pro img, .new-pro img{}
-.pagination {
-    border-radius: 0;
-    clear: both;
-    display: block;
-    margin-bottom: 0;
-    text-align: center;
-    width: 100%;
-}
-.pagination ul {
-    display: inline-block;
-    list-style: outside none none;
-    margin: 0;
-}
-.pagination ul li {
-    display: block;
-    float: left;
-    margin: 0 5px;
-}
-.pagination ul li a, .pagination ul li span {
-    background: #fff none repeat scroll 0 0;
-    color: #e09e25;
-    display: block;
-    font-weight: 600;
-    height: 30px;
-    line-height: 30px;
-    width: 30px;
-}
-.pagination ul li a i {
-    font-size: 24px;
-    line-height: 30px;
-}
-.pagination ul li span{}
-.pagination ul li.active{}
-.pagination ul li.active span, .pagination ul li a:hover {
-    background: #e09e25 none repeat scroll 0 0;
-    color: #fff;
-}
+
+
 /*-----------------------
 	6. Shop List Page
 -------------------------*/
-.single-list-product {
-    margin-bottom: 30px;
-}
-.list-pro-image {
-    float: left;
-    margin-right: 30px;
-    width: 270px;
-}
-.list-pro-image a {
-    display: block;
-    position: relative;
-}
-.list-pro-image a::before {
-    background: #e09e25 none repeat scroll 0 0;
-    content: "";
-    height: 100%;
-    left: 0;
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    -webkit-transition: all 0.3s ease 0s;
-    -o-transition: all 0.3s ease 0s;
-    transition: all 0.3s ease 0s;
-    width: 100%;
-    z-index: 99;
-}
-.list-pro-image a img{}
-.single-list-product:hover .list-pro-image a::before {
-    opacity: 0.6;
-}
-.list-pro-des{}
-.list-pro-des .pro-name {
-    display: block;
-    float: none;
-    font-size: 20px;
-    font-weight: 500;
-    margin-bottom: 10px;
-    margin-top: 10px;
-}
-.list-pro-des .pro-name:hover {
-    color: #e09e25;
-}
-.list-pro-des .pro-ratting {
-    float: left;
-    margin-bottom: 10px;
-}
-.list-pro-des .pro-ratting i{}
-.list-pro-des p {
-    clear: both;
-    font-size: 14px;
-    line-height: 24px;
-    margin-bottom: 20px;
-}
-.list-pro-price {
-    float: right;
-    margin-bottom: 25px;
-}
-.list-pro-price .new{}
-.list-pro-price .old {
-    margin-left: 25px;
-    text-decoration: line-through;
-}
-.list-actions-btn{}
-.list-actions-btn a {
-    background: #fff none repeat scroll 0 0;
-    color: #3e3f3f;
-    display: block;
-    float: left;
-    height: 35px;
-    line-height: 35px;
-    text-align: center;
-    width: 40px;
-}
-.list-actions-btn a:hover {
-    background: #E09E25 none repeat scroll 0 0;
-    color: #fff;
-}
-.list-actions-btn a i{}
 
-.sin-shop-sidebar {
-    margin-bottom: 30px;
-}
-.sin-shop-sidebar h2 {
-    background: #fff none repeat scroll 0 0;
-    color: #e09e25;
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 15px;
-    padding: 15px 20px;
-    text-align: center;
-    text-transform: uppercase;
-}
-.sin-shop-sidebar > a {
-    display: block;
-    position: relative;
-}
-.sin-shop-sidebar > a::before {
-    background-color: rgba(255, 255, 255, 0.15);
-    content: "";
-    height: 0;
-    left: 0;
-    margin: auto;
-    position: absolute;
-    top: 0;
-    -webkit-transition: all 0.3s ease 0s;
-    -o-transition: all 0.3s ease 0s;
-    transition: all 0.3s ease 0s;
-    width: 0;
-    z-index: 1;
-}
-.sin-shop-sidebar > a::after {
-    background-color: rgba(255, 255, 255, 0.15);
-    bottom: 0;
-    content: "";
-    height: 0;
-    position: absolute;
-    right: 0;
-    -webkit-transition: all 0.3s ease 0s;
-    -o-transition: all 0.3s ease 0s;
-    transition: all 0.3s ease 0s;
-    width: 0;
-}
-.sin-shop-sidebar > a:hover::before, .sin-shop-sidebar > a:hover::after {
-    height: 100%;
-    -webkit-transition: all 0.4s ease 0s;
-    -o-transition: all 0.4s ease 0s;
-    transition: all 0.4s ease 0s;
-    width: 100%;
-}
-.sin-shop-sidebar > a img {
-    width: 100%;
-}
 .slider-range-container {
     background: #fff none repeat scroll 0 0;
     display: block;
@@ -286,47 +85,16 @@
     font-size: 14px;
     font-weight: 700;
 }
-.sin-shop-sidebar ul {
-    background: #fff none repeat scroll 0 0;
-    margin: 0;
-    padding: 0;
+
+
+.pro-ratting {
+    float: left;
+    margin-bottom: 10px;
 }
-.sin-shop-sidebar ul li {
-    border-bottom: 1px solid #eee;
-}
-.sin-shop-sidebar ul li a {
-    color: #515151;
-    display: block;
-    font-size: 13px;
-    font-weight: 600;
-    padding: 15px 20px;
-    text-transform: uppercase;
-}
-.sin-shop-sidebar ul li a:hover {
-    background: #e09e25 none repeat scroll 0 0;
-    color: #fff;
-    padding-left: 30px;
-}
-.shop-tags ul {
-    padding: 15px;
-}
-.shop-tags ul li {
-    border: medium none;
-    display: inline-block;
-    margin: 0 0 5px;
-}
-.sin-shop-sidebar.shop-tags ul li a, #tags a, #custom-tags a {
-    border: 1px solid #eee;
-    color: #666;
-    font-size: 11px !important;
-    font-weight: 700;
-    margin: 0 5px 5px 0;
-    padding: 5px 9px ;
-    text-decoration: none;
-    text-transform: uppercase;
-}
-.sin-shop-sidebar.shop-tags ul li a:hover, #tags a:hover, #custom-tags a:hover {
-    background: #e09e25;
-    border: 1px solid #e09e25;
-    color: #fff ;
+
+.pro-ratting i, p {
+    clear: both;
+    font-size: 14px;
+    line-height: 24px;
+    margin-bottom: 20px;
 }

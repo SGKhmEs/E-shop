@@ -47,6 +47,9 @@ import {ContactUsComponent} from "./layouts/contact/contactUs/contactus.componen
 import {ContactTitleComponent} from "./layouts/contact/contact.title/title.component";
 import { AgmCoreModule } from '@agm/core';
 import {GoogleMapComponent} from "./layouts/contact/googleMaps/googleMaps.component";
+import {FaqTitleComponent} from './layouts/FAQ/faqTitle/faqTitle.component';
+import {QuestionComponent} from './layouts/FAQ/question/question.component';
+import {FAQComponent} from './layouts/FAQ/faq.component';
 
 @NgModule({
     imports: [
@@ -89,7 +92,9 @@ import {GoogleMapComponent} from "./layouts/contact/googleMaps/googleMaps.compon
         ContactUsComponent,
         ContactTitleComponent,
         GoogleMapComponent,
-     
+        FaqTitleComponent,
+        QuestionComponent,
+        FAQComponent
     ],
     providers: [
         ProfileService,
