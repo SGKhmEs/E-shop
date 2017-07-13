@@ -1,5 +1,6 @@
 package com.social.eshop.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -20,8 +21,8 @@ public class Avatar implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-    @SequenceGenerator(name = "sequenceGenerator")
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
+//    @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
     @Lob
@@ -30,6 +31,16 @@ public class Avatar implements Serializable {
 
     @Column(name = "users_image_content_type")
     private String usersImageContentType;
+
+    @JsonIgnore
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Customer customer;
+
+    @JsonIgnore
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Manager manager;
 
     public Long getId() {
         return id;
@@ -63,6 +74,32 @@ public class Avatar implements Serializable {
 
     public void setUsersImageContentType(String usersImageContentType) {
         this.usersImageContentType = usersImageContentType;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public Avatar customer(Customer customer) {
+        this.customer = customer;
+        return this;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Manager getManager() {
+        return manager;
+    }
+
+    public Avatar manager(Manager manager) {
+        this.manager = manager;
+        return this;
+    }
+
+    public void setManager(Manager manager) {
+        this.manager = manager;
     }
 
     @Override

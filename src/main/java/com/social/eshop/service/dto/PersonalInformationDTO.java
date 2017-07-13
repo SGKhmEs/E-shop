@@ -2,8 +2,9 @@ package com.social.eshop.service.dto;
 
 
 import java.time.LocalDate;
-import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 import com.social.eshop.domain.enumeration.Sex;
 
@@ -14,23 +15,23 @@ public class PersonalInformationDTO implements Serializable {
 
     private Long id;
 
-    @NotNull
     private String firstName;
 
-    @NotNull
     private String lastName;
 
     private String middleName;
 
     private Sex sex;
 
-    @NotNull
     private String phone;
 
-    @NotNull
     private String email;
 
     private LocalDate dateBirth;
+
+    private Long customerId;
+
+    private Long managerId;
 
     public Long getId() {
         return id;
@@ -94,6 +95,22 @@ public class PersonalInformationDTO implements Serializable {
 
     public void setDateBirth(LocalDate dateBirth) {
         this.dateBirth = dateBirth;
+    }
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
+    }
+
+    public Long getManagerId() {
+        return managerId;
+    }
+
+    public void setManagerId(Long managerId) {
+        this.managerId = managerId;
     }
 
     @Override

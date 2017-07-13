@@ -28,6 +28,8 @@ public class CustomerDTO implements Serializable {
 
     private Long avatarId;
 
+    private Long customerAccountId;
+
     public Long getId() {
         return id;
     }
@@ -90,6 +92,14 @@ public class CustomerDTO implements Serializable {
 
     public void setAvatarId(Long avatarId) {
         this.avatarId = avatarId;
+    }
+
+    public Long getCustomerAccountId() {
+        return customerAccountId;
+    }
+
+    public void setCustomerAccountId(Long customerAccountId) {
+        this.customerAccountId = customerAccountId;
     }
 
     @Override
