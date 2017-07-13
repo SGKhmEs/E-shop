@@ -88,7 +88,8 @@ import {GoogleMapComponent} from "./layouts/contact/googleMaps/googleMaps.compon
         ContactComponent,
         ContactUsComponent,
         ContactTitleComponent,
-        GoogleMapComponent
+        GoogleMapComponent,
+     
     ],
     providers: [
         ProfileService,
