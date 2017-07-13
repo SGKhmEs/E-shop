@@ -144,4 +144,20 @@ public class BucketResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
+    /**
+     * GET  /buckets/customer/:id  : get all the buckets.
+     * @param id the id of the c.0ustomer to find
+     * @param pageable the paginat
+     *                 ion information
+     * @return the ResponseEntity with status 200 (OK) and the list of products in body
+     */
+    @GetMapping("/buckets/customer/{id}")
+    @Timed
+    public ResponseEntity<List<BucketDTO>> getAllBucketsWithCustomer(@PathVariable Long id, @ApiParam Pageable pageable) {
+        log.debug("REST request to get a page of Products", id);
+        List<BucketDTO> list = bucketService.findAllBucketsWithCustomer(id);
+        //   HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(  "/api/products/category/{id}");
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+
 }

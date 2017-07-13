@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -46,7 +45,7 @@ public class PersonalInformationResource {
      */
     @PostMapping("/personal-informations")
     @Timed
-    public ResponseEntity<PersonalInformationDTO> createPersonalInformation(@Valid @RequestBody PersonalInformationDTO personalInformationDTO) throws URISyntaxException {
+    public ResponseEntity<PersonalInformationDTO> createPersonalInformation(@RequestBody PersonalInformationDTO personalInformationDTO) throws URISyntaxException {
         log.debug("REST request to save PersonalInformation : {}", personalInformationDTO);
         if (personalInformationDTO.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new personalInformation cannot already have an ID")).body(null);
@@ -68,7 +67,7 @@ public class PersonalInformationResource {
      */
     @PutMapping("/personal-informations")
     @Timed
-    public ResponseEntity<PersonalInformationDTO> updatePersonalInformation(@Valid @RequestBody PersonalInformationDTO personalInformationDTO) throws URISyntaxException {
+    public ResponseEntity<PersonalInformationDTO> updatePersonalInformation(@RequestBody PersonalInformationDTO personalInformationDTO) throws URISyntaxException {
         log.debug("REST request to update PersonalInformation : {}", personalInformationDTO);
         if (personalInformationDTO.getId() == null) {
             return createPersonalInformation(personalInformationDTO);

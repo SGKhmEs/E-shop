@@ -25,8 +25,8 @@ public class Customer implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-    @SequenceGenerator(name = "sequenceGenerator")
+ //   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
+ //   @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
     @Column(name = "sub_scription")
@@ -63,12 +63,30 @@ public class Customer implements Serializable {
     @OneToMany(mappedBy = "customer")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Bucket> buckets = new HashSet<>();
+
+    @OneToMany(mappedBy = "customer")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<WishList> wishLists = new HashSet<>();
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    private CustomerAccount customerAccount;
 
     @OneToMany(mappedBy = "customer")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Comments> comments = new HashSet<>();
+
+    public Customer() {
+    }
+
+    public Customer(Long id ) {
+        this.id = id;
+        this.subScription = false;
+        this.sosialConnect = SocialConnect.DEFAULT;
+    }
 
     public Long getId() {
         return id;
@@ -194,6 +212,31 @@ public class Customer implements Serializable {
         this.seens = seens;
     }
 
+    public Set<Bucket> getBuckets() {
+        return buckets;
+    }
+
+    public Customer buckets(Set<Bucket> buckets) {
+        this.buckets = buckets;
+        return this;
+    }
+
+    public Customer addBucket(Bucket bucket) {
+        this.buckets.add(bucket);
+        bucket.setCustomer(this);
+        return this;
+    }
+
+    public Customer removeBucket(Bucket bucket) {
+        this.buckets.remove(bucket);
+        bucket.setCustomer(null);
+        return this;
+    }
+
+    public void setBuckets(Set<Bucket> buckets) {
+        this.buckets = buckets;
+    }
+
     public Set<WishList> getWishLists() {
         return wishLists;
     }
@@ -217,6 +260,19 @@ public class Customer implements Serializable {
 
     public void setWishLists(Set<WishList> wishLists) {
         this.wishLists = wishLists;
+    }
+
+    public CustomerAccount getCustomerAccount() {
+        return customerAccount;
+    }
+
+    public Customer customerAccount(CustomerAccount customerAccount) {
+        this.customerAccount = customerAccount;
+        return this;
+    }
+
+    public void setCustomerAccount(CustomerAccount customerAccount) {
+        this.customerAccount = customerAccount;
     }
 
     public Set<Comments> getComments() {
