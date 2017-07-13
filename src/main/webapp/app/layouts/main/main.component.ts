@@ -16,7 +16,7 @@ export class JhiMainComponent implements OnInit {
     constructor(
         private titleService: Title,
         private router: Router,
-        private $storageService: StateStorageService,
+        private $storageService: StateStorageService
     ) {}
 
     private getPageTitle(routeSnapshot: ActivatedRouteSnapshot) {

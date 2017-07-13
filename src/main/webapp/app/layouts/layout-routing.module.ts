@@ -15,9 +15,9 @@ const LAYOUT_ROUTES = [
   
     ...notfoundRouter,
     ...errorRoute,
-    ...aboutUsRoute
+    ...aboutUsRoute,
     //sliderRoute,
-    ...errorRoute,
+   
     ...contactRoute
 ];
 
