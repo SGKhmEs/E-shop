@@ -9,11 +9,7 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { Media } from './media.model';
 import { MediaPopupService } from './media-popup.service';
 import { MediaService } from './media.service';
-<<<<<<< HEAD
 import { Products, ProductsService } from '../products';
-=======
-import { Comments, CommentsService } from '../comments';
->>>>>>> with_entities
 import { ResponseWrapper } from '../../shared';
 
 @Component({
@@ -26,42 +22,24 @@ export class MediaDialogComponent implements OnInit {
     authorities: any[];
     isSaving: boolean;
 
-<<<<<<< HEAD
     products: Products[];
-=======
-    comments: Comments[];
->>>>>>> with_entities
 
     constructor(
         public activeModal: NgbActiveModal,
         private alertService: JhiAlertService,
         private mediaService: MediaService,
-<<<<<<< HEAD
         private productsService: ProductsService,
-<<<<<<< HEAD
-=======
-        private commentsService: CommentsService,
->>>>>>> with_entities
-        private eventManager: EventManager
-=======
         private eventManager: JhiEventManager
->>>>>>> creatingDtos
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
-<<<<<<< HEAD
         this.productsService.query()
             .subscribe((res: ResponseWrapper) => { this.products = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
-=======
-        this.commentsService.query()
-            .subscribe((res: ResponseWrapper) => { this.comments = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
-    }
->>>>>>> with_entities
     clear() {
         this.activeModal.dismiss('cancel');
     }
@@ -70,7 +48,6 @@ export class MediaDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.media.id !== undefined) {
             this.subscribeToSaveResponse(
-<<<<<<< HEAD
                 this.mediaService.update(this.media), false);
         } else {
             this.subscribeToSaveResponse(
@@ -89,21 +66,6 @@ export class MediaDialogComponent implements OnInit {
             : `A Media is updated with identifier ${result.id}`,
             null, null);
 
-=======
-                this.mediaService.update(this.media));
-        } else {
-            this.subscribeToSaveResponse(
-                this.mediaService.create(this.media));
-        }
-    }
-
-    private subscribeToSaveResponse(result: Observable<Media>) {
-        result.subscribe((res: Media) =>
-            this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
-    }
-
-    private onSaveSuccess(result: Media) {
->>>>>>> with_entities
         this.eventManager.broadcast({ name: 'mediaListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
@@ -123,11 +85,7 @@ export class MediaDialogComponent implements OnInit {
         this.alertService.error(error.message, null, null);
     }
 
-<<<<<<< HEAD
     trackProductsById(index: number, item: Products) {
-=======
-    trackCommentsById(index: number, item: Comments) {
->>>>>>> with_entities
         return item.id;
     }
 }

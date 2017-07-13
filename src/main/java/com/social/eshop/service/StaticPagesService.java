@@ -1,6 +1,6 @@
 package com.social.eshop.service;
 
-import com.social.eshop.domain.StaticPages;
+import com.social.eshop.service.dto.StaticPagesDTO;
 import java.util.List;
 
 /**
@@ -11,17 +11,17 @@ public interface StaticPagesService {
     /**
      * Save a staticPages.
      *
-     * @param staticPages the entity to save
+     * @param staticPagesDTO the entity to save
      * @return the persisted entity
      */
-    StaticPages save(StaticPages staticPages);
+    StaticPagesDTO save(StaticPagesDTO staticPagesDTO);
 
     /**
      *  Get all the staticPages.
      *
      *  @return the list of entities
      */
-    List<StaticPages> findAll();
+    List<StaticPagesDTO> findAll();
 
     /**
      *  Get the "id" staticPages.
@@ -29,7 +29,7 @@ public interface StaticPagesService {
      *  @param id the id of the entity
      *  @return the entity
      */
-    StaticPages findOne(Long id);
+    StaticPagesDTO findOne(Long id);
 
     /**
      *  Delete the "id" staticPages.
@@ -45,5 +45,5 @@ public interface StaticPagesService {
      *  
      *  @return the list of entities
      */
-    List<StaticPages> search(String query);
+    List<StaticPagesDTO> search(String query);
 }

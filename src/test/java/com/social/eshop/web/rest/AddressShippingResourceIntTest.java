@@ -6,11 +6,8 @@ import com.social.eshop.domain.AddressShipping;
 import com.social.eshop.repository.AddressShippingRepository;
 import com.social.eshop.service.AddressShippingService;
 import com.social.eshop.repository.search.AddressShippingSearchRepository;
-<<<<<<< HEAD
-=======
 import com.social.eshop.service.dto.AddressShippingDTO;
 import com.social.eshop.service.mapper.AddressShippingMapper;
->>>>>>> with_entities
 import com.social.eshop.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -69,12 +66,9 @@ public class AddressShippingResourceIntTest {
     private AddressShippingRepository addressShippingRepository;
 
     @Autowired
-<<<<<<< HEAD
-=======
     private AddressShippingMapper addressShippingMapper;
 
     @Autowired
->>>>>>> with_entities
     private AddressShippingService addressShippingService;
 
     @Autowired
@@ -136,16 +130,10 @@ public class AddressShippingResourceIntTest {
         int databaseSizeBeforeCreate = addressShippingRepository.findAll().size();
 
         // Create the AddressShipping
-<<<<<<< HEAD
-        restAddressShippingMockMvc.perform(post("/api/address-shippings")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(addressShipping)))
-=======
         AddressShippingDTO addressShippingDTO = addressShippingMapper.toDto(addressShipping);
         restAddressShippingMockMvc.perform(post("/api/address-shippings")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(addressShippingDTO)))
->>>>>>> with_entities
             .andExpect(status().isCreated());
 
         // Validate the AddressShipping in the database
@@ -172,19 +160,12 @@ public class AddressShippingResourceIntTest {
 
         // Create the AddressShipping with an existing ID
         addressShipping.setId(1L);
-<<<<<<< HEAD
-=======
         AddressShippingDTO addressShippingDTO = addressShippingMapper.toDto(addressShipping);
->>>>>>> with_entities
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restAddressShippingMockMvc.perform(post("/api/address-shippings")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-<<<<<<< HEAD
-            .content(TestUtil.convertObjectToJsonBytes(addressShipping)))
-=======
             .content(TestUtil.convertObjectToJsonBytes(addressShippingDTO)))
->>>>>>> with_entities
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -200,18 +181,11 @@ public class AddressShippingResourceIntTest {
         addressShipping.setCountry(null);
 
         // Create the AddressShipping, which fails.
-<<<<<<< HEAD
-
-        restAddressShippingMockMvc.perform(post("/api/address-shippings")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(addressShipping)))
-=======
         AddressShippingDTO addressShippingDTO = addressShippingMapper.toDto(addressShipping);
 
         restAddressShippingMockMvc.perform(post("/api/address-shippings")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(addressShippingDTO)))
->>>>>>> with_entities
             .andExpect(status().isBadRequest());
 
         List<AddressShipping> addressShippingList = addressShippingRepository.findAll();
@@ -226,18 +200,11 @@ public class AddressShippingResourceIntTest {
         addressShipping.setCity(null);
 
         // Create the AddressShipping, which fails.
-<<<<<<< HEAD
-
-        restAddressShippingMockMvc.perform(post("/api/address-shippings")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(addressShipping)))
-=======
         AddressShippingDTO addressShippingDTO = addressShippingMapper.toDto(addressShipping);
 
         restAddressShippingMockMvc.perform(post("/api/address-shippings")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(addressShippingDTO)))
->>>>>>> with_entities
             .andExpect(status().isBadRequest());
 
         List<AddressShipping> addressShippingList = addressShippingRepository.findAll();
@@ -252,18 +219,11 @@ public class AddressShippingResourceIntTest {
         addressShipping.setStreet(null);
 
         // Create the AddressShipping, which fails.
-<<<<<<< HEAD
-
-        restAddressShippingMockMvc.perform(post("/api/address-shippings")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(addressShipping)))
-=======
         AddressShippingDTO addressShippingDTO = addressShippingMapper.toDto(addressShipping);
 
         restAddressShippingMockMvc.perform(post("/api/address-shippings")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(addressShippingDTO)))
->>>>>>> with_entities
             .andExpect(status().isBadRequest());
 
         List<AddressShipping> addressShippingList = addressShippingRepository.findAll();
@@ -278,18 +238,11 @@ public class AddressShippingResourceIntTest {
         addressShipping.setBuilding(null);
 
         // Create the AddressShipping, which fails.
-<<<<<<< HEAD
-
-        restAddressShippingMockMvc.perform(post("/api/address-shippings")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(addressShipping)))
-=======
         AddressShippingDTO addressShippingDTO = addressShippingMapper.toDto(addressShipping);
 
         restAddressShippingMockMvc.perform(post("/api/address-shippings")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(addressShippingDTO)))
->>>>>>> with_entities
             .andExpect(status().isBadRequest());
 
         List<AddressShipping> addressShippingList = addressShippingRepository.findAll();
@@ -348,13 +301,8 @@ public class AddressShippingResourceIntTest {
     @Transactional
     public void updateAddressShipping() throws Exception {
         // Initialize the database
-<<<<<<< HEAD
-        addressShippingService.save(addressShipping);
-
-=======
         addressShippingRepository.saveAndFlush(addressShipping);
         addressShippingSearchRepository.save(addressShipping);
->>>>>>> with_entities
         int databaseSizeBeforeUpdate = addressShippingRepository.findAll().size();
 
         // Update the addressShipping
@@ -367,18 +315,11 @@ public class AddressShippingResourceIntTest {
             .street(UPDATED_STREET)
             .building(UPDATED_BUILDING)
             .appartment(UPDATED_APPARTMENT);
-<<<<<<< HEAD
-
-        restAddressShippingMockMvc.perform(put("/api/address-shippings")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(updatedAddressShipping)))
-=======
         AddressShippingDTO addressShippingDTO = addressShippingMapper.toDto(updatedAddressShipping);
 
         restAddressShippingMockMvc.perform(put("/api/address-shippings")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(addressShippingDTO)))
->>>>>>> with_entities
             .andExpect(status().isOk());
 
         // Validate the AddressShipping in the database
@@ -404,19 +345,12 @@ public class AddressShippingResourceIntTest {
         int databaseSizeBeforeUpdate = addressShippingRepository.findAll().size();
 
         // Create the AddressShipping
-<<<<<<< HEAD
-=======
         AddressShippingDTO addressShippingDTO = addressShippingMapper.toDto(addressShipping);
->>>>>>> with_entities
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
         restAddressShippingMockMvc.perform(put("/api/address-shippings")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-<<<<<<< HEAD
-            .content(TestUtil.convertObjectToJsonBytes(addressShipping)))
-=======
             .content(TestUtil.convertObjectToJsonBytes(addressShippingDTO)))
->>>>>>> with_entities
             .andExpect(status().isCreated());
 
         // Validate the AddressShipping in the database
@@ -428,13 +362,8 @@ public class AddressShippingResourceIntTest {
     @Transactional
     public void deleteAddressShipping() throws Exception {
         // Initialize the database
-<<<<<<< HEAD
-        addressShippingService.save(addressShipping);
-
-=======
         addressShippingRepository.saveAndFlush(addressShipping);
         addressShippingSearchRepository.save(addressShipping);
->>>>>>> with_entities
         int databaseSizeBeforeDelete = addressShippingRepository.findAll().size();
 
         // Get the addressShipping
@@ -455,12 +384,8 @@ public class AddressShippingResourceIntTest {
     @Transactional
     public void searchAddressShipping() throws Exception {
         // Initialize the database
-<<<<<<< HEAD
-        addressShippingService.save(addressShipping);
-=======
         addressShippingRepository.saveAndFlush(addressShipping);
         addressShippingSearchRepository.save(addressShipping);
->>>>>>> with_entities
 
         // Search the addressShipping
         restAddressShippingMockMvc.perform(get("/api/_search/address-shippings?query=id:" + addressShipping.getId()))
@@ -490,8 +415,6 @@ public class AddressShippingResourceIntTest {
         addressShipping1.setId(null);
         assertThat(addressShipping1).isNotEqualTo(addressShipping2);
     }
-<<<<<<< HEAD
-=======
 
     @Test
     @Transactional
@@ -515,5 +438,4 @@ public class AddressShippingResourceIntTest {
         assertThat(addressShippingMapper.fromId(42L).getId()).isEqualTo(42);
         assertThat(addressShippingMapper.fromId(null)).isNull();
     }
->>>>>>> with_entities
 }

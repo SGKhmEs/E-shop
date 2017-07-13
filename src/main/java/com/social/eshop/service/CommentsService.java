@@ -1,10 +1,6 @@
 package com.social.eshop.service;
 
-<<<<<<< HEAD
-import com.social.eshop.domain.Comments;
-=======
 import com.social.eshop.service.dto.CommentsDTO;
->>>>>>> with_entities
 import java.util.List;
 
 /**
@@ -15,19 +11,6 @@ public interface CommentsService {
     /**
      * Save a comments.
      *
-<<<<<<< HEAD
-     * @param comments the entity to save
-     * @return the persisted entity
-     */
-    Comments save(Comments comments);
-
-    /**
-     *  Get all the comments.
-     *
-     *  @return the list of entities
-     */
-    List<Comments> findAll();
-=======
      * @param commentsDTO the entity to save
      * @return the persisted entity
      */
@@ -35,11 +18,10 @@ public interface CommentsService {
 
     /**
      *  Get all the comments.
-     *  
+     *
      *  @return the list of entities
      */
     List<CommentsDTO> findAll();
->>>>>>> with_entities
 
     /**
      *  Get the "id" comments.
@@ -47,11 +29,7 @@ public interface CommentsService {
      *  @param id the id of the entity
      *  @return the entity
      */
-<<<<<<< HEAD
-    Comments findOne(Long id);
-=======
     CommentsDTO findOne(Long id);
->>>>>>> with_entities
 
     /**
      *  Delete the "id" comments.
@@ -67,9 +45,5 @@ public interface CommentsService {
      *  
      *  @return the list of entities
      */
-<<<<<<< HEAD
-    List<Comments> search(String query);
-=======
     List<CommentsDTO> search(String query);
->>>>>>> with_entities
 }

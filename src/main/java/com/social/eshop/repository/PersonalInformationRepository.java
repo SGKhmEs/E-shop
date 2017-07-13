@@ -12,9 +12,5 @@ import org.springframework.data.jpa.repository.*;
 @SuppressWarnings("unused")
 @Repository
 public interface PersonalInformationRepository extends JpaRepository<PersonalInformation,Long> {
-<<<<<<< HEAD
     
-=======
-
->>>>>>> with_entities
 }

@@ -18,8 +18,6 @@ public class ConsignmentDTO implements Serializable {
     @NotNull
     private BigDecimal price;
 
-    private Long productsId;
-
     private Long storageId;
 
     private Long producersId;
@@ -38,14 +36,6 @@ public class ConsignmentDTO implements Serializable {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
-    }
-
-    public Long getProductsId() {
-        return productsId;
-    }
-
-    public void setProductsId(Long productsId) {
-        this.productsId = productsId;
     }
 
     public Long getStorageId() {

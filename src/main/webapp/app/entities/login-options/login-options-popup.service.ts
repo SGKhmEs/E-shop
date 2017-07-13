@@ -3,10 +3,7 @@ import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { LoginOptions } from './login-options.model';
 import { LoginOptionsService } from './login-options.service';
-<<<<<<< HEAD
 
-=======
->>>>>>> with_entities
 @Injectable()
 export class LoginOptionsPopupService {
     private isOpen = false;

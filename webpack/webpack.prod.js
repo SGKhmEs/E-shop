@@ -11,7 +11,7 @@ const ENV = 'prod';
 module.exports = webpackMerge(commonConfig({ env: ENV }), {
     devtool: 'source-map',
     output: {
-        path: path.resolve('./build/www'),
+        path: path.resolve('./target/www'),
         filename: 'app/[hash].[name].bundle.js',
         chunkFilename: 'app/[hash].[id].chunk.js'
     },

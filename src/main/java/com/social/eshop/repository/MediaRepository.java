@@ -12,9 +12,5 @@ import org.springframework.data.jpa.repository.*;
 @SuppressWarnings("unused")
 @Repository
 public interface MediaRepository extends JpaRepository<Media,Long> {
-<<<<<<< HEAD
     
-=======
-
->>>>>>> with_entities
 }

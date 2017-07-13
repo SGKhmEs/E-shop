@@ -5,7 +5,6 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -25,17 +24,20 @@ public class Options implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @NotNull
-    @Column(name = "color", nullable = false)
-    private Integer color;
-
-    @NotNull
-    @Column(name = "weight", nullable = false)
-    private Double weight;
-
-    @NotNull
-    @Column(name = "metal", nullable = false)
+    @Column(name = "metal")
     private String metal;
+
+    @Column(name = "color")
+    private String color;
+
+    @Column(name = "stone")
+    private String stone;
+
+    @Column(name = "marking")
+    private String marking;
+
+    @Column(name = "weight")
+    private Double weight;
 
     @Column(name = "jhi_size")
     private Double size;
@@ -43,44 +45,12 @@ public class Options implements Serializable {
     @Column(name = "length")
     private Integer length;
 
-<<<<<<< HEAD
-=======
-    @ManyToOne
-    private SubCategory subCategory;
-
->>>>>>> with_entities
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Integer getColor() {
-        return color;
-    }
-
-    public Options color(Integer color) {
-        this.color = color;
-        return this;
-    }
-
-    public void setColor(Integer color) {
-        this.color = color;
-    }
-
-    public Double getWeight() {
-        return weight;
-    }
-
-    public Options weight(Double weight) {
-        this.weight = weight;
-        return this;
-    }
-
-    public void setWeight(Double weight) {
-        this.weight = weight;
     }
 
     public String getMetal() {
@@ -94,6 +64,58 @@ public class Options implements Serializable {
 
     public void setMetal(String metal) {
         this.metal = metal;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public Options color(String color) {
+        this.color = color;
+        return this;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getStone() {
+        return stone;
+    }
+
+    public Options stone(String stone) {
+        this.stone = stone;
+        return this;
+    }
+
+    public void setStone(String stone) {
+        this.stone = stone;
+    }
+
+    public String getMarking() {
+        return marking;
+    }
+
+    public Options marking(String marking) {
+        this.marking = marking;
+        return this;
+    }
+
+    public void setMarking(String marking) {
+        this.marking = marking;
+    }
+
+    public Double getWeight() {
+        return weight;
+    }
+
+    public Options weight(Double weight) {
+        this.weight = weight;
+        return this;
+    }
+
+    public void setWeight(Double weight) {
+        this.weight = weight;
     }
 
     public Double getSize() {
@@ -122,22 +144,6 @@ public class Options implements Serializable {
         this.length = length;
     }
 
-<<<<<<< HEAD
-=======
-    public SubCategory getSubCategory() {
-        return subCategory;
-    }
-
-    public Options subCategory(SubCategory subCategory) {
-        this.subCategory = subCategory;
-        return this;
-    }
-
-    public void setSubCategory(SubCategory subCategory) {
-        this.subCategory = subCategory;
-    }
-
->>>>>>> with_entities
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -162,9 +168,11 @@ public class Options implements Serializable {
     public String toString() {
         return "Options{" +
             "id=" + getId() +
-            ", color='" + getColor() + "'" +
-            ", weight='" + getWeight() + "'" +
             ", metal='" + getMetal() + "'" +
+            ", color='" + getColor() + "'" +
+            ", stone='" + getStone() + "'" +
+            ", marking='" + getMarking() + "'" +
+            ", weight='" + getWeight() + "'" +
             ", size='" + getSize() + "'" +
             ", length='" + getLength() + "'" +
             "}";

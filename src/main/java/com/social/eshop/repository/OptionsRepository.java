@@ -12,9 +12,5 @@ import org.springframework.data.jpa.repository.*;
 @SuppressWarnings("unused")
 @Repository
 public interface OptionsRepository extends JpaRepository<Options,Long> {
-<<<<<<< HEAD
     
-=======
-
->>>>>>> with_entities
 }

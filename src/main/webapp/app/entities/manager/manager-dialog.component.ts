@@ -47,11 +47,11 @@ export class ManagerDialogComponent implements OnInit {
         this.loginOptionsService
             .query({filter: 'manager-is-null'})
             .subscribe((res: ResponseWrapper) => {
-                if (!this.manager.loginOptions || !this.manager.loginOptions.id) {
+                if (!this.manager.loginOptionsId) {
                     this.loginoptions = res.json;
                 } else {
                     this.loginOptionsService
-                        .find(this.manager.loginOptions.id)
+                        .find(this.manager.loginOptionsId)
                         .subscribe((subRes: LoginOptions) => {
                             this.loginoptions = [subRes].concat(res.json);
                         }, (subRes: ResponseWrapper) => this.onError(subRes.json));
@@ -60,11 +60,11 @@ export class ManagerDialogComponent implements OnInit {
         this.personalInformationService
             .query({filter: 'manager-is-null'})
             .subscribe((res: ResponseWrapper) => {
-                if (!this.manager.personalInfo || !this.manager.personalInfo.id) {
+                if (!this.manager.personalInfoId) {
                     this.personalinfos = res.json;
                 } else {
                     this.personalInformationService
-                        .find(this.manager.personalInfo.id)
+                        .find(this.manager.personalInfoId)
                         .subscribe((subRes: PersonalInformation) => {
                             this.personalinfos = [subRes].concat(res.json);
                         }, (subRes: ResponseWrapper) => this.onError(subRes.json));
@@ -73,11 +73,11 @@ export class ManagerDialogComponent implements OnInit {
         this.avatarService
             .query({filter: 'manager-is-null'})
             .subscribe((res: ResponseWrapper) => {
-                if (!this.manager.avatar || !this.manager.avatar.id) {
+                if (!this.manager.avatarId) {
                     this.avatars = res.json;
                 } else {
                     this.avatarService
-                        .find(this.manager.avatar.id)
+                        .find(this.manager.avatarId)
                         .subscribe((subRes: Avatar) => {
                             this.avatars = [subRes].concat(res.json);
                         }, (subRes: ResponseWrapper) => this.onError(subRes.json));

@@ -54,20 +54,6 @@ public class PersonalInformation implements Serializable {
     @Column(name = "date_birth")
     private LocalDate dateBirth;
 
-<<<<<<< HEAD
-    @OneToOne
-    @JoinColumn(unique = true)
-    private Avatar avatar;
-
-<<<<<<< HEAD
-=======
-    @OneToOne
-    @JoinColumn(unique = true)
-    private AddressShipping addressShipping;
-
->>>>>>> with_entities
-=======
->>>>>>> creatingDtos
     public Long getId() {
         return id;
     }
@@ -167,38 +153,6 @@ public class PersonalInformation implements Serializable {
         this.dateBirth = dateBirth;
     }
 
-<<<<<<< HEAD
-    public Avatar getAvatar() {
-        return avatar;
-    }
-
-    public PersonalInformation avatar(Avatar avatar) {
-        this.avatar = avatar;
-        return this;
-    }
-
-    public void setAvatar(Avatar avatar) {
-        this.avatar = avatar;
-    }
-
-<<<<<<< HEAD
-=======
-    public AddressShipping getAddressShipping() {
-        return addressShipping;
-    }
-
-    public PersonalInformation addressShipping(AddressShipping addressShipping) {
-        this.addressShipping = addressShipping;
-        return this;
-    }
-
-    public void setAddressShipping(AddressShipping addressShipping) {
-        this.addressShipping = addressShipping;
-    }
-
->>>>>>> with_entities
-=======
->>>>>>> creatingDtos
     @Override
     public boolean equals(Object o) {
         if (this == o) {

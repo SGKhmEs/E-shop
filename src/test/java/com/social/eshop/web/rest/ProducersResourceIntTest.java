@@ -6,11 +6,8 @@ import com.social.eshop.domain.Producers;
 import com.social.eshop.repository.ProducersRepository;
 import com.social.eshop.service.ProducersService;
 import com.social.eshop.repository.search.ProducersSearchRepository;
-<<<<<<< HEAD
-=======
 import com.social.eshop.service.dto.ProducersDTO;
 import com.social.eshop.service.mapper.ProducersMapper;
->>>>>>> with_entities
 import com.social.eshop.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -54,12 +51,9 @@ public class ProducersResourceIntTest {
     private ProducersRepository producersRepository;
 
     @Autowired
-<<<<<<< HEAD
-=======
     private ProducersMapper producersMapper;
 
     @Autowired
->>>>>>> with_entities
     private ProducersService producersService;
 
     @Autowired
@@ -116,16 +110,10 @@ public class ProducersResourceIntTest {
         int databaseSizeBeforeCreate = producersRepository.findAll().size();
 
         // Create the Producers
-<<<<<<< HEAD
-        restProducersMockMvc.perform(post("/api/producers")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(producers)))
-=======
         ProducersDTO producersDTO = producersMapper.toDto(producers);
         restProducersMockMvc.perform(post("/api/producers")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(producersDTO)))
->>>>>>> with_entities
             .andExpect(status().isCreated());
 
         // Validate the Producers in the database
@@ -147,19 +135,12 @@ public class ProducersResourceIntTest {
 
         // Create the Producers with an existing ID
         producers.setId(1L);
-<<<<<<< HEAD
-=======
         ProducersDTO producersDTO = producersMapper.toDto(producers);
->>>>>>> with_entities
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restProducersMockMvc.perform(post("/api/producers")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-<<<<<<< HEAD
-            .content(TestUtil.convertObjectToJsonBytes(producers)))
-=======
             .content(TestUtil.convertObjectToJsonBytes(producersDTO)))
->>>>>>> with_entities
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -175,18 +156,11 @@ public class ProducersResourceIntTest {
         producers.setName(null);
 
         // Create the Producers, which fails.
-<<<<<<< HEAD
-
-        restProducersMockMvc.perform(post("/api/producers")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(producers)))
-=======
         ProducersDTO producersDTO = producersMapper.toDto(producers);
 
         restProducersMockMvc.perform(post("/api/producers")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(producersDTO)))
->>>>>>> with_entities
             .andExpect(status().isBadRequest());
 
         List<Producers> producersList = producersRepository.findAll();
@@ -201,18 +175,11 @@ public class ProducersResourceIntTest {
         producers.setCountry(null);
 
         // Create the Producers, which fails.
-<<<<<<< HEAD
-
-        restProducersMockMvc.perform(post("/api/producers")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(producers)))
-=======
         ProducersDTO producersDTO = producersMapper.toDto(producers);
 
         restProducersMockMvc.perform(post("/api/producers")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(producersDTO)))
->>>>>>> with_entities
             .andExpect(status().isBadRequest());
 
         List<Producers> producersList = producersRepository.findAll();
@@ -261,13 +228,8 @@ public class ProducersResourceIntTest {
     @Transactional
     public void updateProducers() throws Exception {
         // Initialize the database
-<<<<<<< HEAD
-        producersService.save(producers);
-
-=======
         producersRepository.saveAndFlush(producers);
         producersSearchRepository.save(producers);
->>>>>>> with_entities
         int databaseSizeBeforeUpdate = producersRepository.findAll().size();
 
         // Update the producers
@@ -275,18 +237,11 @@ public class ProducersResourceIntTest {
         updatedProducers
             .name(UPDATED_NAME)
             .country(UPDATED_COUNTRY);
-<<<<<<< HEAD
-
-        restProducersMockMvc.perform(put("/api/producers")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(updatedProducers)))
-=======
         ProducersDTO producersDTO = producersMapper.toDto(updatedProducers);
 
         restProducersMockMvc.perform(put("/api/producers")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(producersDTO)))
->>>>>>> with_entities
             .andExpect(status().isOk());
 
         // Validate the Producers in the database
@@ -307,19 +262,12 @@ public class ProducersResourceIntTest {
         int databaseSizeBeforeUpdate = producersRepository.findAll().size();
 
         // Create the Producers
-<<<<<<< HEAD
-=======
         ProducersDTO producersDTO = producersMapper.toDto(producers);
->>>>>>> with_entities
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
         restProducersMockMvc.perform(put("/api/producers")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-<<<<<<< HEAD
-            .content(TestUtil.convertObjectToJsonBytes(producers)))
-=======
             .content(TestUtil.convertObjectToJsonBytes(producersDTO)))
->>>>>>> with_entities
             .andExpect(status().isCreated());
 
         // Validate the Producers in the database
@@ -331,13 +279,8 @@ public class ProducersResourceIntTest {
     @Transactional
     public void deleteProducers() throws Exception {
         // Initialize the database
-<<<<<<< HEAD
-        producersService.save(producers);
-
-=======
         producersRepository.saveAndFlush(producers);
         producersSearchRepository.save(producers);
->>>>>>> with_entities
         int databaseSizeBeforeDelete = producersRepository.findAll().size();
 
         // Get the producers
@@ -358,12 +301,8 @@ public class ProducersResourceIntTest {
     @Transactional
     public void searchProducers() throws Exception {
         // Initialize the database
-<<<<<<< HEAD
-        producersService.save(producers);
-=======
         producersRepository.saveAndFlush(producers);
         producersSearchRepository.save(producers);
->>>>>>> with_entities
 
         // Search the producers
         restProducersMockMvc.perform(get("/api/_search/producers?query=id:" + producers.getId()))
@@ -388,8 +327,6 @@ public class ProducersResourceIntTest {
         producers1.setId(null);
         assertThat(producers1).isNotEqualTo(producers2);
     }
-<<<<<<< HEAD
-=======
 
     @Test
     @Transactional
@@ -413,5 +350,4 @@ public class ProducersResourceIntTest {
         assertThat(producersMapper.fromId(42L).getId()).isEqualTo(42);
         assertThat(producersMapper.fromId(null)).isNull();
     }
->>>>>>> with_entities
 }

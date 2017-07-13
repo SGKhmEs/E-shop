@@ -32,16 +32,8 @@ describe('Component Tests', () => {
                     AvatarService,
                     JhiEventManager
                 ]
-<<<<<<< HEAD
             }).overrideTemplate(AvatarDetailComponent, '')
             .compileComponents();
-=======
-            }).overrideComponent(AvatarDetailComponent, {
-                set: {
-                    template: ''
-                }
-            }).compileComponents();
->>>>>>> with_entities
         }));
 
         beforeEach(() => {

@@ -9,12 +9,9 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { Seen } from './seen.model';
 import { SeenPopupService } from './seen-popup.service';
 import { SeenService } from './seen.service';
-<<<<<<< HEAD
 import { Customer, CustomerService } from '../customer';
 import { Products, ProductsService } from '../products';
 import { ResponseWrapper } from '../../shared';
-=======
->>>>>>> with_entities
 
 @Component({
     selector: 'jhi-seen-dialog',
@@ -25,50 +22,35 @@ export class SeenDialogComponent implements OnInit {
     seen: Seen;
     authorities: any[];
     isSaving: boolean;
-<<<<<<< HEAD
 
     customers: Customer[];
 
     products: Products[];
-<<<<<<< HEAD
-=======
->>>>>>> with_entities
-    dataDp: any;
-=======
     dateDp: any;
->>>>>>> creatingDtos
 
     constructor(
         public activeModal: NgbActiveModal,
         private alertService: JhiAlertService,
         private seenService: SeenService,
-<<<<<<< HEAD
         private customerService: CustomerService,
         private productsService: ProductsService,
-<<<<<<< HEAD
-=======
->>>>>>> with_entities
-        private eventManager: EventManager
-=======
         private eventManager: JhiEventManager
->>>>>>> creatingDtos
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
-<<<<<<< HEAD
         this.customerService.query()
             .subscribe((res: ResponseWrapper) => { this.customers = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
         this.productsService
             .query({filter: 'seen-is-null'})
             .subscribe((res: ResponseWrapper) => {
-                if (!this.seen.products || !this.seen.products.id) {
+                if (!this.seen.productsId) {
                     this.products = res.json;
                 } else {
                     this.productsService
-                        .find(this.seen.products.id)
+                        .find(this.seen.productsId)
                         .subscribe((subRes: Products) => {
                             this.products = [subRes].concat(res.json);
                         }, (subRes: ResponseWrapper) => this.onError(subRes.json));
@@ -76,9 +58,6 @@ export class SeenDialogComponent implements OnInit {
             }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
-=======
-    }
->>>>>>> with_entities
     clear() {
         this.activeModal.dismiss('cancel');
     }
@@ -87,7 +66,6 @@ export class SeenDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.seen.id !== undefined) {
             this.subscribeToSaveResponse(
-<<<<<<< HEAD
                 this.seenService.update(this.seen), false);
         } else {
             this.subscribeToSaveResponse(
@@ -106,21 +84,6 @@ export class SeenDialogComponent implements OnInit {
             : `A Seen is updated with identifier ${result.id}`,
             null, null);
 
-=======
-                this.seenService.update(this.seen));
-        } else {
-            this.subscribeToSaveResponse(
-                this.seenService.create(this.seen));
-        }
-    }
-
-    private subscribeToSaveResponse(result: Observable<Seen>) {
-        result.subscribe((res: Seen) =>
-            this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
-    }
-
-    private onSaveSuccess(result: Seen) {
->>>>>>> with_entities
         this.eventManager.broadcast({ name: 'seenListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
@@ -139,7 +102,6 @@ export class SeenDialogComponent implements OnInit {
     private onError(error) {
         this.alertService.error(error.message, null, null);
     }
-<<<<<<< HEAD
 
     trackCustomerById(index: number, item: Customer) {
         return item.id;
@@ -148,8 +110,6 @@ export class SeenDialogComponent implements OnInit {
     trackProductsById(index: number, item: Products) {
         return item.id;
     }
-=======
->>>>>>> with_entities
 }
 
 @Component({

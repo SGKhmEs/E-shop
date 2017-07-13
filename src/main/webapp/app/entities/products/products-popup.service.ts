@@ -3,10 +3,7 @@ import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Products } from './products.model';
 import { ProductsService } from './products.service';
-<<<<<<< HEAD
 
-=======
->>>>>>> with_entities
 @Injectable()
 export class ProductsPopupService {
     private isOpen = false;

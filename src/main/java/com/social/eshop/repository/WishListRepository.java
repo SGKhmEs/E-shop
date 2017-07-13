@@ -12,9 +12,5 @@ import org.springframework.data.jpa.repository.*;
 @SuppressWarnings("unused")
 @Repository
 public interface WishListRepository extends JpaRepository<WishList,Long> {
-<<<<<<< HEAD
     
-=======
-
->>>>>>> with_entities
 }

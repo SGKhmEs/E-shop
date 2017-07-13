@@ -1,54 +1,12 @@
 package com.social.eshop.service.dto;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 import com.social.eshop.domain.Comments;
-=======
->>>>>>> creatingDtos
-import com.social.eshop.domain.Media;
 import com.social.eshop.domain.Options;
-import com.social.eshop.domain.SubCategory;
-
-import java.math.BigDecimal;
-import java.util.List;
-
-<<<<<<< HEAD
-public class   ProductsDTO implements AutoMapping {
-
-=======
-public class ProductsDTO {
->>>>>>> creatingDtos
-    private String name;
-    private BigDecimal price;
-    private int sale;
-    private double rating;
-    private boolean fresh;
-    private String description;
-    private List<Media> media;
-    private List<CommentsDTO> commentsDTO;
-    private List<SubCategory> subCategories;
-    private Options options;
-
-    public ProductsDTO() {}
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-=======
 
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
@@ -63,23 +21,31 @@ public class ProductsDTO implements Serializable {
     @NotNull
     private String name;
 
-    private String sale;
+    @NotNull
+    private BigDecimal price;
+
+    private Integer sale;
 
     private Double rating;
 
     private Boolean fresh;
 
-    private Long wishListId;
+    private String description;
 
-    private Long seenId;
+    private OptionsDTO optionsDTO;
 
-    private Long bucketId;
+    private SubCategoryDTO subCategoryDTO;
 
-    private Long subCategoryId;
+    private Set<CommentsDTO> commentsDTO;
 
-    private Long mediaId;
+    private Set<MediaDTO> mediaDTO;
 
-    private Long tagsId;
+    private Set<TagForProductDTO> tagForProductDTO;
+    //private Long optionsId;
+
+//  private Long subCategoryId;
+
+
 
     public Long getId() {
         return id;
@@ -95,65 +61,24 @@ public class ProductsDTO implements Serializable {
 
     public void setName(String name) {
         this.name = name;
->>>>>>> with_entities
     }
 
-    public int getSale() {
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public Integer getSale() {
         return sale;
     }
 
-    public void setSale(int sale) {
+    public void setSale(Integer sale) {
         this.sale = sale;
     }
 
-<<<<<<< HEAD
-    public double getRating() {
-        return rating;
-    }
-
-    public void setRating(double rating) {
-        this.rating = rating;
-    }
-
-    public boolean getFresh() {
-        return fresh;
-    }
-
-    public void setFresh(boolean fresh) {
-        this.fresh = fresh;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public List<Media> getMedia() {
-        return media;
-    }
-
-    public void setMedia(List<Media> media) {
-        this.media = media;
-    }
-
-    public List<CommentsDTO> getCommentsDTO() {
-        return commentsDTO;
-    }
-
-    public void setCommentsDTO(List<CommentsDTO> commentsDTO) {
-        this.commentsDTO = commentsDTO;
-    }
-
-    public List<SubCategory> getSubCategories() {
-        return subCategories;
-    }
-
-    public void setSubCategories(List<SubCategory> subCategories) {
-        this.subCategories = subCategories;
-=======
     public Double getRating() {
         return rating;
     }
@@ -170,53 +95,69 @@ public class ProductsDTO implements Serializable {
         this.fresh = fresh;
     }
 
-    public Long getWishListId() {
-        return wishListId;
+    public String getDescription() {
+        return description;
     }
 
-    public void setWishListId(Long wishListId) {
-        this.wishListId = wishListId;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public Long getSeenId() {
-        return seenId;
+    public OptionsDTO getOptionsDTO() {
+        return optionsDTO;
     }
 
-    public void setSeenId(Long seenId) {
-        this.seenId = seenId;
+    public void setOptionsDTO(OptionsDTO optionsDTO) {
+        this.optionsDTO = optionsDTO;
     }
 
-    public Long getBucketId() {
-        return bucketId;
+    public SubCategoryDTO getSubCategoryDTO() {
+        return subCategoryDTO;
     }
 
-    public void setBucketId(Long bucketId) {
-        this.bucketId = bucketId;
+    public void setSubCategoryDTO(SubCategoryDTO subCategoryDTO) {
+        this.subCategoryDTO = subCategoryDTO;
     }
 
-    public Long getSubCategoryId() {
-        return subCategoryId;
+    public Set<CommentsDTO> getCommentsDTO() {
+        return commentsDTO;
     }
 
-    public void setSubCategoryId(Long subCategoryId) {
-        this.subCategoryId = subCategoryId;
+    public void setCommentsDTO(Set<CommentsDTO> commentsDTO) {
+        this.commentsDTO = commentsDTO;
     }
 
-    public Long getMediaId() {
-        return mediaId;
+    public Set<MediaDTO> getMediaDTO() {
+        return mediaDTO;
     }
 
-    public void setMediaId(Long mediaId) {
-        this.mediaId = mediaId;
+    public void setMediaDTO(Set<MediaDTO> mediaDTO) {
+        this.mediaDTO = mediaDTO;
     }
 
-    public Long getTagsId() {
-        return tagsId;
+    public Set<TagForProductDTO> getTagForProductDTO() {
+        return tagForProductDTO;
     }
 
-    public void setTagsId(Long tagsId) {
-        this.tagsId = tagsId;
+    public void setTagForProductDTO(Set<TagForProductDTO> tagForProductDTO) {
+        this.tagForProductDTO = tagForProductDTO;
     }
+
+    //    public Long getOptionsId() {
+//        return optionsId;
+//    }
+//
+//    public void setOptionsId(Long optionsId) {
+//        this.optionsId = optionsId;
+//    }
+
+//    public Long getSubCategoryId() {
+//        return subCategoryId;
+//    }
+//
+//    public void setSubCategoryId(Long subCategoryId) {
+//        this.subCategoryId = subCategoryId;
+//    }
 
     @Override
     public boolean equals(Object o) {
@@ -237,39 +178,18 @@ public class ProductsDTO implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hashCode(getId());
->>>>>>> with_entities
-    }
-
-    public Options getOptions() {
-        return options;
-    }
-
-    public void setOptions(Options options) {
-        this.options = options;
     }
 
     @Override
     public String toString() {
         return "ProductsDTO{" +
-<<<<<<< HEAD
-            "name='" + name + '\'' +
-            ", price=" + price +
-            ", sale=" + sale +
-            ", rating=" + rating +
-            ", fresh=" + fresh +
-            ", description='" + description + '\'' +
-            ", media=" + media +
-            ", commentsDTO=" + commentsDTO +
-            ", subCategories=" + subCategories +
-            ", options=" + options +
-            '}';
-=======
             "id=" + getId() +
             ", name='" + getName() + "'" +
+            ", price='" + getPrice() + "'" +
             ", sale='" + getSale() + "'" +
             ", rating='" + getRating() + "'" +
             ", fresh='" + isFresh() + "'" +
+            ", description='" + getDescription() + "'" +
             "}";
->>>>>>> with_entities
     }
 }

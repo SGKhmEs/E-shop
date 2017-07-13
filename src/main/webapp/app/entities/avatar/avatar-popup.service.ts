@@ -3,10 +3,7 @@ import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Avatar } from './avatar.model';
 import { AvatarService } from './avatar.service';
-<<<<<<< HEAD
 
-=======
->>>>>>> with_entities
 @Injectable()
 export class AvatarPopupService {
     private isOpen = false;

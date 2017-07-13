@@ -12,9 +12,5 @@ import org.springframework.data.jpa.repository.*;
 @SuppressWarnings("unused")
 @Repository
 public interface TagsRepository extends JpaRepository<Tags,Long> {
-<<<<<<< HEAD
     
-=======
-
->>>>>>> with_entities
 }

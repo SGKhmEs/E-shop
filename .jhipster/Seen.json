@@ -2,7 +2,6 @@
     "fluentMethods": true,
     "relationships": [
         {
-<<<<<<< HEAD
             "relationshipName": "customer",
             "otherEntityName": "customer",
             "relationshipType": "many-to-one",
@@ -14,11 +13,6 @@
             "otherEntityName": "products",
             "otherEntityField": "id",
             "ownerSide": true,
-=======
-            "relationshipType": "one-to-many",
-            "relationshipName": "product",
-            "otherEntityName": "products",
->>>>>>> with_entities
             "otherEntityRelationshipName": "seen"
         }
     ],
@@ -28,19 +22,9 @@
             "fieldType": "LocalDate"
         }
     ],
-<<<<<<< HEAD
-<<<<<<< HEAD
-    "changelogDate": "20170610234451",
-=======
-    "changelogDate": "20170623182234",
->>>>>>> creatingDtos
-    "entityTableName": "seen",
-    "dto": "no",
-=======
-    "changelogDate": "20170525235443",
+    "changelogDate": "20170629140040",
     "entityTableName": "seen",
     "dto": "mapstruct",
->>>>>>> with_entities
     "pagination": "no",
     "service": "serviceImpl"
 }

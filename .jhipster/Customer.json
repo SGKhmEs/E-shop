@@ -11,15 +11,6 @@
         },
         {
             "relationshipType": "one-to-one",
-<<<<<<< HEAD
-<<<<<<< HEAD
-            "relationshipName": "customerRoom",
-            "otherEntityName": "customerRoom",
-=======
-            "relationshipName": "confirm",
-            "otherEntityName": "confirm",
->>>>>>> with_entities
-=======
             "relationshipName": "address",
             "otherEntityName": "address",
             "otherEntityField": "id",
@@ -38,13 +29,11 @@
             "relationshipType": "one-to-one",
             "relationshipName": "avatar",
             "otherEntityName": "avatar",
->>>>>>> creatingDtos
             "otherEntityField": "id",
             "ownerSide": true,
             "otherEntityRelationshipName": "customer"
         },
         {
-<<<<<<< HEAD
             "relationshipType": "one-to-many",
             "relationshipName": "seen",
             "otherEntityName": "seen",
@@ -54,32 +43,17 @@
             "relationshipType": "one-to-many",
             "relationshipName": "wishList",
             "otherEntityName": "wishList",
-=======
-            "relationshipType": "one-to-one",
-            "relationshipName": "userRoom",
-            "otherEntityName": "customerRoom",
-            "otherEntityField": "id",
-            "ownerSide": true,
->>>>>>> with_entities
             "otherEntityRelationshipName": "customer"
         },
         {
             "relationshipType": "one-to-many",
-<<<<<<< HEAD
             "relationshipName": "comments",
             "otherEntityName": "comments",
-=======
-            "relationshipName": "customer",
-            "otherEntityName": "sessionId",
->>>>>>> with_entities
             "otherEntityRelationshipName": "customer"
         }
     ],
     "fields": [
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
             "fieldName": "subScription",
             "fieldType": "Boolean"
         },
@@ -89,25 +63,13 @@
             "fieldValues": "DEFAULT,GOOGLE,FACEBOOK,TWITTER"
         },
         {
->>>>>>> creatingDtos
             "fieldName": "sessionId",
             "fieldType": "String"
         }
     ],
-    "changelogDate": "20170623182228",
-    "entityTableName": "customer",
-    "dto": "no",
-    "pagination": "infinite-scroll",
-=======
-            "fieldName": "roles",
-            "fieldType": "Roles",
-            "fieldValues": "USER,MODERATOR,ADMINISTRATOR,OWNER"
-        }
-    ],
-    "changelogDate": "20170525235432",
+    "changelogDate": "20170629140034",
     "entityTableName": "customer",
     "dto": "mapstruct",
-    "pagination": "no",
->>>>>>> with_entities
+    "pagination": "infinite-scroll",
     "service": "serviceImpl"
 }

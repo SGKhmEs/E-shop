@@ -4,35 +4,21 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <dt><span jhiTranslate="eshopApp.wishList.data">Data</span></dt>
-=======
         <dt><span>Date</span></dt>
->>>>>>> creatingDtos
         <dd>
             <span>{{wishList.date | date:'mediumDate'}}</span>
         </dd>
         <dt><span>Customer</span></dt>
         <dd>
-            <div *ngIf="wishList.customer">
-                <a [routerLink]="['/customer', wishList.customer?.id]">{{wishList.customer?.id}}</a>
+            <div *ngIf="wishList.customerId">
+                <a [routerLink]="['/customer', wishList.customerId]">{{wishList.customerId}}</a>
             </div>
         </dd>
         <dt><span>Product</span></dt>
         <dd>
-            <div *ngIf="wishList.product">
-                <a [routerLink]="['/products', wishList.product?.id]">{{wishList.product?.id}}</a>
+            <div *ngIf="wishList.productId">
+                <a [routerLink]="['/products', wishList.productId]">{{wishList.productId}}</a>
             </div>
-=======
-        <dt><span jhiTranslate="eshopApp.wishList.wishsName">Wishs Name</span></dt>
-        <dd>
-            <span>{{wishList.wishsName}}</span>
-        </dd>
-        <dt><span jhiTranslate="eshopApp.wishList.data">Data</span></dt>
-        <dd>
-            <span>{{wishList.data | date:'mediumDate'}}</span>
->>>>>>> with_entities
         </dd>
     </dl>
 

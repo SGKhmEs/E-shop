@@ -6,11 +6,8 @@ import com.social.eshop.domain.WishList;
 import com.social.eshop.repository.WishListRepository;
 import com.social.eshop.service.WishListService;
 import com.social.eshop.repository.search.WishListSearchRepository;
-<<<<<<< HEAD
-=======
 import com.social.eshop.service.dto.WishListDTO;
 import com.social.eshop.service.mapper.WishListMapper;
->>>>>>> with_entities
 import com.social.eshop.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -46,30 +43,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = EshopApp.class)
 public class WishListResourceIntTest {
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    private static final String DEFAULT_WISHS_NAME = "AAAAAAAAAA";
-    private static final String UPDATED_WISHS_NAME = "BBBBBBBBBB";
-
->>>>>>> with_entities
-    private static final LocalDate DEFAULT_DATA = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_DATA = LocalDate.now(ZoneId.systemDefault());
-=======
     private static final LocalDate DEFAULT_DATE = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_DATE = LocalDate.now(ZoneId.systemDefault());
->>>>>>> creatingDtos
 
     @Autowired
     private WishListRepository wishListRepository;
 
     @Autowired
-<<<<<<< HEAD
-=======
     private WishListMapper wishListMapper;
 
     @Autowired
->>>>>>> with_entities
     private WishListService wishListService;
 
     @Autowired
@@ -109,15 +92,7 @@ public class WishListResourceIntTest {
      */
     public static WishList createEntity(EntityManager em) {
         WishList wishList = new WishList()
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-            .wishsName(DEFAULT_WISHS_NAME)
->>>>>>> with_entities
-            .data(DEFAULT_DATA);
-=======
             .date(DEFAULT_DATE);
->>>>>>> creatingDtos
         return wishList;
     }
 
@@ -133,31 +108,17 @@ public class WishListResourceIntTest {
         int databaseSizeBeforeCreate = wishListRepository.findAll().size();
 
         // Create the WishList
-<<<<<<< HEAD
-        restWishListMockMvc.perform(post("/api/wish-lists")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(wishList)))
-=======
         WishListDTO wishListDTO = wishListMapper.toDto(wishList);
         restWishListMockMvc.perform(post("/api/wish-lists")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(wishListDTO)))
->>>>>>> with_entities
             .andExpect(status().isCreated());
 
         // Validate the WishList in the database
         List<WishList> wishListList = wishListRepository.findAll();
         assertThat(wishListList).hasSize(databaseSizeBeforeCreate + 1);
         WishList testWishList = wishListList.get(wishListList.size() - 1);
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-        assertThat(testWishList.getWishsName()).isEqualTo(DEFAULT_WISHS_NAME);
->>>>>>> with_entities
-        assertThat(testWishList.getData()).isEqualTo(DEFAULT_DATA);
-=======
         assertThat(testWishList.getDate()).isEqualTo(DEFAULT_DATE);
->>>>>>> creatingDtos
 
         // Validate the WishList in Elasticsearch
         WishList wishListEs = wishListSearchRepository.findOne(testWishList.getId());
@@ -171,19 +132,12 @@ public class WishListResourceIntTest {
 
         // Create the WishList with an existing ID
         wishList.setId(1L);
-<<<<<<< HEAD
-=======
         WishListDTO wishListDTO = wishListMapper.toDto(wishList);
->>>>>>> with_entities
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restWishListMockMvc.perform(post("/api/wish-lists")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-<<<<<<< HEAD
-            .content(TestUtil.convertObjectToJsonBytes(wishList)))
-=======
             .content(TestUtil.convertObjectToJsonBytes(wishListDTO)))
->>>>>>> with_entities
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -202,15 +156,7 @@ public class WishListResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(wishList.getId().intValue())))
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-            .andExpect(jsonPath("$.[*].wishsName").value(hasItem(DEFAULT_WISHS_NAME.toString())))
->>>>>>> with_entities
-            .andExpect(jsonPath("$.[*].data").value(hasItem(DEFAULT_DATA.toString())));
-=======
             .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())));
->>>>>>> creatingDtos
     }
 
     @Test
@@ -224,15 +170,7 @@ public class WishListResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(wishList.getId().intValue()))
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-            .andExpect(jsonPath("$.wishsName").value(DEFAULT_WISHS_NAME.toString()))
->>>>>>> with_entities
-            .andExpect(jsonPath("$.data").value(DEFAULT_DATA.toString()));
-=======
             .andExpect(jsonPath("$.date").value(DEFAULT_DATE.toString()));
->>>>>>> creatingDtos
     }
 
     @Test
@@ -247,52 +185,26 @@ public class WishListResourceIntTest {
     @Transactional
     public void updateWishList() throws Exception {
         // Initialize the database
-<<<<<<< HEAD
-        wishListService.save(wishList);
-
-=======
         wishListRepository.saveAndFlush(wishList);
         wishListSearchRepository.save(wishList);
->>>>>>> with_entities
         int databaseSizeBeforeUpdate = wishListRepository.findAll().size();
 
         // Update the wishList
         WishList updatedWishList = wishListRepository.findOne(wishList.getId());
         updatedWishList
-<<<<<<< HEAD
-<<<<<<< HEAD
-            .data(UPDATED_DATA);
-=======
             .date(UPDATED_DATE);
->>>>>>> creatingDtos
-
-        restWishListMockMvc.perform(put("/api/wish-lists")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(updatedWishList)))
-=======
-            .wishsName(UPDATED_WISHS_NAME)
-            .data(UPDATED_DATA);
         WishListDTO wishListDTO = wishListMapper.toDto(updatedWishList);
 
         restWishListMockMvc.perform(put("/api/wish-lists")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(wishListDTO)))
->>>>>>> with_entities
             .andExpect(status().isOk());
 
         // Validate the WishList in the database
         List<WishList> wishListList = wishListRepository.findAll();
         assertThat(wishListList).hasSize(databaseSizeBeforeUpdate);
         WishList testWishList = wishListList.get(wishListList.size() - 1);
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-        assertThat(testWishList.getWishsName()).isEqualTo(UPDATED_WISHS_NAME);
->>>>>>> with_entities
-        assertThat(testWishList.getData()).isEqualTo(UPDATED_DATA);
-=======
         assertThat(testWishList.getDate()).isEqualTo(UPDATED_DATE);
->>>>>>> creatingDtos
 
         // Validate the WishList in Elasticsearch
         WishList wishListEs = wishListSearchRepository.findOne(testWishList.getId());
@@ -305,19 +217,12 @@ public class WishListResourceIntTest {
         int databaseSizeBeforeUpdate = wishListRepository.findAll().size();
 
         // Create the WishList
-<<<<<<< HEAD
-=======
         WishListDTO wishListDTO = wishListMapper.toDto(wishList);
->>>>>>> with_entities
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
         restWishListMockMvc.perform(put("/api/wish-lists")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-<<<<<<< HEAD
-            .content(TestUtil.convertObjectToJsonBytes(wishList)))
-=======
             .content(TestUtil.convertObjectToJsonBytes(wishListDTO)))
->>>>>>> with_entities
             .andExpect(status().isCreated());
 
         // Validate the WishList in the database
@@ -329,13 +234,8 @@ public class WishListResourceIntTest {
     @Transactional
     public void deleteWishList() throws Exception {
         // Initialize the database
-<<<<<<< HEAD
-        wishListService.save(wishList);
-
-=======
         wishListRepository.saveAndFlush(wishList);
         wishListSearchRepository.save(wishList);
->>>>>>> with_entities
         int databaseSizeBeforeDelete = wishListRepository.findAll().size();
 
         // Get the wishList
@@ -356,27 +256,15 @@ public class WishListResourceIntTest {
     @Transactional
     public void searchWishList() throws Exception {
         // Initialize the database
-<<<<<<< HEAD
-        wishListService.save(wishList);
-=======
         wishListRepository.saveAndFlush(wishList);
         wishListSearchRepository.save(wishList);
->>>>>>> with_entities
 
         // Search the wishList
         restWishListMockMvc.perform(get("/api/_search/wish-lists?query=id:" + wishList.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(wishList.getId().intValue())))
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-            .andExpect(jsonPath("$.[*].wishsName").value(hasItem(DEFAULT_WISHS_NAME.toString())))
->>>>>>> with_entities
-            .andExpect(jsonPath("$.[*].data").value(hasItem(DEFAULT_DATA.toString())));
-=======
             .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())));
->>>>>>> creatingDtos
     }
 
     @Test
@@ -393,8 +281,6 @@ public class WishListResourceIntTest {
         wishList1.setId(null);
         assertThat(wishList1).isNotEqualTo(wishList2);
     }
-<<<<<<< HEAD
-=======
 
     @Test
     @Transactional
@@ -418,5 +304,4 @@ public class WishListResourceIntTest {
         assertThat(wishListMapper.fromId(42L).getId()).isEqualTo(42);
         assertThat(wishListMapper.fromId(null)).isNull();
     }
->>>>>>> with_entities
 }

@@ -14,7 +14,11 @@ public class SeenDTO implements Serializable {
 
     private Long id;
 
-    private LocalDate data;
+    private LocalDate date;
+
+    private Long customerId;
+
+    private Long productsId;
 
     public Long getId() {
         return id;
@@ -24,12 +28,28 @@ public class SeenDTO implements Serializable {
         this.id = id;
     }
 
-    public LocalDate getData() {
-        return data;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setData(LocalDate data) {
-        this.data = data;
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
+    }
+
+    public Long getProductsId() {
+        return productsId;
+    }
+
+    public void setProductsId(Long productsId) {
+        this.productsId = productsId;
     }
 
     @Override
@@ -57,7 +77,7 @@ public class SeenDTO implements Serializable {
     public String toString() {
         return "SeenDTO{" +
             "id=" + getId() +
-            ", data='" + getData() + "'" +
+            ", date='" + getDate() + "'" +
             "}";
     }
 }

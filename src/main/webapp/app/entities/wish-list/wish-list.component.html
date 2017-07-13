@@ -29,48 +29,27 @@
         <table class="table table-striped">
             <thead>
             <tr>
-<<<<<<< HEAD
-            <th><span jhiTranslate="global.field.id">ID</span></th>
-<<<<<<< HEAD
-            <th><span jhiTranslate="eshopApp.wishList.data">Data</span></th>
-            <th><span jhiTranslate="eshopApp.wishList.customer">Customer</span></th>
-            <th><span jhiTranslate="eshopApp.wishList.product">Product</span></th>
-=======
-            <th><span jhiTranslate="eshopApp.wishList.wishsName">Wishs Name</span></th>
-            <th><span jhiTranslate="eshopApp.wishList.data">Data</span></th>
->>>>>>> with_entities
-=======
             <th><span>ID</span></th>
             <th><span>Date</span></th>
             <th><span>Customer</span></th>
             <th><span>Product</span></th>
->>>>>>> creatingDtos
             <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let wishList of wishLists ;trackBy: trackId">
                 <td><a [routerLink]="['../wish-list', wishList.id ]">{{wishList.id}}</a></td>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                <td>{{wishList.data | date:'mediumDate'}}</td>
-=======
                 <td>{{wishList.date | date:'mediumDate'}}</td>
->>>>>>> creatingDtos
                 <td>
-                    <div *ngIf="wishList.customer">
-                        <a [routerLink]="['../customer', wishList.customer?.id ]" >{{wishList.customer?.id}}</a>
+                    <div *ngIf="wishList.customerId">
+                        <a [routerLink]="['../customer', wishList.customerId  ]" >{{wishList.customerId}}</a>
                     </div>
                 </td>
                 <td>
-                    <div *ngIf="wishList.product">
-                        <a [routerLink]="['../products', wishList.product?.id ]" >{{wishList.product?.id}}</a>
+                    <div *ngIf="wishList.productId">
+                        <a [routerLink]="['../products', wishList.productId  ]" >{{wishList.productId}}</a>
                     </div>
                 </td>
-=======
-                <td>{{wishList.wishsName}}</td>
-                <td>{{wishList.data | date:'mediumDate'}}</td>
->>>>>>> with_entities
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

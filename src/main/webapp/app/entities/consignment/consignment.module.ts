@@ -13,10 +13,6 @@ import {
     ConsignmentDeleteDialogComponent,
     consignmentRoute,
     consignmentPopupRoute,
-<<<<<<< HEAD
-=======
-    ConsignmentResolvePagingParams,
->>>>>>> with_entities
 } from './';
 
 const ENTITY_STATES = [
@@ -47,10 +43,6 @@ const ENTITY_STATES = [
     providers: [
         ConsignmentService,
         ConsignmentPopupService,
-<<<<<<< HEAD
-=======
-        ConsignmentResolvePagingParams,
->>>>>>> with_entities
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

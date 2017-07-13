@@ -1,21 +1,11 @@
 package com.social.eshop.domain;
 
-<<<<<<< HEAD
-=======
-import com.fasterxml.jackson.annotation.JsonIgnore;
->>>>>>> with_entities
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
 import java.io.Serializable;
-<<<<<<< HEAD
-=======
-import java.util.HashSet;
-import java.util.Set;
->>>>>>> with_entities
 import java.util.Objects;
 
 /**
@@ -34,37 +24,23 @@ public class Media implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @NotNull
-    @Column(name = "name", nullable = false)
+    @Column(name = "name")
     private String name;
 
-    @NotNull
-    @Column(name = "jhi_type", nullable = false)
+    @Column(name = "jhi_type")
     private String type;
 
-    @NotNull
-    @Column(name = "content_type", nullable = false)
+    @Column(name = "content_type")
     private String contentType;
 
-    @NotNull
-    @Column(name = "location", nullable = false)
+    @Column(name = "location")
     private String location;
 
-    @NotNull
-    @Column(name = "jhi_size", nullable = false)
+    @Column(name = "jhi_size")
     private String size;
 
     @ManyToOne
-<<<<<<< HEAD
     private Products products;
-=======
-    private Comments comments;
-
-    @OneToMany(mappedBy = "media")
-    @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Products> products = new HashSet<>();
->>>>>>> with_entities
 
     public Long getId() {
         return id;
@@ -139,53 +115,16 @@ public class Media implements Serializable {
         this.size = size;
     }
 
-<<<<<<< HEAD
     public Products getProducts() {
         return products;
     }
 
     public Media products(Products products) {
-=======
-    public Comments getComments() {
-        return comments;
-    }
-
-    public Media comments(Comments comments) {
-        this.comments = comments;
-        return this;
-    }
-
-    public void setComments(Comments comments) {
-        this.comments = comments;
-    }
-
-    public Set<Products> getProducts() {
-        return products;
-    }
-
-    public Media products(Set<Products> products) {
->>>>>>> with_entities
         this.products = products;
         return this;
     }
 
-<<<<<<< HEAD
     public void setProducts(Products products) {
-=======
-    public Media addProduct(Products products) {
-        this.products.add(products);
-        products.setMedia(this);
-        return this;
-    }
-
-    public Media removeProduct(Products products) {
-        this.products.remove(products);
-        products.setMedia(null);
-        return this;
-    }
-
-    public void setProducts(Set<Products> products) {
->>>>>>> with_entities
         this.products = products;
     }
 

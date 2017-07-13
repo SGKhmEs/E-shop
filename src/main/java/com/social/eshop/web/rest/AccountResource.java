@@ -2,14 +2,14 @@ package com.social.eshop.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 
+import com.social.eshop.domain.PersistentToken;
 import com.social.eshop.domain.User;
-import com.social.eshop.repository.BucketRepository;
+import com.social.eshop.repository.PersistentTokenRepository;
 import com.social.eshop.repository.UserRepository;
 import com.social.eshop.security.SecurityUtils;
 import com.social.eshop.service.MailService;
 import com.social.eshop.service.UserService;
 import com.social.eshop.service.dto.UserDTO;
-import com.social.eshop.service.impl.CustomerDTOServiceImpl;
 import com.social.eshop.web.rest.vm.KeyAndPasswordVM;
 import com.social.eshop.web.rest.vm.ManagedUserVM;
 import com.social.eshop.web.rest.util.HeaderUtil;
@@ -25,6 +25,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.*;
 
 /**
@@ -42,22 +44,17 @@ public class AccountResource {
 
     private final MailService mailService;
 
-<<<<<<< HEAD
-    private final BucketRepository bucketRepository; // +
-    private final CustomerDTOServiceImpl customerDTOService;
-=======
+    private final PersistentTokenRepository persistentTokenRepository;
+
     private static final String CHECK_ERROR_MESSAGE = "Incorrect password";
 
     public AccountResource(UserRepository userRepository, UserService userService,
-            MailService mailService) {
->>>>>>> creatingDtos
+            MailService mailService, PersistentTokenRepository persistentTokenRepository) {
 
-    public AccountResource(UserRepository userRepository, UserService userService, MailService mailService, BucketRepository bucketRepository, CustomerDTOServiceImpl customerDTOService) {
         this.userRepository = userRepository;
         this.userService = userService;
         this.mailService = mailService;
-        this.bucketRepository = bucketRepository;
-        this.customerDTOService = customerDTOService;
+        this.persistentTokenRepository = persistentTokenRepository;
     }
 
     /**
@@ -70,8 +67,6 @@ public class AccountResource {
         produces={MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_PLAIN_VALUE})
     @Timed
     public ResponseEntity registerAccount(@Valid @RequestBody ManagedUserVM managedUserVM) {
-
-        System.out.println(customerDTOService.findOne((long) 4351).toString());
 
         HttpHeaders textPlainHeaders = new HttpHeaders();
         textPlainHeaders.setContentType(MediaType.TEXT_PLAIN);
@@ -174,6 +169,48 @@ public class AccountResource {
         }
         userService.changePassword(password);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    /**
+     * GET  /account/sessions : get the current open sessions.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the current open sessions in body,
+     *  or status 500 (Internal Server Error) if the current open sessions couldn't be retrieved
+     */
+    @GetMapping("/account/sessions")
+    @Timed
+    public ResponseEntity<List<PersistentToken>> getCurrentSessions() {
+        return userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin())
+            .map(user -> new ResponseEntity<>(
+                persistentTokenRepository.findByUser(user),
+                HttpStatus.OK))
+            .orElse(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
+    }
+
+    /**
+     * DELETE  /account/sessions?series={series} : invalidate an existing session.
+     *
+     * - You can only delete your own sessions, not any other user's session
+     * - If you delete one of your existing sessions, and that you are currently logged in on that session, you will
+     *   still be able to use that session, until you quit your browser: it does not work in real time (there is
+     *   no API for that), it only removes the "remember me" cookie
+     * - This is also true if you invalidate your current session: you will still be able to use it until you close
+     *   your browser or that the session times out. But automatic login (the "remember me" cookie) will not work
+     *   anymore.
+     *   There is an API to invalidate the current session, but there is no API to check which session uses which
+     *   cookie.
+     *
+     * @param series the series of an existing session
+     * @throws UnsupportedEncodingException if the series couldnt be URL decoded
+     */
+    @DeleteMapping("/account/sessions/{series}")
+    @Timed
+    public void invalidateSession(@PathVariable String series) throws UnsupportedEncodingException {
+        String decodedSeries = URLDecoder.decode(series, "UTF-8");
+        userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).ifPresent(u ->
+            persistentTokenRepository.findByUser(u).stream()
+                .filter(persistentToken -> StringUtils.equals(persistentToken.getSeries(), decodedSeries))
+                .findAny().ifPresent(t -> persistentTokenRepository.delete(decodedSeries)));
     }
 
     /**

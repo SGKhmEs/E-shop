@@ -39,13 +39,13 @@
             <tr *ngFor="let tagForProduct of tagForProducts ;trackBy: trackId">
                 <td><a [routerLink]="['../tag-for-product', tagForProduct.id ]">{{tagForProduct.id}}</a></td>
                 <td>
-                    <div *ngIf="tagForProduct.products">
-                        <a [routerLink]="['../products', tagForProduct.products?.id ]" >{{tagForProduct.products?.id}}</a>
+                    <div *ngIf="tagForProduct.productsId">
+                        <a [routerLink]="['../products', tagForProduct.productsId  ]" >{{tagForProduct.productsId}}</a>
                     </div>
                 </td>
                 <td>
-                    <div *ngIf="tagForProduct.tags">
-                        <a [routerLink]="['../tags', tagForProduct.tags?.id ]" >{{tagForProduct.tags?.id}}</a>
+                    <div *ngIf="tagForProduct.tagsId">
+                        <a [routerLink]="['../tags', tagForProduct.tagsId  ]" >{{tagForProduct.tagsId}}</a>
                     </div>
                 </td>
                 <td class="text-right">

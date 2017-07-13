@@ -1,9 +1,9 @@
 package com.social.eshop.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-import com.social.eshop.domain.TagForProduct;
 import com.social.eshop.service.TagForProductService;
 import com.social.eshop.web.rest.util.HeaderUtil;
+import com.social.eshop.service.dto.TagForProductDTO;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,18 +39,18 @@ public class TagForProductResource {
     /**
      * POST  /tag-for-products : Create a new tagForProduct.
      *
-     * @param tagForProduct the tagForProduct to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new tagForProduct, or with status 400 (Bad Request) if the tagForProduct has already an ID
+     * @param tagForProductDTO the tagForProductDTO to create
+     * @return the ResponseEntity with status 201 (Created) and with body the new tagForProductDTO, or with status 400 (Bad Request) if the tagForProduct has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/tag-for-products")
     @Timed
-    public ResponseEntity<TagForProduct> createTagForProduct(@RequestBody TagForProduct tagForProduct) throws URISyntaxException {
-        log.debug("REST request to save TagForProduct : {}", tagForProduct);
-        if (tagForProduct.getId() != null) {
+    public ResponseEntity<TagForProductDTO> createTagForProduct(@RequestBody TagForProductDTO tagForProductDTO) throws URISyntaxException {
+        log.debug("REST request to save TagForProduct : {}", tagForProductDTO);
+        if (tagForProductDTO.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new tagForProduct cannot already have an ID")).body(null);
         }
-        TagForProduct result = tagForProductService.save(tagForProduct);
+        TagForProductDTO result = tagForProductService.save(tagForProductDTO);
         return ResponseEntity.created(new URI("/api/tag-for-products/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -59,22 +59,22 @@ public class TagForProductResource {
     /**
      * PUT  /tag-for-products : Updates an existing tagForProduct.
      *
-     * @param tagForProduct the tagForProduct to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated tagForProduct,
-     * or with status 400 (Bad Request) if the tagForProduct is not valid,
-     * or with status 500 (Internal Server Error) if the tagForProduct couldn't be updated
+     * @param tagForProductDTO the tagForProductDTO to update
+     * @return the ResponseEntity with status 200 (OK) and with body the updated tagForProductDTO,
+     * or with status 400 (Bad Request) if the tagForProductDTO is not valid,
+     * or with status 500 (Internal Server Error) if the tagForProductDTO couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/tag-for-products")
     @Timed
-    public ResponseEntity<TagForProduct> updateTagForProduct(@RequestBody TagForProduct tagForProduct) throws URISyntaxException {
-        log.debug("REST request to update TagForProduct : {}", tagForProduct);
-        if (tagForProduct.getId() == null) {
-            return createTagForProduct(tagForProduct);
+    public ResponseEntity<TagForProductDTO> updateTagForProduct(@RequestBody TagForProductDTO tagForProductDTO) throws URISyntaxException {
+        log.debug("REST request to update TagForProduct : {}", tagForProductDTO);
+        if (tagForProductDTO.getId() == null) {
+            return createTagForProduct(tagForProductDTO);
         }
-        TagForProduct result = tagForProductService.save(tagForProduct);
+        TagForProductDTO result = tagForProductService.save(tagForProductDTO);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, tagForProduct.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, tagForProductDTO.getId().toString()))
             .body(result);
     }
 
@@ -85,7 +85,7 @@ public class TagForProductResource {
      */
     @GetMapping("/tag-for-products")
     @Timed
-    public List<TagForProduct> getAllTagForProducts() {
+    public List<TagForProductDTO> getAllTagForProducts() {
         log.debug("REST request to get all TagForProducts");
         return tagForProductService.findAll();
     }
@@ -93,21 +93,21 @@ public class TagForProductResource {
     /**
      * GET  /tag-for-products/:id : get the "id" tagForProduct.
      *
-     * @param id the id of the tagForProduct to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the tagForProduct, or with status 404 (Not Found)
+     * @param id the id of the tagForProductDTO to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the tagForProductDTO, or with status 404 (Not Found)
      */
     @GetMapping("/tag-for-products/{id}")
     @Timed
-    public ResponseEntity<TagForProduct> getTagForProduct(@PathVariable Long id) {
+    public ResponseEntity<TagForProductDTO> getTagForProduct(@PathVariable Long id) {
         log.debug("REST request to get TagForProduct : {}", id);
-        TagForProduct tagForProduct = tagForProductService.findOne(id);
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(tagForProduct));
+        TagForProductDTO tagForProductDTO = tagForProductService.findOne(id);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(tagForProductDTO));
     }
 
     /**
      * DELETE  /tag-for-products/:id : delete the "id" tagForProduct.
      *
-     * @param id the id of the tagForProduct to delete
+     * @param id the id of the tagForProductDTO to delete
      * @return the ResponseEntity with status 200 (OK)
      */
     @DeleteMapping("/tag-for-products/{id}")
@@ -127,7 +127,7 @@ public class TagForProductResource {
      */
     @GetMapping("/_search/tag-for-products")
     @Timed
-    public List<TagForProduct> searchTagForProducts(@RequestParam String query) {
+    public List<TagForProductDTO> searchTagForProducts(@RequestParam String query) {
         log.debug("REST request to search TagForProducts for query {}", query);
         return tagForProductService.search(query);
     }

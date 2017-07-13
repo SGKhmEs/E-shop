@@ -1,7 +1,6 @@
 package com.social.eshop.service.dto;
 
 
-import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,7 +13,6 @@ public class TagsDTO implements Serializable {
 
     private Long id;
 
-    @NotNull
     private String name;
 
     public Long getId() {

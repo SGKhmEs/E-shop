@@ -1,7 +1,6 @@
 package com.social.eshop.service.dto;
 
 
-import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,22 +13,17 @@ public class MediaDTO implements Serializable {
 
     private Long id;
 
-    @NotNull
     private String name;
 
-    @NotNull
     private String type;
 
-    @NotNull
     private String contentType;
 
-    @NotNull
     private String location;
 
-    @NotNull
     private String size;
 
-    private Long commentsId;
+    private Long productsId;
 
     public Long getId() {
         return id;
@@ -79,12 +73,12 @@ public class MediaDTO implements Serializable {
         this.size = size;
     }
 
-    public Long getCommentsId() {
-        return commentsId;
+    public Long getProductsId() {
+        return productsId;
     }
 
-    public void setCommentsId(Long commentsId) {
-        this.commentsId = commentsId;
+    public void setProductsId(Long productsId) {
+        this.productsId = productsId;
     }
 
     @Override

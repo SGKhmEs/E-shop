@@ -1,9 +1,9 @@
 package com.social.eshop.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-import com.social.eshop.domain.Manager;
 import com.social.eshop.service.ManagerService;
 import com.social.eshop.web.rest.util.HeaderUtil;
+import com.social.eshop.service.dto.ManagerDTO;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,18 +39,18 @@ public class ManagerResource {
     /**
      * POST  /managers : Create a new manager.
      *
-     * @param manager the manager to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new manager, or with status 400 (Bad Request) if the manager has already an ID
+     * @param managerDTO the managerDTO to create
+     * @return the ResponseEntity with status 201 (Created) and with body the new managerDTO, or with status 400 (Bad Request) if the manager has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/managers")
     @Timed
-    public ResponseEntity<Manager> createManager(@RequestBody Manager manager) throws URISyntaxException {
-        log.debug("REST request to save Manager : {}", manager);
-        if (manager.getId() != null) {
+    public ResponseEntity<ManagerDTO> createManager(@RequestBody ManagerDTO managerDTO) throws URISyntaxException {
+        log.debug("REST request to save Manager : {}", managerDTO);
+        if (managerDTO.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new manager cannot already have an ID")).body(null);
         }
-        Manager result = managerService.save(manager);
+        ManagerDTO result = managerService.save(managerDTO);
         return ResponseEntity.created(new URI("/api/managers/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -59,22 +59,22 @@ public class ManagerResource {
     /**
      * PUT  /managers : Updates an existing manager.
      *
-     * @param manager the manager to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated manager,
-     * or with status 400 (Bad Request) if the manager is not valid,
-     * or with status 500 (Internal Server Error) if the manager couldn't be updated
+     * @param managerDTO the managerDTO to update
+     * @return the ResponseEntity with status 200 (OK) and with body the updated managerDTO,
+     * or with status 400 (Bad Request) if the managerDTO is not valid,
+     * or with status 500 (Internal Server Error) if the managerDTO couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/managers")
     @Timed
-    public ResponseEntity<Manager> updateManager(@RequestBody Manager manager) throws URISyntaxException {
-        log.debug("REST request to update Manager : {}", manager);
-        if (manager.getId() == null) {
-            return createManager(manager);
+    public ResponseEntity<ManagerDTO> updateManager(@RequestBody ManagerDTO managerDTO) throws URISyntaxException {
+        log.debug("REST request to update Manager : {}", managerDTO);
+        if (managerDTO.getId() == null) {
+            return createManager(managerDTO);
         }
-        Manager result = managerService.save(manager);
+        ManagerDTO result = managerService.save(managerDTO);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, manager.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, managerDTO.getId().toString()))
             .body(result);
     }
 
@@ -85,7 +85,7 @@ public class ManagerResource {
      */
     @GetMapping("/managers")
     @Timed
-    public List<Manager> getAllManagers() {
+    public List<ManagerDTO> getAllManagers() {
         log.debug("REST request to get all Managers");
         return managerService.findAll();
     }
@@ -93,21 +93,21 @@ public class ManagerResource {
     /**
      * GET  /managers/:id : get the "id" manager.
      *
-     * @param id the id of the manager to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the manager, or with status 404 (Not Found)
+     * @param id the id of the managerDTO to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the managerDTO, or with status 404 (Not Found)
      */
     @GetMapping("/managers/{id}")
     @Timed
-    public ResponseEntity<Manager> getManager(@PathVariable Long id) {
+    public ResponseEntity<ManagerDTO> getManager(@PathVariable Long id) {
         log.debug("REST request to get Manager : {}", id);
-        Manager manager = managerService.findOne(id);
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(manager));
+        ManagerDTO managerDTO = managerService.findOne(id);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(managerDTO));
     }
 
     /**
      * DELETE  /managers/:id : delete the "id" manager.
      *
-     * @param id the id of the manager to delete
+     * @param id the id of the managerDTO to delete
      * @return the ResponseEntity with status 200 (OK)
      */
     @DeleteMapping("/managers/{id}")
@@ -127,7 +127,7 @@ public class ManagerResource {
      */
     @GetMapping("/_search/managers")
     @Timed
-    public List<Manager> searchManagers(@RequestParam String query) {
+    public List<ManagerDTO> searchManagers(@RequestParam String query) {
         log.debug("REST request to search Managers for query {}", query);
         return managerService.search(query);
     }

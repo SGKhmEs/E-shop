@@ -93,7 +93,7 @@ module.exports = (config) => {
         reporters: ['dots', 'junit', 'progress', 'karma-remap-istanbul', 'notify'],
 
         junitReporter: {
-            outputFile: '../../../../build/test-results/karma/TESTS-results.xml'
+            outputFile: '../../../../target/test-results/karma/TESTS-results.xml'
         },
 
         notifyReporter: {
@@ -104,7 +104,7 @@ module.exports = (config) => {
 
         remapIstanbulReporter: {
             reports: { // eslint-disable-line
-                'html': 'build/test-results/coverage',
+                'html': 'target/test-results/coverage',
                 'text-summary': null
             }
         },

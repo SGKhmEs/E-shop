@@ -3,10 +3,7 @@ import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Media } from './media.model';
 import { MediaService } from './media.service';
-<<<<<<< HEAD
 
-=======
->>>>>>> with_entities
 @Injectable()
 export class MediaPopupService {
     private isOpen = false;

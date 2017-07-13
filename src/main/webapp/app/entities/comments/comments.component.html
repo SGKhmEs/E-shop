@@ -29,23 +29,11 @@
         <table class="table table-striped">
             <thead>
             <tr>
-<<<<<<< HEAD
-            <th><span jhiTranslate="global.field.id">ID</span></th>
-            <th><span jhiTranslate="eshopApp.comments.comments">Comments</span></th>
-            <th><span jhiTranslate="eshopApp.comments.data">Data</span></th>
-<<<<<<< HEAD
-            <th><span jhiTranslate="eshopApp.comments.customer">Customer</span></th>
-=======
-            <th><span jhiTranslate="eshopApp.comments.customerRoom">Customer Room</span></th>
->>>>>>> with_entities
-            <th><span jhiTranslate="eshopApp.comments.products">Products</span></th>
-=======
             <th><span>ID</span></th>
             <th><span>Comments</span></th>
             <th><span>Date</span></th>
             <th><span>Customer</span></th>
             <th><span>Products</span></th>
->>>>>>> creatingDtos
             <th></th>
             </tr>
             </thead>
@@ -55,23 +43,13 @@
                 <td>{{comments.comments}}</td>
                 <td>{{comments.date | date:'medium'}}</td>
                 <td>
-<<<<<<< HEAD
-                    <div *ngIf="comments.customer">
-                        <a [routerLink]="['../customer', comments.customer?.id ]" >{{comments.customer?.id}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="comments.products">
-                        <a [routerLink]="['../products', comments.products?.id ]" >{{comments.products?.id}}</a>
-=======
-                    <div *ngIf="comments.customerRoomId">
-                        <a [routerLink]="['../customer-room', comments.customerRoomId  ]" >{{comments.customerRoomId}}</a>
+                    <div *ngIf="comments.customerId">
+                        <a [routerLink]="['../customer', comments.customerId  ]" >{{comments.customerId}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="comments.productsId">
                         <a [routerLink]="['../products', comments.productsId  ]" >{{comments.productsId}}</a>
->>>>>>> with_entities
                     </div>
                 </td>
                 <td class="text-right">

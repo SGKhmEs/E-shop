@@ -13,29 +13,17 @@
                    [(ngModel)]="bucket.id" readonly />
         </div>
         <div class="form-group">
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <label class="form-control-label" jhiTranslate="eshopApp.bucket.name" for="field_name">Name</label>
-=======
             <label class="form-control-label" for="field_name">Name</label>
->>>>>>> creatingDtos
             <input type="text" class="form-control" name="name" id="field_name"
                 [(ngModel)]="bucket.name"  />
         </div>
         <div class="form-group">
-<<<<<<< HEAD
-=======
->>>>>>> with_entities
-            <label class="form-control-label" jhiTranslate="eshopApp.bucket.data" for="field_data">Data</label>
-=======
             <label class="form-control-label" for="field_date">Date</label>
->>>>>>> creatingDtos
             <div class="d-flex">
                 <input id="field_date" type="datetime-local" class="form-control" name="date" [(ngModel)]="bucket.date"
                   />
             </div>
         </div>
-<<<<<<< HEAD
         <div class="form-group">
             <label class="form-control-label" for="field_sum">Sum</label>
             <input type="number" class="form-control" name="sum" id="field_sum"
@@ -71,28 +59,25 @@
 
         <div class="form-group">
             <label for="field_manager">Manager</label>
-            <select class="form-control" id="field_manager" name="manager" [(ngModel)]="bucket.manager" >
+            <select class="form-control" id="field_manager" name="manager" [(ngModel)]="bucket.managerId" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="managerOption.id === bucket.manager?.id ? bucket.manager : managerOption" *ngFor="let managerOption of managers; trackBy: trackManagerById">{{managerOption.id}}</option>
+                <option [ngValue]="managerOption.id" *ngFor="let managerOption of managers; trackBy: trackManagerById">{{managerOption.id}}</option>
             </select>
         </div>
         <div class="form-group">
             <label for="field_addressShipping">Address Shipping</label>
-            <select class="form-control" id="field_addressShipping" name="addressShipping" [(ngModel)]="bucket.addressShipping">
+            <select class="form-control" id="field_addressShipping" name="addressShipping" [(ngModel)]="bucket.addressShippingId">
                 <option [ngValue]="null"></option>
-                <option [ngValue]="addressShippingOption.id === bucket.addressShipping?.id ? bucket.addressShipping : addressShippingOption" *ngFor="let addressShippingOption of addressshippings; trackBy: trackAddressShippingById">{{addressShippingOption.id}}</option>
+                <option [ngValue]="addressShippingOption.id" *ngFor="let addressShippingOption of addressshippings; trackBy: trackAddressShippingById">{{addressShippingOption.id}}</option>
             </select>
         </div>
         <div class="form-group">
             <label for="field_customer">Customer</label>
-            <select class="form-control" id="field_customer" name="customer" [(ngModel)]="bucket.customer" >
+            <select class="form-control" id="field_customer" name="customer" [(ngModel)]="bucket.customerId" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="customerOption.id === bucket.customer?.id ? bucket.customer : customerOption" *ngFor="let customerOption of customers; trackBy: trackCustomerById">{{customerOption.id}}</option>
+                <option [ngValue]="customerOption.id" *ngFor="let customerOption of customers; trackBy: trackCustomerById">{{customerOption.id}}</option>
             </select>
         </div>
-=======
-
->>>>>>> with_entities
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">

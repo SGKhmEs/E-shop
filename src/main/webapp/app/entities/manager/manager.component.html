@@ -42,18 +42,18 @@
                 <td><a [routerLink]="['../manager', manager.id ]">{{manager.id}}</a></td>
                 <td>{{manager.roles}}</td>
                 <td>
-                    <div *ngIf="manager.loginOptions">
-                        <a [routerLink]="['../login-options', manager.loginOptions?.id ]" >{{manager.loginOptions?.id}}</a>
+                    <div *ngIf="manager.loginOptionsId">
+                        <a [routerLink]="['../login-options', manager.loginOptionsId  ]" >{{manager.loginOptionsId}}</a>
                     </div>
                 </td>
                 <td>
-                    <div *ngIf="manager.personalInfo">
-                        <a [routerLink]="['../personal-information', manager.personalInfo?.id ]" >{{manager.personalInfo?.id}}</a>
+                    <div *ngIf="manager.personalInfoId">
+                        <a [routerLink]="['../personal-information', manager.personalInfoId  ]" >{{manager.personalInfoId}}</a>
                     </div>
                 </td>
                 <td>
-                    <div *ngIf="manager.avatar">
-                        <a [routerLink]="['../avatar', manager.avatar?.id ]" >{{manager.avatar?.id}}</a>
+                    <div *ngIf="manager.avatarId">
+                        <a [routerLink]="['../avatar', manager.avatarId  ]" >{{manager.avatarId}}</a>
                     </div>
                 </td>
                 <td class="text-right">

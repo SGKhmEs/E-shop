@@ -2,8 +2,10 @@ package com.social.eshop.web.rest;
 
 import com.social.eshop.EshopApp;
 import com.social.eshop.domain.Authority;
+import com.social.eshop.domain.PersistentToken;
 import com.social.eshop.domain.User;
 import com.social.eshop.repository.AuthorityRepository;
+import com.social.eshop.repository.PersistentTokenRepository;
 import com.social.eshop.repository.UserRepository;
 import com.social.eshop.security.AuthoritiesConstants;
 import com.social.eshop.service.MailService;
@@ -61,6 +63,9 @@ public class AccountResourceIntTest {
     private UserService userService;
 
     @Autowired
+    private PersistentTokenRepository persistentTokenRepository;
+
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Autowired
@@ -82,10 +87,10 @@ public class AccountResourceIntTest {
         doNothing().when(mockMailService).sendActivationEmail(anyObject());
 
         AccountResource accountResource =
-            new AccountResource(userRepository, userService, mockMailService);
+            new AccountResource(userRepository, userService, mockMailService, persistentTokenRepository);
 
         AccountResource accountUserMockResource =
-            new AccountResource(userRepository, mockUserService, mockMailService);
+            new AccountResource(userRepository, mockUserService, mockMailService, persistentTokenRepository);
 
         this.restMvc = MockMvcBuilders.standaloneSetup(accountResource)
             .setMessageConverters(httpMessageConverters)
@@ -671,6 +676,60 @@ public class AccountResourceIntTest {
 
         User updatedUser = userRepository.findOneByLogin("change-password-empty").orElse(null);
         assertThat(updatedUser.getPassword()).isEqualTo(user.getPassword());
+    }
+
+    @Test
+    @Transactional
+    @WithMockUser("current-sessions")
+    public void testGetCurrentSessions()  throws Exception {
+        User user = new User();
+        user.setPassword(RandomStringUtils.random(60));
+        user.setLogin("current-sessions");
+        user.setEmail("current-sessions@example.com");
+        userRepository.saveAndFlush(user);
+
+        PersistentToken token = new PersistentToken();
+        token.setSeries("current-sessions");
+        token.setUser(user);
+        token.setTokenValue("current-session-data");
+        token.setTokenDate(LocalDate.of(2017, 3, 23));
+        token.setIpAddress("127.0.0.1");
+        token.setUserAgent("Test agent");
+        persistentTokenRepository.saveAndFlush(token);
+
+        restMvc.perform(get("/api/account/sessions"))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.[*].series").value(hasItem(token.getSeries())))
+            .andExpect(jsonPath("$.[*].ipAddress").value(hasItem(token.getIpAddress())))
+            .andExpect(jsonPath("$.[*].userAgent").value(hasItem(token.getUserAgent())))
+            .andExpect(jsonPath("$.[*].tokenDate").value(hasItem(token.getTokenDate().toString())));
+    }
+
+    @Test
+    @Transactional
+    @WithMockUser("invalidate-session")
+    public void testInvalidateSession() throws Exception {
+        User user = new User();
+        user.setPassword(RandomStringUtils.random(60));
+        user.setLogin("invalidate-session");
+        user.setEmail("invalidate-session@example.com");
+        userRepository.saveAndFlush(user);
+
+        PersistentToken token = new PersistentToken();
+        token.setSeries("invalidate-session");
+        token.setUser(user);
+        token.setTokenValue("invalidate-data");
+        token.setTokenDate(LocalDate.of(2017, 3, 23));
+        token.setIpAddress("127.0.0.1");
+        token.setUserAgent("Test agent");
+        persistentTokenRepository.saveAndFlush(token);
+
+        assertThat(persistentTokenRepository.findByUser(user)).hasSize(1);
+
+        restMvc.perform(delete("/api/account/sessions/invalidate-session"))
+            .andExpect(status().isOk());
+
+        assertThat(persistentTokenRepository.findByUser(user)).isEmpty();
     }
 
     @Test

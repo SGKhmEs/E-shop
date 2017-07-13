@@ -32,16 +32,8 @@ describe('Component Tests', () => {
                     StorageService,
                     JhiEventManager
                 ]
-<<<<<<< HEAD
             }).overrideTemplate(StorageDetailComponent, '')
             .compileComponents();
-=======
-            }).overrideComponent(StorageDetailComponent, {
-                set: {
-                    template: ''
-                }
-            }).compileComponents();
->>>>>>> with_entities
         }));
 
         beforeEach(() => {

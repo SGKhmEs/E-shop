@@ -4,11 +4,14 @@ import com.social.eshop.service.ProductInBucketService;
 import com.social.eshop.domain.ProductInBucket;
 import com.social.eshop.repository.ProductInBucketRepository;
 import com.social.eshop.repository.search.ProductInBucketSearchRepository;
+import com.social.eshop.service.dto.ProductInBucketDTO;
+import com.social.eshop.service.mapper.ProductInBucketMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -26,24 +29,29 @@ public class ProductInBucketServiceImpl implements ProductInBucketService{
 
     private final ProductInBucketRepository productInBucketRepository;
 
+    private final ProductInBucketMapper productInBucketMapper;
+
     private final ProductInBucketSearchRepository productInBucketSearchRepository;
 
-    public ProductInBucketServiceImpl(ProductInBucketRepository productInBucketRepository, ProductInBucketSearchRepository productInBucketSearchRepository) {
+    public ProductInBucketServiceImpl(ProductInBucketRepository productInBucketRepository, ProductInBucketMapper productInBucketMapper, ProductInBucketSearchRepository productInBucketSearchRepository) {
         this.productInBucketRepository = productInBucketRepository;
+        this.productInBucketMapper = productInBucketMapper;
         this.productInBucketSearchRepository = productInBucketSearchRepository;
     }
 
     /**
      * Save a productInBucket.
      *
-     * @param productInBucket the entity to save
+     * @param productInBucketDTO the entity to save
      * @return the persisted entity
      */
     @Override
-    public ProductInBucket save(ProductInBucket productInBucket) {
-        log.debug("Request to save ProductInBucket : {}", productInBucket);
-        ProductInBucket result = productInBucketRepository.save(productInBucket);
-        productInBucketSearchRepository.save(result);
+    public ProductInBucketDTO save(ProductInBucketDTO productInBucketDTO) {
+        log.debug("Request to save ProductInBucket : {}", productInBucketDTO);
+        ProductInBucket productInBucket = productInBucketMapper.toEntity(productInBucketDTO);
+        productInBucket = productInBucketRepository.save(productInBucket);
+        ProductInBucketDTO result = productInBucketMapper.toDto(productInBucket);
+        productInBucketSearchRepository.save(productInBucket);
         return result;
     }
 
@@ -54,9 +62,11 @@ public class ProductInBucketServiceImpl implements ProductInBucketService{
      */
     @Override
     @Transactional(readOnly = true)
-    public List<ProductInBucket> findAll() {
+    public List<ProductInBucketDTO> findAll() {
         log.debug("Request to get all ProductInBuckets");
-        return productInBucketRepository.findAll();
+        return productInBucketRepository.findAll().stream()
+            .map(productInBucketMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
     }
 
     /**
@@ -67,9 +77,10 @@ public class ProductInBucketServiceImpl implements ProductInBucketService{
      */
     @Override
     @Transactional(readOnly = true)
-    public ProductInBucket findOne(Long id) {
+    public ProductInBucketDTO findOne(Long id) {
         log.debug("Request to get ProductInBucket : {}", id);
-        return productInBucketRepository.findOne(id);
+        ProductInBucket productInBucket = productInBucketRepository.findOne(id);
+        return productInBucketMapper.toDto(productInBucket);
     }
 
     /**
@@ -92,10 +103,11 @@ public class ProductInBucketServiceImpl implements ProductInBucketService{
      */
     @Override
     @Transactional(readOnly = true)
-    public List<ProductInBucket> search(String query) {
+    public List<ProductInBucketDTO> search(String query) {
         log.debug("Request to search ProductInBuckets for query {}", query);
         return StreamSupport
             .stream(productInBucketSearchRepository.search(queryStringQuery(query)).spliterator(), false)
+            .map(productInBucketMapper::toDto)
             .collect(Collectors.toList());
     }
 }

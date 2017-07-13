@@ -1,9 +1,9 @@
 package com.social.eshop.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-import com.social.eshop.domain.StaticPages;
 import com.social.eshop.service.StaticPagesService;
 import com.social.eshop.web.rest.util.HeaderUtil;
+import com.social.eshop.service.dto.StaticPagesDTO;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,18 +39,18 @@ public class StaticPagesResource {
     /**
      * POST  /static-pages : Create a new staticPages.
      *
-     * @param staticPages the staticPages to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new staticPages, or with status 400 (Bad Request) if the staticPages has already an ID
+     * @param staticPagesDTO the staticPagesDTO to create
+     * @return the ResponseEntity with status 201 (Created) and with body the new staticPagesDTO, or with status 400 (Bad Request) if the staticPages has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/static-pages")
     @Timed
-    public ResponseEntity<StaticPages> createStaticPages(@RequestBody StaticPages staticPages) throws URISyntaxException {
-        log.debug("REST request to save StaticPages : {}", staticPages);
-        if (staticPages.getId() != null) {
+    public ResponseEntity<StaticPagesDTO> createStaticPages(@RequestBody StaticPagesDTO staticPagesDTO) throws URISyntaxException {
+        log.debug("REST request to save StaticPages : {}", staticPagesDTO);
+        if (staticPagesDTO.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new staticPages cannot already have an ID")).body(null);
         }
-        StaticPages result = staticPagesService.save(staticPages);
+        StaticPagesDTO result = staticPagesService.save(staticPagesDTO);
         return ResponseEntity.created(new URI("/api/static-pages/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -59,22 +59,22 @@ public class StaticPagesResource {
     /**
      * PUT  /static-pages : Updates an existing staticPages.
      *
-     * @param staticPages the staticPages to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated staticPages,
-     * or with status 400 (Bad Request) if the staticPages is not valid,
-     * or with status 500 (Internal Server Error) if the staticPages couldn't be updated
+     * @param staticPagesDTO the staticPagesDTO to update
+     * @return the ResponseEntity with status 200 (OK) and with body the updated staticPagesDTO,
+     * or with status 400 (Bad Request) if the staticPagesDTO is not valid,
+     * or with status 500 (Internal Server Error) if the staticPagesDTO couldn't be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/static-pages")
     @Timed
-    public ResponseEntity<StaticPages> updateStaticPages(@RequestBody StaticPages staticPages) throws URISyntaxException {
-        log.debug("REST request to update StaticPages : {}", staticPages);
-        if (staticPages.getId() == null) {
-            return createStaticPages(staticPages);
+    public ResponseEntity<StaticPagesDTO> updateStaticPages(@RequestBody StaticPagesDTO staticPagesDTO) throws URISyntaxException {
+        log.debug("REST request to update StaticPages : {}", staticPagesDTO);
+        if (staticPagesDTO.getId() == null) {
+            return createStaticPages(staticPagesDTO);
         }
-        StaticPages result = staticPagesService.save(staticPages);
+        StaticPagesDTO result = staticPagesService.save(staticPagesDTO);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, staticPages.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, staticPagesDTO.getId().toString()))
             .body(result);
     }
 
@@ -85,7 +85,7 @@ public class StaticPagesResource {
      */
     @GetMapping("/static-pages")
     @Timed
-    public List<StaticPages> getAllStaticPages() {
+    public List<StaticPagesDTO> getAllStaticPages() {
         log.debug("REST request to get all StaticPages");
         return staticPagesService.findAll();
     }
@@ -93,21 +93,21 @@ public class StaticPagesResource {
     /**
      * GET  /static-pages/:id : get the "id" staticPages.
      *
-     * @param id the id of the staticPages to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the staticPages, or with status 404 (Not Found)
+     * @param id the id of the staticPagesDTO to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the staticPagesDTO, or with status 404 (Not Found)
      */
     @GetMapping("/static-pages/{id}")
     @Timed
-    public ResponseEntity<StaticPages> getStaticPages(@PathVariable Long id) {
+    public ResponseEntity<StaticPagesDTO> getStaticPages(@PathVariable Long id) {
         log.debug("REST request to get StaticPages : {}", id);
-        StaticPages staticPages = staticPagesService.findOne(id);
-        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(staticPages));
+        StaticPagesDTO staticPagesDTO = staticPagesService.findOne(id);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(staticPagesDTO));
     }
 
     /**
      * DELETE  /static-pages/:id : delete the "id" staticPages.
      *
-     * @param id the id of the staticPages to delete
+     * @param id the id of the staticPagesDTO to delete
      * @return the ResponseEntity with status 200 (OK)
      */
     @DeleteMapping("/static-pages/{id}")
@@ -127,7 +127,7 @@ public class StaticPagesResource {
      */
     @GetMapping("/_search/static-pages")
     @Timed
-    public List<StaticPages> searchStaticPages(@RequestParam String query) {
+    public List<StaticPagesDTO> searchStaticPages(@RequestParam String query) {
         log.debug("REST request to search StaticPages for query {}", query);
         return staticPagesService.search(query);
     }

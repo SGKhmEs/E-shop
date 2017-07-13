@@ -15,12 +15,7 @@
         <div class="form-group">
             <label class="form-control-label" for="field_name">Name</label>
             <input type="text" class="form-control" name="name" id="field_name"
-<<<<<<< HEAD
                 [(ngModel)]="products.name" required />
-=======
-                [(ngModel)]="products.name"
-            required />
->>>>>>> with_entities
             <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.name?.errors?.required">
@@ -29,12 +24,7 @@
             </div>
         </div>
         <div class="form-group">
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <label class="form-control-label" jhiTranslate="eshopApp.products.price" for="field_price">Price</label>
-=======
             <label class="form-control-label" for="field_price">Price</label>
->>>>>>> creatingDtos
             <input type="number" class="form-control" name="price" id="field_price"
                 [(ngModel)]="products.price" required />
             <div [hidden]="!(editForm.controls.price?.dirty && editForm.controls.price?.invalid)">
@@ -52,27 +42,15 @@
             <label class="form-control-label" for="field_sale">Sale</label>
             <input type="number" class="form-control" name="sale" id="field_sale"
                 [(ngModel)]="products.sale"  />
-=======
-            <label class="form-control-label" jhiTranslate="eshopApp.products.sale" for="field_sale">Sale</label>
-            <input type="text" class="form-control" name="sale" id="field_sale"
-                [(ngModel)]="products.sale"
-             />
->>>>>>> with_entities
         </div>
         <div class="form-group">
             <label class="form-control-label" for="field_rating">Rating</label>
             <input type="number" class="form-control" name="rating" id="field_rating"
-<<<<<<< HEAD
                 [(ngModel)]="products.rating"  />
-=======
-                [(ngModel)]="products.rating"
-             />
->>>>>>> with_entities
         </div>
         <div class="form-group">
             <label class="form-control-label" for="field_fresh">Fresh</label>
             <input type="checkbox" class="form-control" name="fresh" id="field_fresh"
-<<<<<<< HEAD
                 [(ngModel)]="products.fresh"  />
         </div>
         <div class="form-group">
@@ -83,72 +61,23 @@
 
         <div class="form-group">
             <label for="field_options">Options</label>
-            <select class="form-control" id="field_options" name="options" [(ngModel)]="products.options">
+            <select class="form-control" id="field_options" name="options" [(ngModel)]="products.optionsId">
                 <option [ngValue]="null"></option>
-                <option [ngValue]="optionsOption.id === products.options?.id ? products.options : optionsOption" *ngFor="let optionsOption of options; trackBy: trackOptionsById">{{optionsOption.id}}</option>
+                <option [ngValue]="optionsOption.id" *ngFor="let optionsOption of options; trackBy: trackOptionsById">{{optionsOption.id}}</option>
             </select>
         </div>
         <div class="form-group">
             <label for="field_consignment">Consignment</label>
-            <select class="form-control" id="field_consignment" name="consignment" [(ngModel)]="products.consignment" >
+            <select class="form-control" id="field_consignment" name="consignment" [(ngModel)]="products.consignmentId" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="consignmentOption.id === products.consignment?.id ? products.consignment : consignmentOption" *ngFor="let consignmentOption of consignments; trackBy: trackConsignmentById">{{consignmentOption.id}}</option>
-=======
-                [(ngModel)]="products.fresh"
-             />
-        </div>
-
-        <div class="form-group">
-            <label jhiTranslate="eshopApp.products.wishList" for="field_wishList">Wish List</label>
-            <select class="form-control" id="field_wishList" name="wishList" [(ngModel)]="products.wishListId" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="wishListOption.id" *ngFor="let wishListOption of wishlists; trackBy: trackWishListById">{{wishListOption.id}}</option>
+                <option [ngValue]="consignmentOption.id" *ngFor="let consignmentOption of consignments; trackBy: trackConsignmentById">{{consignmentOption.id}}</option>
             </select>
         </div>
         <div class="form-group">
-            <label jhiTranslate="eshopApp.products.seen" for="field_seen">Seen</label>
-            <select class="form-control" id="field_seen" name="seen" [(ngModel)]="products.seenId" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="seenOption.id" *ngFor="let seenOption of seens; trackBy: trackSeenById">{{seenOption.id}}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label jhiTranslate="eshopApp.products.bucket" for="field_bucket">Bucket</label>
-            <select class="form-control" id="field_bucket" name="bucket" [(ngModel)]="products.bucketId" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="bucketOption.id" *ngFor="let bucketOption of buckets; trackBy: trackBucketById">{{bucketOption.id}}</option>
->>>>>>> with_entities
-            </select>
-        </div>
-        <div class="form-group">
-<<<<<<< HEAD
-            <label jhiTranslate="eshopApp.products.subCategory" for="field_subCategory">Sub Category</label>
-<<<<<<< HEAD
-=======
             <label for="field_subCategory">Sub Category</label>
->>>>>>> creatingDtos
-            <select class="form-control" id="field_subCategory" name="subCategory" [(ngModel)]="products.subCategory" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="subCategoryOption.id === products.subCategory?.id ? products.subCategory : subCategoryOption" *ngFor="let subCategoryOption of subcategories; trackBy: trackSubCategoryById">{{subCategoryOption.id}}</option>
-=======
             <select class="form-control" id="field_subCategory" name="subCategory" [(ngModel)]="products.subCategoryId" >
                 <option [ngValue]="null"></option>
                 <option [ngValue]="subCategoryOption.id" *ngFor="let subCategoryOption of subcategories; trackBy: trackSubCategoryById">{{subCategoryOption.id}}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label jhiTranslate="eshopApp.products.media" for="field_media">Media</label>
-            <select class="form-control" id="field_media" name="media" [(ngModel)]="products.mediaId" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="mediaOption.id" *ngFor="let mediaOption of media; trackBy: trackMediaById">{{mediaOption.id}}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label jhiTranslate="eshopApp.products.tags" for="field_tags">Tags</label>
-            <select class="form-control" id="field_tags" name="tags" [(ngModel)]="products.tagsId" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="tagsOption.id" *ngFor="let tagsOption of tags; trackBy: trackTagsById">{{tagsOption.id}}</option>
->>>>>>> with_entities
             </select>
         </div>
     </div>

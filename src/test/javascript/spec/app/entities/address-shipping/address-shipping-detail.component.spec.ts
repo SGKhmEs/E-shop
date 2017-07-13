@@ -32,16 +32,8 @@ describe('Component Tests', () => {
                     AddressShippingService,
                     JhiEventManager
                 ]
-<<<<<<< HEAD
             }).overrideTemplate(AddressShippingDetailComponent, '')
             .compileComponents();
-=======
-            }).overrideComponent(AddressShippingDetailComponent, {
-                set: {
-                    template: ''
-                }
-            }).compileComponents();
->>>>>>> with_entities
         }));
 
         beforeEach(() => {

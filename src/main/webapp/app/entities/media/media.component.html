@@ -29,19 +29,6 @@
         <table class="table table-striped">
             <thead>
             <tr>
-<<<<<<< HEAD
-            <th><span jhiTranslate="global.field.id">ID</span></th>
-            <th><span jhiTranslate="eshopApp.media.name">Name</span></th>
-            <th><span jhiTranslate="eshopApp.media.type">Type</span></th>
-            <th><span jhiTranslate="eshopApp.media.contentType">Content Type</span></th>
-            <th><span jhiTranslate="eshopApp.media.location">Location</span></th>
-            <th><span jhiTranslate="eshopApp.media.size">Size</span></th>
-<<<<<<< HEAD
-            <th><span jhiTranslate="eshopApp.media.products">Products</span></th>
-=======
-            <th><span jhiTranslate="eshopApp.media.comments">Comments</span></th>
->>>>>>> with_entities
-=======
             <th><span>ID</span></th>
             <th><span>Name</span></th>
             <th><span>Type</span></th>
@@ -49,7 +36,6 @@
             <th><span>Location</span></th>
             <th><span>Size</span></th>
             <th><span>Products</span></th>
->>>>>>> creatingDtos
             <th></th>
             </tr>
             </thead>
@@ -62,13 +48,8 @@
                 <td>{{media.location}}</td>
                 <td>{{media.size}}</td>
                 <td>
-<<<<<<< HEAD
-                    <div *ngIf="media.products">
-                        <a [routerLink]="['../products', media.products?.id ]" >{{media.products?.id}}</a>
-=======
-                    <div *ngIf="media.commentsId">
-                        <a [routerLink]="['../comments', media.commentsId  ]" >{{media.commentsId}}</a>
->>>>>>> with_entities
+                    <div *ngIf="media.productsId">
+                        <a [routerLink]="['../products', media.productsId  ]" >{{media.productsId}}</a>
                     </div>
                 </td>
                 <td class="text-right">

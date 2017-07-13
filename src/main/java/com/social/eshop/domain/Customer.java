@@ -11,16 +11,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-import com.social.eshop.domain.enumeration.Roles;
-
->>>>>>> with_entities
-=======
 import com.social.eshop.domain.enumeration.SocialConnect;
 
->>>>>>> creatingDtos
 /**
  * A Customer.
  */
@@ -37,9 +29,6 @@ public class Customer implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     @Column(name = "sub_scription")
     private Boolean subScription;
 
@@ -47,14 +36,8 @@ public class Customer implements Serializable {
     @Column(name = "sosial_connect")
     private SocialConnect sosialConnect;
 
->>>>>>> creatingDtos
     @Column(name = "session_id")
     private String sessionId;
-=======
-    @Enumerated(EnumType.STRING)
-    @Column(name = "jhi_roles")
-    private Roles roles;
->>>>>>> with_entities
 
     @OneToOne
     @JoinColumn(unique = true)
@@ -62,10 +45,6 @@ public class Customer implements Serializable {
 
     @OneToOne
     @JoinColumn(unique = true)
-<<<<<<< HEAD
-<<<<<<< HEAD
-    private CustomerRoom customerRoom;
-=======
     private Address address;
 
     @OneToOne
@@ -75,7 +54,6 @@ public class Customer implements Serializable {
     @OneToOne
     @JoinColumn(unique = true)
     private Avatar avatar;
->>>>>>> creatingDtos
 
     @OneToMany(mappedBy = "customer")
     @JsonIgnore
@@ -86,22 +64,11 @@ public class Customer implements Serializable {
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<WishList> wishLists = new HashSet<>();
-=======
-    private Confirm confirm;
-
-    @OneToOne
-    @JoinColumn(unique = true)
-    private CustomerRoom userRoom;
->>>>>>> with_entities
 
     @OneToMany(mappedBy = "customer")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-<<<<<<< HEAD
     private Set<Comments> comments = new HashSet<>();
-=======
-    private Set<SessionId> customers = new HashSet<>();
->>>>>>> with_entities
 
     public Long getId() {
         return id;
@@ -111,9 +78,6 @@ public class Customer implements Serializable {
         this.id = id;
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     public Boolean isSubScription() {
         return subScription;
     }
@@ -140,7 +104,6 @@ public class Customer implements Serializable {
         this.sosialConnect = sosialConnect;
     }
 
->>>>>>> creatingDtos
     public String getSessionId() {
         return sessionId;
     }
@@ -152,19 +115,6 @@ public class Customer implements Serializable {
 
     public void setSessionId(String sessionId) {
         this.sessionId = sessionId;
-=======
-    public Roles getRoles() {
-        return roles;
-    }
-
-    public Customer roles(Roles roles) {
-        this.roles = roles;
-        return this;
-    }
-
-    public void setRoles(Roles roles) {
-        this.roles = roles;
->>>>>>> with_entities
     }
 
     public LoginOptions getLoginOptions() {
@@ -180,11 +130,6 @@ public class Customer implements Serializable {
         this.loginOptions = loginOptions;
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    public CustomerRoom getCustomerRoom() {
-        return customerRoom;
-=======
     public Address getAddress() {
         return address;
     }
@@ -213,7 +158,6 @@ public class Customer implements Serializable {
 
     public Avatar getAvatar() {
         return avatar;
->>>>>>> creatingDtos
     }
 
     public Customer avatar(Avatar avatar) {
@@ -298,57 +242,6 @@ public class Customer implements Serializable {
 
     public void setComments(Set<Comments> comments) {
         this.comments = comments;
-=======
-    public Confirm getConfirm() {
-        return confirm;
-    }
-
-    public Customer confirm(Confirm confirm) {
-        this.confirm = confirm;
-        return this;
-    }
-
-    public void setConfirm(Confirm confirm) {
-        this.confirm = confirm;
-    }
-
-    public CustomerRoom getUserRoom() {
-        return userRoom;
-    }
-
-    public Customer userRoom(CustomerRoom customerRoom) {
-        this.userRoom = customerRoom;
-        return this;
-    }
-
-    public void setUserRoom(CustomerRoom customerRoom) {
-        this.userRoom = customerRoom;
-    }
-
-    public Set<SessionId> getCustomers() {
-        return customers;
-    }
-
-    public Customer customers(Set<SessionId> sessionIds) {
-        this.customers = sessionIds;
-        return this;
-    }
-
-    public Customer addCustomer(SessionId sessionId) {
-        this.customers.add(sessionId);
-        sessionId.setCustomer(this);
-        return this;
-    }
-
-    public Customer removeCustomer(SessionId sessionId) {
-        this.customers.remove(sessionId);
-        sessionId.setCustomer(null);
-        return this;
-    }
-
-    public void setCustomers(Set<SessionId> sessionIds) {
-        this.customers = sessionIds;
->>>>>>> with_entities
     }
 
     @Override
@@ -375,16 +268,9 @@ public class Customer implements Serializable {
     public String toString() {
         return "Customer{" +
             "id=" + getId() +
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
             ", subScription='" + isSubScription() + "'" +
             ", sosialConnect='" + getSosialConnect() + "'" +
->>>>>>> creatingDtos
             ", sessionId='" + getSessionId() + "'" +
-=======
-            ", roles='" + getRoles() + "'" +
->>>>>>> with_entities
             "}";
     }
 }

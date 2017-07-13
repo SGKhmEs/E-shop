@@ -32,16 +32,8 @@ describe('Component Tests', () => {
                     BucketService,
                     JhiEventManager
                 ]
-<<<<<<< HEAD
             }).overrideTemplate(BucketDetailComponent, '')
             .compileComponents();
-=======
-            }).overrideComponent(BucketDetailComponent, {
-                set: {
-                    template: ''
-                }
-            }).compileComponents();
->>>>>>> with_entities
         }));
 
         beforeEach(() => {

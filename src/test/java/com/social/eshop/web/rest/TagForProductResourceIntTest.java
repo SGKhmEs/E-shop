@@ -6,6 +6,8 @@ import com.social.eshop.domain.TagForProduct;
 import com.social.eshop.repository.TagForProductRepository;
 import com.social.eshop.service.TagForProductService;
 import com.social.eshop.repository.search.TagForProductSearchRepository;
+import com.social.eshop.service.dto.TagForProductDTO;
+import com.social.eshop.service.mapper.TagForProductMapper;
 import com.social.eshop.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -41,6 +43,9 @@ public class TagForProductResourceIntTest {
 
     @Autowired
     private TagForProductRepository tagForProductRepository;
+
+    @Autowired
+    private TagForProductMapper tagForProductMapper;
 
     @Autowired
     private TagForProductService tagForProductService;
@@ -97,9 +102,10 @@ public class TagForProductResourceIntTest {
         int databaseSizeBeforeCreate = tagForProductRepository.findAll().size();
 
         // Create the TagForProduct
+        TagForProductDTO tagForProductDTO = tagForProductMapper.toDto(tagForProduct);
         restTagForProductMockMvc.perform(post("/api/tag-for-products")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(tagForProduct)))
+            .content(TestUtil.convertObjectToJsonBytes(tagForProductDTO)))
             .andExpect(status().isCreated());
 
         // Validate the TagForProduct in the database
@@ -119,11 +125,12 @@ public class TagForProductResourceIntTest {
 
         // Create the TagForProduct with an existing ID
         tagForProduct.setId(1L);
+        TagForProductDTO tagForProductDTO = tagForProductMapper.toDto(tagForProduct);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restTagForProductMockMvc.perform(post("/api/tag-for-products")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(tagForProduct)))
+            .content(TestUtil.convertObjectToJsonBytes(tagForProductDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -169,16 +176,17 @@ public class TagForProductResourceIntTest {
     @Transactional
     public void updateTagForProduct() throws Exception {
         // Initialize the database
-        tagForProductService.save(tagForProduct);
-
+        tagForProductRepository.saveAndFlush(tagForProduct);
+        tagForProductSearchRepository.save(tagForProduct);
         int databaseSizeBeforeUpdate = tagForProductRepository.findAll().size();
 
         // Update the tagForProduct
         TagForProduct updatedTagForProduct = tagForProductRepository.findOne(tagForProduct.getId());
+        TagForProductDTO tagForProductDTO = tagForProductMapper.toDto(updatedTagForProduct);
 
         restTagForProductMockMvc.perform(put("/api/tag-for-products")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(updatedTagForProduct)))
+            .content(TestUtil.convertObjectToJsonBytes(tagForProductDTO)))
             .andExpect(status().isOk());
 
         // Validate the TagForProduct in the database
@@ -197,11 +205,12 @@ public class TagForProductResourceIntTest {
         int databaseSizeBeforeUpdate = tagForProductRepository.findAll().size();
 
         // Create the TagForProduct
+        TagForProductDTO tagForProductDTO = tagForProductMapper.toDto(tagForProduct);
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
         restTagForProductMockMvc.perform(put("/api/tag-for-products")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(tagForProduct)))
+            .content(TestUtil.convertObjectToJsonBytes(tagForProductDTO)))
             .andExpect(status().isCreated());
 
         // Validate the TagForProduct in the database
@@ -213,8 +222,8 @@ public class TagForProductResourceIntTest {
     @Transactional
     public void deleteTagForProduct() throws Exception {
         // Initialize the database
-        tagForProductService.save(tagForProduct);
-
+        tagForProductRepository.saveAndFlush(tagForProduct);
+        tagForProductSearchRepository.save(tagForProduct);
         int databaseSizeBeforeDelete = tagForProductRepository.findAll().size();
 
         // Get the tagForProduct
@@ -235,7 +244,8 @@ public class TagForProductResourceIntTest {
     @Transactional
     public void searchTagForProduct() throws Exception {
         // Initialize the database
-        tagForProductService.save(tagForProduct);
+        tagForProductRepository.saveAndFlush(tagForProduct);
+        tagForProductSearchRepository.save(tagForProduct);
 
         // Search the tagForProduct
         restTagForProductMockMvc.perform(get("/api/_search/tag-for-products?query=id:" + tagForProduct.getId()))
@@ -257,5 +267,28 @@ public class TagForProductResourceIntTest {
         assertThat(tagForProduct1).isNotEqualTo(tagForProduct2);
         tagForProduct1.setId(null);
         assertThat(tagForProduct1).isNotEqualTo(tagForProduct2);
+    }
+
+    @Test
+    @Transactional
+    public void dtoEqualsVerifier() throws Exception {
+        TestUtil.equalsVerifier(TagForProductDTO.class);
+        TagForProductDTO tagForProductDTO1 = new TagForProductDTO();
+        tagForProductDTO1.setId(1L);
+        TagForProductDTO tagForProductDTO2 = new TagForProductDTO();
+        assertThat(tagForProductDTO1).isNotEqualTo(tagForProductDTO2);
+        tagForProductDTO2.setId(tagForProductDTO1.getId());
+        assertThat(tagForProductDTO1).isEqualTo(tagForProductDTO2);
+        tagForProductDTO2.setId(2L);
+        assertThat(tagForProductDTO1).isNotEqualTo(tagForProductDTO2);
+        tagForProductDTO1.setId(null);
+        assertThat(tagForProductDTO1).isNotEqualTo(tagForProductDTO2);
+    }
+
+    @Test
+    @Transactional
+    public void testEntityFromId() {
+        assertThat(tagForProductMapper.fromId(42L).getId()).isEqualTo(42);
+        assertThat(tagForProductMapper.fromId(null)).isNull();
     }
 }

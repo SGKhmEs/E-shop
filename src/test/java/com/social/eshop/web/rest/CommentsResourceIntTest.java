@@ -6,11 +6,8 @@ import com.social.eshop.domain.Comments;
 import com.social.eshop.repository.CommentsRepository;
 import com.social.eshop.service.CommentsService;
 import com.social.eshop.repository.search.CommentsSearchRepository;
-<<<<<<< HEAD
-=======
 import com.social.eshop.service.dto.CommentsDTO;
 import com.social.eshop.service.mapper.CommentsMapper;
->>>>>>> with_entities
 import com.social.eshop.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -59,12 +56,9 @@ public class CommentsResourceIntTest {
     private CommentsRepository commentsRepository;
 
     @Autowired
-<<<<<<< HEAD
-=======
     private CommentsMapper commentsMapper;
 
     @Autowired
->>>>>>> with_entities
     private CommentsService commentsService;
 
     @Autowired
@@ -121,16 +115,10 @@ public class CommentsResourceIntTest {
         int databaseSizeBeforeCreate = commentsRepository.findAll().size();
 
         // Create the Comments
-<<<<<<< HEAD
-        restCommentsMockMvc.perform(post("/api/comments")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(comments)))
-=======
         CommentsDTO commentsDTO = commentsMapper.toDto(comments);
         restCommentsMockMvc.perform(post("/api/comments")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(commentsDTO)))
->>>>>>> with_entities
             .andExpect(status().isCreated());
 
         // Validate the Comments in the database
@@ -152,19 +140,12 @@ public class CommentsResourceIntTest {
 
         // Create the Comments with an existing ID
         comments.setId(1L);
-<<<<<<< HEAD
-=======
         CommentsDTO commentsDTO = commentsMapper.toDto(comments);
->>>>>>> with_entities
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restCommentsMockMvc.perform(post("/api/comments")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-<<<<<<< HEAD
-            .content(TestUtil.convertObjectToJsonBytes(comments)))
-=======
             .content(TestUtil.convertObjectToJsonBytes(commentsDTO)))
->>>>>>> with_entities
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -214,36 +195,20 @@ public class CommentsResourceIntTest {
     @Transactional
     public void updateComments() throws Exception {
         // Initialize the database
-<<<<<<< HEAD
-        commentsService.save(comments);
-
-=======
         commentsRepository.saveAndFlush(comments);
         commentsSearchRepository.save(comments);
->>>>>>> with_entities
         int databaseSizeBeforeUpdate = commentsRepository.findAll().size();
 
         // Update the comments
         Comments updatedComments = commentsRepository.findOne(comments.getId());
         updatedComments
             .comments(UPDATED_COMMENTS)
-<<<<<<< HEAD
-            .data(UPDATED_DATA);
-<<<<<<< HEAD
-=======
             .date(UPDATED_DATE);
->>>>>>> creatingDtos
-
-        restCommentsMockMvc.perform(put("/api/comments")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(updatedComments)))
-=======
         CommentsDTO commentsDTO = commentsMapper.toDto(updatedComments);
 
         restCommentsMockMvc.perform(put("/api/comments")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(commentsDTO)))
->>>>>>> with_entities
             .andExpect(status().isOk());
 
         // Validate the Comments in the database
@@ -264,19 +229,12 @@ public class CommentsResourceIntTest {
         int databaseSizeBeforeUpdate = commentsRepository.findAll().size();
 
         // Create the Comments
-<<<<<<< HEAD
-=======
         CommentsDTO commentsDTO = commentsMapper.toDto(comments);
->>>>>>> with_entities
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
         restCommentsMockMvc.perform(put("/api/comments")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-<<<<<<< HEAD
-            .content(TestUtil.convertObjectToJsonBytes(comments)))
-=======
             .content(TestUtil.convertObjectToJsonBytes(commentsDTO)))
->>>>>>> with_entities
             .andExpect(status().isCreated());
 
         // Validate the Comments in the database
@@ -288,13 +246,8 @@ public class CommentsResourceIntTest {
     @Transactional
     public void deleteComments() throws Exception {
         // Initialize the database
-<<<<<<< HEAD
-        commentsService.save(comments);
-
-=======
         commentsRepository.saveAndFlush(comments);
         commentsSearchRepository.save(comments);
->>>>>>> with_entities
         int databaseSizeBeforeDelete = commentsRepository.findAll().size();
 
         // Get the comments
@@ -315,12 +268,8 @@ public class CommentsResourceIntTest {
     @Transactional
     public void searchComments() throws Exception {
         // Initialize the database
-<<<<<<< HEAD
-        commentsService.save(comments);
-=======
         commentsRepository.saveAndFlush(comments);
         commentsSearchRepository.save(comments);
->>>>>>> with_entities
 
         // Search the comments
         restCommentsMockMvc.perform(get("/api/_search/comments?query=id:" + comments.getId()))
@@ -345,8 +294,6 @@ public class CommentsResourceIntTest {
         comments1.setId(null);
         assertThat(comments1).isNotEqualTo(comments2);
     }
-<<<<<<< HEAD
-=======
 
     @Test
     @Transactional
@@ -370,5 +317,4 @@ public class CommentsResourceIntTest {
         assertThat(commentsMapper.fromId(42L).getId()).isEqualTo(42);
         assertThat(commentsMapper.fromId(null)).isNull();
     }
->>>>>>> with_entities
 }

@@ -4,10 +4,7 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '@angular/common';
 import { Bucket } from './bucket.model';
 import { BucketService } from './bucket.service';
-<<<<<<< HEAD
 
-=======
->>>>>>> with_entities
 @Injectable()
 export class BucketPopupService {
     private isOpen = false;

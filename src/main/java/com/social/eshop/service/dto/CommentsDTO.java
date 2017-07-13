@@ -1,24 +1,5 @@
 package com.social.eshop.service.dto;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-import com.social.eshop.domain.Customer;
-import com.social.eshop.service.mapper.AutoMapping;
-
-=======
->>>>>>> creatingDtos
-import java.time.ZonedDateTime;
-import java.util.List;
-
-public class CommentsDTO {
-
-    private List<String> comments;
-    private ZonedDateTime date;
-    private CustomerDTO customerDTO;
-
-<<<<<<< HEAD
-    public CommentsDTO() { }
-=======
 
 import java.time.ZonedDateTime;
 import java.io.Serializable;
@@ -35,9 +16,11 @@ public class CommentsDTO implements Serializable {
 
     private String comments;
 
-    private ZonedDateTime data;
+    private ZonedDateTime date;
 
-    private Long customerRoomId;
+    private Long customerId;
+
+    private String customerName;
 
     private Long productsId;
 
@@ -48,26 +31,15 @@ public class CommentsDTO implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
->>>>>>> with_entities
 
-    public CommentsDTO(List<String> comments, ZonedDateTime date, CustomerDTO customerDTO) {
-        this.comments = comments;
-        this.date = date;
-        this.customerDTO = customerDTO;
-    }
-=======
-    public CommentsDTO() {}
->>>>>>> creatingDtos
-
-    public List<String> getComments() {
+    public String getComments() {
         return comments;
     }
 
-    public void setComments(List<String> comments) {
+    public void setComments(String comments) {
         this.comments = comments;
     }
 
-<<<<<<< HEAD
     public ZonedDateTime getDate() {
         return date;
     }
@@ -76,28 +48,20 @@ public class CommentsDTO implements Serializable {
         this.date = date;
     }
 
-    public CustomerDTO getCustomerDTO() {
-        return customerDTO;
+    public Long getCustomerId() {
+        return customerId;
     }
 
-<<<<<<< HEAD
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-=======
-    public ZonedDateTime getData() {
-        return data;
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 
-    public void setData(ZonedDateTime data) {
-        this.data = data;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public Long getCustomerRoomId() {
-        return customerRoomId;
-    }
-
-    public void setCustomerRoomId(Long customerRoomId) {
-        this.customerRoomId = customerRoomId;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
     public Long getProductsId() {
@@ -127,30 +91,17 @@ public class CommentsDTO implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hashCode(getId());
->>>>>>> with_entities
-=======
-    public void setCustomerDTO(CustomerDTO customerDTO) {
-        this.customerDTO = customerDTO;
->>>>>>> creatingServices
     }
 
     @Override
     public String toString() {
         return "CommentsDTO{" +
-<<<<<<< HEAD
-<<<<<<< HEAD
-            "comments='" + comments + '\'' +
-=======
-            "comments=" + comments +
->>>>>>> creatingServices
+            "id=" + id +
+            ", comments='" + comments + '\'' +
             ", date=" + date +
-            ", customerDTO=" + customerDTO +
+            ", customerId=" + customerId +
+            ", customerName='" + customerName + '\'' +
+            ", productsId=" + productsId +
             '}';
-=======
-            "id=" + getId() +
-            ", comments='" + getComments() + "'" +
-            ", data='" + getData() + "'" +
-            "}";
->>>>>>> with_entities
     }
 }

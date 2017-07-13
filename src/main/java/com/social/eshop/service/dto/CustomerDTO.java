@@ -1,82 +1,11 @@
 package com.social.eshop.service.dto;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-import com.social.eshop.domain.Seen;
-import com.social.eshop.domain.WishList;
-import com.social.eshop.service.mapper.AutoMapping;
-=======
-import com.social.eshop.domain.*;
->>>>>>> creatingDtos
-
-import java.util.List;
-
-public class CustomerDTO {
-    private PersonalInformation personalInformation;
-    private Avatar avatar;
-    private Address address;
-    private List<WishList> wishLists;
-    private List<Seen> seens;
-
-
-    public CustomerDTO() {
-    }
-
-    public PersonalInformation getPersonalInformation() {
-        return personalInformation;
-    }
-
-    public void setPersonalInformation(PersonalInformation personalInformation) {
-        this.personalInformation = personalInformation;
-    }
-
-    public Avatar getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(Avatar avatar) {
-        this.avatar = avatar;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    public List<WishList> getWishLists() {
-        return wishLists;
-    }
-
-    public void setWishLists(List<WishList> wishLists) {
-        this.wishLists = wishLists;
-    }
-
-    public List<Seen> getSeens() {
-        return seens;
-    }
-
-    public void setSeens(List<Seen> seens) {
-        this.seens = seens;
-    }
-
-<<<<<<< HEAD
-    public CustomerRoomDTO getCustomerRoomDTO() {
-        return customerRoomDTO;
-    }
-
-<<<<<<< HEAD
-    public void setProducts(List<ProductsDTO> products) {
-        this.products = products;
-=======
 
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
-import com.social.eshop.domain.enumeration.Roles;
+import com.social.eshop.domain.enumeration.SocialConnect;
 
 /**
  * A DTO for the Customer entity.
@@ -85,13 +14,19 @@ public class CustomerDTO implements Serializable {
 
     private Long id;
 
-    private Roles roles;
+    private Boolean subScription;
+
+    private SocialConnect sosialConnect;
+
+    private String sessionId;
 
     private Long loginOptionsId;
 
-    private Long confirmId;
+    private Long addressId;
 
-    private Long userRoomId;
+    private Long personalInfoId;
+
+    private Long avatarId;
 
     public Long getId() {
         return id;
@@ -101,12 +36,28 @@ public class CustomerDTO implements Serializable {
         this.id = id;
     }
 
-    public Roles getRoles() {
-        return roles;
+    public Boolean isSubScription() {
+        return subScription;
     }
 
-    public void setRoles(Roles roles) {
-        this.roles = roles;
+    public void setSubScription(Boolean subScription) {
+        this.subScription = subScription;
+    }
+
+    public SocialConnect getSosialConnect() {
+        return sosialConnect;
+    }
+
+    public void setSosialConnect(SocialConnect sosialConnect) {
+        this.sosialConnect = sosialConnect;
+    }
+
+    public String getSessionId() {
+        return sessionId;
+    }
+
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
     }
 
     public Long getLoginOptionsId() {
@@ -117,20 +68,28 @@ public class CustomerDTO implements Serializable {
         this.loginOptionsId = loginOptionsId;
     }
 
-    public Long getConfirmId() {
-        return confirmId;
+    public Long getAddressId() {
+        return addressId;
     }
 
-    public void setConfirmId(Long confirmId) {
-        this.confirmId = confirmId;
+    public void setAddressId(Long addressId) {
+        this.addressId = addressId;
     }
 
-    public Long getUserRoomId() {
-        return userRoomId;
+    public Long getPersonalInfoId() {
+        return personalInfoId;
     }
 
-    public void setUserRoomId(Long customerRoomId) {
-        this.userRoomId = customerRoomId;
+    public void setPersonalInfoId(Long personalInformationId) {
+        this.personalInfoId = personalInformationId;
+    }
+
+    public Long getAvatarId() {
+        return avatarId;
+    }
+
+    public void setAvatarId(Long avatarId) {
+        this.avatarId = avatarId;
     }
 
     @Override
@@ -152,38 +111,15 @@ public class CustomerDTO implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hashCode(getId());
->>>>>>> with_entities
-=======
-    public void setCustomerRoomDTO(CustomerRoomDTO customerRoomDTO) {
-        this.customerRoomDTO = customerRoomDTO;
->>>>>>> creatingServices
     }
 
     @Override
     public String toString() {
         return "CustomerDTO{" +
-<<<<<<< HEAD
-<<<<<<< HEAD
-            "sessionId='" + sessionId + '\'' +
-            ", wishLists=" + wishLists +
-=======
-            "wishLists=" + wishLists +
->>>>>>> creatingServices
-=======
-    @Override
-    public String toString() {
-        return "CustomerDTO{" +
-            "personalInformation=" + personalInformation +
-            ", avatar=" + avatar +
-            ", address=" + address +
-            ", wishLists=" + wishLists +
->>>>>>> creatingDtos
-            ", seens=" + seens +
-            '}';
-=======
             "id=" + getId() +
-            ", roles='" + getRoles() + "'" +
+            ", subScription='" + isSubScription() + "'" +
+            ", sosialConnect='" + getSosialConnect() + "'" +
+            ", sessionId='" + getSessionId() + "'" +
             "}";
->>>>>>> with_entities
     }
 }

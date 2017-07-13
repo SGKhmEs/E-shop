@@ -32,10 +32,7 @@ export class CategoryDialogComponent implements OnInit {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> with_entities
     clear() {
         this.activeModal.dismiss('cancel');
     }
@@ -44,7 +41,6 @@ export class CategoryDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.category.id !== undefined) {
             this.subscribeToSaveResponse(
-<<<<<<< HEAD
                 this.categoryService.update(this.category), false);
         } else {
             this.subscribeToSaveResponse(
@@ -63,21 +59,6 @@ export class CategoryDialogComponent implements OnInit {
             : `A Category is updated with identifier ${result.id}`,
             null, null);
 
-=======
-                this.categoryService.update(this.category));
-        } else {
-            this.subscribeToSaveResponse(
-                this.categoryService.create(this.category));
-        }
-    }
-
-    private subscribeToSaveResponse(result: Observable<Category>) {
-        result.subscribe((res: Category) =>
-            this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
-    }
-
-    private onSaveSuccess(result: Category) {
->>>>>>> with_entities
         this.eventManager.broadcast({ name: 'categoryListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);

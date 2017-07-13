@@ -29,21 +29,6 @@
         <table class="table table-striped">
             <thead>
             <tr>
-<<<<<<< HEAD
-            <th><span jhiTranslate="global.field.id">ID</span></th>
-            <th><span jhiTranslate="eshopApp.personalInformation.firstName">First Name</span></th>
-            <th><span jhiTranslate="eshopApp.personalInformation.lastName">Last Name</span></th>
-            <th><span jhiTranslate="eshopApp.personalInformation.middleName">Middle Name</span></th>
-            <th><span jhiTranslate="eshopApp.personalInformation.sex">Sex</span></th>
-            <th><span jhiTranslate="eshopApp.personalInformation.phone">Phone</span></th>
-            <th><span jhiTranslate="eshopApp.personalInformation.email">Email</span></th>
-            <th><span jhiTranslate="eshopApp.personalInformation.dateBirth">Date Birth</span></th>
-            <th><span jhiTranslate="eshopApp.personalInformation.avatar">Avatar</span></th>
-<<<<<<< HEAD
-=======
-            <th><span jhiTranslate="eshopApp.personalInformation.addressShipping">Address Shipping</span></th>
->>>>>>> with_entities
-=======
             <th><span>ID</span></th>
             <th><span>First Name</span></th>
             <th><span>Last Name</span></th>
@@ -52,7 +37,6 @@
             <th><span>Phone</span></th>
             <th><span>Email</span></th>
             <th><span>Date Birth</span></th>
->>>>>>> creatingDtos
             <th></th>
             </tr>
             </thead>
@@ -66,24 +50,6 @@
                 <td>{{personalInformation.phone}}</td>
                 <td>{{personalInformation.email}}</td>
                 <td>{{personalInformation.dateBirth | date:'mediumDate'}}</td>
-<<<<<<< HEAD
-                <td>
-<<<<<<< HEAD
-                    <div *ngIf="personalInformation.avatar">
-                        <a [routerLink]="['../avatar', personalInformation.avatar?.id ]" >{{personalInformation.avatar?.id}}</a>
-=======
-                    <div *ngIf="personalInformation.avatarId">
-                        <a [routerLink]="['../avatar', personalInformation.avatarId  ]" >{{personalInformation.avatarId}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="personalInformation.addressShippingId">
-                        <a [routerLink]="['../address-shipping', personalInformation.addressShippingId  ]" >{{personalInformation.addressShippingId}}</a>
->>>>>>> with_entities
-                    </div>
-                </td>
-=======
->>>>>>> creatingDtos
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

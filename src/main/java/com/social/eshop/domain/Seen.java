@@ -1,9 +1,5 @@
 package com.social.eshop.domain;
 
-<<<<<<< HEAD
-=======
-import com.fasterxml.jackson.annotation.JsonIgnore;
->>>>>>> with_entities
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -11,11 +7,6 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-<<<<<<< HEAD
-=======
-import java.util.HashSet;
-import java.util.Set;
->>>>>>> with_entities
 import java.util.Objects;
 
 /**
@@ -37,19 +28,12 @@ public class Seen implements Serializable {
     @Column(name = "jhi_date")
     private LocalDate date;
 
-<<<<<<< HEAD
     @ManyToOne
     private Customer customer;
 
     @OneToOne
     @JoinColumn(unique = true)
     private Products products;
-=======
-    @OneToMany(mappedBy = "seen")
-    @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Products> products = new HashSet<>();
->>>>>>> with_entities
 
     public Long getId() {
         return id;
@@ -72,7 +56,6 @@ public class Seen implements Serializable {
         this.date = date;
     }
 
-<<<<<<< HEAD
     public Customer getCustomer() {
         return customer;
     }
@@ -96,30 +79,6 @@ public class Seen implements Serializable {
     }
 
     public void setProducts(Products products) {
-=======
-    public Set<Products> getProducts() {
-        return products;
-    }
-
-    public Seen products(Set<Products> products) {
-        this.products = products;
-        return this;
-    }
-
-    public Seen addProduct(Products products) {
-        this.products.add(products);
-        products.setSeen(this);
-        return this;
-    }
-
-    public Seen removeProduct(Products products) {
-        this.products.remove(products);
-        products.setSeen(null);
-        return this;
-    }
-
-    public void setProducts(Set<Products> products) {
->>>>>>> with_entities
         this.products = products;
     }
 

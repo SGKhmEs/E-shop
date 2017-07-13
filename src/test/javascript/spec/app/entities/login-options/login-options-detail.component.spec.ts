@@ -32,16 +32,8 @@ describe('Component Tests', () => {
                     LoginOptionsService,
                     JhiEventManager
                 ]
-<<<<<<< HEAD
             }).overrideTemplate(LoginOptionsDetailComponent, '')
             .compileComponents();
-=======
-            }).overrideComponent(LoginOptionsDetailComponent, {
-                set: {
-                    template: ''
-                }
-            }).compileComponents();
->>>>>>> with_entities
         }));
 
         beforeEach(() => {

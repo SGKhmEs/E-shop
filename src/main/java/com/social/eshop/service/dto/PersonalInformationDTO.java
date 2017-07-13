@@ -1,12 +1,9 @@
 package com.social.eshop.service.dto;
 
-<<<<<<< HEAD
 
 import java.time.LocalDate;
 import javax.validation.constraints.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 import com.social.eshop.domain.enumeration.Sex;
 
@@ -35,10 +32,6 @@ public class PersonalInformationDTO implements Serializable {
 
     private LocalDate dateBirth;
 
-    private Long avatarId;
-
-    private Long addressShippingId;
-
     public Long getId() {
         return id;
     }
@@ -53,28 +46,6 @@ public class PersonalInformationDTO implements Serializable {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
-=======
-/**
- * Created by Alexander Torchynskyi on 15.06.2017.
- */
-public class PersonalInformationDTO {
-    private String firstname;
-    private String lastName;
-
-    public PersonalInformationDTO() {  }
-
-    public PersonalInformationDTO(String firstname, String lastName) {
-        this.firstname = firstname;
-        this.lastName = lastName;
-    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
->>>>>>> creatingServices
     }
 
     public String getLastName() {
@@ -85,7 +56,6 @@ public class PersonalInformationDTO {
         this.lastName = lastName;
     }
 
-<<<<<<< HEAD
     public String getMiddleName() {
         return middleName;
     }
@@ -126,22 +96,6 @@ public class PersonalInformationDTO {
         this.dateBirth = dateBirth;
     }
 
-    public Long getAvatarId() {
-        return avatarId;
-    }
-
-    public void setAvatarId(Long avatarId) {
-        this.avatarId = avatarId;
-    }
-
-    public Long getAddressShippingId() {
-        return addressShippingId;
-    }
-
-    public void setAddressShippingId(Long addressShippingId) {
-        this.addressShippingId = addressShippingId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -175,12 +129,5 @@ public class PersonalInformationDTO {
             ", email='" + getEmail() + "'" +
             ", dateBirth='" + getDateBirth() + "'" +
             "}";
-=======
-    @Override
-    public String toString() {
-        return "PersonalInformationDTO{" +
-            "lastName='" + lastName + '\'' +
-            '}';
->>>>>>> creatingServices
     }
 }

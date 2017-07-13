@@ -32,16 +32,8 @@ describe('Component Tests', () => {
                     PersonalInformationService,
                     JhiEventManager
                 ]
-<<<<<<< HEAD
             }).overrideTemplate(PersonalInformationDetailComponent, '')
             .compileComponents();
-=======
-            }).overrideComponent(PersonalInformationDetailComponent, {
-                set: {
-                    template: ''
-                }
-            }).compileComponents();
->>>>>>> with_entities
         }));
 
         beforeEach(() => {

@@ -8,38 +8,16 @@
         <dd>
             <span>{{consignment.price}}</span>
         </dd>
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <dt><span jhiTranslate="eshopApp.consignment.storage">Storage</span></dt>
-=======
         <dt><span>Storage</span></dt>
->>>>>>> creatingDtos
-        <dd>
-            <div *ngIf="consignment.storage">
-                <a [routerLink]="['/storage', consignment.storage?.id]">{{consignment.storage?.id}}</a>
-=======
-        <dt><span jhiTranslate="eshopApp.consignment.products">Products</span></dt>
-        <dd>
-            <div *ngIf="consignment.productsId">
-                <a [routerLink]="['/products', consignment.productsId]">{{consignment.productsId}}</a>
-            </div>
-        </dd>
-        <dt><span jhiTranslate="eshopApp.consignment.storage">Storage</span></dt>
         <dd>
             <div *ngIf="consignment.storageId">
                 <a [routerLink]="['/storage', consignment.storageId]">{{consignment.storageId}}</a>
->>>>>>> with_entities
             </div>
         </dd>
         <dt><span>Producers</span></dt>
         <dd>
-<<<<<<< HEAD
-            <div *ngIf="consignment.producers">
-                <a [routerLink]="['/producers', consignment.producers?.id]">{{consignment.producers?.id}}</a>
-=======
             <div *ngIf="consignment.producersId">
                 <a [routerLink]="['/producers', consignment.producersId]">{{consignment.producersId}}</a>
->>>>>>> with_entities
             </div>
         </dd>
     </dl>

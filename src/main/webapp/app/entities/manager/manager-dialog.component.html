@@ -24,23 +24,23 @@
 
         <div class="form-group">
             <label for="field_loginOptions">Login Options</label>
-            <select class="form-control" id="field_loginOptions" name="loginOptions" [(ngModel)]="manager.loginOptions">
+            <select class="form-control" id="field_loginOptions" name="loginOptions" [(ngModel)]="manager.loginOptionsId">
                 <option [ngValue]="null"></option>
-                <option [ngValue]="loginOptionsOption.id === manager.loginOptions?.id ? manager.loginOptions : loginOptionsOption" *ngFor="let loginOptionsOption of loginoptions; trackBy: trackLoginOptionsById">{{loginOptionsOption.id}}</option>
+                <option [ngValue]="loginOptionsOption.id" *ngFor="let loginOptionsOption of loginoptions; trackBy: trackLoginOptionsById">{{loginOptionsOption.id}}</option>
             </select>
         </div>
         <div class="form-group">
             <label for="field_personalInfo">Personal Info</label>
-            <select class="form-control" id="field_personalInfo" name="personalInfo" [(ngModel)]="manager.personalInfo">
+            <select class="form-control" id="field_personalInfo" name="personalInfo" [(ngModel)]="manager.personalInfoId">
                 <option [ngValue]="null"></option>
-                <option [ngValue]="personalInformationOption.id === manager.personalInfo?.id ? manager.personalInfo : personalInformationOption" *ngFor="let personalInformationOption of personalinfos; trackBy: trackPersonalInformationById">{{personalInformationOption.id}}</option>
+                <option [ngValue]="personalInformationOption.id" *ngFor="let personalInformationOption of personalinfos; trackBy: trackPersonalInformationById">{{personalInformationOption.id}}</option>
             </select>
         </div>
         <div class="form-group">
             <label for="field_avatar">Avatar</label>
-            <select class="form-control" id="field_avatar" name="avatar" [(ngModel)]="manager.avatar">
+            <select class="form-control" id="field_avatar" name="avatar" [(ngModel)]="manager.avatarId">
                 <option [ngValue]="null"></option>
-                <option [ngValue]="avatarOption.id === manager.avatar?.id ? manager.avatar : avatarOption" *ngFor="let avatarOption of avatars; trackBy: trackAvatarById">{{avatarOption.id}}</option>
+                <option [ngValue]="avatarOption.id" *ngFor="let avatarOption of avatars; trackBy: trackAvatarById">{{avatarOption.id}}</option>
             </select>
         </div>
     </div>

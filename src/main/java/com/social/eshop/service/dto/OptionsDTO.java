@@ -1,10 +1,7 @@
 package com.social.eshop.service.dto;
 
 
-import javax.validation.constraints.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -14,17 +11,19 @@ public class OptionsDTO implements Serializable {
 
     private Long id;
 
-    @NotNull
-    private String name;
+    private String metal;
 
-    @NotNull
-    private Integer level;
+    private String color;
 
-    private Long valueId;
+    private String stone;
 
-    private Long typeId;
+    private String marking;
 
-    private Long subCategoryId;
+    private Double weight;
+
+    private Double size;
+
+    private Integer length;
 
     public Long getId() {
         return id;
@@ -34,44 +33,60 @@ public class OptionsDTO implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getMetal() {
+        return metal;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setMetal(String metal) {
+        this.metal = metal;
     }
 
-    public Integer getLevel() {
-        return level;
+    public String getColor() {
+        return color;
     }
 
-    public void setLevel(Integer level) {
-        this.level = level;
+    public void setColor(String color) {
+        this.color = color;
     }
 
-    public Long getValueId() {
-        return valueId;
+    public String getStone() {
+        return stone;
     }
 
-    public void setValueId(Long valueId) {
-        this.valueId = valueId;
+    public void setStone(String stone) {
+        this.stone = stone;
     }
 
-    public Long getTypeId() {
-        return typeId;
+    public String getMarking() {
+        return marking;
     }
 
-    public void setTypeId(Long typeId) {
-        this.typeId = typeId;
+    public void setMarking(String marking) {
+        this.marking = marking;
     }
 
-    public Long getSubCategoryId() {
-        return subCategoryId;
+    public Double getWeight() {
+        return weight;
     }
 
-    public void setSubCategoryId(Long subCategoryId) {
-        this.subCategoryId = subCategoryId;
+    public void setWeight(Double weight) {
+        this.weight = weight;
+    }
+
+    public Double getSize() {
+        return size;
+    }
+
+    public void setSize(Double size) {
+        this.size = size;
+    }
+
+    public Integer getLength() {
+        return length;
+    }
+
+    public void setLength(Integer length) {
+        this.length = length;
     }
 
     @Override
@@ -99,8 +114,13 @@ public class OptionsDTO implements Serializable {
     public String toString() {
         return "OptionsDTO{" +
             "id=" + getId() +
-            ", name='" + getName() + "'" +
-            ", level='" + getLevel() + "'" +
+            ", metal='" + getMetal() + "'" +
+            ", color='" + getColor() + "'" +
+            ", stone='" + getStone() + "'" +
+            ", marking='" + getMarking() + "'" +
+            ", weight='" + getWeight() + "'" +
+            ", size='" + getSize() + "'" +
+            ", length='" + getLength() + "'" +
             "}";
     }
 }

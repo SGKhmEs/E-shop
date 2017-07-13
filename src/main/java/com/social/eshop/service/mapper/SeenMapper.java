@@ -8,19 +8,18 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity Seen and its DTO SeenDTO.
  */
-@Mapper(componentModel = "spring", uses = {})
+@Mapper(componentModel = "spring", uses = {CustomerMapper.class, ProductsMapper.class, })
 public interface SeenMapper extends EntityMapper <SeenDTO, Seen> {
-    
-    @Mapping(target = "products", ignore = true)
+
+    @Mapping(source = "customer.id", target = "customerId")
+
+    @Mapping(source = "products.id", target = "productsId")
+    SeenDTO toDto(Seen seen); 
+
+    @Mapping(source = "customerId", target = "customer")
+
+    @Mapping(source = "productsId", target = "products")
     Seen toEntity(SeenDTO seenDTO); 
-    /**
-     * generating the fromId for all mappers if the databaseType is sql, as the class has relationship to it might need it, instead of
-     * creating a new attribute to know if the entity has any relationship from some other entity
-     *
-     * @param id id of the entity
-     * @return the entity instance
-     */
-     
     default Seen fromId(Long id) {
         if (id == null) {
             return null;

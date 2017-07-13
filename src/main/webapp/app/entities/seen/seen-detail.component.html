@@ -8,25 +8,18 @@
         <dd>
             <span>{{seen.date | date:'mediumDate'}}</span>
         </dd>
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <dt><span jhiTranslate="eshopApp.seen.customer">Customer</span></dt>
-=======
         <dt><span>Customer</span></dt>
->>>>>>> creatingDtos
         <dd>
-            <div *ngIf="seen.customer">
-                <a [routerLink]="['/customer', seen.customer?.id]">{{seen.customer?.id}}</a>
+            <div *ngIf="seen.customerId">
+                <a [routerLink]="['/customer', seen.customerId]">{{seen.customerId}}</a>
             </div>
         </dd>
         <dt><span>Products</span></dt>
         <dd>
-            <div *ngIf="seen.products">
-                <a [routerLink]="['/products', seen.products?.id]">{{seen.products?.id}}</a>
+            <div *ngIf="seen.productsId">
+                <a [routerLink]="['/products', seen.productsId]">{{seen.productsId}}</a>
             </div>
         </dd>
-=======
->>>>>>> with_entities
     </dl>
 
     <button type="submit"

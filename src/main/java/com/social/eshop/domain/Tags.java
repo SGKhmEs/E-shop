@@ -6,7 +6,6 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -28,18 +27,13 @@ public class Tags implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @NotNull
-    @Column(name = "name", nullable = false)
+    @Column(name = "name")
     private String name;
 
     @OneToMany(mappedBy = "tags")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-<<<<<<< HEAD
     private Set<TagForProduct> tagForProducts = new HashSet<>();
-=======
-    private Set<Products> products = new HashSet<>();
->>>>>>> with_entities
 
     public Long getId() {
         return id;
@@ -62,7 +56,6 @@ public class Tags implements Serializable {
         this.name = name;
     }
 
-<<<<<<< HEAD
     public Set<TagForProduct> getTagForProducts() {
         return tagForProducts;
     }
@@ -86,31 +79,6 @@ public class Tags implements Serializable {
 
     public void setTagForProducts(Set<TagForProduct> tagForProducts) {
         this.tagForProducts = tagForProducts;
-=======
-    public Set<Products> getProducts() {
-        return products;
-    }
-
-    public Tags products(Set<Products> products) {
-        this.products = products;
-        return this;
-    }
-
-    public Tags addProduct(Products products) {
-        this.products.add(products);
-        products.setTags(this);
-        return this;
-    }
-
-    public Tags removeProduct(Products products) {
-        this.products.remove(products);
-        products.setTags(null);
-        return this;
-    }
-
-    public void setProducts(Set<Products> products) {
-        this.products = products;
->>>>>>> with_entities
     }
 
     @Override

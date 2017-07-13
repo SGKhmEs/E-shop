@@ -90,7 +90,7 @@ module.exports = (options) => {
             }),
             new webpack.DllReferencePlugin({
                 context: './',
-                manifest: require(path.resolve('./build/www/vendor.json'))
+                manifest: require(path.resolve('./target/www/vendor.json'))
             }),
             new CopyWebpackPlugin([
                 { from: './node_modules/core-js/client/shim.min.js', to: 'core-js-shim.min.js' },
@@ -111,7 +111,7 @@ module.exports = (options) => {
                 inject: 'body'
             }),
             new AddAssetHtmlPlugin([
-                { filepath: path.resolve('./build/www/vendor.dll.js'), includeSourcemap: false }
+                { filepath: path.resolve('./target/www/vendor.dll.js'), includeSourcemap: false }
             ]),
             new StringReplacePlugin(),
             new WebpackNotifierPlugin({

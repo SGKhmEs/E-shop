@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Principal } from '../auth/principal.service';
-import { AuthServerProvider } from '../auth/auth-jwt.service';
+import { AuthServerProvider } from '../auth/auth-session.service';
 import { JhiTrackerService } from '../tracker/tracker.service';
 
 @Injectable()
@@ -29,10 +29,6 @@ export class LoginService {
                 return cb(err);
             });
         });
-    }
-
-    loginWithToken(jwt, rememberMe) {
-        return this.authServerProvider.loginWithToken(jwt, rememberMe);
     }
 
     logout() {

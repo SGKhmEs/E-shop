@@ -6,6 +6,8 @@ import com.social.eshop.domain.ProductInBucket;
 import com.social.eshop.repository.ProductInBucketRepository;
 import com.social.eshop.service.ProductInBucketService;
 import com.social.eshop.repository.search.ProductInBucketSearchRepository;
+import com.social.eshop.service.dto.ProductInBucketDTO;
+import com.social.eshop.service.mapper.ProductInBucketMapper;
 import com.social.eshop.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -41,6 +43,9 @@ public class ProductInBucketResourceIntTest {
 
     @Autowired
     private ProductInBucketRepository productInBucketRepository;
+
+    @Autowired
+    private ProductInBucketMapper productInBucketMapper;
 
     @Autowired
     private ProductInBucketService productInBucketService;
@@ -97,9 +102,10 @@ public class ProductInBucketResourceIntTest {
         int databaseSizeBeforeCreate = productInBucketRepository.findAll().size();
 
         // Create the ProductInBucket
+        ProductInBucketDTO productInBucketDTO = productInBucketMapper.toDto(productInBucket);
         restProductInBucketMockMvc.perform(post("/api/product-in-buckets")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(productInBucket)))
+            .content(TestUtil.convertObjectToJsonBytes(productInBucketDTO)))
             .andExpect(status().isCreated());
 
         // Validate the ProductInBucket in the database
@@ -119,11 +125,12 @@ public class ProductInBucketResourceIntTest {
 
         // Create the ProductInBucket with an existing ID
         productInBucket.setId(1L);
+        ProductInBucketDTO productInBucketDTO = productInBucketMapper.toDto(productInBucket);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restProductInBucketMockMvc.perform(post("/api/product-in-buckets")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(productInBucket)))
+            .content(TestUtil.convertObjectToJsonBytes(productInBucketDTO)))
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -169,16 +176,17 @@ public class ProductInBucketResourceIntTest {
     @Transactional
     public void updateProductInBucket() throws Exception {
         // Initialize the database
-        productInBucketService.save(productInBucket);
-
+        productInBucketRepository.saveAndFlush(productInBucket);
+        productInBucketSearchRepository.save(productInBucket);
         int databaseSizeBeforeUpdate = productInBucketRepository.findAll().size();
 
         // Update the productInBucket
         ProductInBucket updatedProductInBucket = productInBucketRepository.findOne(productInBucket.getId());
+        ProductInBucketDTO productInBucketDTO = productInBucketMapper.toDto(updatedProductInBucket);
 
         restProductInBucketMockMvc.perform(put("/api/product-in-buckets")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(updatedProductInBucket)))
+            .content(TestUtil.convertObjectToJsonBytes(productInBucketDTO)))
             .andExpect(status().isOk());
 
         // Validate the ProductInBucket in the database
@@ -197,11 +205,12 @@ public class ProductInBucketResourceIntTest {
         int databaseSizeBeforeUpdate = productInBucketRepository.findAll().size();
 
         // Create the ProductInBucket
+        ProductInBucketDTO productInBucketDTO = productInBucketMapper.toDto(productInBucket);
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
         restProductInBucketMockMvc.perform(put("/api/product-in-buckets")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(productInBucket)))
+            .content(TestUtil.convertObjectToJsonBytes(productInBucketDTO)))
             .andExpect(status().isCreated());
 
         // Validate the ProductInBucket in the database
@@ -213,8 +222,8 @@ public class ProductInBucketResourceIntTest {
     @Transactional
     public void deleteProductInBucket() throws Exception {
         // Initialize the database
-        productInBucketService.save(productInBucket);
-
+        productInBucketRepository.saveAndFlush(productInBucket);
+        productInBucketSearchRepository.save(productInBucket);
         int databaseSizeBeforeDelete = productInBucketRepository.findAll().size();
 
         // Get the productInBucket
@@ -235,7 +244,8 @@ public class ProductInBucketResourceIntTest {
     @Transactional
     public void searchProductInBucket() throws Exception {
         // Initialize the database
-        productInBucketService.save(productInBucket);
+        productInBucketRepository.saveAndFlush(productInBucket);
+        productInBucketSearchRepository.save(productInBucket);
 
         // Search the productInBucket
         restProductInBucketMockMvc.perform(get("/api/_search/product-in-buckets?query=id:" + productInBucket.getId()))
@@ -257,5 +267,28 @@ public class ProductInBucketResourceIntTest {
         assertThat(productInBucket1).isNotEqualTo(productInBucket2);
         productInBucket1.setId(null);
         assertThat(productInBucket1).isNotEqualTo(productInBucket2);
+    }
+
+    @Test
+    @Transactional
+    public void dtoEqualsVerifier() throws Exception {
+        TestUtil.equalsVerifier(ProductInBucketDTO.class);
+        ProductInBucketDTO productInBucketDTO1 = new ProductInBucketDTO();
+        productInBucketDTO1.setId(1L);
+        ProductInBucketDTO productInBucketDTO2 = new ProductInBucketDTO();
+        assertThat(productInBucketDTO1).isNotEqualTo(productInBucketDTO2);
+        productInBucketDTO2.setId(productInBucketDTO1.getId());
+        assertThat(productInBucketDTO1).isEqualTo(productInBucketDTO2);
+        productInBucketDTO2.setId(2L);
+        assertThat(productInBucketDTO1).isNotEqualTo(productInBucketDTO2);
+        productInBucketDTO1.setId(null);
+        assertThat(productInBucketDTO1).isNotEqualTo(productInBucketDTO2);
+    }
+
+    @Test
+    @Transactional
+    public void testEntityFromId() {
+        assertThat(productInBucketMapper.fromId(42L).getId()).isEqualTo(42);
+        assertThat(productInBucketMapper.fromId(null)).isNull();
     }
 }

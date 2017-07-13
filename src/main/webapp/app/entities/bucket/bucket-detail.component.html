@@ -4,31 +4,15 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <dt><span jhiTranslate="eshopApp.bucket.name">Name</span></dt>
-        <dd>
-            <span>{{bucket.name}}</span>
-        </dd>
-=======
->>>>>>> with_entities
-        <dt><span jhiTranslate="eshopApp.bucket.data">Data</span></dt>
-=======
         <dt><span>Name</span></dt>
         <dd>
             <span>{{bucket.name}}</span>
         </dd>
         <dt><span>Date</span></dt>
->>>>>>> creatingDtos
         <dd>
             <span>{{bucket.date | date:'medium'}}</span>
         </dd>
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <dt><span jhiTranslate="eshopApp.bucket.sum">Sum</span></dt>
-=======
         <dt><span>Sum</span></dt>
->>>>>>> creatingDtos
         <dd>
             <span>{{bucket.sum}}</span>
         </dd>
@@ -50,24 +34,22 @@
         </dd>
         <dt><span>Manager</span></dt>
         <dd>
-            <div *ngIf="bucket.manager">
-                <a [routerLink]="['/manager', bucket.manager?.id]">{{bucket.manager?.id}}</a>
+            <div *ngIf="bucket.managerId">
+                <a [routerLink]="['/manager', bucket.managerId]">{{bucket.managerId}}</a>
             </div>
         </dd>
         <dt><span>Address Shipping</span></dt>
         <dd>
-            <div *ngIf="bucket.addressShipping">
-                <a [routerLink]="['/address-shipping', bucket.addressShipping?.id]">{{bucket.addressShipping?.id}}</a>
+            <div *ngIf="bucket.addressShippingId">
+                <a [routerLink]="['/address-shipping', bucket.addressShippingId]">{{bucket.addressShippingId}}</a>
             </div>
         </dd>
         <dt><span>Customer</span></dt>
         <dd>
-            <div *ngIf="bucket.customer">
-                <a [routerLink]="['/customer', bucket.customer?.id]">{{bucket.customer?.id}}</a>
+            <div *ngIf="bucket.customerId">
+                <a [routerLink]="['/customer', bucket.customerId]">{{bucket.customerId}}</a>
             </div>
         </dd>
-=======
->>>>>>> with_entities
     </dl>
 
     <button type="submit"

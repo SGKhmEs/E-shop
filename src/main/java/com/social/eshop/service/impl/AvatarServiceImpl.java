@@ -4,22 +4,14 @@ import com.social.eshop.service.AvatarService;
 import com.social.eshop.domain.Avatar;
 import com.social.eshop.repository.AvatarRepository;
 import com.social.eshop.repository.search.AvatarSearchRepository;
-<<<<<<< HEAD
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-=======
 import com.social.eshop.service.dto.AvatarDTO;
 import com.social.eshop.service.mapper.AvatarMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.LinkedList;
->>>>>>> with_entities
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -34,16 +26,7 @@ import static org.elasticsearch.index.query.QueryBuilders.*;
 public class AvatarServiceImpl implements AvatarService{
 
     private final Logger log = LoggerFactory.getLogger(AvatarServiceImpl.class);
-<<<<<<< HEAD
 
-    private final AvatarRepository avatarRepository;
-
-    private final AvatarSearchRepository avatarSearchRepository;
-
-    public AvatarServiceImpl(AvatarRepository avatarRepository, AvatarSearchRepository avatarSearchRepository) {
-        this.avatarRepository = avatarRepository;
-=======
-    
     private final AvatarRepository avatarRepository;
 
     private final AvatarMapper avatarMapper;
@@ -53,23 +36,12 @@ public class AvatarServiceImpl implements AvatarService{
     public AvatarServiceImpl(AvatarRepository avatarRepository, AvatarMapper avatarMapper, AvatarSearchRepository avatarSearchRepository) {
         this.avatarRepository = avatarRepository;
         this.avatarMapper = avatarMapper;
->>>>>>> with_entities
         this.avatarSearchRepository = avatarSearchRepository;
     }
 
     /**
      * Save a avatar.
      *
-<<<<<<< HEAD
-     * @param avatar the entity to save
-     * @return the persisted entity
-     */
-    @Override
-    public Avatar save(Avatar avatar) {
-        log.debug("Request to save Avatar : {}", avatar);
-        Avatar result = avatarRepository.save(avatar);
-        avatarSearchRepository.save(result);
-=======
      * @param avatarDTO the entity to save
      * @return the persisted entity
      */
@@ -80,34 +52,21 @@ public class AvatarServiceImpl implements AvatarService{
         avatar = avatarRepository.save(avatar);
         AvatarDTO result = avatarMapper.toDto(avatar);
         avatarSearchRepository.save(avatar);
->>>>>>> with_entities
         return result;
     }
 
     /**
      *  Get all the avatars.
-<<<<<<< HEAD
      *
-=======
-     *  
->>>>>>> with_entities
      *  @return the list of entities
      */
     @Override
     @Transactional(readOnly = true)
-<<<<<<< HEAD
-    public List<Avatar> findAll() {
-        log.debug("Request to get all Avatars");
-        return avatarRepository.findAll();
-=======
     public List<AvatarDTO> findAll() {
         log.debug("Request to get all Avatars");
-        List<AvatarDTO> result = avatarRepository.findAll().stream()
+        return avatarRepository.findAll().stream()
             .map(avatarMapper::toDto)
             .collect(Collectors.toCollection(LinkedList::new));
-
-        return result;
->>>>>>> with_entities
     }
 
     /**
@@ -118,17 +77,10 @@ public class AvatarServiceImpl implements AvatarService{
      */
     @Override
     @Transactional(readOnly = true)
-<<<<<<< HEAD
-    public Avatar findOne(Long id) {
-        log.debug("Request to get Avatar : {}", id);
-        return avatarRepository.findOne(id);
-=======
     public AvatarDTO findOne(Long id) {
         log.debug("Request to get Avatar : {}", id);
         Avatar avatar = avatarRepository.findOne(id);
-        AvatarDTO avatarDTO = avatarMapper.toDto(avatar);
-        return avatarDTO;
->>>>>>> with_entities
+        return avatarMapper.toDto(avatar);
     }
 
     /**
@@ -151,18 +103,11 @@ public class AvatarServiceImpl implements AvatarService{
      */
     @Override
     @Transactional(readOnly = true)
-<<<<<<< HEAD
-    public List<Avatar> search(String query) {
-        log.debug("Request to search Avatars for query {}", query);
-        return StreamSupport
-            .stream(avatarSearchRepository.search(queryStringQuery(query)).spliterator(), false)
-=======
     public List<AvatarDTO> search(String query) {
         log.debug("Request to search Avatars for query {}", query);
         return StreamSupport
             .stream(avatarSearchRepository.search(queryStringQuery(query)).spliterator(), false)
             .map(avatarMapper::toDto)
->>>>>>> with_entities
             .collect(Collectors.toList());
     }
 }

@@ -2,9 +2,6 @@
     "fluentMethods": true,
     "relationships": [
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
             "relationshipType": "one-to-one",
             "relationshipName": "options",
             "otherEntityName": "options",
@@ -13,29 +10,10 @@
             "otherEntityRelationshipName": "products"
         },
         {
->>>>>>> creatingDtos
             "relationshipType": "one-to-many",
             "relationshipName": "media",
             "otherEntityName": "media",
             "otherEntityRelationshipName": "products"
-=======
-            "relationshipName": "wishList",
-            "otherEntityName": "wishList",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
-        },
-        {
-            "relationshipName": "seen",
-            "otherEntityName": "seen",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
-        },
-        {
-            "relationshipName": "bucket",
-            "otherEntityName": "bucket",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
->>>>>>> with_entities
         },
         {
             "relationshipType": "one-to-many",
@@ -45,7 +23,6 @@
         },
         {
             "relationshipType": "one-to-many",
-<<<<<<< HEAD
             "relationshipName": "productInBucket",
             "otherEntityName": "productInBucket",
             "otherEntityRelationshipName": "products"
@@ -59,32 +36,12 @@
         {
             "relationshipName": "consignment",
             "otherEntityName": "consignment",
-=======
-            "relationshipName": "consignment",
-            "otherEntityName": "consignment",
-            "otherEntityRelationshipName": "products"
-        },
-        {
-            "relationshipName": "subCategory",
-            "otherEntityName": "subCategory",
             "relationshipType": "many-to-one",
             "otherEntityField": "id"
         },
         {
-            "relationshipName": "media",
-            "otherEntityName": "media",
->>>>>>> with_entities
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
-        },
-        {
-<<<<<<< HEAD
             "relationshipName": "subCategory",
             "otherEntityName": "subCategory",
-=======
-            "relationshipName": "tags",
-            "otherEntityName": "tags",
->>>>>>> with_entities
             "relationshipType": "many-to-one",
             "otherEntityField": "id"
         }
@@ -98,7 +55,6 @@
             ]
         },
         {
-<<<<<<< HEAD
             "fieldName": "price",
             "fieldType": "BigDecimal",
             "fieldValidateRules": [
@@ -106,8 +62,6 @@
             ]
         },
         {
-=======
->>>>>>> with_entities
             "fieldName": "sale",
             "fieldType": "Integer"
         },
@@ -124,19 +78,9 @@
             "fieldType": "String"
         }
     ],
-<<<<<<< HEAD
-<<<<<<< HEAD
-    "changelogDate": "20170610234456",
-=======
-    "changelogDate": "20170623182239",
->>>>>>> creatingDtos
-    "entityTableName": "products",
-    "dto": "no",
-=======
-    "changelogDate": "20170525235449",
+    "changelogDate": "20170629140045",
     "entityTableName": "products",
     "dto": "mapstruct",
->>>>>>> with_entities
     "pagination": "infinite-scroll",
     "service": "serviceImpl"
 }

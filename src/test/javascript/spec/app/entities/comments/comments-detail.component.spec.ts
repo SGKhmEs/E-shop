@@ -32,16 +32,8 @@ describe('Component Tests', () => {
                     CommentsService,
                     JhiEventManager
                 ]
-<<<<<<< HEAD
             }).overrideTemplate(CommentsDetailComponent, '')
             .compileComponents();
-=======
-            }).overrideComponent(CommentsDetailComponent, {
-                set: {
-                    template: ''
-                }
-            }).compileComponents();
->>>>>>> with_entities
         }));
 
         beforeEach(() => {

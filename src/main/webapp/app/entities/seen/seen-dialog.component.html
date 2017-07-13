@@ -23,23 +23,20 @@
             </div>
         </div>
 
-<<<<<<< HEAD
         <div class="form-group">
             <label for="field_customer">Customer</label>
-            <select class="form-control" id="field_customer" name="customer" [(ngModel)]="seen.customer" >
+            <select class="form-control" id="field_customer" name="customer" [(ngModel)]="seen.customerId" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="customerOption.id === seen.customer?.id ? seen.customer : customerOption" *ngFor="let customerOption of customers; trackBy: trackCustomerById">{{customerOption.id}}</option>
+                <option [ngValue]="customerOption.id" *ngFor="let customerOption of customers; trackBy: trackCustomerById">{{customerOption.id}}</option>
             </select>
         </div>
         <div class="form-group">
             <label for="field_products">Products</label>
-            <select class="form-control" id="field_products" name="products" [(ngModel)]="seen.products">
+            <select class="form-control" id="field_products" name="products" [(ngModel)]="seen.productsId">
                 <option [ngValue]="null"></option>
-                <option [ngValue]="productsOption.id === seen.products?.id ? seen.products : productsOption" *ngFor="let productsOption of products; trackBy: trackProductsById">{{productsOption.id}}</option>
+                <option [ngValue]="productsOption.id" *ngFor="let productsOption of products; trackBy: trackProductsById">{{productsOption.id}}</option>
             </select>
         </div>
-=======
->>>>>>> with_entities
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">

@@ -4,11 +4,14 @@ import com.social.eshop.service.StaticPagesService;
 import com.social.eshop.domain.StaticPages;
 import com.social.eshop.repository.StaticPagesRepository;
 import com.social.eshop.repository.search.StaticPagesSearchRepository;
+import com.social.eshop.service.dto.StaticPagesDTO;
+import com.social.eshop.service.mapper.StaticPagesMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -26,24 +29,29 @@ public class StaticPagesServiceImpl implements StaticPagesService{
 
     private final StaticPagesRepository staticPagesRepository;
 
+    private final StaticPagesMapper staticPagesMapper;
+
     private final StaticPagesSearchRepository staticPagesSearchRepository;
 
-    public StaticPagesServiceImpl(StaticPagesRepository staticPagesRepository, StaticPagesSearchRepository staticPagesSearchRepository) {
+    public StaticPagesServiceImpl(StaticPagesRepository staticPagesRepository, StaticPagesMapper staticPagesMapper, StaticPagesSearchRepository staticPagesSearchRepository) {
         this.staticPagesRepository = staticPagesRepository;
+        this.staticPagesMapper = staticPagesMapper;
         this.staticPagesSearchRepository = staticPagesSearchRepository;
     }
 
     /**
      * Save a staticPages.
      *
-     * @param staticPages the entity to save
+     * @param staticPagesDTO the entity to save
      * @return the persisted entity
      */
     @Override
-    public StaticPages save(StaticPages staticPages) {
-        log.debug("Request to save StaticPages : {}", staticPages);
-        StaticPages result = staticPagesRepository.save(staticPages);
-        staticPagesSearchRepository.save(result);
+    public StaticPagesDTO save(StaticPagesDTO staticPagesDTO) {
+        log.debug("Request to save StaticPages : {}", staticPagesDTO);
+        StaticPages staticPages = staticPagesMapper.toEntity(staticPagesDTO);
+        staticPages = staticPagesRepository.save(staticPages);
+        StaticPagesDTO result = staticPagesMapper.toDto(staticPages);
+        staticPagesSearchRepository.save(staticPages);
         return result;
     }
 
@@ -54,9 +62,11 @@ public class StaticPagesServiceImpl implements StaticPagesService{
      */
     @Override
     @Transactional(readOnly = true)
-    public List<StaticPages> findAll() {
+    public List<StaticPagesDTO> findAll() {
         log.debug("Request to get all StaticPages");
-        return staticPagesRepository.findAll();
+        return staticPagesRepository.findAll().stream()
+            .map(staticPagesMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
     }
 
     /**
@@ -67,9 +77,10 @@ public class StaticPagesServiceImpl implements StaticPagesService{
      */
     @Override
     @Transactional(readOnly = true)
-    public StaticPages findOne(Long id) {
+    public StaticPagesDTO findOne(Long id) {
         log.debug("Request to get StaticPages : {}", id);
-        return staticPagesRepository.findOne(id);
+        StaticPages staticPages = staticPagesRepository.findOne(id);
+        return staticPagesMapper.toDto(staticPages);
     }
 
     /**
@@ -92,10 +103,11 @@ public class StaticPagesServiceImpl implements StaticPagesService{
      */
     @Override
     @Transactional(readOnly = true)
-    public List<StaticPages> search(String query) {
+    public List<StaticPagesDTO> search(String query) {
         log.debug("Request to search StaticPages for query {}", query);
         return StreamSupport
             .stream(staticPagesSearchRepository.search(queryStringQuery(query)).spliterator(), false)
+            .map(staticPagesMapper::toDto)
             .collect(Collectors.toList());
     }
 }

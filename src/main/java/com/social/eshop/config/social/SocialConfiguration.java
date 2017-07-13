@@ -2,7 +2,6 @@ package com.social.eshop.config.social;
 
 import com.social.eshop.repository.SocialUserConnectionRepository;
 import com.social.eshop.repository.CustomSocialUsersConnectionRepository;
-import com.social.eshop.security.jwt.TokenProvider;
 import com.social.eshop.security.social.CustomSignInAdapter;
 
 import io.github.jhipster.config.JHipsterProperties;
@@ -124,10 +123,8 @@ public class SocialConfiguration implements SocialConfigurer {
     }
 
     @Bean
-    public SignInAdapter signInAdapter(UserDetailsService userDetailsService, JHipsterProperties jHipsterProperties,
-            TokenProvider tokenProvider) {
-        return new CustomSignInAdapter(userDetailsService, jHipsterProperties,
-            tokenProvider);
+    public SignInAdapter signInAdapter(UserDetailsService userDetailsService, JHipsterProperties jHipsterProperties) {
+        return new CustomSignInAdapter(userDetailsService, jHipsterProperties);
     }
 
     @Bean

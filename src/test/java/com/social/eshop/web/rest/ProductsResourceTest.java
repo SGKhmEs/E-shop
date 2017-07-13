@@ -1,0 +1,296 @@
+package com.social.eshop.web.rest;
+
+import com.social.eshop.EshopApp;
+import com.social.eshop.domain.Products;
+import com.social.eshop.repository.ProductsRepository;
+import com.social.eshop.repository.search.ProductsSearchRepository;
+import com.social.eshop.service.ProductsService;
+import com.social.eshop.service.dto.ProductsDTO;
+import com.social.eshop.service.mapper.ProductsMapper;
+import com.social.eshop.web.rest.errors.ExceptionTranslator;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityManager;
+import java.math.BigDecimal;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.hasItem;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = EshopApp.class)
+public class ProductsResourceTest {
+
+    private static final String DEFAULT_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_NAME = "BBBBBBBBBB";
+
+    private static final BigDecimal DEFAULT_PRICE = new BigDecimal(1);
+    private static final BigDecimal UPDATED_PRICE = new BigDecimal(2);
+
+    private static final Integer DEFAULT_SALE = 1;
+    private static final Integer UPDATED_SALE = 2;
+
+    private static final Double DEFAULT_RATING = 1D;
+    private static final Double UPDATED_RATING = 2D;
+
+    private static final Boolean DEFAULT_FRESH = false;
+    private static final Boolean UPDATED_FRESH = true;
+
+    private static final String DEFAULT_DESCRIPTION = "AAAAAAAAAA";
+    private static final String UPDATED_DESCRIPTION = "BBBBBBBBBB";
+
+    @Autowired
+    private ProductsRepository productsRepository;
+
+    @Autowired
+    private ProductsMapper productsMapper;
+
+    @Autowired
+    private ProductsService productsService;
+
+    @Autowired
+    private ProductsSearchRepository productsSearchRepository;
+
+    @Autowired
+    private MappingJackson2HttpMessageConverter jacksonMessageConverter;
+
+    @Autowired
+    private PageableHandlerMethodArgumentResolver pageableArgumentResolver;
+
+    @Autowired
+    private ExceptionTranslator exceptionTranslator;
+
+    @Autowired
+    private EntityManager em;
+
+    private MockMvc restProductsMockMvc;
+
+    private Products products;
+
+    @Before
+    public void setup() {
+        MockitoAnnotations.initMocks(this);
+        ProductsResource productsResource = new ProductsResource(productsService);
+        this.restProductsMockMvc = MockMvcBuilders.standaloneSetup(productsResource)
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setMessageConverters(jacksonMessageConverter).build();
+    }
+
+    public static Products createEntity(EntityManager em) {
+        Products products = new Products()
+            .name(DEFAULT_NAME)
+            .price(DEFAULT_PRICE)
+            .sale(DEFAULT_SALE)
+            .rating(DEFAULT_RATING)
+            .fresh(DEFAULT_FRESH)
+            .description(DEFAULT_DESCRIPTION);
+        return products;
+    }
+
+    @Before
+    public void initTest() {
+        productsSearchRepository.deleteAll();
+        products = createEntity(em);
+    }
+
+    @Test
+    @Transactional
+    public void createProducts() throws Exception {
+        int databaseSizeBeforeCreate = productsRepository.findAll().size();
+
+        // Create the Products
+        ProductsDTO productsDTO = productsMapper.toDto(products);
+        restProductsMockMvc.perform(post("/api/products")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(productsDTO)))
+            .andExpect(status().isCreated());
+
+        // Validate the Products in the database
+        List<Products> productsList = productsRepository.findAll();
+        assertThat(productsList).hasSize(databaseSizeBeforeCreate + 1);
+        Products testProducts = productsList.get(productsList.size() - 1);
+        assertThat(testProducts.getName()).isEqualTo(DEFAULT_NAME);
+        assertThat(testProducts.getPrice()).isEqualTo(DEFAULT_PRICE);
+        assertThat(testProducts.getSale()).isEqualTo(DEFAULT_SALE);
+        assertThat(testProducts.getRating()).isEqualTo(DEFAULT_RATING);
+        assertThat(testProducts.isFresh()).isEqualTo(DEFAULT_FRESH);
+        assertThat(testProducts.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
+
+        // Validate the Products in Elasticsearch
+        Products productsEs = productsSearchRepository.findOne(testProducts.getId());
+        assertThat(productsEs).isEqualToComparingFieldByField(testProducts);
+    }
+
+    @Test
+    @Transactional
+    public void checkNameIsRequired() throws Exception {
+        int databaseSizeBeforeTest = productsRepository.findAll().size();
+        // set the field null
+        products.setName(null);
+
+        // Create the Products, which fails.
+        ProductsDTO productsDTO = productsMapper.toDto(products);
+
+        restProductsMockMvc.perform(post("/api/products")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(productsDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Products> productsList = productsRepository.findAll();
+        assertThat(productsList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkPriceIsRequired() throws Exception {
+        int databaseSizeBeforeTest = productsRepository.findAll().size();
+        // set the field null
+        products.setPrice(null);
+
+        // Create the Products, which fails.
+        ProductsDTO productsDTO = productsMapper.toDto(products);
+
+        restProductsMockMvc.perform(post("/api/products")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(productsDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Products> productsList = productsRepository.findAll();
+        assertThat(productsList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void getAllProducts() throws Exception {
+        // Initialize the database
+        productsRepository.saveAndFlush(products);
+
+        // Get all the productsList
+        restProductsMockMvc.perform(get("/api/products?sort=id,desc"))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(products.getId().intValue())))
+            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
+            .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.intValue())))
+            .andExpect(jsonPath("$.[*].sale").value(hasItem(DEFAULT_SALE)))
+            .andExpect(jsonPath("$.[*].rating").value(hasItem(DEFAULT_RATING.doubleValue())))
+            .andExpect(jsonPath("$.[*].fresh").value(hasItem(DEFAULT_FRESH.booleanValue())))
+            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())));
+    }
+
+    @Test
+    @Transactional
+    public void getProducts() throws Exception {
+        // Initialize the database
+        productsRepository.saveAndFlush(products);
+
+        // Get the products
+        restProductsMockMvc.perform(get("/api/products/{id}", products.getId()))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.id").value(products.getId().intValue()))
+            .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
+            .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.intValue()))
+            .andExpect(jsonPath("$.sale").value(DEFAULT_SALE))
+            .andExpect(jsonPath("$.rating").value(DEFAULT_RATING.doubleValue()))
+            .andExpect(jsonPath("$.fresh").value(DEFAULT_FRESH.booleanValue()))
+            .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()));
+    }
+
+    @Test
+    @Transactional
+    public void updateProducts() throws Exception {
+        // Initialize the database
+        productsRepository.saveAndFlush(products);
+        productsSearchRepository.save(products);
+        int databaseSizeBeforeUpdate = productsRepository.findAll().size();
+
+        // Update the products
+        Products updatedProducts = productsRepository.findOne(products.getId());
+        updatedProducts
+            .name(UPDATED_NAME)
+            .price(UPDATED_PRICE)
+            .sale(UPDATED_SALE)
+            .rating(UPDATED_RATING)
+            .fresh(UPDATED_FRESH)
+            .description(UPDATED_DESCRIPTION);
+        ProductsDTO productsDTO = productsMapper.toDto(updatedProducts);
+
+        restProductsMockMvc.perform(put("/api/products")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(productsDTO)))
+            .andExpect(status().isOk());
+
+        // Validate the Products in the database
+        List<Products> productsList = productsRepository.findAll();
+        assertThat(productsList).hasSize(databaseSizeBeforeUpdate);
+        Products testProducts = productsList.get(productsList.size() - 1);
+        assertThat(testProducts.getName()).isEqualTo(UPDATED_NAME);
+        assertThat(testProducts.getPrice()).isEqualTo(UPDATED_PRICE);
+        assertThat(testProducts.getSale()).isEqualTo(UPDATED_SALE);
+        assertThat(testProducts.getRating()).isEqualTo(UPDATED_RATING);
+        assertThat(testProducts.isFresh()).isEqualTo(UPDATED_FRESH);
+        assertThat(testProducts.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
+
+        // Validate the Products in Elasticsearch
+        Products productsEs = productsSearchRepository.findOne(testProducts.getId());
+        assertThat(productsEs).isEqualToComparingFieldByField(testProducts);
+    }
+
+    @Test
+    @Transactional
+    public void deleteProducts() throws Exception {
+        // Initialize the database
+        productsRepository.saveAndFlush(products);
+        productsSearchRepository.save(products);
+        int databaseSizeBeforeDelete = productsRepository.findAll().size();
+
+        // Get the products
+        restProductsMockMvc.perform(delete("/api/products/{id}", products.getId())
+            .accept(TestUtil.APPLICATION_JSON_UTF8))
+            .andExpect(status().isOk());
+
+        // Validate Elasticsearch is empty
+        boolean productsExistsInEs = productsSearchRepository.exists(products.getId());
+        assertThat(productsExistsInEs).isFalse();
+
+        // Validate the database is empty
+        List<Products> productsList = productsRepository.findAll();
+        assertThat(productsList).hasSize(databaseSizeBeforeDelete - 1);
+    }
+
+    @Test
+    @Transactional
+    public void searchProducts() throws Exception {
+        // Initialize the database
+        productsRepository.saveAndFlush(products);
+        productsSearchRepository.save(products);
+
+        // Search the products
+        restProductsMockMvc.perform(get("/api/_search/products?query=id:" + products.getId()))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(products.getId().intValue())))
+            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
+            .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.intValue())))
+            .andExpect(jsonPath("$.[*].sale").value(hasItem(DEFAULT_SALE)))
+            .andExpect(jsonPath("$.[*].rating").value(hasItem(DEFAULT_RATING.doubleValue())))
+            .andExpect(jsonPath("$.[*].fresh").value(hasItem(DEFAULT_FRESH.booleanValue())))
+            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())));
+    }
+}

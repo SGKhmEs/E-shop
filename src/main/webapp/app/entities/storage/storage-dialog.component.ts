@@ -32,10 +32,7 @@ export class StorageDialogComponent implements OnInit {
         this.isSaving = false;
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> with_entities
     clear() {
         this.activeModal.dismiss('cancel');
     }
@@ -44,7 +41,6 @@ export class StorageDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.storage.id !== undefined) {
             this.subscribeToSaveResponse(
-<<<<<<< HEAD
                 this.storageService.update(this.storage), false);
         } else {
             this.subscribeToSaveResponse(
@@ -63,21 +59,6 @@ export class StorageDialogComponent implements OnInit {
             : `A Storage is updated with identifier ${result.id}`,
             null, null);
 
-=======
-                this.storageService.update(this.storage));
-        } else {
-            this.subscribeToSaveResponse(
-                this.storageService.create(this.storage));
-        }
-    }
-
-    private subscribeToSaveResponse(result: Observable<Storage>) {
-        result.subscribe((res: Storage) =>
-            this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
-    }
-
-    private onSaveSuccess(result: Storage) {
->>>>>>> with_entities
         this.eventManager.broadcast({ name: 'storageListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);

@@ -32,16 +32,8 @@ describe('Component Tests', () => {
                     WishListService,
                     JhiEventManager
                 ]
-<<<<<<< HEAD
             }).overrideTemplate(WishListDetailComponent, '')
             .compileComponents();
-=======
-            }).overrideComponent(WishListDetailComponent, {
-                set: {
-                    template: ''
-                }
-            }).compileComponents();
->>>>>>> with_entities
         }));
 
         beforeEach(() => {

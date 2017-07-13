@@ -6,11 +6,8 @@ import com.social.eshop.domain.Bucket;
 import com.social.eshop.repository.BucketRepository;
 import com.social.eshop.service.BucketService;
 import com.social.eshop.repository.search.BucketSearchRepository;
-<<<<<<< HEAD
-=======
 import com.social.eshop.service.dto.BucketDTO;
 import com.social.eshop.service.mapper.BucketMapper;
->>>>>>> with_entities
 import com.social.eshop.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -28,10 +25,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-<<<<<<< HEAD
 import java.math.BigDecimal;
-=======
->>>>>>> with_entities
 import java.time.Instant;
 import java.time.ZonedDateTime;
 import java.time.ZoneOffset;
@@ -44,10 +38,7 @@ import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-<<<<<<< HEAD
 import com.social.eshop.domain.enumeration.Status;
-=======
->>>>>>> with_entities
 /**
  * Test class for the BucketResource REST controller.
  *
@@ -57,7 +48,6 @@ import com.social.eshop.domain.enumeration.Status;
 @SpringBootTest(classes = EshopApp.class)
 public class BucketResourceIntTest {
 
-<<<<<<< HEAD
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
 
@@ -79,21 +69,13 @@ public class BucketResourceIntTest {
     private static final String DEFAULT_CONSIGNMENT_NOTE = "AAAAAAAAAA";
     private static final String UPDATED_CONSIGNMENT_NOTE = "BBBBBBBBBB";
 
-=======
-    private static final ZonedDateTime DEFAULT_DATA = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
-    private static final ZonedDateTime UPDATED_DATA = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
-
->>>>>>> with_entities
     @Autowired
     private BucketRepository bucketRepository;
 
     @Autowired
-<<<<<<< HEAD
-=======
     private BucketMapper bucketMapper;
 
     @Autowired
->>>>>>> with_entities
     private BucketService bucketService;
 
     @Autowired
@@ -133,7 +115,6 @@ public class BucketResourceIntTest {
      */
     public static Bucket createEntity(EntityManager em) {
         Bucket bucket = new Bucket()
-<<<<<<< HEAD
             .name(DEFAULT_NAME)
             .date(DEFAULT_DATE)
             .sum(DEFAULT_SUM)
@@ -141,9 +122,6 @@ public class BucketResourceIntTest {
             .count(DEFAULT_COUNT)
             .status(DEFAULT_STATUS)
             .consignmentNote(DEFAULT_CONSIGNMENT_NOTE);
-=======
-            .data(DEFAULT_DATA);
->>>>>>> with_entities
         return bucket;
     }
 
@@ -159,23 +137,16 @@ public class BucketResourceIntTest {
         int databaseSizeBeforeCreate = bucketRepository.findAll().size();
 
         // Create the Bucket
-<<<<<<< HEAD
-        restBucketMockMvc.perform(post("/api/buckets")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(bucket)))
-=======
         BucketDTO bucketDTO = bucketMapper.toDto(bucket);
         restBucketMockMvc.perform(post("/api/buckets")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(bucketDTO)))
->>>>>>> with_entities
             .andExpect(status().isCreated());
 
         // Validate the Bucket in the database
         List<Bucket> bucketList = bucketRepository.findAll();
         assertThat(bucketList).hasSize(databaseSizeBeforeCreate + 1);
         Bucket testBucket = bucketList.get(bucketList.size() - 1);
-<<<<<<< HEAD
         assertThat(testBucket.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testBucket.getDate()).isEqualTo(DEFAULT_DATE);
         assertThat(testBucket.getSum()).isEqualTo(DEFAULT_SUM);
@@ -183,9 +154,6 @@ public class BucketResourceIntTest {
         assertThat(testBucket.getCount()).isEqualTo(DEFAULT_COUNT);
         assertThat(testBucket.getStatus()).isEqualTo(DEFAULT_STATUS);
         assertThat(testBucket.getConsignmentNote()).isEqualTo(DEFAULT_CONSIGNMENT_NOTE);
-=======
-        assertThat(testBucket.getData()).isEqualTo(DEFAULT_DATA);
->>>>>>> with_entities
 
         // Validate the Bucket in Elasticsearch
         Bucket bucketEs = bucketSearchRepository.findOne(testBucket.getId());
@@ -199,19 +167,12 @@ public class BucketResourceIntTest {
 
         // Create the Bucket with an existing ID
         bucket.setId(1L);
-<<<<<<< HEAD
-=======
         BucketDTO bucketDTO = bucketMapper.toDto(bucket);
->>>>>>> with_entities
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restBucketMockMvc.perform(post("/api/buckets")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-<<<<<<< HEAD
-            .content(TestUtil.convertObjectToJsonBytes(bucket)))
-=======
             .content(TestUtil.convertObjectToJsonBytes(bucketDTO)))
->>>>>>> with_entities
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
@@ -230,7 +191,6 @@ public class BucketResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(bucket.getId().intValue())))
-<<<<<<< HEAD
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].date").value(hasItem(sameInstant(DEFAULT_DATE))))
             .andExpect(jsonPath("$.[*].sum").value(hasItem(DEFAULT_SUM.intValue())))
@@ -238,9 +198,6 @@ public class BucketResourceIntTest {
             .andExpect(jsonPath("$.[*].count").value(hasItem(DEFAULT_COUNT)))
             .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
             .andExpect(jsonPath("$.[*].consignmentNote").value(hasItem(DEFAULT_CONSIGNMENT_NOTE.toString())));
-=======
-            .andExpect(jsonPath("$.[*].data").value(hasItem(sameInstant(DEFAULT_DATA))));
->>>>>>> with_entities
     }
 
     @Test
@@ -254,7 +211,6 @@ public class BucketResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(bucket.getId().intValue()))
-<<<<<<< HEAD
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
             .andExpect(jsonPath("$.date").value(sameInstant(DEFAULT_DATE)))
             .andExpect(jsonPath("$.sum").value(DEFAULT_SUM.intValue()))
@@ -262,9 +218,6 @@ public class BucketResourceIntTest {
             .andExpect(jsonPath("$.count").value(DEFAULT_COUNT))
             .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()))
             .andExpect(jsonPath("$.consignmentNote").value(DEFAULT_CONSIGNMENT_NOTE.toString()));
-=======
-            .andExpect(jsonPath("$.data").value(sameInstant(DEFAULT_DATA)));
->>>>>>> with_entities
     }
 
     @Test
@@ -279,19 +232,13 @@ public class BucketResourceIntTest {
     @Transactional
     public void updateBucket() throws Exception {
         // Initialize the database
-<<<<<<< HEAD
-        bucketService.save(bucket);
-
-=======
         bucketRepository.saveAndFlush(bucket);
         bucketSearchRepository.save(bucket);
->>>>>>> with_entities
         int databaseSizeBeforeUpdate = bucketRepository.findAll().size();
 
         // Update the bucket
         Bucket updatedBucket = bucketRepository.findOne(bucket.getId());
         updatedBucket
-<<<<<<< HEAD
             .name(UPDATED_NAME)
             .date(UPDATED_DATE)
             .sum(UPDATED_SUM)
@@ -299,25 +246,17 @@ public class BucketResourceIntTest {
             .count(UPDATED_COUNT)
             .status(UPDATED_STATUS)
             .consignmentNote(UPDATED_CONSIGNMENT_NOTE);
-
-        restBucketMockMvc.perform(put("/api/buckets")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(updatedBucket)))
-=======
-            .data(UPDATED_DATA);
         BucketDTO bucketDTO = bucketMapper.toDto(updatedBucket);
 
         restBucketMockMvc.perform(put("/api/buckets")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(bucketDTO)))
->>>>>>> with_entities
             .andExpect(status().isOk());
 
         // Validate the Bucket in the database
         List<Bucket> bucketList = bucketRepository.findAll();
         assertThat(bucketList).hasSize(databaseSizeBeforeUpdate);
         Bucket testBucket = bucketList.get(bucketList.size() - 1);
-<<<<<<< HEAD
         assertThat(testBucket.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testBucket.getDate()).isEqualTo(UPDATED_DATE);
         assertThat(testBucket.getSum()).isEqualTo(UPDATED_SUM);
@@ -325,9 +264,6 @@ public class BucketResourceIntTest {
         assertThat(testBucket.getCount()).isEqualTo(UPDATED_COUNT);
         assertThat(testBucket.getStatus()).isEqualTo(UPDATED_STATUS);
         assertThat(testBucket.getConsignmentNote()).isEqualTo(UPDATED_CONSIGNMENT_NOTE);
-=======
-        assertThat(testBucket.getData()).isEqualTo(UPDATED_DATA);
->>>>>>> with_entities
 
         // Validate the Bucket in Elasticsearch
         Bucket bucketEs = bucketSearchRepository.findOne(testBucket.getId());
@@ -340,19 +276,12 @@ public class BucketResourceIntTest {
         int databaseSizeBeforeUpdate = bucketRepository.findAll().size();
 
         // Create the Bucket
-<<<<<<< HEAD
-=======
         BucketDTO bucketDTO = bucketMapper.toDto(bucket);
->>>>>>> with_entities
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
         restBucketMockMvc.perform(put("/api/buckets")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-<<<<<<< HEAD
-            .content(TestUtil.convertObjectToJsonBytes(bucket)))
-=======
             .content(TestUtil.convertObjectToJsonBytes(bucketDTO)))
->>>>>>> with_entities
             .andExpect(status().isCreated());
 
         // Validate the Bucket in the database
@@ -364,13 +293,8 @@ public class BucketResourceIntTest {
     @Transactional
     public void deleteBucket() throws Exception {
         // Initialize the database
-<<<<<<< HEAD
-        bucketService.save(bucket);
-
-=======
         bucketRepository.saveAndFlush(bucket);
         bucketSearchRepository.save(bucket);
->>>>>>> with_entities
         int databaseSizeBeforeDelete = bucketRepository.findAll().size();
 
         // Get the bucket
@@ -391,19 +315,14 @@ public class BucketResourceIntTest {
     @Transactional
     public void searchBucket() throws Exception {
         // Initialize the database
-<<<<<<< HEAD
-        bucketService.save(bucket);
-=======
         bucketRepository.saveAndFlush(bucket);
         bucketSearchRepository.save(bucket);
->>>>>>> with_entities
 
         // Search the bucket
         restBucketMockMvc.perform(get("/api/_search/buckets?query=id:" + bucket.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(bucket.getId().intValue())))
-<<<<<<< HEAD
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].date").value(hasItem(sameInstant(DEFAULT_DATE))))
             .andExpect(jsonPath("$.[*].sum").value(hasItem(DEFAULT_SUM.intValue())))
@@ -411,9 +330,6 @@ public class BucketResourceIntTest {
             .andExpect(jsonPath("$.[*].count").value(hasItem(DEFAULT_COUNT)))
             .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
             .andExpect(jsonPath("$.[*].consignmentNote").value(hasItem(DEFAULT_CONSIGNMENT_NOTE.toString())));
-=======
-            .andExpect(jsonPath("$.[*].data").value(hasItem(sameInstant(DEFAULT_DATA))));
->>>>>>> with_entities
     }
 
     @Test
@@ -430,8 +346,6 @@ public class BucketResourceIntTest {
         bucket1.setId(null);
         assertThat(bucket1).isNotEqualTo(bucket2);
     }
-<<<<<<< HEAD
-=======
 
     @Test
     @Transactional
@@ -455,5 +369,4 @@ public class BucketResourceIntTest {
         assertThat(bucketMapper.fromId(42L).getId()).isEqualTo(42);
         assertThat(bucketMapper.fromId(null)).isNull();
     }
->>>>>>> with_entities
 }

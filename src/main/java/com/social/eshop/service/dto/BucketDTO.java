@@ -1,39 +1,67 @@
 package com.social.eshop.service.dto;
 
-<<<<<<< HEAD
+
+import java.time.ZonedDateTime;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Objects;
+import java.util.Set;
+
 import com.social.eshop.domain.AddressShipping;
+import com.social.eshop.domain.ProductInBucket;
+import com.social.eshop.domain.Products;
 import com.social.eshop.domain.enumeration.Status;
 
-import java.math.BigDecimal;
-import java.time.ZonedDateTime;
+/**
+ * A DTO for the Bucket entity.
+ */
+public class BucketDTO implements Serializable {
 
-public class BucketDTO {
-    private String name;
-    private ZonedDateTime dateTime;
+    private Long id;
+
+    //private String name;
+
+    private ZonedDateTime date;
+
     private BigDecimal sum;
-    private int orderNumber;
+
+    private Integer orderNumber;
+
+    private Integer count;
+
     private Status status;
-    private int count;
+
     private String consignmentNote;
-    private AddressShipping addressShipping;
-    private ProductsDTO productsDTO;
 
-    public BucketDTO() {}
+    private Long managerId;
 
-    public String getName() {
-        return name;
+    private Long addressShippingId;  // in the future delete
+
+    private AddressShipping addressShippingDTO;
+
+    private Long customerId; // in the future delete
+
+    private String customerName;
+
+    private String customerPhone;
+
+    private Set<ProductInBucketDTO> productInBucketDTOS;
+
+
+    public Long getId() {
+        return id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public ZonedDateTime getDateTime() {
-        return dateTime;
+    public ZonedDateTime getDate() {
+        return date;
     }
 
-    public void setDateTime(ZonedDateTime dateTime) {
-        this.dateTime = dateTime;
+    public void setDate(ZonedDateTime date) {
+        this.date = date;
     }
 
     public BigDecimal getSum() {
@@ -44,12 +72,20 @@ public class BucketDTO {
         this.sum = sum;
     }
 
-    public int getOrderNumber() {
+    public Integer getOrderNumber() {
         return orderNumber;
     }
 
-    public void setOrderNumber(int orderNumber) {
+    public void setOrderNumber(Integer orderNumber) {
         this.orderNumber = orderNumber;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
     }
 
     public Status getStatus() {
@@ -60,14 +96,6 @@ public class BucketDTO {
         this.status = status;
     }
 
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
-
     public String getConsignmentNote() {
         return consignmentNote;
     }
@@ -76,43 +104,60 @@ public class BucketDTO {
         this.consignmentNote = consignmentNote;
     }
 
-    public AddressShipping getAddressShipping() {
-        return addressShipping;
+    public Long getManagerId() {
+        return managerId;
     }
 
-    public void setAddressShipping(AddressShipping addressShipping) {
-        this.addressShipping = addressShipping;
-=======
-
-import java.time.ZonedDateTime;
-import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Objects;
-
-/**
- * A DTO for the Bucket entity.
- */
-public class BucketDTO implements Serializable {
-
-    private Long id;
-
-    private ZonedDateTime data;
-
-    public Long getId() {
-        return id;
+    public void setManagerId(Long managerId) {
+        this.managerId = managerId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Long getAddressShippingId() {
+        return addressShippingId;
     }
 
-    public ZonedDateTime getData() {
-        return data;
+    public void setAddressShippingId(Long addressShippingId) {
+        this.addressShippingId = addressShippingId;
     }
 
-    public void setData(ZonedDateTime data) {
-        this.data = data;
+    public AddressShipping getAddressShippingDTO() {
+        return addressShippingDTO;
+    }
+
+    public void setAddressShippingDTO(AddressShipping addressShippingDTO) {
+        this.addressShippingDTO = addressShippingDTO;
+    }
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public String getCustomerPhone() {
+        return customerPhone;
+    }
+
+    public void setCustomerPhone(String customerPhone) {
+        this.customerPhone = customerPhone;
+    }
+
+    public Set<ProductInBucketDTO> getProductInBucketDTOS() {
+        return productInBucketDTOS;
+    }
+
+    public void setProductInBucketDTOS(Set<ProductInBucketDTO> productInBucketDTOS) {
+        this.productInBucketDTOS = productInBucketDTOS;
     }
 
     @Override
@@ -134,40 +179,26 @@ public class BucketDTO implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hashCode(getId());
->>>>>>> with_entities
     }
 
-    public ProductsDTO getProductsDTO() {
-        return productsDTO;
-    }
-
-    public void setProductsDTO(ProductsDTO productsDTO) {
-        this.productsDTO = productsDTO;
-    }
 
     @Override
     public String toString() {
         return "BucketDTO{" +
-<<<<<<< HEAD
-            "name='" + name + '\'' +
-            ", dateTime=" + dateTime +
+            "id=" + id +
+            ", date=" + date +
             ", sum=" + sum +
             ", orderNumber=" + orderNumber +
-            ", status=" + status +
             ", count=" + count +
+            ", status=" + status +
             ", consignmentNote='" + consignmentNote + '\'' +
-            ", addressShipping=" + addressShipping +
-            ", productsDTO=" + productsDTO +
+            ", managerId=" + managerId +
+            ", addressShippingId=" + addressShippingId +
+            ", addressShippingDTO=" + addressShippingDTO +
+            ", customerId=" + customerId +
+            ", customerName='" + customerName + '\'' +
+            ", customerPhone='" + customerPhone + '\'' +
+            ", products=" + productInBucketDTOS +
             '}';
     }
-<<<<<<< HEAD
-
-=======
-            "id=" + getId() +
-            ", data='" + getData() + "'" +
-            "}";
-    }
->>>>>>> with_entities
-=======
->>>>>>> creatingDtos
 }

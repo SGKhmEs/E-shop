@@ -11,35 +11,10 @@ import { ConsignmentDeletePopupComponent } from './consignment-delete-dialog.com
 
 import { Principal } from '../../shared';
 
-<<<<<<< HEAD
-=======
-@Injectable()
-export class ConsignmentResolvePagingParams implements Resolve<any> {
-
-    constructor(private paginationUtil: PaginationUtil) {}
-
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        const page = route.queryParams['page'] ? route.queryParams['page'] : '1';
-        const sort = route.queryParams['sort'] ? route.queryParams['sort'] : 'id,asc';
-        return {
-            page: this.paginationUtil.parsePage(page),
-            predicate: this.paginationUtil.parsePredicate(sort),
-            ascending: this.paginationUtil.parseAscending(sort)
-      };
-    }
-}
-
->>>>>>> with_entities
 export const consignmentRoute: Routes = [
     {
         path: 'consignment',
         component: ConsignmentComponent,
-<<<<<<< HEAD
-=======
-        resolve: {
-            'pagingParams': ConsignmentResolvePagingParams
-        },
->>>>>>> with_entities
         data: {
             authorities: ['ROLE_USER'],
             pageTitle: 'Consignments'

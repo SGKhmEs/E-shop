@@ -1,9 +1,6 @@
 package com.social.eshop.domain;
 
-<<<<<<< HEAD
 import com.fasterxml.jackson.annotation.JsonIgnore;
-=======
->>>>>>> with_entities
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -12,11 +9,8 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
-<<<<<<< HEAD
 import java.util.HashSet;
 import java.util.Set;
-=======
->>>>>>> with_entities
 import java.util.Objects;
 
 /**
@@ -39,15 +33,10 @@ public class Consignment implements Serializable {
     @Column(name = "price", precision=10, scale=2, nullable = false)
     private BigDecimal price;
 
-<<<<<<< HEAD
     @OneToMany(mappedBy = "consignment")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Products> products = new HashSet<>();
-=======
-    @ManyToOne
-    private Products products;
->>>>>>> with_entities
 
     @ManyToOne
     private Storage storage;
@@ -76,24 +65,15 @@ public class Consignment implements Serializable {
         this.price = price;
     }
 
-<<<<<<< HEAD
     public Set<Products> getProducts() {
         return products;
     }
 
     public Consignment products(Set<Products> products) {
-=======
-    public Products getProducts() {
-        return products;
-    }
-
-    public Consignment products(Products products) {
->>>>>>> with_entities
         this.products = products;
         return this;
     }
 
-<<<<<<< HEAD
     public Consignment addProducts(Products products) {
         this.products.add(products);
         products.setConsignment(this);
@@ -107,9 +87,6 @@ public class Consignment implements Serializable {
     }
 
     public void setProducts(Set<Products> products) {
-=======
-    public void setProducts(Products products) {
->>>>>>> with_entities
         this.products = products;
     }
 

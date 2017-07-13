@@ -14,9 +14,11 @@ public class WishListDTO implements Serializable {
 
     private Long id;
 
-    private String wishsName;
+    private LocalDate date;
 
-    private LocalDate data;
+    private Long customerId;
+
+    private Long productId;
 
     public Long getId() {
         return id;
@@ -26,20 +28,28 @@ public class WishListDTO implements Serializable {
         this.id = id;
     }
 
-    public String getWishsName() {
-        return wishsName;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setWishsName(String wishsName) {
-        this.wishsName = wishsName;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
-    public LocalDate getData() {
-        return data;
+    public Long getCustomerId() {
+        return customerId;
     }
 
-    public void setData(LocalDate data) {
-        this.data = data;
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
+    }
+
+    public Long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Long productsId) {
+        this.productId = productsId;
     }
 
     @Override
@@ -67,8 +77,7 @@ public class WishListDTO implements Serializable {
     public String toString() {
         return "WishListDTO{" +
             "id=" + getId() +
-            ", wishsName='" + getWishsName() + "'" +
-            ", data='" + getData() + "'" +
+            ", date='" + getDate() + "'" +
             "}";
     }
 }

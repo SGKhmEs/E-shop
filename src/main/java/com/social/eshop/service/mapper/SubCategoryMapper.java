@@ -10,20 +10,21 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring", uses = {CategoryMapper.class, })
 public interface SubCategoryMapper extends EntityMapper <SubCategoryDTO, SubCategory> {
+
     @Mapping(source = "category.id", target = "categoryId")
-    SubCategoryDTO toDto(SubCategory subCategory); 
-    @Mapping(source = "categoryId", target = "category")
-    @Mapping(target = "options", ignore = true)
+    @Mapping(source = "category", target = "categoryDTO")
+    SubCategoryDTO toDto(SubCategory subCategory);
+
+    /*
+    * pay attention to it
+    * */
+
+    //  @Mapping(source = "categoryDTO", target ="category" )
+    @Mapping(source = "categoryId", target = "category.id")
     @Mapping(target = "products", ignore = true)
-    SubCategory toEntity(SubCategoryDTO subCategoryDTO); 
-    /**
-     * generating the fromId for all mappers if the databaseType is sql, as the class has relationship to it might need it, instead of
-     * creating a new attribute to know if the entity has any relationship from some other entity
-     *
-     * @param id id of the entity
-     * @return the entity instance
-     */
-     
+    SubCategory toEntity(SubCategoryDTO subCategoryDTO);
+
+
     default SubCategory fromId(Long id) {
         if (id == null) {
             return null;

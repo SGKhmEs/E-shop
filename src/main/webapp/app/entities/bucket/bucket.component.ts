@@ -13,7 +13,6 @@ import { PaginationConfig } from '../../blocks/config/uib-pagination.config';
     templateUrl: './bucket.component.html'
 })
 export class BucketComponent implements OnInit, OnDestroy {
-<<<<<<< HEAD
 
     buckets: Bucket[];
     currentAccount: any;
@@ -25,25 +24,13 @@ export class BucketComponent implements OnInit, OnDestroy {
     queryCount: any;
     reverse: any;
     totalItems: number;
-=======
-buckets: Bucket[];
-    currentAccount: any;
-    eventSubscriber: Subscription;
->>>>>>> with_entities
     currentSearch: string;
 
     constructor(
         private bucketService: BucketService,
-<<<<<<< HEAD
-        private alertService: AlertService,
-        private eventManager: EventManager,
-<<<<<<< HEAD
-        private parseLinks: ParseLinks,
-=======
         private alertService: JhiAlertService,
         private eventManager: JhiEventManager,
         private parseLinks: JhiParseLinks,
->>>>>>> creatingDtos
         private activatedRoute: ActivatedRoute,
         private principal: Principal
     ) {
@@ -55,11 +42,6 @@ buckets: Bucket[];
         };
         this.predicate = 'id';
         this.reverse = true;
-=======
-        private activatedRoute: ActivatedRoute,
-        private principal: Principal
-    ) {
->>>>>>> with_entities
         this.currentSearch = activatedRoute.snapshot.params['search'] ? activatedRoute.snapshot.params['search'] : '';
     }
 
@@ -67,7 +49,6 @@ buckets: Bucket[];
         if (this.currentSearch) {
             this.bucketService.search({
                 query: this.currentSearch,
-<<<<<<< HEAD
                 page: this.page,
                 size: this.itemsPerPage,
                 sort: this.sort()
@@ -83,24 +64,10 @@ buckets: Bucket[];
             sort: this.sort()
         }).subscribe(
             (res: ResponseWrapper) => this.onSuccess(res.json, res.headers),
-=======
-                }).subscribe(
-                    (res: ResponseWrapper) => this.buckets = res.json,
-                    (res: ResponseWrapper) => this.onError(res.json)
-                );
-            return;
-       }
-        this.bucketService.query().subscribe(
-            (res: ResponseWrapper) => {
-                this.buckets = res.json;
-                this.currentSearch = '';
-            },
->>>>>>> with_entities
             (res: ResponseWrapper) => this.onError(res.json)
         );
     }
 
-<<<<<<< HEAD
     reset() {
         this.page = 0;
         this.buckets = [];
@@ -124,13 +91,10 @@ buckets: Bucket[];
         this.loadAll();
     }
 
-=======
->>>>>>> with_entities
     search(query) {
         if (!query) {
             return this.clear();
         }
-<<<<<<< HEAD
         this.buckets = [];
         this.links = {
             last: 0
@@ -141,16 +105,6 @@ buckets: Bucket[];
         this.currentSearch = query;
         this.loadAll();
     }
-=======
-        this.currentSearch = query;
-        this.loadAll();
-    }
-
-    clear() {
-        this.currentSearch = '';
-        this.loadAll();
-    }
->>>>>>> with_entities
     ngOnInit() {
         this.loadAll();
         this.principal.identity().then((account) => {
@@ -167,7 +121,6 @@ buckets: Bucket[];
         return item.id;
     }
     registerChangeInBuckets() {
-<<<<<<< HEAD
         this.eventSubscriber = this.eventManager.subscribe('bucketListModification', (response) => this.reset());
     }
 
@@ -185,9 +138,6 @@ buckets: Bucket[];
         for (let i = 0; i < data.length; i++) {
             this.buckets.push(data[i]);
         }
-=======
-        this.eventSubscriber = this.eventManager.subscribe('bucketListModification', (response) => this.loadAll());
->>>>>>> with_entities
     }
 
     private onError(error) {

@@ -1,13 +1,8 @@
 package com.social.eshop.service;
 
-<<<<<<< HEAD
-import com.social.eshop.domain.Customer;
+import com.social.eshop.service.dto.CustomerDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-=======
-import com.social.eshop.service.dto.CustomerDTO;
-import java.util.List;
->>>>>>> with_entities
 
 /**
  * Service Interface for managing Customer.
@@ -17,20 +12,6 @@ public interface CustomerService {
     /**
      * Save a customer.
      *
-<<<<<<< HEAD
-     * @param customer the entity to save
-     * @return the persisted entity
-     */
-    Customer save(Customer customer);
-
-    /**
-     *  Get all the customers.
-     *
-     *  @param pageable the pagination information
-     *  @return the list of entities
-     */
-    Page<Customer> findAll(Pageable pageable);
-=======
      * @param customerDTO the entity to save
      * @return the persisted entity
      */
@@ -38,11 +19,11 @@ public interface CustomerService {
 
     /**
      *  Get all the customers.
-     *  
+     *
+     *  @param pageable the pagination information
      *  @return the list of entities
      */
-    List<CustomerDTO> findAll();
->>>>>>> with_entities
+    Page<CustomerDTO> findAll(Pageable pageable);
 
     /**
      *  Get the "id" customer.
@@ -50,11 +31,7 @@ public interface CustomerService {
      *  @param id the id of the entity
      *  @return the entity
      */
-<<<<<<< HEAD
-    Customer findOne(Long id);
-=======
     CustomerDTO findOne(Long id);
->>>>>>> with_entities
 
     /**
      *  Delete the "id" customer.
@@ -68,14 +45,8 @@ public interface CustomerService {
      *
      *  @param query the query of the search
      *  
-<<<<<<< HEAD
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    Page<Customer> search(String query, Pageable pageable);
-=======
-     *  @return the list of entities
-     */
-    List<CustomerDTO> search(String query);
->>>>>>> with_entities
+    Page<CustomerDTO> search(String query, Pageable pageable);
 }

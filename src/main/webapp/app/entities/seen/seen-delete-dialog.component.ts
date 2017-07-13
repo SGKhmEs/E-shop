@@ -2,15 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-<<<<<<< HEAD
-<<<<<<< HEAD
-import { AlertService, EventManager } from 'ng-jhipster';
-=======
-import { EventManager } from 'ng-jhipster';
->>>>>>> with_entities
-=======
 import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
->>>>>>> creatingDtos
 
 import { Seen } from './seen.model';
 import { SeenPopupService } from './seen-popup.service';
@@ -27,16 +19,8 @@ export class SeenDeleteDialogComponent {
     constructor(
         private seenService: SeenService,
         public activeModal: NgbActiveModal,
-<<<<<<< HEAD
-<<<<<<< HEAD
-        private alertService: AlertService,
-=======
->>>>>>> with_entities
-        private eventManager: EventManager
-=======
         private alertService: JhiAlertService,
         private eventManager: JhiEventManager
->>>>>>> creatingDtos
     ) {
     }
 
@@ -52,14 +36,7 @@ export class SeenDeleteDialogComponent {
             });
             this.activeModal.dismiss(true);
         });
-<<<<<<< HEAD
-<<<<<<< HEAD
-        this.alertService.success('eshopApp.seen.deleted', { param : id }, null);
-=======
->>>>>>> with_entities
-=======
         this.alertService.success(`A Seen is deleted with identifier ${id}`, null, null);
->>>>>>> creatingDtos
     }
 }
 

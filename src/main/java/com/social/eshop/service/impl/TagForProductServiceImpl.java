@@ -4,11 +4,14 @@ import com.social.eshop.service.TagForProductService;
 import com.social.eshop.domain.TagForProduct;
 import com.social.eshop.repository.TagForProductRepository;
 import com.social.eshop.repository.search.TagForProductSearchRepository;
+import com.social.eshop.service.dto.TagForProductDTO;
+import com.social.eshop.service.mapper.TagForProductMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -26,24 +29,29 @@ public class TagForProductServiceImpl implements TagForProductService{
 
     private final TagForProductRepository tagForProductRepository;
 
+    private final TagForProductMapper tagForProductMapper;
+
     private final TagForProductSearchRepository tagForProductSearchRepository;
 
-    public TagForProductServiceImpl(TagForProductRepository tagForProductRepository, TagForProductSearchRepository tagForProductSearchRepository) {
+    public TagForProductServiceImpl(TagForProductRepository tagForProductRepository, TagForProductMapper tagForProductMapper, TagForProductSearchRepository tagForProductSearchRepository) {
         this.tagForProductRepository = tagForProductRepository;
+        this.tagForProductMapper = tagForProductMapper;
         this.tagForProductSearchRepository = tagForProductSearchRepository;
     }
 
     /**
      * Save a tagForProduct.
      *
-     * @param tagForProduct the entity to save
+     * @param tagForProductDTO the entity to save
      * @return the persisted entity
      */
     @Override
-    public TagForProduct save(TagForProduct tagForProduct) {
-        log.debug("Request to save TagForProduct : {}", tagForProduct);
-        TagForProduct result = tagForProductRepository.save(tagForProduct);
-        tagForProductSearchRepository.save(result);
+    public TagForProductDTO save(TagForProductDTO tagForProductDTO) {
+        log.debug("Request to save TagForProduct : {}", tagForProductDTO);
+        TagForProduct tagForProduct = tagForProductMapper.toEntity(tagForProductDTO);
+        tagForProduct = tagForProductRepository.save(tagForProduct);
+        TagForProductDTO result = tagForProductMapper.toDto(tagForProduct);
+        tagForProductSearchRepository.save(tagForProduct);
         return result;
     }
 
@@ -54,9 +62,11 @@ public class TagForProductServiceImpl implements TagForProductService{
      */
     @Override
     @Transactional(readOnly = true)
-    public List<TagForProduct> findAll() {
+    public List<TagForProductDTO> findAll() {
         log.debug("Request to get all TagForProducts");
-        return tagForProductRepository.findAll();
+        return tagForProductRepository.findAll().stream()
+            .map(tagForProductMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
     }
 
     /**
@@ -67,9 +77,10 @@ public class TagForProductServiceImpl implements TagForProductService{
      */
     @Override
     @Transactional(readOnly = true)
-    public TagForProduct findOne(Long id) {
+    public TagForProductDTO findOne(Long id) {
         log.debug("Request to get TagForProduct : {}", id);
-        return tagForProductRepository.findOne(id);
+        TagForProduct tagForProduct = tagForProductRepository.findOne(id);
+        return tagForProductMapper.toDto(tagForProduct);
     }
 
     /**
@@ -92,10 +103,11 @@ public class TagForProductServiceImpl implements TagForProductService{
      */
     @Override
     @Transactional(readOnly = true)
-    public List<TagForProduct> search(String query) {
+    public List<TagForProductDTO> search(String query) {
         log.debug("Request to search TagForProducts for query {}", query);
         return StreamSupport
             .stream(tagForProductSearchRepository.search(queryStringQuery(query)).spliterator(), false)
+            .map(tagForProductMapper::toDto)
             .collect(Collectors.toList());
     }
 }

@@ -6,11 +6,8 @@ import com.social.eshop.domain.Options;
 import com.social.eshop.repository.OptionsRepository;
 import com.social.eshop.service.OptionsService;
 import com.social.eshop.repository.search.OptionsSearchRepository;
-<<<<<<< HEAD
-=======
 import com.social.eshop.service.dto.OptionsDTO;
 import com.social.eshop.service.mapper.OptionsMapper;
->>>>>>> with_entities
 import com.social.eshop.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -44,14 +41,20 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = EshopApp.class)
 public class OptionsResourceIntTest {
 
-    private static final Integer DEFAULT_COLOR = 1;
-    private static final Integer UPDATED_COLOR = 2;
+    private static final String DEFAULT_METAL = "AAAAAAAAAA";
+    private static final String UPDATED_METAL = "BBBBBBBBBB";
+
+    private static final String DEFAULT_COLOR = "AAAAAAAAAA";
+    private static final String UPDATED_COLOR = "BBBBBBBBBB";
+
+    private static final String DEFAULT_STONE = "AAAAAAAAAA";
+    private static final String UPDATED_STONE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_MARKING = "AAAAAAAAAA";
+    private static final String UPDATED_MARKING = "BBBBBBBBBB";
 
     private static final Double DEFAULT_WEIGHT = 1D;
     private static final Double UPDATED_WEIGHT = 2D;
-
-    private static final String DEFAULT_METAL = "AAAAAAAAAA";
-    private static final String UPDATED_METAL = "BBBBBBBBBB";
 
     private static final Double DEFAULT_SIZE = 1D;
     private static final Double UPDATED_SIZE = 2D;
@@ -63,12 +66,9 @@ public class OptionsResourceIntTest {
     private OptionsRepository optionsRepository;
 
     @Autowired
-<<<<<<< HEAD
-=======
     private OptionsMapper optionsMapper;
 
     @Autowired
->>>>>>> with_entities
     private OptionsService optionsService;
 
     @Autowired
@@ -108,9 +108,11 @@ public class OptionsResourceIntTest {
      */
     public static Options createEntity(EntityManager em) {
         Options options = new Options()
-            .color(DEFAULT_COLOR)
-            .weight(DEFAULT_WEIGHT)
             .metal(DEFAULT_METAL)
+            .color(DEFAULT_COLOR)
+            .stone(DEFAULT_STONE)
+            .marking(DEFAULT_MARKING)
+            .weight(DEFAULT_WEIGHT)
             .size(DEFAULT_SIZE)
             .length(DEFAULT_LENGTH);
         return options;
@@ -128,25 +130,21 @@ public class OptionsResourceIntTest {
         int databaseSizeBeforeCreate = optionsRepository.findAll().size();
 
         // Create the Options
-<<<<<<< HEAD
-        restOptionsMockMvc.perform(post("/api/options")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(options)))
-=======
         OptionsDTO optionsDTO = optionsMapper.toDto(options);
         restOptionsMockMvc.perform(post("/api/options")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(optionsDTO)))
->>>>>>> with_entities
             .andExpect(status().isCreated());
 
         // Validate the Options in the database
         List<Options> optionsList = optionsRepository.findAll();
         assertThat(optionsList).hasSize(databaseSizeBeforeCreate + 1);
         Options testOptions = optionsList.get(optionsList.size() - 1);
-        assertThat(testOptions.getColor()).isEqualTo(DEFAULT_COLOR);
-        assertThat(testOptions.getWeight()).isEqualTo(DEFAULT_WEIGHT);
         assertThat(testOptions.getMetal()).isEqualTo(DEFAULT_METAL);
+        assertThat(testOptions.getColor()).isEqualTo(DEFAULT_COLOR);
+        assertThat(testOptions.getStone()).isEqualTo(DEFAULT_STONE);
+        assertThat(testOptions.getMarking()).isEqualTo(DEFAULT_MARKING);
+        assertThat(testOptions.getWeight()).isEqualTo(DEFAULT_WEIGHT);
         assertThat(testOptions.getSize()).isEqualTo(DEFAULT_SIZE);
         assertThat(testOptions.getLength()).isEqualTo(DEFAULT_LENGTH);
 
@@ -162,94 +160,17 @@ public class OptionsResourceIntTest {
 
         // Create the Options with an existing ID
         options.setId(1L);
-<<<<<<< HEAD
-=======
         OptionsDTO optionsDTO = optionsMapper.toDto(options);
->>>>>>> with_entities
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restOptionsMockMvc.perform(post("/api/options")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-<<<<<<< HEAD
-            .content(TestUtil.convertObjectToJsonBytes(options)))
-=======
             .content(TestUtil.convertObjectToJsonBytes(optionsDTO)))
->>>>>>> with_entities
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
         List<Options> optionsList = optionsRepository.findAll();
         assertThat(optionsList).hasSize(databaseSizeBeforeCreate);
-    }
-
-    @Test
-    @Transactional
-    public void checkColorIsRequired() throws Exception {
-        int databaseSizeBeforeTest = optionsRepository.findAll().size();
-        // set the field null
-        options.setColor(null);
-
-        // Create the Options, which fails.
-
-        restOptionsMockMvc.perform(post("/api/options")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(options)))
-            .andExpect(status().isBadRequest());
-
-        List<Options> optionsList = optionsRepository.findAll();
-        assertThat(optionsList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkWeightIsRequired() throws Exception {
-        int databaseSizeBeforeTest = optionsRepository.findAll().size();
-        // set the field null
-        options.setWeight(null);
-
-        // Create the Options, which fails.
-<<<<<<< HEAD
-
-        restOptionsMockMvc.perform(post("/api/options")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(options)))
-=======
-        OptionsDTO optionsDTO = optionsMapper.toDto(options);
-
-        restOptionsMockMvc.perform(post("/api/options")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(optionsDTO)))
->>>>>>> with_entities
-            .andExpect(status().isBadRequest());
-
-        List<Options> optionsList = optionsRepository.findAll();
-        assertThat(optionsList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkMetalIsRequired() throws Exception {
-        int databaseSizeBeforeTest = optionsRepository.findAll().size();
-        // set the field null
-        options.setMetal(null);
-
-        // Create the Options, which fails.
-<<<<<<< HEAD
-
-        restOptionsMockMvc.perform(post("/api/options")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(options)))
-=======
-        OptionsDTO optionsDTO = optionsMapper.toDto(options);
-
-        restOptionsMockMvc.perform(post("/api/options")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(optionsDTO)))
->>>>>>> with_entities
-            .andExpect(status().isBadRequest());
-
-        List<Options> optionsList = optionsRepository.findAll();
-        assertThat(optionsList).hasSize(databaseSizeBeforeTest);
     }
 
     @Test
@@ -263,9 +184,11 @@ public class OptionsResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(options.getId().intValue())))
-            .andExpect(jsonPath("$.[*].color").value(hasItem(DEFAULT_COLOR)))
-            .andExpect(jsonPath("$.[*].weight").value(hasItem(DEFAULT_WEIGHT.doubleValue())))
             .andExpect(jsonPath("$.[*].metal").value(hasItem(DEFAULT_METAL.toString())))
+            .andExpect(jsonPath("$.[*].color").value(hasItem(DEFAULT_COLOR.toString())))
+            .andExpect(jsonPath("$.[*].stone").value(hasItem(DEFAULT_STONE.toString())))
+            .andExpect(jsonPath("$.[*].marking").value(hasItem(DEFAULT_MARKING.toString())))
+            .andExpect(jsonPath("$.[*].weight").value(hasItem(DEFAULT_WEIGHT.doubleValue())))
             .andExpect(jsonPath("$.[*].size").value(hasItem(DEFAULT_SIZE.doubleValue())))
             .andExpect(jsonPath("$.[*].length").value(hasItem(DEFAULT_LENGTH)));
     }
@@ -281,9 +204,11 @@ public class OptionsResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(options.getId().intValue()))
-            .andExpect(jsonPath("$.color").value(DEFAULT_COLOR))
-            .andExpect(jsonPath("$.weight").value(DEFAULT_WEIGHT.doubleValue()))
             .andExpect(jsonPath("$.metal").value(DEFAULT_METAL.toString()))
+            .andExpect(jsonPath("$.color").value(DEFAULT_COLOR.toString()))
+            .andExpect(jsonPath("$.stone").value(DEFAULT_STONE.toString()))
+            .andExpect(jsonPath("$.marking").value(DEFAULT_MARKING.toString()))
+            .andExpect(jsonPath("$.weight").value(DEFAULT_WEIGHT.doubleValue()))
             .andExpect(jsonPath("$.size").value(DEFAULT_SIZE.doubleValue()))
             .andExpect(jsonPath("$.length").value(DEFAULT_LENGTH));
     }
@@ -300,49 +225,36 @@ public class OptionsResourceIntTest {
     @Transactional
     public void updateOptions() throws Exception {
         // Initialize the database
-<<<<<<< HEAD
-        optionsService.save(options);
-
-=======
         optionsRepository.saveAndFlush(options);
         optionsSearchRepository.save(options);
->>>>>>> with_entities
         int databaseSizeBeforeUpdate = optionsRepository.findAll().size();
 
         // Update the options
         Options updatedOptions = optionsRepository.findOne(options.getId());
         updatedOptions
-<<<<<<< HEAD
-            .name(UPDATED_NAME)
-            .level(UPDATED_LEVEL);
-<<<<<<< HEAD
-=======
-            .color(UPDATED_COLOR)
-            .weight(UPDATED_WEIGHT)
             .metal(UPDATED_METAL)
+            .color(UPDATED_COLOR)
+            .stone(UPDATED_STONE)
+            .marking(UPDATED_MARKING)
+            .weight(UPDATED_WEIGHT)
             .size(UPDATED_SIZE)
             .length(UPDATED_LENGTH);
->>>>>>> creatingDtos
-
-        restOptionsMockMvc.perform(put("/api/options")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(updatedOptions)))
-=======
         OptionsDTO optionsDTO = optionsMapper.toDto(updatedOptions);
 
         restOptionsMockMvc.perform(put("/api/options")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(optionsDTO)))
->>>>>>> with_entities
             .andExpect(status().isOk());
 
         // Validate the Options in the database
         List<Options> optionsList = optionsRepository.findAll();
         assertThat(optionsList).hasSize(databaseSizeBeforeUpdate);
         Options testOptions = optionsList.get(optionsList.size() - 1);
-        assertThat(testOptions.getColor()).isEqualTo(UPDATED_COLOR);
-        assertThat(testOptions.getWeight()).isEqualTo(UPDATED_WEIGHT);
         assertThat(testOptions.getMetal()).isEqualTo(UPDATED_METAL);
+        assertThat(testOptions.getColor()).isEqualTo(UPDATED_COLOR);
+        assertThat(testOptions.getStone()).isEqualTo(UPDATED_STONE);
+        assertThat(testOptions.getMarking()).isEqualTo(UPDATED_MARKING);
+        assertThat(testOptions.getWeight()).isEqualTo(UPDATED_WEIGHT);
         assertThat(testOptions.getSize()).isEqualTo(UPDATED_SIZE);
         assertThat(testOptions.getLength()).isEqualTo(UPDATED_LENGTH);
 
@@ -357,19 +269,12 @@ public class OptionsResourceIntTest {
         int databaseSizeBeforeUpdate = optionsRepository.findAll().size();
 
         // Create the Options
-<<<<<<< HEAD
-=======
         OptionsDTO optionsDTO = optionsMapper.toDto(options);
->>>>>>> with_entities
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
         restOptionsMockMvc.perform(put("/api/options")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
-<<<<<<< HEAD
-            .content(TestUtil.convertObjectToJsonBytes(options)))
-=======
             .content(TestUtil.convertObjectToJsonBytes(optionsDTO)))
->>>>>>> with_entities
             .andExpect(status().isCreated());
 
         // Validate the Options in the database
@@ -381,13 +286,8 @@ public class OptionsResourceIntTest {
     @Transactional
     public void deleteOptions() throws Exception {
         // Initialize the database
-<<<<<<< HEAD
-        optionsService.save(options);
-
-=======
         optionsRepository.saveAndFlush(options);
         optionsSearchRepository.save(options);
->>>>>>> with_entities
         int databaseSizeBeforeDelete = optionsRepository.findAll().size();
 
         // Get the options
@@ -408,21 +308,19 @@ public class OptionsResourceIntTest {
     @Transactional
     public void searchOptions() throws Exception {
         // Initialize the database
-<<<<<<< HEAD
-        optionsService.save(options);
-=======
         optionsRepository.saveAndFlush(options);
         optionsSearchRepository.save(options);
->>>>>>> with_entities
 
         // Search the options
         restOptionsMockMvc.perform(get("/api/_search/options?query=id:" + options.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(options.getId().intValue())))
-            .andExpect(jsonPath("$.[*].color").value(hasItem(DEFAULT_COLOR)))
-            .andExpect(jsonPath("$.[*].weight").value(hasItem(DEFAULT_WEIGHT.doubleValue())))
             .andExpect(jsonPath("$.[*].metal").value(hasItem(DEFAULT_METAL.toString())))
+            .andExpect(jsonPath("$.[*].color").value(hasItem(DEFAULT_COLOR.toString())))
+            .andExpect(jsonPath("$.[*].stone").value(hasItem(DEFAULT_STONE.toString())))
+            .andExpect(jsonPath("$.[*].marking").value(hasItem(DEFAULT_MARKING.toString())))
+            .andExpect(jsonPath("$.[*].weight").value(hasItem(DEFAULT_WEIGHT.doubleValue())))
             .andExpect(jsonPath("$.[*].size").value(hasItem(DEFAULT_SIZE.doubleValue())))
             .andExpect(jsonPath("$.[*].length").value(hasItem(DEFAULT_LENGTH)));
     }
@@ -441,8 +339,6 @@ public class OptionsResourceIntTest {
         options1.setId(null);
         assertThat(options1).isNotEqualTo(options2);
     }
-<<<<<<< HEAD
-=======
 
     @Test
     @Transactional
@@ -466,5 +362,4 @@ public class OptionsResourceIntTest {
         assertThat(optionsMapper.fromId(42L).getId()).isEqualTo(42);
         assertThat(optionsMapper.fromId(null)).isNull();
     }
->>>>>>> with_entities
 }

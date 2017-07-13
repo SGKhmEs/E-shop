@@ -1,10 +1,6 @@
 package com.social.eshop.service;
 
-<<<<<<< HEAD
-import com.social.eshop.domain.Tags;
-=======
 import com.social.eshop.service.dto.TagsDTO;
->>>>>>> with_entities
 import java.util.List;
 
 /**
@@ -15,19 +11,6 @@ public interface TagsService {
     /**
      * Save a tags.
      *
-<<<<<<< HEAD
-     * @param tags the entity to save
-     * @return the persisted entity
-     */
-    Tags save(Tags tags);
-
-    /**
-     *  Get all the tags.
-     *
-     *  @return the list of entities
-     */
-    List<Tags> findAll();
-=======
      * @param tagsDTO the entity to save
      * @return the persisted entity
      */
@@ -35,11 +18,10 @@ public interface TagsService {
 
     /**
      *  Get all the tags.
-     *  
+     *
      *  @return the list of entities
      */
     List<TagsDTO> findAll();
->>>>>>> with_entities
 
     /**
      *  Get the "id" tags.
@@ -47,11 +29,7 @@ public interface TagsService {
      *  @param id the id of the entity
      *  @return the entity
      */
-<<<<<<< HEAD
-    Tags findOne(Long id);
-=======
     TagsDTO findOne(Long id);
->>>>>>> with_entities
 
     /**
      *  Delete the "id" tags.
@@ -67,9 +45,5 @@ public interface TagsService {
      *  
      *  @return the list of entities
      */
-<<<<<<< HEAD
-    List<Tags> search(String query);
-=======
     List<TagsDTO> search(String query);
->>>>>>> with_entities
 }

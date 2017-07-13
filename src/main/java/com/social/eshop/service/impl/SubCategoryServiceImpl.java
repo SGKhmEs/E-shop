@@ -4,22 +4,14 @@ import com.social.eshop.service.SubCategoryService;
 import com.social.eshop.domain.SubCategory;
 import com.social.eshop.repository.SubCategoryRepository;
 import com.social.eshop.repository.search.SubCategorySearchRepository;
-<<<<<<< HEAD
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-=======
 import com.social.eshop.service.dto.SubCategoryDTO;
 import com.social.eshop.service.mapper.SubCategoryMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.LinkedList;
->>>>>>> with_entities
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -34,16 +26,7 @@ import static org.elasticsearch.index.query.QueryBuilders.*;
 public class SubCategoryServiceImpl implements SubCategoryService{
 
     private final Logger log = LoggerFactory.getLogger(SubCategoryServiceImpl.class);
-<<<<<<< HEAD
 
-    private final SubCategoryRepository subCategoryRepository;
-
-    private final SubCategorySearchRepository subCategorySearchRepository;
-
-    public SubCategoryServiceImpl(SubCategoryRepository subCategoryRepository, SubCategorySearchRepository subCategorySearchRepository) {
-        this.subCategoryRepository = subCategoryRepository;
-=======
-    
     private final SubCategoryRepository subCategoryRepository;
 
     private final SubCategoryMapper subCategoryMapper;
@@ -53,23 +36,12 @@ public class SubCategoryServiceImpl implements SubCategoryService{
     public SubCategoryServiceImpl(SubCategoryRepository subCategoryRepository, SubCategoryMapper subCategoryMapper, SubCategorySearchRepository subCategorySearchRepository) {
         this.subCategoryRepository = subCategoryRepository;
         this.subCategoryMapper = subCategoryMapper;
->>>>>>> with_entities
         this.subCategorySearchRepository = subCategorySearchRepository;
     }
 
     /**
      * Save a subCategory.
      *
-<<<<<<< HEAD
-     * @param subCategory the entity to save
-     * @return the persisted entity
-     */
-    @Override
-    public SubCategory save(SubCategory subCategory) {
-        log.debug("Request to save SubCategory : {}", subCategory);
-        SubCategory result = subCategoryRepository.save(subCategory);
-        subCategorySearchRepository.save(result);
-=======
      * @param subCategoryDTO the entity to save
      * @return the persisted entity
      */
@@ -80,34 +52,21 @@ public class SubCategoryServiceImpl implements SubCategoryService{
         subCategory = subCategoryRepository.save(subCategory);
         SubCategoryDTO result = subCategoryMapper.toDto(subCategory);
         subCategorySearchRepository.save(subCategory);
->>>>>>> with_entities
         return result;
     }
 
     /**
      *  Get all the subCategories.
-<<<<<<< HEAD
      *
-=======
-     *  
->>>>>>> with_entities
      *  @return the list of entities
      */
     @Override
     @Transactional(readOnly = true)
-<<<<<<< HEAD
-    public List<SubCategory> findAll() {
-        log.debug("Request to get all SubCategories");
-        return subCategoryRepository.findAll();
-=======
     public List<SubCategoryDTO> findAll() {
         log.debug("Request to get all SubCategories");
-        List<SubCategoryDTO> result = subCategoryRepository.findAll().stream()
+        return subCategoryRepository.findAll().stream()
             .map(subCategoryMapper::toDto)
             .collect(Collectors.toCollection(LinkedList::new));
-
-        return result;
->>>>>>> with_entities
     }
 
     /**
@@ -118,17 +77,10 @@ public class SubCategoryServiceImpl implements SubCategoryService{
      */
     @Override
     @Transactional(readOnly = true)
-<<<<<<< HEAD
-    public SubCategory findOne(Long id) {
-        log.debug("Request to get SubCategory : {}", id);
-        return subCategoryRepository.findOne(id);
-=======
     public SubCategoryDTO findOne(Long id) {
         log.debug("Request to get SubCategory : {}", id);
         SubCategory subCategory = subCategoryRepository.findOne(id);
-        SubCategoryDTO subCategoryDTO = subCategoryMapper.toDto(subCategory);
-        return subCategoryDTO;
->>>>>>> with_entities
+        return subCategoryMapper.toDto(subCategory);
     }
 
     /**
@@ -151,18 +103,11 @@ public class SubCategoryServiceImpl implements SubCategoryService{
      */
     @Override
     @Transactional(readOnly = true)
-<<<<<<< HEAD
-    public List<SubCategory> search(String query) {
-        log.debug("Request to search SubCategories for query {}", query);
-        return StreamSupport
-            .stream(subCategorySearchRepository.search(queryStringQuery(query)).spliterator(), false)
-=======
     public List<SubCategoryDTO> search(String query) {
         log.debug("Request to search SubCategories for query {}", query);
         return StreamSupport
             .stream(subCategorySearchRepository.search(queryStringQuery(query)).spliterator(), false)
             .map(subCategoryMapper::toDto)
->>>>>>> with_entities
             .collect(Collectors.toList());
     }
 }
