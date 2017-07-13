@@ -30,3 +30,6 @@ export * from './contact/contact.route';
 export * from './contact/contact.title/title.component';
 export * from './contact/contactUs/contactus.component';
 export * from './contact/googleMaps/googleMaps.component';
+export * from './FAQ/faqTitle/faqTitle.component';
+export * from './FAQ/question/question.component';
+export * from './FAQ/faq.component';
