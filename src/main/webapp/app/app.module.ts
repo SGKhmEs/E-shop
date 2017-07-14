@@ -54,6 +54,7 @@ import {CheckoutTitleComponent} from './layouts/checkout/checkoutTitle/checkoutT
 import {CheckoutAreaComponent} from './layouts/checkout/checkoutArea/checkoutArea.component';
 import {CheckoutComponent} from './layouts/checkout/checkout.component';
 import {JewelryMagicComponent} from './layouts/jewelrymagic/jewelrymagic.component';
+import {IndexPicturesComponent} from "./layouts/indexPictures/indexPictures.component";
 
 
 @NgModule({
@@ -103,7 +104,8 @@ import {JewelryMagicComponent} from './layouts/jewelrymagic/jewelrymagic.compone
         CheckoutTitleComponent,
         CheckoutAreaComponent,
         CheckoutComponent,
-        JewelryMagicComponent
+        JewelryMagicComponent,
+        IndexPicturesComponent
     ],
     providers: [
         ProfileService,
