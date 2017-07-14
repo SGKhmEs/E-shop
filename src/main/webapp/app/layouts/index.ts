@@ -36,3 +36,4 @@ export * from './FAQ/faq.component';
 export * from './checkout/checkoutTitle/checkoutTitle.component';
 export * from './checkout/checkoutArea/checkoutArea.component';
 export * from './checkout/checkout.component';
+export * from './jewelrymagic/jewelrymagic.component';
