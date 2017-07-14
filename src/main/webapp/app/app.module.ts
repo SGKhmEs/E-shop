@@ -54,6 +54,9 @@ import {CheckoutTitleComponent} from './layouts/checkout/checkoutTitle/checkoutT
 import {CheckoutAreaComponent} from './layouts/checkout/checkoutArea/checkoutArea.component';
 import {CheckoutComponent} from './layouts/checkout/checkout.component';
 import {WishListComponent} from "./layouts/wishlist/wish-lish.component";
+import {BucketComponent} from "./layouts/bucket/bucket.component";
+import {JewelryMagicComponent} from './layouts/jewelrymagic/jewelrymagic.component';
+import {IndexPicturesComponent} from "./layouts/indexPictures/indexPictures.component";
 
 @NgModule({
     imports: [
@@ -102,7 +105,10 @@ import {WishListComponent} from "./layouts/wishlist/wish-lish.component";
         CheckoutTitleComponent,
         CheckoutAreaComponent,
         CheckoutComponent,
-        WishListComponent
+        WishListComponent,
+        BucketComponent,
+        JewelryMagicComponent,
+        IndexPicturesComponent
     ],
     providers: [
         ProfileService,
