@@ -1,5 +1,11 @@
-<div>
-    <div class="row">
+<div class="page-title fix"><!--Start Title-->
+    <div class="overlay section">
+        <h2>Register</h2>
+    </div>
+</div><!--End Title-->
+<!--if somebody sees that - know I am sorry! Deadline was soon -->
+<div style="   background: #ebebeb none repeat scroll 0 0; color: #3e3f3f; padding-top:25px">
+    <div class="row" >
         <div class="col-md-8 offset-md-2">
             <h1>Registration</h1>
 
@@ -109,14 +115,11 @@
                         </small>
                     </div>
                 </div>
-
-                <button type="submit" [disabled]="registerForm.form.invalid" class="btn btn-primary">Register</button>
+                        <!--added style because Dima said if it works let it be -->
+                <button type="submit" [disabled]="registerForm.form.invalid" class="btn btn-primary" style="background: #e09e25 none repeat scroll 0 0; border-color:#e09e25 ">Register</button>
             </form>
             <p></p>
-            <div class="alert alert-warning">
-                <span>If you want to </span>
-                <a class="alert-link" (click)="openLogin()">sign in</a><span>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").</span>
-            </div>
+
         </div>
         <div class="col-md-4">
             <br/>

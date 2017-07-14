@@ -11,7 +11,7 @@ import { VERSION, DEBUG_INFO_ENABLED } from '../../app.constants';
     selector: 'jhi-navbar',
     templateUrl: './navbar.component.html',
     styleUrls: [
-        'navbar.scss'
+        './navbar.css'
     ]
 })
 export class NavbarComponent implements OnInit {
@@ -27,7 +27,7 @@ export class NavbarComponent implements OnInit {
         private loginService: LoginService,
         private principal: Principal,
         private loginModalService: LoginModalService,
-        private profileService: ProfileService,
+        //  private profileService: ProfileService,
         private router: Router
     ) {
         this.version = VERSION ? 'v' + VERSION : '';
@@ -35,10 +35,10 @@ export class NavbarComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.profileService.getProfileInfo().subscribe((profileInfo) => {
-            this.inProduction = profileInfo.inProduction;
-            this.swaggerEnabled = profileInfo.swaggerEnabled;
-        });
+        // this.profileService.getProfileInfo().subscribe((profileInfo) => {
+        //     this.inProduction = profileInfo.inProduction;
+        //     this.swaggerEnabled = profileInfo.swaggerEnabled;
+        // });
     }
 
     collapseNavbar() {

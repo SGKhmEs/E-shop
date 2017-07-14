@@ -1,0 +1,221 @@
+.menu-area {
+    background:#ebebeb;
+}
+.main-menu {
+    text-align: center;
+}
+.main-menu > nav{}
+.main-menu > nav > ul {
+    display: inline-block;
+    margin: 0;
+}
+.main-menu > nav > ul > li {
+    display: inline-block;
+    margin: 0;
+    padding: 20px 2px;
+    position: relative;
+}
+.main-menu > nav > ul > li > a {
+    font-size: 14px;
+    font-weight: 700;
+    padding: 20px 15px;
+    text-decoration: none;
+    text-transform: uppercase;
+    -webkit-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+}
+.main-menu > nav > ul > li > a:hover, .main-menu > nav > ul > li > a:focus {
+    color:#e09e25;
+}
+.sub-menu, .mega-menu {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #ddd;
+    left: 0;
+    list-style: outside none none;
+    opacity: 0;
+    padding: 10px 15px;
+    position: absolute;
+    text-align: left;
+    top: 100%;
+    transform: scaleY(0);
+    transform-origin: center top 0;
+    -webkit-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+    width: 220px;
+    z-index: -99;
+}
+.main-menu > nav > ul > li:hover .sub-menu, .main-menu > nav > ul > li:hover .mega-menu {
+    opacity: 1;
+    transform: scaleY(1);
+    z-index: 999;
+}
+.sub-menu > li{}
+.sub-menu > li > a {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 5px 0;
+    text-transform: uppercase;
+}
+.sub-menu > li > a:hover, .sub-menu > li > a:focus  {
+    color:#e09e25;
+    padding-left: 5px;
+}
+.mega-menu {
+    padding: 15px 0;
+    width: 800px;
+}
+.mega-menu .column {
+    padding: 15px;
+    width: 25%;
+    float: left;
+    display: block;
+}
+.mega-menu .column ul {
+    list-style: outside none none;
+}
+.mega-menu .column ul li{}
+.mega-menu .column ul li:first-child {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 15px;
+}
+.mega-menu.mega-menu-page .column ul li:first-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+.mega-menu .column ul li a {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    padding-bottom: 10px;
+    text-transform: capitalize;
+}
+.mega-menu.mega-menu-page .column ul li a {
+    text-transform: uppercase;
+}
+.mega-menu.mega-menu-page .column ul li:first-child a {
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+.mega-menu .column ul li:first-child a {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.mega-menu .column ul li a:hover, .mega-menu .column ul li a:focus  {
+    color:#e09e25;
+    padding-left: 5px;
+}
+.mega-menu .column > a {
+    display: block;
+    overflow: hidden;
+    position: relative;
+}
+.mega-menu .column > a::before {
+    background-color: rgba(0, 0, 0, 0.15);
+    content: "";
+    height: 0;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    -webkit-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+    width: 0;
+    z-index: 1;
+}
+.mega-menu .column > a::after {
+    background-color: rgba(0, 0, 0, 0.15);
+    bottom: 0;
+    content: "";
+    height: 0;
+    position: absolute;
+    right: 0;
+    -webkit-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+    width: 0;
+}
+.mega-menu .column > a:hover::before, .mega-menu .column > a:hover::after {
+    height: 100%;
+    -webkit-transition: all 0.4s ease 0s;
+    -o-transition: all 0.4s ease 0s;
+    transition: all 0.4s ease 0s;
+    width: 100%;
+}
+.mega-menu .column > a img {
+    width: 100%;
+}
+
+.mean-bar::after {
+    color: #fff;
+    content: "MENU";
+    display: block;
+    font-family: raleway;
+    font-size: 18px;
+    font-weight: bold;
+    left: 20px;
+    position: absolute;
+    text-transform: uppercase;
+    top: 14px;
+}
+.main-menu-2-pre {
+    padding-right: 0;
+}
+.main-menu-2 {
+    background: #e09e25 none repeat scroll 0 0;
+    padding: 9px 0;
+}
+.main-menu-2 > nav {}
+.main-menu-2 > nav > ul {
+    list-style: outside none none;
+    margin: 0;
+}
+.main-menu-2 > nav > ul > li {
+    display: block;
+    position: relative;
+}
+.main-menu-2 > nav > ul > li > a {
+    color: #fff;
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 17px 20px;
+    text-decoration: none;
+    text-transform: uppercase;
+    -webkit-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+}
+.main-menu-2 > nav > ul > li > a:hover, .main-menu-2 > nav > ul > li > a:focus {
+    padding-left: 30px;
+    background: #fff;
+    color: #E09E25;
+}
+.sub-menu-2, .mega-menu-2 {
+    left: 100%;
+    top: 0;
+}
+.main-menu-2 > nav > ul > li:hover .sub-menu-2, .main-menu-2 > nav > ul > li:hover .mega-menu-2 {
+    opacity: 1;
+    transform: scaleY(1);
+    z-index: 99999;
+}
+.mega-menu-2 {
+    width: 400px;
+}
+.mega-menu-2 .column {
+    width: 50%;
+}
+
+.mean-container .mean-bar {
+    margin-bottom: 15px;
+}
+.mean-container .mean-bar, .mean-container .mean-nav, .mean-container .mean-nav ul li a.mean-expand:hover {
+    background: #e09e25 none repeat scroll 0 0;
+}
+

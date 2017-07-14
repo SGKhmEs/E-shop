@@ -20,7 +20,11 @@ public class ManagerDTO implements Serializable {
 
     private Long personalInfoId;
 
+    private Long managerAccountId;
+
     private Long avatarId;
+
+    private Long addressId;
 
     public Long getId() {
         return id;
@@ -54,12 +58,28 @@ public class ManagerDTO implements Serializable {
         this.personalInfoId = personalInformationId;
     }
 
+    public Long getManagerAccountId() {
+        return managerAccountId;
+    }
+
+    public void setManagerAccountId(Long managerAccountId) {
+        this.managerAccountId = managerAccountId;
+    }
+
     public Long getAvatarId() {
         return avatarId;
     }
 
     public void setAvatarId(Long avatarId) {
         this.avatarId = avatarId;
+    }
+
+    public Long getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(Long addressId) {
+        this.addressId = addressId;
     }
 
     @Override

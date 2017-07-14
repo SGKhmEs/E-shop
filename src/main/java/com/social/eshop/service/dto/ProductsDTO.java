@@ -41,11 +41,20 @@ public class ProductsDTO implements Serializable {
     private Set<MediaDTO> mediaDTO;
 
     private Set<TagForProductDTO> tagForProductDTO;
-    //private Long optionsId;
 
-//  private Long subCategoryId;
+    private Long optionsId;
 
+    private Long subCategoryId;
 
+    private Long mediaId;
+
+    public Long getMediaId() {
+        return mediaId;
+    }
+
+    public void setMediaId(Long mediaId) {
+        this.mediaId = mediaId;
+    }
 
     public Long getId() {
         return id;
@@ -143,21 +152,21 @@ public class ProductsDTO implements Serializable {
         this.tagForProductDTO = tagForProductDTO;
     }
 
-    //    public Long getOptionsId() {
-//        return optionsId;
-//    }
-//
-//    public void setOptionsId(Long optionsId) {
-//        this.optionsId = optionsId;
-//    }
+        public Long getOptionsId() {
+        return optionsId;
+    }
 
-//    public Long getSubCategoryId() {
-//        return subCategoryId;
-//    }
-//
-//    public void setSubCategoryId(Long subCategoryId) {
-//        this.subCategoryId = subCategoryId;
-//    }
+    public void setOptionsId(Long optionsId) {
+        this.optionsId = optionsId;
+    }
+
+    public Long getSubCategoryId() {
+        return subCategoryId;
+    }
+
+    public void setSubCategoryId(Long subCategoryId) {
+        this.subCategoryId = subCategoryId;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -183,13 +192,21 @@ public class ProductsDTO implements Serializable {
     @Override
     public String toString() {
         return "ProductsDTO{" +
-            "id=" + getId() +
-            ", name='" + getName() + "'" +
-            ", price='" + getPrice() + "'" +
-            ", sale='" + getSale() + "'" +
-            ", rating='" + getRating() + "'" +
-            ", fresh='" + isFresh() + "'" +
-            ", description='" + getDescription() + "'" +
-            "}";
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", price=" + price +
+            ", sale=" + sale +
+            ", rating=" + rating +
+            ", fresh=" + fresh +
+            ", description='" + description + '\'' +
+            ", optionsDTO=" + optionsDTO +
+            ", subCategoryDTO=" + subCategoryDTO +
+            ", commentsDTO=" + commentsDTO +
+            ", mediaDTO=" + mediaDTO +
+            ", tagForProductDTO=" + tagForProductDTO +
+            ", optionsId=" + optionsId +
+            ", subCategoryId=" + subCategoryId +
+            ", mediaId=" + mediaId +
+            '}';
     }
 }

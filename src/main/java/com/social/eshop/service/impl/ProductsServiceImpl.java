@@ -1,6 +1,8 @@
 package com.social.eshop.service.impl;
 
+import com.social.eshop.repository.CategoryRepository;
 import com.social.eshop.repository.ProductInBucketRepository;
+import com.social.eshop.repository.TagForProductRepository;
 import com.social.eshop.service.ProductsService;
 import com.social.eshop.domain.Products;
 import com.social.eshop.repository.ProductsRepository;
@@ -36,11 +38,22 @@ public class ProductsServiceImpl implements ProductsService{
 
     private final ProductInBucketRepository productInBucketRepository;
 
-    public ProductsServiceImpl(ProductsRepository productsRepository, ProductsMapper productsMapper, ProductsSearchRepository productsSearchRepository, ProductInBucketRepository productInBucketRepository) {
+    private final TagForProductRepository tagForProductRepository;
+
+    private final CategoryRepository categoryRepository;
+
+    public ProductsServiceImpl(ProductsRepository productsRepository,
+                               ProductsMapper productsMapper,
+                               ProductsSearchRepository productsSearchRepository,
+                               ProductInBucketRepository productInBucketRepository,
+                               TagForProductRepository tagForProductRepository,
+                               CategoryRepository categoryRepository) {
         this.productsRepository = productsRepository;
         this.productsMapper = productsMapper;
         this.productsSearchRepository = productsSearchRepository;
         this.productInBucketRepository = productInBucketRepository;
+        this.tagForProductRepository = tagForProductRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     /**
@@ -121,6 +134,24 @@ public class ProductsServiceImpl implements ProductsService{
         List<Products> products = productInBucketRepository.findAllProductsByBucketId(id);
 
         return productsMapper.toDto(products);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<ProductsDTO> findAllProductsWithTag(Long id) {
+        log.debug("Request to get all Products");
+        List<Products> products = tagForProductRepository.findByTagId(id);
+        return productsMapper.toDto(products);
+
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<ProductsDTO> findAllProductsInCategory(Long id) {
+        log.debug("Request to get all Products");
+        List<Products> products = productsRepository.findByCategoryId(id);
+        return productsMapper.toDto(products);
+
     }
 }
 

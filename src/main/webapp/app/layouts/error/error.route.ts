@@ -2,11 +2,12 @@ import { Routes } from '@angular/router';
 
 import { UserRouteAccessService } from '../../shared';
 import { ErrorComponent } from './error.component';
+import {NotFoundComponent} from "../404/notfound.component";
 
 export const errorRoute: Routes = [
     {
         path: 'error',
-        component: ErrorComponent,
+        component: NotFoundComponent,
         data: {
             authorities: [],
             pageTitle: 'Error page!'

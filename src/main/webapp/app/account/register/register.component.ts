@@ -6,7 +6,8 @@ import { LoginModalService } from '../../shared';
 
 @Component({
     selector: 'jhi-register',
-    templateUrl: './register.component.html'
+    templateUrl: './register.component.html',
+    styleUrls:['./registrTitle.component.css']
 })
 export class RegisterComponent implements OnInit, AfterViewInit {
 

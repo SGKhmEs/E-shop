@@ -35,6 +35,10 @@ public class Seen implements Serializable {
     @JoinColumn(unique = true)
     private Products products;
 
+    public Seen() {
+        this.date = LocalDate.now();
+    }
+
     public Long getId() {
         return id;
     }
