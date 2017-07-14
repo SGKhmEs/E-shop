@@ -82,6 +82,11 @@
 .panel-collapse.in {
   border: none;
 }
+.panel-body {
+  background: #fff none repeat scroll 0 0;
+    padding: 10px 20px;
+    margin: 0 0 20px;
+}
 .panel-collapse .panel-body {}
 .checkout-method{}
 .checkout-method h2 {
@@ -332,6 +337,9 @@
 }
 .final-total a:hover {
   background:#555555;
+}
+.hide-element{
+  visibility: hidden;
 }
 .checkout-right {
   background: #fff none repeat scroll 0 0;

@@ -9,7 +9,10 @@
 						</div>
 						<div id="checkout-method" class="panel-collapse collapse in">
 							<div class="panel-body">
-								<div class="col-sm-6">
+							<table>
+							<tr>
+							<td width="400">
+								<div class="col-sm-12">
 									<div class="checkout-method checkout-reg fix">
 										<h2>CHECKOUT AS A GUEST OR REGISTER</h2>
 										<input type="radio" />
@@ -24,7 +27,9 @@
 										<a href="#">CONTINUE</a>
 									</div>
 								</div>
-								<div class="col-sm-6">
+								</td>
+								<td width="400">
+								<div class="col-sm-12">
 									<div class="checkout-method  checkout-login">
 										<h2>login</h2>
 										<h3>Already registered?</h3>
@@ -37,14 +42,17 @@
 										<a href="#">login</a>
 									</div>
 								</div>
+								</td>
+								</tr>
+								</table>
 							</div>
 						</div>
 					</div>
 					<div class="panel panel-default">
 						<div class="panel-heading" >
-							<a class="collapsed" data-toggle="collapse" data-parent="#checkout-progress" href="#bill-info"><span>2</span>BILLING INFORMATION</a>
+							<a class="active" data-toggle="collapse" data-parent="#checkout-progress" href="#bill-info"><span>2</span>BILLING INFORMATION</a>
 						</div>
-						<div id="bill-info" class="panel-collapse collapse">
+						<div id="bill-info" class="panel-collapse collapse in">
 							<div class="panel-body">
 								<div class="bill-info">
 									<div class="group">
@@ -71,9 +79,9 @@
 					</div>
 					<div class="panel panel-default">
 						<div class="panel-heading" >
-							<a class="collapsed" data-toggle="collapse" data-parent="#checkout-progress" href="#shipping-info"><span>3</span>SHIPPING INFORMATION</a>
+							<a class="active" data-toggle="collapse" data-parent="#checkout-progress" href="#shipping-info"><span>3</span>SHIPPING INFORMATION</a>
 						</div>
-						<div id="shipping-info" class="panel-collapse collapse">
+						<div id="shipping-info" class="panel-collapse collapse in">
 							<div class="panel-body">
 								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco aboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepte.</p>
 							</div>
@@ -81,9 +89,9 @@
 					</div>
 					<div class="panel panel-default">
 						<div class="panel-heading" >
-							<a class="collapsed" data-toggle="collapse" data-parent="#checkout-progress" href="#shipping-method"><span>4</span>SHIPPING METHOD</a>
+							<a class="active" data-toggle="collapse" data-parent="#checkout-progress" href="#shipping-method"><span>4</span>SHIPPING METHOD</a>
 						</div>
-						<div id="shipping-method" class="panel-collapse collapse">
+						<div id="shipping-method" class="panel-collapse collapse in">
 							<div class="panel-body">
 								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco aboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepte.</p>
 							</div>
@@ -91,9 +99,9 @@
 					</div>
 					<div class="panel panel-default">
 						<div class="panel-heading" >
-							<a class="collapsed" data-toggle="collapse" data-parent="#checkout-progress" href="#payment-met"><span>5</span>PAYMENT INFORMATION</a>
+							<a class="active" data-toggle="collapse" data-parent="#checkout-progress" href="#payment-met"><span>5</span>PAYMENT INFORMATION</a>
 						</div>
-						<div id="payment-met" class="panel-collapse collapse">
+						<div id="payment-met" class="panel-collapse collapse in">
 							<div class="panel-body">
 								<div class="payment-met">
 									<p>Choose your payment method :</p>
@@ -116,11 +124,14 @@
 					</div>
 					<div class="panel panel-default">
 						<div class="panel-heading" >
-							<a class="collapsed" data-toggle="collapse" data-parent="#checkout-progress" href="#order-review"><span>6</span>ORDER REVIEW</a>
+							<a class="active" data-toggle="collapse" data-parent="#checkout-progress" href="#order-review"><span>6</span>ORDER REVIEW</a>
 						</div>
-						<div id="order-review" class="panel-collapse collapse">
+						<div id="order-review" class="panel-collapse collapse in">
 							<div class="panel-body">
-								<div class="col-sm-4">
+							<table>
+							<tr>
+							<td width="250">
+								<div class="col-sm-12">
 									<div class="information">
 										<h3>BILLING INFORMATION</h3>
 										<h4>Thomas Albert</h4>
@@ -131,8 +142,9 @@
 										<a href="#">MODIFY</a>
 									</div>
 								</div>
-							
-								<div class="col-sm-4">
+								</td>
+								<td width="250">
+								<div class="col-sm-12">
 									<div class="information">
 										<h3>SHIPPING INFORMATION</h3>
 										<h4>Thomas Albert</h4>
@@ -143,14 +155,22 @@
 										<a href="#">MODIFY</a>
 									</div>
 								</div>
-								<div class="col-sm-4">
+								</td>
+								<td width="250">
+								<div class="col-sm-12">
 									<div class="information">
 										<h3>CHOOSED PAYMENT METHOD</h3>
 										<h4>Method : Paypal</h4>
 										<p>Paypal address : email@you.com</p>
 										<a id="shipping" href="#">MODIFY</a>
+										<h5 class="hide-element">Text</h5>
+										<h5 class="hide-element">Text</h5>
+										<p class="hide-element">Text</p>										
 									</div>
 								</div>
+								</td>
+								</tr>
+								</table>
 								<div class="col-sm-12">
 									<div class="place-order">
 										<div class="order-list">
