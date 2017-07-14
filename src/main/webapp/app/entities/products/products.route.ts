@@ -16,7 +16,7 @@ export const productsRoute: Routes = [
         path: 'products',
         component: ProductsComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', ''],
             pageTitle: 'Products'
         },
         canActivate: [UserRouteAccessService]
@@ -24,7 +24,7 @@ export const productsRoute: Routes = [
         path: 'products/:id',
         component: ProductsDetailComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', ''],
             pageTitle: 'Products'
         },
         canActivate: [UserRouteAccessService]

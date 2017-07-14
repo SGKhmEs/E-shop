@@ -26,7 +26,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-
+        this.itemProduct = [];
     }
 
     productLoadSuccess = (list: Products[]) => {
