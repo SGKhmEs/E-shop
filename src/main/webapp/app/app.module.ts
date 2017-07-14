@@ -53,6 +53,7 @@ import {FAQComponent} from './layouts/FAQ/faq.component';
 import {CheckoutTitleComponent} from './layouts/checkout/checkoutTitle/checkoutTitle.component';
 import {CheckoutAreaComponent} from './layouts/checkout/checkoutArea/checkoutArea.component';
 import {CheckoutComponent} from './layouts/checkout/checkout.component';
+import {WishListComponent} from "./layouts/wishlist/wish-lish.component";
 
 @NgModule({
     imports: [
@@ -100,7 +101,8 @@ import {CheckoutComponent} from './layouts/checkout/checkout.component';
         FAQComponent,
         CheckoutTitleComponent,
         CheckoutAreaComponent,
-        CheckoutComponent
+        CheckoutComponent,
+        WishListComponent
     ],
     providers: [
         ProfileService,

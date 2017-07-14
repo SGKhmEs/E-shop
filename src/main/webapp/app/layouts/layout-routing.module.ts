@@ -10,6 +10,12 @@ import {aboutUsRoute} from "./aboutUs/aboutUs.route";
 import {contactRoute} from "./contact/contact.route";
 import {faqRoute} from "./FAQ/faq.route";
 import {checkoutRoute} from "./checkout/checkout.route";
+import {wishListRoute} from "./wishlist/wish-lish.route";
+
+
+
+
+
 
 const LAYOUT_ROUTES = [
     //navbarRoute,
@@ -22,7 +28,8 @@ const LAYOUT_ROUTES = [
     ...contactRoute,
     ...faqRoute,
     ...contactRoute,
-    ...checkoutRoute
+    ...checkoutRoute,
+    ...wishListRoute
 ];
 
 @NgModule({
