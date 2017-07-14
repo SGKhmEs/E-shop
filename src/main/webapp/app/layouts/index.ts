@@ -38,3 +38,5 @@ export * from './checkout/checkoutArea/checkoutArea.component';
 export * from './checkout/checkout.component';
 export * from './bucket/bucket.component';
 export * from './bucket/bucket.route';
+export * from './jewelrymagic/jewelrymagic.component';
+export * from './indexPictures/indexPictures.component';
