@@ -53,9 +53,9 @@ import {FAQComponent} from './layouts/FAQ/faq.component';
 import {CheckoutTitleComponent} from './layouts/checkout/checkoutTitle/checkoutTitle.component';
 import {CheckoutAreaComponent} from './layouts/checkout/checkoutArea/checkoutArea.component';
 import {CheckoutComponent} from './layouts/checkout/checkout.component';
+import {BucketComponent} from "./layouts/bucket/bucket.component";
 import {JewelryMagicComponent} from './layouts/jewelrymagic/jewelrymagic.component';
 import {IndexPicturesComponent} from "./layouts/indexPictures/indexPictures.component";
-
 
 @NgModule({
     imports: [
@@ -104,6 +104,7 @@ import {IndexPicturesComponent} from "./layouts/indexPictures/indexPictures.comp
         CheckoutTitleComponent,
         CheckoutAreaComponent,
         CheckoutComponent,
+        BucketComponent,
         JewelryMagicComponent,
         IndexPicturesComponent
     ],
