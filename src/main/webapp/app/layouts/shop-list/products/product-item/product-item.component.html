@@ -6,7 +6,7 @@
         </a>
     </div>
     <div class="list-pro-des fix">
-        <a class="pro-name" href="product-details.html">Product Name Demo</a>
+        <a class="pro-name" href="product-details.html">{{ item.name }}</a>
         <div class="pro-ratting">
             <i class="fa fa-star on"></i>
             <i class="fa fa-star on"></i>
@@ -14,8 +14,8 @@
             <i class="fa fa-star on"></i>
             <i class="fa fa-star-half-o on"></i>
         </div>
-        <h4 class="list-pro-price"><span class="new">$152</span><span class="old">$175</span></h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua magna aliqua consectetur adicing elit, sed do eiusmod tempor incididunt ut labore magna aliqua consectetur adicing elit, sed do eiusmod tempor incunt ut labore magna aliqua consectetur adicing elit.</p>
+        <h4 class="list-pro-price"><span class="new">${{item.price}}</span><span class="old">${{item.price * 1.1}}</span></h4>
+        <p>{{item.description}}</p>
         <div class="list-actions-btn">
             <a class="quick-view" href="#"><i class="fa fa-search"></i></a>
             <a class="favorite" href="#"><i class="fa fa-heart-o"></i></a>

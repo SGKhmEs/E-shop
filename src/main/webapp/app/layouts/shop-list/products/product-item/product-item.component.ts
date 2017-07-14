@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {Products} from "../../../../entities/products/products.model";
 
 @Component({
     selector: 'jhi-product-item',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
         'product-item.component.css'
     ]
 })
-export class ProductItemComponent {}
+export class ProductItemComponent {
+    @Input() item: Products;
+    constructor() {
+
+    }
+}
