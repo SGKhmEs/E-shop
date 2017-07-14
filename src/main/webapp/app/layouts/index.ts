@@ -33,3 +33,6 @@ export * from './contact/googleMaps/googleMaps.component';
 export * from './FAQ/faqTitle/faqTitle.component';
 export * from './FAQ/question/question.component';
 export * from './FAQ/faq.component';
+export * from './checkout/checkoutTitle/checkoutTitle.component';
+export * from './checkout/checkoutArea/checkoutArea.component';
+export * from './checkout/checkout.component';

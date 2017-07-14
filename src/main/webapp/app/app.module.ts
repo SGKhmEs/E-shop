@@ -50,6 +50,9 @@ import {GoogleMapComponent} from "./layouts/contact/googleMaps/googleMaps.compon
 import {FaqTitleComponent} from './layouts/FAQ/faqTitle/faqTitle.component';
 import {QuestionComponent} from './layouts/FAQ/question/question.component';
 import {FAQComponent} from './layouts/FAQ/faq.component';
+import {CheckoutTitleComponent} from './layouts/checkout/checkoutTitle/checkoutTitle.component';
+import {CheckoutAreaComponent} from './layouts/checkout/checkoutArea/checkoutArea.component';
+import {CheckoutComponent} from './layouts/checkout/checkout.component';
 
 @NgModule({
     imports: [
@@ -94,7 +97,10 @@ import {FAQComponent} from './layouts/FAQ/faq.component';
         GoogleMapComponent,
         FaqTitleComponent,
         QuestionComponent,
-        FAQComponent
+        FAQComponent,
+        CheckoutTitleComponent,
+        CheckoutAreaComponent,
+        CheckoutComponent
     ],
     providers: [
         ProfileService,

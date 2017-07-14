@@ -8,4 +8,4 @@ import { Router } from '@angular/router';
         './checkoutTitle.css'
     ]
 })
-export class TitleComponent {}
+export class CheckoutTitleComponent {}
