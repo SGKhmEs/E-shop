@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+
+import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { JhiEventManager } from 'ng-jhipster';
+
+import { Account, LoginModalService, Principal } from '../../shared';
 import { Router } from '@angular/router';
 //import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
@@ -14,8 +19,15 @@ import { Router } from '@angular/router';
         './header.css'
     ]
 })
-export class HeaderComponent implements OnInit {
 
+export class HeaderComponent implements OnInit {
+    account: Account;
+    modalRef: NgbModalRef;
+
+    constructor(
+        private loginModalService: LoginModalService
+    ) {
+    }
 
 
     ngOnInit() {
@@ -24,5 +36,7 @@ export class HeaderComponent implements OnInit {
         //     this.swaggerEnabled = profileInfo.swaggerEnabled;
         // });
     }
-
+    login() {
+        this.modalRef = this.loginModalService.open();
+    }
 }
