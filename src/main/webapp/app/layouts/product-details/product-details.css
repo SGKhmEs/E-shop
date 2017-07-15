@@ -115,7 +115,7 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background: #fff url("") no-repeat scroll 90% center;
+    background: #fff url("./../../../content/images/bottom-arrow.png") no-repeat scroll 90% center;
     border: 0px;
     min-width: 40px;
 }
