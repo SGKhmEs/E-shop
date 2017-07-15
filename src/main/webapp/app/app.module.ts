@@ -60,6 +60,7 @@ import {WishListComponent} from "./layouts/wishlist/wish-lish.component";
 import {BucketComponent} from "./layouts/bucket/bucket.component";
 import {JewelryMagicComponent} from './layouts/jewelrymagic/jewelrymagic.component';
 import {IndexPicturesComponent} from "./layouts/indexPictures/indexPictures.component";
+import {ProductDetailsComponent} from "./layouts/product-details/product-details.component";
 
 @NgModule({
     imports: [
@@ -112,6 +113,7 @@ import {IndexPicturesComponent} from "./layouts/indexPictures/indexPictures.comp
         BucketComponent,
         JewelryMagicComponent,
         IndexPicturesComponent,
+        ProductDetailsComponent,
         IndexComponent
     ],
     providers: [

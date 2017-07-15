@@ -228,6 +228,16 @@
 .total h6 span {
     margin-left: 68px;
 }
+
+.product-page .description .tab-pane p {
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+.fix {
+    overflow: hidden;
+}
+
 #procedto {
     background: #e09e25 none repeat scroll 0 0;
     border: 0 solid;

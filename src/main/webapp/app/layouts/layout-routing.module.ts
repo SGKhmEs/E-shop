@@ -13,6 +13,8 @@ import {checkoutRoute} from "./checkout/checkout.route";
 import {indexRoute} from "./index/index.route";
 import {wishListRoute} from "./wishlist/wish-lish.route";
 import {bucketRoute} from "./bucket/bucket.route";
+import {productDetailsRoute} from "./product-details/product-details.route";
+
 
 const LAYOUT_ROUTES = [
     //navbarRoute,
@@ -28,7 +30,8 @@ const LAYOUT_ROUTES = [
     ...checkoutRoute,
     ...indexRoute,
     ...wishListRoute,
-    ...bucketRoute
+    ...bucketRoute,
+    ...productDetailsRoute
 ];
 
 @NgModule({
