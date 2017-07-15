@@ -12,37 +12,41 @@ import {ResponseWrapper} from "../../../shared/model/response-wrapper.model";
     ]
 })
 export class ProductsComponent implements OnInit, OnDestroy {
-    private itemProduct: Products[];
+    private itemProduct: Products[] = [];
+    private totalItems: number;
 
     constructor(private productsService: ProductsService, private route: ActivatedRoute) {
 
     }
+    loadAll() {
+        this.productsService.query().subscribe(
+            (res: ResponseWrapper) => this.onSuccess(res.json, res.headers),
+            (res: ResponseWrapper) => this.onError(res.json)
+        );
+    }
 
 
     ngOnInit(): void {
-        this.productsService.query().subscribe(
-            (res: ResponseWrapper) => this.productLoadSuccess,
-            (res: ResponseWrapper) => this.productLoadFail)
+        this.loadAll();
+        // this.productsService.query().subscribe(
+        //     (res: ResponseWrapper) => this.productLoadSuccess,
+        //     (res: ResponseWrapper) => this.productLoadFail)
     }
 
     ngOnDestroy(): void {
-
-    }
-
-    productLoadSuccess = (list: Products[]) => {
-        this.itemProduct = list;
-        // const years = new Set(list.map(i => i.readYear)); // for unique
-        // this.bookGroups = Array.from(years).sort().reverse()
-        //     .map(y => {
-        //         return {
-        //             year: y,
-        //             count: this.userBooks.filter(b => b.readYear === y).length
-        //         }
-        //     });
-    }
-
-    productLoadFail = (err: string) => {
         this.itemProduct = [];
-        // this.error = err;
     }
+
+    private onSuccess(data, headers) {
+        // this.links = this.parseLinks.parse(headers.get('link'));
+        this.totalItems = headers.get('X-Total-Count');
+        for (let i = 0; i < data.length; i++) {
+            this.itemProduct.push(data[i]);
+        }
+    }
+
+    private onError(error) {
+       console.log("error");
+    }
+
 }

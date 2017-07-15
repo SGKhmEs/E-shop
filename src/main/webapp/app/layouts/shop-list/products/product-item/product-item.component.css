@@ -101,7 +101,9 @@
     position: static;
 }
 
-
+.fix {
+    overflow: hidden;
+}
 
 
 

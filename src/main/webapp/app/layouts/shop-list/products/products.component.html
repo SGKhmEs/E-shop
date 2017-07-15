@@ -1,4 +1,4 @@
-<jhi-product-item class="single-list-product col-sm-12"></jhi-product-item>
+<jhi-product-item *ngFor="let item of itemProduct" [item]="item"></jhi-product-item>
 <div class="pagination">
     <ul>
         <li><a href="#"><i class="fa fa-angle-left"></i></a></li>

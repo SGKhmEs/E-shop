@@ -50,6 +50,15 @@ import {GoogleMapComponent} from "./layouts/contact/googleMaps/googleMaps.compon
 import {FaqTitleComponent} from './layouts/FAQ/faqTitle/faqTitle.component';
 import {QuestionComponent} from './layouts/FAQ/question/question.component';
 import {FAQComponent} from './layouts/FAQ/faq.component';
+import {CheckoutTitleComponent} from './layouts/checkout/checkoutTitle/checkoutTitle.component';
+import {CheckoutAreaComponent} from './layouts/checkout/checkoutArea/checkoutArea.component';
+import {CheckoutComponent} from './layouts/checkout/checkout.component';
+import {IndexComponent} from './layouts/index/index.component';
+import {WishListComponent} from "./layouts/wishlist/wish-lish.component";
+import {BucketComponent} from "./layouts/bucket/bucket.component";
+import {JewelryMagicComponent} from './layouts/index/jewelrymagic/jewelrymagic.component';
+import {IndexPicturesComponent} from "./layouts/index/indexPictures/indexPictures.component";
+import {ProductDetailsComponent} from "./layouts/product-details/product-details.component";
 
 @NgModule({
     imports: [
@@ -94,7 +103,16 @@ import {FAQComponent} from './layouts/FAQ/faq.component';
         GoogleMapComponent,
         FaqTitleComponent,
         QuestionComponent,
-        FAQComponent
+        FAQComponent,
+        CheckoutTitleComponent,
+        CheckoutAreaComponent,
+        CheckoutComponent,
+        WishListComponent,
+        BucketComponent,
+        JewelryMagicComponent,
+        IndexPicturesComponent,
+        ProductDetailsComponent,
+        IndexComponent
     ],
     providers: [
         ProfileService,
