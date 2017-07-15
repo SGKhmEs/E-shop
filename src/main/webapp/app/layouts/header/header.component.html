@@ -24,7 +24,7 @@
             <div class="col-sm-12 col-md-4">
                 <div id="top-menu" class="float-right">
                     <ul>
-                        <li><a href="./../../shared/login/login.component">My Account</a></li>
+                        <li><a class="alert-link" (click)="login()">My Account</a></li>
                         <li><a href="/#/index">$USD <i class="fa fa-angle-down"></i></a>
                             <ul>
                                 <li><a href="/#/index">Pound</a></li>
@@ -49,7 +49,7 @@
             <div class="col-sm-4 col-lg-3">
                 <div class="log-link">
                     <p>Welcome visitor you can</p>
-                    <h5><a href="login.html">Login</a> or <a href="/#/register">Create an account</a></h5>
+                    <h5><a class="alert-link" (click)="login()">Login</a> or <a href="/#/register">Create an account</a></h5>
                 </div>
             </div>
             <div class="col-sm-4 col-lg-6">
