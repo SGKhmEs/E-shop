@@ -10,7 +10,7 @@ import {Products} from "../../../../entities/products/products.model";
 })
 export class ProductItemComponent {
     @Input() item: Products;
-    constructor() {
+    constructor(private route: ActivatedRoute) {
 
     }
 }

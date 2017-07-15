@@ -6,7 +6,9 @@
         </a>
     </div>
     <div class="list-pro-des fix">
-        <a class="pro-name" href="product-details.html">{{ item.name }}</a>
+        <a class="pro-name">{{ item.name }}</a>
+        <a [routerLink]="['/','shoplist' ]"
+           [queryParams]="{u: item?.id}">{{  item.id }}</a>
         <div class="pro-ratting">
             <i class="fa fa-star on"></i>
             <i class="fa fa-star on"></i>
