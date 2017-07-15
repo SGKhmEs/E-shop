@@ -1,0 +1,111 @@
+.single-list-product {
+    margin-bottom: 30px;
+}
+.list-pro-image {
+    float: left;
+    margin-right: 30px;
+    width: 270px;
+}
+.list-pro-image a {
+    display: block;
+    position: relative;
+}
+.list-pro-image a::before {
+    background: #e09e25 none repeat scroll 0 0;
+    content: "";
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    -webkit-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+    width: 100%;
+    z-index: 99;
+}
+.list-pro-image a img{}
+.single-list-product:hover .list-pro-image a::before {
+    opacity: 0.6;
+}
+.list-pro-des{}
+.list-pro-des .pro-name {
+    display: block;
+    float: none;
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.list-pro-des .pro-name:hover {
+    color: #e09e25;
+}
+.list-pro-des .pro-ratting {
+    float: left;
+    margin-bottom: 10px;
+}
+.list-pro-des .pro-ratting i{}
+.list-pro-des p {
+    clear: both;
+    font-size: 14px;
+    line-height: 24px;
+    margin-bottom: 20px;
+}
+.list-pro-price {
+    float: right;
+    margin-bottom: 25px;
+}
+.list-pro-price .new{}
+.list-pro-price .old {
+    margin-left: 25px;
+    text-decoration: line-through;
+}
+.list-actions-btn{}
+.list-actions-btn a {
+    background: #fff none repeat scroll 0 0;
+    color: #3e3f3f;
+    display: block;
+    float: left;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    width: 40px;
+}
+.list-actions-btn a:hover {
+    background: #E09E25 none repeat scroll 0 0;
+    color: #fff;
+}
+.list-actions-btn a i{}
+
+
+.pro-ratting {
+    float: left;
+}
+.pro-ratting i{}
+.pro-ratting i.on {
+    color: #E09E25;
+}
+.pro-price {
+    float: right;
+}
+.pro-price p{}
+.pro-price p span {
+    display: inline-block;
+    font-weight: 600;
+    margin: 0 5px;
+}
+.pro-price p .old {
+    text-decoration: line-through;
+}
+.pro-price p .new {
+    position: static;
+}
+
+.fix {
+    overflow: hidden;
+}
+
+
+
+
+

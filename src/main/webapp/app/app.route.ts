@@ -1,9 +1,17 @@
 import { Route } from '@angular/router';
 
-import { NavbarComponent } from './layouts';
+// import { NavbarComponent } from './layouts';
+//
+// export const navbarRoute: Route = {
+//     path: '',
+//     component: NavbarComponent,
+    //     outlet: 'navbar'
+// };
 
-export const navbarRoute: Route = {
+import { SliderComponent } from './layouts';
+
+export const sliderRoute: Route = {
     path: '',
-    component: NavbarComponent,
-    outlet: 'navbar'
+    component: SliderComponent,
+    outlet: 'slider'
 };

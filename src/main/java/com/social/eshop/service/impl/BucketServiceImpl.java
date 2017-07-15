@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
+import java.util.List;
+
 import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
@@ -106,5 +108,14 @@ public class BucketServiceImpl implements BucketService{
         log.debug("Request to search for a page of Buckets for query {}", query);
         Page<Bucket> result = bucketSearchRepository.search(queryStringQuery(query), pageable);
         return result.map(bucketMapper::toDto);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<BucketDTO> findAllBucketsWithCustomer(Long id) {
+        log.debug("Request to get all Products");
+        List<Bucket> buckets = bucketRepository.findByCustomerId(id);
+        return bucketMapper.toDto(buckets);
+
     }
 }

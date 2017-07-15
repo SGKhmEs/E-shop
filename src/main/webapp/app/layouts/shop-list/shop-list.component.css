@@ -1,0 +1,106 @@
+.shop-product-area {
+    background: #ebebeb none repeat scroll 0 0;
+    color: #3e3f3f;
+    font-family: "Raleway",sans-serif;
+}
+
+.page-title {
+    background: rgba(0, 0, 0, 0) url("../../../content/images/title-bg.jpg") no-repeat scroll center center / cover ;
+    text-align: center;
+}
+.page-title h2 {
+    color: #fff;
+    font-size: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.fix{
+    overflow:hidden;
+}
+.overlay {
+    background: rgba(224,158,37,0.8);
+}
+.section {
+    padding: 80px 0;
+}
+
+.shop-product-area {
+    padding-bottom: 0;
+}
+
+.shop-tool-bar {
+    margin-bottom: 50px;
+}
+.view-mode, .sort-by, .show-product {
+    display: block;
+    float: left;
+}
+.view-mode {
+    margin-right: 10px;
+}
+.view-mode > a {
+    background: #fff;
+    display: block;
+    float: left;
+    font-size: 22px;
+    height: 34px;
+    line-height: 34px;
+    margin-right: 10px;
+    padding-top: 2px;
+    text-align: center;
+    width: 41px;
+}
+.view-mode > a.active, .view-mode > a:hover{
+    background: #E09E25;
+    color: #fff;
+}
+.view-mode > a i{}
+
+
+/*-----------------------
+	6. Shop List Page
+-------------------------*/
+
+.slider-range-container {
+    background: #fff none repeat scroll 0 0;
+    display: block;
+    padding: 15px;
+}
+#slider-range {
+    background: #EBEBEB none repeat scroll 0 0;
+    border: 0 none;
+    border-radius: 0;
+    height: 6px;
+    margin-bottom: 15px;
+    margin-top: 10px;
+}
+#slider-range .ui-slider-range {
+    background: #e09e25 none repeat scroll 0 0;
+    height: 6px;
+}
+#slider-range .ui-slider-handle {
+    background: #e09e25 none repeat scroll 0 0;
+    border: 0 none;
+    border-radius: 0;
+    height: 15px;
+    width: 15px;
+}
+#price-amount {
+    border: 0 none;
+    color: #464545;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+
+.pro-ratting {
+    float: left;
+    margin-bottom: 10px;
+}
+
+.pro-ratting i, p {
+    clear: both;
+    font-size: 14px;
+    line-height: 24px;
+    margin-bottom: 20px;
+}

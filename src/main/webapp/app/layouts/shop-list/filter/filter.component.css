@@ -1,0 +1,50 @@
+.sort-by, .show-product{
+    padding: 3px 0;
+}
+.sort-by {
+    float: left;
+    margin-right: 15px;
+}
+.view-mode, .sort-by, .show-product {
+    display: block;
+    float: left;
+}
+.show-product{}
+.sort-by span, .show-product span {
+    color: #5b5b5b;
+    font-size: 16px;
+    font-weight: 500;
+    margin-right: 5px;
+}
+.sort-by select, .show-product select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: #fff url("../../../../content/images/bottom-arrow.png") no-repeat scroll 90% center;
+    border: 1px solid #d7d7d7;
+    color: #515151;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 0 5px;
+    text-transform: capitalize;
+}
+.show-product select {
+    background-position: 80% center;
+    margin-right: 5px;
+    min-width: 55px;
+}
+.sort-by select option, .show-product select option{
+    padding: 2px 5px;
+}
+.pro-Showing {
+    float: right;
+    margin: 7px 0;
+}
+.hot-pro, .new-pro {
+    display: inline-block;
+    position: absolute;
+    right: 10px;
+    top: 0;
+    z-index: 9999;
+}
+.hot-pro img, .new-pro img{}

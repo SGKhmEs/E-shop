@@ -32,5 +32,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="avatar"/>
 
+        <addForeignKeyConstraint baseColumnNames="customer_account_id"
+                                 baseTableName="customer"
+                                 constraintName="fk_customer_customer_account_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="customer_account"/>
+
     </changeSet>
 </databaseChangeLog>

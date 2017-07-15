@@ -1,20 +1,31 @@
 {
     "fluentMethods": true,
-    "relationships": [],
+    "relationships": [
+        {
+        "relationshipName": "customer",
+        "otherEntityName": "customer",
+        "relationshipType": "one-to-one",
+        "otherEntityField": "id",
+        "ownerSide": true,
+        "otherEntityRelationshipName": "personalInformation"
+        },
+        {
+            "relationshipName": "manager",
+            "otherEntityName": "manager",
+            "relationshipType": "one-to-one",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "personalInformation"
+        }
+        ],
     "fields": [
         {
             "fieldName": "firstName",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldType": "String"
         },
         {
             "fieldName": "lastName",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldType": "String"
         },
         {
             "fieldName": "middleName",
@@ -27,17 +38,12 @@
         },
         {
             "fieldName": "phone",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldType": "String"
+
         },
         {
             "fieldName": "email",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldType": "String"
         },
         {
             "fieldName": "dateBirth",

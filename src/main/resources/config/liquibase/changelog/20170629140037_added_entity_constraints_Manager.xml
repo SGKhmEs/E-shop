@@ -2,7 +2,7 @@
 <databaseChangeLog
     xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
     <!--
         Added the constraints for entity Manager.
     -->
@@ -20,11 +20,23 @@
                                  referencedColumnNames="id"
                                  referencedTableName="personal_information"/>
 
+        <addForeignKeyConstraint baseColumnNames="manager_account_id"
+                                 baseTableName="manager"
+                                 constraintName="fk_manager_manager_account_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="manager_account"/>
+
         <addForeignKeyConstraint baseColumnNames="avatar_id"
                                  baseTableName="manager"
                                  constraintName="fk_manager_avatar_id"
                                  referencedColumnNames="id"
                                  referencedTableName="avatar"/>
+
+        <addForeignKeyConstraint baseColumnNames="address_id"
+                                 baseTableName="manager"
+                                 constraintName="fk_manager_address_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="address"/>
 
     </changeSet>
 </databaseChangeLog>

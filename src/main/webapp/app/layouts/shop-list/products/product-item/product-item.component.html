@@ -1,0 +1,26 @@
+<!-- Single Product -->
+<!--<div class="single-list-product col-sm-12">-->
+    <div class="list-pro-image">
+        <a href="product-details.html">
+            <!--<img src="img/product/1.jpg" alt="" />-->
+        </a>
+    </div>
+    <div class="list-pro-des fix">
+        <a class="pro-name" href="#">{{ item.name }}</a>
+        <a [routerLink]="['/','shoplist', item.id ]">{{  item.id }}</a>
+        <div class="pro-ratting">
+            <i class="fa fa-star on"></i>
+            <i class="fa fa-star on"></i>
+            <i class="fa fa-star on"></i>
+            <i class="fa fa-star on"></i>
+            <i class="fa fa-star-half-o on"></i>
+        </div>
+        <h4 class="list-pro-price"><span class="new">${{item.price}}</span><span class="old">${{item.price * 1.1}}</span></h4>
+        <p>{{item.description}}</p>
+        <div class="list-actions-btn">
+            <a class="quick-view" href="#"><i class="fa fa-search"></i></a>
+            <a class="favorite" href="#"><i class="fa fa-heart-o"></i></a>
+            <a class="cart" href="#"><i class="fa fa-shopping-cart"></i></a>
+        </div>
+    </div>
+<!--</div>-->

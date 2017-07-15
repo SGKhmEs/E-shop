@@ -162,6 +162,35 @@ public class ProductsResource {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
+    /**
+     * GET  /products/tag/:id  : get all the products .
+     * @param id the id of the tags to find
+     * @param pageable the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of products in body
+     */
+    @GetMapping("/products/tag/{id}")
+    @Timed
+    public ResponseEntity<List<ProductsDTO>> getAllProductsWithTag(@PathVariable Long id, @ApiParam Pageable pageable) {
+        log.debug("REST request to get a page of Products", id);
+        List<ProductsDTO> list = productsService.findAllProductsWithTag(id);
+        //   HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(  "/api/products/tag/{id}");
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+
+    /**
+     * GET  /products/category/:id  : get all the products.
+     * @param id the id of the category to find
+     * @param pageable the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of products in body
+     */
+    @GetMapping("/products/category/{id}")
+    @Timed
+    public ResponseEntity<List<ProductsDTO>> getAllProductsInCategory(@PathVariable Long id, @ApiParam Pageable pageable) {
+        log.debug("REST request to get a page of Products", id);
+        List<ProductsDTO> list = productsService.findAllProductsInCategory(id);
+        //   HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(  "/api/products/category/{id}");
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
 
 
 }
