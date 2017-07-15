@@ -1,0 +1,85 @@
+.magic-area {
+  background: #e09e25 none repeat scroll 0 0;
+}
+.fix{
+  overflow:hidden;
+}
+.magic-area .image {
+  padding: 0;
+}
+.magic-area .image a {
+  display: block;
+  position: relative;
+}
+.magic-area .image a::before {
+  background-color: rgba(255, 255, 255, 0.15);
+  content: "";
+  height: 0;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  -webkit-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+  width: 0;
+  z-index: 1;
+}
+.magic-area .image a::after {
+  background-color: rgba(255, 255, 255, 0.15);
+  bottom: 0;
+  content: "";
+  height: 0;
+  position: absolute;
+  right: 0;
+  -webkit-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+  width: 0;
+}
+.magic-area .image a:hover::before, .magic-area .image a:hover::after {
+  height: 100%;
+  -webkit-transition: all 0.4s ease 0s;
+  -o-transition: all 0.4s ease 0s;
+  transition: all 0.4s ease 0s;
+  width: 100%;
+}
+.magic-area .image img {
+  width: 100%;
+}
+.magic-area .content {
+  background: #e09e25 none repeat scroll 0 0;
+  padding: 30px;
+}
+.magic-area .content h2 {
+  color: #fff;
+  font-size: 40px;
+  font-weight: 300;
+  margin-bottom: 5px;
+}
+.magic-area .content h3 {
+  color: #fff;
+  font-size: 40px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.magic-area .content p {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 300;
+  margin-bottom: 34px;
+}
+.magic-area .content a {
+  background: #fff none repeat scroll 0 0;
+  color: #e09e25;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 14px;
+  padding: 13px 15px;
+  text-transform: uppercase;
+}
+.magic-area .content a:hover {
+  background: rgba(0,0,0,0.2);
+  color: #fff;
+}
