@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 
 export const productDetailsRoute: Routes = [
     {
-        path: 'product-details',
+        path: 'shoplist/:id',
         component: ProductDetailsComponent
     }
     ];

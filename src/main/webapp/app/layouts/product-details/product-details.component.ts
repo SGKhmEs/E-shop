@@ -3,6 +3,7 @@ import {Products} from "../../entities/products/products.model";
 import {ProductsService} from "./../shop-list/products/products.service";
 import {ActivatedRoute} from "@angular/router";
 import {ResponseWrapper} from "../../shared/model/response-wrapper.model";
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
     selector: 'jhi-product-details',
@@ -11,26 +12,26 @@ import {ResponseWrapper} from "../../shared/model/response-wrapper.model";
         './product-details.css'
     ]
 })
-export class ProductDetailsComponent
-    //implements OnInit, OnDestroy {
-{
-
-constructor(private productsService: ProductsService, private route: ActivatedRoute) { }
+export class ProductDetailsComponent implements OnInit, OnDestroy {
+    private product: Products = [];
+    private subscription: Subscription;
+    constructor(private productsService: ProductsService, private route: ActivatedRoute) { }
 
     ngOnInit(): void {
-        //this.loadAll();
+        this.subscription = this.route.params.subscribe((params) => {
+            this.load(params['id']);
+        });
     // this.productsService.query().subscribe(
     //     (res: ResponseWrapper) => this.productLoadSuccess,
     //     (res: ResponseWrapper) => this.productLoadFail)
-}
+    }
 
-//     ngOnDestroy(): void {
-//         this.itemProduct = [];
-// }
-//     loadAll() {
-//         this.productsService.find().subscribe(
-//             (res: ResponseWrapper) => this.onSuccess(res.json, res.headers),
-//             (res: ResponseWrapper) => this.onError(res.json)
-//         );
-//     }
+    ngOnDestroy(): void {
+        this.product = [];
+    }
+    load(id) {
+         this.productsService.find(id).subscribe((p) => {
+             this.product = p;
+         });
+    }
 }
