@@ -38,4 +38,10 @@ export * from './checkout/checkoutArea/checkoutArea.component';
 export * from './checkout/checkout.component';
 export * from './index/jewelrymagic/jewelrymagic.component';
 export * from './index/indexPictures/indexPictures.component';
-export * from './index/index.component'
+export * from './index/index.component';
+export * from './wishlist/wish-lish.component';
+export * from './wishlist/wish-lish.route';
+export * from './bucket/bucket.component';
+export * from './bucket/bucket.route';
+export * from './jewelrymagic/jewelrymagic.component';
+export * from './indexPictures/indexPictures.component';

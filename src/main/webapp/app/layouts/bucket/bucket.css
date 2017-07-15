@@ -1,0 +1,231 @@
+.page-title {
+    background: rgba(0, 0, 0, 0) url(./../../../content/images/title-bg.jpg) no-repeat scroll center center / cover;
+    text-align: center;
+}
+
+.overlay {
+    background: rgba(224,158,37,0.8);
+}
+.section {
+    padding: 80px 0;
+}
+
+.page-title h2 {
+    color: #fff;
+    font-size: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.table-responsive {
+    padding: 1px;
+}
+.table-title {
+    background: #fff none repeat scroll 0 0;
+}
+.cart-table .table-title th {
+    border-bottom: 0 none !important;
+    color: #e09e25;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 15px;
+    text-align: center;
+    text-transform: uppercase;
+    vertical-align: middle;
+}
+.cart-table tbody {}
+.table-responsive tbody tr.table-info {
+    border-bottom: 1px solid #ddd;
+}
+.table-responsive tbody tr.table-info td {
+    border-right: 1px solid #ddd;
+    vertical-align: middle !important;
+}
+.table-responsive tbody tr.table-info td:first-child {
+    border-left: 1px solid #ddd;
+}
+.table-info .produ {
+    width: 15%;
+    padding: 15px;
+}
+.namedes {
+    width: 25%;
+}
+.table-info td h2 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.table-info p {
+    font-size: 12px;
+    font-weight: 300;
+}
+.produ > img {
+    max-width: 100%;
+}
+.unit {
+    text-align: center;
+    width: 15%;
+}
+.table-info h5 {
+    font-size: 14px;
+    font-weight: 600;
+}
+.quantity {
+    text-align: center;
+    width: 15%;
+}
+.cart-plus-minus {
+    display: inline-block;
+}
+.cart-plus-minus input {
+    border: 0 none;
+    color: #636363;
+    display: block;
+    float: left;
+    font-family: lato;
+    font-size: 12px;
+    height: 24px;
+    text-align: center;
+    width: 30px;
+}
+.cart-plus-minus .qtybutton {
+    background: #fff none repeat scroll 0 0;
+    color: #636363;
+    cursor: pointer;
+    float: left;
+    font-family: lato;
+    font-size: 18px;
+    font-weight: 700;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    width: 30px;
+}
+.cart-plus-minus .dec {
+}
+.cart-plus-minus .inc {
+    font-size: 13px;
+}
+.valu {
+    text-align: center;
+    width: 15%;
+}
+.acti {
+    text-align: center;
+    width: 15%;
+}
+.table-info i {
+    font-size: 18px;
+}
+.cart-table a{}
+.cart-table a:hover {
+    color: #e09e25;
+}
+.add-to-cart {
+    background: #e09e25 none repeat scroll 0 0;
+    color: #fff;
+    font-weight: 600;
+    padding: 7px 10px;
+}
+.add-to-cart:hover {
+    background: #555;
+    color: #fff !important;
+}
+.coupon {
+    margin-top: 10px;
+}
+.coupon a {
+    background: #ebebeb none repeat scroll 0 0;
+    border: 1px solid #cccccc;
+    color: #595a5a;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 10px 15px;
+    text-transform: uppercase;
+}
+.coupon h3 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    margin-top: 40px;
+    text-transform: uppercase;
+}
+.coupon input {
+    border: 1px solid #cccccc;
+    display: block;
+    font-size: 10px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    padding: 7px 15px;
+    text-transform: uppercase;
+    width: 40%;
+}
+.coupon a, .proceed a{
+    background: #ebebeb none repeat scroll 0 0;
+    border: 1px solid #cccccc;
+    color: #595a5a;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 10px 15px;
+    text-decoration:none;
+    text-transform: uppercase;
+}
+.coupon a:hover, .proceed a:hover {
+    background: #ccc none repeat scroll 0 0;
+    color: #111;
+}
+.coupon p {
+    color: #656565;
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 40px;
+}
+.coupon p span {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.proceed{margin-top:10px;text-align:right;}
+.proceed a {
+    display: inline-block;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+.total {
+    background: #fff none repeat scroll 0 0;
+    float: right;
+    margin: 30px 0;
+    padding: 25px 15px 20px 70px;
+}
+.total h5 {
+    color: #595a5a;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.total h5 span {
+    margin-left: 80px;
+}
+.total h6 {
+    color: #e09e25;
+    font-size: 18px;
+    font-weight: 700;
+}
+.total h6 span {
+    margin-left: 68px;
+}
+#procedto {
+    background: #e09e25 none repeat scroll 0 0;
+    border: 0 solid;
+    color: #fff;
+    float: right;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+#procedto:hover {
+    background:#555555;
+}
+.wishlist-table {
+    margin-bottom: 0;
+}

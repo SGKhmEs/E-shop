@@ -10,8 +10,9 @@ import {aboutUsRoute} from "./aboutUs/aboutUs.route";
 import {contactRoute} from "./contact/contact.route";
 import {faqRoute} from "./FAQ/faq.route";
 import {checkoutRoute} from "./checkout/checkout.route";
-import {indexRoute} from "./index/index.route"
-
+import {indexRoute} from "./index/index.route";
+import {wishListRoute} from "./wishlist/wish-lish.route";
+import {bucketRoute} from "./bucket/bucket.route";
 
 const LAYOUT_ROUTES = [
     //navbarRoute,
@@ -25,7 +26,9 @@ const LAYOUT_ROUTES = [
     ...faqRoute,
     ...contactRoute,
     ...checkoutRoute,
-    ...indexRoute
+    ...indexRoute,
+    ...wishListRoute,
+    ...bucketRoute
 ];
 
 @NgModule({
