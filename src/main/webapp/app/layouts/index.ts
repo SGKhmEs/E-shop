@@ -42,3 +42,5 @@ export * from './bucket/bucket.component';
 export * from './bucket/bucket.route';
 export * from './jewelrymagic/jewelrymagic.component';
 export * from './indexPictures/indexPictures.component';
+export * from './product-details/product-details.route';
+export * from './product-details/product-details.component'

@@ -1,0 +1,187 @@
+.page {
+    padding: 80px 0 0;
+}
+
+.page-title {
+    background: rgba(0, 0, 0, 0) url(./../../../content/images/title-bg.jpg) no-repeat scroll center center / cover;
+    text-align: center;
+}
+.section {
+    padding: 80px 0;
+}
+.product-page {
+    background: #ebebeb none repeat scroll 0 0;
+}
+
+.page-title h2 {
+    color: #fff;
+    font-size: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.fix{
+    overflow:hidden;
+}
+.overlay {
+    background: rgba(224,158,37,0.8);
+}
+
+
+.details-pro-tab, .shop-details {
+    margin-bottom: 30px;
+}
+.details-pro-tab-content {
+    margin-bottom: 20px;
+}
+.details-pro-tab-content .tab-pane{}
+.details-pro-tab-list {
+    margin: 0 -10px;
+    overflow: hidden;
+}
+.details-pro-tab-list li {
+    display: block;
+    float: left;
+    padding: 0 10px;
+    width: 25%;
+}
+.details-pro-tab-list li.active{}
+.details-pro-tab-list li a {
+    display: block;
+    padding: 0;
+}
+.details-pro-tab-list li a img{}
+.shop-details > h2 {
+    font-size: 22px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+.shop-details .pro-ratting {
+    float: right;
+}
+.shop-details > h3 {
+    color: #e09e25;
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+.shop-details h3 span {
+    margin-right: 10px;
+    text-decoration: line-through;
+}
+.shop-details > h4 {
+    float: right;
+    font-size: 13px;
+    font-weight: 500;
+}
+.shop-details > h5 {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+.shop-details h5 span {
+    color: #e09e24;
+}
+.shop-details h6 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+.shop-details > p {
+    font-size: 12px;
+    font-weight: 400;
+    margin-bottom: 25px;
+}
+.select-menu .sort {
+    background: #fff none repeat scroll 0 0;
+    display: block;
+    float: left;
+    height: 38px;
+    margin-right: 20px;
+    padding: 5px 10px;
+}
+.select-menu .sort:last-child {
+    margin-right: 0;
+}
+.sort > h4 {
+    float: left;
+    font-size: 14px;
+    font-weight: 700;
+    margin-right: 5px;
+    margin-top: 7px;
+    text-transform: uppercase;
+}
+.sort select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: #fff url("") no-repeat scroll 90% center;
+    border: 0px;
+    min-width: 40px;
+}
+.sort select option {
+    background: #fff none repeat scroll 0 0;
+    border: 0 solid;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 3px 10px;
+}
+.review {}
+.review textarea {
+    background: transparent;
+    border: 1px solid #ccc;
+    color: #848282;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 25px;
+    margin-top: 30px;
+    padding: 7px 15px;
+    width: 100%;
+}
+.action-btn {
+    margin-bottom: 20px;
+}
+.action-btn a {
+    background: #fff none repeat scroll 0 0;
+    color: #e09e25;
+    display: inline-block;
+    font-size: 16px;
+    height: 40px;
+    line-height: 40px;
+    margin-right: 5px;
+    text-align: center;
+    width: 40px;
+}
+.action-btn a:hover {
+    background:#e09e25;
+    color:#fff;
+}
+.product-page .description {
+    margin-bottom: 30px;
+}
+.product-nav {
+    background: #fff none repeat scroll 0 0;
+    margin-bottom: 5px;
+}
+.product-nav > li {
+    display: inline-block;
+}
+.product-nav  > li > a {
+    color: #3f3f3f;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.product-nav  > li > a:hover, .product-nav  > li.active > a, .product-nav  > li.active > a:focus, .product-nav  > li.active > a:hover {
+    background: transparent;
+    color: #e09e25;
+}
+.description .tab-content {
+    background: #fff none repeat scroll 0 0;
+    padding: 15px;
+}
+.product-page .description .tab-pane p {
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
